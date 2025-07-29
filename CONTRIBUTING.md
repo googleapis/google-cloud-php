@@ -106,7 +106,7 @@ Please note that because Datastore and Firestore cannot be active in the same pr
 $ export GOOGLE_CLOUD_PHP_FIRESTORE_TESTS_KEY_PATH='/path/to/keyfile.json'
 ```
 
-## Coding Style
+### Coding Style
 
 Please follow the established coding style in the library. Google Cloud PHP follows the [PSR-2](https://www.php-fig.org/psr/psr-2/) Coding Style.
 This is enforced using both [PHP CS Fixer](https://github.com/PHP-CS-Fixer/PHP-CS-Fixer) and [PHP Code Sniffer](https://github.com/squizlabs/PHP_CodeSniffer).
@@ -122,6 +122,16 @@ If these changes look correct, you can automatically fix the issues by running t
 ```sh
 $ composer style-fix
 ```
+
+### Static Analysis
+
+Run PHPStan for static analysis with the following command.
+
+```sh
+$ composer phpstan
+```
+
+Any errors here will have to be fixed manually.
 
 **NOTE**: PHP CS Fixer does not check for or fix line lengths or trailing whitespace, which is the primary reason we use both libraries.
 
