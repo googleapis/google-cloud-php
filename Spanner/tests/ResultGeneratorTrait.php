@@ -17,91 +17,128 @@
 
 namespace Google\Cloud\Spanner\Tests;
 
+use Google\ApiCore\ServerStream;
 use Google\Cloud\Spanner\Database;
+use Google\Cloud\Spanner\Tests\Unit\Fixtures;
+use Google\Cloud\Spanner\V1\PartialResultSet;
+use Google\Cloud\Spanner\V1\ResultSetMetadata;
+use Google\Cloud\Spanner\V1\ResultSetStats;
+use Google\Cloud\Spanner\V1\StructType;
+use Google\Cloud\Spanner\V1\StructType\Field;
+use Google\Cloud\Spanner\V1\Transaction;
+use Google\Cloud\Spanner\V1\Type;
+use Google\Protobuf\Value;
 
 /**
  * Provide a Spanner Read/Query result
  */
 trait ResultGeneratorTrait
 {
-    /**
-     * Yield a ResultSet response.
-     *
-     * @param bool $withStats If true, statistics will be included.
-     *        **Defaults to** `false`.
-     * @param string|null $transaction If set, the value will be included as the
-     *        transaction ID. **Defaults to** `null`.
-     * @return \Generator
-     */
-    private function resultGenerator($withStats = false, $transaction = null)
-    {
-        return $this->yieldRows([
+    private function resultGeneratorStream(
+        ?array $chunks = null,
+        ?ResultSetStats $stats = null,
+        ?string $transactionId = null
+    ) {
+        $stream = $this->prophesize(ServerStream::class);
+        $chunks = $chunks ?: [
             [
                 'name' => 'ID',
                 'type' => Database::TYPE_INT64,
                 'value' => '10'
             ]
-        ], $withStats, $transaction);
-    }
-
-    /**
-     * Yield rows with user-specified data.
-     *
-     * @param array[] $rows A list of arrays containing `name`, `type` and `value` keys.
-     * @param bool $withStats If true, statistics will be included.
-     *        **Defaults to** `false`.
-     * @param string|null $transaction If set, the value will be included as the
-     *        transaction ID. **Defaults to** `null`.
-     * @return \Generator
-     */
-    private function yieldRows(array $rows, $withStats = false, $transaction = null)
-    {
-        $fields = [];
-        $values = [];
-        foreach ($rows as $row) {
-            $fields[] = [
-                'name' => $row['name'],
-                'type' => [
-                    'code' => $row['type']
-                ]
-            ];
-
-            $values[] = $row['value'];
-        }
-
-        $result = [
-            'metadata' => [
-                'rowType' => [
-                    'fields' => $fields
-                ]
-            ],
-            'values' => $values
         ];
 
-        if ($withStats) {
-            $result['stats'] = [
-                'rowCountExact' => 1,
-                'rowCountLowerBound' => 1
-            ];
+        $rows = [];
+
+        if ($chunks) {
+            foreach ($chunks as $i => $chunk) {
+                if (is_string($chunk)) {
+                    // merge from JSON string
+                    $result = new PartialResultSet();
+                    $result->mergeFromJsonString($chunk);
+                    $rows[$i] = $result;
+                } elseif ($chunk instanceof PartialResultSet) {
+                    $rows[$i] = $chunk;
+                }
+            }
         }
 
-        if ($transaction) {
-            $result['metadata']['transaction'] = [
-                'id' => $transaction
+        if (!$rows) {
+            $fields = [];
+            $values = [];
+            foreach ($chunks as $row) {
+                $fields[] = new Field([
+                    'name' => $row['name'],
+                    'type' => new Type(['code' => $row['type']])
+                ]);
+
+                $values[] = new Value(['string_value' => (string) $row['value']]);
+            }
+
+            $result = [
+                'metadata' => new ResultSetMetadata([
+                    'row_type' => new StructType([
+                        'fields' => $fields
+                    ])
+                ]),
+                'values' => $values
             ];
+
+            if ($stats) {
+                $result['stats'] = $stats;
+            }
+
+            if ($transactionId) {
+                $result['metadata']->setTransaction(new Transaction(['id' => $transactionId]));
+            }
+
+            if (isset($result['stats'])) {
+                $result['stats'] = $stats;
+            }
+
+            $rows[] = new PartialResultSet($result);
         }
 
-        yield $result;
+        $stream->readAll()
+            ->willReturn($this->resultGeneratorArray($rows));
+
+        return $stream->reveal();
     }
 
-    /**
-     * Yield the given array as a generator.
-     *
-     * @param array $data The input data
-     * @return \Generator
-     */
-    private function resultGeneratorData(array $data)
+    private function resultGeneratorArray($chunks)
     {
-        yield $data;
+        foreach ($chunks as $chunk) {
+            yield $chunk;
+        }
+    }
+
+    private function resultGeneratorJson($chunks)
+    {
+        foreach ($chunks as $chunk) {
+            yield json_decode($chunk, true);
+        }
+    }
+
+    private function getStreamingDataFixture()
+    {
+        return json_decode(
+            file_get_contents(Fixtures::STREAMING_READ_ACCEPTANCE_FIXTURE()),
+            true
+        );
+    }
+
+    public function streamingDataProviderFirstChunk()
+    {
+        foreach ($this->getStreamingDataFixture()['tests'] as $test) {
+            yield [$test['chunks'], $test['result']['value']];
+            break;
+        }
+    }
+
+    public function streamingDataProvider()
+    {
+        foreach ($this->getStreamingDataFixture()['tests'] as $test) {
+            yield [$test['chunks'], $test['result']['value']];
+        }
     }
 }

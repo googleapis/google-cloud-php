@@ -19,13 +19,11 @@ namespace Google\Cloud\Spanner\Tests\Snippet;
 
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
-use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Operation;
+use Google\Cloud\Spanner\Serializer;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Snapshot;
-use Google\Cloud\Spanner\Tests\OperationRefreshTrait;
-use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -35,44 +33,46 @@ use Prophecy\PhpUnit\ProphecyTrait;
 class SnapshotTest extends SnippetTestCase
 {
     use GrpcTestTrait;
-    use OperationRefreshTrait;
     use ProphecyTrait;
-    use StubCreationTrait;
 
     const TRANSACTION = 'my-transaction';
 
-    private $connection;
+    private $spannerClient;
+    private $serializer;
     private $snapshot;
 
     public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->connection = $this->getConnStub();
+        $this->serializer = new Serializer();
         $operation = $this->prophesize(Operation::class);
         $session = $this->prophesize(Session::class);
 
-        $this->snapshot = TestHelpers::stub(Snapshot::class, [
+        $this->snapshot = new Snapshot(
             $operation->reveal(),
             $session->reveal(),
             [
                 'id' => self::TRANSACTION,
-                'readTimestamp' => new Timestamp(new \DateTime)
+                'readTimestamp' => new Timestamp(new \DateTime())
             ]
-        ], ['operation']);
+        );
     }
 
     public function testClass()
     {
+        $snapshot = $this->prophesize(Snapshot::class)->reveal();
         $database = $this->prophesize(Database::class);
-        $database->snapshot()->shouldBeCalled()->willReturn('foo');
+        $database->snapshot()
+            ->shouldBeCalled()
+            ->willReturn($snapshot);
 
         $snippet = $this->snippetFromClass(Snapshot::class);
         $snippet->replace('$database =', '//$database =');
         $snippet->addLocal('database', $database->reveal());
 
         $res = $snippet->invoke('transaction');
-        $this->assertEquals('foo', $res->returnVal());
+        $this->assertEquals($snapshot, $res->returnVal());
     }
 
     public function testId()

@@ -26,7 +26,7 @@ use Google\Cloud\Core\ValidateTrait;
  * ```
  * use Google\Cloud\Spanner\SpannerClient;
  *
- * $spanner = new SpannerClient();
+ * $spanner = new SpannerClient(['projectId' => 'my-project']);
  *
  * $keySet = $spanner->keySet();
  * ```
@@ -37,20 +37,12 @@ class KeySet
 {
     use ValidateTrait;
 
-    /**
-     * @var array
-     */
-    private $keys;
-
+    private array $keys;
     /**
      * @var KeyRange[]
      */
-    private $ranges;
-
-    /**
-     * @var bool
-     */
-    private $all;
+    private array $ranges;
+    private bool $all;
 
     /**
      * Create a KeySet.
@@ -97,7 +89,7 @@ class KeySet
      *
      * @return KeyRange[]
      */
-    public function ranges()
+    public function ranges(): array
     {
         return $this->ranges;
     }
@@ -114,7 +106,7 @@ class KeySet
      * @param KeyRange $range A KeyRange instance.
      * @return void
      */
-    public function addRange(KeyRange $range)
+    public function addRange(KeyRange $range): void
     {
         $this->ranges[] = $range;
     }
@@ -133,7 +125,7 @@ class KeySet
      * @param KeyRange[] $ranges An array of KeyRange objects.
      * @return void
      */
-    public function setRanges(array $ranges)
+    public function setRanges(array $ranges): void
     {
         $this->validateBatch($ranges, KeyRange::class);
 
@@ -150,7 +142,7 @@ class KeySet
      *
      * @return mixed[]
      */
-    public function keys()
+    public function keys(): array
     {
         return $this->keys;
     }
@@ -169,7 +161,7 @@ class KeySet
      * @param mixed $key The Key to add.
      * @return void
      */
-    public function addKey($key)
+    public function addKey($key): void
     {
         $this->keys[] = $key;
     }
@@ -187,7 +179,7 @@ class KeySet
      * @param mixed[] $keys
      * @return void
      */
-    public function setKeys(array $keys)
+    public function setKeys(array $keys): void
     {
         $this->keys = $keys;
     }
@@ -204,7 +196,7 @@ class KeySet
      *
      * @return bool
      */
-    public function matchAll()
+    public function matchAll(): bool
     {
         return $this->all;
     }
@@ -220,7 +212,7 @@ class KeySet
      * @param bool $all If true, all keys in a table will be matched.
      * @return void
      */
-    public function setMatchAll($all)
+    public function setMatchAll($all): void
     {
         $this->all = (bool) $all;
     }
@@ -230,7 +222,7 @@ class KeySet
      *
      * @access private
      */
-    public function keySetObject()
+    public function keySetObject(): array
     {
         $ranges = [];
         foreach ($this->ranges as $range) {
@@ -261,7 +253,7 @@ class KeySet
      * @return KeySet
      * @access private
      */
-    public static function fromArray(array $keySet)
+    public static function fromArray(array $keySet): KeySet
     {
         $res = new self();
         if (isset($keySet['all'])) {
