@@ -10,6 +10,9 @@
         "style-fix": [
             "vendor/bin/php-tools cs-fixer googleapis/google-cloud-php --ref $(git rev-parse --abbrev-ref HEAD) --flags \"\"",
             "vendor/bin/phpcbf --standard=phpcs-ruleset.xml -p"
+        ],
+        "phpstan": [
+            "dev/sh/static-analysis"
         ]
     },
     "keywords": [
