@@ -134,11 +134,17 @@ trait TransactionConfigurationTrait
         return [$transactionOptions, $type, $context];
     }
 
+    // Init readWrite options array with any necessary defaults for its nested options
+    private function initReadWriteTransactionOptions(): array
+    {
+        return ['readWrite' => []];
+    }
+
     private function configureReadWriteTransactionOptions(array $options = []): array
     {
         return array_intersect_key($options, array_flip([
             'excludeTxnFromChangeStreams',
-        ])) + ['readWrite' => []];
+        ])) + $this->initReadWriteTransactionOptions();
     }
 
     /**
