@@ -113,8 +113,6 @@ class BatchClient
         ReadPartition::class
     ];
 
-    private Operation $operation;
-    private string $databaseName;
     private string|null $databaseRole;
 
     /**
@@ -127,10 +125,11 @@ class BatchClient
      *     @type string $databaseRole The user created database role which creates the session.
      * }
      */
-    public function __construct(Operation $operation, $databaseName, array $options = [])
-    {
-        $this->operation = $operation;
-        $this->databaseName = $databaseName;
+    public function __construct(
+        private Operation $operation,
+        private Database $database,
+        array $options = []
+    ) {
         $this->databaseRole = $options['databaseRole'] ?? '';
     }
 
@@ -174,14 +173,7 @@ class BatchClient
 
         $transactionOptions = $this->configureReadOnlyTransactionOptions($transactionOptions);
 
-        if ($this->databaseRole !== null) {
-            $sessionOptions['creator_role'] = $this->databaseRole;
-        }
-
-        $session = $this->operation->createSession(
-            $this->databaseName,
-            $sessionOptions
-        );
+        $session = $this->database->createSession($sessionOptions);
 
         /** @var BatchSnapshot */
         return $this->operation->snapshot($session, [

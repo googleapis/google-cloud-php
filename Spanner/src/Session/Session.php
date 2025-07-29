@@ -17,130 +17,22 @@
 
 namespace Google\Cloud\Spanner\Session;
 
-use Google\Cloud\Core\ApiHelperTrait;
-use Google\Cloud\Core\Exception\NotFoundException;
-use Google\Cloud\Spanner\Database;
-// use Google\Cloud\Spanner\Serializer;
-use Google\Cloud\Spanner\V1\Client\SpannerClient;
-use Google\Cloud\Spanner\V1\DeleteSessionRequest;
-use Google\Cloud\Spanner\V1\GetSessionRequest;
-use Google\Cloud\Spanner\V1\MultiplexedSessionPrecommitToken;
+use Google\Cloud\Spanner\V1\Session as SessionProto;
+
 
 /**
- * Represents and manages a single Cloud Spanner session.
+ * Represents and manages a Cloud Spanner Multiplexed Session.
+ *
+ * @internal
  */
 class Session
 {
-    use ApiHelperTrait;
-
     /**
-     * @var int|null
-     */
-    private int|null $expiration = null;
-
-    /**
-     * @var bool
-     */
-    private bool $routeToLeader;
-
-    /**
-     * @var string
-     */
-    private string $databaseName;
-
-    private MultiplexedSessionPrecommitToken|null $precommitToken = null;
-
-    /**
-     * @internal Session is constructed by the {@see Database} class.
-     *
-     * @param Serializer $serializer The serializer instance to encode/decode messages.
-     * @param string $projectId The project ID.
-     * @param string $instance The instance name.
-     * @param string $database The database name.
-     * @param string $name The session name.
-     * @param array $config [optional] {
-     *     Configuration options.
-     *
-     *     @type bool $routeToLeader Enable/disable Leader Aware Routing.
-     *         **Defaults to** `true` (enabled).
-     * }
      */
     public function __construct(
-        // private SpannerClient $spannerClient,
-        // private Serializer $serializer,
-        private string $projectId,
-        private string $instance,
-        private string $database,
-        private string $name,
-        array $config = []
+        private SessionPoolInterface $sessionPool,
+        private SessionProto|null $session = null,
     ) {
-        $this->databaseName = SpannerClient::databaseName(
-            $projectId,
-            $instance,
-            $database
-        );
-        $this->name = SpannerClient::sessionName(
-            $projectId,
-            $instance,
-            $database,
-            $name
-        );
-        $this->routeToLeader = $config['routeToleader'] ?? true;
-    }
-
-    /**
-     * Return info on the session.
-     *
-     * @return array An array containing the `projectId`, `instance`, `database`, 'databaseName' and session `name`
-     *         keys.
-     */
-    public function info(): array
-    {
-        return [
-            'projectId' => $this->projectId,
-            'instance' => $this->instance,
-            'database' => $this->database,
-            'databaseName' => $this->databaseName,
-            'name' => $this->name
-        ];
-    }
-
-    /**
-     * Check if the session exists.
-     *
-     * @param array $options [optional] Configuration options.
-     * @return bool
-     */
-    public function exists(array $options = []): bool
-    {
-        // [$data, $callOptions] = $this->splitOptionalArgs($options);
-        // $data += [
-        //     'name' => $this->name()
-        // ];
-
-        // try {
-        //     $request = $this->serializer->decodeMessage(new GetSessionRequest(), $data);
-
-        //     $this->spannerClient->getSession($request, $callOptions + [
-        //         'resource-prefix' => $this->databaseName,
-        //         'route-to-leader' => $this->routeToLeader,
-        //     ]);
-        // } catch (NotFoundException $e) {
-        //     return false;
-        // }
-        // return true;
-    }
-
-    /**
-     * Delete the session.
-     *
-     * @param array $options [optional] Configuration options.
-     * @return void
-     */
-    public function delete(array $options = []): void
-    {
-        // Multiplexed sessions do not have a Delete RPC
-        // @TODO: Remove this method
     }
 
     /**
@@ -150,40 +42,23 @@ class Session
      */
     public function name(): string
     {
-        return $this->name;
+        $this->ensureValidSession();
+
+        return $this->session->getName();
     }
 
-    /**
-     * Sets the expiration.
-     *
-     * @param int $expiration [optional] The Unix timestamp in seconds upon
-     *        which the session will expire.  **Defaults to** now plus 60
-     *        minutes.
-     * @return void
-     */
-    public function setExpiration($expiration = null): void
+    private function ensureValidSession(): void
     {
-        $this->expiration = $expiration ?: time() + SessionPoolInterface::SESSION_EXPIRATION_SECONDS;
+        if (!$this->session || $this->isExpired($this->session)) {
+            // Acquire a new multiplex session from the pool
+            $this->session = $this->sessionPool->acquire();
+        }
     }
 
-    /**
-     * Gets the expiration.
-     *
-     * @return int|null
-     */
-    public function expiration(): int|null
+    private function isExpired(SessionProto $session): bool
     {
-        return $this->expiration;
-    }
-
-    public function setPrecommitToken(MultiplexedSessionPrecommitToken $precommitToken)
-    {
-        $this->precommitToken = $precommitToken;
-    }
-
-    public function getPrecommitToken(): MultiplexedSessionPrecommitToken|null
-    {
-        return $this->precommitToken;
+        $createdTimeSeconds = $this->session->getCreateTime()->getSeconds();
+        return time() >=  ($createdTimeSeconds + SessionPoolInterface::SESSION_EXPIRATION_SECONDS);
     }
 
     /**
@@ -195,14 +70,8 @@ class Session
     public function __debugInfo()
     {
         return [
-            /** @phpstan-ignore-next-line */
-            'spannerClient' => isset($this->spannerClient) ? get_class($this->spannerClient) : '<not set>',
-            'projectId' => $this->projectId,
-            'instance' => $this->instance,
-            'database' => $this->database,
-            'databaseName' => $this->databaseName,
-            'name' => $this->name,
-            'precommitToken' => print_r($this->precommitToken, true),
+            'session' => $this->session,
+            'sessionPool' => $this->sessionPool,
         ];
     }
 }
