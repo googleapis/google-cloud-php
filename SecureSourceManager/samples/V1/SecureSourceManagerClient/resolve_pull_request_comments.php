@@ -31,7 +31,10 @@ use Google\Cloud\SecureSourceManager\V1\ResolvePullRequestCommentsResponse;
 use Google\Rpc\Status;
 
 /**
- * Resolves pull request comments.
+ * Resolves pull request comments. A list of PullRequestComment names must be
+ * provided. The PullRequestComment names must be in the same conversation
+ * thread. If auto_fill is set, all comments in the conversation thread will
+ * be resolved.
  *
  * @param string $formattedParent       The pull request in which to resolve the pull request comments.
  *                                      Format:
