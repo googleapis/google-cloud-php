@@ -44,14 +44,19 @@ use Google\Apps\Chat\V1\Space;
  * returns the direct message space between the specified user and the
  * authenticated user.
  *
- * // Supports the following types of
+ * Supports the following types of
  * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize):
  *
  * - [App
  * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
+ * with the authorization scope:
+ * - `https://www.googleapis.com/auth/chat.bot`
  *
  * - [User
  * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+ * with one of the following authorization scopes:
+ * - `https://www.googleapis.com/auth/chat.spaces.readonly`
+ * - `https://www.googleapis.com/auth/chat.spaces`
  *
  * @param string $name Resource name of the user to find direct message with.
  *
