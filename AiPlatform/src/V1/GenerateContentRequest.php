@@ -89,6 +89,13 @@ class GenerateContentRequest extends \Google\Protobuf\Internal\Message
      */
     private $safety_settings;
     /**
+     * Optional. Settings for prompt and response sanitization using the Model
+     * Armor service. If supplied, safety_settings must not be supplied.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ModelArmorConfig model_armor_config = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $model_armor_config = null;
+    /**
      * Optional. Generation config.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.GenerationConfig generation_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -168,6 +175,9 @@ class GenerateContentRequest extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\AIPlatform\V1\SafetySetting>|\Google\Protobuf\Internal\RepeatedField $safety_settings
      *           Optional. Per request settings for blocking unsafe content.
      *           Enforced on GenerateContentResponse.candidates.
+     *     @type \Google\Cloud\AIPlatform\V1\ModelArmorConfig $model_armor_config
+     *           Optional. Settings for prompt and response sanitization using the Model
+     *           Armor service. If supplied, safety_settings must not be supplied.
      *     @type \Google\Cloud\AIPlatform\V1\GenerationConfig $generation_config
      *           Optional. Generation config.
      * }
@@ -451,6 +461,44 @@ class GenerateContentRequest extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\SafetySetting::class);
         $this->safety_settings = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Settings for prompt and response sanitization using the Model
+     * Armor service. If supplied, safety_settings must not be supplied.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ModelArmorConfig model_armor_config = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AIPlatform\V1\ModelArmorConfig|null
+     */
+    public function getModelArmorConfig()
+    {
+        return $this->model_armor_config;
+    }
+
+    public function hasModelArmorConfig()
+    {
+        return isset($this->model_armor_config);
+    }
+
+    public function clearModelArmorConfig()
+    {
+        unset($this->model_armor_config);
+    }
+
+    /**
+     * Optional. Settings for prompt and response sanitization using the Model
+     * Armor service. If supplied, safety_settings must not be supplied.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ModelArmorConfig model_armor_config = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AIPlatform\V1\ModelArmorConfig $var
+     * @return $this
+     */
+    public function setModelArmorConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\ModelArmorConfig::class);
+        $this->model_armor_config = $var;
 
         return $this;
     }

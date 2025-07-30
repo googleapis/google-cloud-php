@@ -80,6 +80,12 @@ class FinishReason
      * Generated from protobuf enum <code>MALFORMED_FUNCTION_CALL = 9;</code>
      */
     const MALFORMED_FUNCTION_CALL = 9;
+    /**
+     * The model response was blocked by Model Armor.
+     *
+     * Generated from protobuf enum <code>MODEL_ARMOR = 10;</code>
+     */
+    const MODEL_ARMOR = 10;
 
     private static $valueToName = [
         self::FINISH_REASON_UNSPECIFIED => 'FINISH_REASON_UNSPECIFIED',
@@ -92,6 +98,7 @@ class FinishReason
         self::PROHIBITED_CONTENT => 'PROHIBITED_CONTENT',
         self::SPII => 'SPII',
         self::MALFORMED_FUNCTION_CALL => 'MALFORMED_FUNCTION_CALL',
+        self::MODEL_ARMOR => 'MODEL_ARMOR',
     ];
 
     public static function name($value)
