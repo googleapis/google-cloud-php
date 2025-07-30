@@ -15,6 +15,12 @@ use Google\Protobuf\Internal\GPBUtil;
  */
 class FloorSettingMetadata extends \Google\Protobuf\Internal\Message
 {
+    /**
+     * Optional. Metadata for multi language detection.
+     *
+     * Generated from protobuf field <code>.google.cloud.modelarmor.v1.FloorSetting.FloorSettingMetadata.MultiLanguageDetection multi_language_detection = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $multi_language_detection = null;
 
     /**
      * Constructor.
@@ -22,11 +28,49 @@ class FloorSettingMetadata extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type \Google\Cloud\ModelArmor\V1\FloorSetting\FloorSettingMetadata\MultiLanguageDetection $multi_language_detection
+     *           Optional. Metadata for multi language detection.
      * }
      */
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Modelarmor\V1\Service::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Optional. Metadata for multi language detection.
+     *
+     * Generated from protobuf field <code>.google.cloud.modelarmor.v1.FloorSetting.FloorSettingMetadata.MultiLanguageDetection multi_language_detection = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\ModelArmor\V1\FloorSetting\FloorSettingMetadata\MultiLanguageDetection|null
+     */
+    public function getMultiLanguageDetection()
+    {
+        return $this->multi_language_detection;
+    }
+
+    public function hasMultiLanguageDetection()
+    {
+        return isset($this->multi_language_detection);
+    }
+
+    public function clearMultiLanguageDetection()
+    {
+        unset($this->multi_language_detection);
+    }
+
+    /**
+     * Optional. Metadata for multi language detection.
+     *
+     * Generated from protobuf field <code>.google.cloud.modelarmor.v1.FloorSetting.FloorSettingMetadata.MultiLanguageDetection multi_language_detection = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\ModelArmor\V1\FloorSetting\FloorSettingMetadata\MultiLanguageDetection $var
+     * @return $this
+     */
+    public function setMultiLanguageDetection($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\ModelArmor\V1\FloorSetting\FloorSettingMetadata\MultiLanguageDetection::class);
+        $this->multi_language_detection = $var;
+
+        return $this;
     }
 
 }
