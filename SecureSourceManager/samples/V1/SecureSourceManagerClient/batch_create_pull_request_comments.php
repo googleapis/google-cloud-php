@@ -33,7 +33,11 @@ use Google\Cloud\SecureSourceManager\V1\PullRequestComment;
 use Google\Rpc\Status;
 
 /**
- * Batch creates pull request comments.
+ * Batch creates pull request comments. This function is used to create
+ * multiple PullRequestComments for code review. There needs to be exactly one
+ * PullRequestComment of type Review, and at most 100 PullRequestComments of
+ * type Code per request. The Postition of the code comments must be unique
+ * within the request.
  *
  * @param string $formattedParent         The pull request in which to create the pull request comments.
  *                                        Format:
