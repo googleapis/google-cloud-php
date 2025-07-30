@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,23 +22,11 @@
 
 return [
     'interfaces' => [
-        'google.cloud.policysimulator.v1.Simulator' => [
-            'CreateReplay' => [
+        'google.cloud.policysimulator.v1.OrgPolicyViolationsPreviewService' => [
+            'CreateOrgPolicyViolationsPreview' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/replays',
-                'body' => 'replay',
-                'additionalBindings' => [
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1/{parent=folders/*/locations/*}/replays',
-                        'body' => 'replay',
-                    ],
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1/{parent=organizations/*/locations/*}/replays',
-                        'body' => 'replay',
-                    ],
-                ],
+                'uriTemplate' => '/v1/{parent=organizations/*/locations/*}/orgPolicyViolationsPreviews',
+                'body' => 'org_policy_violations_preview',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -47,19 +35,9 @@ return [
                     ],
                 ],
             ],
-            'GetReplay' => [
+            'GetOrgPolicyViolationsPreview' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/replays/*}',
-                'additionalBindings' => [
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1/{name=folders/*/locations/*/replays/*}',
-                    ],
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1/{name=organizations/*/locations/*/replays/*}',
-                    ],
-                ],
+                'uriTemplate' => '/v1/{name=organizations/*/locations/*/orgPolicyViolationsPreviews/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -68,19 +46,20 @@ return [
                     ],
                 ],
             ],
-            'ListReplayResults' => [
+            'ListOrgPolicyViolations' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/*/replays/*}/results',
-                'additionalBindings' => [
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1/{parent=folders/*/locations/*/replays/*}/results',
-                    ],
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1/{parent=organizations/*/locations/*/replays/*}/results',
+                'uriTemplate' => '/v1/{parent=organizations/*/locations/*/orgPolicyViolationsPreviews/*}/orgPolicyViolations',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
                     ],
                 ],
+            ],
+            'ListOrgPolicyViolationsPreviews' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=organizations/*/locations/*}/orgPolicyViolationsPreviews',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [

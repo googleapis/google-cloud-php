@@ -23,7 +23,7 @@ class ExplainedPolicy extends \Google\Protobuf\Internal\Message
      * permission for the resource. There might be another policy that overrides
      * this policy. To determine whether the principal actually has the
      * permission, use the `access` field in the
-     * [TroubleshootIamPolicyResponse][IamChecker.TroubleshootIamPolicyResponse].
+     * [TroubleshootIamPolicyResponse][google.cloud.policytroubleshooter.v3.TroubleshootIamPolicyResponse].
      *
      * Generated from protobuf field <code>.google.cloud.policysimulator.v1.AccessState access = 1;</code>
      */
@@ -61,7 +61,7 @@ class ExplainedPolicy extends \Google\Protobuf\Internal\Message
     private $binding_explanations;
     /**
      * The relevance of this policy to the overall determination in the
-     * [TroubleshootIamPolicyResponse][IamChecker.TroubleshootIamPolicyResponse].
+     * [TroubleshootIamPolicyResponse][google.cloud.policytroubleshooter.v3.TroubleshootIamPolicyResponse].
      * If the user who created the
      * [Replay][google.cloud.policysimulator.v1.Replay] does not have
      * access to the policy, this field is omitted.
@@ -83,7 +83,7 @@ class ExplainedPolicy extends \Google\Protobuf\Internal\Message
      *           permission for the resource. There might be another policy that overrides
      *           this policy. To determine whether the principal actually has the
      *           permission, use the `access` field in the
-     *           [TroubleshootIamPolicyResponse][IamChecker.TroubleshootIamPolicyResponse].
+     *           [TroubleshootIamPolicyResponse][google.cloud.policytroubleshooter.v3.TroubleshootIamPolicyResponse].
      *     @type string $full_resource_name
      *           The full resource name that identifies the resource. For example,
      *           `//compute.googleapis.com/projects/my-project/zones/us-central1-a/instances/my-instance`.
@@ -105,7 +105,7 @@ class ExplainedPolicy extends \Google\Protobuf\Internal\Message
      *           access to the policy, this field is omitted.
      *     @type int $relevance
      *           The relevance of this policy to the overall determination in the
-     *           [TroubleshootIamPolicyResponse][IamChecker.TroubleshootIamPolicyResponse].
+     *           [TroubleshootIamPolicyResponse][google.cloud.policytroubleshooter.v3.TroubleshootIamPolicyResponse].
      *           If the user who created the
      *           [Replay][google.cloud.policysimulator.v1.Replay] does not have
      *           access to the policy, this field is omitted.
@@ -123,7 +123,7 @@ class ExplainedPolicy extends \Google\Protobuf\Internal\Message
      * permission for the resource. There might be another policy that overrides
      * this policy. To determine whether the principal actually has the
      * permission, use the `access` field in the
-     * [TroubleshootIamPolicyResponse][IamChecker.TroubleshootIamPolicyResponse].
+     * [TroubleshootIamPolicyResponse][google.cloud.policytroubleshooter.v3.TroubleshootIamPolicyResponse].
      *
      * Generated from protobuf field <code>.google.cloud.policysimulator.v1.AccessState access = 1;</code>
      * @return int
@@ -140,7 +140,7 @@ class ExplainedPolicy extends \Google\Protobuf\Internal\Message
      * permission for the resource. There might be another policy that overrides
      * this policy. To determine whether the principal actually has the
      * permission, use the `access` field in the
-     * [TroubleshootIamPolicyResponse][IamChecker.TroubleshootIamPolicyResponse].
+     * [TroubleshootIamPolicyResponse][google.cloud.policytroubleshooter.v3.TroubleshootIamPolicyResponse].
      *
      * Generated from protobuf field <code>.google.cloud.policysimulator.v1.AccessState access = 1;</code>
      * @param int $var
@@ -270,7 +270,7 @@ class ExplainedPolicy extends \Google\Protobuf\Internal\Message
 
     /**
      * The relevance of this policy to the overall determination in the
-     * [TroubleshootIamPolicyResponse][IamChecker.TroubleshootIamPolicyResponse].
+     * [TroubleshootIamPolicyResponse][google.cloud.policytroubleshooter.v3.TroubleshootIamPolicyResponse].
      * If the user who created the
      * [Replay][google.cloud.policysimulator.v1.Replay] does not have
      * access to the policy, this field is omitted.
@@ -285,7 +285,7 @@ class ExplainedPolicy extends \Google\Protobuf\Internal\Message
 
     /**
      * The relevance of this policy to the overall determination in the
-     * [TroubleshootIamPolicyResponse][IamChecker.TroubleshootIamPolicyResponse].
+     * [TroubleshootIamPolicyResponse][google.cloud.policytroubleshooter.v3.TroubleshootIamPolicyResponse].
      * If the user who created the
      * [Replay][google.cloud.policysimulator.v1.Replay] does not have
      * access to the policy, this field is omitted.
