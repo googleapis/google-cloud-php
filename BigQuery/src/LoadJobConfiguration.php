@@ -911,7 +911,7 @@ class LoadJobConfiguration implements JobConfigurationInterface
      * $loadJobConfig->nullMarkers(['\\N', 'NULL']);
      * ```
      *
-     * @param array $nullMarkers An array of strings to be interpreted as NULL.
+     * @param string[] $nullMarkers An array of strings to be interpreted as NULL.
      * @return LoadJobConfiguration
      */
     public function nullMarkers(array $nullMarkers)
