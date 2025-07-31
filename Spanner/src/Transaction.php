@@ -19,11 +19,10 @@ namespace Google\Cloud\Spanner;
 
 use Google\ApiCore\ValidationException;
 use Google\Cloud\Core\Exception\AbortedException;
-use Google\Cloud\Spanner\Session\Session;
-use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\V1\RequestOptions;
 use Google\Cloud\Spanner\V1\TransactionOptions;
 use Google\Cloud\Spanner\V1\MultiplexedSessionPrecommitToken;
+use Google\Cloud\Spanner\Session\SessionCache;
 use Google\Protobuf\Duration;
 
 /**
@@ -79,7 +78,7 @@ class Transaction implements TransactionalReadInterface
 
     /**
      * @param Operation $operation The Operation instance.
-     * @param Session $session The session to use for spanner interactions.
+     * @param SessionCache $session The session to use for spanner interactions.
      * @param string $transactionId The Transaction ID. If no ID is provided, the Transaction will
      *        be a Single-Use Transaction.
      * @param array $options {
@@ -99,7 +98,7 @@ class Transaction implements TransactionalReadInterface
      */
     public function __construct(
         private Operation $operation,
-        private Session $session,
+        private SessionCache $session,
         private string|null $transactionId = null,
         array $options = [],
         private ValueMapper|null $mapper = null,

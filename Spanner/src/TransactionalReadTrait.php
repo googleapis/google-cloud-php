@@ -17,9 +17,8 @@
 
 namespace Google\Cloud\Spanner;
 
-use Google\Cloud\Spanner\Session\Session;
-use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\V1\TransactionOptions;
+use Google\Cloud\Spanner\Session\SessionCache;
 
 /**
  * Shared methods for reads inside a transaction.
@@ -31,7 +30,7 @@ trait TransactionalReadTrait
     use TransactionConfigurationTrait;
 
     private Operation $operation;
-    private Session $session;
+    private SessionCache $session;
     private string|null $transactionId;
     private string $context;
     private int $type;
@@ -407,9 +406,9 @@ trait TransactionalReadTrait
      * Get the Transaction Session
      *
      * @access private
-     * @return Session
+     * @return SessionCache
      */
-    public function session(): Session
+    public function session(): SessionCache
     {
         return $this->session;
     }
