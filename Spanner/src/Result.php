@@ -23,7 +23,6 @@ use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Spanner\Session\Session;
-use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\V1\ExecuteSqlRequest\QueryMode;
 use Grpc;
 
@@ -499,7 +498,7 @@ class Result implements \IteratorAggregate
     {
         if (!empty($result['metadata']['transaction']['id'])) {
             $res = $result['metadata']['transaction'];
-            if ($this->transactionContext === SessionPoolInterface::CONTEXT_READ) {
+            if ($this->transactionContext === Database::CONTEXT_READ) {
                 if (isset($res['readTimestamp'])) {
                     if (!($res['readTimestamp'] instanceof Timestamp)) {
                         $time = $this->parseTimeString($res['readTimestamp']);

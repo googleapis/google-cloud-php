@@ -114,7 +114,7 @@ class Transaction implements TransactionalReadInterface
             );
         }
 
-        $this->context = SessionPoolInterface::CONTEXT_READWRITE;
+        $this->context = Database::CONTEXT_READWRITE;
         $this->tag = $options['tag'] ?? null;
         $this->isRetry = $options['isRetry'] ?? false;
         $this->transactionSelector = array_intersect_key(

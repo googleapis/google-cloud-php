@@ -1172,19 +1172,19 @@ class CacheSessionPoolTest extends TestCase
 }
 
 //@codingStandardsIgnoreStart
-class CacheSessionPoolStub extends CacheSessionPool
-{
-    private $time;
-
-    public function __construct(CacheItemPoolInterface $cacheItemPool, array $config = [], $time = null)
-    {
-        $this->time = $time;
-        parent::__construct($cacheItemPool, $config);
-    }
-
-    protected function time()
-    {
-        return $this->time ?: parent::time();
-    }
-}
+//class CacheSessionPoolStub extends CacheSessionPool
+//{
+//    private $time;
+//
+//    public function __construct(CacheItemPoolInterface $cacheItemPool, array $config = [], $time = null)
+//    {
+//        $this->time = $time;
+//        parent::__construct($cacheItemPool, $config);
+//    }
+//
+//    protected function time()
+//    {
+//        return $this->time ?: parent::time();
+//    }
+//}
 //@codingStandardsIgnoreEnd

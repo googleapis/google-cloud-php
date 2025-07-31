@@ -46,8 +46,7 @@ use Google\Cloud\Spanner\Admin\Database\V1\ListDatabaseOperationsRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\RestoreDatabaseRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseDdlRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseRequest;
-use Google\Cloud\Spanner\Session\SessionPoolInterface;
-use Google\Cloud\Spanner\Session\Session;
+use Google\Cloud\Spanner\Session\SessionCache;
 use Google\Cloud\Spanner\V1\BatchCreateSessionsRequest;
 use Google\Cloud\Spanner\V1\BatchWriteRequest;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
@@ -57,6 +56,7 @@ use Google\Cloud\Spanner\V1\Mutation;
 use Google\Cloud\Spanner\V1\Mutation\Delete;
 use Google\Cloud\Spanner\V1\Mutation\Write;
 use Google\Cloud\Spanner\V1\TypeCode;
+use Google\Cloud\Spanner\V1\Session;
 use Google\LongRunning\ListOperationsRequest;
 use Google\LongRunning\Operation as OperationProto;
 use Google\Protobuf\Duration;
@@ -94,32 +94,35 @@ class Database
     use TransactionConfigurationTrait;
     use RequestTrait;
 
-    const STATE_CREATING = State::CREATING;
-    const STATE_READY = State::READY;
-    const STATE_READY_OPTIMIZING = State::READY_OPTIMIZING;
-    const MAX_RETRIES = 10;
+    public const CONTEXT_READ = 'r';
+    public const CONTEXT_READWRITE = 'rw';
 
-    const TYPE_BOOL = TypeCode::BOOL;
-    const TYPE_INT64 = TypeCode::INT64;
-    const TYPE_FLOAT32 = TypeCode::FLOAT32;
-    const TYPE_FLOAT64 = TypeCode::FLOAT64;
-    const TYPE_TIMESTAMP = TypeCode::TIMESTAMP;
-    const TYPE_DATE = TypeCode::DATE;
-    const TYPE_STRING = TypeCode::STRING;
-    const TYPE_BYTES = TypeCode::BYTES;
-    const TYPE_ARRAY = TypeCode::PBARRAY;
-    const TYPE_STRUCT = TypeCode::STRUCT;
-    const TYPE_NUMERIC = TypeCode::NUMERIC;
-    const TYPE_PROTO = TypeCode::PROTO;
-    const TYPE_PG_NUMERIC = 'pgNumeric';
-    const TYPE_PG_JSONB = 'pgJsonb';
-    const TYPE_JSON = TypeCode::JSON;
-    const TYPE_PG_OID = 'pgOid';
-    const TYPE_INTERVAL = TypeCode::INTERVAL;
+    public const STATE_CREATING = State::CREATING;
+    public const STATE_READY = State::READY;
+    public const STATE_READY_OPTIMIZING = State::READY_OPTIMIZING;
+    public const MAX_RETRIES = 10;
+
+    public const TYPE_BOOL = TypeCode::BOOL;
+    public const TYPE_INT64 = TypeCode::INT64;
+    public const TYPE_FLOAT32 = TypeCode::FLOAT32;
+    public const TYPE_FLOAT64 = TypeCode::FLOAT64;
+    public const TYPE_TIMESTAMP = TypeCode::TIMESTAMP;
+    public const TYPE_DATE = TypeCode::DATE;
+    public const TYPE_STRING = TypeCode::STRING;
+    public const TYPE_BYTES = TypeCode::BYTES;
+    public const TYPE_ARRAY = TypeCode::PBARRAY;
+    public const TYPE_STRUCT = TypeCode::STRUCT;
+    public const TYPE_NUMERIC = TypeCode::NUMERIC;
+    public const TYPE_PROTO = TypeCode::PROTO;
+    public const TYPE_PG_NUMERIC = 'pgNumeric';
+    public const TYPE_PG_JSONB = 'pgJsonb';
+    public const TYPE_JSON = TypeCode::JSON;
+    public const TYPE_PG_OID = 'pgOid';
+    public const TYPE_INTERVAL = TypeCode::INTERVAL;
 
     private Operation $operation;
     private IamManager|null $iam = null;
-    private Session $session;
+    private SessionCache $session;
     private bool $isRunningTransaction = false;
     private array $directedReadOptions;
     private bool $routeToLeader;
@@ -796,10 +799,7 @@ class Database
 
         $options['transactionOptions'] = $this->initReadWriteTransactionOptions();
 
-        $session = $this->selectSession(
-            SessionPoolInterface::CONTEXT_READWRITE,
-            $this->pluck('sessionOptions', $options, false) ?: []
-        );
+        $session = $this->selectSession();
 
         return $this->operation->transaction($session, $options);
     }
@@ -910,10 +910,7 @@ class Database
             $options['transactionOptions'] ?? []
         );
 
-        $session = $this->selectSession(
-            SessionPoolInterface::CONTEXT_READWRITE,
-            $this->pluck('sessionOptions', $options, false) ?: []
-        );
+        $session = $this->selectSession();
 
         $attempt = 0;
         $startTransactionFn = function ($session, $options) use (&$attempt) {
@@ -1539,14 +1536,12 @@ class Database
      *
      * ```
      * // Execute a read and return a new Snapshot for further reads.
-     * use Google\Cloud\Spanner\Session\SessionPoolInterface;
-     *
      * $result = $database->execute('SELECT * FROM Posts WHERE ID = @postId', [
      *     'parameters' => [
      *         'postId' => 1337
      *     ],
      *     'begin' => true,
-     *     'transactionType' => SessionPoolInterface::CONTEXT_READ
+     *     'transactionType' => Database::CONTEXT_READ
      * ]);
      *
      * $result->rows()->current();
@@ -1556,14 +1551,12 @@ class Database
      *
      * ```
      * // Execute a read and return a new Transaction for further reads and writes.
-     * use Google\Cloud\Spanner\Session\SessionPoolInterface;
-     *
      * $result = $database->execute('SELECT * FROM Posts WHERE ID = @postId', [
      *     'parameters' => [
      *         'postId' => 1337
      *     ],
      *     'begin' => true,
-     *     'transactionType' => SessionPoolInterface::CONTEXT_READWRITE
+     *     'transactionType' => Database::CONTEXT_READWRITE
      * ]);
      *
      * $result->rows()->current();
@@ -1618,11 +1611,11 @@ class Database
      *           $transactionType. If a transaction or snapshot is created, it
      *           will be returned as `$result->transaction()` or
      *           `$result->snapshot()`. **Defaults to** `false`.
-     *     @type string $transactionType One of `SessionPoolInterface::CONTEXT_READ`
-     *           or `SessionPoolInterface::CONTEXT_READWRITE`. If read/write is
+     *     @type string $transactionType One of `Database::CONTEXT_READ`
+     *           or `Database::CONTEXT_READWRITE`. If read/write is
      *           chosen, any snapshot options will be disregarded. If `$begin`
-     *           is false, transaction type MUST be `SessionPoolInterface::CONTEXT_READ`.
-     *           **Defaults to** `SessionPoolInterface::CONTEXT_READ`.
+     *           is false, transaction type MUST be `Database::CONTEXT_READ`.
+     *           **Defaults to** `Database::CONTEXT_READ`.
      *     @type array $sessionOptions Session configuration and request options.
      *           Session labels may be applied using the `labels` key.
      *     @type array $queryOptions Query optimizer configuration.
@@ -1657,10 +1650,7 @@ class Database
     {
         unset($options['requestOptions']['transactionTag']);
         $session = $this->pluck('session', $options, false)
-            ?: $this->selectSession(
-                SessionPoolInterface::CONTEXT_READ,
-                $this->pluck('sessionOptions', $options, false) ?: []
-            );
+            ?: $this->selectSession();
 
         list(
             $options['transaction'],
@@ -1675,7 +1665,7 @@ class Database
         // Unset the internal flag.
         unset($options['singleUse']);
         return $this->operation->execute($session, $sql, $options + [
-            'route-to-leader' => $options['transactionContext'] === SessionPoolInterface::CONTEXT_READWRITE
+            'route-to-leader' => $options['transactionContext'] === Database::CONTEXT_READWRITE
         ]);
     }
 
@@ -1743,7 +1733,6 @@ class Database
         // Prevent nested transactions.
         $this->isRunningTransaction = true;
         $session = $this->selectSession(
-            SessionPoolInterface::CONTEXT_READWRITE,
             $this->pluck('sessionOptions', $options, false) ?: []
         );
 
@@ -1894,7 +1883,7 @@ class Database
     public function executePartitionedUpdate($statement, array $options = []): int
     {
         unset($options['requestOptions']['transactionTag']);
-        $session = $this->selectSession(SessionPoolInterface::CONTEXT_READWRITE);
+        $session = $this->selectSession();
 
         $beginTransactionOptions = [
             'transactionOptions' => [
@@ -1935,7 +1924,6 @@ class Database
      * ```
      * // Execute a read and return a new Snapshot for further reads.
      * use Google\Cloud\Spanner\KeySet;
-     * use Google\Cloud\Spanner\Session\SessionPoolInterface;
      *
      * $keySet = new KeySet([
      *     'keys' => [1337]
@@ -1945,7 +1933,7 @@ class Database
      *
      * $result = $database->read('Posts', $keySet, $columns, [
      *     'begin' => true,
-     *     'transactionType' => SessionPoolInterface::CONTEXT_READ
+     *     'transactionType' => Database::CONTEXT_READ
      * ]);
      *
      * $result->rows()->current();
@@ -1956,7 +1944,6 @@ class Database
      * ```
      * // Execute a read and return a new Transaction for further reads and writes.
      * use Google\Cloud\Spanner\KeySet;
-     * use Google\Cloud\Spanner\Session\SessionPoolInterface;
      *
      * $keySet = new KeySet([
      *     'keys' => [1337]
@@ -1966,7 +1953,7 @@ class Database
      *
      * $result = $database->read('Posts', $keySet, $columns, [
      *     'begin' => true,
-     *     'transactionType' => SessionPoolInterface::CONTEXT_READWRITE
+     *     'transactionType' => Database::CONTEXT_READWRITE
      * ]);
      *
      * $result->rows()->current();
@@ -2010,11 +1997,11 @@ class Database
      *           $transactionType. If a transaction or snapshot is created, it
      *           will be returned as `$result->transaction()` or
      *           `$result->snapshot()`. **Defaults to** `false`.
-     *     @type string $transactionType One of `SessionPoolInterface::CONTEXT_READ`
-     *           or `SessionPoolInterface::CONTEXT_READWRITE`. If read/write is
+     *     @type string $transactionType One of `Database::CONTEXT_READ`
+     *           or `Database::CONTEXT_READWRITE`. If read/write is
      *           chosen, any snapshot options will be disregarded. If `$begin`
-     *           is false, transaction type MUST be `SessionPoolInterface::CONTEXT_READ`.
-     *           **Defaults to** `SessionPoolInterface::CONTEXT_READ`.
+     *           is false, transaction type MUST be `Database::CONTEXT_READ`.
+     *           **Defaults to** `Database::CONTEXT_READ`.
      *     @type array $sessionOptions Session configuration and request options.
      *           Session labels may be applied using the `labels` key.
      *     @type array $requestOptions Request options.
@@ -2041,7 +2028,6 @@ class Database
     {
         unset($options['requestOptions']['transactionTag']);
         $session = $this->selectSession(
-            SessionPoolInterface::CONTEXT_READ,
             $this->pluck('sessionOptions', $options, false) ?: []
         );
 
@@ -2057,42 +2043,8 @@ class Database
         // Unset the internal flag.
         unset($options['singleUse']);
         return $this->operation->read($session, $table, $keySet, $columns, $options + [
-            'route-to-leader' => $context === SessionPoolInterface::CONTEXT_READ
+            'route-to-leader' => $context === Database::CONTEXT_READ
         ]);
-    }
-
-    /**
-     * Get the underlying session pool implementation.
-     *
-     * Example:
-     * ```
-     * $pool = $database->sessionPool();
-     * ```
-     *
-     * @return SessionPoolInterface
-     */
-    public function sessionPool(): SessionPoolInterface
-    {
-        return $this->sessionPool;
-    }
-
-    /**
-     * Closes the database connection by returning the active session back to
-     * the session pool queue or by deleting the session if there is no pool
-     * associated.
-     *
-     * It is highly important to ensure this is called as it is not always safe
-     * to rely soley on {@see \Google\Cloud\Spanner\Database::__destruct()}.
-     *
-     * Example:
-     * ```
-     * $database->close();
-     * ```
-     */
-    public function close(): void
-    {
-        // Multiplexed sessions don't need to be closed
-        // @TODO: remove this method
     }
 
     /**
@@ -2103,9 +2055,9 @@ class Database
      *
      * @access private
      * @param array $options [optional] Configuration options.
-     * @return Session
+     * @return SessionCache
      */
-    public function createSession(array $options = []): Session
+    public function createSession(array $options = []): SessionCache
     {
         [$session, $callOptions] = $this->validateOptions(
             $options,
@@ -2126,7 +2078,7 @@ class Database
             'route-to-leader' => $this->routeToLeader
         ]);
 
-        return new SessionCache($this->cacheItemPool, $session);
+        return new SessionCache($this->cacheItemPool, $this, $session);
     }
 
 
