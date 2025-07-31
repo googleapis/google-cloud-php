@@ -9,11 +9,11 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * An event representing that the grant has ended.
+ * An event representing that the grant was withdrawn.
  *
- * Generated from protobuf message <code>google.cloud.privilegedaccessmanager.v1.Grant.Timeline.Event.Ended</code>
+ * Generated from protobuf message <code>google.cloud.privilegedaccessmanager.v1.Grant.Timeline.Event.Withdrawn</code>
  */
-class Ended extends \Google\Protobuf\Internal\Message
+class Withdrawn extends \Google\Protobuf\Internal\Message
 {
 
     /**
@@ -31,6 +31,4 @@ class Ended extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Ended::class, \Google\Cloud\PrivilegedAccessManager\V1\Grant_Timeline_Event_Ended::class);
 
