@@ -38,11 +38,29 @@ use Google\Apps\Chat\V1\Space;
  *
  * - [App
  * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
+ * with one of the following authorization scopes:
+ * - `https://www.googleapis.com/auth/chat.bot`
+ * - `https://www.googleapis.com/auth/chat.app.spaces` with [administrator
+ * approval](https://support.google.com/a?p=chat-app-auth)
  *
  * - [User
  * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
- * You can authenticate and authorize this method with administrator
- * privileges by setting the `use_admin_access` field in the request.
+ * with one of the following authorization scopes:
+ * - `https://www.googleapis.com/auth/chat.spaces.readonly`
+ * - `https://www.googleapis.com/auth/chat.spaces`
+ * - User authentication grants administrator privileges when an
+ * administrator account authenticates, `use_admin_access` is `true`, and
+ * one of the following authorization scopes is used:
+ * - `https://www.googleapis.com/auth/chat.admin.spaces.readonly`
+ * - `https://www.googleapis.com/auth/chat.admin.spaces`
+ *
+ * App authentication has the following limitations:
+ *
+ * - `space.access_settings` is only populated when using the
+ * `chat.app.spaces` scope.
+ * - `space.predefind_permission_settings` and `space.permission_settings` are
+ * only populated when using the `chat.app.spaces` scope, and only for
+ * spaces the app created.
  *
  * @param string $formattedName Resource name of the space, in the form `spaces/{space}`.
  *

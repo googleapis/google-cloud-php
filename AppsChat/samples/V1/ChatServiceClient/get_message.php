@@ -38,9 +38,14 @@ use Google\Apps\Chat\V1\Message;
  *
  * - [App
  * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
+ * with the authorization scope:
+ * - `https://www.googleapis.com/auth/chat.bot`
  *
  * - [User
  * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+ * with one of the following authorization scopes:
+ * - `https://www.googleapis.com/auth/chat.messages.readonly`
+ * - `https://www.googleapis.com/auth/chat.messages`
  *
  * Note: Might return a message from a blocked member or space.
  *

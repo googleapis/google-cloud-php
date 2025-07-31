@@ -28,11 +28,9 @@ class BackupRule extends \Google\Protobuf\Internal\Message
      * Required. Configures the duration for which backup data will be kept. It is
      * defined in “days”. The value should be greater than or equal to minimum
      * enforced retention of the backup vault.
-     * Minimum value is 1 and maximum value is 90 for hourly backups.
-     * Minimum value is 1 and maximum value is 90 for daily backups.
-     * Minimum value is 7 and maximum value is 186 for weekly backups.
-     * Minimum value is 30 and maximum value is 732 for monthly backups.
-     * Minimum value is 365 and maximum value is 36159 for yearly backups.
+     * Minimum value is 1 and maximum value is 36159 for custom retention
+     * on-demand backup.
+     * Minimum and maximum values are workload specific for all other rules.
      *
      * Generated from protobuf field <code>int32 backup_retention_days = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -54,13 +52,11 @@ class BackupRule extends \Google\Protobuf\Internal\Message
      *           Required. Configures the duration for which backup data will be kept. It is
      *           defined in “days”. The value should be greater than or equal to minimum
      *           enforced retention of the backup vault.
-     *           Minimum value is 1 and maximum value is 90 for hourly backups.
-     *           Minimum value is 1 and maximum value is 90 for daily backups.
-     *           Minimum value is 7 and maximum value is 186 for weekly backups.
-     *           Minimum value is 30 and maximum value is 732 for monthly backups.
-     *           Minimum value is 365 and maximum value is 36159 for yearly backups.
+     *           Minimum value is 1 and maximum value is 36159 for custom retention
+     *           on-demand backup.
+     *           Minimum and maximum values are workload specific for all other rules.
      *     @type \Google\Cloud\BackupDR\V1\StandardSchedule $standard_schedule
-     *           Required. Defines a schedule that runs within the confines of a defined
+     *           Optional. Defines a schedule that runs within the confines of a defined
      *           window of time.
      * }
      */
@@ -105,11 +101,9 @@ class BackupRule extends \Google\Protobuf\Internal\Message
      * Required. Configures the duration for which backup data will be kept. It is
      * defined in “days”. The value should be greater than or equal to minimum
      * enforced retention of the backup vault.
-     * Minimum value is 1 and maximum value is 90 for hourly backups.
-     * Minimum value is 1 and maximum value is 90 for daily backups.
-     * Minimum value is 7 and maximum value is 186 for weekly backups.
-     * Minimum value is 30 and maximum value is 732 for monthly backups.
-     * Minimum value is 365 and maximum value is 36159 for yearly backups.
+     * Minimum value is 1 and maximum value is 36159 for custom retention
+     * on-demand backup.
+     * Minimum and maximum values are workload specific for all other rules.
      *
      * Generated from protobuf field <code>int32 backup_retention_days = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
@@ -123,11 +117,9 @@ class BackupRule extends \Google\Protobuf\Internal\Message
      * Required. Configures the duration for which backup data will be kept. It is
      * defined in “days”. The value should be greater than or equal to minimum
      * enforced retention of the backup vault.
-     * Minimum value is 1 and maximum value is 90 for hourly backups.
-     * Minimum value is 1 and maximum value is 90 for daily backups.
-     * Minimum value is 7 and maximum value is 186 for weekly backups.
-     * Minimum value is 30 and maximum value is 732 for monthly backups.
-     * Minimum value is 365 and maximum value is 36159 for yearly backups.
+     * Minimum value is 1 and maximum value is 36159 for custom retention
+     * on-demand backup.
+     * Minimum and maximum values are workload specific for all other rules.
      *
      * Generated from protobuf field <code>int32 backup_retention_days = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
@@ -142,10 +134,10 @@ class BackupRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Defines a schedule that runs within the confines of a defined
+     * Optional. Defines a schedule that runs within the confines of a defined
      * window of time.
      *
-     * Generated from protobuf field <code>.google.cloud.backupdr.v1.StandardSchedule standard_schedule = 5 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.backupdr.v1.StandardSchedule standard_schedule = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\BackupDR\V1\StandardSchedule|null
      */
     public function getStandardSchedule()
@@ -159,10 +151,10 @@ class BackupRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Defines a schedule that runs within the confines of a defined
+     * Optional. Defines a schedule that runs within the confines of a defined
      * window of time.
      *
-     * Generated from protobuf field <code>.google.cloud.backupdr.v1.StandardSchedule standard_schedule = 5 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.backupdr.v1.StandardSchedule standard_schedule = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\BackupDR\V1\StandardSchedule $var
      * @return $this
      */

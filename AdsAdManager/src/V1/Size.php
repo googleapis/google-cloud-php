@@ -16,26 +16,22 @@ use Google\Protobuf\Internal\GPBUtil;
 class Size extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The width of the [Creative](google.ads.admanager.v1.Creative),
-     * [AdUnit](google.ads.admanager.v1.AdUnit), or
-     * [LineItem](google.ads.admanager.v1.LineItem).
+     * Required. The width of the Creative,
+     * [AdUnit][google.ads.admanager.v1.AdUnit], or LineItem.
      *
      * Generated from protobuf field <code>int32 width = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $width = 0;
     /**
-     * Required. The height of the [Creative](google.ads.admanager.v1.Creative),
-     * [AdUnit](google.ads.admanager.v1.AdUnit), or
-     * [LineItem](google.ads.admanager.v1.LineItem).
+     * Required. The height of the Creative,
+     * [AdUnit][google.ads.admanager.v1.AdUnit], or LineItem.
      *
      * Generated from protobuf field <code>int32 height = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $height = 0;
     /**
-     * Required. The SizeType of the
-     * [Creative](google.ads.admanager.v1.Creative),
-     * [AdUnit](google.ads.admanager.v1.AdUnit), or
-     * [LineItem](google.ads.admanager.v1.LineItem).
+     * Required. The SizeType of the Creative,
+     * [AdUnit][google.ads.admanager.v1.AdUnit], or LineItem.
      *
      * Generated from protobuf field <code>.google.ads.admanager.v1.SizeTypeEnum.SizeType size_type = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -48,18 +44,14 @@ class Size extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $width
-     *           Required. The width of the [Creative](google.ads.admanager.v1.Creative),
-     *           [AdUnit](google.ads.admanager.v1.AdUnit), or
-     *           [LineItem](google.ads.admanager.v1.LineItem).
+     *           Required. The width of the Creative,
+     *           [AdUnit][google.ads.admanager.v1.AdUnit], or LineItem.
      *     @type int $height
-     *           Required. The height of the [Creative](google.ads.admanager.v1.Creative),
-     *           [AdUnit](google.ads.admanager.v1.AdUnit), or
-     *           [LineItem](google.ads.admanager.v1.LineItem).
+     *           Required. The height of the Creative,
+     *           [AdUnit][google.ads.admanager.v1.AdUnit], or LineItem.
      *     @type int $size_type
-     *           Required. The SizeType of the
-     *           [Creative](google.ads.admanager.v1.Creative),
-     *           [AdUnit](google.ads.admanager.v1.AdUnit), or
-     *           [LineItem](google.ads.admanager.v1.LineItem).
+     *           Required. The SizeType of the Creative,
+     *           [AdUnit][google.ads.admanager.v1.AdUnit], or LineItem.
      * }
      */
     public function __construct($data = NULL) {
@@ -68,9 +60,8 @@ class Size extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The width of the [Creative](google.ads.admanager.v1.Creative),
-     * [AdUnit](google.ads.admanager.v1.AdUnit), or
-     * [LineItem](google.ads.admanager.v1.LineItem).
+     * Required. The width of the Creative,
+     * [AdUnit][google.ads.admanager.v1.AdUnit], or LineItem.
      *
      * Generated from protobuf field <code>int32 width = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
@@ -81,9 +72,8 @@ class Size extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The width of the [Creative](google.ads.admanager.v1.Creative),
-     * [AdUnit](google.ads.admanager.v1.AdUnit), or
-     * [LineItem](google.ads.admanager.v1.LineItem).
+     * Required. The width of the Creative,
+     * [AdUnit][google.ads.admanager.v1.AdUnit], or LineItem.
      *
      * Generated from protobuf field <code>int32 width = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
@@ -98,9 +88,8 @@ class Size extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The height of the [Creative](google.ads.admanager.v1.Creative),
-     * [AdUnit](google.ads.admanager.v1.AdUnit), or
-     * [LineItem](google.ads.admanager.v1.LineItem).
+     * Required. The height of the Creative,
+     * [AdUnit][google.ads.admanager.v1.AdUnit], or LineItem.
      *
      * Generated from protobuf field <code>int32 height = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
@@ -111,9 +100,8 @@ class Size extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The height of the [Creative](google.ads.admanager.v1.Creative),
-     * [AdUnit](google.ads.admanager.v1.AdUnit), or
-     * [LineItem](google.ads.admanager.v1.LineItem).
+     * Required. The height of the Creative,
+     * [AdUnit][google.ads.admanager.v1.AdUnit], or LineItem.
      *
      * Generated from protobuf field <code>int32 height = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
@@ -128,10 +116,8 @@ class Size extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The SizeType of the
-     * [Creative](google.ads.admanager.v1.Creative),
-     * [AdUnit](google.ads.admanager.v1.AdUnit), or
-     * [LineItem](google.ads.admanager.v1.LineItem).
+     * Required. The SizeType of the Creative,
+     * [AdUnit][google.ads.admanager.v1.AdUnit], or LineItem.
      *
      * Generated from protobuf field <code>.google.ads.admanager.v1.SizeTypeEnum.SizeType size_type = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
@@ -142,10 +128,8 @@ class Size extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The SizeType of the
-     * [Creative](google.ads.admanager.v1.Creative),
-     * [AdUnit](google.ads.admanager.v1.AdUnit), or
-     * [LineItem](google.ads.admanager.v1.LineItem).
+     * Required. The SizeType of the Creative,
+     * [AdUnit][google.ads.admanager.v1.AdUnit], or LineItem.
      *
      * Generated from protobuf field <code>.google.ads.admanager.v1.SizeTypeEnum.SizeType size_type = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var

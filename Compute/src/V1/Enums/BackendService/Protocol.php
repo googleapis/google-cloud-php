@@ -34,6 +34,8 @@ class Protocol
 
     const GRPC = 'GRPC';
 
+    const H2C = 'H2C';
+
     const HTTP = 'HTTP';
 
     const HTTP2 = 'HTTP2';

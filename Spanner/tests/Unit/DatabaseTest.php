@@ -60,6 +60,8 @@ use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Spanner\V1\TransactionOptions\IsolationLevel;
 use InvalidArgumentException;
 use Kreait\Firebase\Exception\Messaging\InvalidArgument;
+use Google\Cloud\Spanner\V1\ReadRequest\LockHint;
+use Google\Cloud\Spanner\V1\ReadRequest\OrderBy;
 
 /**
  * @group spanner
@@ -1443,6 +1445,58 @@ class DatabaseTest extends TestCase
             new KeySet(['all' => true]),
             ['ID'],
             ['transactionType' => SessionPoolInterface::CONTEXT_READWRITE]
+        );
+        $this->assertInstanceOf(Result::class, $res);
+        $rows = iterator_to_array($res->rows());
+        $this->assertEquals(10, $rows[0]['ID']);
+    }
+
+    public function testSetOrderByReachesTheConnection()
+    {
+        $table = 'Table';
+        $opts = ['foo' => 'bar'];
+
+        $this->connection->streamingRead(Argument::withEntry('orderBy', OrderBy::ORDER_BY_PRIMARY_KEY))
+            ->shouldBeCalled()
+            ->willReturn($this->resultGenerator());
+
+        $this->refreshOperation($this->database, $this->connection->reveal());
+
+        $options = [
+            'orderBy' => OrderBy::ORDER_BY_PRIMARY_KEY
+        ];
+
+        $res = $this->database->read(
+            $table,
+            new KeySet(['all' => true]),
+            ['ID'],
+            $options
+        );
+        $this->assertInstanceOf(Result::class, $res);
+        $rows = iterator_to_array($res->rows());
+        $this->assertEquals(10, $rows[0]['ID']);
+    }
+
+    public function testSetLockHintReachesTheConnection()
+    {
+        $table = 'Table';
+        $opts = ['foo' => 'bar'];
+
+        $this->connection->streamingRead(Argument::withEntry('lockHint', LockHint::LOCK_HINT_SHARED))
+            ->shouldBeCalled()
+            ->willReturn($this->resultGenerator());
+
+        $this->refreshOperation($this->database, $this->connection->reveal());
+
+        $options = [
+            'lockHint' => LockHint::LOCK_HINT_SHARED
+        ];
+
+        $res = $this->database->read(
+            $table,
+            new KeySet(['all' => true]),
+            ['ID'],
+            $options
         );
         $this->assertInstanceOf(Result::class, $res);
         $rows = iterator_to_array($res->rows());

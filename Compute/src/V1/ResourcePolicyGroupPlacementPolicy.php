@@ -29,6 +29,12 @@ class ResourcePolicyGroupPlacementPolicy extends \Google\Protobuf\Internal\Messa
      */
     private $collocation = null;
     /**
+     * Specifies the shape of the GPU slice, in slice based GPU families eg. A4X.
+     *
+     * Generated from protobuf field <code>optional string gpu_topology = 247948450;</code>
+     */
+    private $gpu_topology = null;
+    /**
      * Number of VMs in this placement group. Google does not recommend that you use this field unless you use a compact policy and you want your policy to work only if it contains this exact number of VMs.
      *
      * Generated from protobuf field <code>optional int32 vm_count = 261463431;</code>
@@ -46,6 +52,8 @@ class ResourcePolicyGroupPlacementPolicy extends \Google\Protobuf\Internal\Messa
      *     @type string $collocation
      *           Specifies network collocation
      *           Check the Collocation enum for the list of possible values.
+     *     @type string $gpu_topology
+     *           Specifies the shape of the GPU slice, in slice based GPU families eg. A4X.
      *     @type int $vm_count
      *           Number of VMs in this placement group. Google does not recommend that you use this field unless you use a compact policy and you want your policy to work only if it contains this exact number of VMs.
      * }
@@ -125,6 +133,42 @@ class ResourcePolicyGroupPlacementPolicy extends \Google\Protobuf\Internal\Messa
     {
         GPBUtil::checkString($var, True);
         $this->collocation = $var;
+
+        return $this;
+    }
+
+    /**
+     * Specifies the shape of the GPU slice, in slice based GPU families eg. A4X.
+     *
+     * Generated from protobuf field <code>optional string gpu_topology = 247948450;</code>
+     * @return string
+     */
+    public function getGpuTopology()
+    {
+        return isset($this->gpu_topology) ? $this->gpu_topology : '';
+    }
+
+    public function hasGpuTopology()
+    {
+        return isset($this->gpu_topology);
+    }
+
+    public function clearGpuTopology()
+    {
+        unset($this->gpu_topology);
+    }
+
+    /**
+     * Specifies the shape of the GPU slice, in slice based GPU families eg. A4X.
+     *
+     * Generated from protobuf field <code>optional string gpu_topology = 247948450;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setGpuTopology($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->gpu_topology = $var;
 
         return $this;
     }

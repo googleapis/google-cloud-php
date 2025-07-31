@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class ImportDataRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Name of the resource.
+     * Required. The name of the Managed Lustre instance in the format
+     * `projects/{project}/locations/{location}/instances/{instance}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -29,7 +30,7 @@ class ImportDataRequest extends \Google\Protobuf\Internal\Message
     protected $request_id = '';
     /**
      * Optional. User-specified service account used to perform the transfer.
-     * If unspecified, the default Lustre P4 service account will be used.
+     * If unspecified, the default Managed Lustre service agent will be used.
      *
      * Generated from protobuf field <code>string service_account = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
@@ -38,7 +39,8 @@ class ImportDataRequest extends \Google\Protobuf\Internal\Message
     protected $destination;
 
     /**
-     * @param string $name Required. Name of the resource. Please see
+     * @param string $name Required. The name of the Managed Lustre instance in the format
+     *                     `projects/{project}/locations/{location}/instances/{instance}`. Please see
      *                     {@see LustreClient::instanceName()} for help formatting this field.
      *
      * @return \Google\Cloud\Lustre\V1\ImportDataRequest
@@ -59,15 +61,18 @@ class ImportDataRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Lustre\V1\GcsPath $gcs_path
      *           The Cloud Storage source bucket and, optionally, path inside the bucket.
+     *           If a path inside the bucket is specified, it must end with a forward
+     *           slash (`/`).
      *     @type \Google\Cloud\Lustre\V1\LustrePath $lustre_path
      *           Lustre path destination.
      *     @type string $name
-     *           Required. Name of the resource.
+     *           Required. The name of the Managed Lustre instance in the format
+     *           `projects/{project}/locations/{location}/instances/{instance}`.
      *     @type string $request_id
      *           Optional. UUID to identify requests.
      *     @type string $service_account
      *           Optional. User-specified service account used to perform the transfer.
-     *           If unspecified, the default Lustre P4 service account will be used.
+     *           If unspecified, the default Managed Lustre service agent will be used.
      * }
      */
     public function __construct($data = NULL) {
@@ -77,6 +82,8 @@ class ImportDataRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The Cloud Storage source bucket and, optionally, path inside the bucket.
+     * If a path inside the bucket is specified, it must end with a forward
+     * slash (`/`).
      *
      * Generated from protobuf field <code>.google.cloud.lustre.v1.GcsPath gcs_path = 2;</code>
      * @return \Google\Cloud\Lustre\V1\GcsPath|null
@@ -93,6 +100,8 @@ class ImportDataRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The Cloud Storage source bucket and, optionally, path inside the bucket.
+     * If a path inside the bucket is specified, it must end with a forward
+     * slash (`/`).
      *
      * Generated from protobuf field <code>.google.cloud.lustre.v1.GcsPath gcs_path = 2;</code>
      * @param \Google\Cloud\Lustre\V1\GcsPath $var
@@ -138,7 +147,8 @@ class ImportDataRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Name of the resource.
+     * Required. The name of the Managed Lustre instance in the format
+     * `projects/{project}/locations/{location}/instances/{instance}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -149,7 +159,8 @@ class ImportDataRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Name of the resource.
+     * Required. The name of the Managed Lustre instance in the format
+     * `projects/{project}/locations/{location}/instances/{instance}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -191,7 +202,7 @@ class ImportDataRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. User-specified service account used to perform the transfer.
-     * If unspecified, the default Lustre P4 service account will be used.
+     * If unspecified, the default Managed Lustre service agent will be used.
      *
      * Generated from protobuf field <code>string service_account = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
@@ -203,7 +214,7 @@ class ImportDataRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. User-specified service account used to perform the transfer.
-     * If unspecified, the default Lustre P4 service account will be used.
+     * If unspecified, the default Managed Lustre service agent will be used.
      *
      * Generated from protobuf field <code>string service_account = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var

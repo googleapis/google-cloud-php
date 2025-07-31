@@ -5,6 +5,68 @@
     "protoPackage": "google.cloud.discoveryengine.v1",
     "libraryPackage": "Google\\Cloud\\DiscoveryEngine\\V1",
     "services": {
+        "SearchService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SearchServiceGapicClient",
+                    "rpcs": {
+                        "Search": {
+                            "methods": [
+                                "search"
+                            ]
+                        },
+                        "SearchLite": {
+                            "methods": [
+                                "searchLite"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "AssistantService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "AssistantServiceGapicClient",
+                    "rpcs": {
+                        "StreamAssist": {
+                            "methods": [
+                                "streamAssist"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "CmekConfigService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "CmekConfigServiceGapicClient",
+                    "rpcs": {
+                        "DeleteCmekConfig": {
+                            "methods": [
+                                "deleteCmekConfig"
+                            ]
+                        },
+                        "GetCmekConfig": {
+                            "methods": [
+                                "getCmekConfig"
+                            ]
+                        },
+                        "ListCmekConfigs": {
+                            "methods": [
+                                "listCmekConfigs"
+                            ]
+                        },
+                        "UpdateCmekConfig": {
+                            "methods": [
+                                "updateCmekConfig"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "CompletionService": {
             "clients": {
                 "grpc": {
@@ -67,25 +129,6 @@
                         "UpdateControl": {
                             "methods": [
                                 "updateControl"
-                            ]
-                        }
-                    }
-                }
-            }
-        },
-        "SearchService": {
-            "clients": {
-                "grpc": {
-                    "libraryClient": "SearchServiceGapicClient",
-                    "rpcs": {
-                        "Search": {
-                            "methods": [
-                                "search"
-                            ]
-                        },
-                        "SearchLite": {
-                            "methods": [
-                                "searchLite"
                             ]
                         }
                     }
@@ -312,6 +355,50 @@
                 }
             }
         },
+        "IdentityMappingStoreService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "IdentityMappingStoreServiceGapicClient",
+                    "rpcs": {
+                        "CreateIdentityMappingStore": {
+                            "methods": [
+                                "createIdentityMappingStore"
+                            ]
+                        },
+                        "DeleteIdentityMappingStore": {
+                            "methods": [
+                                "deleteIdentityMappingStore"
+                            ]
+                        },
+                        "GetIdentityMappingStore": {
+                            "methods": [
+                                "getIdentityMappingStore"
+                            ]
+                        },
+                        "ImportIdentityMappings": {
+                            "methods": [
+                                "importIdentityMappings"
+                            ]
+                        },
+                        "ListIdentityMappingStores": {
+                            "methods": [
+                                "listIdentityMappingStores"
+                            ]
+                        },
+                        "ListIdentityMappings": {
+                            "methods": [
+                                "listIdentityMappings"
+                            ]
+                        },
+                        "PurgeIdentityMappings": {
+                            "methods": [
+                                "purgeIdentityMappings"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "ProjectService": {
             "clients": {
                 "grpc": {
@@ -415,6 +502,40 @@
                         "UpdateServingConfig": {
                             "methods": [
                                 "updateServingConfig"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "SessionService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SessionServiceGapicClient",
+                    "rpcs": {
+                        "CreateSession": {
+                            "methods": [
+                                "createSession"
+                            ]
+                        },
+                        "DeleteSession": {
+                            "methods": [
+                                "deleteSession"
+                            ]
+                        },
+                        "GetSession": {
+                            "methods": [
+                                "getSession"
+                            ]
+                        },
+                        "ListSessions": {
+                            "methods": [
+                                "listSessions"
+                            ]
+                        },
+                        "UpdateSession": {
+                            "methods": [
+                                "updateSession"
                             ]
                         }
                     }
@@ -528,6 +649,25 @@
                         "WriteUserEvent": {
                             "methods": [
                                 "writeUserEvent"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "UserLicenseService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "UserLicenseServiceGapicClient",
+                    "rpcs": {
+                        "BatchUpdateUserLicenses": {
+                            "methods": [
+                                "batchUpdateUserLicenses"
+                            ]
+                        },
+                        "ListUserLicenses": {
+                            "methods": [
+                                "listUserLicenses"
                             ]
                         }
                     }

@@ -68,6 +68,17 @@ return [
                     ],
                 ],
             ],
+            'GetRagEngineConfig' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/ragEngineConfig}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetRagFile' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/ragCorpora/*/ragFiles/*}',
@@ -121,6 +132,19 @@ return [
                     'rag_corpus.name' => [
                         'getters' => [
                             'getRagCorpus',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateRagEngineConfig' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{rag_engine_config.name=projects/*/locations/*/ragEngineConfig}',
+                'body' => 'rag_engine_config',
+                'placeholders' => [
+                    'rag_engine_config.name' => [
+                        'getters' => [
+                            'getRagEngineConfig',
                             'getName',
                         ],
                     ],

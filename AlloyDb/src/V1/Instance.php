@@ -230,6 +230,18 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string outbound_public_ip_addresses = 34 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_info) = {</code>
      */
     private $outbound_public_ip_addresses;
+    /**
+     * Optional. Specifies whether an instance needs to spin up. Once the instance
+     * is active, the activation policy can be updated to the `NEVER` to stop the
+     * instance. Likewise, the activation policy can be updated to `ALWAYS` to
+     * start the instance.
+     * There are restrictions around when an instance can/cannot be activated (for
+     * example, a read pool instance should be stopped before stopping primary
+     * etc.). Please refer to the API documentation for more details.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.Instance.ActivationPolicy activation_policy = 35 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $activation_policy = 0;
 
     /**
      * Constructor.
@@ -339,6 +351,14 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           Optional. Instance-level network configuration.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $outbound_public_ip_addresses
      *           Output only. All outbound public IP addresses configured for the instance.
+     *     @type int $activation_policy
+     *           Optional. Specifies whether an instance needs to spin up. Once the instance
+     *           is active, the activation policy can be updated to the `NEVER` to stop the
+     *           instance. Likewise, the activation policy can be updated to `ALWAYS` to
+     *           start the instance.
+     *           There are restrictions around when an instance can/cannot be activated (for
+     *           example, a read pool instance should be stopped before stopping primary
+     *           etc.). Please refer to the API documentation for more details.
      * }
      */
     public function __construct($data = NULL) {
@@ -1272,6 +1292,44 @@ class Instance extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->outbound_public_ip_addresses = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies whether an instance needs to spin up. Once the instance
+     * is active, the activation policy can be updated to the `NEVER` to stop the
+     * instance. Likewise, the activation policy can be updated to `ALWAYS` to
+     * start the instance.
+     * There are restrictions around when an instance can/cannot be activated (for
+     * example, a read pool instance should be stopped before stopping primary
+     * etc.). Please refer to the API documentation for more details.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.Instance.ActivationPolicy activation_policy = 35 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getActivationPolicy()
+    {
+        return $this->activation_policy;
+    }
+
+    /**
+     * Optional. Specifies whether an instance needs to spin up. Once the instance
+     * is active, the activation policy can be updated to the `NEVER` to stop the
+     * instance. Likewise, the activation policy can be updated to `ALWAYS` to
+     * start the instance.
+     * There are restrictions around when an instance can/cannot be activated (for
+     * example, a read pool instance should be stopped before stopping primary
+     * etc.). Please refer to the API documentation for more details.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.Instance.ActivationPolicy activation_policy = 35 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setActivationPolicy($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\AlloyDb\V1\Instance\ActivationPolicy::class);
+        $this->activation_policy = $var;
 
         return $this;
     }

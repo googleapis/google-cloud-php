@@ -170,6 +170,31 @@ class DeliveryVehicleLocation extends \Google\Protobuf\Internal\Message
      */
     protected $raw_location_accuracy = null;
     /**
+     * The location from Android's Fused Location Provider.
+     *
+     * Generated from protobuf field <code>.google.type.LatLng flp_location = 29;</code>
+     */
+    protected $flp_location = null;
+    /**
+     * Update timestamp of the `flp_location`
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp flp_update_time = 30;</code>
+     */
+    protected $flp_update_time = null;
+    /**
+     * Accuracy of `flp_location` in meters as a radius.
+     *
+     * Generated from protobuf field <code>.google.protobuf.DoubleValue flp_latlng_accuracy_meters = 31;</code>
+     */
+    protected $flp_latlng_accuracy_meters = null;
+    /**
+     * Direction the vehicle is moving in degrees, as determined by the Fused
+     * Location Provider. 0 represents North. The valid range is [0,360).
+     *
+     * Generated from protobuf field <code>.google.protobuf.Int32Value flp_heading_degrees = 32;</code>
+     */
+    protected $flp_heading_degrees = null;
+    /**
      * Supplemental location provided by the integrating app.
      *
      * Generated from protobuf field <code>.google.type.LatLng supplemental_location = 18;</code>
@@ -265,6 +290,15 @@ class DeliveryVehicleLocation extends \Google\Protobuf\Internal\Message
      *           Source of the raw location. Defaults to `GPS`.
      *     @type \Google\Protobuf\DoubleValue $raw_location_accuracy
      *           Accuracy of `raw_location` as a radius, in meters.
+     *     @type \Google\Type\LatLng $flp_location
+     *           The location from Android's Fused Location Provider.
+     *     @type \Google\Protobuf\Timestamp $flp_update_time
+     *           Update timestamp of the `flp_location`
+     *     @type \Google\Protobuf\DoubleValue $flp_latlng_accuracy_meters
+     *           Accuracy of `flp_location` in meters as a radius.
+     *     @type \Google\Protobuf\Int32Value $flp_heading_degrees
+     *           Direction the vehicle is moving in degrees, as determined by the Fused
+     *           Location Provider. 0 represents North. The valid range is [0,360).
      *     @type \Google\Type\LatLng $supplemental_location
      *           Supplemental location provided by the integrating app.
      *     @type \Google\Protobuf\Timestamp $supplemental_location_time
@@ -1620,6 +1654,208 @@ class DeliveryVehicleLocation extends \Google\Protobuf\Internal\Message
     public function setRawLocationAccuracyUnwrapped($var)
     {
         $this->writeWrapperValue("raw_location_accuracy", $var);
+        return $this;}
+
+    /**
+     * The location from Android's Fused Location Provider.
+     *
+     * Generated from protobuf field <code>.google.type.LatLng flp_location = 29;</code>
+     * @return \Google\Type\LatLng|null
+     */
+    public function getFlpLocation()
+    {
+        return $this->flp_location;
+    }
+
+    public function hasFlpLocation()
+    {
+        return isset($this->flp_location);
+    }
+
+    public function clearFlpLocation()
+    {
+        unset($this->flp_location);
+    }
+
+    /**
+     * The location from Android's Fused Location Provider.
+     *
+     * Generated from protobuf field <code>.google.type.LatLng flp_location = 29;</code>
+     * @param \Google\Type\LatLng $var
+     * @return $this
+     */
+    public function setFlpLocation($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Type\LatLng::class);
+        $this->flp_location = $var;
+
+        return $this;
+    }
+
+    /**
+     * Update timestamp of the `flp_location`
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp flp_update_time = 30;</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getFlpUpdateTime()
+    {
+        return $this->flp_update_time;
+    }
+
+    public function hasFlpUpdateTime()
+    {
+        return isset($this->flp_update_time);
+    }
+
+    public function clearFlpUpdateTime()
+    {
+        unset($this->flp_update_time);
+    }
+
+    /**
+     * Update timestamp of the `flp_location`
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp flp_update_time = 30;</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setFlpUpdateTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->flp_update_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Accuracy of `flp_location` in meters as a radius.
+     *
+     * Generated from protobuf field <code>.google.protobuf.DoubleValue flp_latlng_accuracy_meters = 31;</code>
+     * @return \Google\Protobuf\DoubleValue|null
+     */
+    public function getFlpLatlngAccuracyMeters()
+    {
+        return $this->flp_latlng_accuracy_meters;
+    }
+
+    public function hasFlpLatlngAccuracyMeters()
+    {
+        return isset($this->flp_latlng_accuracy_meters);
+    }
+
+    public function clearFlpLatlngAccuracyMeters()
+    {
+        unset($this->flp_latlng_accuracy_meters);
+    }
+
+    /**
+     * Returns the unboxed value from <code>getFlpLatlngAccuracyMeters()</code>
+
+     * Accuracy of `flp_location` in meters as a radius.
+     *
+     * Generated from protobuf field <code>.google.protobuf.DoubleValue flp_latlng_accuracy_meters = 31;</code>
+     * @return float|null
+     */
+    public function getFlpLatlngAccuracyMetersUnwrapped()
+    {
+        return $this->readWrapperValue("flp_latlng_accuracy_meters");
+    }
+
+    /**
+     * Accuracy of `flp_location` in meters as a radius.
+     *
+     * Generated from protobuf field <code>.google.protobuf.DoubleValue flp_latlng_accuracy_meters = 31;</code>
+     * @param \Google\Protobuf\DoubleValue $var
+     * @return $this
+     */
+    public function setFlpLatlngAccuracyMeters($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\DoubleValue::class);
+        $this->flp_latlng_accuracy_meters = $var;
+
+        return $this;
+    }
+
+    /**
+     * Sets the field by wrapping a primitive type in a Google\Protobuf\DoubleValue object.
+
+     * Accuracy of `flp_location` in meters as a radius.
+     *
+     * Generated from protobuf field <code>.google.protobuf.DoubleValue flp_latlng_accuracy_meters = 31;</code>
+     * @param float|null $var
+     * @return $this
+     */
+    public function setFlpLatlngAccuracyMetersUnwrapped($var)
+    {
+        $this->writeWrapperValue("flp_latlng_accuracy_meters", $var);
+        return $this;}
+
+    /**
+     * Direction the vehicle is moving in degrees, as determined by the Fused
+     * Location Provider. 0 represents North. The valid range is [0,360).
+     *
+     * Generated from protobuf field <code>.google.protobuf.Int32Value flp_heading_degrees = 32;</code>
+     * @return \Google\Protobuf\Int32Value|null
+     */
+    public function getFlpHeadingDegrees()
+    {
+        return $this->flp_heading_degrees;
+    }
+
+    public function hasFlpHeadingDegrees()
+    {
+        return isset($this->flp_heading_degrees);
+    }
+
+    public function clearFlpHeadingDegrees()
+    {
+        unset($this->flp_heading_degrees);
+    }
+
+    /**
+     * Returns the unboxed value from <code>getFlpHeadingDegrees()</code>
+
+     * Direction the vehicle is moving in degrees, as determined by the Fused
+     * Location Provider. 0 represents North. The valid range is [0,360).
+     *
+     * Generated from protobuf field <code>.google.protobuf.Int32Value flp_heading_degrees = 32;</code>
+     * @return int|null
+     */
+    public function getFlpHeadingDegreesUnwrapped()
+    {
+        return $this->readWrapperValue("flp_heading_degrees");
+    }
+
+    /**
+     * Direction the vehicle is moving in degrees, as determined by the Fused
+     * Location Provider. 0 represents North. The valid range is [0,360).
+     *
+     * Generated from protobuf field <code>.google.protobuf.Int32Value flp_heading_degrees = 32;</code>
+     * @param \Google\Protobuf\Int32Value $var
+     * @return $this
+     */
+    public function setFlpHeadingDegrees($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Int32Value::class);
+        $this->flp_heading_degrees = $var;
+
+        return $this;
+    }
+
+    /**
+     * Sets the field by wrapping a primitive type in a Google\Protobuf\Int32Value object.
+
+     * Direction the vehicle is moving in degrees, as determined by the Fused
+     * Location Provider. 0 represents North. The valid range is [0,360).
+     *
+     * Generated from protobuf field <code>.google.protobuf.Int32Value flp_heading_degrees = 32;</code>
+     * @param int|null $var
+     * @return $this
+     */
+    public function setFlpHeadingDegreesUnwrapped($var)
+    {
+        $this->writeWrapperValue("flp_heading_degrees", $var);
         return $this;}
 
     /**

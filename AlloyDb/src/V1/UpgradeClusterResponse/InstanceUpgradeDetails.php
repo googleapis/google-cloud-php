@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Details regarding the upgrade of instaces associated with a cluster.
+ * Details regarding the upgrade of instances associated with a cluster.
  *
  * Generated from protobuf message <code>google.cloud.alloydb.v1.UpgradeClusterResponse.InstanceUpgradeDetails</code>
  */

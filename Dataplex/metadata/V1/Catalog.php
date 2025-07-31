@@ -27,7 +27,7 @@ class Catalog
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-≥í
+—í
 &google/cloud/dataplex/v1/catalog.protogoogle.cloud.dataplex.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/field_info.protogoogle/api/resource.proto&google/cloud/dataplex/v1/service.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/struct.protogoogle/protobuf/timestamp.proto"”
 
 AspectType8
@@ -292,7 +292,7 @@ page_token (	B‡A
 aspect_types (	B‡A
 paths (	B‡A4
 entry (	B%‡A˙A
-dataplex.googleapis.com/Entry"ø
+dataplex.googleapis.com/Entry"›
 SearchEntriesRequest7
 name (	B)‡A˙A#
 !locations.googleapis.com/Location
@@ -301,7 +301,8 @@ page_token (	B‡A
 
 page_token (	B‡A
 order_by (	B‡A
-scope (	B‡A"Ü
+scope (	B‡A
+semantic_search (B‡A"Ü
 SearchEntriesResult
 linked_resource (	B7
 dataplex_entry	 (2.google.cloud.dataplex.v1.EntryL

@@ -21,7 +21,7 @@ class CustomFieldService
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-»	
+ç	
 2google/ads/admanager/v1/custom_field_service.protogoogle.ads.admanager.v1google/api/annotations.protogoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto"S
 GetCustomFieldRequest:
 name (	B,àAúA&
@@ -39,10 +39,10 @@ page_token (	BàA
 custom_fields (2$.google.ads.admanager.v1.CustomField
 next_page_token (	
 
-total_size (2€
+total_size (2¬
 CustomFieldService›
 GetCustomField..google.ads.admanager.v1.GetCustomFieldRequest$.google.ads.admanager.v1.CustomField"3ÚAname‚Óä“&$/v1/{name=networks/*/customFields/*}®
-ListCustomFields0.google.ads.admanager.v1.ListCustomFieldsRequest1.google.ads.admanager.v1.ListCustomFieldsResponse"5ÚAparent‚Óä“&$/v1/{parent=networks/*}/customFieldsÊAadmanager.googleapis.comBË
+ListCustomFields0.google.ads.admanager.v1.ListCustomFieldsRequest1.google.ads.admanager.v1.ListCustomFieldsResponse"5ÚAparent‚Óä“&$/v1/{parent=networks/*}/customFieldsGÊAadmanager.googleapis.comÒA)https://www.googleapis.com/auth/admanagerBË
 com.google.ads.admanager.v1BCustomFieldServiceProtoPZ@google.golang.org/genproto/googleapis/ads/admanager/v1;admanagerªGoogle.Ads.AdManager.V1ÊGoogle\\Ads\\AdManager\\V1êGoogle::Ads::AdManager::V1bproto3'
         , true);
 

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2016 Google Inc.
  *
@@ -21,6 +22,7 @@ use Google\Cloud\BigQuery\Connection\ConnectionInterface;
 use Google\Cloud\BigQuery\Job;
 use Google\Cloud\BigQuery\Numeric;
 use Google\Cloud\BigQuery\QueryResults;
+use Google\Cloud\BigQuery\Timestamp;
 use Google\Cloud\BigQuery\ValueMapper;
 use Google\Cloud\Core\Testing\TestHelpers;
 use PHPUnit\Framework\TestCase;
@@ -41,7 +43,7 @@ class QueryResultsTest extends TestCase
         'jobComplete' => true,
         'jobReference' => ['location' => 123],
         'rows' => [
-            ['f' => [['v' => 'Alton'], ['v' => 1]]]
+            ['f' => [['v' => 'Alton'], ['v' => 1], ['v' => '40969200000000']]]
         ],
         'schema' => [
             'fields' => [
@@ -53,6 +55,10 @@ class QueryResultsTest extends TestCase
                     'name' => 'numeric_value',
                     'type' => 'NUMERIC'
                 ],
+                [
+                    'name' => 'timestamp',
+                    'type' => 'TIMESTAMP'
+                ]
             ]
         ]
     ];
@@ -98,6 +104,28 @@ class QueryResultsTest extends TestCase
     {
         $this->connection->getQueryResults(Argument::allOf(
             Argument::withEntry('projectId', $this->projectId),
+            Argument::withEntry('jobId', $this->jobId),
+            Argument::withEntry('formatOptions.useInt64Timestamp', true)
+        ))
+            ->willReturn($this->queryData)
+            ->shouldBeCalledTimes(1);
+
+        $queryResults = $this->getQueryResults(
+            $this->connection,
+            $this->queryData + ['pageToken' => 'abcd']
+        );
+        $rows = iterator_to_array($queryResults->rows(['formatOptions.useInt64Timestamp' => true]));
+
+        $this->assertEquals('Alton', $rows[1]['first_name']);
+        $this->assertInstanceOf(Numeric::class, $rows[1]['numeric_value']);
+        $this->assertEquals(new Timestamp(new \DateTime('1971-04-20T04:20:00.000000Z')), $rows[1]['timestamp']);
+    }
+
+    public function testGetsRowWithFloatTimestamp()
+    {
+        $this->queryData['rows'][0]['f'][2]['v'] = '1.438712914E9';
+        $this->connection->getQueryResults(Argument::allOf(
+            Argument::withEntry('projectId', $this->projectId),
             Argument::withEntry('jobId', $this->jobId)
         ))
             ->willReturn($this->queryData)
@@ -111,6 +139,7 @@ class QueryResultsTest extends TestCase
 
         $this->assertEquals('Alton', $rows[1]['first_name']);
         $this->assertInstanceOf(Numeric::class, $rows[1]['numeric_value']);
+        $this->assertEquals(new Timestamp(new \DateTime('2015-08-04 18:28:34Z')), $rows[1]['timestamp']);
     }
 
     public function testReturnRawResults()
@@ -123,6 +152,7 @@ class QueryResultsTest extends TestCase
 
         $this->assertEquals('Alton', $rows[0]['first_name']);
         $this->assertEquals(1, $rows[0]['numeric_value']);
+        $this->assertEquals('40969200000000', $rows[0]['timestamp']);
     }
 
     public function testReturnRawResultsIsFalse()

@@ -16,17 +16,21 @@ class ServiceBinding
         }
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
+        \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ç
-5google/cloud/networkservices/v1/service_binding.protogoogle.cloud.networkservices.v1google/api/resource.protogoogle/protobuf/timestamp.proto"ø
+¶
+5google/cloud/networkservices/v1/service_binding.protogoogle.cloud.networkservices.v1google/api/resource.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"à
 ServiceBinding
-name (	B‡A
+name (	B‡A
 description (	B‡A4
 create_time (2.google.protobuf.TimestampB‡A4
-update_time (2.google.protobuf.TimestampB‡A
-service (	B‡AP
+update_time (2.google.protobuf.TimestampB‡AB
+service (	B1‡A˙A)
+\'servicedirectory.googleapis.com/Service
+
+service_id (	B‡AP
 labels (2;.google.cloud.networkservices.v1.ServiceBinding.LabelsEntryB‡A-
 LabelsEntry
 key (	
@@ -36,21 +40,26 @@ class ServiceBinding
 parent (	B5‡A˙A/-networkservices.googleapis.com/ServiceBinding
 	page_size (
 
-page_token (	"Å
+page_token (	"ñ
 ListServiceBindingsResponseI
 service_bindings (2/.google.cloud.networkservices.v1.ServiceBinding
-next_page_token (	"_
+next_page_token (	
+unreachable (	"_
 GetServiceBindingRequestC
 name (	B5‡A˙A/
 -networkservices.googleapis.com/ServiceBinding"‘
 CreateServiceBindingRequestE
 parent (	B5‡A˙A/-networkservices.googleapis.com/ServiceBinding
 service_binding_id (	B‡AM
-service_binding (2/.google.cloud.networkservices.v1.ServiceBindingB‡A"b
+service_binding (2/.google.cloud.networkservices.v1.ServiceBindingB‡A"¢
+UpdateServiceBindingRequest4
+update_mask (2.google.protobuf.FieldMaskB‡AM
+service_binding (2/.google.cloud.networkservices.v1.ServiceBindingB‡A"b
 DeleteServiceBindingRequestC
 name (	B5‡A˙A/
--networkservices.googleapis.com/ServiceBindingBÙ
-#com.google.cloud.networkservices.v1BServiceBindingProtoPZMcloud.google.com/go/networkservices/apiv1/networkservicespb;networkservicespb™Google.Cloud.NetworkServices.V1 Google\\Cloud\\NetworkServices\\V1Í"Google::Cloud::NetworkServices::V1bproto3'
+-networkservices.googleapis.com/ServiceBindingBÛ
+#com.google.cloud.networkservices.v1BServiceBindingProtoPZMcloud.google.com/go/networkservices/apiv1/networkservicespb;networkservicespb™Google.Cloud.NetworkServices.V1 Google\\Cloud\\NetworkServices\\V1Í"Google::Cloud::NetworkServices::V1ÍA|
+\'servicedirectory.googleapis.com/ServiceQprojects/{project}/locations/{location}/namespaces/{namespace}/services/{service}bproto3'
         , true);
 
         static::$is_initialized = true;

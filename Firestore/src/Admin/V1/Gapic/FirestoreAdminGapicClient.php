@@ -2256,6 +2256,11 @@ class FirestoreAdminGapicClient
      *           If this field is not specified, the restored database will use
      *           the same encryption configuration as the backup, namely
      *           [use_source_encryption][google.firestore.admin.v1.Database.EncryptionConfig.use_source_encryption].
+     *     @type array $tags
+     *           Optional. Immutable. Tags to be bound to the restored database.
+     *
+     *           The tags should be provided in the format of
+     *           `tagKeys/{tag_key_id} -> tagValues/{tag_value_id}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2276,6 +2281,10 @@ class FirestoreAdminGapicClient
         $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['encryptionConfig'])) {
             $request->setEncryptionConfig($optionalArgs['encryptionConfig']);
+        }
+
+        if (isset($optionalArgs['tags'])) {
+            $request->setTags($optionalArgs['tags']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);

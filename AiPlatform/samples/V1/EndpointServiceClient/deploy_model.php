@@ -34,30 +34,18 @@ use Google\Rpc\Status;
 /**
  * Deploys a Model into this Endpoint, creating a DeployedModel within it.
  *
- * @param string $formattedEndpoint           The name of the Endpoint resource into which to deploy a Model.
- *                                            Format:
- *                                            `projects/{project}/locations/{location}/endpoints/{endpoint}`
- *                                            Please see {@see EndpointServiceClient::endpointName()} for help formatting this field.
- * @param string $formattedDeployedModelModel The resource name of the Model that this is the deployment of.
- *                                            Note that the Model may be in a different location than the DeployedModel's
- *                                            Endpoint.
- *
- *                                            The resource name may contain version id or version alias to specify the
- *                                            version.
- *                                            Example: `projects/{project}/locations/{location}/models/{model}&#64;2`
- *                                            or
- *                                            `projects/{project}/locations/{location}/models/{model}&#64;golden`
- *                                            if no version is specified, the default version will be deployed. Please see
- *                                            {@see EndpointServiceClient::modelName()} for help formatting this field.
+ * @param string $formattedEndpoint The name of the Endpoint resource into which to deploy a Model.
+ *                                  Format:
+ *                                  `projects/{project}/locations/{location}/endpoints/{endpoint}`
+ *                                  Please see {@see EndpointServiceClient::endpointName()} for help formatting this field.
  */
-function deploy_model_sample(string $formattedEndpoint, string $formattedDeployedModelModel): void
+function deploy_model_sample(string $formattedEndpoint): void
 {
     // Create a client.
     $endpointServiceClient = new EndpointServiceClient();
 
     // Prepare the request message.
-    $deployedModel = (new DeployedModel())
-        ->setModel($formattedDeployedModelModel);
+    $deployedModel = new DeployedModel();
     $request = (new DeployModelRequest())
         ->setEndpoint($formattedEndpoint)
         ->setDeployedModel($deployedModel);
@@ -94,12 +82,7 @@ function deploy_model_sample(string $formattedEndpoint, string $formattedDeploye
 function callSample(): void
 {
     $formattedEndpoint = EndpointServiceClient::endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
-    $formattedDeployedModelModel = EndpointServiceClient::modelName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[MODEL]'
-    );
 
-    deploy_model_sample($formattedEndpoint, $formattedDeployedModelModel);
+    deploy_model_sample($formattedEndpoint);
 }
 // [END aiplatform_v1_generated_EndpointService_DeployModel_sync]

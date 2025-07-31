@@ -36,8 +36,6 @@ class CreateMembershipRequest extends \Google\Protobuf\Internal\Message
      * - When [authenticating as an
      * app](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app),
      * the `chat.app.memberships` authorization scope is required.
-     * Authenticating as an app is available in [Developer
-     * Preview](https://developers.google.com/workspace/preview).
      * - Set `user.type` to `HUMAN`, and set `user.name` with format
      * `users/{user}`, where `{user}` can be the email address for the user. For
      * users in the same Workspace organization `{user}` can also be the `id` of
@@ -96,8 +94,6 @@ class CreateMembershipRequest extends \Google\Protobuf\Internal\Message
      *                                                    - When [authenticating as an
      *                                                    app](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app),
      *                                                    the `chat.app.memberships` authorization scope is required.
-     *                                                    Authenticating as an app is available in [Developer
-     *                                                    Preview](https://developers.google.com/workspace/preview).
      *
      *                                                    - Set `user.type` to `HUMAN`, and set `user.name` with format
      *                                                    `users/{user}`, where `{user}` can be the email address for the user. For
@@ -152,8 +148,6 @@ class CreateMembershipRequest extends \Google\Protobuf\Internal\Message
      *           - When [authenticating as an
      *           app](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app),
      *           the `chat.app.memberships` authorization scope is required.
-     *           Authenticating as an app is available in [Developer
-     *           Preview](https://developers.google.com/workspace/preview).
      *           - Set `user.type` to `HUMAN`, and set `user.name` with format
      *           `users/{user}`, where `{user}` can be the email address for the user. For
      *           users in the same Workspace organization `{user}` can also be the `id` of
@@ -231,8 +225,6 @@ class CreateMembershipRequest extends \Google\Protobuf\Internal\Message
      * - When [authenticating as an
      * app](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app),
      * the `chat.app.memberships` authorization scope is required.
-     * Authenticating as an app is available in [Developer
-     * Preview](https://developers.google.com/workspace/preview).
      * - Set `user.type` to `HUMAN`, and set `user.name` with format
      * `users/{user}`, where `{user}` can be the email address for the user. For
      * users in the same Workspace organization `{user}` can also be the `id` of
@@ -281,8 +273,6 @@ class CreateMembershipRequest extends \Google\Protobuf\Internal\Message
      * - When [authenticating as an
      * app](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app),
      * the `chat.app.memberships` authorization scope is required.
-     * Authenticating as an app is available in [Developer
-     * Preview](https://developers.google.com/workspace/preview).
      * - Set `user.type` to `HUMAN`, and set `user.name` with format
      * `users/{user}`, where `{user}` can be the email address for the user. For
      * users in the same Workspace organization `{user}` can also be the `id` of

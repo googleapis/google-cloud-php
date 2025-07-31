@@ -33,7 +33,8 @@ use Google\Rpc\Status;
 /**
  * Imports data from Cloud Storage to a Managed Lustre instance.
  *
- * @param string $formattedName Name of the resource. Please see
+ * @param string $formattedName The name of the Managed Lustre instance in the format
+ *                              `projects/{project}/locations/{location}/instances/{instance}`. Please see
  *                              {@see LustreClient::instanceName()} for help formatting this field.
  */
 function import_data_sample(string $formattedName): void

@@ -40,8 +40,7 @@ class AccessSettings extends \Google\Protobuf\Internal\Message
      * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
      * with [administrator
      * approval](https://support.google.com/a?p=chat-app-auth)
-     * with the `chat.app.spaces` scope in [Developer
-     * Preview](https://developers.google.com/workspace/preview).
+     * with the `chat.app.spaces` scope.
      * This field is not populated when using the `chat.bot` scope with [app
      * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app).
      * Setting the target audience requires [user
@@ -77,8 +76,7 @@ class AccessSettings extends \Google\Protobuf\Internal\Message
      *           authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
      *           with [administrator
      *           approval](https://support.google.com/a?p=chat-app-auth)
-     *           with the `chat.app.spaces` scope in [Developer
-     *           Preview](https://developers.google.com/workspace/preview).
+     *           with the `chat.app.spaces` scope.
      *           This field is not populated when using the `chat.bot` scope with [app
      *           authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app).
      *           Setting the target audience requires [user
@@ -134,8 +132,7 @@ class AccessSettings extends \Google\Protobuf\Internal\Message
      * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
      * with [administrator
      * approval](https://support.google.com/a?p=chat-app-auth)
-     * with the `chat.app.spaces` scope in [Developer
-     * Preview](https://developers.google.com/workspace/preview).
+     * with the `chat.app.spaces` scope.
      * This field is not populated when using the `chat.bot` scope with [app
      * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app).
      * Setting the target audience requires [user
@@ -167,8 +164,7 @@ class AccessSettings extends \Google\Protobuf\Internal\Message
      * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
      * with [administrator
      * approval](https://support.google.com/a?p=chat-app-auth)
-     * with the `chat.app.spaces` scope in [Developer
-     * Preview](https://developers.google.com/workspace/preview).
+     * with the `chat.app.spaces` scope.
      * This field is not populated when using the `chat.bot` scope with [app
      * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app).
      * Setting the target audience requires [user
