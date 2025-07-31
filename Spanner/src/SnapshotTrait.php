@@ -35,7 +35,7 @@ trait SnapshotTrait
 
     /**
      * @param Operation $operation The Operation instance.
-     * @param Session $session The session to use for spanner interactions.
+     * @param SessionCache $session The session to use for spanner interactions.
      * @param array $options [optional] {
      *     Configuration Options.
      *

@@ -288,13 +288,11 @@ class SpannerClient
             ]
         );
 
+        $database = $this->instance($instanceId)->database($databaseId);
+
         return new BatchClient(
             $operation,
-            GapicSpannerClient::databaseName(
-                $this->projectId,
-                $instanceId,
-                $databaseId
-            ),
+            $database,
             $options
         );
     }

@@ -20,7 +20,7 @@ namespace Google\Cloud\Spanner\Batch;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Result;
-use Google\Cloud\Spanner\Session\Session;
+use Google\Cloud\Spanner\Session\SessionCache;
 use Google\Cloud\Spanner\SnapshotTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\TransactionalReadInterface;
@@ -62,7 +62,7 @@ class BatchSnapshot implements TransactionalReadInterface
 
     /**
      * @param Operation $operation The Operation instance.
-     * @param Session $session The session to use for spanner interactions.
+     * @param SessionCache $session The session to use for spanner interactions.
      * @param array $options [optional] {
      *     Configuration Options.
      *
@@ -70,7 +70,7 @@ class BatchSnapshot implements TransactionalReadInterface
      *     @type Timestamp $readTimestamp The read timestamp.
      * }
      */
-    public function __construct(Operation $operation, Session $session, array $options = [])
+    public function __construct(Operation $operation, SessionCache $session, array $options = [])
     {
         $this->initialize($operation, $session, $options);
     }

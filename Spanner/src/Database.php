@@ -2305,14 +2305,11 @@ class Database
      * pool implementation to retrieve a session one - otherwise create on
      * demand.
      *
-     * @param string $context [optional] The session context. **Defaults to**
-     *        `r` (READ).
-     * @param array $options [optional] Configuration options.
-     * @return Session
+     * @return SessionCache
      */
-    private function selectSession(): Session
+    private function selectSession(): SessionCache
     {
-        return $this->session = $this->session ?? $this->createSession();;
+        return $this->session = $this->session ?? $this->createSession();
     }
 
     /**
