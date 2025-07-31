@@ -51,6 +51,8 @@ class Event extends \Google\Protobuf\Internal\Message
      *           duration was over.
      *     @type \Google\Cloud\PrivilegedAccessManager\V1\Grant\Timeline\Event\ExternallyModified $externally_modified
      *           The policy bindings made by grant have been modified outside of PAM.
+     *     @type \Google\Cloud\PrivilegedAccessManager\V1\Grant\Timeline\Event\Withdrawn $withdrawn
+     *           The grant was withdrawn.
      *     @type \Google\Protobuf\Timestamp $event_time
      *           Output only. The time (as recorded at server) when this event occurred.
      * }
@@ -370,6 +372,37 @@ class Event extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\PrivilegedAccessManager\V1\Grant\Timeline\Event\ExternallyModified::class);
         $this->writeOneof(12, $var);
+
+        return $this;
+    }
+
+    /**
+     * The grant was withdrawn.
+     *
+     * Generated from protobuf field <code>.google.cloud.privilegedaccessmanager.v1.Grant.Timeline.Event.Withdrawn withdrawn = 13;</code>
+     * @return \Google\Cloud\PrivilegedAccessManager\V1\Grant\Timeline\Event\Withdrawn|null
+     */
+    public function getWithdrawn()
+    {
+        return $this->readOneof(13);
+    }
+
+    public function hasWithdrawn()
+    {
+        return $this->hasOneof(13);
+    }
+
+    /**
+     * The grant was withdrawn.
+     *
+     * Generated from protobuf field <code>.google.cloud.privilegedaccessmanager.v1.Grant.Timeline.Event.Withdrawn withdrawn = 13;</code>
+     * @param \Google\Cloud\PrivilegedAccessManager\V1\Grant\Timeline\Event\Withdrawn $var
+     * @return $this
+     */
+    public function setWithdrawn($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\PrivilegedAccessManager\V1\Grant\Timeline\Event\Withdrawn::class);
+        $this->writeOneof(13, $var);
 
         return $this;
     }
