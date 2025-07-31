@@ -17,7 +17,14 @@
 
 namespace Google\Cloud\Spanner\Session;
 
+use Google\Cloud\Core\SysvTrait;
+use Google\Cloud\Core\Lock\FlockLock;
+use Google\Cloud\Core\Lock\LockInterface;
+use Google\Cloud\Core\Lock\SemaphoreLock;
+use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\V1\Session as SessionProto;
+use Psr\Cache\CacheItemInterface;
+use Psr\Cache\CacheItemPoolInterface;
 
 
 /**
@@ -25,18 +32,37 @@ use Google\Cloud\Spanner\V1\Session as SessionProto;
  *
  * @internal
  */
-class Session
+class SessionCache
 {
+    use SysvTrait;
+
+    private const CACHE_KEY_TEMPLATE = 'cache-session-pool.%s.%s.%s';
+    private const SESSION_LIFETIME_SECONDS = 28 * 24 * 3600; // 28 days
+    private const SESSION_EXPIRATION_SECONDS = 7 * 24 * 3600; // 7 days;
+
+    private string $cacheKey;
+    private LockInterface $lock;
+
     /**
      */
     public function __construct(
-        private SessionPoolInterface $sessionPool,
+        private CacheItemPoolInterface $cacheItemPool,
+        private Database $database,
         private SessionProto|null $session = null,
+        LockInterface|null $lock = null
     ) {
+        $identity = $database->identity();
+        $this->cacheKey = sprintf(
+            self::CACHE_KEY_TEMPLATE,
+            $identity['projectId'],
+            $identity['instance'],
+            $identity['database']
+        );
+        $this->lock = $lock ?? $this->getDefaultLock($this->cacheKey);
     }
 
     /**
-     * Format the constituent parts of a session name into a fully qualified session name.
+     * The fully qualified session name.
      *
      * @return string
      */
@@ -51,7 +77,18 @@ class Session
     {
         if (!$this->session || $this->isExpired($this->session)) {
             // Acquire a new multiplex session from the pool
-            $this->session = $this->sessionPool->acquire();
+            $this->session = $this->lock->synchronize(function () {
+                $item = $this->cacheItemPool->getItem($this->cacheKey);
+                if (!$session = $item->get()) {
+                    $session = $this->database->createSession();
+                    $expiresAt = $session->getCreateTime()->getSeconds() + self::SESSION_EXPIRATION_SECONDS;
+                    $item->set($session);
+                    $item->expiresAt($expiresAt);
+                    $this->cacheItemPool->save($item);
+                }
+
+                return $session;
+            });
         }
     }
 
@@ -59,6 +96,22 @@ class Session
     {
         $createdTimeSeconds = $this->session->getCreateTime()->getSeconds();
         return time() >=  ($createdTimeSeconds + SessionPoolInterface::SESSION_EXPIRATION_SECONDS);
+    }
+
+    /**
+     * Get the default lock.
+     *
+     * @return LockInterface
+     */
+    private function getDefaultLock(string $cacheKey)
+    {
+        if ($this->isSysvIPCLoaded()) {
+            return new SemaphoreLock(
+                $this->getSysvKey(crc32($cacheKey))
+            );
+        }
+
+        return new FlockLock($cacheKey);
     }
 
     /**
@@ -71,7 +124,7 @@ class Session
     {
         return [
             'session' => $this->session,
-            'sessionPool' => $this->sessionPool,
+            'sessionPool' => $this->cacheItemPool,
         ];
     }
 }

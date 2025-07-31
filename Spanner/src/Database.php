@@ -46,7 +46,6 @@ use Google\Cloud\Spanner\Admin\Database\V1\ListDatabaseOperationsRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\RestoreDatabaseRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseDdlRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseRequest;
-use Google\Cloud\Spanner\Session\CacheSessionPool;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\V1\BatchCreateSessionsRequest;
@@ -66,6 +65,7 @@ use Google\Protobuf\Struct;
 use Google\Protobuf\Value;
 use Google\Rpc\Code;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Cache\CacheItemPoolInterface;
 
 /**
  * Represents a Cloud Spanner Database.
@@ -126,7 +126,7 @@ class Database
     private array $defaultQueryOptions;
     private string $databaseRole;
     private bool $returnInt64AsObject;
-    private SessionPoolInterface $sessionPool;
+    private CacheItemPoolInterface $cacheItemPool;
     private array $info;
 
     private const MUTATION_SETTERS = [
@@ -154,7 +154,7 @@ class Database
      *     @type bool $routeToLeader Enable/disable Leader Aware Routing.
      *         **Defaults to** `true` (enabled).
      *     @type array $defaultQueryOptions
-     *     @type SessionPoolInterface $sessionPool The session pool
+     *     @type CacheItemPoolInterface $cacheItemPool The session pool
      *         implementation.
      *     @type bool $returnInt64AsObject If true, 64 bit integers will
      *         be returned as a {@see \Google\Cloud\Core\Int64} object for 32 bit
@@ -178,7 +178,7 @@ class Database
         $this->defaultQueryOptions = $options['defaultQueryOptions'] ?? [];
         $this->databaseRole = $options['databaseRole'] ?? '';
         $this->returnInt64AsObject = $options['returnInt64AsObject'] ?? false;
-        $this->sessionPool = $options['sessionPool'] ?? null;
+
         $this->info = $options['database'] ?? [];
         $this->operation = new Operation(
             $this->spannerClient,
@@ -190,12 +190,9 @@ class Database
             ]
         );
 
-        if (!$this->sessionPool) {
-            $cacheItemPool = extension_loaded('sysvshm')
-                ? new SysVCacheItemPool()
-                : new FilesystemCacheItemPool();
-            $this->sessionPool = new CacheSessionPool($cacheItemPool, $this);
-        }
+        $this->cacheItemPool = $options['cacheItemPool'] ?? extension_loaded('sysvshm')
+            ? new SysVCacheItemPool()
+            : new FilesystemCacheItemPool(sys_get_temp_dir() . '/spanner_cache/');
 
         $this->directedReadOptions = $instance->directedReadOptions();
     }
@@ -747,11 +744,7 @@ class Database
 
         $session = $this->selectSession();
 
-        try {
-            return $this->operation->snapshot($session, $options);
-        } finally {
-            $session->setExpiration();
-        }
+        return $this->operation->snapshot($session, $options);
     }
 
     /**
@@ -808,11 +801,7 @@ class Database
             $this->pluck('sessionOptions', $options, false) ?: []
         );
 
-        try {
-            return $this->operation->transaction($session, $options);
-        } finally {
-            $session->setExpiration();
-        }
+        return $this->operation->transaction($session, $options);
     }
 
     /**
@@ -983,11 +972,7 @@ class Database
 
         $retry = new Retry($maxRetries, $delayFn);
 
-        try {
-            return $retry->execute($transactionFn, [$operation, $session, $options]);
-        } finally {
-            $session->setExpiration();
-        }
+        return $retry->execute($transactionFn, [$operation, $session, $options]);
     }
 
     /**
@@ -1687,15 +1672,11 @@ class Database
             $this->directedReadOptions
         );
 
-        try {
-            // Unset the internal flag.
-            unset($options['singleUse']);
-            return $this->operation->execute($session, $sql, $options + [
-                'route-to-leader' => $options['transactionContext'] === SessionPoolInterface::CONTEXT_READWRITE
-            ]);
-        } finally {
-            $session->setExpiration();
-        }
+        // Unset the internal flag.
+        unset($options['singleUse']);
+        return $this->operation->execute($session, $sql, $options + [
+            'route-to-leader' => $options['transactionContext'] === SessionPoolInterface::CONTEXT_READWRITE
+        ]);
     }
 
     /**
@@ -1789,7 +1770,6 @@ class Database
             return $this->handleResponse($response);
         } finally {
             $this->isRunningTransaction = false;
-            $session->setExpiration();
         }
     }
 
@@ -1928,14 +1908,10 @@ class Database
         }
         $transaction = $this->operation->transaction($session, $beginTransactionOptions);
 
-        try {
-            return $this->operation->executeUpdate($session, $transaction, $statement, [
-                'statsItem' => 'rowCountLowerBound',
-                'route-to-leader' => true,
-            ] + $options);
-        } finally {
-            $session->setExpiration();
-        }
+        return $this->operation->executeUpdate($session, $transaction, $statement, [
+            'statsItem' => 'rowCountLowerBound',
+            'route-to-leader' => true,
+        ] + $options);
     }
 
     /**
@@ -2078,15 +2054,11 @@ class Database
             $this->directedReadOptions
         );
 
-        try {
-            // Unset the internal flag.
-            unset($options['singleUse']);
-            return $this->operation->read($session, $table, $keySet, $columns, $options + [
-                'route-to-leader' => $context === SessionPoolInterface::CONTEXT_READ
-            ]);
-        } finally {
-            $session->setExpiration();
-        }
+        // Unset the internal flag.
+        unset($options['singleUse']);
+        return $this->operation->read($session, $table, $keySet, $columns, $options + [
+            'route-to-leader' => $context === SessionPoolInterface::CONTEXT_READ
+        ]);
     }
 
     /**
@@ -2124,21 +2096,6 @@ class Database
     }
 
     /**
-     * Closes the database connection.
-     */
-    public function __destruct()
-    {
-        try {
-            $this->close();
-            //@codingStandardsIgnoreStart
-            //@codeCoverageIgnoreStart
-        } catch (\Exception $ex) {
-        }
-        //@codeCoverageIgnoreEnd
-        //@codingStandardsIgnoreStart
-    }
-
-    /**
      * Create a new session.
      *
      * Sessions are handled behind the scenes and this method does not need to
@@ -2169,7 +2126,7 @@ class Database
             'route-to-leader' => $this->routeToLeader
         ]);
 
-        return new Session($this->sessionPool, $session);
+        return new SessionCache($this->cacheItemPool, $session);
     }
 
 
