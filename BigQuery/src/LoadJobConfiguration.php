@@ -813,7 +813,7 @@ class LoadJobConfiguration implements JobConfigurationInterface
      * $loadJobConfig->decimalTargetTypes(['NUMERIC', 'BIGNUMERIC']);
      * ```
      *
-     * @param array $decimalTargetTypes An array of target decimal types.
+     * @param string[] $decimalTargetTypes An array of target decimal types.
      *        Acceptable values include "DECIMAL_TARGET_TYPE_UNSPECIFIED",
      *        "NUMERIC", "BIGNUMERIC", "STRING".
      * @return LoadJobConfiguration
