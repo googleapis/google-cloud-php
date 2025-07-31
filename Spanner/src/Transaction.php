@@ -20,7 +20,6 @@ namespace Google\Cloud\Spanner;
 use Google\ApiCore\ValidationException;
 use Google\Cloud\Core\Exception\AbortedException;
 use Google\Cloud\Spanner\Session\Session;
-use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\V1\MultiplexedSessionPrecommitToken;
 use Google\Protobuf\Duration;
 
@@ -111,7 +110,7 @@ class Transaction implements TransactionalReadInterface
             );
         }
 
-        $this->context = SessionPoolInterface::CONTEXT_READWRITE;
+        $this->context = Database::CONTEXT_READWRITE;
         $this->tag = $options['tag'] ?? null;
         $this->isRetry = $options['isRetry'] ?? false;
         $this->transactionSelector = array_intersect_key(

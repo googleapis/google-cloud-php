@@ -18,8 +18,7 @@
 namespace Google\Cloud\Spanner;
 
 use Google\ApiCore\ArrayTrait;
-use Google\Cloud\Spanner\Session\Session;
-use Google\Cloud\Spanner\Session\SessionPoolInterface;
+use Google\Cloud\Spanner\Session\SessionCache;
 
 /**
  * Common methods for Read-Only transactions (i.e. Snapshots)
@@ -52,7 +51,7 @@ trait SnapshotTrait
      */
     private function initialize(
         Operation $operation,
-        Session $session,
+        SessionCache $session,
         array $options = []
     ): void {
         $this->operation = $operation;
@@ -73,7 +72,7 @@ trait SnapshotTrait
             ? self::TYPE_PRE_ALLOCATED
             : self::TYPE_SINGLE_USE;
 
-        $this->context = SessionPoolInterface::CONTEXT_READ;
+        $this->context = Database::CONTEXT_READ;
         $this->directedReadOptions = $options['directedReadOptions'] ?? [];
         $this->transactionSelector = array_intersect_key(
             (array) $options,
