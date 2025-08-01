@@ -41,8 +41,13 @@ use Google\Rpc\Status;
  *                                                         be unique for the specified project and location.
  * @param string $backupPlanAssociationResourceType        Immutable. Resource type of workload on which backupplan is
  *                                                         applied
- * @param string $backupPlanAssociationResource            Immutable. Resource name of workload on which backupplan is
- *                                                         applied
+ * @param string $backupPlanAssociationResource            Immutable. Resource name of workload on which the backup plan is
+ *                                                         applied.
+ *
+ *                                                         The format can either be the resource name (e.g.,
+ *                                                         "projects/my-project/zones/us-central1-a/instances/my-instance") or the
+ *                                                         full resource URI (e.g.,
+ *                                                         "https://www.googleapis.com/compute/v1/projects/my-project/zones/us-central1-a/instances/my-instance").
  * @param string $formattedBackupPlanAssociationBackupPlan Resource name of backup plan which needs to be applied on
  *                                                         workload. Format:
  *                                                         projects/{project}/locations/{location}/backupPlans/{backupPlanId}

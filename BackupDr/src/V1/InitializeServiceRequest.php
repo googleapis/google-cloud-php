@@ -47,6 +47,7 @@ class InitializeServiceRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string request_id = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
      */
     protected $request_id = '';
+    protected $initialization_config;
 
     /**
      * Constructor.
@@ -74,6 +75,8 @@ class InitializeServiceRequest extends \Google\Protobuf\Internal\Message
      *           clients from accidentally creating duplicate commitments.
      *           The request ID must be a valid UUID with the exception that zero UUID is
      *           not supported (00000000-0000-0000-0000-000000000000).
+     *     @type \Google\Cloud\BackupDR\V1\CloudSqlInstanceInitializationConfig $cloud_sql_instance_initialization_config
+     *           Optional. The configuration for initializing a Cloud SQL instance.
      * }
      */
     public function __construct($data = NULL) {
@@ -185,6 +188,45 @@ class InitializeServiceRequest extends \Google\Protobuf\Internal\Message
         $this->request_id = $var;
 
         return $this;
+    }
+
+    /**
+     * Optional. The configuration for initializing a Cloud SQL instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.backupdr.v1.CloudSqlInstanceInitializationConfig cloud_sql_instance_initialization_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\BackupDR\V1\CloudSqlInstanceInitializationConfig|null
+     */
+    public function getCloudSqlInstanceInitializationConfig()
+    {
+        return $this->readOneof(4);
+    }
+
+    public function hasCloudSqlInstanceInitializationConfig()
+    {
+        return $this->hasOneof(4);
+    }
+
+    /**
+     * Optional. The configuration for initializing a Cloud SQL instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.backupdr.v1.CloudSqlInstanceInitializationConfig cloud_sql_instance_initialization_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\BackupDR\V1\CloudSqlInstanceInitializationConfig $var
+     * @return $this
+     */
+    public function setCloudSqlInstanceInitializationConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\BackupDR\V1\CloudSqlInstanceInitializationConfig::class);
+        $this->writeOneof(4, $var);
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getInitializationConfig()
+    {
+        return $this->whichOneof("initialization_config");
     }
 
 }

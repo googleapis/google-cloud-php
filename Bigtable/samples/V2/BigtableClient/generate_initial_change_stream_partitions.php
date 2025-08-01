@@ -30,10 +30,10 @@ use Google\Cloud\Bigtable\V2\GenerateInitialChangeStreamPartitionsRequest;
 use Google\Cloud\Bigtable\V2\GenerateInitialChangeStreamPartitionsResponse;
 
 /**
- * NOTE: This API is intended to be used by Apache Beam BigtableIO.
  * Returns the current list of partitions that make up the table's
  * change stream. The union of partitions will cover the entire keyspace.
  * Partitions can be read with `ReadChangeStream`.
+ * NOTE: This API is only intended to be used by Apache Beam BigtableIO.
  *
  * @param string $formattedTableName The unique name of the table from which to get change stream
  *                                   partitions. Values are of the form

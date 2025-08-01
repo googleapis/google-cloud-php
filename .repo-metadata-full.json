@@ -865,6 +865,14 @@
         "library_type": "GAPIC_COMBO",
         "api_shortname": "language"
     },
+    "LicenseManager": {
+        "language": "php",
+        "distribution_name": "google/cloud-licensemanager",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-licensemanager/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "licensemanager"
+    },
     "LifeSciences": {
         "language": "php",
         "distribution_name": "google/cloud-life-sciences",
@@ -896,6 +904,14 @@
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-lustre/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "lustre"
+    },
+    "Maintenance": {
+        "language": "php",
+        "distribution_name": "google/cloud-maintenance",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-maintenance/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "maintenance"
     },
     "ManagedIdentities": {
         "language": "php",

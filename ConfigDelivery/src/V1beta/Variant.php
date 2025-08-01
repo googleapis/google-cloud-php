@@ -22,10 +22,10 @@ class Variant extends \Google\Protobuf\Internal\Message
      */
     private $labels;
     /**
-     * Required. Unordered list. resources contain the kubernetes manifests
-     * (YAMLs) for this variant.
+     * Required. Input only. Unordered list. resources contain the kubernetes
+     * manifests (YAMLs) for this variant.
      *
-     * Generated from protobuf field <code>repeated string resources = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = UNORDERED_LIST];</code>
+     * Generated from protobuf field <code>repeated string resources = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = UNORDERED_LIST, (.google.api.field_behavior) = INPUT_ONLY];</code>
      */
     private $resources;
     /**
@@ -57,8 +57,8 @@ class Variant extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional. labels to represent any metadata associated with the variant.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $resources
-     *           Required. Unordered list. resources contain the kubernetes manifests
-     *           (YAMLs) for this variant.
+     *           Required. Input only. Unordered list. resources contain the kubernetes
+     *           manifests (YAMLs) for this variant.
      *     @type string $name
      *           Identifier. Name follows format of
      *           projects/{project}/locations/{location}/resourceBundles/{resource_bundle}/releases/{release}/variants/{variant}
@@ -100,10 +100,10 @@ class Variant extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Unordered list. resources contain the kubernetes manifests
-     * (YAMLs) for this variant.
+     * Required. Input only. Unordered list. resources contain the kubernetes
+     * manifests (YAMLs) for this variant.
      *
-     * Generated from protobuf field <code>repeated string resources = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = UNORDERED_LIST];</code>
+     * Generated from protobuf field <code>repeated string resources = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = UNORDERED_LIST, (.google.api.field_behavior) = INPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getResources()
@@ -112,10 +112,10 @@ class Variant extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Unordered list. resources contain the kubernetes manifests
-     * (YAMLs) for this variant.
+     * Required. Input only. Unordered list. resources contain the kubernetes
+     * manifests (YAMLs) for this variant.
      *
-     * Generated from protobuf field <code>repeated string resources = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = UNORDERED_LIST];</code>
+     * Generated from protobuf field <code>repeated string resources = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = UNORDERED_LIST, (.google.api.field_behavior) = INPUT_ONLY];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

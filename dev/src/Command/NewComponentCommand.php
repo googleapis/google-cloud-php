@@ -22,6 +22,7 @@ use Google\Cloud\Dev\NewComponent;
 use Google\Cloud\Dev\RunProcess;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\Table;
+use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
@@ -40,7 +41,7 @@ use Exception;
  * Add a Component
  * @internal
  */
-class AddComponentCommand extends Command
+class NewComponentCommand extends Command
 {
     private const TEMPLATE_DIR = __DIR__ . '/../../templates';
     private const COPY_FILES = [
@@ -79,19 +80,14 @@ class AddComponentCommand extends Command
 
     protected function configure()
     {
-        $this->setName('add-component')
-            ->setDescription('Add a Component')
+        $this->setName('new-component')
+            ->setDescription('Add a new Component')
             ->addArgument('proto', InputArgument::REQUIRED, 'Path to service proto.')
             ->addOption(
-                'googleapis-gen-path',
+                'no-update-component',
                 null,
-                InputOption::VALUE_REQUIRED,
-                'Path to googleapis-gen repo. Option to generate the library using Owlbot:copy-code'
-            )->addOption(
-                'bazel-path',
-                null,
-                InputOption::VALUE_REQUIRED,
-                'Path to bazel (googleapis) workspace. Option to generate the library using Bazel'
+                InputOption::VALUE_NONE,
+                'Do not run the update-component command after adding the component skeleton'
             );
     }
 
@@ -214,23 +210,25 @@ class AddComponentCommand extends Command
         $composer->updateMainComposer();
         $composer->createComponentComposer($new->displayName, $new->githubRepo);
 
-        if ($input->getOption('bazel-path') || $input->getOption('googleapis-gen-path')) {
-            $this->validateOptions($input, $output);
-            $this->checkDockerAvailable();
-            if ($input->getOption('bazel-path')) {
-                $googleApisDir = realpath($input->getOption('bazel-path'));
-                $output->writeln("\n\nbazel build library");
-                $output->writeln($this->bazelQueryAndBuildLibrary(dirname($protoFile), $googleApisDir));
-                $output->writeln("\n\nCopying the library code from bazel-bin");
-                $output->writeln($this->owlbotCopyBazelBin($new->componentName, $googleApisDir));
-            } else {
-                $googleApisGenDir = realpath($input->getOption('googleapis-gen-path'));
-                $output->writeln("\n\nCopying the library code from googleapis-gen");
-                $output->writeln($this->owlbotCopyCode($new->componentName, $googleApisGenDir));
+        if (!$input->getOption('no-update-component')) {
+            $args = ['component' => $new->componentName];
+            if (!$this->getApplication()->has('update-component')) {
+                throw new \RuntimeException(
+                    'Application does not have an update-component command. '
+                    . 'Run with --no-update-component to skip this.'
+                );
             }
-            // run owlbot post-processor if a bazel-path or googleapis-gen-path was supplied
-            $output->writeln("\n\nOwlbot post processing");
-            $output->writeln($this->owlbotPostProcessor());
+            $updateCommand = $this->getApplication()->find('update-component');
+            $returnCode = $updateCommand->run(new ArrayInput($args), $output);
+            if ($returnCode !== Command::SUCCESS) {
+                return $returnCode;
+            }
+            $addSamplesArgs = ['--component' => [$new->componentName]];
+            $addSampleCommand = $this->getApplication()->find('add-sample-to-readme');
+            $returnCode = $addSampleCommand->run(new ArrayInput($addSamplesArgs), $output);
+            if ($returnCode !== Command::SUCCESS) {
+                return $returnCode;
+            }
         }
 
         $output->writeln('');
@@ -238,16 +236,6 @@ class AddComponentCommand extends Command
         $output->writeln('Success!');
 
         return 0;
-    }
-
-    private function validateOptions(InputInterface $input, OutputInterface $output): void
-    {
-        if ($input->getOption('bazel-path') && $input->getOption('googleapis-gen-path')) {
-            throw new \InvalidArgumentException(
-                'The options --googleapis-gen-path and --bazel-path cannot be used together.' .
-                ' Please provide only one path option.'
-            );
-        }
     }
 
     private function loadYamlConfigContent(NewComponent $new, string $protoDir): ?array
@@ -277,122 +265,11 @@ class AddComponentCommand extends Command
         return (string) $response->getBody();
     }
 
-    private function bazelQueryAndBuildLibrary(string $protoDir, string $googleApisDir): string
-    {
-        $command = ['bazel', '--version'];
-        $output = $this->runProcess->execute($command);
-        // Extract the version number from the output
-        $match = preg_match('/bazel\s+(?P<version>\d+\.\d+\.\d+)/', $output, $matches);
-        if (!$match || $matches['version'] !== self::BAZEL_VERSION) {
-            throw new RuntimeException('Bazel 6.0.0 is not available');
-        }
-
-        $command = [
-            'bazel',
-            'query',
-            'filter("-(php)$", kind("rule", //' . $protoDir .'/...:*))'
-        ];
-        $output = $this->runProcess->execute($command, $googleApisDir);
-        // Get componenets starting with //google/ and
-        // not ending with :(proto|grpc|gapic)-.*-php
-        $components = array_filter(
-            explode("\n", $output),
-            fn ($line) => $line && preg_match('/^\/\/google\/(?!:(proto|grpc|gapic)-.*-php$)/', $line)
-        );
-        if (count($components) !== 1) {
-            throw new Exception(
-                'expected only one bazel component, found ' .
-                (implode(' ', $components) ?: '0')
-            );
-        }
-
-        $command = ['bazel', 'build', $components[0]];
-        return $this->runProcess->execute($command, $googleApisDir);
-    }
-
-    private function owlbotCopyCode(string $componentName, string $googleApisGenDir): string
-    {
-        list($userId, $groupId) = $this->getUserAndGroupId();
-        $command = [
-            'docker',
-            'run',
-            '--rm',
-            '--user',
-            sprintf('%s::%s', $userId, $groupId),
-            '-v',
-            $this->rootPath . ':/repo',
-            '-v',
-            $googleApisGenDir . ':/googleapis-gen',
-            '-w',
-            '/repo',
-            '--env',
-            'HOME=/tmp',
-            self::OWLBOT_CLI_IMAGE,
-            'copy-code',
-            sprintf('--config-file=%s/.OwlBot.yaml', $componentName),
-            '--source-repo=/googleapis-gen'
-        ];
-        return $this->runProcess->execute($command);
-    }
-
-    private function owlbotCopyBazelBin(string $componentName, string $googleApisDir): string
-    {
-        list($userId, $groupId) = $this->getUserAndGroupId();
-        $command = [
-            'docker',
-            'run',
-            '--rm',
-            '--user',
-            sprintf('%s::%s', $userId, $groupId),
-            '-v',
-            $this->rootPath . ':/repo',
-            '-v',
-            $googleApisDir . '/bazel-bin:/bazel-bin',
-            self::OWLBOT_CLI_IMAGE,
-            'copy-bazel-bin',
-            sprintf('--config-file=%s/.OwlBot.yaml', $componentName),
-            '--source-dir',
-            '/bazel-bin',
-            '--dest',
-            '/repo'
-        ];
-        return $this->runProcess->execute($command);
-    }
-
-    private function owlbotPostProcessor(): string
-    {
-        list($userId, $groupId) = $this->getUserAndGroupId();
-        $command = [
-            'docker',
-            'run',
-            '--rm',
-            '--user',
-            sprintf('%s::%s', $userId, $groupId),
-            '-v',
-            $this->rootPath . ':/repo',
-            '-w',
-            '/repo',
-            self::OWLBOT_PHP_IMAGE
-        ];
-        return $this->runProcess->execute($command);
-    }
-
     private function getHomePageFromDocsUrl(?string $url): ?string
     {
         $productHomePage = !empty($url) ? explode('/docs', $url)[0] : null;
         $response = $this->httpClient->get($productHomePage, ['http_errors' => false]);
         return $response->getStatusCode() >= 400 ? null : $productHomePage;
-    }
-
-    private function checkDockerAvailable(): void
-    {
-        $command = ['which', 'docker'];
-        $output = $this->runProcess->execute($command);
-        if (strlen($output) == 0) {
-            throw new RuntimeException(
-                'Error: Docker is not available.'
-            );
-        }
     }
 
     private function getUserAndGroupId(): array

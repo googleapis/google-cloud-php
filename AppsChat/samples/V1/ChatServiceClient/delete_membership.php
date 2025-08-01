@@ -39,20 +39,43 @@ use Google\Apps\Chat\V1\Membership;
  * - [App
  * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
  * with [administrator approval](https://support.google.com/a?p=chat-app-auth)
- * in [Developer Preview](https://developers.google.com/workspace/preview)
+ * and the authorization scope:
+ * - `https://www.googleapis.com/auth/chat.app.memberships`
  *
  * - [User
  * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
- * You can authenticate and authorize this method with administrator
- * privileges by setting the `use_admin_access` field in the request.
+ * with one of the following authorization scopes:
+ * - `https://www.googleapis.com/auth/chat.memberships`
+ * - `https://www.googleapis.com/auth/chat.memberships.app` (to remove
+ * the calling app from the space)
+ * - `https://www.googleapis.com/auth/chat.import` (import mode spaces
+ * only)
+ * - User authentication grants administrator privileges when an
+ * administrator account authenticates, `use_admin_access` is `true`, and
+ * the following authorization scope is used:
+ * - `https://www.googleapis.com/auth/chat.admin.memberships`
+ *
+ * App authentication is not supported for the following use cases:
+ *
+ * - Removing a Google Group from a space.
+ * - Removing a Chat app from a space.
+ *
+ * To delete memberships for space managers, the requester
+ * must be a space manager. If you're using [app
+ * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
+ * the Chat app must be the space creator.
  *
  * @param string $formattedName Resource name of the membership to delete. Chat apps can delete
  *                              human users' or their own memberships. Chat apps can't delete other apps'
  *                              memberships.
  *
- *                              When deleting a human membership, requires the `chat.memberships` scope and
- *                              `spaces/{space}/members/{member}` format. You can use the email as an
- *                              alias for `{member}`. For example,
+ *                              When deleting a human membership, requires the `chat.memberships` scope
+ *                              with [user
+ *                              authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+ *                              or the `chat.memberships.app` scope with [app
+ *                              authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
+ *                              and the `spaces/{space}/members/{member}` format.
+ *                              You can use the email as an alias for `{member}`. For example,
  *                              `spaces/{space}/members/example&#64;gmail.com` where `example&#64;gmail.com` is the
  *                              email of the Google Chat user.
  *

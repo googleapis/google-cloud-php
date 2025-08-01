@@ -29,6 +29,7 @@ use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\BackupDR\V1\Backup;
 use Google\Cloud\BackupDR\V1\BackupPlan;
 use Google\Cloud\BackupDR\V1\BackupPlanAssociation;
+use Google\Cloud\BackupDR\V1\BackupPlanRevision;
 use Google\Cloud\BackupDR\V1\BackupVault;
 use Google\Cloud\BackupDR\V1\Client\BackupDRClient;
 use Google\Cloud\BackupDR\V1\CreateBackupPlanAssociationRequest;
@@ -36,23 +37,32 @@ use Google\Cloud\BackupDR\V1\CreateBackupPlanRequest;
 use Google\Cloud\BackupDR\V1\CreateBackupVaultRequest;
 use Google\Cloud\BackupDR\V1\CreateManagementServerRequest;
 use Google\Cloud\BackupDR\V1\DataSource;
+use Google\Cloud\BackupDR\V1\DataSourceReference;
 use Google\Cloud\BackupDR\V1\DeleteBackupPlanAssociationRequest;
 use Google\Cloud\BackupDR\V1\DeleteBackupPlanRequest;
 use Google\Cloud\BackupDR\V1\DeleteBackupRequest;
 use Google\Cloud\BackupDR\V1\DeleteBackupVaultRequest;
 use Google\Cloud\BackupDR\V1\DeleteManagementServerRequest;
+use Google\Cloud\BackupDR\V1\FetchBackupPlanAssociationsForResourceTypeRequest;
+use Google\Cloud\BackupDR\V1\FetchBackupPlanAssociationsForResourceTypeResponse;
+use Google\Cloud\BackupDR\V1\FetchDataSourceReferencesForResourceTypeRequest;
+use Google\Cloud\BackupDR\V1\FetchDataSourceReferencesForResourceTypeResponse;
 use Google\Cloud\BackupDR\V1\FetchUsableBackupVaultsRequest;
 use Google\Cloud\BackupDR\V1\FetchUsableBackupVaultsResponse;
 use Google\Cloud\BackupDR\V1\GetBackupPlanAssociationRequest;
 use Google\Cloud\BackupDR\V1\GetBackupPlanRequest;
+use Google\Cloud\BackupDR\V1\GetBackupPlanRevisionRequest;
 use Google\Cloud\BackupDR\V1\GetBackupRequest;
 use Google\Cloud\BackupDR\V1\GetBackupVaultRequest;
+use Google\Cloud\BackupDR\V1\GetDataSourceReferenceRequest;
 use Google\Cloud\BackupDR\V1\GetDataSourceRequest;
 use Google\Cloud\BackupDR\V1\GetManagementServerRequest;
 use Google\Cloud\BackupDR\V1\InitializeServiceRequest;
 use Google\Cloud\BackupDR\V1\InitializeServiceResponse;
 use Google\Cloud\BackupDR\V1\ListBackupPlanAssociationsRequest;
 use Google\Cloud\BackupDR\V1\ListBackupPlanAssociationsResponse;
+use Google\Cloud\BackupDR\V1\ListBackupPlanRevisionsRequest;
+use Google\Cloud\BackupDR\V1\ListBackupPlanRevisionsResponse;
 use Google\Cloud\BackupDR\V1\ListBackupPlansRequest;
 use Google\Cloud\BackupDR\V1\ListBackupPlansResponse;
 use Google\Cloud\BackupDR\V1\ListBackupVaultsRequest;
@@ -67,6 +77,8 @@ use Google\Cloud\BackupDR\V1\ManagementServer;
 use Google\Cloud\BackupDR\V1\RestoreBackupRequest;
 use Google\Cloud\BackupDR\V1\RestoreBackupResponse;
 use Google\Cloud\BackupDR\V1\TriggerBackupRequest;
+use Google\Cloud\BackupDR\V1\UpdateBackupPlanAssociationRequest;
+use Google\Cloud\BackupDR\V1\UpdateBackupPlanRequest;
 use Google\Cloud\BackupDR\V1\UpdateBackupRequest;
 use Google\Cloud\BackupDR\V1\UpdateBackupVaultRequest;
 use Google\Cloud\BackupDR\V1\UpdateDataSourceRequest;
@@ -146,6 +158,9 @@ class BackupDRClientTest extends GeneratedTest
         $etag = 'etag3123477';
         $backupVault = 'backupVault353808757';
         $backupVaultServiceAccount = 'backupVaultServiceAccount-1170477095';
+        $logRetentionDays = 1566369587;
+        $revisionId = 'revisionId513861631';
+        $revisionName = 'revisionName-100062097';
         $expectedResponse = new BackupPlan();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
@@ -153,6 +168,9 @@ class BackupDRClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $expectedResponse->setBackupVault($backupVault);
         $expectedResponse->setBackupVaultServiceAccount($backupVaultServiceAccount);
+        $expectedResponse->setLogRetentionDays($logRetentionDays);
+        $expectedResponse->setRevisionId($revisionId);
+        $expectedResponse->setRevisionName($revisionName);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -305,12 +323,16 @@ class BackupDRClientTest extends GeneratedTest
         $resource = 'resource-341064690';
         $backupPlan = 'backupPlan1119623046';
         $dataSource = 'dataSource-1333894576';
+        $backupPlanRevisionId = 'backupPlanRevisionId-1602992954';
+        $backupPlanRevisionName = 'backupPlanRevisionName1417180022';
         $expectedResponse = new BackupPlanAssociation();
         $expectedResponse->setName($name);
         $expectedResponse->setResourceType($resourceType);
         $expectedResponse->setResource($resource);
         $expectedResponse->setBackupPlan($backupPlan);
         $expectedResponse->setDataSource($dataSource);
+        $expectedResponse->setBackupPlanRevisionId($backupPlanRevisionId);
+        $expectedResponse->setBackupPlanRevisionName($backupPlanRevisionName);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -764,11 +786,15 @@ class BackupDRClientTest extends GeneratedTest
         $description = 'description-1724546052';
         $etag = 'etag3123477';
         $resourceSizeBytes = 275424386;
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new Backup();
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setResourceSizeBytes($resourceSizeBytes);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1378,6 +1404,170 @@ class BackupDRClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function fetchBackupPlanAssociationsForResourceTypeTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $backupPlanAssociationsElement = new BackupPlanAssociation();
+        $backupPlanAssociations = [$backupPlanAssociationsElement];
+        $expectedResponse = new FetchBackupPlanAssociationsForResourceTypeResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setBackupPlanAssociations($backupPlanAssociations);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $resourceType = 'resourceType979623115';
+        $request = (new FetchBackupPlanAssociationsForResourceTypeRequest())
+            ->setParent($formattedParent)
+            ->setResourceType($resourceType);
+        $response = $gapicClient->fetchBackupPlanAssociationsForResourceType($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getBackupPlanAssociations()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.backupdr.v1.BackupDR/FetchBackupPlanAssociationsForResourceType',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getResourceType();
+        $this->assertProtobufEquals($resourceType, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function fetchBackupPlanAssociationsForResourceTypeExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $resourceType = 'resourceType979623115';
+        $request = (new FetchBackupPlanAssociationsForResourceTypeRequest())
+            ->setParent($formattedParent)
+            ->setResourceType($resourceType);
+        try {
+            $gapicClient->fetchBackupPlanAssociationsForResourceType($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function fetchDataSourceReferencesForResourceTypeTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $dataSourceReferencesElement = new DataSourceReference();
+        $dataSourceReferences = [$dataSourceReferencesElement];
+        $expectedResponse = new FetchDataSourceReferencesForResourceTypeResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setDataSourceReferences($dataSourceReferences);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $resourceType = 'resourceType979623115';
+        $request = (new FetchDataSourceReferencesForResourceTypeRequest())
+            ->setParent($formattedParent)
+            ->setResourceType($resourceType);
+        $response = $gapicClient->fetchDataSourceReferencesForResourceType($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getDataSourceReferences()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.backupdr.v1.BackupDR/FetchDataSourceReferencesForResourceType',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getResourceType();
+        $this->assertProtobufEquals($resourceType, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function fetchDataSourceReferencesForResourceTypeExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $resourceType = 'resourceType979623115';
+        $request = (new FetchDataSourceReferencesForResourceTypeRequest())
+            ->setParent($formattedParent)
+            ->setResourceType($resourceType);
+        try {
+            $gapicClient->fetchDataSourceReferencesForResourceType($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function fetchUsableBackupVaultsTest()
     {
         $transport = $this->createTransport();
@@ -1461,11 +1651,15 @@ class BackupDRClientTest extends GeneratedTest
         $description = 'description-1724546052';
         $etag = 'etag3123477';
         $resourceSizeBytes = 275424386;
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new Backup();
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setResourceSizeBytes($resourceSizeBytes);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->backupName(
@@ -1546,6 +1740,9 @@ class BackupDRClientTest extends GeneratedTest
         $etag = 'etag3123477';
         $backupVault = 'backupVault353808757';
         $backupVaultServiceAccount = 'backupVaultServiceAccount-1170477095';
+        $logRetentionDays = 1566369587;
+        $revisionId = 'revisionId513861631';
+        $revisionName = 'revisionName-100062097';
         $expectedResponse = new BackupPlan();
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
@@ -1553,6 +1750,9 @@ class BackupDRClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $expectedResponse->setBackupVault($backupVault);
         $expectedResponse->setBackupVaultServiceAccount($backupVaultServiceAccount);
+        $expectedResponse->setLogRetentionDays($logRetentionDays);
+        $expectedResponse->setRevisionId($revisionId);
+        $expectedResponse->setRevisionName($revisionName);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->backupPlanName('[PROJECT]', '[LOCATION]', '[BACKUP_PLAN]');
@@ -1620,12 +1820,16 @@ class BackupDRClientTest extends GeneratedTest
         $resource = 'resource-341064690';
         $backupPlan = 'backupPlan1119623046';
         $dataSource = 'dataSource-1333894576';
+        $backupPlanRevisionId = 'backupPlanRevisionId-1602992954';
+        $backupPlanRevisionName = 'backupPlanRevisionName1417180022';
         $expectedResponse = new BackupPlanAssociation();
         $expectedResponse->setName($name2);
         $expectedResponse->setResourceType($resourceType);
         $expectedResponse->setResource($resource);
         $expectedResponse->setBackupPlan($backupPlan);
         $expectedResponse->setDataSource($dataSource);
+        $expectedResponse->setBackupPlanRevisionId($backupPlanRevisionId);
+        $expectedResponse->setBackupPlanRevisionName($backupPlanRevisionName);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->backupPlanAssociationName(
@@ -1676,6 +1880,73 @@ class BackupDRClientTest extends GeneratedTest
         $request = (new GetBackupPlanAssociationRequest())->setName($formattedName);
         try {
             $gapicClient->getBackupPlanAssociation($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getBackupPlanRevisionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $revisionId = 'revisionId513861631';
+        $expectedResponse = new BackupPlanRevision();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setRevisionId($revisionId);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->backupPlanRevisionName('[PROJECT]', '[LOCATION]', '[BACKUP_PLAN]', '[REVISION]');
+        $request = (new GetBackupPlanRevisionRequest())->setName($formattedName);
+        $response = $gapicClient->getBackupPlanRevision($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.backupdr.v1.BackupDR/GetBackupPlanRevision', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getBackupPlanRevisionExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->backupPlanRevisionName('[PROJECT]', '[LOCATION]', '[BACKUP_PLAN]', '[REVISION]');
+        $request = (new GetBackupPlanRevisionRequest())->setName($formattedName);
+        try {
+            $gapicClient->getBackupPlanRevision($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1779,11 +2050,13 @@ class BackupDRClientTest extends GeneratedTest
         $backupCount = 336678994;
         $etag = 'etag3123477';
         $totalStoredBytes = 1181597162;
+        $backupBlockedByVaultAccessRestriction = true;
         $expectedResponse = new DataSource();
         $expectedResponse->setName($name2);
         $expectedResponse->setBackupCount($backupCount);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setTotalStoredBytes($totalStoredBytes);
+        $expectedResponse->setBackupBlockedByVaultAccessRestriction($backupBlockedByVaultAccessRestriction);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->dataSourceName('[PROJECT]', '[LOCATION]', '[BACKUPVAULT]', '[DATASOURCE]');
@@ -1826,6 +2099,75 @@ class BackupDRClientTest extends GeneratedTest
         $request = (new GetDataSourceRequest())->setName($formattedName);
         try {
             $gapicClient->getDataSource($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getDataSourceReferenceTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $dataSource = 'dataSource-1333894576';
+        $dataSourceBackupCount = 1620010527;
+        $expectedResponse = new DataSourceReference();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setDataSource($dataSource);
+        $expectedResponse->setDataSourceBackupCount($dataSourceBackupCount);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->dataSourceReferenceName('[PROJECT]', '[LOCATION]', '[DATA_SOURCE_REFERENCE]');
+        $request = (new GetDataSourceReferenceRequest())->setName($formattedName);
+        $response = $gapicClient->getDataSourceReference($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.backupdr.v1.BackupDR/GetDataSourceReference', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getDataSourceReferenceExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->dataSourceReferenceName('[PROJECT]', '[LOCATION]', '[DATA_SOURCE_REFERENCE]');
+        $request = (new GetDataSourceReferenceRequest())->setName($formattedName);
+        try {
+            $gapicClient->getDataSourceReference($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2100,6 +2442,77 @@ class BackupDRClientTest extends GeneratedTest
         $request = (new ListBackupPlanAssociationsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listBackupPlanAssociations($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listBackupPlanRevisionsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $backupPlanRevisionsElement = new BackupPlanRevision();
+        $backupPlanRevisions = [$backupPlanRevisionsElement];
+        $expectedResponse = new ListBackupPlanRevisionsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setBackupPlanRevisions($backupPlanRevisions);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->backupPlanName('[PROJECT]', '[LOCATION]', '[BACKUP_PLAN]');
+        $request = (new ListBackupPlanRevisionsRequest())->setParent($formattedParent);
+        $response = $gapicClient->listBackupPlanRevisions($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getBackupPlanRevisions()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.backupdr.v1.BackupDR/ListBackupPlanRevisions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listBackupPlanRevisionsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->backupPlanName('[PROJECT]', '[LOCATION]', '[BACKUP_PLAN]');
+        $request = (new ListBackupPlanRevisionsRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listBackupPlanRevisions($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2626,12 +3039,16 @@ class BackupDRClientTest extends GeneratedTest
         $resource = 'resource-341064690';
         $backupPlan = 'backupPlan1119623046';
         $dataSource = 'dataSource-1333894576';
+        $backupPlanRevisionId = 'backupPlanRevisionId-1602992954';
+        $backupPlanRevisionName = 'backupPlanRevisionName1417180022';
         $expectedResponse = new BackupPlanAssociation();
         $expectedResponse->setName($name2);
         $expectedResponse->setResourceType($resourceType);
         $expectedResponse->setResource($resource);
         $expectedResponse->setBackupPlan($backupPlan);
         $expectedResponse->setDataSource($dataSource);
+        $expectedResponse->setBackupPlanRevisionId($backupPlanRevisionId);
+        $expectedResponse->setBackupPlanRevisionName($backupPlanRevisionName);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -2769,11 +3186,15 @@ class BackupDRClientTest extends GeneratedTest
         $description = 'description-1724546052';
         $etag = 'etag3123477';
         $resourceSizeBytes = 275424386;
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new Backup();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setResourceSizeBytes($resourceSizeBytes);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -2861,6 +3282,318 @@ class BackupDRClientTest extends GeneratedTest
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateBackupTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function updateBackupPlanTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateBackupPlanTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $description = 'description-1724546052';
+        $resourceType = 'resourceType979623115';
+        $etag = 'etag3123477';
+        $backupVault = 'backupVault353808757';
+        $backupVaultServiceAccount = 'backupVaultServiceAccount-1170477095';
+        $logRetentionDays = 1566369587;
+        $revisionId = 'revisionId513861631';
+        $revisionName = 'revisionName-100062097';
+        $expectedResponse = new BackupPlan();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setResourceType($resourceType);
+        $expectedResponse->setEtag($etag);
+        $expectedResponse->setBackupVault($backupVault);
+        $expectedResponse->setBackupVaultServiceAccount($backupVaultServiceAccount);
+        $expectedResponse->setLogRetentionDays($logRetentionDays);
+        $expectedResponse->setRevisionId($revisionId);
+        $expectedResponse->setRevisionName($revisionName);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/updateBackupPlanTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $backupPlan = new BackupPlan();
+        $backupPlanBackupRules = [];
+        $backupPlan->setBackupRules($backupPlanBackupRules);
+        $backupPlanResourceType = 'backupPlanResourceType1515155475';
+        $backupPlan->setResourceType($backupPlanResourceType);
+        $backupPlanBackupVault = $gapicClient->backupVaultName('[PROJECT]', '[LOCATION]', '[BACKUPVAULT]');
+        $backupPlan->setBackupVault($backupPlanBackupVault);
+        $updateMask = new FieldMask();
+        $request = (new UpdateBackupPlanRequest())->setBackupPlan($backupPlan)->setUpdateMask($updateMask);
+        $response = $gapicClient->updateBackupPlan($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.backupdr.v1.BackupDR/UpdateBackupPlan', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getBackupPlan();
+        $this->assertProtobufEquals($backupPlan, $actualValue);
+        $actualValue = $actualApiRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateBackupPlanTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function updateBackupPlanExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateBackupPlanTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $backupPlan = new BackupPlan();
+        $backupPlanBackupRules = [];
+        $backupPlan->setBackupRules($backupPlanBackupRules);
+        $backupPlanResourceType = 'backupPlanResourceType1515155475';
+        $backupPlan->setResourceType($backupPlanResourceType);
+        $backupPlanBackupVault = $gapicClient->backupVaultName('[PROJECT]', '[LOCATION]', '[BACKUPVAULT]');
+        $backupPlan->setBackupVault($backupPlanBackupVault);
+        $updateMask = new FieldMask();
+        $request = (new UpdateBackupPlanRequest())->setBackupPlan($backupPlan)->setUpdateMask($updateMask);
+        $response = $gapicClient->updateBackupPlan($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateBackupPlanTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function updateBackupPlanAssociationTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateBackupPlanAssociationTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $resourceType = 'resourceType979623115';
+        $resource = 'resource-341064690';
+        $backupPlan = 'backupPlan1119623046';
+        $dataSource = 'dataSource-1333894576';
+        $backupPlanRevisionId = 'backupPlanRevisionId-1602992954';
+        $backupPlanRevisionName = 'backupPlanRevisionName1417180022';
+        $expectedResponse = new BackupPlanAssociation();
+        $expectedResponse->setName($name);
+        $expectedResponse->setResourceType($resourceType);
+        $expectedResponse->setResource($resource);
+        $expectedResponse->setBackupPlan($backupPlan);
+        $expectedResponse->setDataSource($dataSource);
+        $expectedResponse->setBackupPlanRevisionId($backupPlanRevisionId);
+        $expectedResponse->setBackupPlanRevisionName($backupPlanRevisionName);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/updateBackupPlanAssociationTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $backupPlanAssociation = new BackupPlanAssociation();
+        $backupPlanAssociationResourceType = 'backupPlanAssociationResourceType-149471490';
+        $backupPlanAssociation->setResourceType($backupPlanAssociationResourceType);
+        $backupPlanAssociationResource = 'backupPlanAssociationResource1527164324';
+        $backupPlanAssociation->setResource($backupPlanAssociationResource);
+        $backupPlanAssociationBackupPlan = $gapicClient->backupPlanName('[PROJECT]', '[LOCATION]', '[BACKUP_PLAN]');
+        $backupPlanAssociation->setBackupPlan($backupPlanAssociationBackupPlan);
+        $updateMask = new FieldMask();
+        $request = (new UpdateBackupPlanAssociationRequest())
+            ->setBackupPlanAssociation($backupPlanAssociation)
+            ->setUpdateMask($updateMask);
+        $response = $gapicClient->updateBackupPlanAssociation($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.backupdr.v1.BackupDR/UpdateBackupPlanAssociation', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getBackupPlanAssociation();
+        $this->assertProtobufEquals($backupPlanAssociation, $actualValue);
+        $actualValue = $actualApiRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateBackupPlanAssociationTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function updateBackupPlanAssociationExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateBackupPlanAssociationTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $backupPlanAssociation = new BackupPlanAssociation();
+        $backupPlanAssociationResourceType = 'backupPlanAssociationResourceType-149471490';
+        $backupPlanAssociation->setResourceType($backupPlanAssociationResourceType);
+        $backupPlanAssociationResource = 'backupPlanAssociationResource1527164324';
+        $backupPlanAssociation->setResource($backupPlanAssociationResource);
+        $backupPlanAssociationBackupPlan = $gapicClient->backupPlanName('[PROJECT]', '[LOCATION]', '[BACKUP_PLAN]');
+        $backupPlanAssociation->setBackupPlan($backupPlanAssociationBackupPlan);
+        $updateMask = new FieldMask();
+        $request = (new UpdateBackupPlanAssociationRequest())
+            ->setBackupPlanAssociation($backupPlanAssociation)
+            ->setUpdateMask($updateMask);
+        $response = $gapicClient->updateBackupPlanAssociation($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateBackupPlanAssociationTest');
         try {
             $response->pollUntilComplete([
                 'initialPollDelayMillis' => 1,
@@ -3049,11 +3782,13 @@ class BackupDRClientTest extends GeneratedTest
         $backupCount = 336678994;
         $etag = 'etag3123477';
         $totalStoredBytes = 1181597162;
+        $backupBlockedByVaultAccessRestriction = true;
         $expectedResponse = new DataSource();
         $expectedResponse->setName($name);
         $expectedResponse->setBackupCount($backupCount);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setTotalStoredBytes($totalStoredBytes);
+        $expectedResponse->setBackupBlockedByVaultAccessRestriction($backupBlockedByVaultAccessRestriction);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -3518,6 +4253,9 @@ class BackupDRClientTest extends GeneratedTest
         $etag = 'etag3123477';
         $backupVault = 'backupVault353808757';
         $backupVaultServiceAccount = 'backupVaultServiceAccount-1170477095';
+        $logRetentionDays = 1566369587;
+        $revisionId = 'revisionId513861631';
+        $revisionName = 'revisionName-100062097';
         $expectedResponse = new BackupPlan();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
@@ -3525,6 +4263,9 @@ class BackupDRClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $expectedResponse->setBackupVault($backupVault);
         $expectedResponse->setBackupVaultServiceAccount($backupVaultServiceAccount);
+        $expectedResponse->setLogRetentionDays($logRetentionDays);
+        $expectedResponse->setRevisionId($revisionId);
+        $expectedResponse->setRevisionName($revisionName);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();

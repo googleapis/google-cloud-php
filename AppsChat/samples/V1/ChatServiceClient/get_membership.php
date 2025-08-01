@@ -38,11 +38,21 @@ use Google\Apps\Chat\V1\Membership;
  *
  * - [App
  * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
+ * with one of the following authorization scopes:
+ * - `https://www.googleapis.com/auth/chat.bot`
+ * - `https://www.googleapis.com/auth/chat.app.memberships` (requires
+ * [administrator approval](https://support.google.com/a?p=chat-app-auth))
  *
  * - [User
  * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
- * You can authenticate and authorize this method with administrator
- * privileges by setting the `use_admin_access` field in the request.
+ * with one of the following authorization scopes:
+ * - `https://www.googleapis.com/auth/chat.memberships.readonly`
+ * - `https://www.googleapis.com/auth/chat.memberships`
+ * - User authentication grants administrator privileges when an
+ * administrator account authenticates, `use_admin_access` is `true`, and
+ * one of the following authorization scopes is used:
+ * - `https://www.googleapis.com/auth/chat.admin.memberships.readonly`
+ * - `https://www.googleapis.com/auth/chat.admin.memberships`
  *
  * @param string $formattedName Resource name of the membership to retrieve.
  *

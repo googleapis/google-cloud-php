@@ -30,10 +30,10 @@ use Google\Cloud\Bigtable\V2\ReadChangeStreamRequest;
 use Google\Cloud\Bigtable\V2\ReadChangeStreamResponse;
 
 /**
- * NOTE: This API is intended to be used by Apache Beam BigtableIO.
  * Reads changes from a table's change stream. Changes will
  * reflect both user-initiated mutations and mutations that are caused by
  * garbage collection.
+ * NOTE: This API is only intended to be used by Apache Beam BigtableIO.
  *
  * @param string $formattedTableName The unique name of the table from which to read a change stream.
  *                                   Values are of the form

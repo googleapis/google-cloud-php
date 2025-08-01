@@ -2,6 +2,19 @@
     "name": "google/cloud",
     "type": "library",
     "description": "Google Cloud Client Library",
+    "scripts": {
+        "style-check": [
+            "vendor/bin/php-tools cs-fixer googleapis/google-cloud-php --ref $(git rev-parse --abbrev-ref HEAD)",
+            "vendor/bin/phpcs --standard=phpcs-ruleset.xml -p"
+        ],
+        "style-fix": [
+            "vendor/bin/php-tools cs-fixer googleapis/google-cloud-php --ref $(git rev-parse --abbrev-ref HEAD) --flags \"\"",
+            "vendor/bin/phpcbf --standard=phpcs-ruleset.xml -p"
+        ],
+        "phpstan": [
+            "dev/sh/static-analysis"
+        ]
+    },
     "keywords": [
         "google apis client",
         "google api client",
@@ -64,7 +77,8 @@
         "phpspec/prophecy-phpunit": "^2.1",
         "kreait/firebase-php": "^6.9",
         "psr/log": "^2.0||^3.0",
-        "dg/bypass-finals": "^1.7"
+        "dg/bypass-finals": "^1.7",
+        "squizlabs/php_codesniffer": "3.*"
     },
     "replace": {
         "google/access-context-manager": "1.0.4",
@@ -168,9 +182,11 @@
         "google/cloud-kms": "2.3.1",
         "google/cloud-kms-inventory": "1.1.1",
         "google/cloud-language": "1.0.1",
+        "google/cloud-licensemanager": "0.0.0",
         "google/cloud-life-sciences": "0.7.3",
         "google/cloud-logging": "1.32.3",
         "google/cloud-lustre": "0.2.0",
+	"google/cloud-maintenance": "0.0.0",
         "google/cloud-managed-identities": "2.0.5",
         "google/cloud-managedkafka": "0.6.1",
         "google/cloud-managedkafka-schemaregistry": "0.1.1",
@@ -376,8 +392,10 @@
             "GPBMetadata\\Google\\Cloud\\Kms\\": "Kms/metadata",
             "GPBMetadata\\Google\\Cloud\\Kms\\Inventory\\": "KmsInventory/metadata",
             "GPBMetadata\\Google\\Cloud\\Language\\": "Language/metadata",
+            "GPBMetadata\\Google\\Cloud\\Licensemanager\\": "LicenseManager/metadata",
             "GPBMetadata\\Google\\Cloud\\Lifesciences\\": "LifeSciences/metadata",
             "GPBMetadata\\Google\\Cloud\\Lustre\\": "Lustre/metadata",
+            "GPBMetadata\\Google\\Cloud\\Maintenance\\Api\\": "Maintenance/metadata",
             "GPBMetadata\\Google\\Cloud\\Managedidentities\\": "ManagedIdentities/metadata",
             "GPBMetadata\\Google\\Cloud\\Managedkafka\\": "ManagedKafka/metadata",
             "GPBMetadata\\Google\\Cloud\\Managedkafka\\Schemaregistry\\": "ManagedKafkaSchemaRegistry/metadata",
@@ -615,9 +633,11 @@
             "Google\\Cloud\\Kms\\": "Kms/src",
             "Google\\Cloud\\Kms\\Inventory\\": "KmsInventory/src",
             "Google\\Cloud\\Language\\": "Language/src",
+            "Google\\Cloud\\LicenseManager\\": "LicenseManager/src",
             "Google\\Cloud\\LifeSciences\\": "LifeSciences/src",
             "Google\\Cloud\\Logging\\": "Logging/src",
             "Google\\Cloud\\Lustre\\": "Lustre/src",
+            "Google\\Cloud\\Maintenance\\Api\\": "Maintenance/src",
             "Google\\Cloud\\ManagedIdentities\\": "ManagedIdentities/src",
             "Google\\Cloud\\ManagedKafka\\": "ManagedKafka/src",
             "Google\\Cloud\\ManagedKafka\\SchemaRegistry\\": "ManagedKafkaSchemaRegistry/src",
