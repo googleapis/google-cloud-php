@@ -85,7 +85,8 @@ class Transaction implements TransactionalReadInterface
      *     @type bool $isRetry Whether the transaction will automatically retry or not.
      *     @type string $tag A transaction tag. Requests made using this transaction will
      *           use this as the transaction tag.
-     *     @type array $begin The begin Transaction options. See {@see V1\TransactionOptions}.
+     *     @type array $begin The begin Transaction options, for using inline begin transactions.
+     *           See {@see V1\TransactionOptions}.
      *     @type array $requestOptions See {@see V1\RequestOptions}.
      *     @type array $transactionOptions See {@see V1\TransactionOptions}.
      * }
@@ -412,8 +413,7 @@ class Transaction implements TransactionalReadInterface
         }
 
         // For commit, A transaction ID is mandatory for non-single-use transactions,
-        // and the `begin` option is not supported.
-        // @TODO: Find out why the `begin` option is not supported for calling the `beginTransaction` RPC
+        // and the `begin` option is not supported (because `begin` is only used in "inline begin transactions")
         if (empty($this->transactionId) && isset($this->transactionSelector['begin'])) {
             $operationTransactionOptions = [
                 'requestOptions' => $this->requestOptions,
@@ -446,6 +446,7 @@ class Transaction implements TransactionalReadInterface
 
         $t = $this->transactionOptions($options);
 
+        // @TODO find out what this is and clean it up
         $options[$t[1]] = $t[0];
 
         $res = $this->operation->commitWithResponse($this->session, $this->pluck('mutations', $options), $options);

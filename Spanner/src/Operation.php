@@ -161,7 +161,14 @@ class Operation
             'session' => $session->name(),
             'mutations' => $mutations
         ];
-        $commitRequest = $this->formatSingleUseTransactionOptions($commitRequest);
+
+        // Configure Single Use Transaction options
+        // @TODO: Find out why we do this
+        if (isset($commitRequest['singleUseTransaction'])) {
+            $commitRequest['singleUseTransaction'] = ['readWrite' => []];
+            // CommitRequest ignores singleUseTransaction if the transactionId is set
+            unset($commitRequest['transactionId']);
+        }
 
         $request = $this->serializer->decodeMessage(new CommitRequest(), $commitRequest);
         $response = $this->spannerClient->commit($request, $callOptions + [
@@ -1076,21 +1083,6 @@ class Operation
         ]);
 
         return $this->handleResponse($response);
-    }
-
-    /**
-     * @param array $args
-     * @return array
-     */
-    private function formatSingleUseTransactionOptions(array $args): array
-    {
-        if (isset($args['singleUseTransaction'])) {
-            $args['singleUseTransaction'] = ['readWrite' => []];
-            // request ignores singleUseTransaction even if the transactionId is set to null
-            unset($args['transactionId']);
-        }
-
-        return $args;
     }
 
     /**
