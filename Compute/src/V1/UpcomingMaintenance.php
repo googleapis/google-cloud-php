@@ -28,6 +28,19 @@ class UpcomingMaintenance extends \Google\Protobuf\Internal\Message
      */
     private $latest_window_start_time = null;
     /**
+     * Indicates whether the UpcomingMaintenance will be triggered on VM shutdown.
+     *
+     * Generated from protobuf field <code>optional bool maintenance_on_shutdown = 231055754;</code>
+     */
+    private $maintenance_on_shutdown = null;
+    /**
+     * The reasons for the maintenance. Only valid for vms.
+     * Check the MaintenanceReasons enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>repeated string maintenance_reasons = 140283267;</code>
+     */
+    private $maintenance_reasons;
+    /**
      * 
      * Check the MaintenanceStatus enum for the list of possible values.
      *
@@ -64,6 +77,11 @@ class UpcomingMaintenance extends \Google\Protobuf\Internal\Message
      *           Indicates if the maintenance can be customer triggered.
      *     @type string $latest_window_start_time
      *           The latest time for the planned maintenance window to start. This timestamp value is in RFC3339 text format.
+     *     @type bool $maintenance_on_shutdown
+     *           Indicates whether the UpcomingMaintenance will be triggered on VM shutdown.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $maintenance_reasons
+     *           The reasons for the maintenance. Only valid for vms.
+     *           Check the MaintenanceReasons enum for the list of possible values.
      *     @type string $maintenance_status
      *           
      *           Check the MaintenanceStatus enum for the list of possible values.
@@ -149,6 +167,70 @@ class UpcomingMaintenance extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->latest_window_start_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Indicates whether the UpcomingMaintenance will be triggered on VM shutdown.
+     *
+     * Generated from protobuf field <code>optional bool maintenance_on_shutdown = 231055754;</code>
+     * @return bool
+     */
+    public function getMaintenanceOnShutdown()
+    {
+        return isset($this->maintenance_on_shutdown) ? $this->maintenance_on_shutdown : false;
+    }
+
+    public function hasMaintenanceOnShutdown()
+    {
+        return isset($this->maintenance_on_shutdown);
+    }
+
+    public function clearMaintenanceOnShutdown()
+    {
+        unset($this->maintenance_on_shutdown);
+    }
+
+    /**
+     * Indicates whether the UpcomingMaintenance will be triggered on VM shutdown.
+     *
+     * Generated from protobuf field <code>optional bool maintenance_on_shutdown = 231055754;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setMaintenanceOnShutdown($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->maintenance_on_shutdown = $var;
+
+        return $this;
+    }
+
+    /**
+     * The reasons for the maintenance. Only valid for vms.
+     * Check the MaintenanceReasons enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>repeated string maintenance_reasons = 140283267;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getMaintenanceReasons()
+    {
+        return $this->maintenance_reasons;
+    }
+
+    /**
+     * The reasons for the maintenance. Only valid for vms.
+     * Check the MaintenanceReasons enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>repeated string maintenance_reasons = 140283267;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setMaintenanceReasons($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->maintenance_reasons = $arr;
 
         return $this;
     }
