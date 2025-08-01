@@ -4,20 +4,20 @@ on:
       - main
     paths:
       - 'Bigtable/**'
-      - '.github/workflows/system-tests-bigtable-emulator.yaml'
+      - '.github/workflows/emulator-system-tests-bigtable.yaml'
       - '.github/emulator/**'
   pull_request:
     paths:
       - 'Bigtable/**'
-      - '.github/workflows/system-tests-bigtable-emulator.yaml'
+      - '.github/workflows/emulator-system-tests-bigtable.yaml'
       - '.github/emulator/**'
-name: Run Bigtable System Tests With Emulator
+name: Emulator System Tests
 permissions:
   contents: read
 jobs:
   test:
+    name: Bigtable
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
 
