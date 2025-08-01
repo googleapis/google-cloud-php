@@ -715,7 +715,7 @@ class LoadJobConfiguration implements JobConfigurationInterface
      *        "STRICT", "V1", "V2".
      * @return LoadJobConfiguration
      */
-    public function columnNameCharacterMap(string $columnNameCharacterMap)
+    public function columnNameCharacterMap(string $columnNameCharacterMap): self
     {
         $this->config['configuration']['load']['columnNameCharacterMap'] = $columnNameCharacterMap;
 
@@ -743,7 +743,7 @@ class LoadJobConfiguration implements JobConfigurationInterface
      * @param bool $copyFilesOnly Whether to copy files only.
      * @return LoadJobConfiguration
      */
-    public function copyFilesOnly(bool $copyFilesOnly)
+    public function copyFilesOnly(bool $copyFilesOnly): self
     {
         $this->config['configuration']['load']['copyFilesOnly'] = $copyFilesOnly;
 
@@ -761,7 +761,7 @@ class LoadJobConfiguration implements JobConfigurationInterface
      * @param string $dateFormat The date format string.
      * @return LoadJobConfiguration
      */
-    public function dateFormat(string $dateFormat)
+    public function dateFormat(string $dateFormat): self
     {
         $this->config['configuration']['load']['dateFormat'] = $dateFormat;
 
@@ -779,7 +779,7 @@ class LoadJobConfiguration implements JobConfigurationInterface
      * @param string $datetimeFormat The datetime format string.
      * @return LoadJobConfiguration
      */
-    public function datetimeFormat(string $datetimeFormat)
+    public function datetimeFormat(string $datetimeFormat): self
     {
         $this->config['configuration']['load']['datetimeFormat'] = $datetimeFormat;
 
@@ -818,7 +818,7 @@ class LoadJobConfiguration implements JobConfigurationInterface
      *        "NUMERIC", "BIGNUMERIC", "STRING".
      * @return LoadJobConfiguration
      */
-    public function decimalTargetTypes(array $decimalTargetTypes)
+    public function decimalTargetTypes(array $decimalTargetTypes): self
     {
         $this->config['configuration']['load']['decimalTargetTypes'] = $decimalTargetTypes;
 
@@ -844,7 +844,7 @@ class LoadJobConfiguration implements JobConfigurationInterface
      * @param array $destinationTableProperties Properties for the destination table.
      * @return LoadJobConfiguration
      */
-    public function destinationTableProperties(array $destinationTableProperties)
+    public function destinationTableProperties(array $destinationTableProperties): self
     {
         $this->config['configuration']['load']['destinationTableProperties'] = $destinationTableProperties;
 
@@ -868,7 +868,7 @@ class LoadJobConfiguration implements JobConfigurationInterface
      *        "FILE_SET_SPEC_TYPE_NEW_LINE_DELIMITED_MANIFEST".
      * @return LoadJobConfiguration
      */
-    public function fileSetSpecType(string $fileSetSpecType)
+    public function fileSetSpecType(string $fileSetSpecType): self
     {
         $this->config['configuration']['load']['fileSetSpecType'] = $fileSetSpecType;
 
@@ -890,7 +890,7 @@ class LoadJobConfiguration implements JobConfigurationInterface
      *        Acceptable values include "JSON_EXTENSION_UNSPECIFIED", "GEOJSON".
      * @return LoadJobConfiguration
      */
-    public function jsonExtension(string $jsonExtension)
+    public function jsonExtension(string $jsonExtension): self
     {
         $this->config['configuration']['load']['jsonExtension'] = $jsonExtension;
 
@@ -914,7 +914,7 @@ class LoadJobConfiguration implements JobConfigurationInterface
      * @param string[] $nullMarkers An array of strings to be interpreted as NULL.
      * @return LoadJobConfiguration
      */
-    public function nullMarkers(array $nullMarkers)
+    public function nullMarkers(array $nullMarkers): self
     {
         $this->config['configuration']['load']['nullMarkers'] = $nullMarkers;
 
@@ -936,7 +936,7 @@ class LoadJobConfiguration implements JobConfigurationInterface
      * @param array $parquetOptions Additional Parquet options.
      * @return LoadJobConfiguration
      */
-    public function parquetOptions(array $parquetOptions)
+    public function parquetOptions(array $parquetOptions): self
     {
         $this->config['configuration']['load']['parquetOptions'] = $parquetOptions;
 
@@ -957,7 +957,7 @@ class LoadJobConfiguration implements JobConfigurationInterface
      *        control characters.
      * @return LoadJobConfiguration
      */
-    public function preserveAsciiControlCharacters(bool $preserveAsciiControlCharacters)
+    public function preserveAsciiControlCharacters(bool $preserveAsciiControlCharacters): self
     {
         $this->config['configuration']['load']['preserveAsciiControlCharacters'] = $preserveAsciiControlCharacters;
 
@@ -981,7 +981,7 @@ class LoadJobConfiguration implements JobConfigurationInterface
      *        "POSITION", "NAME".
      * @return LoadJobConfiguration
      */
-    public function sourceColumnMatch(string $sourceColumnMatch)
+    public function sourceColumnMatch(string $sourceColumnMatch): self
     {
         $this->config['configuration']['load']['sourceColumnMatch'] = $sourceColumnMatch;
 
@@ -999,7 +999,7 @@ class LoadJobConfiguration implements JobConfigurationInterface
      * @param string $timeFormat The time format string.
      * @return LoadJobConfiguration
      */
-    public function timeFormat(string $timeFormat)
+    public function timeFormat(string $timeFormat): self
     {
         $this->config['configuration']['load']['timeFormat'] = $timeFormat;
 
@@ -1018,7 +1018,7 @@ class LoadJobConfiguration implements JobConfigurationInterface
      * @param string $timeZone The default time zone string.
      * @return LoadJobConfiguration
      */
-    public function timeZone(string $timeZone)
+    public function timeZone(string $timeZone): self
     {
         $this->config['configuration']['load']['timeZone'] = $timeZone;
 
@@ -1036,7 +1036,7 @@ class LoadJobConfiguration implements JobConfigurationInterface
      * @param string $timestampFormat The timestamp format string.
      * @return LoadJobConfiguration
      */
-    public function timestampFormat(string $timestampFormat)
+    public function timestampFormat(string $timestampFormat): self
     {
         $this->config['configuration']['load']['timestampFormat'] = $timestampFormat;
 
