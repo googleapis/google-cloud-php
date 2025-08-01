@@ -25,19 +25,19 @@ class PitrSnapshot extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string database = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    protected $database = '';
+    private $database = '';
     /**
      * Output only. Public UUID of the database the snapshot was associated with.
      *
      * Generated from protobuf field <code>bytes database_uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $database_uid = '';
+    private $database_uid = '';
     /**
      * Required. Snapshot time of the database.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp snapshot_time = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $snapshot_time = null;
+    private $snapshot_time = null;
 
     /**
      * Constructor.

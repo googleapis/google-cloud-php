@@ -18,12 +18,14 @@ class FirestoreAdmin
         \GPBMetadata\Google\Api\Client::initOnce();
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
+        \GPBMetadata\Google\Api\Routing::initOnce();
         \GPBMetadata\Google\Firestore\Admin\V1\Backup::initOnce();
         \GPBMetadata\Google\Firestore\Admin\V1\Database::initOnce();
         \GPBMetadata\Google\Firestore\Admin\V1\Field::initOnce();
         \GPBMetadata\Google\Firestore\Admin\V1\Index::initOnce();
         \GPBMetadata\Google\Firestore\Admin\V1\Operation::initOnce();
         \GPBMetadata\Google\Firestore\Admin\V1\Schedule::initOnce();
+        \GPBMetadata\Google\Firestore\Admin\V1\Snapshot::initOnce();
         \GPBMetadata\Google\Firestore\Admin\V1\UserCreds::initOnce();
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
         \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
@@ -31,8 +33,8 @@ class FirestoreAdmin
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-®Z
-/google/firestore/admin/v1/firestore_admin.protogoogle.firestore.admin.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto&google/firestore/admin/v1/backup.proto(google/firestore/admin/v1/database.proto%google/firestore/admin/v1/field.proto%google/firestore/admin/v1/index.proto)google/firestore/admin/v1/operation.proto(google/firestore/admin/v1/schedule.proto*google/firestore/admin/v1/user_creds.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"g
+³`
+/google/firestore/admin/v1/firestore_admin.protogoogle.firestore.admin.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/api/routing.proto&google/firestore/admin/v1/backup.proto(google/firestore/admin/v1/database.proto%google/firestore/admin/v1/field.proto%google/firestore/admin/v1/index.proto)google/firestore/admin/v1/operation.proto(google/firestore/admin/v1/schedule.proto(google/firestore/admin/v1/snapshot.proto*google/firestore/admin/v1/user_creds.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"g
 ListDatabasesRequest9
 parent (	B)àAúA#!firestore.googleapis.com/Database
 show_deleted ("¨
@@ -177,7 +179,16 @@ page_token (	"_
  (2;.google.firestore.admin.v1.RestoreDatabaseRequest.TagsEntryBàAàA+
 	TagsEntry
 key (	
-value (	:82Á/
+value (	:8"„
+CloneDatabaseRequest9
+parent (	B)àAúA#!firestore.googleapis.com/Database
+database_id (	BàAC
+pitr_snapshot (2\'.google.firestore.admin.v1.PitrSnapshotBàAT
+encryption_config (24.google.firestore.admin.v1.Database.EncryptionConfigBàAO
+tags (29.google.firestore.admin.v1.CloneDatabaseRequest.TagsEntryBàAàA+
+	TagsEntry
+key (	
+value (	:82û1
 FirestoreAdminÛ
 CreateIndex-.google.firestore.admin.v1.CreateIndexRequest.google.longrunning.Operation"~ÊA
 IndexIndexOperationMetadataÚAparent,index‚Óä“G">/v1/{parent=projects/*/databases/*/collectionGroups/*}/indexes:index½
@@ -220,7 +231,11 @@ user_creds¢
 GetBackupSchedule3.google.firestore.admin.v1.GetBackupScheduleRequest).google.firestore.admin.v1.BackupSchedule"BÚAname‚Óä“53/v1/{name=projects/*/databases/*/backupSchedules/*}Ê
 ListBackupSchedules5.google.firestore.admin.v1.ListBackupSchedulesRequest6.google.firestore.admin.v1.ListBackupSchedulesResponse"DÚAparent‚Óä“53/v1/{parent=projects/*/databases/*}/backupSchedulesõ
 UpdateBackupSchedule6.google.firestore.admin.v1.UpdateBackupScheduleRequest).google.firestore.admin.v1.BackupSchedule"zÚAbackup_schedule,update_mask‚Óä“V2C/v1/{backup_schedule.name=projects/*/databases/*/backupSchedules/*}:backup_scheduleª
-DeleteBackupSchedule6.google.firestore.admin.v1.DeleteBackupScheduleRequest.google.protobuf.Empty"BÚAname‚Óä“5*3/v1/{name=projects/*/databases/*/backupSchedules/*}vÊAfirestore.googleapis.comÒAXhttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/datastoreB¥
+DeleteBackupSchedule6.google.firestore.admin.v1.DeleteBackupScheduleRequest.google.protobuf.Empty"BÚAname‚Óä“5*3/v1/{name=projects/*/databases/*/backupSchedules/*}·
+CloneDatabase/.google.firestore.admin.v1.CloneDatabaseRequest.google.longrunning.Operation"ÕÊA!
+DatabaseCloneDatabaseMetadata‚Óä“,"\'/v1/{parent=projects/*}/databases:clone:*ŠÓä“y4
+pitr_snapshot.databaseprojects/{project_id=*}/**A
+pitr_snapshot.database\'projects/*/databases/{database_id=*}/**vÊAfirestore.googleapis.comÒAXhttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/datastoreB¥
 com.google.firestore.admin.v1BFirestoreAdminProtoPZ9cloud.google.com/go/firestore/apiv1/admin/adminpb;adminpb¢GCFSªGoogle.Cloud.Firestore.Admin.V1ÊGoogle\\Cloud\\Firestore\\Admin\\V1ê#Google::Cloud::Firestore::Admin::V1êAL
 !firestore.googleapis.com/Location\'projects/{project}/locations/{location}êAq
 (firestore.googleapis.com/CollectionGroupEprojects/{project}/databases/{database}/collectionGroups/{collection}bproto3'

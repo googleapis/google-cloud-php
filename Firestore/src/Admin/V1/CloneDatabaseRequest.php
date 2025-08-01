@@ -22,7 +22,7 @@ class CloneDatabaseRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    protected $parent = '';
+    private $parent = '';
     /**
      * Required. The ID to use for the database, which will become the final
      * component of the database's resource name. This database ID must not be
@@ -34,7 +34,7 @@ class CloneDatabaseRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string database_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $database_id = '';
+    private $database_id = '';
     /**
      * Required. Specification of the PITR data to clone from. The source database
      * must exist.
@@ -43,7 +43,7 @@ class CloneDatabaseRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.firestore.admin.v1.PitrSnapshot pitr_snapshot = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $pitr_snapshot = null;
+    private $pitr_snapshot = null;
     /**
      * Optional. Encryption configuration for the cloned database.
      * If this field is not specified, the cloned database will use
@@ -52,7 +52,7 @@ class CloneDatabaseRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.firestore.admin.v1.Database.EncryptionConfig encryption_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $encryption_config = null;
+    private $encryption_config = null;
     /**
      * Optional. Immutable. Tags to be bound to the cloned database.
      * The tags should be provided in the format of

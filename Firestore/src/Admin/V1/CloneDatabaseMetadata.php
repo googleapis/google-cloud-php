@@ -10,48 +10,48 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Metadata for the [long-running operation][google.longrunning.Operation] from
- * the [RestoreDatabase][google.firestore.admin.v1.RestoreDatabase] request.
+ * the [CloneDatabase][google.firestore.admin.v1.CloneDatabase] request.
  *
- * Generated from protobuf message <code>google.firestore.admin.v1.RestoreDatabaseMetadata</code>
+ * Generated from protobuf message <code>google.firestore.admin.v1.CloneDatabaseMetadata</code>
  */
-class RestoreDatabaseMetadata extends \Google\Protobuf\Internal\Message
+class CloneDatabaseMetadata extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The time the restore was started.
+     * The time the clone was started.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 1;</code>
      */
-    protected $start_time = null;
+    private $start_time = null;
     /**
-     * The time the restore finished, unset for ongoing restores.
+     * The time the clone finished, unset for ongoing clones.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2;</code>
      */
-    protected $end_time = null;
+    private $end_time = null;
     /**
-     * The operation state of the restore.
+     * The operation state of the clone.
      *
      * Generated from protobuf field <code>.google.firestore.admin.v1.OperationState operation_state = 3;</code>
      */
-    protected $operation_state = 0;
+    private $operation_state = 0;
     /**
-     * The name of the database being restored to.
+     * The name of the database being cloned to.
      *
      * Generated from protobuf field <code>string database = 4 [(.google.api.resource_reference) = {</code>
      */
-    protected $database = '';
+    private $database = '';
     /**
-     * The name of the backup restoring from.
+     * The snapshot from which this database was cloned.
      *
-     * Generated from protobuf field <code>string backup = 5 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>.google.firestore.admin.v1.PitrSnapshot pitr_snapshot = 7;</code>
      */
-    protected $backup = '';
+    private $pitr_snapshot = null;
     /**
-     * How far along the restore is as an estimated percentage of remaining time.
+     * How far along the clone is as an estimated percentage of remaining time.
      *
-     * Generated from protobuf field <code>.google.firestore.admin.v1.Progress progress_percentage = 8;</code>
+     * Generated from protobuf field <code>.google.firestore.admin.v1.Progress progress_percentage = 6;</code>
      */
-    protected $progress_percentage = null;
+    private $progress_percentage = null;
 
     /**
      * Constructor.
@@ -60,17 +60,17 @@ class RestoreDatabaseMetadata extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Protobuf\Timestamp $start_time
-     *           The time the restore was started.
+     *           The time the clone was started.
      *     @type \Google\Protobuf\Timestamp $end_time
-     *           The time the restore finished, unset for ongoing restores.
+     *           The time the clone finished, unset for ongoing clones.
      *     @type int $operation_state
-     *           The operation state of the restore.
+     *           The operation state of the clone.
      *     @type string $database
-     *           The name of the database being restored to.
-     *     @type string $backup
-     *           The name of the backup restoring from.
+     *           The name of the database being cloned to.
+     *     @type \Google\Cloud\Firestore\Admin\V1\PitrSnapshot $pitr_snapshot
+     *           The snapshot from which this database was cloned.
      *     @type \Google\Cloud\Firestore\Admin\V1\Progress $progress_percentage
-     *           How far along the restore is as an estimated percentage of remaining time.
+     *           How far along the clone is as an estimated percentage of remaining time.
      * }
      */
     public function __construct($data = NULL) {
@@ -79,7 +79,7 @@ class RestoreDatabaseMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time the restore was started.
+     * The time the clone was started.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 1;</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -100,7 +100,7 @@ class RestoreDatabaseMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time the restore was started.
+     * The time the clone was started.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 1;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -115,7 +115,7 @@ class RestoreDatabaseMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time the restore finished, unset for ongoing restores.
+     * The time the clone finished, unset for ongoing clones.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2;</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -136,7 +136,7 @@ class RestoreDatabaseMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time the restore finished, unset for ongoing restores.
+     * The time the clone finished, unset for ongoing clones.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -151,7 +151,7 @@ class RestoreDatabaseMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The operation state of the restore.
+     * The operation state of the clone.
      *
      * Generated from protobuf field <code>.google.firestore.admin.v1.OperationState operation_state = 3;</code>
      * @return int
@@ -162,7 +162,7 @@ class RestoreDatabaseMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The operation state of the restore.
+     * The operation state of the clone.
      *
      * Generated from protobuf field <code>.google.firestore.admin.v1.OperationState operation_state = 3;</code>
      * @param int $var
@@ -177,7 +177,7 @@ class RestoreDatabaseMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the database being restored to.
+     * The name of the database being cloned to.
      *
      * Generated from protobuf field <code>string database = 4 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -188,7 +188,7 @@ class RestoreDatabaseMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the database being restored to.
+     * The name of the database being cloned to.
      *
      * Generated from protobuf field <code>string database = 4 [(.google.api.resource_reference) = {</code>
      * @param string $var
@@ -203,35 +203,45 @@ class RestoreDatabaseMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the backup restoring from.
+     * The snapshot from which this database was cloned.
      *
-     * Generated from protobuf field <code>string backup = 5 [(.google.api.resource_reference) = {</code>
-     * @return string
+     * Generated from protobuf field <code>.google.firestore.admin.v1.PitrSnapshot pitr_snapshot = 7;</code>
+     * @return \Google\Cloud\Firestore\Admin\V1\PitrSnapshot|null
      */
-    public function getBackup()
+    public function getPitrSnapshot()
     {
-        return $this->backup;
+        return $this->pitr_snapshot;
+    }
+
+    public function hasPitrSnapshot()
+    {
+        return isset($this->pitr_snapshot);
+    }
+
+    public function clearPitrSnapshot()
+    {
+        unset($this->pitr_snapshot);
     }
 
     /**
-     * The name of the backup restoring from.
+     * The snapshot from which this database was cloned.
      *
-     * Generated from protobuf field <code>string backup = 5 [(.google.api.resource_reference) = {</code>
-     * @param string $var
+     * Generated from protobuf field <code>.google.firestore.admin.v1.PitrSnapshot pitr_snapshot = 7;</code>
+     * @param \Google\Cloud\Firestore\Admin\V1\PitrSnapshot $var
      * @return $this
      */
-    public function setBackup($var)
+    public function setPitrSnapshot($var)
     {
-        GPBUtil::checkString($var, True);
-        $this->backup = $var;
+        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\Admin\V1\PitrSnapshot::class);
+        $this->pitr_snapshot = $var;
 
         return $this;
     }
 
     /**
-     * How far along the restore is as an estimated percentage of remaining time.
+     * How far along the clone is as an estimated percentage of remaining time.
      *
-     * Generated from protobuf field <code>.google.firestore.admin.v1.Progress progress_percentage = 8;</code>
+     * Generated from protobuf field <code>.google.firestore.admin.v1.Progress progress_percentage = 6;</code>
      * @return \Google\Cloud\Firestore\Admin\V1\Progress|null
      */
     public function getProgressPercentage()
@@ -250,9 +260,9 @@ class RestoreDatabaseMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * How far along the restore is as an estimated percentage of remaining time.
+     * How far along the clone is as an estimated percentage of remaining time.
      *
-     * Generated from protobuf field <code>.google.firestore.admin.v1.Progress progress_percentage = 8;</code>
+     * Generated from protobuf field <code>.google.firestore.admin.v1.Progress progress_percentage = 6;</code>
      * @param \Google\Cloud\Firestore\Admin\V1\Progress $var
      * @return $this
      */
