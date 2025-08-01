@@ -26,12 +26,14 @@ use Google\Cloud\Spanner\Session\SessionCache;
 use Google\Cloud\Spanner\V1\BeginTransactionRequest;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Google\Cloud\Spanner\V1\CommitRequest;
+use Google\Cloud\Spanner\V1\CommitResponse;
 use Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest;
 use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
 use Google\Cloud\Spanner\V1\PartitionQueryRequest;
 use Google\Cloud\Spanner\V1\PartitionReadRequest;
 use Google\Cloud\Spanner\V1\ReadRequest;
 use Google\Cloud\Spanner\V1\RollbackRequest;
+use Google\Cloud\Spanner\V1\Transaction as TransactionProto;
 use Google\Cloud\Spanner\V1\Type;
 use Google\Cloud\Spanner\V1\TransactionSelector;
 use Google\Protobuf\Duration;
@@ -93,34 +95,6 @@ class Operation
     }
 
     /**
-     * Commit all enqueued mutations.
-     *
-     * @codingStandardsIgnoreStart
-     * @param SessionCache $session The session ID to use for the commit.
-     * @param array $mutations A list of mutations to apply.
-     * @param array $options [optional] {
-     *     Configuration options.
-     *
-     *     @type string $transactionId The ID of the transaction.
-     *     @type bool $returnCommitStats If true, return the full response.
-     *           **Defaults to** `false`.
-     *     @type Duration $maxCommitDelay The amount of latency this request
-     *           is willing to incur in order to improve throughput.
-     *           **Defaults to** null.
-     *     @type array $requestOptions Request options.
-     *         For more information on available options, please see
-     *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
-     *         Please note, if using the `priority` setting you may utilize the constants available
-     *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
-     * }
-     * @return Timestamp The commit Timestamp.
-     */
-    public function commit(SessionCache $session, array $mutations, array $options = []): Timestamp
-    {
-        return $this->commitWithResponse($session, $mutations, $options)[0];
-    }
-
-    /**
      * @internal
      *
      * Commit all enqueued mutations.
@@ -142,13 +116,14 @@ class Operation
      *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
      *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *     @type MultiplexedSessionPrecommitToken $precommitToken the precommit token with the
+     *         highest sequence number received in this transaction attempt.
      * }
-     * @return array An array containing {@see \Google\Cloud\Spanner\Timestamp}
-     *               at index 0 and the commit response as an array at index 1.
+     * @return CommitResponse
      */
-    public function commitWithResponse(SessionCache $session, array $mutations, array $options = []): array
+    public function commit(SessionCache $session, array $mutations, array $options = []): CommitResponse
     {
-        [$commitRequest, $singleUse, $callOptions] = $this->validateOptions(
+        [$commitRequest, $_singleUse, $callOptions] = $this->validateOptions(
             $options,
             CommitRequest::class,
             ['singleUse'], // Internal flag, need to unset before passing to serializer
@@ -170,19 +145,19 @@ class Operation
         }
 
         $request = $this->serializer->decodeMessage(new CommitRequest(), $commitRequest);
-        $response = $this->spannerClient->commit($request, $callOptions + [
-            'resource-prefix' => $this->getDatabaseNameFromSession($session),
-            'route-to-leader' => $this->routeToLeader
-        ]);
-        $timestamp = $response->getCommitTimestamp();
 
-        return [
-            new Timestamp(
-                $this->createDateTimeFromSeconds($timestamp->getSeconds()),
-                $timestamp->getNanos()
-            ),
-            $this->handleResponse($response)
-        ];
+        do {
+            $precommitToken = null;
+            $response = $this->spannerClient->commit($request, $callOptions + [
+                'resource-prefix' => $this->getDatabaseNameFromSession($session),
+                'route-to-leader' => $this->routeToLeader
+            ]);
+            if ($precommitToken = $response->getPrecommitToken()) {
+                $request->setPrecommitToken($precommitToken);
+            }
+        } while ($precommitToken); // if a precommit token exists in the response, retry the request
+
+        return $response;
     }
 
     /**
@@ -316,7 +291,6 @@ class Operation
         string $sql,
         array $options = []
     ): int {
-
         if (!isset($options['transaction']['begin'])) {
             $options['transaction'] = ['id' => $transaction->id()];
         }
@@ -406,8 +380,10 @@ class Operation
             'resource-prefix' => $this->getDatabaseNameFromSession($session),
             'route-to-leader' => $this->routeToLeader
         ]);
+        if ($precommitToken = $response->getPrecommitToken()) {
+            $transaction->setPrecommitToken($precommitToken);
+        }
         $res = $this->handleResponse($response);
-
         if (empty($transaction->id())) {
             // Get the transaction from array of ResultSets.
             // ResultSet contains transaction in the metadata.
@@ -522,37 +498,50 @@ class Operation
      */
     public function transaction(SessionCache $session, array $options = []): Transaction
     {
-        [$beginTransaction, $transactionSelector, $callOptions, $options] = $this->validateOptions(
+        [$beginTransaction, $transactionSelector, $callOptions, $misc] = $this->validateOptions(
             $options,
             BeginTransactionRequest::class,
             TransactionSelector::class,
             CallOptions::class,
             ['tag', 'isRetry', 'transactionOptions']
         );
-        $transactionTag = $options['tag'] ?? null;
-        $res = [];
+
+        $id = null;
+        $precommitToken = null;
+        $transactionTag = $misc['tag'] ?? null;
+        // Do not execute beginTransaction for single use or inline begin transactions
+        // @TODO: Figure out why we check for `transactionOptions.partitionedDml`
         if (empty($transactionSelector['singleUse']) && (
             !isset($transactionSelector['begin'])
-            || isset($options['transactionOptions']['partitionedDml'])
+            || isset($misc['transactionOptions']['partitionedDml'])
         )) {
             $beginTransaction += ['requestOptions' => []];
             if ($transactionTag) {
                 $beginTransaction['requestOptions']['transactionTag'] = $transactionTag;
             }
-            if (isset($options['transactionOptions'])) {
-                $beginTransaction['options'] = $this->formatTransactionOptions($options['transactionOptions']);
+            if (isset($misc['transactionOptions'])) {
+                $beginTransaction['options'] = $this->formatTransactionOptions($misc['transactionOptions']);
             }
 
-            $res = $this->beginTransaction($session, $beginTransaction, $callOptions);
+            // Execute the beginTransaction RPC
+            $transactionProto = $this->beginTransaction($session, $beginTransaction, $callOptions);
+            $id = $transactionProto->getId();
+            $precommitToken = $transactionProto->getPrecommitToken();
         }
 
-        return new Transaction(
+        $transaction = new Transaction(
             $this,
             $session,
-            $res['id'] ?? null,
+            $id,
             $beginTransaction + $transactionSelector + $options,
-            $this->mapper
+            $this->mapper,
         );
+
+        if ($precommitToken) {
+            $transaction->setPrecommitToken($precommitToken);
+        }
+
+        return $transaction;
     }
 
     /**
@@ -589,7 +578,8 @@ class Operation
 
         $res = [];
         if (false === ($misc['singleUse'] ?? false)) {
-            $res = $this->beginTransaction($session, $beginTransaction, $callOptions);
+            $transactionProto = $this->beginTransaction($session, $beginTransaction, $callOptions);
+            $res = $this->handleResponse($transactionProto);
         }
 
         $snapshotClass = $misc['className'] ?? Snapshot::class;
@@ -767,9 +757,9 @@ class Operation
      * @param SessionCache $session The session to start the snapshot in.
      * @param array $options [optional] Configuration options.
      *
-     * @return array
+     * @return TransactionProto
      */
-    private function beginTransaction(SessionCache $session, array $beginTransaction, array $callOptions): array
+    private function beginTransaction(SessionCache $session, array $beginTransaction, array $callOptions): TransactionProto
     {
         $routeToLeader = $this->routeToLeader && (
             isset($beginTransaction['options']['readWrite'])
@@ -777,17 +767,11 @@ class Operation
         );
 
         $beginTransaction += ['session' => $session->name()];
-
         $request = $this->serializer->decodeMessage(new BeginTransactionRequest(), $beginTransaction);
-
-        $response = $this->spannerClient->beginTransaction($request, $callOptions + [
+        return $this->spannerClient->beginTransaction($request, $callOptions + [
             'resource-prefix' => $this->getDatabaseNameFromSession($session),
             'route-to-leader' => $routeToLeader,
         ]);
-        if ($precommitToken = $response->getPrecommitToken()) {
-            $session->setPrecommitToken($precommitToken);
-        }
-        return $this->handleResponse($response);
     }
 
     /**

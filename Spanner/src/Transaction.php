@@ -20,6 +20,8 @@ namespace Google\Cloud\Spanner;
 use Google\ApiCore\ValidationException;
 use Google\Cloud\Core\Exception\AbortedException;
 use Google\Cloud\Spanner\Session\SessionCache;
+use Google\Cloud\Spanner\V1\MultiplexedSessionPrecommitToken;
+use Google\Cloud\Spanner\V1\CommitResponse\CommitStats;
 use Google\Protobuf\Duration;
 
 /**
@@ -68,10 +70,11 @@ class Transaction implements TransactionalReadInterface
     use MutationTrait;
     use TransactionalReadTrait;
 
-    private array $commitStats = [];
+    private CommitStats|null $commitStats = null;
     private array $mutations = [];
     private bool $isRetry;
     private array $requestOptions;
+    private MultiplexedSessionPrecommitToken|null $precommitToken = null;
 
     /**
      * @param Operation $operation The Operation instance.
@@ -137,7 +140,7 @@ class Transaction implements TransactionalReadInterface
      *
      * @return array The commit stats
      */
-    public function getCommitStats(): array
+    public function getCommitStats(): CommitStats|null
     {
         return $this->commitStats;
     }
@@ -327,13 +330,12 @@ class Transaction implements TransactionalReadInterface
     public function executeUpdateBatch(array $statements, array $options = []): BatchDmlResult
     {
         $options = $this->buildUpdateOptions($options);
-        return $this->operation
-            ->executeUpdateBatch(
-                $this->session,
-                $this,
-                $statements,
-                $options
-            );
+        return $this->operation->executeUpdateBatch(
+            $this->session,
+            $this,
+            $statements,
+            $options
+        );
     }
 
     /**
@@ -434,9 +436,10 @@ class Transaction implements TransactionalReadInterface
             'requestOptions' => []
         ];
 
+        // set mutations, transactionId, and precommit token in the request
         $options['mutations'] += $this->getMutations();
-
         $options['transactionId'] = $this->transactionId;
+        $options['precommitToken'] = $this->precommitToken;
 
         unset($options['requestOptions']['requestTag']);
         if (isset($this->tag)) {
@@ -448,12 +451,24 @@ class Transaction implements TransactionalReadInterface
         // @TODO find out what this is and clean it up
         $options[$t[1]] = $t[0];
 
-        $res = $this->operation->commitWithResponse($this->session, $this->pluck('mutations', $options), $options);
-        if (isset($res[1]['commitStats'])) {
-            $this->commitStats = $res[1]['commitStats'];
-        }
+        $response = $this->operation->commit(
+            $this->session,
+            $this->pluck('mutations', $options),
+            $options
+        );
 
-        return $res[0];
+        // Update the precommitToken and commitStats
+        $this->commitStats = $response->getCommitStats();
+        $this->precommitToken = $response->getPrecommitToken();
+
+        // Return the commit timestamp as a Core Timestamp
+        $timestamp = $response->getCommitTimestamp();
+        $dateTime = \DateTimeImmutable::createFromFormat(
+            'U',
+            (string) $timestamp->getSeconds(),
+            new \DateTimeZone('UTC')
+        );
+        return new Timestamp($dateTime, $timestamp->getNanos());
     }
 
     /**
@@ -495,6 +510,11 @@ class Transaction implements TransactionalReadInterface
     public function isRetry(): bool
     {
         return $this->isRetry;
+    }
+
+    public function setPrecommitToken(MultiplexedSessionPrecommitToken $precommitToken): void
+    {
+        $this->precommitToken = $precommitToken;
     }
 
     /**
