@@ -1,23 +1,23 @@
-name: Run Datastore System Tests With Emulator
 on:
   push:
     branches:
       - main
     paths:
       - 'Datastore/**'
-      - '.github/workflows/system-tests-datastore-emulator.yaml'
+      - '.github/workflows/emulator-system-tests-datastore.yaml'
       - '.github/emulator/**'
   pull_request:
     paths:
       - 'Datastore/**'
-      - '.github/workflows/system-tests-datastore-emulator.yaml'
+      - '.github/workflows/emulator-system-tests-datastore.yaml'
       - '.github/emulator/**'
+name: Emulator System Tests
 permissions:
   contents: read
 jobs:
   test:
+    name: Datastore
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
 

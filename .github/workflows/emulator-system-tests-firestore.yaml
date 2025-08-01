@@ -3,25 +3,25 @@ on:
     branches:
       - main
     paths:
-      - 'PubSub/**'
-      - '.github/workflows/system-tests-pubsub-emulator.yaml'
+      - 'Firestore/**'
+      - '.github/workflows/emulator-system-tests-firestore.yaml'
       - '.github/emulator/**'
   pull_request:
     paths:
-      - 'PubSub/**'
-      - '.github/workflows/system-tests-pubsub-emulator.yaml'
+      - 'Firestore/**'
+      - '.github/workflows/emulator-system-tests-firestore.yaml'
       - '.github/emulator/**'
-name: Run PubSub System Tests With Emulator
+name: Emulator System Tests
 permissions:
   contents: read
 jobs:
   test:
+    name: Firestore
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
 
-      - run: ./.github/emulator/start-emulator.sh pubsub
+      - run: ./.github/emulator/start-emulator.sh firestore 453.0.0-emulators
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -32,15 +32,14 @@ jobs:
 
       - name: Install dependencies
         run: |
-          composer config minimum-stability dev -d PubSub/
-          composer config repositories.local path "../Core" -d PubSub
-          composer require "google/cloud-core:*" -d PubSub/
+          composer config minimum-stability dev -d Firestore/
+          composer config repositories.local path "../Core" -d Firestore
+          composer require "google/cloud-core:*" -d Firestore/
 
       - name: Run system tests
         run: |
-          PubSub/vendor/bin/phpunit -c PubSub/phpunit-system.xml.dist --exclude-group gapic
+          Firestore/vendor/bin/phpunit -c Firestore/phpunit-system.xml.dist --exclude-group gapic
         env:
-          PUBSUB_EMULATOR_HOST: localhost:8085
-          PROJECT_ID: my-project-id
+          FIRESTORE_EMULATOR_HOST: localhost:8085
           GOOGLE_CLOUD_PHP_TESTS_KEY_PATH: '.github/emulator/example-key.json'
           GOOGLE_CLOUD_PHP_WHITELIST_TESTS_KEY_PATH: '.github/emulator/example-key.json'
