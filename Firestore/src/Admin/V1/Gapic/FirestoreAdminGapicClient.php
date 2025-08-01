@@ -38,6 +38,8 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Firestore\Admin\V1\Backup;
 use Google\Cloud\Firestore\Admin\V1\BackupSchedule;
 use Google\Cloud\Firestore\Admin\V1\BulkDeleteDocumentsRequest;
+use Google\Cloud\Firestore\Admin\V1\CloneDatabaseMetadata;
+use Google\Cloud\Firestore\Admin\V1\CloneDatabaseRequest;
 use Google\Cloud\Firestore\Admin\V1\CreateBackupScheduleRequest;
 use Google\Cloud\Firestore\Admin\V1\CreateDatabaseRequest;
 use Google\Cloud\Firestore\Admin\V1\CreateIndexRequest;
@@ -76,6 +78,7 @@ use Google\Cloud\Firestore\Admin\V1\ListIndexesRequest;
 use Google\Cloud\Firestore\Admin\V1\ListIndexesResponse;
 use Google\Cloud\Firestore\Admin\V1\ListUserCredsRequest;
 use Google\Cloud\Firestore\Admin\V1\ListUserCredsResponse;
+use Google\Cloud\Firestore\Admin\V1\PitrSnapshot;
 use Google\Cloud\Firestore\Admin\V1\ResetUserPasswordRequest;
 use Google\Cloud\Firestore\Admin\V1\RestoreDatabaseMetadata;
 use Google\Cloud\Firestore\Admin\V1\RestoreDatabaseRequest;
@@ -765,6 +768,125 @@ class FirestoreAdminGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('BulkDeleteDocuments', $optionalArgs, $request, $this->getOperationsClient())->wait();
+    }
+
+    /**
+     * Creates a new database by cloning an existing one.
+     *
+     * The new database must be in the same cloud region or multi-region location
+     * as the existing database. This behaves similar to
+     * [FirestoreAdmin.CreateDatabase][google.firestore.admin.v1.FirestoreAdmin.CreateDatabase]
+     * except instead of creating a new empty database, a new database is created
+     * with the database type, index configuration, and documents from an existing
+     * database.
+     *
+     * The [long-running operation][google.longrunning.Operation] can be used to
+     * track the progress of the clone, with the Operation's
+     * [metadata][google.longrunning.Operation.metadata] field type being the
+     * [CloneDatabaseMetadata][google.firestore.admin.v1.CloneDatabaseMetadata].
+     * The [response][google.longrunning.Operation.response] type is the
+     * [Database][google.firestore.admin.v1.Database] if the clone was
+     * successful. The new database is not readable or writeable until the LRO has
+     * completed.
+     *
+     * Sample code:
+     * ```
+     * $firestoreAdminClient = new FirestoreAdminClient();
+     * try {
+     *     $formattedParent = $firestoreAdminClient->projectName('[PROJECT]');
+     *     $databaseId = 'database_id';
+     *     $pitrSnapshot = new PitrSnapshot();
+     *     $operationResponse = $firestoreAdminClient->cloneDatabase($formattedParent, $databaseId, $pitrSnapshot);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $firestoreAdminClient->cloneDatabase($formattedParent, $databaseId, $pitrSnapshot);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $firestoreAdminClient->resumeOperation($operationName, 'cloneDatabase');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $firestoreAdminClient->close();
+     * }
+     * ```
+     *
+     * @param string       $parent       Required. The project to clone the database in. Format is
+     *                                   `projects/{project_id}`.
+     * @param string       $databaseId   Required. The ID to use for the database, which will become the final
+     *                                   component of the database's resource name. This database ID must not be
+     *                                   associated with an existing database.
+     *
+     *                                   This value should be 4-63 characters. Valid characters are /[a-z][0-9]-/
+     *                                   with first character a letter and the last a letter or a number. Must not
+     *                                   be UUID-like /[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}/.
+     *
+     *                                   "(default)" database ID is also valid.
+     * @param PitrSnapshot $pitrSnapshot Required. Specification of the PITR data to clone from. The source database
+     *                                   must exist.
+     *
+     *                                   The cloned database will be created in the same location as the source
+     *                                   database.
+     * @param array        $optionalArgs {
+     *     Optional.
+     *
+     *     @type EncryptionConfig $encryptionConfig
+     *           Optional. Encryption configuration for the cloned database.
+     *
+     *           If this field is not specified, the cloned database will use
+     *           the same encryption configuration as the source database, namely
+     *           [use_source_encryption][google.firestore.admin.v1.Database.EncryptionConfig.use_source_encryption].
+     *     @type array $tags
+     *           Optional. Immutable. Tags to be bound to the cloned database.
+     *
+     *           The tags should be provided in the format of
+     *           `tagKeys/{tag_key_id} -> tagValues/{tag_value_id}`.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function cloneDatabase($parent, $databaseId, $pitrSnapshot, array $optionalArgs = [])
+    {
+        $request = new CloneDatabaseRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setDatabaseId($databaseId);
+        $request->setPitrSnapshot($pitrSnapshot);
+        $requestParamHeaders['project_id'] = $pitrSnapshot->getDatabase();
+        $requestParamHeaders['database_id'] = $pitrSnapshot->getDatabase();
+        if (isset($optionalArgs['encryptionConfig'])) {
+            $request->setEncryptionConfig($optionalArgs['encryptionConfig']);
+        }
+
+        if (isset($optionalArgs['tags'])) {
+            $request->setTags($optionalArgs['tags']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('CloneDatabase', $optionalArgs, $request, $this->getOperationsClient())->wait();
     }
 
     /**
