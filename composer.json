@@ -2,6 +2,19 @@
     "name": "google/cloud",
     "type": "library",
     "description": "Google Cloud Client Library",
+    "scripts": {
+        "style-check": [
+            "vendor/bin/php-tools cs-fixer googleapis/google-cloud-php --ref $(git rev-parse --abbrev-ref HEAD)",
+            "vendor/bin/phpcs --standard=phpcs-ruleset.xml -p"
+        ],
+        "style-fix": [
+            "vendor/bin/php-tools cs-fixer googleapis/google-cloud-php --ref $(git rev-parse --abbrev-ref HEAD) --flags \"\"",
+            "vendor/bin/phpcbf --standard=phpcs-ruleset.xml -p"
+        ],
+        "phpstan": [
+            "dev/sh/static-analysis"
+        ]
+    },
     "keywords": [
         "google apis client",
         "google api client",
@@ -64,7 +77,8 @@
         "phpspec/prophecy-phpunit": "^2.1",
         "kreait/firebase-php": "^6.9",
         "psr/log": "^2.0||^3.0",
-        "dg/bypass-finals": "^1.7"
+        "dg/bypass-finals": "^1.7",
+        "squizlabs/php_codesniffer": "3.*"
     },
     "replace": {
         "google/access-context-manager": "1.0.4",
