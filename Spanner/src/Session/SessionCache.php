@@ -22,6 +22,7 @@ use Google\Cloud\Core\Lock\FlockLock;
 use Google\Cloud\Core\Lock\LockInterface;
 use Google\Cloud\Core\Lock\SemaphoreLock;
 use Google\Cloud\Spanner\Database;
+use Google\Cloud\Spanner\V1\MultiplexedSessionPrecommitToken;
 use Google\Cloud\Spanner\V1\Session as SessionProto;
 use Psr\Cache\CacheItemInterface;
 use Psr\Cache\CacheItemPoolInterface;
@@ -42,6 +43,7 @@ class SessionCache
 
     private string $cacheKey;
     private LockInterface $lock;
+    private MultiplexedSessionPrecommitToken $precommitToken;
 
     /**
      */

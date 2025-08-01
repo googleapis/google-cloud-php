@@ -18,8 +18,6 @@
 namespace Google\Cloud\Spanner;
 
 use Google\ApiCore\ArrayTrait;
-use Google\Cloud\Spanner\Session\Session;
-use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\V1\TransactionOptions;
 use Google\Cloud\Spanner\Session\SessionCache;
 
