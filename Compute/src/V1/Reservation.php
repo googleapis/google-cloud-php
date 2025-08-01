@@ -113,6 +113,13 @@ class Reservation extends \Google\Protobuf\Internal\Message
      */
     private $satisfies_pzs = null;
     /**
+     * The type of maintenance for the reservation.
+     * Check the SchedulingType enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string scheduling_type = 199835397;</code>
+     */
+    private $scheduling_type = null;
+    /**
      * [Output Only] Server-defined fully-qualified URL for this resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
@@ -189,6 +196,9 @@ class Reservation extends \Google\Protobuf\Internal\Message
      *           [Output Only] Status information for Reservation resource.
      *     @type bool $satisfies_pzs
      *           [Output Only] Reserved for future use.
+     *     @type string $scheduling_type
+     *           The type of maintenance for the reservation.
+     *           Check the SchedulingType enum for the list of possible values.
      *     @type string $self_link
      *           [Output Only] Server-defined fully-qualified URL for this resource.
      *     @type \Google\Cloud\Compute\V1\ShareSettings $share_settings
@@ -763,6 +773,44 @@ class Reservation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->satisfies_pzs = $var;
+
+        return $this;
+    }
+
+    /**
+     * The type of maintenance for the reservation.
+     * Check the SchedulingType enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string scheduling_type = 199835397;</code>
+     * @return string
+     */
+    public function getSchedulingType()
+    {
+        return isset($this->scheduling_type) ? $this->scheduling_type : '';
+    }
+
+    public function hasSchedulingType()
+    {
+        return isset($this->scheduling_type);
+    }
+
+    public function clearSchedulingType()
+    {
+        unset($this->scheduling_type);
+    }
+
+    /**
+     * The type of maintenance for the reservation.
+     * Check the SchedulingType enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string scheduling_type = 199835397;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSchedulingType($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->scheduling_type = $var;
 
         return $this;
     }

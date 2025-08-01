@@ -16,6 +16,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class AllocationResourceStatus extends \Google\Protobuf\Internal\Message
 {
     /**
+     * [Output only] Health information for the reservation.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.AllocationResourceStatusHealthInfo health_info = 235287729;</code>
+     */
+    private $health_info = null;
+    /**
      * The number of reservation blocks associated with this reservation.
      *
      * Generated from protobuf field <code>optional int32 reservation_block_count = 161835754;</code>
@@ -40,6 +46,8 @@ class AllocationResourceStatus extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type \Google\Cloud\Compute\V1\AllocationResourceStatusHealthInfo $health_info
+     *           [Output only] Health information for the reservation.
      *     @type int $reservation_block_count
      *           The number of reservation blocks associated with this reservation.
      *     @type \Google\Cloud\Compute\V1\GroupMaintenanceInfo $reservation_maintenance
@@ -51,6 +59,42 @@ class AllocationResourceStatus extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Compute\V1\Compute::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * [Output only] Health information for the reservation.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.AllocationResourceStatusHealthInfo health_info = 235287729;</code>
+     * @return \Google\Cloud\Compute\V1\AllocationResourceStatusHealthInfo|null
+     */
+    public function getHealthInfo()
+    {
+        return $this->health_info;
+    }
+
+    public function hasHealthInfo()
+    {
+        return isset($this->health_info);
+    }
+
+    public function clearHealthInfo()
+    {
+        unset($this->health_info);
+    }
+
+    /**
+     * [Output only] Health information for the reservation.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.AllocationResourceStatusHealthInfo health_info = 235287729;</code>
+     * @param \Google\Cloud\Compute\V1\AllocationResourceStatusHealthInfo $var
+     * @return $this
+     */
+    public function setHealthInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\AllocationResourceStatusHealthInfo::class);
+        $this->health_info = $var;
+
+        return $this;
     }
 
     /**
