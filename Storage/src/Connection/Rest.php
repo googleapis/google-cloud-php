@@ -351,8 +351,8 @@ class Rest implements ConnectionInterface
         $attempt = null;
         $requestOptions['restRetryListener'] = function (
             \Exception $e,
-                       $retryAttempt,
-                       &$arguments
+            $retryAttempt,
+            &$arguments
         ) use (
             $resultStream,
             $requestedBytes,
@@ -365,7 +365,7 @@ class Rest implements ConnectionInterface
                 && $e->getResponse()->getStatusCode() >= 200
                 && $e->getResponse()->getStatusCode() < 300
             ) {
-                $msg = (string)$e->getResponse()->getBody();
+                $msg = (string) $e->getResponse()->getBody();
 
                 $fetchedStream = Utils::streamFor($msg);
 
@@ -489,9 +489,7 @@ class Rest implements ConnectionInterface
             'userProject' => null,
         ];
 
-        if (!isset($args['retryStrategy']) && $this->retryStrategy) {
-            $args['retryStrategy'] = $this->retryStrategy;
-        }
+        $args['retryStrategy'] ??= $this->retryStrategy;
 
         $args['data'] = Utils::streamFor($args['data']);
 
@@ -817,17 +815,11 @@ class Rest implements ConnectionInterface
             $options
         );
 
-        if (!isset($options['restDelayFunction']) && $this->restDelayFunction) {
-            $options['restDelayFunction'] = $this->restDelayFunction;
-        }
-
-        if (!isset($options['restCalcDelayFunction']) && $this->restCalcDelayFunction) {
-            $options['restCalcDelayFunction'] = $this->restCalcDelayFunction;
-        }
-
-        if (!isset($options['restRetryListener']) && $this->restRetryListener) {
-            $options['restRetryListener'] = $this->restRetryListener;
-        }
+        $options += array_filter([
+            'restDelayFunction' => $this->restDelayFunction,
+            'restCalcDelayFunction' => $this->restCalcDelayFunction,
+            'restRetryListener' => $this->restRetryListener,
+        ]);
 
         $options = $this->addRetryHeaderLogic($options);
 
@@ -850,8 +842,8 @@ class Rest implements ConnectionInterface
         // Adding callback logic to update headers while retrying
         $args['restRetryListener'] = function (
             \Exception $e,
-                       $retryAttempt,
-                       &$arguments
+            $retryAttempt,
+            &$arguments
         ) use (
             $invocationId,
             $userListener
@@ -872,8 +864,8 @@ class Rest implements ConnectionInterface
 
     private function modifyRequestForRetry(
         RequestInterface $request,
-        int              $retryAttempt,
-        string           $invocationId
+        int $retryAttempt,
+        string $invocationId
     )
     {
         $changes = self::getRetryHeaders($invocationId, $retryAttempt + 1);
