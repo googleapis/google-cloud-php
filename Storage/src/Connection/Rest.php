@@ -861,8 +861,7 @@ class Rest implements ConnectionInterface
         RequestInterface $request,
         int $retryAttempt,
         string $invocationId
-    )
-    {
+    ) {
         $changes = self::getRetryHeaders($invocationId, $retryAttempt + 1);
         $headerLine = $request->getHeaderLine(Retry::RETRY_HEADER_KEY);
 
