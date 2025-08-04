@@ -332,9 +332,7 @@ class Rest implements ConnectionInterface
         $resultStream = Utils::streamFor(null);
         $transcodedObj = false;
 
-        if (!isset($args['retryStrategy']) && $this->retryStrategy) {
-            $args['retryStrategy'] = $this->retryStrategy;
-        }
+        $args['retryStrategy'] ??= $this->retryStrategy;
 
         list($request, $requestOptions) = $this->buildDownloadObjectParams($args);
 
@@ -805,10 +803,6 @@ class Rest implements ConnectionInterface
         ];
         $retryResource = isset($retryMap[$resource]) ? $retryMap[$resource] : $resource;
 
-        if (!isset($options['retryStrategy']) && $this->retryStrategy) {
-            $options['retryStrategy'] = $this->retryStrategy;
-        }
-
         $options['restRetryFunction'] = $this->restRetryFunction ?? $this->getRestRetryFunction(
             $retryResource,
             $method,
@@ -816,6 +810,7 @@ class Rest implements ConnectionInterface
         );
 
         $options += array_filter([
+            'retryStrategy' => $this->retryStrategy,
             'restDelayFunction' => $this->restDelayFunction,
             'restCalcDelayFunction' => $this->restCalcDelayFunction,
             'restRetryListener' => $this->restRetryListener,
