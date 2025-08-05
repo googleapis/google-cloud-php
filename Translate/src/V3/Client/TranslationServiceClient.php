@@ -140,7 +140,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<OperationResponse> updateGlossaryAsync(UpdateGlossaryRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<GlossaryEntry> updateGlossaryEntryAsync(UpdateGlossaryEntryRequest $request, array $optionalArgs = [])
  */
-final class TranslationServiceClient
+class TranslationServiceClient
 {
     use GapicClientTrait;
     use ResourceHelperTrait;
