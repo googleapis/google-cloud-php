@@ -5,8 +5,8 @@
 namespace Google\Cloud\Translate\V3\Glossary;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Used with equivalent term set glossaries.
@@ -30,7 +30,7 @@ class LanguageCodesSet extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $language_codes
+     *     @type array<string>|\Google\Protobuf\RepeatedField $language_codes
      *           The ISO-639 language code(s) for terms defined in the glossary.
      *           All entries are unique. The list contains at least two entries.
      *           Expected to be an exact match for GlossaryTerm.language_code.
@@ -47,7 +47,7 @@ class LanguageCodesSet extends \Google\Protobuf\Internal\Message
      * Expected to be an exact match for GlossaryTerm.language_code.
      *
      * Generated from protobuf field <code>repeated string language_codes = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return \Google\Protobuf\RepeatedField
      */
     public function getLanguageCodes()
     {
@@ -60,7 +60,7 @@ class LanguageCodesSet extends \Google\Protobuf\Internal\Message
      * Expected to be an exact match for GlossaryTerm.language_code.
      *
      * Generated from protobuf field <code>repeated string language_codes = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\RepeatedField $var
      * @return $this
      */
     public function setLanguageCodes($var)
@@ -72,5 +72,3 @@ class LanguageCodesSet extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-

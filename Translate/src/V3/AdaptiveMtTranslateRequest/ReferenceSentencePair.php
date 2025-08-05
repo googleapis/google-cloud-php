@@ -5,8 +5,8 @@
 namespace Google\Cloud\Translate\V3\AdaptiveMtTranslateRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A pair of sentences used as reference in source and target languages.
@@ -98,5 +98,3 @@ class ReferenceSentencePair extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-

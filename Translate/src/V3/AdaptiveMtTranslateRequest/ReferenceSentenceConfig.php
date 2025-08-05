@@ -5,8 +5,8 @@
 namespace Google\Cloud\Translate\V3\AdaptiveMtTranslateRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message of caller-provided reference configuration.
@@ -43,7 +43,7 @@ class ReferenceSentenceConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Translate\V3\AdaptiveMtTranslateRequest\ReferenceSentencePairList>|\Google\Protobuf\Internal\RepeatedField $reference_sentence_pair_lists
+     *     @type array<\Google\Cloud\Translate\V3\AdaptiveMtTranslateRequest\ReferenceSentencePairList>|\Google\Protobuf\RepeatedField $reference_sentence_pair_lists
      *           Reference sentences pair lists. Each list will be used as the references
      *           to translate the sentence under "content" field at the corresponding
      *           index. Length of the list is required to be equal to the length of
@@ -66,7 +66,7 @@ class ReferenceSentenceConfig extends \Google\Protobuf\Internal\Message
      * "content" field.
      *
      * Generated from protobuf field <code>repeated .google.cloud.translation.v3.AdaptiveMtTranslateRequest.ReferenceSentencePairList reference_sentence_pair_lists = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return \Google\Protobuf\RepeatedField
      */
     public function getReferenceSentencePairLists()
     {
@@ -80,7 +80,7 @@ class ReferenceSentenceConfig extends \Google\Protobuf\Internal\Message
      * "content" field.
      *
      * Generated from protobuf field <code>repeated .google.cloud.translation.v3.AdaptiveMtTranslateRequest.ReferenceSentencePairList reference_sentence_pair_lists = 1;</code>
-     * @param array<\Google\Cloud\Translate\V3\AdaptiveMtTranslateRequest\ReferenceSentencePairList>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Translate\V3\AdaptiveMtTranslateRequest\ReferenceSentencePairList>|\Google\Protobuf\RepeatedField $var
      * @return $this
      */
     public function setReferenceSentencePairLists($var)
@@ -144,5 +144,3 @@ class ReferenceSentenceConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-

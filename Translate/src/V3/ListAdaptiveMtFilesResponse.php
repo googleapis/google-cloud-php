@@ -5,8 +5,8 @@
 namespace Google\Cloud\Translate\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response for listing all AdaptiveMt files under a given dataset.
@@ -36,7 +36,7 @@ class ListAdaptiveMtFilesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Translate\V3\AdaptiveMtFile>|\Google\Protobuf\Internal\RepeatedField $adaptive_mt_files
+     *     @type array<\Google\Cloud\Translate\V3\AdaptiveMtFile>|\Google\Protobuf\RepeatedField $adaptive_mt_files
      *           Output only. The Adaptive MT files.
      *     @type string $next_page_token
      *           Optional. A token to retrieve a page of results. Pass this value in the
@@ -53,7 +53,7 @@ class ListAdaptiveMtFilesResponse extends \Google\Protobuf\Internal\Message
      * Output only. The Adaptive MT files.
      *
      * Generated from protobuf field <code>repeated .google.cloud.translation.v3.AdaptiveMtFile adaptive_mt_files = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return \Google\Protobuf\RepeatedField
      */
     public function getAdaptiveMtFiles()
     {
@@ -64,7 +64,7 @@ class ListAdaptiveMtFilesResponse extends \Google\Protobuf\Internal\Message
      * Output only. The Adaptive MT files.
      *
      * Generated from protobuf field <code>repeated .google.cloud.translation.v3.AdaptiveMtFile adaptive_mt_files = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Translate\V3\AdaptiveMtFile>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Translate\V3\AdaptiveMtFile>|\Google\Protobuf\RepeatedField $var
      * @return $this
      */
     public function setAdaptiveMtFiles($var)
@@ -106,4 +106,3 @@ class ListAdaptiveMtFilesResponse extends \Google\Protobuf\Internal\Message
     }
 
 }
-

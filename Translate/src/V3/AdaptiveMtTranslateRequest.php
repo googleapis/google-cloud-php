@@ -5,8 +5,8 @@
 namespace Google\Cloud\Translate\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The request for sending an AdaptiveMt translation query.
@@ -80,7 +80,7 @@ class AdaptiveMtTranslateRequest extends \Google\Protobuf\Internal\Message
      *     @type string $dataset
      *           Required. The resource name for the dataset to use for adaptive MT.
      *           `projects/{project}/locations/{location-id}/adaptiveMtDatasets/{dataset}`
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $content
+     *     @type array<string>|\Google\Protobuf\RepeatedField $content
      *           Required. The content of the input in string format.
      *     @type \Google\Cloud\Translate\V3\AdaptiveMtTranslateRequest\ReferenceSentenceConfig $reference_sentence_config
      *           Configuration for caller provided reference sentences.
@@ -155,7 +155,7 @@ class AdaptiveMtTranslateRequest extends \Google\Protobuf\Internal\Message
      * Required. The content of the input in string format.
      *
      * Generated from protobuf field <code>repeated string content = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return \Google\Protobuf\RepeatedField
      */
     public function getContent()
     {
@@ -166,7 +166,7 @@ class AdaptiveMtTranslateRequest extends \Google\Protobuf\Internal\Message
      * Required. The content of the input in string format.
      *
      * Generated from protobuf field <code>repeated string content = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\RepeatedField $var
      * @return $this
      */
     public function setContent($var)
@@ -254,4 +254,3 @@ class AdaptiveMtTranslateRequest extends \Google\Protobuf\Internal\Message
     }
 
 }
-

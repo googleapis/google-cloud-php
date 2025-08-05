@@ -5,8 +5,8 @@
 namespace Google\Cloud\Translate\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Input configuration for datasets.
@@ -28,7 +28,7 @@ class DatasetInputConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Translate\V3\DatasetInputConfig\InputFile>|\Google\Protobuf\Internal\RepeatedField $input_files
+     *     @type array<\Google\Cloud\Translate\V3\DatasetInputConfig\InputFile>|\Google\Protobuf\RepeatedField $input_files
      *           Files containing the sentence pairs to be imported to the dataset.
      * }
      */
@@ -41,7 +41,7 @@ class DatasetInputConfig extends \Google\Protobuf\Internal\Message
      * Files containing the sentence pairs to be imported to the dataset.
      *
      * Generated from protobuf field <code>repeated .google.cloud.translation.v3.DatasetInputConfig.InputFile input_files = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return \Google\Protobuf\RepeatedField
      */
     public function getInputFiles()
     {
@@ -52,7 +52,7 @@ class DatasetInputConfig extends \Google\Protobuf\Internal\Message
      * Files containing the sentence pairs to be imported to the dataset.
      *
      * Generated from protobuf field <code>repeated .google.cloud.translation.v3.DatasetInputConfig.InputFile input_files = 1;</code>
-     * @param array<\Google\Cloud\Translate\V3\DatasetInputConfig\InputFile>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Translate\V3\DatasetInputConfig\InputFile>|\Google\Protobuf\RepeatedField $var
      * @return $this
      */
     public function setInputFiles($var)
@@ -64,4 +64,3 @@ class DatasetInputConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Translate\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Output configuration for BatchTranslateText request.
@@ -246,4 +246,3 @@ class OutputConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-

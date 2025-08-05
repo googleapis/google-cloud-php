@@ -5,8 +5,8 @@
 namespace Google\Cloud\Translate\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The request to list all AdaptiveMt files under a given dataset.
@@ -172,4 +172,3 @@ class ListAdaptiveMtFilesRequest extends \Google\Protobuf\Internal\Message
     }
 
 }
-

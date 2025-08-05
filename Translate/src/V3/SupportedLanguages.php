@@ -5,8 +5,8 @@
 namespace Google\Cloud\Translate\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response message for discovering supported languages.
@@ -29,7 +29,7 @@ class SupportedLanguages extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Translate\V3\SupportedLanguage>|\Google\Protobuf\Internal\RepeatedField $languages
+     *     @type array<\Google\Cloud\Translate\V3\SupportedLanguage>|\Google\Protobuf\RepeatedField $languages
      *           A list of supported language responses. This list contains an entry
      *           for each language the Translation API supports.
      * }
@@ -44,7 +44,7 @@ class SupportedLanguages extends \Google\Protobuf\Internal\Message
      * for each language the Translation API supports.
      *
      * Generated from protobuf field <code>repeated .google.cloud.translation.v3.SupportedLanguage languages = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return \Google\Protobuf\RepeatedField
      */
     public function getLanguages()
     {
@@ -56,7 +56,7 @@ class SupportedLanguages extends \Google\Protobuf\Internal\Message
      * for each language the Translation API supports.
      *
      * Generated from protobuf field <code>repeated .google.cloud.translation.v3.SupportedLanguage languages = 1;</code>
-     * @param array<\Google\Cloud\Translate\V3\SupportedLanguage>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Translate\V3\SupportedLanguage>|\Google\Protobuf\RepeatedField $var
      * @return $this
      */
     public function setLanguages($var)
@@ -68,4 +68,3 @@ class SupportedLanguages extends \Google\Protobuf\Internal\Message
     }
 
 }
-

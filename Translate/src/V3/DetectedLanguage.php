@@ -5,8 +5,8 @@
 namespace Google\Cloud\Translate\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response message for language detection.
@@ -102,4 +102,3 @@ class DetectedLanguage extends \Google\Protobuf\Internal\Message
     }
 
 }
-

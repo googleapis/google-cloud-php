@@ -5,8 +5,8 @@
 namespace Google\Cloud\Translate\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The batch translation request.
@@ -111,7 +111,7 @@ class BatchTranslateTextRequest extends \Google\Protobuf\Internal\Message
      *           Required. Source language code. Supported language codes are listed in
      *           [Language
      *           Support](https://cloud.google.com/translate/docs/languages).
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $target_language_codes
+     *     @type array<string>|\Google\Protobuf\RepeatedField $target_language_codes
      *           Required. Specify up to 10 language codes here. Supported language codes
      *           are listed in [Language
      *           Support](https://cloud.google.com/translate/docs/languages).
@@ -126,7 +126,7 @@ class BatchTranslateTextRequest extends \Google\Protobuf\Internal\Message
      *             `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`,
      *           If the map is empty or a specific model is
      *           not requested for a language pair, then default google model (nmt) is used.
-     *     @type array<\Google\Cloud\Translate\V3\InputConfig>|\Google\Protobuf\Internal\RepeatedField $input_configs
+     *     @type array<\Google\Cloud\Translate\V3\InputConfig>|\Google\Protobuf\RepeatedField $input_configs
      *           Required. Input configurations.
      *           The total number of files matched should be <= 100.
      *           The total content size should be <= 100M Unicode codepoints.
@@ -225,7 +225,7 @@ class BatchTranslateTextRequest extends \Google\Protobuf\Internal\Message
      * Support](https://cloud.google.com/translate/docs/languages).
      *
      * Generated from protobuf field <code>repeated string target_language_codes = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return \Google\Protobuf\RepeatedField
      */
     public function getTargetLanguageCodes()
     {
@@ -238,7 +238,7 @@ class BatchTranslateTextRequest extends \Google\Protobuf\Internal\Message
      * Support](https://cloud.google.com/translate/docs/languages).
      *
      * Generated from protobuf field <code>repeated string target_language_codes = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\RepeatedField $var
      * @return $this
      */
     public function setTargetLanguageCodes($var)
@@ -300,7 +300,7 @@ class BatchTranslateTextRequest extends \Google\Protobuf\Internal\Message
      * The files must use UTF-8 encoding.
      *
      * Generated from protobuf field <code>repeated .google.cloud.translation.v3.InputConfig input_configs = 5 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return \Google\Protobuf\RepeatedField
      */
     public function getInputConfigs()
     {
@@ -314,7 +314,7 @@ class BatchTranslateTextRequest extends \Google\Protobuf\Internal\Message
      * The files must use UTF-8 encoding.
      *
      * Generated from protobuf field <code>repeated .google.cloud.translation.v3.InputConfig input_configs = 5 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Translate\V3\InputConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Translate\V3\InputConfig>|\Google\Protobuf\RepeatedField $var
      * @return $this
      */
     public function setInputConfigs($var)
@@ -432,4 +432,3 @@ class BatchTranslateTextRequest extends \Google\Protobuf\Internal\Message
     }
 
 }
-

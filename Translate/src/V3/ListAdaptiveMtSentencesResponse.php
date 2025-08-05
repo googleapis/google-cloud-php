@@ -5,8 +5,8 @@
 namespace Google\Cloud\Translate\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * List AdaptiveMt sentences response.
@@ -34,7 +34,7 @@ class ListAdaptiveMtSentencesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Translate\V3\AdaptiveMtSentence>|\Google\Protobuf\Internal\RepeatedField $adaptive_mt_sentences
+     *     @type array<\Google\Cloud\Translate\V3\AdaptiveMtSentence>|\Google\Protobuf\RepeatedField $adaptive_mt_sentences
      *           Output only. The list of AdaptiveMtSentences.
      *     @type string $next_page_token
      *           Optional.
@@ -49,7 +49,7 @@ class ListAdaptiveMtSentencesResponse extends \Google\Protobuf\Internal\Message
      * Output only. The list of AdaptiveMtSentences.
      *
      * Generated from protobuf field <code>repeated .google.cloud.translation.v3.AdaptiveMtSentence adaptive_mt_sentences = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return \Google\Protobuf\RepeatedField
      */
     public function getAdaptiveMtSentences()
     {
@@ -60,7 +60,7 @@ class ListAdaptiveMtSentencesResponse extends \Google\Protobuf\Internal\Message
      * Output only. The list of AdaptiveMtSentences.
      *
      * Generated from protobuf field <code>repeated .google.cloud.translation.v3.AdaptiveMtSentence adaptive_mt_sentences = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Translate\V3\AdaptiveMtSentence>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Translate\V3\AdaptiveMtSentence>|\Google\Protobuf\RepeatedField $var
      * @return $this
      */
     public function setAdaptiveMtSentences($var)
@@ -98,4 +98,3 @@ class ListAdaptiveMtSentencesResponse extends \Google\Protobuf\Internal\Message
     }
 
 }
-

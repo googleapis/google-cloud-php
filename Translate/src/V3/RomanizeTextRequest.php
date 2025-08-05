@@ -5,8 +5,8 @@
 namespace Google\Cloud\Translate\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The request message for synchronous romanization.
@@ -81,7 +81,7 @@ class RomanizeTextRequest extends \Google\Protobuf\Internal\Message
      *           `projects/{project-number-or-id}`.
      *           For global calls, use `projects/{project-number-or-id}/locations/global` or
      *           `projects/{project-number-or-id}`.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $contents
+     *     @type array<string>|\Google\Protobuf\RepeatedField $contents
      *           Required. The content of the input in string format.
      *     @type string $source_language_code
      *           Optional. The ISO-639 language code of the input text if
@@ -138,7 +138,7 @@ class RomanizeTextRequest extends \Google\Protobuf\Internal\Message
      * Required. The content of the input in string format.
      *
      * Generated from protobuf field <code>repeated string contents = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return \Google\Protobuf\RepeatedField
      */
     public function getContents()
     {
@@ -149,7 +149,7 @@ class RomanizeTextRequest extends \Google\Protobuf\Internal\Message
      * Required. The content of the input in string format.
      *
      * Generated from protobuf field <code>repeated string contents = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\RepeatedField $var
      * @return $this
      */
     public function setContents($var)
@@ -199,4 +199,3 @@ class RomanizeTextRequest extends \Google\Protobuf\Internal\Message
     }
 
 }
-

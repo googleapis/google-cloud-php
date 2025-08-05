@@ -5,8 +5,8 @@
 namespace Google\Cloud\Translate\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response message for synchronous romanization.
@@ -30,7 +30,7 @@ class RomanizeTextResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Translate\V3\Romanization>|\Google\Protobuf\Internal\RepeatedField $romanizations
+     *     @type array<\Google\Cloud\Translate\V3\Romanization>|\Google\Protobuf\RepeatedField $romanizations
      *           Text romanization responses.
      *           This field has the same length as
      *           [`contents`][google.cloud.translation.v3.RomanizeTextRequest.contents].
@@ -47,7 +47,7 @@ class RomanizeTextResponse extends \Google\Protobuf\Internal\Message
      * [`contents`][google.cloud.translation.v3.RomanizeTextRequest.contents].
      *
      * Generated from protobuf field <code>repeated .google.cloud.translation.v3.Romanization romanizations = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return \Google\Protobuf\RepeatedField
      */
     public function getRomanizations()
     {
@@ -60,7 +60,7 @@ class RomanizeTextResponse extends \Google\Protobuf\Internal\Message
      * [`contents`][google.cloud.translation.v3.RomanizeTextRequest.contents].
      *
      * Generated from protobuf field <code>repeated .google.cloud.translation.v3.Romanization romanizations = 1;</code>
-     * @param array<\Google\Cloud\Translate\V3\Romanization>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Translate\V3\Romanization>|\Google\Protobuf\RepeatedField $var
      * @return $this
      */
     public function setRomanizations($var)
@@ -72,4 +72,3 @@ class RomanizeTextResponse extends \Google\Protobuf\Internal\Message
     }
 
 }
-

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Translate\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for ListModels.
@@ -36,7 +36,7 @@ class ListModelsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Translate\V3\Model>|\Google\Protobuf\Internal\RepeatedField $models
+     *     @type array<\Google\Cloud\Translate\V3\Model>|\Google\Protobuf\RepeatedField $models
      *           The models read.
      *     @type string $next_page_token
      *           A token to retrieve next page of results.
@@ -53,7 +53,7 @@ class ListModelsResponse extends \Google\Protobuf\Internal\Message
      * The models read.
      *
      * Generated from protobuf field <code>repeated .google.cloud.translation.v3.Model models = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return \Google\Protobuf\RepeatedField
      */
     public function getModels()
     {
@@ -64,7 +64,7 @@ class ListModelsResponse extends \Google\Protobuf\Internal\Message
      * The models read.
      *
      * Generated from protobuf field <code>repeated .google.cloud.translation.v3.Model models = 1;</code>
-     * @param array<\Google\Cloud\Translate\V3\Model>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Translate\V3\Model>|\Google\Protobuf\RepeatedField $var
      * @return $this
      */
     public function setModels($var)
@@ -106,4 +106,3 @@ class ListModelsResponse extends \Google\Protobuf\Internal\Message
     }
 
 }
-

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Translate\V3\AdaptiveMtTranslateRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configures which glossary is used for a specific target language and
@@ -154,5 +154,3 @@ class GlossaryConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-

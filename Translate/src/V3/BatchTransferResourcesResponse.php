@@ -5,8 +5,8 @@
 namespace Google\Cloud\Translate\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for BatchTransferResources.
@@ -28,7 +28,7 @@ class BatchTransferResourcesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Translate\V3\BatchTransferResourcesResponse\TransferResourceResponse>|\Google\Protobuf\Internal\RepeatedField $responses
+     *     @type array<\Google\Cloud\Translate\V3\BatchTransferResourcesResponse\TransferResourceResponse>|\Google\Protobuf\RepeatedField $responses
      *           Responses of the transfer for individual resources.
      * }
      */
@@ -41,7 +41,7 @@ class BatchTransferResourcesResponse extends \Google\Protobuf\Internal\Message
      * Responses of the transfer for individual resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.translation.v3.BatchTransferResourcesResponse.TransferResourceResponse responses = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return \Google\Protobuf\RepeatedField
      */
     public function getResponses()
     {
@@ -52,7 +52,7 @@ class BatchTransferResourcesResponse extends \Google\Protobuf\Internal\Message
      * Responses of the transfer for individual resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.translation.v3.BatchTransferResourcesResponse.TransferResourceResponse responses = 1;</code>
-     * @param array<\Google\Cloud\Translate\V3\BatchTransferResourcesResponse\TransferResourceResponse>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Translate\V3\BatchTransferResourcesResponse\TransferResourceResponse>|\Google\Protobuf\RepeatedField $var
      * @return $this
      */
     public function setResponses($var)
@@ -64,4 +64,3 @@ class BatchTransferResourcesResponse extends \Google\Protobuf\Internal\Message
     }
 
 }
-
