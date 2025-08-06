@@ -107,7 +107,7 @@ class StorageClient
      *           request. **Defaults to** `0` with REST and `60` with gRPC.
      *     @type int $retries Number of retries for a failed request.
      *           **Defaults to** `3`.
-     *     @type string $retryStrategy Retry strategy to signify that we never 
+     *     @type string $retryStrategy Retry strategy to signify that we never
      *           want to retry an operation even if the error is retryable.
      *           **Defaults to** `StorageClient::RETRY_IDEMPOTENT`.
      *     @type callable $restDelayFunction Executes a delay, defaults to
