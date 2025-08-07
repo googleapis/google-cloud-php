@@ -14,7 +14,7 @@ class Key
      * @param string $algorithm
      */
     public function __construct(
-        private $keyMaterial,
+        #[\SensitiveParameter] private $keyMaterial,
         private string $algorithm
     ) {
         if (

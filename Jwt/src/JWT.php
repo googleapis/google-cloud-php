@@ -95,7 +95,7 @@ class JWT
      */
     public static function decode(
         string $jwt,
-        $keyOrKeyArray,
+        #[\SensitiveParameter] $keyOrKeyArray,
         ?stdClass &$headers = null
     ): stdClass {
         // Validate JWT
@@ -208,7 +208,7 @@ class JWT
      */
     public static function encode(
         array $payload,
-        $key,
+        #[\SensitiveParameter] $key,
         string $alg,
         ?string $keyId = null,
         ?array $head = null
@@ -246,7 +246,7 @@ class JWT
      */
     public static function sign(
         string $msg,
-        $key,
+        #[\SensitiveParameter] $key,
         string $alg
     ): string {
         if (empty(static::$supported_algs[$alg])) {
@@ -313,7 +313,7 @@ class JWT
     private static function verify(
         string $msg,
         string $signature,
-        $keyMaterial,
+        #[\SensitiveParameter] $keyMaterial,
         string $alg
     ): bool {
         if (empty(static::$supported_algs[$alg])) {
@@ -467,7 +467,7 @@ class JWT
      * @return Key
      */
     private static function getKey(
-        $keyOrKeyArray,
+        #[\SensitiveParameter] $keyOrKeyArray,
         ?string $kid
     ): Key {
         if ($keyOrKeyArray instanceof Key) {
