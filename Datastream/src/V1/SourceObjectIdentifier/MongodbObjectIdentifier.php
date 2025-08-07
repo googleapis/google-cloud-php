@@ -9,11 +9,11 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Mysql data source object identifier.
+ * MongoDB data source object identifier.
  *
- * Generated from protobuf message <code>google.cloud.datastream.v1.SourceObjectIdentifier.MysqlObjectIdentifier</code>
+ * Generated from protobuf message <code>google.cloud.datastream.v1.SourceObjectIdentifier.MongodbObjectIdentifier</code>
  */
-class MysqlObjectIdentifier extends \Google\Protobuf\Internal\Message
+class MongodbObjectIdentifier extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The database name.
@@ -22,11 +22,11 @@ class MysqlObjectIdentifier extends \Google\Protobuf\Internal\Message
      */
     protected $database = '';
     /**
-     * Required. The table name.
+     * Required. The collection name.
      *
-     * Generated from protobuf field <code>string table = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string collection = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $table = '';
+    protected $collection = '';
 
     /**
      * Constructor.
@@ -36,8 +36,8 @@ class MysqlObjectIdentifier extends \Google\Protobuf\Internal\Message
      *
      *     @type string $database
      *           Required. The database name.
-     *     @type string $table
-     *           Required. The table name.
+     *     @type string $collection
+     *           Required. The collection name.
      * }
      */
     public function __construct($data = NULL) {
@@ -72,33 +72,31 @@ class MysqlObjectIdentifier extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The table name.
+     * Required. The collection name.
      *
-     * Generated from protobuf field <code>string table = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string collection = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
-    public function getTable()
+    public function getCollection()
     {
-        return $this->table;
+        return $this->collection;
     }
 
     /**
-     * Required. The table name.
+     * Required. The collection name.
      *
-     * Generated from protobuf field <code>string table = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string collection = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
-    public function setTable($var)
+    public function setCollection($var)
     {
         GPBUtil::checkString($var, True);
-        $this->table = $var;
+        $this->collection = $var;
 
         return $this;
     }
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(MysqlObjectIdentifier::class, \Google\Cloud\Datastream\V1\SourceObjectIdentifier_MysqlObjectIdentifier::class);
 
