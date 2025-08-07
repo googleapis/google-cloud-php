@@ -27,6 +27,8 @@ class GroundingChunk extends \Google\Protobuf\Internal\Message
      *           Grounding chunk from the web.
      *     @type \Google\Cloud\AIPlatform\V1\GroundingChunk\RetrievedContext $retrieved_context
      *           Grounding chunk from context retrieved by the retrieval tools.
+     *     @type \Google\Cloud\AIPlatform\V1\GroundingChunk\Maps $maps
+     *           Grounding chunk from Google Maps.
      * }
      */
     public function __construct($data = NULL) {
@@ -92,6 +94,37 @@ class GroundingChunk extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\GroundingChunk\RetrievedContext::class);
         $this->writeOneof(2, $var);
+
+        return $this;
+    }
+
+    /**
+     * Grounding chunk from Google Maps.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.GroundingChunk.Maps maps = 3;</code>
+     * @return \Google\Cloud\AIPlatform\V1\GroundingChunk\Maps|null
+     */
+    public function getMaps()
+    {
+        return $this->readOneof(3);
+    }
+
+    public function hasMaps()
+    {
+        return $this->hasOneof(3);
+    }
+
+    /**
+     * Grounding chunk from Google Maps.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.GroundingChunk.Maps maps = 3;</code>
+     * @param \Google\Cloud\AIPlatform\V1\GroundingChunk\Maps $var
+     * @return $this
+     */
+    public function setMaps($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\GroundingChunk\Maps::class);
+        $this->writeOneof(3, $var);
 
         return $this;
     }

@@ -19,9 +19,10 @@ class Metadata extends \Google\Protobuf\Internal\Message
      * Feature generation timestamp. Typically, it is provided by user at
      * feature ingestion time. If not, feature store
      * will use the system timestamp when the data is ingested into feature
-     * store. For streaming ingestion, the time, aligned by days, must be no
-     * older than five years (1825 days) and no later than one year (366 days)
-     * in the future.
+     * store.
+     * Legacy Feature Store: For streaming ingestion, the time, aligned by days,
+     * must be no older than five years (1825 days) and no later than one year
+     * (366 days) in the future.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp generate_time = 1;</code>
      */
@@ -37,9 +38,10 @@ class Metadata extends \Google\Protobuf\Internal\Message
      *           Feature generation timestamp. Typically, it is provided by user at
      *           feature ingestion time. If not, feature store
      *           will use the system timestamp when the data is ingested into feature
-     *           store. For streaming ingestion, the time, aligned by days, must be no
-     *           older than five years (1825 days) and no later than one year (366 days)
-     *           in the future.
+     *           store.
+     *           Legacy Feature Store: For streaming ingestion, the time, aligned by days,
+     *           must be no older than five years (1825 days) and no later than one year
+     *           (366 days) in the future.
      * }
      */
     public function __construct($data = NULL) {
@@ -51,9 +53,10 @@ class Metadata extends \Google\Protobuf\Internal\Message
      * Feature generation timestamp. Typically, it is provided by user at
      * feature ingestion time. If not, feature store
      * will use the system timestamp when the data is ingested into feature
-     * store. For streaming ingestion, the time, aligned by days, must be no
-     * older than five years (1825 days) and no later than one year (366 days)
-     * in the future.
+     * store.
+     * Legacy Feature Store: For streaming ingestion, the time, aligned by days,
+     * must be no older than five years (1825 days) and no later than one year
+     * (366 days) in the future.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp generate_time = 1;</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -77,9 +80,10 @@ class Metadata extends \Google\Protobuf\Internal\Message
      * Feature generation timestamp. Typically, it is provided by user at
      * feature ingestion time. If not, feature store
      * will use the system timestamp when the data is ingested into feature
-     * store. For streaming ingestion, the time, aligned by days, must be no
-     * older than five years (1825 days) and no later than one year (366 days)
-     * in the future.
+     * store.
+     * Legacy Feature Store: For streaming ingestion, the time, aligned by days,
+     * must be no older than five years (1825 days) and no later than one year
+     * (366 days) in the future.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp generate_time = 1;</code>
      * @param \Google\Protobuf\Timestamp $var

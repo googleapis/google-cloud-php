@@ -16,6 +16,13 @@ use Google\Protobuf\Internal\GPBUtil;
  */
 class EnterpriseWebSearch extends \Google\Protobuf\Internal\Message
 {
+    /**
+     * Optional. List of domains to be excluded from the search results.
+     * The default limit is 2000 domains.
+     *
+     * Generated from protobuf field <code>repeated string exclude_domains = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $exclude_domains;
 
     /**
      * Constructor.
@@ -23,11 +30,42 @@ class EnterpriseWebSearch extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $exclude_domains
+     *           Optional. List of domains to be excluded from the search results.
+     *           The default limit is 2000 domains.
      * }
      */
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Aiplatform\V1\Tool::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Optional. List of domains to be excluded from the search results.
+     * The default limit is 2000 domains.
+     *
+     * Generated from protobuf field <code>repeated string exclude_domains = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getExcludeDomains()
+    {
+        return $this->exclude_domains;
+    }
+
+    /**
+     * Optional. List of domains to be excluded from the search results.
+     * The default limit is 2000 domains.
+     *
+     * Generated from protobuf field <code>repeated string exclude_domains = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setExcludeDomains($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->exclude_domains = $arr;
+
+        return $this;
     }
 
 }
