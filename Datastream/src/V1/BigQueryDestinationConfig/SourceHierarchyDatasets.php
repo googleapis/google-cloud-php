@@ -22,6 +22,13 @@ class SourceHierarchyDatasets extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.datastream.v1.BigQueryDestinationConfig.SourceHierarchyDatasets.DatasetTemplate dataset_template = 2;</code>
      */
     protected $dataset_template = null;
+    /**
+     * Optional. The project id of the BigQuery dataset. If not specified, the
+     * project will be inferred from the stream resource.
+     *
+     * Generated from protobuf field <code>optional string project_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $project_id = null;
 
     /**
      * Constructor.
@@ -31,6 +38,9 @@ class SourceHierarchyDatasets extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Datastream\V1\BigQueryDestinationConfig\SourceHierarchyDatasets\DatasetTemplate $dataset_template
      *           The dataset template to use for dynamic dataset creation.
+     *     @type string $project_id
+     *           Optional. The project id of the BigQuery dataset. If not specified, the
+     *           project will be inferred from the stream resource.
      * }
      */
     public function __construct($data = NULL) {
@@ -70,6 +80,44 @@ class SourceHierarchyDatasets extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\BigQueryDestinationConfig\SourceHierarchyDatasets\DatasetTemplate::class);
         $this->dataset_template = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The project id of the BigQuery dataset. If not specified, the
+     * project will be inferred from the stream resource.
+     *
+     * Generated from protobuf field <code>optional string project_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getProjectId()
+    {
+        return isset($this->project_id) ? $this->project_id : '';
+    }
+
+    public function hasProjectId()
+    {
+        return isset($this->project_id);
+    }
+
+    public function clearProjectId()
+    {
+        unset($this->project_id);
+    }
+
+    /**
+     * Optional. The project id of the BigQuery dataset. If not specified, the
+     * project will be inferred from the stream resource.
+     *
+     * Generated from protobuf field <code>optional string project_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setProjectId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->project_id = $var;
 
         return $this;
     }
