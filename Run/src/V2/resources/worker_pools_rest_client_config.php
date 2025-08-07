@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,54 +22,99 @@
 
 return [
     'interfaces' => [
-        'google.cloud.run.v2.Revisions' => [
-            'DeleteRevision' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v2/{name=projects/*/locations/*/services/*/revisions/*}',
-                'additionalBindings' => [
-                    [
-                        'method' => 'delete',
-                        'uriTemplate' => '/v2/{name=projects/*/locations/*/workerPools/*/revisions/*}',
-                    ],
-                ],
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'GetRevision' => [
-                'method' => 'get',
-                'uriTemplate' => '/v2/{name=projects/*/locations/*/services/*/revisions/*}',
-                'additionalBindings' => [
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v2/{name=projects/*/locations/*/workerPools/*/revisions/*}',
-                    ],
-                ],
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'ListRevisions' => [
-                'method' => 'get',
-                'uriTemplate' => '/v2/{parent=projects/*/locations/*/services/*}/revisions',
-                'additionalBindings' => [
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v2/{parent=projects/*/locations/*/workerPools/*}/revisions',
-                    ],
-                ],
+        'google.cloud.run.v2.WorkerPools' => [
+            'CreateWorkerPool' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{parent=projects/*/locations/*}/workerPools',
+                'body' => 'worker_pool',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'worker_pool_id',
+                ],
+            ],
+            'DeleteWorkerPool' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v2/{name=projects/*/locations/*/workerPools/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetIamPolicy' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{resource=projects/*/locations/*/workerPools/*}:getIamPolicy',
+                'placeholders' => [
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+            ],
+            'GetWorkerPool' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{name=projects/*/locations/*/workerPools/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListWorkerPools' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{parent=projects/*/locations/*}/workerPools',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'SetIamPolicy' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{resource=projects/*/locations/*/workerPools/*}:setIamPolicy',
+                'body' => '*',
+                'placeholders' => [
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+            ],
+            'TestIamPermissions' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{resource=projects/*/locations/*/workerPools/*}:testIamPermissions',
+                'body' => '*',
+                'placeholders' => [
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateWorkerPool' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v2/{worker_pool.name=projects/*/locations/*/workerPools/*}',
+                'body' => 'worker_pool',
+                'placeholders' => [
+                    'worker_pool.name' => [
+                        'getters' => [
+                            'getWorkerPool',
+                            'getName',
                         ],
                     ],
                 ],

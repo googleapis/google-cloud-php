@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,11 +22,11 @@
 
 return [
     'interfaces' => [
-        'google.cloud.run.v2.Services' => [
-            'CreateService' => [
+        'google.cloud.run.v2.WorkerPools' => [
+            'CreateWorkerPool' => [
                 'longRunning' => [
-                    'operationReturnType' => '\Google\Cloud\Run\V2\Service',
-                    'metadataReturnType' => '\Google\Cloud\Run\V2\Service',
+                    'operationReturnType' => '\Google\Cloud\Run\V2\WorkerPool',
+                    'metadataReturnType' => '\Google\Cloud\Run\V2\WorkerPool',
                     'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',
                     'maxPollDelayMillis' => '5000',
@@ -43,10 +43,10 @@ return [
                     ],
                 ],
             ],
-            'DeleteService' => [
+            'DeleteWorkerPool' => [
                 'longRunning' => [
-                    'operationReturnType' => '\Google\Cloud\Run\V2\Service',
-                    'metadataReturnType' => '\Google\Cloud\Run\V2\Service',
+                    'operationReturnType' => '\Google\Cloud\Run\V2\WorkerPool',
+                    'metadataReturnType' => '\Google\Cloud\Run\V2\WorkerPool',
                     'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',
                     'maxPollDelayMillis' => '5000',
@@ -63,10 +63,10 @@ return [
                     ],
                 ],
             ],
-            'UpdateService' => [
+            'UpdateWorkerPool' => [
                 'longRunning' => [
-                    'operationReturnType' => '\Google\Cloud\Run\V2\Service',
-                    'metadataReturnType' => '\Google\Cloud\Run\V2\Service',
+                    'operationReturnType' => '\Google\Cloud\Run\V2\WorkerPool',
+                    'metadataReturnType' => '\Google\Cloud\Run\V2\WorkerPool',
                     'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',
                     'maxPollDelayMillis' => '5000',
@@ -77,7 +77,7 @@ return [
                     [
                         'keyName' => 'location',
                         'fieldAccessors' => [
-                            'getService',
+                            'getWorkerPool',
                             'getName',
                         ],
                         'matchers' => [],
@@ -96,9 +96,9 @@ return [
                     ],
                 ],
             ],
-            'GetService' => [
+            'GetWorkerPool' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
-                'responseType' => 'Google\Cloud\Run\V2\Service',
+                'responseType' => 'Google\Cloud\Run\V2\WorkerPool',
                 'headerParams' => [
                     [
                         'keyName' => 'location',
@@ -109,17 +109,17 @@ return [
                     ],
                 ],
             ],
-            'ListServices' => [
+            'ListWorkerPools' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
                     'requestPageTokenSetMethod' => 'setPageToken',
                     'requestPageSizeGetMethod' => 'getPageSize',
                     'requestPageSizeSetMethod' => 'setPageSize',
                     'responsePageTokenGetMethod' => 'getNextPageToken',
-                    'resourcesGetMethod' => 'getServices',
+                    'resourcesGetMethod' => 'getWorkerPools',
                 ],
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
-                'responseType' => 'Google\Cloud\Run\V2\ListServicesResponse',
+                'responseType' => 'Google\Cloud\Run\V2\ListWorkerPoolsResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'location',
@@ -155,8 +155,6 @@ return [
                 ],
             ],
             'templateMap' => [
-                'build' => 'projects/{project}/locations/{location}/builds/{build}',
-                'buildWorkerPool' => 'projects/{project}/locations/{location}/workerPools/{worker_pool}',
                 'connector' => 'projects/{project}/locations/{location}/connectors/{connector}',
                 'cryptoKey' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}',
                 'location' => 'projects/{project}/locations/{location}',
@@ -167,7 +165,7 @@ return [
                 'revision' => 'projects/{project}/locations/{location}/services/{service}/revisions/{revision}',
                 'secret' => 'projects/{project}/secrets/{secret}',
                 'secretVersion' => 'projects/{project}/secrets/{secret}/versions/{version}',
-                'service' => 'projects/{project}/locations/{location}/services/{service}',
+                'workerPool' => 'projects/{project}/locations/{location}/workerPools/{worker_pool}',
             ],
         ],
     ],

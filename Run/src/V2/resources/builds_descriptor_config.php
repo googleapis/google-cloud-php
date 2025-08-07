@@ -36,7 +36,7 @@ return [
                 ],
             ],
             'templateMap' => [
-                'workerPool' => 'projects/{project}/locations/{location}/workerPools/{worker_pool}',
+                'buildWorkerPool' => 'projects/{project}/locations/{location}/workerPools/{worker_pool}',
             ],
         ],
     ],

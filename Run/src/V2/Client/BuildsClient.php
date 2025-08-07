@@ -97,18 +97,18 @@ final class BuildsClient
     }
 
     /**
-     * Formats a string containing the fully-qualified path to represent a worker_pool
-     * resource.
+     * Formats a string containing the fully-qualified path to represent a
+     * build_worker_pool resource.
      *
      * @param string $project
      * @param string $location
      * @param string $workerPool
      *
-     * @return string The formatted worker_pool resource.
+     * @return string The formatted build_worker_pool resource.
      */
-    public static function workerPoolName(string $project, string $location, string $workerPool): string
+    public static function buildWorkerPoolName(string $project, string $location, string $workerPool): string
     {
-        return self::getPathTemplate('workerPool')->render([
+        return self::getPathTemplate('buildWorkerPool')->render([
             'project' => $project,
             'location' => $location,
             'worker_pool' => $workerPool,
@@ -119,7 +119,7 @@ final class BuildsClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
-     * - workerPool: projects/{project}/locations/{location}/workerPools/{worker_pool}
+     * - buildWorkerPool: projects/{project}/locations/{location}/workerPools/{worker_pool}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
