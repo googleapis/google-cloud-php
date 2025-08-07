@@ -66,7 +66,7 @@ class Name
      */
     const WEIGHTED_MAGLEV = 254930962;
     /**
-     * Per-endpoint weighted round-robin Load Balancing using weights computed from Backend reported Custom Metrics. If set, the Backend Service responses are expected to contain non-standard HTTP response header field X-Endpoint-Load-Metrics. The reported metrics to use for computing the weights are specified via the backends[].customMetrics fields.
+     * Per-endpoint weighted round-robin Load Balancing using weights computed from Backend reported Custom Metrics. If set, the Backend Service responses are expected to contain non-standard HTTP response header field Endpoint-Load-Metrics. The reported metrics to use for computing the weights are specified via the customMetrics fields.
      *
      * Generated from protobuf enum <code>WEIGHTED_ROUND_ROBIN = 5584977;</code>
      */
