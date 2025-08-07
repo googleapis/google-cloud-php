@@ -72,7 +72,7 @@ class StoragePool extends \Google\Protobuf\Internal\Message
      */
     private $performance_provisioning_type = null;
     /**
-     * Size, in GiB, of the storage pool. For more information about the size limits, see https://cloud.google.com/compute/docs/disks/storage-pools.
+     * Size of the storage pool in GiB. For more information about the size limits, see https://cloud.google.com/compute/docs/disks/storage-pools.
      *
      * Generated from protobuf field <code>optional int64 pool_provisioned_capacity_gb = 478537682;</code>
      */
@@ -84,7 +84,7 @@ class StoragePool extends \Google\Protobuf\Internal\Message
      */
     private $pool_provisioned_iops = null;
     /**
-     * Provisioned throughput of the storage pool. Only relevant if the storage pool type is hyperdisk-balanced or hyperdisk-throughput.
+     * Provisioned throughput of the storage pool in MiB/s. Only relevant if the storage pool type is hyperdisk-balanced or hyperdisk-throughput.
      *
      * Generated from protobuf field <code>optional int64 pool_provisioned_throughput = 169215640;</code>
      */
@@ -160,11 +160,11 @@ class StoragePool extends \Google\Protobuf\Internal\Message
      *           Provisioning type of the performance-related parameters of the pool, such as throughput and IOPS.
      *           Check the PerformanceProvisioningType enum for the list of possible values.
      *     @type int|string $pool_provisioned_capacity_gb
-     *           Size, in GiB, of the storage pool. For more information about the size limits, see https://cloud.google.com/compute/docs/disks/storage-pools.
+     *           Size of the storage pool in GiB. For more information about the size limits, see https://cloud.google.com/compute/docs/disks/storage-pools.
      *     @type int|string $pool_provisioned_iops
      *           Provisioned IOPS of the storage pool. Only relevant if the storage pool type is hyperdisk-balanced.
      *     @type int|string $pool_provisioned_throughput
-     *           Provisioned throughput of the storage pool. Only relevant if the storage pool type is hyperdisk-balanced or hyperdisk-throughput.
+     *           Provisioned throughput of the storage pool in MiB/s. Only relevant if the storage pool type is hyperdisk-balanced or hyperdisk-throughput.
      *     @type \Google\Cloud\Compute\V1\StoragePoolResourceStatus $resource_status
      *           [Output Only] Status information for the storage pool resource.
      *     @type string $self_link
@@ -506,7 +506,7 @@ class StoragePool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Size, in GiB, of the storage pool. For more information about the size limits, see https://cloud.google.com/compute/docs/disks/storage-pools.
+     * Size of the storage pool in GiB. For more information about the size limits, see https://cloud.google.com/compute/docs/disks/storage-pools.
      *
      * Generated from protobuf field <code>optional int64 pool_provisioned_capacity_gb = 478537682;</code>
      * @return int|string
@@ -527,7 +527,7 @@ class StoragePool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Size, in GiB, of the storage pool. For more information about the size limits, see https://cloud.google.com/compute/docs/disks/storage-pools.
+     * Size of the storage pool in GiB. For more information about the size limits, see https://cloud.google.com/compute/docs/disks/storage-pools.
      *
      * Generated from protobuf field <code>optional int64 pool_provisioned_capacity_gb = 478537682;</code>
      * @param int|string $var
@@ -578,7 +578,7 @@ class StoragePool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Provisioned throughput of the storage pool. Only relevant if the storage pool type is hyperdisk-balanced or hyperdisk-throughput.
+     * Provisioned throughput of the storage pool in MiB/s. Only relevant if the storage pool type is hyperdisk-balanced or hyperdisk-throughput.
      *
      * Generated from protobuf field <code>optional int64 pool_provisioned_throughput = 169215640;</code>
      * @return int|string
@@ -599,7 +599,7 @@ class StoragePool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Provisioned throughput of the storage pool. Only relevant if the storage pool type is hyperdisk-balanced or hyperdisk-throughput.
+     * Provisioned throughput of the storage pool in MiB/s. Only relevant if the storage pool type is hyperdisk-balanced or hyperdisk-throughput.
      *
      * Generated from protobuf field <code>optional int64 pool_provisioned_throughput = 169215640;</code>
      * @param int|string $var
