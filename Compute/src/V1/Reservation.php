@@ -16,6 +16,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class Reservation extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Advanced control for cluster management, applicable only to DENSE deployment type reservations.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ReservationAdvancedDeploymentControl advanced_deployment_control = 410618144;</code>
+     */
+    private $advanced_deployment_control = null;
+    /**
      * Reservation for aggregated resources, providing shape flexibility.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.AllocationAggregateReservation aggregate_reservation = 291567948;</code>
@@ -163,6 +169,8 @@ class Reservation extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type \Google\Cloud\Compute\V1\ReservationAdvancedDeploymentControl $advanced_deployment_control
+     *           Advanced control for cluster management, applicable only to DENSE deployment type reservations.
      *     @type \Google\Cloud\Compute\V1\AllocationAggregateReservation $aggregate_reservation
      *           Reservation for aggregated resources, providing shape flexibility.
      *     @type string $commitment
@@ -217,6 +225,42 @@ class Reservation extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Compute\V1\Compute::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Advanced control for cluster management, applicable only to DENSE deployment type reservations.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ReservationAdvancedDeploymentControl advanced_deployment_control = 410618144;</code>
+     * @return \Google\Cloud\Compute\V1\ReservationAdvancedDeploymentControl|null
+     */
+    public function getAdvancedDeploymentControl()
+    {
+        return $this->advanced_deployment_control;
+    }
+
+    public function hasAdvancedDeploymentControl()
+    {
+        return isset($this->advanced_deployment_control);
+    }
+
+    public function clearAdvancedDeploymentControl()
+    {
+        unset($this->advanced_deployment_control);
+    }
+
+    /**
+     * Advanced control for cluster management, applicable only to DENSE deployment type reservations.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ReservationAdvancedDeploymentControl advanced_deployment_control = 410618144;</code>
+     * @param \Google\Cloud\Compute\V1\ReservationAdvancedDeploymentControl $var
+     * @return $this
+     */
+    public function setAdvancedDeploymentControl($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\ReservationAdvancedDeploymentControl::class);
+        $this->advanced_deployment_control = $var;
+
+        return $this;
     }
 
     /**

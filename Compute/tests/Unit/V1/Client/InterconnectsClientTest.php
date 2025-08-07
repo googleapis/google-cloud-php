@@ -204,6 +204,7 @@ class InterconnectsClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
+        $aaiEnabled = false;
         $adminEnabled = false;
         $creationTimestamp = 'creationTimestamp567396278';
         $customerName = 'customerName-2143818164';
@@ -228,6 +229,7 @@ class InterconnectsClientTest extends GeneratedTest
         $selfLink = 'selfLink-1691268851';
         $state = 'state109757585';
         $expectedResponse = new Interconnect();
+        $expectedResponse->setAaiEnabled($aaiEnabled);
         $expectedResponse->setAdminEnabled($adminEnabled);
         $expectedResponse->setCreationTimestamp($creationTimestamp);
         $expectedResponse->setCustomerName($customerName);

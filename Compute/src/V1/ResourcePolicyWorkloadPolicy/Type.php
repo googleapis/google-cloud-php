@@ -7,6 +7,7 @@ namespace Google\Cloud\Compute\V1\ResourcePolicyWorkloadPolicy;
 use UnexpectedValueException;
 
 /**
+ * Specifies the intent of the instance placement in the MIG.
  *
  * Protobuf type <code>google.cloud.compute.v1.ResourcePolicyWorkloadPolicy.Type</code>
  */
@@ -19,13 +20,13 @@ class Type
      */
     const UNDEFINED_TYPE = 0;
     /**
-     * VMs will be provisioned in such a way which provides high availability.
+     * MIG spreads out the instances as much as possible for high availability.
      *
      * Generated from protobuf enum <code>HIGH_AVAILABILITY = 409487576;</code>
      */
     const HIGH_AVAILABILITY = 409487576;
     /**
-     * VMs will be provisioned in such a way which provides high throughput.
+     * MIG provisions instances as close to each other as possible for high throughput.
      *
      * Generated from protobuf enum <code>HIGH_THROUGHPUT = 146499815;</code>
      */

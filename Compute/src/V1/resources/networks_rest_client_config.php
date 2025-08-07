@@ -161,6 +161,23 @@ return [
                     ],
                 ],
             ],
+            'RequestRemovePeering' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/global/networks/{network}/requestRemovePeering',
+                'body' => 'networks_request_remove_peering_request_resource',
+                'placeholders' => [
+                    'network' => [
+                        'getters' => [
+                            'getNetwork',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
             'SwitchToCustomMode' => [
                 'method' => 'post',
                 'uriTemplate' => '/compute/v1/projects/{project}/global/networks/{network}/switchToCustomMode',

@@ -91,6 +91,8 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
      */
     private $status = null;
     /**
+     * Resource policy for defining instance placement for MIGs.
+     *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourcePolicyWorkloadPolicy workload_policy = 114721530;</code>
      */
     private $workload_policy = null;
@@ -127,6 +129,7 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
      *           [Output Only] The status of resource policy creation.
      *           Check the Status enum for the list of possible values.
      *     @type \Google\Cloud\Compute\V1\ResourcePolicyWorkloadPolicy $workload_policy
+     *           Resource policy for defining instance placement for MIGs.
      * }
      */
     public function __construct($data = NULL) {
@@ -597,6 +600,8 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Resource policy for defining instance placement for MIGs.
+     *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourcePolicyWorkloadPolicy workload_policy = 114721530;</code>
      * @return \Google\Cloud\Compute\V1\ResourcePolicyWorkloadPolicy|null
      */
@@ -616,6 +621,8 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Resource policy for defining instance placement for MIGs.
+     *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourcePolicyWorkloadPolicy workload_policy = 114721530;</code>
      * @param \Google\Cloud\Compute\V1\ResourcePolicyWorkloadPolicy $var
      * @return $this

@@ -7,6 +7,7 @@ namespace Google\Cloud\Compute\V1\ResourcePolicyWorkloadPolicy;
 use UnexpectedValueException;
 
 /**
+ * Specifies the maximum distance between instances.
  *
  * Protobuf type <code>google.cloud.compute.v1.ResourcePolicyWorkloadPolicy.MaxTopologyDistance</code>
  */
