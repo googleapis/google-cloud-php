@@ -20,6 +20,12 @@ class Type
      */
     const UNDEFINED_TYPE = 0;
     /**
+     * Multiple maintenance types in one window. This is only intended to be used for groups.
+     *
+     * Generated from protobuf enum <code>MULTIPLE = 362714640;</code>
+     */
+    const MULTIPLE = 362714640;
+    /**
      * Scheduled maintenance (e.g. maintenance after uptime guarantee is complete).
      *
      * Generated from protobuf enum <code>SCHEDULED = 478400653;</code>
@@ -40,6 +46,7 @@ class Type
 
     private static $valueToName = [
         self::UNDEFINED_TYPE => 'UNDEFINED_TYPE',
+        self::MULTIPLE => 'MULTIPLE',
         self::SCHEDULED => 'SCHEDULED',
         self::UNKNOWN_TYPE => 'UNKNOWN_TYPE',
         self::UNSCHEDULED => 'UNSCHEDULED',

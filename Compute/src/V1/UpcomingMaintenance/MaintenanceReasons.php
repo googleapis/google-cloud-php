@@ -84,6 +84,18 @@ class MaintenanceReasons
      * Generated from protobuf enum <code>MAINTENANCE_REASON_UNKNOWN = 50570235;</code>
      */
     const MAINTENANCE_REASON_UNKNOWN = 50570235;
+    /**
+     * Maintenance due to planned network update.
+     *
+     * Generated from protobuf enum <code>PLANNED_NETWORK_UPDATE = 135494677;</code>
+     */
+    const PLANNED_NETWORK_UPDATE = 135494677;
+    /**
+     * Maintenance due to planned update to the instance.
+     *
+     * Generated from protobuf enum <code>PLANNED_UPDATE = 161733572;</code>
+     */
+    const PLANNED_UPDATE = 161733572;
 
     private static $valueToName = [
         self::UNDEFINED_MAINTENANCE_REASONS => 'UNDEFINED_MAINTENANCE_REASONS',
@@ -98,6 +110,8 @@ class MaintenanceReasons
         self::FAILURE_NVLINK => 'FAILURE_NVLINK',
         self::INFRASTRUCTURE_RELOCATION => 'INFRASTRUCTURE_RELOCATION',
         self::MAINTENANCE_REASON_UNKNOWN => 'MAINTENANCE_REASON_UNKNOWN',
+        self::PLANNED_NETWORK_UPDATE => 'PLANNED_NETWORK_UPDATE',
+        self::PLANNED_UPDATE => 'PLANNED_UPDATE',
     ];
 
     public static function name($value)
