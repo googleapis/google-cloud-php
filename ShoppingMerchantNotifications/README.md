@@ -36,9 +36,9 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 
 ```php
 Google\ApiCore\ApiException;
-Google\Shopping\Merchant\Notifications\V1beta\Client\NotificationsApiServiceClient;
-Google\Shopping\Merchant\Notifications\V1beta\GetNotificationSubscriptionRequest;
-Google\Shopping\Merchant\Notifications\V1beta\NotificationSubscription;
+Google\Shopping\Merchant\Notifications\V1\Client\NotificationsApiServiceClient;
+Google\Shopping\Merchant\Notifications\V1\GetNotificationSubscriptionRequest;
+Google\Shopping\Merchant\Notifications\V1\NotificationSubscription;
 
 // Create a client.
 $notificationsApiServiceClient = new NotificationsApiServiceClient();
