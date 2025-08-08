@@ -380,8 +380,8 @@ class StorageClientTest extends TestCase
 
         return [
             $mockHandler,
-            function (\Psr\Http\Message\RequestInterface $request, array $options) use ($guzzleClient) {
-                return $guzzleClient->send($request, $options);
+            function (\Psr\Http\Message\RequestInterface $request) use ($guzzleClient) {
+                return $guzzleClient->send($request);
             }
         ];
     }
