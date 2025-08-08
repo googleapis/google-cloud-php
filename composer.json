@@ -284,7 +284,7 @@
         "google/shopping-merchant-notifications": "0.2.1",
         "google/shopping-merchant-ordertracking": "0.1.1",
         "google/shopping-merchant-products": "0.6.1",
-        "google/shopping-merchant-promotions": "0.2.1",
+        "google/shopping-merchant-promotions": "0.0.0",
         "google/shopping-merchant-quota": "0.2.1",
         "google/shopping-merchant-reports": "0.9.1",
         "google/shopping-merchant-reviews": "0.4.0",
