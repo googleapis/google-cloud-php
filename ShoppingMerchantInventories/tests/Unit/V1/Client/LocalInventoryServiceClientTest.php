@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,7 +20,7 @@
  * This file was automatically generated - do not edit!
  */
 
-namespace Google\Shopping\Merchant\Inventories\Tests\Unit\V1beta\Client;
+namespace Google\Shopping\Merchant\Inventories\Tests\Unit\V1\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
@@ -28,12 +28,12 @@ use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
-use Google\Shopping\Merchant\Inventories\V1beta\Client\LocalInventoryServiceClient;
-use Google\Shopping\Merchant\Inventories\V1beta\DeleteLocalInventoryRequest;
-use Google\Shopping\Merchant\Inventories\V1beta\InsertLocalInventoryRequest;
-use Google\Shopping\Merchant\Inventories\V1beta\ListLocalInventoriesRequest;
-use Google\Shopping\Merchant\Inventories\V1beta\ListLocalInventoriesResponse;
-use Google\Shopping\Merchant\Inventories\V1beta\LocalInventory;
+use Google\Shopping\Merchant\Inventories\V1\Client\LocalInventoryServiceClient;
+use Google\Shopping\Merchant\Inventories\V1\DeleteLocalInventoryRequest;
+use Google\Shopping\Merchant\Inventories\V1\InsertLocalInventoryRequest;
+use Google\Shopping\Merchant\Inventories\V1\ListLocalInventoriesRequest;
+use Google\Shopping\Merchant\Inventories\V1\ListLocalInventoriesResponse;
+use Google\Shopping\Merchant\Inventories\V1\LocalInventory;
 use stdClass;
 
 /**
@@ -86,7 +86,7 @@ class LocalInventoryServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame(
-            '/google.shopping.merchant.inventories.v1beta.LocalInventoryService/DeleteLocalInventory',
+            '/google.shopping.merchant.inventories.v1.LocalInventoryService/DeleteLocalInventory',
             $actualFuncCall
         );
         $actualValue = $actualRequestObject->getName();
@@ -143,20 +143,10 @@ class LocalInventoryServiceClientTest extends GeneratedTest
         $name = 'name3373707';
         $account = 1177318867;
         $storeCode = 'storeCode921424523';
-        $availability = 'availability1997542747';
-        $quantity = 1285004149;
-        $pickupMethod = 'pickupMethod-950845436';
-        $pickupSla = 'pickupSla-964667163';
-        $instoreProductLocation = 'instoreProductLocation-243942392';
         $expectedResponse = new LocalInventory();
         $expectedResponse->setName($name);
         $expectedResponse->setAccount($account);
         $expectedResponse->setStoreCode($storeCode);
-        $expectedResponse->setAvailability($availability);
-        $expectedResponse->setQuantity($quantity);
-        $expectedResponse->setPickupMethod($pickupMethod);
-        $expectedResponse->setPickupSla($pickupSla);
-        $expectedResponse->setInstoreProductLocation($instoreProductLocation);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->productName('[ACCOUNT]', '[PRODUCT]');
@@ -171,7 +161,7 @@ class LocalInventoryServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame(
-            '/google.shopping.merchant.inventories.v1beta.LocalInventoryService/InsertLocalInventory',
+            '/google.shopping.merchant.inventories.v1.LocalInventoryService/InsertLocalInventory',
             $actualFuncCall
         );
         $actualValue = $actualRequestObject->getParent();
@@ -250,7 +240,7 @@ class LocalInventoryServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame(
-            '/google.shopping.merchant.inventories.v1beta.LocalInventoryService/ListLocalInventories',
+            '/google.shopping.merchant.inventories.v1.LocalInventoryService/ListLocalInventories',
             $actualFuncCall
         );
         $actualValue = $actualRequestObject->getParent();
@@ -315,7 +305,7 @@ class LocalInventoryServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame(
-            '/google.shopping.merchant.inventories.v1beta.LocalInventoryService/DeleteLocalInventory',
+            '/google.shopping.merchant.inventories.v1.LocalInventoryService/DeleteLocalInventory',
             $actualFuncCall
         );
         $actualValue = $actualRequestObject->getName();
