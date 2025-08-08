@@ -276,7 +276,7 @@
         "google/maps-routeoptimization": "0.4.1",
         "google/shopping-common-protos": "0.4.1",
         "google/shopping-css": "0.6.2",
-        "google/shopping-merchant-accounts": "0.9.1",
+        "google/shopping-merchant-accounts": "0.0.0",
         "google/shopping-merchant-conversions": "0.2.1",
         "google/shopping-merchant-datasources": "0.5.1",
         "google/shopping-merchant-inventories": "0.6.1",
