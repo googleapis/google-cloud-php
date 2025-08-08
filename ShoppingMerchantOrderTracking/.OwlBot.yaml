@@ -1,4 +1,4 @@
 deep-copy-regex:
-    - source: /google/shopping/merchant/ordertracking/(v1beta)/.*-php/(.*)
+    - source: /google/shopping/merchant/ordertracking/(v1)/.*-php/(.*)
       dest: /owl-bot-staging/ShoppingMerchantOrderTracking/$1/$2
 api-name: ShoppingMerchantOrderTracking
