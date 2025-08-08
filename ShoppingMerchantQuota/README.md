@@ -4,7 +4,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/google/shopping-merchant-quota/v/stable)](https://packagist.org/packages/google/shopping-merchant-quota) [![Packagist](https://img.shields.io/packagist/dm/google/shopping-merchant-quota.svg)](https://packagist.org/packages/google/shopping-merchant-quota)
 
-* [API documentation](https://developers.google.com/merchant/api/reference/rpc/google.shopping.merchant.quota.v1beta)
+* [API documentation](https://cloud.google.com/php/docs/reference/shopping-merchant-quota/latest)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to
@@ -37,9 +37,9 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ```php
 Google\ApiCore\ApiException;
 Google\ApiCore\PagedListResponse;
-Google\Shopping\Merchant\Quota\V1beta\Client\QuotaServiceClient;
-Google\Shopping\Merchant\Quota\V1beta\ListQuotaGroupsRequest;
-Google\Shopping\Merchant\Quota\V1beta\QuotaGroup;
+Google\Shopping\Merchant\Quota\V1\Client\QuotaServiceClient;
+Google\Shopping\Merchant\Quota\V1\ListQuotaGroupsRequest;
+Google\Shopping\Merchant\Quota\V1\QuotaGroup;
 
 // Create a client.
 $quotaServiceClient = new QuotaServiceClient();
