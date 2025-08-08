@@ -1,6 +1,6 @@
-# Google Shopping Merchant DataSources for PHP
+# Google Shopping Merchant Data Sources for PHP
 
-> Idiomatic PHP client for [Google Shopping Merchant DataSources](https://developers.google.com/merchant/api).
+> Idiomatic PHP client for [Google Shopping Merchant Data Sources](https://developers.google.com/merchant/api).
 
 [![Latest Stable Version](https://poser.pugx.org/google/shopping-merchant-datasources/v/stable)](https://packagist.org/packages/google/shopping-merchant-datasources) [![Packagist](https://img.shields.io/packagist/dm/google/shopping-merchant-datasources.svg)](https://packagist.org/packages/google/shopping-merchant-datasources)
 
@@ -36,9 +36,9 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 
 ```php
 Google\ApiCore\ApiException;
-Google\Shopping\Merchant\DataSources\V1beta\Client\DataSourcesServiceClient;
-Google\Shopping\Merchant\DataSources\V1beta\DataSource;
-Google\Shopping\Merchant\DataSources\V1beta\GetDataSourceRequest;
+Google\Shopping\Merchant\DataSources\V1\Client\DataSourcesServiceClient;
+Google\Shopping\Merchant\DataSources\V1\DataSource;
+Google\Shopping\Merchant\DataSources\V1\GetDataSourceRequest;
 
 // Create a client.
 $dataSourcesServiceClient = new DataSourcesServiceClient();
