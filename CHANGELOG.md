@@ -1,5 +1,57 @@
 # Changelog
 
+## 0.298.0
+
+<details><summary>google/cloud-ai-platform 1.34.0</summary>
+
+
+
+### Features
+
+* [AiPlatform] add Grounding with Google Maps tool ([#8491](https://github.com/googleapis/google-cloud-php/issues/8491)) ([92966c7](https://github.com/googleapis/google-cloud-php/commit/92966c701a4738e37b3857c0ca476676c9900466))
+
+</details>
+
+<details><summary>google/cloud-bigtable 2.17.0</summary>
+
+
+
+### Features
+
+* [Bigtable] add tags field to Instance proto (stable branch) ([#8494](https://github.com/googleapis/google-cloud-php/issues/8494)) ([247d5e4](https://github.com/googleapis/google-cloud-php/commit/247d5e476bcab7b540b92d05bc2747800e10046d))
+
+</details>
+
+<details><summary>google/cloud-compute 1.34.0</summary>
+
+
+
+### Features
+
+* [Compute] Update Compute Engine v1 API to revision 20250728 ([#1081](https://github.com/googleapis/google-cloud-php/issues/1081)) ([#8495](https://github.com/googleapis/google-cloud-php/issues/8495)) ([3e4b2e8](https://github.com/googleapis/google-cloud-php/commit/3e4b2e8ac84e6c56e2ebf518b4109be6cae95718))
+
+</details>
+
+<details><summary>google/cloud-datastream 2.4.0</summary>
+
+
+
+### Features
+
+* [Datastream] Add new field `salesforce_org` to message `DiscoverConnectionProfileRequest` ([#8496](https://github.com/googleapis/google-cloud-php/issues/8496)) ([a8ccdd8](https://github.com/googleapis/google-cloud-php/commit/a8ccdd8cb85da9b4e94a7d617ab1429c0a70b3d7))
+
+</details>
+
+<details><summary>google/shopping-merchant-conversions 0.3.0</summary>
+
+
+
+### Features
+
+* [ShoppingMerchantConversions] add conversions API client libraries for v1 ([#8490](https://github.com/googleapis/google-cloud-php/issues/8490)) ([9c2f1fe](https://github.com/googleapis/google-cloud-php/commit/9c2f1fe7fb0a0fff0d4a56877672f2cc689978f7))
+
+</details>
+
 ## 0.297.0
 
 <details><summary>google/cloud-ai-platform 1.33.0</summary>
