@@ -491,7 +491,7 @@ class StorageClientTest extends TestCase
             self::getSuccessfulObjectsResponse(), // This should not be reached
         ])[1];
 
-        $this->client = new StorageClient([[
+        $this->client = new StorageClient([
             'projectId' => self::PROJECT,
             // Mock the authHttpHandler so it doesn't make a real request
             'httpHandler' => $httpHandler,
@@ -521,7 +521,7 @@ class StorageClientTest extends TestCase
             self::getCreateBucketSuccessResponse(),
         ])[1];
 
-        $this->client = new StorageClient([[
+        $this->client = new StorageClient([
             'projectId' => self::PROJECT,
             'retryStrategy' => StorageClient::RETRY_ALWAYS,
             // Mock the authHttpHandler so it doesn't make a real request
@@ -548,7 +548,7 @@ class StorageClientTest extends TestCase
             $capturedDelays[] = $delay;
         };
 
-        $this->client = new StorageClient([[
+        $this->client = new StorageClient([
             'projectId' => self::PROJECT,
             'retries' => 2,
             'restCalcDelayFunction' => $restCalcDelayFunction,
