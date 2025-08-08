@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/shopping/merchant/issueresolution/(v1)/.*-php/(.*)
+      dest: /owl-bot-staging/ShoppingMerchantIssueResolution/$1/$2
+api-name: ShoppingMerchantIssueResolution
