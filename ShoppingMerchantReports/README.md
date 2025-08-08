@@ -76,4 +76,4 @@ This component is considered alpha. As such, it is still a work-in-progress and 
 
 ### Next Steps
 
-1. Understand the [official documentation](https://developers.google.com/merchant/api/reference/rest).
+1. Understand the [official documentation](https://developers.google.com/merchant/api).
