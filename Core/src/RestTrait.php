@@ -95,6 +95,8 @@ trait RestTrait
             'requestTimeout',
             'restRetryFunction',
             'restRetryListener',
+            'restDelayFunction',
+            'restCalcDelayFunction',
         ], $options);
 
         try {
