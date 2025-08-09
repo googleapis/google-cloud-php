@@ -5,8 +5,8 @@
 namespace Google\Cloud\Translate\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An AdaptiveMtTranslate response.
@@ -41,11 +41,11 @@ class AdaptiveMtTranslateResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Translate\V3\AdaptiveMtTranslation>|\Google\Protobuf\Internal\RepeatedField $translations
+     *     @type array<\Google\Cloud\Translate\V3\AdaptiveMtTranslation>|\Google\Protobuf\RepeatedField $translations
      *           Output only. The translation.
      *     @type string $language_code
      *           Output only. The translation's language code.
-     *     @type array<\Google\Cloud\Translate\V3\AdaptiveMtTranslation>|\Google\Protobuf\Internal\RepeatedField $glossary_translations
+     *     @type array<\Google\Cloud\Translate\V3\AdaptiveMtTranslation>|\Google\Protobuf\RepeatedField $glossary_translations
      *           Text translation response if a glossary is provided in the request. This
      *           could be the same as 'translation' above if no terms apply.
      * }
@@ -59,7 +59,7 @@ class AdaptiveMtTranslateResponse extends \Google\Protobuf\Internal\Message
      * Output only. The translation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.translation.v3.AdaptiveMtTranslation translations = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return \Google\Protobuf\RepeatedField
      */
     public function getTranslations()
     {
@@ -70,7 +70,7 @@ class AdaptiveMtTranslateResponse extends \Google\Protobuf\Internal\Message
      * Output only. The translation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.translation.v3.AdaptiveMtTranslation translations = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Translate\V3\AdaptiveMtTranslation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Translate\V3\AdaptiveMtTranslation>|\Google\Protobuf\RepeatedField $var
      * @return $this
      */
     public function setTranslations($var)
@@ -112,7 +112,7 @@ class AdaptiveMtTranslateResponse extends \Google\Protobuf\Internal\Message
      * could be the same as 'translation' above if no terms apply.
      *
      * Generated from protobuf field <code>repeated .google.cloud.translation.v3.AdaptiveMtTranslation glossary_translations = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return \Google\Protobuf\RepeatedField
      */
     public function getGlossaryTranslations()
     {
@@ -124,7 +124,7 @@ class AdaptiveMtTranslateResponse extends \Google\Protobuf\Internal\Message
      * could be the same as 'translation' above if no terms apply.
      *
      * Generated from protobuf field <code>repeated .google.cloud.translation.v3.AdaptiveMtTranslation glossary_translations = 4;</code>
-     * @param array<\Google\Cloud\Translate\V3\AdaptiveMtTranslation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Translate\V3\AdaptiveMtTranslation>|\Google\Protobuf\RepeatedField $var
      * @return $this
      */
     public function setGlossaryTranslations($var)
@@ -136,4 +136,3 @@ class AdaptiveMtTranslateResponse extends \Google\Protobuf\Internal\Message
     }
 
 }
-

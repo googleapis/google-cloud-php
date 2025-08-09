@@ -5,8 +5,8 @@
 namespace Google\Cloud\Translate\V3\AdaptiveMtTranslateRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A list of reference sentence pairs.
@@ -28,7 +28,7 @@ class ReferenceSentencePairList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Translate\V3\AdaptiveMtTranslateRequest\ReferenceSentencePair>|\Google\Protobuf\Internal\RepeatedField $reference_sentence_pairs
+     *     @type array<\Google\Cloud\Translate\V3\AdaptiveMtTranslateRequest\ReferenceSentencePair>|\Google\Protobuf\RepeatedField $reference_sentence_pairs
      *           Reference sentence pairs.
      * }
      */
@@ -41,7 +41,7 @@ class ReferenceSentencePairList extends \Google\Protobuf\Internal\Message
      * Reference sentence pairs.
      *
      * Generated from protobuf field <code>repeated .google.cloud.translation.v3.AdaptiveMtTranslateRequest.ReferenceSentencePair reference_sentence_pairs = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return \Google\Protobuf\RepeatedField
      */
     public function getReferenceSentencePairs()
     {
@@ -52,7 +52,7 @@ class ReferenceSentencePairList extends \Google\Protobuf\Internal\Message
      * Reference sentence pairs.
      *
      * Generated from protobuf field <code>repeated .google.cloud.translation.v3.AdaptiveMtTranslateRequest.ReferenceSentencePair reference_sentence_pairs = 1;</code>
-     * @param array<\Google\Cloud\Translate\V3\AdaptiveMtTranslateRequest\ReferenceSentencePair>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Translate\V3\AdaptiveMtTranslateRequest\ReferenceSentencePair>|\Google\Protobuf\RepeatedField $var
      * @return $this
      */
     public function setReferenceSentencePairs($var)
@@ -64,5 +64,3 @@ class ReferenceSentencePairList extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-

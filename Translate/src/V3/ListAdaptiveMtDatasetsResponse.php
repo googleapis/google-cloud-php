@@ -5,8 +5,8 @@
 namespace Google\Cloud\Translate\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A list of AdaptiveMtDatasets.
@@ -36,7 +36,7 @@ class ListAdaptiveMtDatasetsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Translate\V3\AdaptiveMtDataset>|\Google\Protobuf\Internal\RepeatedField $adaptive_mt_datasets
+     *     @type array<\Google\Cloud\Translate\V3\AdaptiveMtDataset>|\Google\Protobuf\RepeatedField $adaptive_mt_datasets
      *           Output only. A list of Adaptive MT datasets.
      *     @type string $next_page_token
      *           Optional. A token to retrieve a page of results. Pass this value in the
@@ -53,7 +53,7 @@ class ListAdaptiveMtDatasetsResponse extends \Google\Protobuf\Internal\Message
      * Output only. A list of Adaptive MT datasets.
      *
      * Generated from protobuf field <code>repeated .google.cloud.translation.v3.AdaptiveMtDataset adaptive_mt_datasets = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return \Google\Protobuf\RepeatedField
      */
     public function getAdaptiveMtDatasets()
     {
@@ -64,7 +64,7 @@ class ListAdaptiveMtDatasetsResponse extends \Google\Protobuf\Internal\Message
      * Output only. A list of Adaptive MT datasets.
      *
      * Generated from protobuf field <code>repeated .google.cloud.translation.v3.AdaptiveMtDataset adaptive_mt_datasets = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Translate\V3\AdaptiveMtDataset>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Translate\V3\AdaptiveMtDataset>|\Google\Protobuf\RepeatedField $var
      * @return $this
      */
     public function setAdaptiveMtDatasets($var)
@@ -106,4 +106,3 @@ class ListAdaptiveMtDatasetsResponse extends \Google\Protobuf\Internal\Message
     }
 
 }
-

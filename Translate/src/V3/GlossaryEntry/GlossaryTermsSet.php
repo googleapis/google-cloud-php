@@ -5,8 +5,8 @@
 namespace Google\Cloud\Translate\V3\GlossaryEntry;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a single entry for an equivalent term set glossary. This is used
@@ -31,7 +31,7 @@ class GlossaryTermsSet extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Translate\V3\GlossaryTerm>|\Google\Protobuf\Internal\RepeatedField $terms
+     *     @type array<\Google\Cloud\Translate\V3\GlossaryTerm>|\Google\Protobuf\RepeatedField $terms
      *           Each term in the set represents a term that can be replaced by the other
      *           terms.
      * }
@@ -46,7 +46,7 @@ class GlossaryTermsSet extends \Google\Protobuf\Internal\Message
      * terms.
      *
      * Generated from protobuf field <code>repeated .google.cloud.translation.v3.GlossaryTerm terms = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return \Google\Protobuf\RepeatedField
      */
     public function getTerms()
     {
@@ -58,7 +58,7 @@ class GlossaryTermsSet extends \Google\Protobuf\Internal\Message
      * terms.
      *
      * Generated from protobuf field <code>repeated .google.cloud.translation.v3.GlossaryTerm terms = 1;</code>
-     * @param array<\Google\Cloud\Translate\V3\GlossaryTerm>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Translate\V3\GlossaryTerm>|\Google\Protobuf\RepeatedField $var
      * @return $this
      */
     public function setTerms($var)
@@ -70,5 +70,3 @@ class GlossaryTermsSet extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-

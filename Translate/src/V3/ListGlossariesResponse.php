@@ -5,8 +5,8 @@
 namespace Google\Cloud\Translate\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for ListGlossaries.
@@ -36,7 +36,7 @@ class ListGlossariesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Translate\V3\Glossary>|\Google\Protobuf\Internal\RepeatedField $glossaries
+     *     @type array<\Google\Cloud\Translate\V3\Glossary>|\Google\Protobuf\RepeatedField $glossaries
      *           The list of glossaries for a project.
      *     @type string $next_page_token
      *           A token to retrieve a page of results. Pass this value in the
@@ -53,7 +53,7 @@ class ListGlossariesResponse extends \Google\Protobuf\Internal\Message
      * The list of glossaries for a project.
      *
      * Generated from protobuf field <code>repeated .google.cloud.translation.v3.Glossary glossaries = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return \Google\Protobuf\RepeatedField
      */
     public function getGlossaries()
     {
@@ -64,7 +64,7 @@ class ListGlossariesResponse extends \Google\Protobuf\Internal\Message
      * The list of glossaries for a project.
      *
      * Generated from protobuf field <code>repeated .google.cloud.translation.v3.Glossary glossaries = 1;</code>
-     * @param array<\Google\Cloud\Translate\V3\Glossary>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Translate\V3\Glossary>|\Google\Protobuf\RepeatedField $var
      * @return $this
      */
     public function setGlossaries($var)
@@ -106,4 +106,3 @@ class ListGlossariesResponse extends \Google\Protobuf\Internal\Message
     }
 
 }
-

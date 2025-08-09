@@ -5,8 +5,8 @@
 namespace Google\Cloud\Translate\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for listing all Adaptive MT datasets that the requestor has
@@ -210,4 +210,3 @@ class ListAdaptiveMtDatasetsRequest extends \Google\Protobuf\Internal\Message
     }
 
 }
-
