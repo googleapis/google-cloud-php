@@ -26,7 +26,7 @@ jobs:
                     composerflags: "--prefer-lowest"
         name: "PHP ${{ matrix.php }} Unit Test ${{ matrix.extensions }}${{ matrix.composerflags }}"
         steps:
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@v5
             - name: Setup PHP
               uses: shivammathur/setup-php@v2
               with:
