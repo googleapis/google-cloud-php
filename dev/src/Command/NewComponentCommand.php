@@ -36,6 +36,7 @@ use Twig\Loader\FilesystemLoader;
 use Twig\Environment;
 use RuntimeException;
 use Exception;
+use Google\Cloud\Dev\Component;
 
 /**
  * Add a Component
@@ -97,6 +98,19 @@ class NewComponentCommand extends Command
         $protoFile = file_exists($proto) ? substr($proto, strpos($proto, 'google/')) : $proto;
         $new = NewComponent::fromProto($this->loadProtoContent($proto), $protoFile);
         $new->componentPath = $this->rootPath;
+
+        $existingComponent = null;
+        if ($components = Component::getComponents([$new->componentName])) {
+            // component already exists
+            $existingComponent = array_pop($components);
+            $output->writeln(''); // blank line
+            if (!$this->getHelper('question')->ask($input, $output, new ConfirmationQuestion(
+                sprintf('Component %s already exists. Overwrite it? [Y/n]', $existingComponent->name),
+                'Y'
+            ))) {
+                return 0;
+            }
+        }
 
         $output->writeln(''); // blank line
         $output->writeln(sprintf('Your package (%s) will have the following info:', $protoFile));
