@@ -39,6 +39,7 @@ class UpdateComponentCommandTest extends TestCase
     private const OWLBOT_PHP_IMAGE = 'gcr.io/fake-owlbot-image/owlbot-php';
     private const OWLBOT_PHP_DIGEST = 'sha256:12345';
     private const OWLBOT_CLI_IMAGE = 'gcr.io/cloud-devrel-public-resources/owlbot-cli:latest';
+    private const DEFAULT_TIMEOUT = 60;
 
     public static function setUpBeforeClass(): void
     {
@@ -90,7 +91,7 @@ class UpdateComponentCommandTest extends TestCase
         $this->expectExceptionMessage('Error: Docker is not available.');
 
         $runProcess = $this->prophesize(RunProcess::class);
-        $runProcess->execute(['which', 'docker'], null, 60)
+        $runProcess->execute(['which', 'docker'], null, self::DEFAULT_TIMEOUT)
             ->shouldBeCalledOnce()
             ->willReturn('');
 
@@ -110,7 +111,7 @@ class UpdateComponentCommandTest extends TestCase
         $this->expectExceptionMessage('Component \'NonExistantComponent\' not found.');
 
         $runProcess = $this->prophesize(RunProcess::class);
-        $runProcess->execute(['which', 'docker'], null, 60)
+        $runProcess->execute(['which', 'docker'], null, self::DEFAULT_TIMEOUT)
             ->shouldBeCalledOnce()
             ->willReturn('/path/to/docker');
 
@@ -128,7 +129,7 @@ class UpdateComponentCommandTest extends TestCase
             '-printf',
             '%f\n'
         ];
-        $runProcess->execute($findComponentCommand, null, 60)
+        $runProcess->execute($findComponentCommand, null, self::DEFAULT_TIMEOUT)
             ->shouldBeCalledOnce()
             ->willReturn('');
 
@@ -147,7 +148,7 @@ class UpdateComponentCommandTest extends TestCase
         $googleapisGenPath = self::$tmpDir;
 
         $runProcess = $this->prophesize(RunProcess::class);
-        $runProcess->execute(['which', 'docker'])
+        $runProcess->execute(['which', 'docker'], null, self::DEFAULT_TIMEOUT)
             ->shouldBeCalledOnce()
             ->willReturn('/path/to/docker');
         $findComponentCommand = [
@@ -165,7 +166,7 @@ class UpdateComponentCommandTest extends TestCase
             '%f\n'
         ];
 
-        $runProcess->execute($findComponentCommand)
+        $runProcess->execute($findComponentCommand, null, self::DEFAULT_TIMEOUT)
             ->shouldBeCalledOnce()
             ->willReturn(self::COMPONENT_NAME);
 
@@ -185,7 +186,9 @@ class UpdateComponentCommandTest extends TestCase
             sprintf('--config-file=%s/.OwlBot.yaml', self::COMPONENT_NAME)
         ];
 
-        $runProcess->execute($copyCodeCommand)->shouldBeCalledOnce()->willReturn('');
+        $runProcess->execute($copyCodeCommand, null, self::DEFAULT_TIMEOUT)
+            ->shouldBeCalledOnce()
+            ->willReturn('');
 
         $copyBazelBinCommand = [
             'docker', 'run', '--rm',
@@ -198,9 +201,13 @@ class UpdateComponentCommandTest extends TestCase
             '--source-dir', '/bazel-bin',
             '--dest', '/repo'
         ];
-        $runProcess->execute($copyBazelBinCommand)->shouldBeCalledOnce()->willReturn('');
+        $runProcess->execute($copyBazelBinCommand, null, self::DEFAULT_TIMEOUT)
+            ->shouldBeCalledOnce()
+            ->willReturn('');
 
-        $runProcess->execute(['docker', 'pull', $owlbotPhpImage])->shouldBeCalledOnce()->willReturn('');
+        $runProcess->execute(['docker', 'pull', $owlbotPhpImage], null, self::DEFAULT_TIMEOUT)
+            ->shouldBeCalledOnce()
+            ->willReturn('');
 
         $postProcessCommand = [
             'docker', 'run', '--rm',
@@ -209,7 +216,9 @@ class UpdateComponentCommandTest extends TestCase
             '-w', '/repo',
             $owlbotPhpImage
         ];
-        $runProcess->execute($postProcessCommand)->shouldBeCalledOnce()->willReturn('');
+        $runProcess->execute($postProcessCommand, null, self::DEFAULT_TIMEOUT)
+            ->shouldBeCalledOnce()
+            ->willReturn('');
 
         $application = new Application();
         $application->add(new UpdateComponentCommand(self::$tmpDir, $runProcess->reveal()));
