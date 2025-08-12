@@ -94,7 +94,8 @@ class NewComponentCommand extends Command
                 'timeout',
                 null,
                 InputOption::VALUE_REQUIRED,
-                'The timeout limit for executing commands in seconds. Defaults to 60.'
+                'The timeout limit for executing commands in seconds. Defaults to 60.',
+                60
             );
     }
 

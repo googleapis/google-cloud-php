@@ -226,4 +226,22 @@ class UpdateComponentCommandTest extends TestCase
             $commandTester->getDisplay()
         );
     }
+
+    public function testNewComponentErrorsWithNonNumericTimeout()
+    {
+        $this->expectException(RuntimeException::class);
+        $this->expectExceptionMessage('Error: The timeout option must be a positive integer');
+
+        $application = new Application();
+        $application->add(new NewComponentCommand(self::$tmpDir));
+
+        $commandTester = new CommandTester($application->get('update-component'));
+        $commandTester->setInputs([
+            'Y' // Does this information look correct? [Y/n]
+        ]);
+        $commandTester->execute([
+            'component' => self::COMPONENT_NAME,
+            '--timeout' => 'not-a-number',
+        ]);
+    }
 }
