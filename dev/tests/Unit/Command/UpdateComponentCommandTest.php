@@ -90,7 +90,7 @@ class UpdateComponentCommandTest extends TestCase
         $this->expectExceptionMessage('Error: Docker is not available.');
 
         $runProcess = $this->prophesize(RunProcess::class);
-        $runProcess->execute(['which', 'docker'])
+        $runProcess->execute(['which', 'docker'], null, 60)
             ->shouldBeCalledOnce()
             ->willReturn('');
 
@@ -110,7 +110,7 @@ class UpdateComponentCommandTest extends TestCase
         $this->expectExceptionMessage('Component \'NonExistantComponent\' not found.');
 
         $runProcess = $this->prophesize(RunProcess::class);
-        $runProcess->execute(['which', 'docker'])
+        $runProcess->execute(['which', 'docker'], null, 60)
             ->shouldBeCalledOnce()
             ->willReturn('/path/to/docker');
 
@@ -128,7 +128,7 @@ class UpdateComponentCommandTest extends TestCase
             '-printf',
             '%f\n'
         ];
-        $runProcess->execute($findComponentCommand)
+        $runProcess->execute($findComponentCommand, null, 60)
             ->shouldBeCalledOnce()
             ->willReturn('');
 
@@ -233,7 +233,7 @@ class UpdateComponentCommandTest extends TestCase
         $this->expectExceptionMessage('Error: The timeout option must be a positive integer');
 
         $application = new Application();
-        $application->add(new NewComponentCommand(self::$tmpDir));
+        $application->add(new UpdateComponentCommand(self::$tmpDir));
 
         $commandTester = new CommandTester($application->get('update-component'));
         $commandTester->setInputs([
