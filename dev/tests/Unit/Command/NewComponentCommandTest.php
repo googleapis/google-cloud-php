@@ -23,7 +23,6 @@ use Google\Cloud\Dev\Composer;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
-use RuntimeException;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Tester\CommandTester;
@@ -226,7 +225,7 @@ class NewComponentCommandTest extends TestCase
 
     public function testNewComponentErrorsWithNonNumericTimeout()
     {
-        $this->expectException(RuntimeException::class);
+        $this->expectException(\RuntimeException::class);
         $this->expectExceptionMessage('Error: The timeout option must be a positive integer');
 
         $application = new Application();

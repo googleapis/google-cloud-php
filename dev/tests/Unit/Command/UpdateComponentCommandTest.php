@@ -227,9 +227,9 @@ class UpdateComponentCommandTest extends TestCase
         );
     }
 
-    public function testNewComponentErrorsWithNonNumericTimeout()
+    public function testUpdateComponentErrorsWithNonNumericTimeout()
     {
-        $this->expectException(RuntimeException::class);
+        $this->expectException(\RuntimeException::class);
         $this->expectExceptionMessage('Error: The timeout option must be a positive integer');
 
         $application = new Application();
