@@ -49,7 +49,8 @@ class ReasoningEngineSpec extends \Google\Protobuf\Internal\Message
     private $class_methods;
     /**
      * Optional. The OSS agent framework used to develop the agent.
-     * Currently supported values: "langchain", "langgraph", "ag2", "custom".
+     * Currently supported values: "google-adk", "langchain", "langgraph", "ag2",
+     * "llama-index", "custom".
      *
      * Generated from protobuf field <code>string agent_framework = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -79,7 +80,8 @@ class ReasoningEngineSpec extends \Google\Protobuf\Internal\Message
      *           format.
      *     @type string $agent_framework
      *           Optional. The OSS agent framework used to develop the agent.
-     *           Currently supported values: "langchain", "langgraph", "ag2", "custom".
+     *           Currently supported values: "google-adk", "langchain", "langgraph", "ag2",
+     *           "llama-index", "custom".
      * }
      */
     public function __construct($data = NULL) {
@@ -239,7 +241,8 @@ class ReasoningEngineSpec extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The OSS agent framework used to develop the agent.
-     * Currently supported values: "langchain", "langgraph", "ag2", "custom".
+     * Currently supported values: "google-adk", "langchain", "langgraph", "ag2",
+     * "llama-index", "custom".
      *
      * Generated from protobuf field <code>string agent_framework = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -251,7 +254,8 @@ class ReasoningEngineSpec extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The OSS agent framework used to develop the agent.
-     * Currently supported values: "langchain", "langgraph", "ag2", "custom".
+     * Currently supported values: "google-adk", "langchain", "langgraph", "ag2",
+     * "llama-index", "custom".
      *
      * Generated from protobuf field <code>string agent_framework = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
