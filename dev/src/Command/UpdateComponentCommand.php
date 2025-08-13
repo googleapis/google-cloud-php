@@ -105,15 +105,6 @@ class UpdateComponentCommand extends Command
 
         // Find components to update
         $components = Component::getComponents($componentName ? [$componentName] : []);
-
-        if (empty($components)) {
-            if ($componentName) {
-                throw new RuntimeException("Component '$componentName' not found.");
-            } else {
-                throw new RuntimeException("No components found.");
-            }
-        }
-
         foreach ($components as $component) {
             $componentName = $component->getName();
             $output->writeln("\n<info>Running Owlbot in $componentName</info>");

@@ -82,6 +82,8 @@ class NewVersionCommand extends Command
     {
         $componentName = $input->getArgument('component');
         $version = $input->getArgument('version');
+
+        // Ensure component exists
         $components = Component::getComponents([$componentName]);
         if (empty($components)) {
             throw new RuntimeException("Component '$componentName' not found.");
