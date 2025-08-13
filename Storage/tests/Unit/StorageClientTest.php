@@ -357,7 +357,7 @@ class StorageClientTest extends TestCase
         ];
     }
 
-    public static function getSuccessfulObjectsResponse()
+    private static function getSuccessfulObjectsResponse()
     {
         return new Response(
             200,
