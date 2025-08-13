@@ -41,6 +41,7 @@ class UpdateComponentCommand extends Command
 
     private $rootPath;
     private RunProcess $runProcess;
+    private int $timeout;
 
     /**
      * @param string $rootPath The path to the repository root directory.
@@ -68,6 +69,13 @@ class UpdateComponentCommand extends Command
                 InputOption::VALUE_REQUIRED,
                 'Path to googleapis-gen repo',
                 $this->rootPath . '/../googleapis-gen'
+            )
+            ->addOption(
+                'timeout',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'The timeout limit for executing commands in seconds. Defaults to 60.',
+                120
             );
     }
 
@@ -75,6 +83,15 @@ class UpdateComponentCommand extends Command
     {
         $componentName = $input->getArgument('component');
         $googleApisGenDir = realpath($input->getOption('googleapis-gen-path'));
+        $unsafeTimeout = $input->getOption('timeout');
+
+        if (!is_numeric($unsafeTimeout)) {
+            throw new RuntimeException(
+                'Error: The timeout option must be a positive integer'
+            );
+        }
+
+        $this->timeout = (int) $unsafeTimeout;
 
         if (!$googleApisGenDir) {
             throw new RuntimeException(
@@ -138,7 +155,7 @@ class UpdateComponentCommand extends Command
         $command[] = '-printf';
         $command[] = '%f\n';
 
-        $output = $this->runProcess->execute($command);
+        $output = $this->runProcess->execute($command, null, $this->timeout);
 
         // Filter to only include directories that start with an uppercase letter
         $components = array_filter(
@@ -173,7 +190,7 @@ class UpdateComponentCommand extends Command
             sprintf('--config-file=%s/.OwlBot.yaml', $componentName)
         ];
 
-        return $this->runProcess->execute($command);
+        return $this->runProcess->execute($command, null, $this->timeout);
     }
 
     /**
@@ -199,7 +216,7 @@ class UpdateComponentCommand extends Command
             '--dest', '/repo'
         ];
 
-        return $this->runProcess->execute($command);
+        return $this->runProcess->execute($command, null, $this->timeout);
     }
 
     /**
@@ -216,7 +233,7 @@ class UpdateComponentCommand extends Command
         $command = [
             'docker', 'pull', $owlbotPhpImage
         ];
-        $this->runProcess->execute($command);
+        $this->runProcess->execute($command, null, $this->timeout);
 
         $command = [
             'docker', 'run', '--rm',
@@ -226,7 +243,7 @@ class UpdateComponentCommand extends Command
             $owlbotPhpImage
         ];
 
-        return $this->runProcess->execute($command);
+        return $this->runProcess->execute($command, null, $this->timeout);
     }
 
     /**
@@ -237,7 +254,7 @@ class UpdateComponentCommand extends Command
     private function checkDockerAvailable(): void
     {
         $command = ['which', 'docker'];
-        $output = $this->runProcess->execute($command);
+        $output = $this->runProcess->execute($command, null, $this->timeout);
 
         if (strlen($output) == 0) {
             throw new RuntimeException('Error: Docker is not available.');

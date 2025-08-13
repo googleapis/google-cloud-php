@@ -246,6 +246,24 @@ class NewComponentCommandTest extends TestCase
         );
     }
 
+    public function testNewComponentErrorsWithNonNumericTimeout()
+    {
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('Error: The timeout option must be a positive integer');
+
+        $application = new Application();
+        $application->add(new NewComponentCommand(self::$tmpDir));
+
+        $commandTester = new CommandTester($application->get('new-component'));
+        $commandTester->setInputs([
+            'Y' // Does this information look correct? [Y/n]
+        ]);
+        $commandTester->execute([
+            'proto' => 'google/cloud/secretmanager/v1/service.proto',
+            '--timeout' => 'not-a-number'
+        ]);
+    }
+
     private function assertComposerJson(string $componentName)
     {
         $composerPath = sprintf('%s/../../fixtures/component/%s/composer.json', __DIR__, $componentName);

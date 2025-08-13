@@ -89,6 +89,13 @@ class NewComponentCommand extends Command
                 null,
                 InputOption::VALUE_NONE,
                 'Do not run the update-component command after adding the component skeleton'
+            )
+            ->addOption(
+                'timeout',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'The timeout limit for executing commands in seconds. Defaults to 60.',
+                120
             );
     }
 
@@ -111,6 +118,14 @@ class NewComponentCommand extends Command
                 return 0;
             }
         }
+
+        $unsafeTimeout = $input->getOption('timeout');
+        if (!is_numeric($unsafeTimeout)) {
+            throw new RuntimeException(
+                'Error: The timeout option must be a positive integer'
+            );
+        }
+        $timeout = (int) $unsafeTimeout;
 
         $output->writeln(''); // blank line
         $output->writeln(sprintf('Your package (%s) will have the following info:', $protoFile));
@@ -225,7 +240,10 @@ class NewComponentCommand extends Command
         $composer->createComponentComposer($new->displayName, $new->githubRepo);
 
         if (!$input->getOption('no-update-component')) {
-            $args = ['component' => $new->componentName];
+            $args = [
+                'component' => $new->componentName,
+                '--timeout' => $timeout,
+            ];
             if (!$this->getApplication()->has('update-component')) {
                 throw new \RuntimeException(
                     'Application does not have an update-component command. '

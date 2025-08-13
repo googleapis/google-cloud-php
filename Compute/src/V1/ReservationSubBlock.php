@@ -28,6 +28,12 @@ class ReservationSubBlock extends \Google\Protobuf\Internal\Message
      */
     private $creation_timestamp = null;
     /**
+     * [Output Only] Health information for the reservation subBlock.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ReservationSubBlockHealthInfo health_info = 235287729;</code>
+     */
+    private $health_info = null;
+    /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -99,6 +105,8 @@ class ReservationSubBlock extends \Google\Protobuf\Internal\Message
      *           [Output Only] The number of hosts that are allocated in this reservation subBlock.
      *     @type string $creation_timestamp
      *           [Output Only] Creation timestamp in RFC3339 text format.
+     *     @type \Google\Cloud\Compute\V1\ReservationSubBlockHealthInfo $health_info
+     *           [Output Only] Health information for the reservation subBlock.
      *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *     @type int $in_use_count
@@ -195,6 +203,42 @@ class ReservationSubBlock extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->creation_timestamp = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] Health information for the reservation subBlock.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ReservationSubBlockHealthInfo health_info = 235287729;</code>
+     * @return \Google\Cloud\Compute\V1\ReservationSubBlockHealthInfo|null
+     */
+    public function getHealthInfo()
+    {
+        return $this->health_info;
+    }
+
+    public function hasHealthInfo()
+    {
+        return isset($this->health_info);
+    }
+
+    public function clearHealthInfo()
+    {
+        unset($this->health_info);
+    }
+
+    /**
+     * [Output Only] Health information for the reservation subBlock.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ReservationSubBlockHealthInfo health_info = 235287729;</code>
+     * @param \Google\Cloud\Compute\V1\ReservationSubBlockHealthInfo $var
+     * @return $this
+     */
+    public function setHealthInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\ReservationSubBlockHealthInfo::class);
+        $this->health_info = $var;
 
         return $this;
     }

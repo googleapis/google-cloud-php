@@ -111,9 +111,9 @@ jobs:
               SUBREPO=$(cat $COMPONENT/composer.json | jq -r '.extra.component.target')
               echo "New component found: $COMPONENT"
               if curl --head --silent --fail "https://api.github.com/repos/$SUBREPO" -H 'Authorization: Bearer ${{secrets.SPLIT_TOKEN}}' > /dev/null; then
-                  echo " - Target Repo '$SUBREPO' exists"
+                  echo "✅ Target Repo '$SUBREPO' exists"
               else
-                  echo " - Target Repo '$SUBREPO' DOES NOT EXIST"
+                  echo "❌ Target Repo '$SUBREPO' DOES NOT EXIST"
                   FAIL="true"
               fi
             fi

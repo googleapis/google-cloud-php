@@ -1,6 +1,7 @@
 name: System Tests
 on:
-  pull_request:
+  # This is failing because we don't have a service account key
+  # they need to be moved to kokoro instead
   workflow_dispatch:
 jobs:
   # Run system tests on the release PR

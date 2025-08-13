@@ -51,6 +51,12 @@ class ListUsableSubnetworksRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional bool return_partial_success = 517198390;</code>
      */
     private $return_partial_success = null;
+    /**
+     * The project id or project number in which the subnetwork is intended to be used. Only applied for Shared VPC. See [Shared VPC documentation](https://cloud.google.com/vpc/docs/shared-vpc/)
+     *
+     * Generated from protobuf field <code>optional string service_project = 530592655;</code>
+     */
+    private $service_project = null;
 
     /**
      * @param string $project Project ID for this request.
@@ -83,6 +89,8 @@ class ListUsableSubnetworksRequest extends \Google\Protobuf\Internal\Message
      *           Project ID for this request.
      *     @type bool $return_partial_success
      *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false. For example, when partial success behavior is enabled, aggregatedList for a single zone scope either returns all resources in the zone or no resources, with an error code.
+     *     @type string $service_project
+     *           The project id or project number in which the subnetwork is intended to be used. Only applied for Shared VPC. See [Shared VPC documentation](https://cloud.google.com/vpc/docs/shared-vpc/)
      * }
      */
     public function __construct($data = NULL) {
@@ -292,6 +300,42 @@ class ListUsableSubnetworksRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->return_partial_success = $var;
+
+        return $this;
+    }
+
+    /**
+     * The project id or project number in which the subnetwork is intended to be used. Only applied for Shared VPC. See [Shared VPC documentation](https://cloud.google.com/vpc/docs/shared-vpc/)
+     *
+     * Generated from protobuf field <code>optional string service_project = 530592655;</code>
+     * @return string
+     */
+    public function getServiceProject()
+    {
+        return isset($this->service_project) ? $this->service_project : '';
+    }
+
+    public function hasServiceProject()
+    {
+        return isset($this->service_project);
+    }
+
+    public function clearServiceProject()
+    {
+        unset($this->service_project);
+    }
+
+    /**
+     * The project id or project number in which the subnetwork is intended to be used. Only applied for Shared VPC. See [Shared VPC documentation](https://cloud.google.com/vpc/docs/shared-vpc/)
+     *
+     * Generated from protobuf field <code>optional string service_project = 530592655;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setServiceProject($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->service_project = $var;
 
         return $this;
     }
