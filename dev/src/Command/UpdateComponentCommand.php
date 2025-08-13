@@ -26,6 +26,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Yaml\Yaml;
 use RuntimeException;
 use Exception;
+use Google\Cloud\Dev\Component;
 
 /**
  * Update Component Command
@@ -103,7 +104,7 @@ class UpdateComponentCommand extends Command
         $this->checkDockerAvailable();
 
         // Find components to update
-        $components = $this->findComponents($componentName);
+        $components = Component::getComponents($componentName ? [$componentName] : []);
 
         if (empty($components)) {
             if ($componentName) {
@@ -114,16 +115,17 @@ class UpdateComponentCommand extends Command
         }
 
         foreach ($components as $component) {
-            $output->writeln("\n<info>Running Owlbot in $component</info>");
+            $componentName = $component->getName();
+            $output->writeln("\n<info>Running Owlbot in $componentName</info>");
 
             // Copy code from googleapis-gen
             $output->writeln("Copying code from googleapis-gen...");
-            $result = $this->owlbotCopyCode($component, $googleApisGenDir);
+            $result = $this->owlbotCopyCode($componentName, $googleApisGenDir);
             $output->writeln($result);
 
             // Copy bazel-bin files
             $output->writeln("Copying bazel-bin files...");
-            $result = $this->owlbotCopyBazelBin($component, $googleApisGenDir);
+            $result = $this->owlbotCopyBazelBin($componentName, $googleApisGenDir);
             $output->writeln($result);
         }
 
@@ -135,35 +137,6 @@ class UpdateComponentCommand extends Command
         $output->writeln("\n<info>Component update completed successfully!</info>");
 
         return Command::SUCCESS;
-    }
-
-    /**
-     * Find components to update based on the provided component name.
-     *
-     * @param string|null $componentName Optional component name to filter by.
-     * @return array List of component names to update.
-     */
-    private function findComponents(?string $componentName): array
-    {
-        $command = ['find', $this->rootPath, '-mindepth', '1', '-maxdepth', '1', '-type', 'd'];
-
-        if ($componentName) {
-            $command[] = '-name';
-            $command[] = $componentName;
-        }
-
-        $command[] = '-printf';
-        $command[] = '%f\n';
-
-        $output = $this->runProcess->execute($command, null, $this->timeout);
-
-        // Filter to only include directories that start with an uppercase letter
-        $components = array_filter(
-            explode("\n", $output),
-            fn($dir) => $dir && preg_match('/^[A-Z]/', $dir)
-        );
-
-        return $components;
     }
 
     /**

@@ -58,24 +58,18 @@ class NewComponentCommand extends Command
         'phpunit.xml.dist.twig',
         'README.md.twig',
     ];
-    private const BAZEL_VERSION = '6.0.0';
-    private const OWLBOT_CLI_IMAGE = 'gcr.io/cloud-devrel-public-resources/owlbot-cli:latest';
-    private const OWLBOT_PHP_IMAGE = 'gcr.io/cloud-devrel-public-resources/owlbot-php:latest';
 
     private $rootPath;
     private $httpClient;
-    private RunProcess $runProcess;
 
     /**
      * @param string $rootPath The path to the repository root directory.
      * @param Client $httpClient specify the HTTP client, useful for tests.
-     * @param RunProcess $runProcess Instance to execute Symfony Process commands, useful for tests.
      */
-    public function __construct($rootPath, ?Client $httpClient = null, ?RunProcess $runProcess = null)
+    public function __construct($rootPath, ?Client $httpClient = null)
     {
         $this->rootPath = realpath($rootPath);
         $this->httpClient = $httpClient ?: new Client();
-        $this->runProcess = $runProcess ?: new RunProcess();
         parent::__construct();
     }
 
