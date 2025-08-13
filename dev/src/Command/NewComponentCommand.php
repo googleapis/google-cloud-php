@@ -105,7 +105,7 @@ class NewComponentCommand extends Command
             $existingComponent = array_pop($components);
             $output->writeln(''); // blank line
             if (!$this->getHelper('question')->ask($input, $output, new ConfirmationQuestion(
-                sprintf('Component %s already exists. Overwrite it? [Y/n]', $existingComponent->name),
+                sprintf('Component %s already exists. Overwrite it? [Y/n]', $existingComponent->getName()),
                 'Y'
             ))) {
                 return 0;
