@@ -372,7 +372,7 @@ class StorageClientTest extends TestCase
         );
     }
 
-    public static function getHttpHandlerMock($mockResponses)
+    private static function getHttpHandlerMock($mockResponses)
     {
         $mockHandler = new MockHandler($mockResponses);
         $handlerStack = HandlerStack::create($mockHandler);
@@ -395,30 +395,27 @@ class StorageClientTest extends TestCase
         $expectedRemainingResponses,
         $exceptionClass = null
     ) {
-        list($mockHandler, $httpHandler) = self::getHttpHandlerMock($mockResponses);
+        [$mockHandler, $httpHandler] = self::getHttpHandlerMock($mockResponses);
 
-        $this->client = TestHelpers::stub(
-            StorageClient::class,
-            [[
-                'projectId' => self::PROJECT,
-                'retries' => $retries,
-                // Mock the authHttpHandler so it doesn't make a real request
-                'httpHandler' => $httpHandler,
-                // Mock the authHttpHandler so it doesn't make a real request
-                'authHttpHandler' => function () {
-                    return new Response(200, [], '{"access_token": "abc"}');
-                },
-                // Mock the delay function so the tests execute faster
-                'restDelayFunction' => function () {
-                },
-            ]]
-        );
+        $client = new StorageClient([
+            'projectId' => self::PROJECT,
+            'retries' => $retries,
+            // Mock the authHttpHandler so it doesn't make a real request
+            'httpHandler' => $httpHandler,
+            // Mock the authHttpHandler so it doesn't make a real request
+            'authHttpHandler' => function () {
+                return new Response(200, [], '{"access_token": "abc"}');
+            },
+            // Mock the delay function so the tests execute faster
+            'restDelayFunction' => function () {
+            },
+        ]);
 
         if ($exceptionClass) {
             $this->expectException($exceptionClass);
         }
 
-        $objects = iterator_to_array($this->client->bucket('myBucket')->objects());
+        $objects = iterator_to_array($client->bucket('myBucket')->objects());
         
         $this->assertEquals('file.txt', $objects[0]->name());
         $this->assertEquals($expectedRemainingResponses, $mockHandler->count());
@@ -498,25 +495,22 @@ class StorageClientTest extends TestCase
             self::getSuccessfulObjectsResponse(), // This should not be reached
         ])[1];
 
-        $this->client = TestHelpers::stub(
-            StorageClient::class,
-            [[
-                'projectId' => self::PROJECT,
-                // Mock the authHttpHandler so it doesn't make a real request
-                'httpHandler' => $httpHandler,
-                // Mock the authHttpHandler so it doesn't make a real request
-                'authHttpHandler' => function () {
-                    return new Response(200, [], '{"access_token": "abc"}');
-                },
-                // Mock the delay function so the tests execute faster
-                'restDelayFunction' => function () {
-                },
-            ]]
-        );
+        $client = new StorageClient([
+            'projectId' => self::PROJECT,
+            // Mock the authHttpHandler so it doesn't make a real request
+            'httpHandler' => $httpHandler,
+            // Mock the authHttpHandler so it doesn't make a real request
+            'authHttpHandler' => function () {
+                return new Response(200, [], '{"access_token": "abc"}');
+            },
+            // Mock the delay function so the tests execute faster
+            'restDelayFunction' => function () {
+            },
+        ]);
 
         $this->expectException(ServiceException::class);
 
-        $this->client->createBucket('myBucket');
+        $client->createBucket('myBucket');
     }
 
     public static function getCreateBucketSuccessResponse()
@@ -535,24 +529,21 @@ class StorageClientTest extends TestCase
             self::getCreateBucketSuccessResponse(),
         ])[1];
 
-        $this->client = TestHelpers::stub(
-            StorageClient::class,
-            [[
-                'projectId' => self::PROJECT,
-                'retryStrategy' => StorageClient::RETRY_ALWAYS,
-                // Mock the authHttpHandler so it doesn't make a real request
-                'httpHandler' => $httpHandler,
-                // Mock the authHttpHandler so it doesn't make a real request
-                'authHttpHandler' => function () {
-                    return new Response(200, [], '{"access_token": "abc"}');
-                },
-                // Mock the delay function so the tests execute faster
-                'restDelayFunction' => function () {
-                },
-            ]]
-        );
+        $client = new StorageClient([
+            'projectId' => self::PROJECT,
+            'retryStrategy' => StorageClient::RETRY_ALWAYS,
+            // Mock the authHttpHandler so it doesn't make a real request
+            'httpHandler' => $httpHandler,
+            // Mock the authHttpHandler so it doesn't make a real request
+            'authHttpHandler' => function () {
+                return new Response(200, [], '{"access_token": "abc"}');
+            },
+            // Mock the delay function so the tests execute faster
+            'restDelayFunction' => function () {
+            },
+        ]);
 
-        $this->assertInstanceOf(Bucket::class, $this->client->createBucket('myBucket'));
+        $this->assertInstanceOf(Bucket::class, $client->createBucket('myBucket'));
     }
 
     public function testDelayFunctionsConfiguration()
@@ -569,23 +560,20 @@ class StorageClientTest extends TestCase
             $capturedDelays[] = $delay;
         };
 
-        $this->client = TestHelpers::stub(
-            StorageClient::class,
-            [[
-                'projectId' => self::PROJECT,
-                'retries' => 2,
-                'restCalcDelayFunction' => $restCalcDelayFunction,
-                'restDelayFunction' => $restDelayFunction,
-                // Mock the authHttpHandler so it doesn't make a real request
-                'httpHandler' => $httpHandler,
-                // Mock the authHttpHandler so it doesn't make a real request
-                'authHttpHandler' => function () {
-                    return new Response(200, [], '{"access_token": "abc"}');
-                },
-            ]]
-        );
+        $client = new StorageClient([
+            'projectId' => self::PROJECT,
+            'retries' => 2,
+            'restCalcDelayFunction' => $restCalcDelayFunction,
+            'restDelayFunction' => $restDelayFunction,
+            // Mock the authHttpHandler so it doesn't make a real request
+            'httpHandler' => $httpHandler,
+            // Mock the authHttpHandler so it doesn't make a real request
+            'authHttpHandler' => function () {
+                return new Response(200, [], '{"access_token": "abc"}');
+            },
+        ]);
 
-        $objects = iterator_to_array($this->client->bucket('myBucket')->objects());
+        $objects = iterator_to_array($client->bucket('myBucket')->objects());
         
         $this->assertEquals('file.txt', $objects[0]->name());
         $this->assertEquals([100, 200], $capturedDelays);
@@ -605,24 +593,21 @@ class StorageClientTest extends TestCase
             return $e->getCode() === 404;
         };
 
-        $this->client = TestHelpers::stub(
-            StorageClient::class,
-            [[
-                'projectId' => self::PROJECT,
-                'restRetryFunction' => $customRetryFunction,
-                // Mock the authHttpHandler so it doesn't make a real request
-                'httpHandler' => $httpHandler,
-                // Mock the authHttpHandler so it doesn't make a real request
-                'authHttpHandler' => function () {
-                    return new Response(200, [], '{"access_token": "abc"}');
-                },
-                // Mock the delay function so the tests execute faster
-                'restDelayFunction' => function () {
-                },
-            ]]
-        );
+        $client = new StorageClient([
+            'projectId' => self::PROJECT,
+            'restRetryFunction' => $customRetryFunction,
+            // Mock the authHttpHandler so it doesn't make a real request
+            'httpHandler' => $httpHandler,
+            // Mock the authHttpHandler so it doesn't make a real request
+            'authHttpHandler' => function () {
+                return new Response(200, [], '{"access_token": "abc"}');
+            },
+            // Mock the delay function so the tests execute faster
+            'restDelayFunction' => function () {
+            },
+        ]);
 
-        $objects = iterator_to_array($this->client->bucket('myBucket')->objects());
+        $objects = iterator_to_array($client->bucket('myBucket')->objects());
 
         $this->assertEquals('file.txt', $objects[0]->name());
         // Should use all the mock responses.
@@ -650,24 +635,21 @@ class StorageClientTest extends TestCase
             $arguments[0] = $request->withHeader('X-Retry-Attempt', (string) $retryAttempt);
         };
 
-        $this->client = TestHelpers::stub(
-            StorageClient::class,
-            [[
-                'projectId' => self::PROJECT,
-                'restRetryListener' => $retryListenerFunction,
-                // Mock the authHttpHandler so it doesn't make a real request
-                'httpHandler' => fn ($req, $opt) => $guzzleClient->send($req, $opt),
-                // Mock the authHttpHandler so it doesn't make a real request
-                'authHttpHandler' => function () {
-                    return new Response(200, [], '{"access_token": "abc"}');
-                },
-                // Mock the delay function so the tests execute faster
-                'restDelayFunction' => function () {
-                },
-            ]]
-        );
+        $client = new StorageClient([
+            'projectId' => self::PROJECT,
+            'restRetryListener' => $retryListenerFunction,
+            // Mock the authHttpHandler so it doesn't make a real request
+            'httpHandler' => fn ($req, $opt) => $guzzleClient->send($req, $opt),
+            // Mock the authHttpHandler so it doesn't make a real request
+            'authHttpHandler' => function () {
+                return new Response(200, [], '{"access_token": "abc"}');
+            },
+            // Mock the delay function so the tests execute faster
+            'restDelayFunction' => function () {
+            },
+        ]);
 
-        $objects = iterator_to_array($this->client->bucket('myBucket')->objects());
+        $objects = iterator_to_array($client->bucket('myBucket')->objects());
 
         $this->assertEquals('file.txt', $objects[0]->name());
         $this->assertEquals(1, $listenerInvocations);

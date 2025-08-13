@@ -101,9 +101,9 @@ class Rest implements ConnectionInterface
     private $restRetryFunction;
 
     /**
-     * @var string
+     * @var string|null
      */
-    private $retryStrategy;
+    private ?string $retryStrategy;
 
     /**
      * @var callable|null
