@@ -159,6 +159,7 @@ class NewComponentCommandTest extends TestCase
 
         $this->assertComposerJson('CustomInput');
     }
+
     public function testNewComponentWithUpdateComponent()
     {
         $dummyCommand = $this->prophesize(Command::class);
@@ -220,6 +221,24 @@ class NewComponentCommandTest extends TestCase
         $repoMetadataFull = json_decode(file_get_contents(self::$tmpDir . '/.repo-metadata-full.json'), true);
         $this->assertArrayHasKey('SecretManager', $repoMetadataFull);
         $this->assertComposerJson('SecretManager');
+    }
+
+    public function testNewComponentErrorsWithNonNumericTimeout()
+    {
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('Error: The timeout option must be a positive integer');
+
+        $application = new Application();
+        $application->add(new NewComponentCommand(self::$tmpDir));
+
+        $commandTester = new CommandTester($application->get('new-component'));
+        $commandTester->setInputs([
+            'Y' // Does this information look correct? [Y/n]
+        ]);
+        $commandTester->execute([
+            'proto' => 'google/cloud/secretmanager/v1/service.proto',
+            '--timeout' => 'not-a-number'
+        ]);
     }
 
     private function assertComposerJson(string $componentName)
