@@ -233,6 +233,15 @@ return [
                             'getAppProfileId',
                         ],
                     ],
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getMaterializedViewName',
+                        ],
+                        'matchers' => [
+                            '/^(?<name>projects\/[^\/]+\/instances\/[^\/]+)(?:\/.*)?$/',
+                        ],
+                    ],
                 ],
             ],
             'SampleRowKeys' => [
@@ -256,6 +265,15 @@ return [
                         'keyName' => 'app_profile_id',
                         'fieldAccessors' => [
                             'getAppProfileId',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getMaterializedViewName',
+                        ],
+                        'matchers' => [
+                            '/^(?<name>projects\/[^\/]+\/instances\/[^\/]+)(?:\/.*)?$/',
                         ],
                     ],
                 ],
