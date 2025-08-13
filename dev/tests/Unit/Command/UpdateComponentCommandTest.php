@@ -39,7 +39,7 @@ class UpdateComponentCommandTest extends TestCase
     private const OWLBOT_PHP_IMAGE = 'gcr.io/fake-owlbot-image/owlbot-php';
     private const OWLBOT_PHP_DIGEST = 'sha256:12345';
     private const OWLBOT_CLI_IMAGE = 'gcr.io/cloud-devrel-public-resources/owlbot-cli:latest';
-    private const DEFAULT_TIMEOUT = 60;
+    private const DEFAULT_TIMEOUT = 120;
 
     public static function setUpBeforeClass(): void
     {
