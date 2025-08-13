@@ -90,6 +90,12 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
      */
     private $name = null;
     /**
+     * Input only. [Input Only] Additional params passed with the request, but not persisted as part of resource payload.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.BackendBucketParams params = 78313862;</code>
+     */
+    private $params = null;
+    /**
      * [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
@@ -134,6 +140,8 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
      *           Check the LoadBalancingScheme enum for the list of possible values.
      *     @type string $name
      *           Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     *     @type \Google\Cloud\Compute\V1\BackendBucketParams $params
+     *           Input only. [Input Only] Additional params passed with the request, but not persisted as part of resource payload.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
      *     @type array<\Google\Cloud\Compute\V1\BackendBucketUsedBy>|\Google\Protobuf\Internal\RepeatedField $used_by
@@ -567,6 +575,42 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Input only. [Input Only] Additional params passed with the request, but not persisted as part of resource payload.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.BackendBucketParams params = 78313862;</code>
+     * @return \Google\Cloud\Compute\V1\BackendBucketParams|null
+     */
+    public function getParams()
+    {
+        return $this->params;
+    }
+
+    public function hasParams()
+    {
+        return isset($this->params);
+    }
+
+    public function clearParams()
+    {
+        unset($this->params);
+    }
+
+    /**
+     * Input only. [Input Only] Additional params passed with the request, but not persisted as part of resource payload.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.BackendBucketParams params = 78313862;</code>
+     * @param \Google\Cloud\Compute\V1\BackendBucketParams $var
+     * @return $this
+     */
+    public function setParams($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\BackendBucketParams::class);
+        $this->params = $var;
 
         return $this;
     }
