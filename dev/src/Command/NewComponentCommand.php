@@ -64,7 +64,6 @@ class NewComponentCommand extends Command
     private $rootPath;
     private $httpClient;
     private RunProcess $runProcess;
-    private int $timeout;
 
     /**
      * @param string $rootPath The path to the repository root directory.
@@ -95,7 +94,7 @@ class NewComponentCommand extends Command
                 null,
                 InputOption::VALUE_REQUIRED,
                 'The timeout limit for executing commands in seconds. Defaults to 60.',
-                60
+                120
             );
     }
 
@@ -114,7 +113,7 @@ class NewComponentCommand extends Command
             );
         }
 
-        $this->timeout = (int) $unsafeTimeout;
+        $timeout = (int) $unsafeTimeout;
 
         $output->writeln(''); // blank line
         $output->writeln(sprintf('Your package (%s) will have the following info:', $protoFile));
@@ -231,7 +230,7 @@ class NewComponentCommand extends Command
         if (!$input->getOption('no-update-component')) {
             $args = [
                 'component' => $new->componentName,
-                '--timeout' => $this->timeout,
+                '--timeout' => $timeout,
             ];
             if (!$this->getApplication()->has('update-component')) {
                 throw new \RuntimeException(
