@@ -46,7 +46,7 @@ use Psr\Log\LoggerInterface;
  * configuration, encompassing return policies for both ads and free listings
  * ## programs. This API defines the following resource model:
  *
- * [OnlineReturnPolicy](/merchant/api/reference/rpc/google.shopping.merchant.accounts.v1#google.shopping.merchant.accounts.v1.OnlineReturnPolicy)
+ * [OnlineReturnPolicy][google.shopping.merchant.accounts.v1.OnlineReturnPolicy]
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
