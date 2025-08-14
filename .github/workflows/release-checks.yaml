@@ -11,7 +11,7 @@ jobs:
     name: Breaking Change Detector
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0
       - name: "Install PHP"
@@ -58,7 +58,7 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.pull_request.user.login == 'release-please[bot]'
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0
       - name: Parse allowed major versions
@@ -99,7 +99,7 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.pull_request.user.login == 'release-please[bot]'
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0
       - name: "Verify the subrepos exist for new components"
@@ -111,9 +111,9 @@ jobs:
               SUBREPO=$(cat $COMPONENT/composer.json | jq -r '.extra.component.target')
               echo "New component found: $COMPONENT"
               if curl --head --silent --fail "https://api.github.com/repos/$SUBREPO" -H 'Authorization: Bearer ${{secrets.SPLIT_TOKEN}}' > /dev/null; then
-                  echo " - Target Repo '$SUBREPO' exists"
+                  echo "✅ Target Repo '$SUBREPO' exists"
               else
-                  echo " - Target Repo '$SUBREPO' DOES NOT EXIST"
+                  echo "❌ Target Repo '$SUBREPO' DOES NOT EXIST"
                   FAIL="true"
               fi
             fi

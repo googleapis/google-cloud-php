@@ -29,7 +29,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
      */
     private $connection_preference = null;
     /**
-     * Specifies which consumer projects or networks are allowed to connect to the service attachment. Each project or network has a connection limit. A given service attachment can manage connections at either the project or network level. Therefore, both the accept and reject lists for a given service attachment must contain either only projects or only networks.
+     * Specifies which consumer projects or networks are allowed to connect to the service attachment. Each project or network has a connection limit. A given service attachment can manage connections at either the project or network level. Therefore, both the accept and reject lists for a given service attachment must contain either only projects or only networks or only endpoints.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ServiceAttachmentConsumerProjectLimit consumer_accept_lists = 402725703;</code>
      */
@@ -82,6 +82,12 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
     private $kind = null;
+    /**
+     * Metadata of the service attachment.
+     *
+     * Generated from protobuf field <code>map<string, string> metadata = 86866735;</code>
+     */
+    private $metadata;
     /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
@@ -149,7 +155,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
      *           The connection preference of service attachment. The value can be set to ACCEPT_AUTOMATIC. An ACCEPT_AUTOMATIC service attachment is one that always accepts the connection from consumer forwarding rules.
      *           Check the ConnectionPreference enum for the list of possible values.
      *     @type array<\Google\Cloud\Compute\V1\ServiceAttachmentConsumerProjectLimit>|\Google\Protobuf\Internal\RepeatedField $consumer_accept_lists
-     *           Specifies which consumer projects or networks are allowed to connect to the service attachment. Each project or network has a connection limit. A given service attachment can manage connections at either the project or network level. Therefore, both the accept and reject lists for a given service attachment must contain either only projects or only networks.
+     *           Specifies which consumer projects or networks are allowed to connect to the service attachment. Each project or network has a connection limit. A given service attachment can manage connections at either the project or network level. Therefore, both the accept and reject lists for a given service attachment must contain either only projects or only networks or only endpoints.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $consumer_reject_lists
      *           Specifies a list of projects or networks that are not allowed to connect to this service attachment. The project can be specified using its project ID or project number and the network can be specified using its URL. A given service attachment can manage connections at either the project or network level. Therefore, both the reject and accept lists for a given service attachment must contain either only projects or only networks.
      *     @type string $creation_timestamp
@@ -166,6 +172,8 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
      *           [Output Only] The unique identifier for the resource type. The server generates this identifier.
      *     @type string $kind
      *           [Output Only] Type of the resource. Always compute#serviceAttachment for service attachments.
+     *     @type array|\Google\Protobuf\Internal\MapField $metadata
+     *           Metadata of the service attachment.
      *     @type string $name
      *           Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $nat_subnets
@@ -256,7 +264,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies which consumer projects or networks are allowed to connect to the service attachment. Each project or network has a connection limit. A given service attachment can manage connections at either the project or network level. Therefore, both the accept and reject lists for a given service attachment must contain either only projects or only networks.
+     * Specifies which consumer projects or networks are allowed to connect to the service attachment. Each project or network has a connection limit. A given service attachment can manage connections at either the project or network level. Therefore, both the accept and reject lists for a given service attachment must contain either only projects or only networks or only endpoints.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ServiceAttachmentConsumerProjectLimit consumer_accept_lists = 402725703;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -267,7 +275,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies which consumer projects or networks are allowed to connect to the service attachment. Each project or network has a connection limit. A given service attachment can manage connections at either the project or network level. Therefore, both the accept and reject lists for a given service attachment must contain either only projects or only networks.
+     * Specifies which consumer projects or networks are allowed to connect to the service attachment. Each project or network has a connection limit. A given service attachment can manage connections at either the project or network level. Therefore, both the accept and reject lists for a given service attachment must contain either only projects or only networks or only endpoints.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ServiceAttachmentConsumerProjectLimit consumer_accept_lists = 402725703;</code>
      * @param array<\Google\Cloud\Compute\V1\ServiceAttachmentConsumerProjectLimit>|\Google\Protobuf\Internal\RepeatedField $var
@@ -545,6 +553,32 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->kind = $var;
+
+        return $this;
+    }
+
+    /**
+     * Metadata of the service attachment.
+     *
+     * Generated from protobuf field <code>map<string, string> metadata = 86866735;</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getMetadata()
+    {
+        return $this->metadata;
+    }
+
+    /**
+     * Metadata of the service attachment.
+     *
+     * Generated from protobuf field <code>map<string, string> metadata = 86866735;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setMetadata($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->metadata = $arr;
 
         return $this;
     }

@@ -16,6 +16,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class Reservation extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Advanced control for cluster management, applicable only to DENSE deployment type reservations.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ReservationAdvancedDeploymentControl advanced_deployment_control = 410618144;</code>
+     */
+    private $advanced_deployment_control = null;
+    /**
      * Reservation for aggregated resources, providing shape flexibility.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.AllocationAggregateReservation aggregate_reservation = 291567948;</code>
@@ -113,6 +119,13 @@ class Reservation extends \Google\Protobuf\Internal\Message
      */
     private $satisfies_pzs = null;
     /**
+     * The type of maintenance for the reservation.
+     * Check the SchedulingType enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string scheduling_type = 199835397;</code>
+     */
+    private $scheduling_type = null;
+    /**
      * [Output Only] Server-defined fully-qualified URL for this resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
@@ -156,6 +169,8 @@ class Reservation extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type \Google\Cloud\Compute\V1\ReservationAdvancedDeploymentControl $advanced_deployment_control
+     *           Advanced control for cluster management, applicable only to DENSE deployment type reservations.
      *     @type \Google\Cloud\Compute\V1\AllocationAggregateReservation $aggregate_reservation
      *           Reservation for aggregated resources, providing shape flexibility.
      *     @type string $commitment
@@ -189,6 +204,9 @@ class Reservation extends \Google\Protobuf\Internal\Message
      *           [Output Only] Status information for Reservation resource.
      *     @type bool $satisfies_pzs
      *           [Output Only] Reserved for future use.
+     *     @type string $scheduling_type
+     *           The type of maintenance for the reservation.
+     *           Check the SchedulingType enum for the list of possible values.
      *     @type string $self_link
      *           [Output Only] Server-defined fully-qualified URL for this resource.
      *     @type \Google\Cloud\Compute\V1\ShareSettings $share_settings
@@ -207,6 +225,42 @@ class Reservation extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Compute\V1\Compute::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Advanced control for cluster management, applicable only to DENSE deployment type reservations.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ReservationAdvancedDeploymentControl advanced_deployment_control = 410618144;</code>
+     * @return \Google\Cloud\Compute\V1\ReservationAdvancedDeploymentControl|null
+     */
+    public function getAdvancedDeploymentControl()
+    {
+        return $this->advanced_deployment_control;
+    }
+
+    public function hasAdvancedDeploymentControl()
+    {
+        return isset($this->advanced_deployment_control);
+    }
+
+    public function clearAdvancedDeploymentControl()
+    {
+        unset($this->advanced_deployment_control);
+    }
+
+    /**
+     * Advanced control for cluster management, applicable only to DENSE deployment type reservations.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ReservationAdvancedDeploymentControl advanced_deployment_control = 410618144;</code>
+     * @param \Google\Cloud\Compute\V1\ReservationAdvancedDeploymentControl $var
+     * @return $this
+     */
+    public function setAdvancedDeploymentControl($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\ReservationAdvancedDeploymentControl::class);
+        $this->advanced_deployment_control = $var;
+
+        return $this;
     }
 
     /**
@@ -763,6 +817,44 @@ class Reservation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->satisfies_pzs = $var;
+
+        return $this;
+    }
+
+    /**
+     * The type of maintenance for the reservation.
+     * Check the SchedulingType enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string scheduling_type = 199835397;</code>
+     * @return string
+     */
+    public function getSchedulingType()
+    {
+        return isset($this->scheduling_type) ? $this->scheduling_type : '';
+    }
+
+    public function hasSchedulingType()
+    {
+        return isset($this->scheduling_type);
+    }
+
+    public function clearSchedulingType()
+    {
+        unset($this->scheduling_type);
+    }
+
+    /**
+     * The type of maintenance for the reservation.
+     * Check the SchedulingType enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string scheduling_type = 199835397;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSchedulingType($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->scheduling_type = $var;
 
         return $this;
     }

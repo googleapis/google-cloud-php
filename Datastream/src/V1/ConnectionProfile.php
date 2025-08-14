@@ -95,6 +95,8 @@ class ConnectionProfile extends \Google\Protobuf\Internal\Message
      *           SQLServer Connection Profile configuration.
      *     @type \Google\Cloud\Datastream\V1\SalesforceProfile $salesforce_profile
      *           Salesforce Connection Profile configuration.
+     *     @type \Google\Cloud\Datastream\V1\MongodbProfile $mongodb_profile
+     *           MongoDB Connection Profile configuration.
      *     @type \Google\Cloud\Datastream\V1\StaticServiceIpConnectivity $static_service_ip_connectivity
      *           Static Service IP connectivity.
      *     @type \Google\Cloud\Datastream\V1\ForwardSshTunnelConnectivity $forward_ssh_connectivity
@@ -543,6 +545,37 @@ class ConnectionProfile extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\SalesforceProfile::class);
         $this->writeOneof(107, $var);
+
+        return $this;
+    }
+
+    /**
+     * MongoDB Connection Profile configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.MongodbProfile mongodb_profile = 108;</code>
+     * @return \Google\Cloud\Datastream\V1\MongodbProfile|null
+     */
+    public function getMongodbProfile()
+    {
+        return $this->readOneof(108);
+    }
+
+    public function hasMongodbProfile()
+    {
+        return $this->hasOneof(108);
+    }
+
+    /**
+     * MongoDB Connection Profile configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.MongodbProfile mongodb_profile = 108;</code>
+     * @param \Google\Cloud\Datastream\V1\MongodbProfile $var
+     * @return $this
+     */
+    public function setMongodbProfile($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\MongodbProfile::class);
+        $this->writeOneof(108, $var);
 
         return $this;
     }

@@ -25,6 +25,7 @@
 namespace Google\Cloud\AIPlatform\V1\Client;
 
 use Google\ApiCore\ApiException;
+use Google\ApiCore\BidiStream;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\PagedListResponse;
@@ -241,6 +242,29 @@ final class FeatureOnlineStoreServiceClient
 
         array_unshift($args, substr($method, 0, -5));
         return call_user_func_array([$this, 'startAsyncCall'], $args);
+    }
+
+    /**
+     * Bidirectional streaming RPC to directly write to feature values in a
+     * feature view. Requests may not have a one-to-one mapping to responses and
+     * responses may be returned out-of-order to reduce latency.
+     *
+     * @example samples/V1/FeatureOnlineStoreServiceClient/feature_view_direct_write.php
+     *
+     * @param array $callOptions {
+     *     Optional.
+     *
+     *     @type int $timeoutMillis
+     *           Timeout to use for this call.
+     * }
+     *
+     * @return BidiStream
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function featureViewDirectWrite(array $callOptions = []): BidiStream
+    {
+        return $this->startApiCall('FeatureViewDirectWrite', null, $callOptions);
     }
 
     /**

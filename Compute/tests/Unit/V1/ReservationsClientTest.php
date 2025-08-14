@@ -285,6 +285,7 @@ class ReservationsClientTest extends GeneratedTest
         $kind = 'kind3292052';
         $name = 'name3373707';
         $satisfiesPzs = false;
+        $schedulingType = 'schedulingType199835397';
         $selfLink = 'selfLink-1691268851';
         $specificReservationRequired = false;
         $status = 'status-892481550';
@@ -300,6 +301,7 @@ class ReservationsClientTest extends GeneratedTest
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSchedulingType($schedulingType);
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setSpecificReservationRequired($specificReservationRequired);
         $expectedResponse->setStatus($status);
