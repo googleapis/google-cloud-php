@@ -40,7 +40,7 @@ use Google\Cloud\Spanner\Connection\ConnectionInterface;
  * $backup = $spanner->instance('my-instance')->backup('my-backup');
  * ```
  *
- * @method resumeOperation() {
+ * @method resumeOperation($operationName, array $info = []) {
  *     Resume a long running operation
  *
  *     Example:
@@ -154,7 +154,7 @@ class Backup
      *        with microseconds granularity that must be at least 6 hours and
      *        at most 366 days. Once the expireTime has passed, the backup is
      *        eligible to be automatically deleted by Cloud Spanner.
-     * @param array $options [optional] {
+     * @param array{versionTime?: DateTimeInterface} $options {
      *         Configuration Options.
      *
      *         @type DateTimeInterface $versionTime The version time for the externally
@@ -207,7 +207,7 @@ class Backup
      *        with microseconds granularity that must be at least 6 hours and
      *        at most 366 days. Once the expireTime has passed, the backup is
      *        eligible to be automatically deleted by Cloud Spanner.
-     * @param array $options [optional] {
+     * @param array{versionTime?: DateTimeInterface} $options {
      *         Configuration Options.
      *
      *         @type DateTimeInterface $versionTime The version time for the externally
@@ -237,8 +237,8 @@ class Backup
      * $backup->delete();
      * ```
      *
-     * @param array $options [optional] Configuration options.
-     * @return void
+     * @param array $options Configuration options.
+     * @return null
      */
     public function delete(array $options = [])
     {
@@ -341,7 +341,7 @@ class Backup
      * }
      * ```
      *
-     * @param array $options [optional] Configuration options.
+     * @param array $options Configuration options.
      * @return int|null
      */
     public function state(array $options = [])
@@ -362,9 +362,9 @@ class Backup
      * ```
      *
      * @param DateTimeInterface $newTimestamp New expire time.
-     * @param array $options [optional] Configuration options.
+     * @param array $options Configuration options.
      *
-     * @return Backup
+     * @return array
      */
     public function updateExpireTime(DateTimeInterface $newTimestamp, array $options = [])
     {
@@ -382,6 +382,7 @@ class Backup
     /**
      * Convert the simple backup name to a fully qualified name.
      *
+     * @param string $name
      * @return string
      */
     private function fullyQualifiedBackupName($name)
