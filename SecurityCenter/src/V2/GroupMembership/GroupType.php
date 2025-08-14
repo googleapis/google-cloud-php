@@ -25,10 +25,17 @@ class GroupType
      * Generated from protobuf enum <code>GROUP_TYPE_TOXIC_COMBINATION = 1;</code>
      */
     const GROUP_TYPE_TOXIC_COMBINATION = 1;
+    /**
+     * Group represents a chokepoint.
+     *
+     * Generated from protobuf enum <code>GROUP_TYPE_CHOKEPOINT = 3;</code>
+     */
+    const GROUP_TYPE_CHOKEPOINT = 3;
 
     private static $valueToName = [
         self::GROUP_TYPE_UNSPECIFIED => 'GROUP_TYPE_UNSPECIFIED',
         self::GROUP_TYPE_TOXIC_COMBINATION => 'GROUP_TYPE_TOXIC_COMBINATION',
+        self::GROUP_TYPE_CHOKEPOINT => 'GROUP_TYPE_CHOKEPOINT',
     ];
 
     public static function name($value)

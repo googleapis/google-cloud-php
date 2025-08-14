@@ -29,6 +29,16 @@ class OracleSslConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool ca_certificate_set = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $ca_certificate_set = false;
+    /**
+     * Optional. The distinguished name (DN) mentioned in the server
+     * certificate. This corresponds to SSL_SERVER_CERT_DN sqlnet parameter.
+     * Refer
+     * https://docs.oracle.com/en/database/oracle/oracle-database/19/netrf/local-naming-parameters-in-tns-ora-file.html#GUID-70AB0695-A9AA-4A94-B141-4C605236EEB7
+     * If this field is not provided, the DN matching is not enforced.
+     *
+     * Generated from protobuf field <code>string server_certificate_distinguished_name = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $server_certificate_distinguished_name = '';
 
     /**
      * Constructor.
@@ -42,6 +52,12 @@ class OracleSslConfig extends \Google\Protobuf\Internal\Message
      *     @type bool $ca_certificate_set
      *           Output only. Indicates whether the ca_certificate field has been set for
      *           this Connection-Profile.
+     *     @type string $server_certificate_distinguished_name
+     *           Optional. The distinguished name (DN) mentioned in the server
+     *           certificate. This corresponds to SSL_SERVER_CERT_DN sqlnet parameter.
+     *           Refer
+     *           https://docs.oracle.com/en/database/oracle/oracle-database/19/netrf/local-naming-parameters-in-tns-ora-file.html#GUID-70AB0695-A9AA-4A94-B141-4C605236EEB7
+     *           If this field is not provided, the DN matching is not enforced.
      * }
      */
     public function __construct($data = NULL) {
@@ -101,6 +117,40 @@ class OracleSslConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->ca_certificate_set = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The distinguished name (DN) mentioned in the server
+     * certificate. This corresponds to SSL_SERVER_CERT_DN sqlnet parameter.
+     * Refer
+     * https://docs.oracle.com/en/database/oracle/oracle-database/19/netrf/local-naming-parameters-in-tns-ora-file.html#GUID-70AB0695-A9AA-4A94-B141-4C605236EEB7
+     * If this field is not provided, the DN matching is not enforced.
+     *
+     * Generated from protobuf field <code>string server_certificate_distinguished_name = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getServerCertificateDistinguishedName()
+    {
+        return $this->server_certificate_distinguished_name;
+    }
+
+    /**
+     * Optional. The distinguished name (DN) mentioned in the server
+     * certificate. This corresponds to SSL_SERVER_CERT_DN sqlnet parameter.
+     * Refer
+     * https://docs.oracle.com/en/database/oracle/oracle-database/19/netrf/local-naming-parameters-in-tns-ora-file.html#GUID-70AB0695-A9AA-4A94-B141-4C605236EEB7
+     * If this field is not provided, the DN matching is not enforced.
+     *
+     * Generated from protobuf field <code>string server_certificate_distinguished_name = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setServerCertificateDistinguishedName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->server_certificate_distinguished_name = $var;
 
         return $this;
     }

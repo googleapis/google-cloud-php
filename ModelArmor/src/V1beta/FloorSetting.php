@@ -45,6 +45,25 @@ class FloorSetting extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional bool enable_floor_setting_enforcement = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $enable_floor_setting_enforcement = null;
+    /**
+     * Optional. List of integrated services for which the floor setting is
+     * applicable.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.modelarmor.v1beta.FloorSetting.IntegratedService integrated_services = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $integrated_services;
+    /**
+     * Optional. AI Platform floor setting.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.modelarmor.v1beta.AiPlatformFloorSetting ai_platform_floor_setting = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $ai_platform_floor_setting = null;
+    /**
+     * Optional. Metadata for FloorSetting
+     *
+     * Generated from protobuf field <code>.google.cloud.modelarmor.v1beta.FloorSetting.FloorSettingMetadata floor_setting_metadata = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $floor_setting_metadata = null;
 
     /**
      * Constructor.
@@ -62,6 +81,13 @@ class FloorSetting extends \Google\Protobuf\Internal\Message
      *           Required. ModelArmor filter configuration.
      *     @type bool $enable_floor_setting_enforcement
      *           Optional. Floor Settings enforcement status.
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $integrated_services
+     *           Optional. List of integrated services for which the floor setting is
+     *           applicable.
+     *     @type \Google\Cloud\ModelArmor\V1beta\AiPlatformFloorSetting $ai_platform_floor_setting
+     *           Optional. AI Platform floor setting.
+     *     @type \Google\Cloud\ModelArmor\V1beta\FloorSetting\FloorSettingMetadata $floor_setting_metadata
+     *           Optional. Metadata for FloorSetting
      * }
      */
     public function __construct($data = NULL) {
@@ -235,6 +261,106 @@ class FloorSetting extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->enable_floor_setting_enforcement = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. List of integrated services for which the floor setting is
+     * applicable.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.modelarmor.v1beta.FloorSetting.IntegratedService integrated_services = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getIntegratedServices()
+    {
+        return $this->integrated_services;
+    }
+
+    /**
+     * Optional. List of integrated services for which the floor setting is
+     * applicable.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.modelarmor.v1beta.FloorSetting.IntegratedService integrated_services = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setIntegratedServices($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::ENUM, \Google\Cloud\ModelArmor\V1beta\FloorSetting\IntegratedService::class);
+        $this->integrated_services = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. AI Platform floor setting.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.modelarmor.v1beta.AiPlatformFloorSetting ai_platform_floor_setting = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\ModelArmor\V1beta\AiPlatformFloorSetting|null
+     */
+    public function getAiPlatformFloorSetting()
+    {
+        return $this->ai_platform_floor_setting;
+    }
+
+    public function hasAiPlatformFloorSetting()
+    {
+        return isset($this->ai_platform_floor_setting);
+    }
+
+    public function clearAiPlatformFloorSetting()
+    {
+        unset($this->ai_platform_floor_setting);
+    }
+
+    /**
+     * Optional. AI Platform floor setting.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.modelarmor.v1beta.AiPlatformFloorSetting ai_platform_floor_setting = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\ModelArmor\V1beta\AiPlatformFloorSetting $var
+     * @return $this
+     */
+    public function setAiPlatformFloorSetting($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\ModelArmor\V1beta\AiPlatformFloorSetting::class);
+        $this->ai_platform_floor_setting = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Metadata for FloorSetting
+     *
+     * Generated from protobuf field <code>.google.cloud.modelarmor.v1beta.FloorSetting.FloorSettingMetadata floor_setting_metadata = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\ModelArmor\V1beta\FloorSetting\FloorSettingMetadata|null
+     */
+    public function getFloorSettingMetadata()
+    {
+        return $this->floor_setting_metadata;
+    }
+
+    public function hasFloorSettingMetadata()
+    {
+        return isset($this->floor_setting_metadata);
+    }
+
+    public function clearFloorSettingMetadata()
+    {
+        unset($this->floor_setting_metadata);
+    }
+
+    /**
+     * Optional. Metadata for FloorSetting
+     *
+     * Generated from protobuf field <code>.google.cloud.modelarmor.v1beta.FloorSetting.FloorSettingMetadata floor_setting_metadata = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\ModelArmor\V1beta\FloorSetting\FloorSettingMetadata $var
+     * @return $this
+     */
+    public function setFloorSettingMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\ModelArmor\V1beta\FloorSetting\FloorSettingMetadata::class);
+        $this->floor_setting_metadata = $var;
 
         return $this;
     }

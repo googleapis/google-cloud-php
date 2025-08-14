@@ -29,8 +29,9 @@ class CreateCertificateRequest extends \Google\Protobuf\Internal\Message
      * Optional. It must be unique within a location and match the regular
      * expression `[a-zA-Z0-9_-]{1,63}`. This field is required when using a
      * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
-     * in the Enterprise [CertificateAuthority.Tier][], but is optional and its
-     * value is ignored otherwise.
+     * in the Enterprise
+     * [CertificateAuthority.tier][google.cloud.security.privateca.v1.CertificateAuthority.tier],
+     * but is optional and its value is ignored otherwise.
      *
      * Generated from protobuf field <code>string certificate_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -107,8 +108,9 @@ class CreateCertificateRequest extends \Google\Protobuf\Internal\Message
      * @param string                                          $certificateId Optional. It must be unique within a location and match the regular
      *                                                                       expression `[a-zA-Z0-9_-]{1,63}`. This field is required when using a
      *                                                                       [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
-     *                                                                       in the Enterprise [CertificateAuthority.Tier][], but is optional and its
-     *                                                                       value is ignored otherwise.
+     *                                                                       in the Enterprise
+     *                                                                       [CertificateAuthority.tier][google.cloud.security.privateca.v1.CertificateAuthority.tier],
+     *                                                                       but is optional and its value is ignored otherwise.
      *
      * @return \Google\Cloud\Security\PrivateCA\V1\CreateCertificateRequest
      *
@@ -137,8 +139,9 @@ class CreateCertificateRequest extends \Google\Protobuf\Internal\Message
      *           Optional. It must be unique within a location and match the regular
      *           expression `[a-zA-Z0-9_-]{1,63}`. This field is required when using a
      *           [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
-     *           in the Enterprise [CertificateAuthority.Tier][], but is optional and its
-     *           value is ignored otherwise.
+     *           in the Enterprise
+     *           [CertificateAuthority.tier][google.cloud.security.privateca.v1.CertificateAuthority.tier],
+     *           but is optional and its value is ignored otherwise.
      *     @type \Google\Cloud\Security\PrivateCA\V1\Certificate $certificate
      *           Required. A [Certificate][google.cloud.security.privateca.v1.Certificate]
      *           with initial field values.
@@ -226,8 +229,9 @@ class CreateCertificateRequest extends \Google\Protobuf\Internal\Message
      * Optional. It must be unique within a location and match the regular
      * expression `[a-zA-Z0-9_-]{1,63}`. This field is required when using a
      * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
-     * in the Enterprise [CertificateAuthority.Tier][], but is optional and its
-     * value is ignored otherwise.
+     * in the Enterprise
+     * [CertificateAuthority.tier][google.cloud.security.privateca.v1.CertificateAuthority.tier],
+     * but is optional and its value is ignored otherwise.
      *
      * Generated from protobuf field <code>string certificate_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -241,8 +245,9 @@ class CreateCertificateRequest extends \Google\Protobuf\Internal\Message
      * Optional. It must be unique within a location and match the regular
      * expression `[a-zA-Z0-9_-]{1,63}`. This field is required when using a
      * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
-     * in the Enterprise [CertificateAuthority.Tier][], but is optional and its
-     * value is ignored otherwise.
+     * in the Enterprise
+     * [CertificateAuthority.tier][google.cloud.security.privateca.v1.CertificateAuthority.tier],
+     * but is optional and its value is ignored otherwise.
      *
      * Generated from protobuf field <code>string certificate_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

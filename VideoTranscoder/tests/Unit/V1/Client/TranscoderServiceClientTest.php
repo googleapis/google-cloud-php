@@ -88,6 +88,7 @@ class TranscoderServiceClientTest extends GeneratedTest
         $templateId = 'templateId1769642752';
         $ttlAfterCompletionDays = 107576420;
         $batchModePriority = 2137003131;
+        $fillContentGaps = false;
         $expectedResponse = new Job();
         $expectedResponse->setName($name);
         $expectedResponse->setInputUri($inputUri);
@@ -95,6 +96,7 @@ class TranscoderServiceClientTest extends GeneratedTest
         $expectedResponse->setTemplateId($templateId);
         $expectedResponse->setTtlAfterCompletionDays($ttlAfterCompletionDays);
         $expectedResponse->setBatchModePriority($batchModePriority);
+        $expectedResponse->setFillContentGaps($fillContentGaps);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -370,6 +372,7 @@ class TranscoderServiceClientTest extends GeneratedTest
         $templateId = 'templateId1769642752';
         $ttlAfterCompletionDays = 107576420;
         $batchModePriority = 2137003131;
+        $fillContentGaps = false;
         $expectedResponse = new Job();
         $expectedResponse->setName($name2);
         $expectedResponse->setInputUri($inputUri);
@@ -377,6 +380,7 @@ class TranscoderServiceClientTest extends GeneratedTest
         $expectedResponse->setTemplateId($templateId);
         $expectedResponse->setTtlAfterCompletionDays($ttlAfterCompletionDays);
         $expectedResponse->setBatchModePriority($batchModePriority);
+        $expectedResponse->setFillContentGaps($fillContentGaps);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
@@ -652,6 +656,7 @@ class TranscoderServiceClientTest extends GeneratedTest
         $templateId = 'templateId1769642752';
         $ttlAfterCompletionDays = 107576420;
         $batchModePriority = 2137003131;
+        $fillContentGaps = false;
         $expectedResponse = new Job();
         $expectedResponse->setName($name);
         $expectedResponse->setInputUri($inputUri);
@@ -659,6 +664,7 @@ class TranscoderServiceClientTest extends GeneratedTest
         $expectedResponse->setTemplateId($templateId);
         $expectedResponse->setTtlAfterCompletionDays($ttlAfterCompletionDays);
         $expectedResponse->setBatchModePriority($batchModePriority);
+        $expectedResponse->setFillContentGaps($fillContentGaps);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');

@@ -31,7 +31,7 @@ trait RetryTrait
      * @var array
      */
     private static $httpRetryCodes = [
-        0, // connetion-refused OR connection-reset gives status code of 0
+        0, // connection-refused OR connection-reset gives status code of 0
         200, // partial download cases
         408,
         429,
@@ -192,7 +192,7 @@ trait RetryTrait
      * @param bool $isIdempotent
      * @param bool $preconditionNeeded
      * @param bool $preconditionSupplied
-     * @param int|null $maxRetries The maximum number of retries allowd.
+     * @param int|null $maxRetries The maximum number of retries allowed.
      * Null for no limit.
      * @return bool
      */

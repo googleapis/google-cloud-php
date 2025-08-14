@@ -22,7 +22,7 @@ class Overlay extends \Google\Protobuf\Internal\Message
      */
     protected $image = null;
     /**
-     * List of Animations. The list should be chronological, without any time
+     * List of animations. The list should be chronological, without any time
      * overlap.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.transcoder.v1.Overlay.Animation animations = 2;</code>
@@ -38,7 +38,7 @@ class Overlay extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Video\Transcoder\V1\Overlay\Image $image
      *           Image overlay.
      *     @type array<\Google\Cloud\Video\Transcoder\V1\Overlay\Animation>|\Google\Protobuf\Internal\RepeatedField $animations
-     *           List of Animations. The list should be chronological, without any time
+     *           List of animations. The list should be chronological, without any time
      *           overlap.
      * }
      */
@@ -84,7 +84,7 @@ class Overlay extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of Animations. The list should be chronological, without any time
+     * List of animations. The list should be chronological, without any time
      * overlap.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.transcoder.v1.Overlay.Animation animations = 2;</code>
@@ -96,7 +96,7 @@ class Overlay extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of Animations. The list should be chronological, without any time
+     * List of animations. The list should be chronological, without any time
      * overlap.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.transcoder.v1.Overlay.Animation animations = 2;</code>

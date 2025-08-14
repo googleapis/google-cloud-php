@@ -16,8 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class Output extends \Google\Protobuf\Internal\Message
 {
     /**
-     * URI for the output file(s). For example, `gs://my-bucket/outputs/`.
-     * If empty, the value is populated from `Job.output_uri`. See
+     * URI for the output file(s). For example, `gs://my-bucket/outputs/`. Must be
+     * a directory and not a top-level bucket. If empty, the value is populated
+     * from [Job.output_uri][google.cloud.video.transcoder.v1.Job.output_uri]. See
      * [Supported input and output
      * formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).
      *
@@ -32,8 +33,9 @@ class Output extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $uri
-     *           URI for the output file(s). For example, `gs://my-bucket/outputs/`.
-     *           If empty, the value is populated from `Job.output_uri`. See
+     *           URI for the output file(s). For example, `gs://my-bucket/outputs/`. Must be
+     *           a directory and not a top-level bucket. If empty, the value is populated
+     *           from [Job.output_uri][google.cloud.video.transcoder.v1.Job.output_uri]. See
      *           [Supported input and output
      *           formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).
      * }
@@ -44,8 +46,9 @@ class Output extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI for the output file(s). For example, `gs://my-bucket/outputs/`.
-     * If empty, the value is populated from `Job.output_uri`. See
+     * URI for the output file(s). For example, `gs://my-bucket/outputs/`. Must be
+     * a directory and not a top-level bucket. If empty, the value is populated
+     * from [Job.output_uri][google.cloud.video.transcoder.v1.Job.output_uri]. See
      * [Supported input and output
      * formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).
      *
@@ -58,8 +61,9 @@ class Output extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI for the output file(s). For example, `gs://my-bucket/outputs/`.
-     * If empty, the value is populated from `Job.output_uri`. See
+     * URI for the output file(s). For example, `gs://my-bucket/outputs/`. Must be
+     * a directory and not a top-level bucket. If empty, the value is populated
+     * from [Job.output_uri][google.cloud.video.transcoder.v1.Job.output_uri]. See
      * [Supported input and output
      * formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).
      *

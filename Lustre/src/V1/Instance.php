@@ -90,9 +90,11 @@ class Instance extends \Google\Protobuf\Internal\Message
     protected $per_unit_storage_throughput = 0;
     /**
      * Optional. Indicates whether you want to enable support for GKE clients. By
-     * default, GKE clients are not supported.
+     * default, GKE clients are not supported. Deprecated. No longer required for
+     * GKE instance creation.
      *
-     * Generated from protobuf field <code>bool gke_support_enabled = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool gke_support_enabled = 12 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @deprecated
      */
     protected $gke_support_enabled = false;
 
@@ -133,7 +135,8 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           Valid values are 125, 250, 500, 1000.
      *     @type bool $gke_support_enabled
      *           Optional. Indicates whether you want to enable support for GKE clients. By
-     *           default, GKE clients are not supported.
+     *           default, GKE clients are not supported. Deprecated. No longer required for
+     *           GKE instance creation.
      * }
      */
     public function __construct($data = NULL) {
@@ -463,26 +466,34 @@ class Instance extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Indicates whether you want to enable support for GKE clients. By
-     * default, GKE clients are not supported.
+     * default, GKE clients are not supported. Deprecated. No longer required for
+     * GKE instance creation.
      *
-     * Generated from protobuf field <code>bool gke_support_enabled = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool gke_support_enabled = 12 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
+     * @deprecated
      */
     public function getGkeSupportEnabled()
     {
+        if ($this->gke_support_enabled !== false) {
+            @trigger_error('gke_support_enabled is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->gke_support_enabled;
     }
 
     /**
      * Optional. Indicates whether you want to enable support for GKE clients. By
-     * default, GKE clients are not supported.
+     * default, GKE clients are not supported. Deprecated. No longer required for
+     * GKE instance creation.
      *
-     * Generated from protobuf field <code>bool gke_support_enabled = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool gke_support_enabled = 12 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
+     * @deprecated
      */
     public function setGkeSupportEnabled($var)
     {
+        @trigger_error('gke_support_enabled is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkBool($var);
         $this->gke_support_enabled = $var;
 

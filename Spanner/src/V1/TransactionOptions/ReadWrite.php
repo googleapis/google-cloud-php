@@ -26,8 +26,6 @@ class ReadWrite extends \Google\Protobuf\Internal\Message
      * Optional. Clients should pass the transaction ID of the previous
      * transaction attempt that was aborted if this transaction is being
      * executed on a multiplexed session.
-     * This feature is not yet supported and will result in an UNIMPLEMENTED
-     * error.
      *
      * Generated from protobuf field <code>bytes multiplexed_session_previous_transaction_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -45,8 +43,6 @@ class ReadWrite extends \Google\Protobuf\Internal\Message
      *           Optional. Clients should pass the transaction ID of the previous
      *           transaction attempt that was aborted if this transaction is being
      *           executed on a multiplexed session.
-     *           This feature is not yet supported and will result in an UNIMPLEMENTED
-     *           error.
      * }
      */
     public function __construct($data = NULL) {
@@ -84,8 +80,6 @@ class ReadWrite extends \Google\Protobuf\Internal\Message
      * Optional. Clients should pass the transaction ID of the previous
      * transaction attempt that was aborted if this transaction is being
      * executed on a multiplexed session.
-     * This feature is not yet supported and will result in an UNIMPLEMENTED
-     * error.
      *
      * Generated from protobuf field <code>bytes multiplexed_session_previous_transaction_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -99,8 +93,6 @@ class ReadWrite extends \Google\Protobuf\Internal\Message
      * Optional. Clients should pass the transaction ID of the previous
      * transaction attempt that was aborted if this transaction is being
      * executed on a multiplexed session.
-     * This feature is not yet supported and will result in an UNIMPLEMENTED
-     * error.
      *
      * Generated from protobuf field <code>bytes multiplexed_session_previous_transaction_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

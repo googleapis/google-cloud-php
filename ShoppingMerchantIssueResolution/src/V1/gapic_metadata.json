@@ -1,0 +1,47 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.shopping.merchant.issueresolution.v1",
+    "libraryPackage": "Google\\Shopping\\Merchant\\IssueResolution\\V1",
+    "services": {
+        "AggregateProductStatusesService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "AggregateProductStatusesServiceGapicClient",
+                    "rpcs": {
+                        "ListAggregateProductStatuses": {
+                            "methods": [
+                                "listAggregateProductStatuses"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "IssueResolutionService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "IssueResolutionServiceGapicClient",
+                    "rpcs": {
+                        "RenderAccountIssues": {
+                            "methods": [
+                                "renderAccountIssues"
+                            ]
+                        },
+                        "RenderProductIssues": {
+                            "methods": [
+                                "renderProductIssues"
+                            ]
+                        },
+                        "TriggerAction": {
+                            "methods": [
+                                "triggerAction"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

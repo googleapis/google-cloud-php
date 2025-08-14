@@ -61,6 +61,8 @@ use Google\Cloud\Spanner\Admin\Database\V1\GetBackupScheduleRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\GetDatabaseDdlRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\GetDatabaseDdlResponse;
 use Google\Cloud\Spanner\Admin\Database\V1\GetDatabaseRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\InternalUpdateGraphOperationRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\InternalUpdateGraphOperationResponse;
 use Google\Cloud\Spanner\Admin\Database\V1\ListBackupOperationsRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\ListBackupSchedulesRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\ListBackupsRequest;
@@ -110,6 +112,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<Database> getDatabaseAsync(GetDatabaseRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<GetDatabaseDdlResponse> getDatabaseDdlAsync(GetDatabaseDdlRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<InternalUpdateGraphOperationResponse> internalUpdateGraphOperationAsync(InternalUpdateGraphOperationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listBackupOperationsAsync(ListBackupOperationsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listBackupSchedulesAsync(ListBackupSchedulesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listBackupsAsync(ListBackupsRequest $request, array $optionalArgs = [])
@@ -834,6 +837,34 @@ final class DatabaseAdminClient
     public function getIamPolicy(GetIamPolicyRequest $request, array $callOptions = []): Policy
     {
         return $this->startApiCall('GetIamPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
+     * This is an internal API called by Spanner Graph jobs. You should never need
+     * to call this API directly.
+     *
+     * The async variant is
+     * {@see DatabaseAdminClient::internalUpdateGraphOperationAsync()} .
+     *
+     * @example samples/V1/DatabaseAdminClient/internal_update_graph_operation.php
+     *
+     * @param InternalUpdateGraphOperationRequest $request     A request to house fields associated with the call.
+     * @param array                               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return InternalUpdateGraphOperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function internalUpdateGraphOperation(InternalUpdateGraphOperationRequest $request, array $callOptions = []): InternalUpdateGraphOperationResponse
+    {
+        return $this->startApiCall('InternalUpdateGraphOperation', $request, $callOptions)->wait();
     }
 
     /**

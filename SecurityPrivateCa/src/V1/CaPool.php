@@ -22,11 +22,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class CaPool extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The resource name for this
+     * Identifier. The resource name for this
      * [CaPool][google.cloud.security.privateca.v1.CaPool] in the format
      * `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
@@ -72,7 +72,7 @@ class CaPool extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. The resource name for this
+     *           Identifier. The resource name for this
      *           [CaPool][google.cloud.security.privateca.v1.CaPool] in the format
      *           `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;`.
      *     @type int $tier
@@ -102,11 +102,11 @@ class CaPool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name for this
+     * Identifier. The resource name for this
      * [CaPool][google.cloud.security.privateca.v1.CaPool] in the format
      * `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -115,11 +115,11 @@ class CaPool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name for this
+     * Identifier. The resource name for this
      * [CaPool][google.cloud.security.privateca.v1.CaPool] in the format
      * `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */

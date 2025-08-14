@@ -28,7 +28,7 @@ class ItemLevelIssue extends \Google\Protobuf\Internal\Message
      */
     protected $severity = 0;
     /**
-     * Whether the issue can be resolved by the merchant.
+     * Whether the issue can be resolved by the business.
      *
      * Generated from protobuf field <code>string resolution = 3;</code>
      */
@@ -82,7 +82,7 @@ class ItemLevelIssue extends \Google\Protobuf\Internal\Message
      *     @type int $severity
      *           How this issue affects serving of the offer.
      *     @type string $resolution
-     *           Whether the issue can be resolved by the merchant.
+     *           Whether the issue can be resolved by the business.
      *     @type string $attribute
      *           The attribute's name, if the issue is caused by a single attribute.
      *     @type int $reporting_context
@@ -156,7 +156,7 @@ class ItemLevelIssue extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether the issue can be resolved by the merchant.
+     * Whether the issue can be resolved by the business.
      *
      * Generated from protobuf field <code>string resolution = 3;</code>
      * @return string
@@ -167,7 +167,7 @@ class ItemLevelIssue extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether the issue can be resolved by the merchant.
+     * Whether the issue can be resolved by the business.
      *
      * Generated from protobuf field <code>string resolution = 3;</code>
      * @param string $var

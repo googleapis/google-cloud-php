@@ -22,6 +22,12 @@ class DeployModelOperationMetadata extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.GenericOperationMetadata generic_metadata = 1;</code>
      */
     protected $generic_metadata = null;
+    /**
+     * Output only. The deployment stage of the model.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.DeploymentStage deployment_stage = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $deployment_stage = 0;
 
     /**
      * Constructor.
@@ -31,6 +37,8 @@ class DeployModelOperationMetadata extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\AIPlatform\V1\GenericOperationMetadata $generic_metadata
      *           The operation generic information.
+     *     @type int $deployment_stage
+     *           Output only. The deployment stage of the model.
      * }
      */
     public function __construct($data = NULL) {
@@ -70,6 +78,32 @@ class DeployModelOperationMetadata extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\GenericOperationMetadata::class);
         $this->generic_metadata = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The deployment stage of the model.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.DeploymentStage deployment_stage = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getDeploymentStage()
+    {
+        return $this->deployment_stage;
+    }
+
+    /**
+     * Output only. The deployment stage of the model.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.DeploymentStage deployment_stage = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setDeploymentStage($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\AIPlatform\V1\DeploymentStage::class);
+        $this->deployment_stage = $var;
 
         return $this;
     }

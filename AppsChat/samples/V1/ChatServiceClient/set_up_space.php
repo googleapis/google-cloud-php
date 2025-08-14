@@ -80,7 +80,12 @@ use Google\Apps\Chat\V1\Space;
  * might already use this display name.
  *
  * Requires [user
- * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+ * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+ * with one of the following [authorization
+ * scopes](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes):
+ *
+ * - `https://www.googleapis.com/auth/chat.spaces.create`
+ * - `https://www.googleapis.com/auth/chat.spaces`
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:

@@ -36,6 +36,7 @@ use Google\Cloud\Spanner\Admin\Database\V1\Database;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseRole;
 use Google\Cloud\Spanner\Admin\Database\V1\GetDatabaseDdlResponse;
+use Google\Cloud\Spanner\Admin\Database\V1\InternalUpdateGraphOperationResponse;
 use Google\Cloud\Spanner\Admin\Database\V1\ListBackupOperationsResponse;
 use Google\Cloud\Spanner\Admin\Database\V1\ListBackupSchedulesResponse;
 use Google\Cloud\Spanner\Admin\Database\V1\ListBackupsResponse;
@@ -1098,6 +1099,72 @@ class DatabaseAdminClientTest extends GeneratedTest
         $resource = 'resource-341064690';
         try {
             $gapicClient->getIamPolicy($resource);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function internalUpdateGraphOperationTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new InternalUpdateGraphOperationResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedDatabase = $gapicClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+        $operationId = 'operationId-274116877';
+        $vmIdentityToken = 'vmIdentityToken-1589919296';
+        $response = $gapicClient->internalUpdateGraphOperation($formattedDatabase, $operationId, $vmIdentityToken);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.spanner.admin.database.v1.DatabaseAdmin/InternalUpdateGraphOperation', $actualFuncCall);
+        $actualValue = $actualRequestObject->getDatabase();
+        $this->assertProtobufEquals($formattedDatabase, $actualValue);
+        $actualValue = $actualRequestObject->getOperationId();
+        $this->assertProtobufEquals($operationId, $actualValue);
+        $actualValue = $actualRequestObject->getVmIdentityToken();
+        $this->assertProtobufEquals($vmIdentityToken, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function internalUpdateGraphOperationExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedDatabase = $gapicClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+        $operationId = 'operationId-274116877';
+        $vmIdentityToken = 'vmIdentityToken-1589919296';
+        try {
+            $gapicClient->internalUpdateGraphOperation($formattedDatabase, $operationId, $vmIdentityToken);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

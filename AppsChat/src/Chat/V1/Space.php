@@ -156,6 +156,21 @@ class Space extends \Google\Protobuf\Internal\Message
      */
     protected $access_settings = null;
     /**
+     * Optional. Immutable. The customer id of the domain of the space.
+     * Required only when creating a space with [app
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
+     * and `SpaceType` is `SPACE`, otherwise should not be set.
+     * In the format `customers/{customer}`, where `customer` is the `id` from the
+     * [Admin SDK customer resource](
+     * https://developers.google.com/admin-sdk/directory/reference/rest/v1/customers).
+     * Private apps can also use the `customers/my_customer` alias to create
+     * the space in the same Google Workspace organization as the app.
+     * For DMs, this field isn't populated.
+     *
+     * Generated from protobuf field <code>optional string customer = 24 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $customer = null;
+    /**
      * Output only. The URI for a user to access the space.
      *
      * Generated from protobuf field <code>string space_uri = 25 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -252,6 +267,17 @@ class Space extends \Google\Protobuf\Internal\Message
      *           Optional. Specifies the [access
      *           setting](https://support.google.com/chat/answer/11971020) of the space.
      *           Only populated when the `space_type` is `SPACE`.
+     *     @type string $customer
+     *           Optional. Immutable. The customer id of the domain of the space.
+     *           Required only when creating a space with [app
+     *           authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
+     *           and `SpaceType` is `SPACE`, otherwise should not be set.
+     *           In the format `customers/{customer}`, where `customer` is the `id` from the
+     *           [Admin SDK customer resource](
+     *           https://developers.google.com/admin-sdk/directory/reference/rest/v1/customers).
+     *           Private apps can also use the `customers/my_customer` alias to create
+     *           the space in the same Google Workspace organization as the app.
+     *           For DMs, this field isn't populated.
      *     @type string $space_uri
      *           Output only. The URI for a user to access the space.
      *     @type int $predefined_permission_settings
@@ -259,10 +285,27 @@ class Space extends \Google\Protobuf\Internal\Message
      *           when creating a space. If the field is not set, a collaboration space is
      *           created. After you create the space, settings are populated in the
      *           `PermissionSettings` field.
+     *           Setting predefined permission settings supports:
+     *           - [App
+     *           authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
+     *           with [administrator
+     *           approval](https://support.google.com/a?p=chat-app-auth) with the
+     *           `chat.app.spaces` or `chat.app.spaces.create` scopes.
+     *           - [User
+     *           authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
      *     @type \Google\Apps\Chat\V1\Space\PermissionSettings $permission_settings
      *           Optional. Space permission settings for existing spaces. Input for
      *           updating exact space permission settings, where existing permission
      *           settings are replaced. Output lists current permission settings.
+     *           Reading and updating permission settings supports:
+     *           - [App
+     *           authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
+     *           with [administrator
+     *           approval](https://support.google.com/a?p=chat-app-auth) with the
+     *           `chat.app.spaces` scope. Only populated and settable when the Chat app
+     *           created the space.
+     *           - [User
+     *           authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
      *     @type \Google\Protobuf\Timestamp $import_mode_expire_time
      *           Output only. The time when the space will be automatically deleted by the
      *           system if it remains in import mode.
@@ -837,6 +880,60 @@ class Space extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. Immutable. The customer id of the domain of the space.
+     * Required only when creating a space with [app
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
+     * and `SpaceType` is `SPACE`, otherwise should not be set.
+     * In the format `customers/{customer}`, where `customer` is the `id` from the
+     * [Admin SDK customer resource](
+     * https://developers.google.com/admin-sdk/directory/reference/rest/v1/customers).
+     * Private apps can also use the `customers/my_customer` alias to create
+     * the space in the same Google Workspace organization as the app.
+     * For DMs, this field isn't populated.
+     *
+     * Generated from protobuf field <code>optional string customer = 24 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getCustomer()
+    {
+        return isset($this->customer) ? $this->customer : '';
+    }
+
+    public function hasCustomer()
+    {
+        return isset($this->customer);
+    }
+
+    public function clearCustomer()
+    {
+        unset($this->customer);
+    }
+
+    /**
+     * Optional. Immutable. The customer id of the domain of the space.
+     * Required only when creating a space with [app
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
+     * and `SpaceType` is `SPACE`, otherwise should not be set.
+     * In the format `customers/{customer}`, where `customer` is the `id` from the
+     * [Admin SDK customer resource](
+     * https://developers.google.com/admin-sdk/directory/reference/rest/v1/customers).
+     * Private apps can also use the `customers/my_customer` alias to create
+     * the space in the same Google Workspace organization as the app.
+     * For DMs, this field isn't populated.
+     *
+     * Generated from protobuf field <code>optional string customer = 24 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCustomer($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->customer = $var;
+
+        return $this;
+    }
+
+    /**
      * Output only. The URI for a user to access the space.
      *
      * Generated from protobuf field <code>string space_uri = 25 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -867,6 +964,14 @@ class Space extends \Google\Protobuf\Internal\Message
      * when creating a space. If the field is not set, a collaboration space is
      * created. After you create the space, settings are populated in the
      * `PermissionSettings` field.
+     * Setting predefined permission settings supports:
+     * - [App
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
+     * with [administrator
+     * approval](https://support.google.com/a?p=chat-app-auth) with the
+     * `chat.app.spaces` or `chat.app.spaces.create` scopes.
+     * - [User
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
      *
      * Generated from protobuf field <code>.google.chat.v1.Space.PredefinedPermissionSettings predefined_permission_settings = 26 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -886,6 +991,14 @@ class Space extends \Google\Protobuf\Internal\Message
      * when creating a space. If the field is not set, a collaboration space is
      * created. After you create the space, settings are populated in the
      * `PermissionSettings` field.
+     * Setting predefined permission settings supports:
+     * - [App
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
+     * with [administrator
+     * approval](https://support.google.com/a?p=chat-app-auth) with the
+     * `chat.app.spaces` or `chat.app.spaces.create` scopes.
+     * - [User
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
      *
      * Generated from protobuf field <code>.google.chat.v1.Space.PredefinedPermissionSettings predefined_permission_settings = 26 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -903,6 +1016,15 @@ class Space extends \Google\Protobuf\Internal\Message
      * Optional. Space permission settings for existing spaces. Input for
      * updating exact space permission settings, where existing permission
      * settings are replaced. Output lists current permission settings.
+     * Reading and updating permission settings supports:
+     * - [App
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
+     * with [administrator
+     * approval](https://support.google.com/a?p=chat-app-auth) with the
+     * `chat.app.spaces` scope. Only populated and settable when the Chat app
+     * created the space.
+     * - [User
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
      *
      * Generated from protobuf field <code>.google.chat.v1.Space.PermissionSettings permission_settings = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Apps\Chat\V1\Space\PermissionSettings|null
@@ -921,6 +1043,15 @@ class Space extends \Google\Protobuf\Internal\Message
      * Optional. Space permission settings for existing spaces. Input for
      * updating exact space permission settings, where existing permission
      * settings are replaced. Output lists current permission settings.
+     * Reading and updating permission settings supports:
+     * - [App
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
+     * with [administrator
+     * approval](https://support.google.com/a?p=chat-app-auth) with the
+     * `chat.app.spaces` scope. Only populated and settable when the Chat app
+     * created the space.
+     * - [User
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
      *
      * Generated from protobuf field <code>.google.chat.v1.Space.PermissionSettings permission_settings = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Apps\Chat\V1\Space\PermissionSettings $var

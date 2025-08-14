@@ -469,6 +469,11 @@
                 "grpc": {
                     "libraryClient": "FeatureOnlineStoreServiceGapicClient",
                     "rpcs": {
+                        "FeatureViewDirectWrite": {
+                            "methods": [
+                                "featureViewDirectWrite"
+                            ]
+                        },
                         "FetchFeatureValues": {
                             "methods": [
                                 "fetchFeatureValues"

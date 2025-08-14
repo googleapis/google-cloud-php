@@ -34,7 +34,13 @@ use Google\Apps\Chat\V1\UploadAttachmentResponse;
  * attachment](https://developers.google.com/workspace/chat/upload-media-attachments).
  *
  * Requires user
- * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+ * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+ * with one of the following [authorization
+ * scopes](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes):
+ *
+ * - `https://www.googleapis.com/auth/chat.messages.create`
+ * - `https://www.googleapis.com/auth/chat.messages`
+ * - `https://www.googleapis.com/auth/chat.import` (import mode spaces only)
  *
  * You can upload attachments up to 200 MB. Certain file types aren't
  * supported. For details, see [File types blocked by Google

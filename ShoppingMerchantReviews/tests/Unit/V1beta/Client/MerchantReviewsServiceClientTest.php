@@ -226,8 +226,6 @@ class MerchantReviewsServiceClientTest extends GeneratedTest
         $merchantReview = new MerchantReview();
         $merchantReviewMerchantReviewId = 'merchantReviewMerchantReviewId-1175491621';
         $merchantReview->setMerchantReviewId($merchantReviewMerchantReviewId);
-        $merchantReviewCustomAttributes = [];
-        $merchantReview->setCustomAttributes($merchantReviewCustomAttributes);
         $dataSource = 'dataSource-1333894576';
         $request = (new InsertMerchantReviewRequest())
             ->setParent($parent)
@@ -278,8 +276,6 @@ class MerchantReviewsServiceClientTest extends GeneratedTest
         $merchantReview = new MerchantReview();
         $merchantReviewMerchantReviewId = 'merchantReviewMerchantReviewId-1175491621';
         $merchantReview->setMerchantReviewId($merchantReviewMerchantReviewId);
-        $merchantReviewCustomAttributes = [];
-        $merchantReview->setCustomAttributes($merchantReviewCustomAttributes);
         $dataSource = 'dataSource-1333894576';
         $request = (new InsertMerchantReviewRequest())
             ->setParent($parent)

@@ -44,6 +44,12 @@ class BlockedReason
      * Generated from protobuf enum <code>PROHIBITED_CONTENT = 4;</code>
      */
     const PROHIBITED_CONTENT = 4;
+    /**
+     * The user prompt was blocked by Model Armor.
+     *
+     * Generated from protobuf enum <code>MODEL_ARMOR = 5;</code>
+     */
+    const MODEL_ARMOR = 5;
 
     private static $valueToName = [
         self::BLOCKED_REASON_UNSPECIFIED => 'BLOCKED_REASON_UNSPECIFIED',
@@ -51,6 +57,7 @@ class BlockedReason
         self::OTHER => 'OTHER',
         self::BLOCKLIST => 'BLOCKLIST',
         self::PROHIBITED_CONTENT => 'PROHIBITED_CONTENT',
+        self::MODEL_ARMOR => 'MODEL_ARMOR',
     ];
 
     public static function name($value)

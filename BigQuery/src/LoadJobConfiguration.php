@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2017 Google Inc. All Rights Reserved.
  *
@@ -695,6 +696,349 @@ class LoadJobConfiguration implements JobConfigurationInterface
     public function referenceFileSchemaUri(string $referenceFileSchemaUri)
     {
         $this->config['configuration']['load']['referenceFileSchemaUri'] = $referenceFileSchemaUri;
+
+        return $this;
+    }
+
+    /**
+     * Character map supported for column names in CSV/Parquet loads.
+     * Defaults to STRICT and can be overridden by Project Config Service. Using
+     * this option with unsupporting load formats will result in an error.
+     *
+     * Example:
+     * ```
+     * $loadJobConfig->columnNameCharacterMap('V2');
+     * ```
+     *
+     * @param string $columnNameCharacterMap The column name character map.
+     *        Acceptable values include "COLUMN_NAME_CHARACTER_MAP_UNSPECIFIED",
+     *        "STRICT", "V1", "V2".
+     * @return LoadJobConfiguration
+     */
+    public function columnNameCharacterMap(string $columnNameCharacterMap): self
+    {
+        $this->config['configuration']['load']['columnNameCharacterMap'] = $columnNameCharacterMap;
+
+        return $this;
+    }
+
+    /**
+     * [Experimental] Configures the load job to copy files directly to the
+     * destination BigLake managed table, bypassing file content reading and
+     * rewriting. Copying files only is supported when all the following are
+     * true:
+     * * `source_uris` are located in the same Cloud Storage location as the
+     *   destination table's `storage_uri` location.
+     * * `source_format` is `PARQUET`.
+     * * `destination_table` is an existing BigLake managed table. The table's
+     *   schema does not have flexible column names. The table's columns do not
+     *   have type parameters other than precision and scale.
+     * * No options other than the above are specified.
+     *
+     * Example:
+     * ```
+     * $loadJobConfig->copyFilesOnly(true);
+     * ```
+     *
+     * @param bool $copyFilesOnly Whether to copy files only.
+     * @return LoadJobConfiguration
+     */
+    public function copyFilesOnly(bool $copyFilesOnly): self
+    {
+        $this->config['configuration']['load']['copyFilesOnly'] = $copyFilesOnly;
+
+        return $this;
+    }
+
+    /**
+     * Date format used for parsing DATE values.
+     *
+     * Example:
+     * ```
+     * $loadJobConfig->dateFormat('%Y-%m-%d');
+     * ```
+     *
+     * @param string $dateFormat The date format string.
+     * @return LoadJobConfiguration
+     */
+    public function dateFormat(string $dateFormat): self
+    {
+        $this->config['configuration']['load']['dateFormat'] = $dateFormat;
+
+        return $this;
+    }
+
+    /**
+     * Date format used for parsing DATETIME values.
+     *
+     * Example:
+     * ```
+     * $loadJobConfig->datetimeFormat('%Y-%m-%d %H:%M:%S');
+     * ```
+     *
+     * @param string $datetimeFormat The datetime format string.
+     * @return LoadJobConfiguration
+     */
+    public function datetimeFormat(string $datetimeFormat): self
+    {
+        $this->config['configuration']['load']['datetimeFormat'] = $datetimeFormat;
+
+        return $this;
+    }
+
+    /**
+     * Defines the list of possible SQL data types to which the source decimal
+     * values are converted. This list and the precision and the scale parameters
+     * of the decimal field determine the target type. In the order of NUMERIC,
+     * BIGNUMERIC, and STRING, a type is picked if it is in the specified list
+     * and if it supports the precision and the scale. STRING supports all
+     * precision and scale values. If none of the listed types supports the
+     * precision and the scale, the type supporting the widest range in the
+     * specified list is picked, and if a value exceeds the supported range
+     * when reading the data, an error will be thrown. Example: Suppose the value
+     * of this field is ["NUMERIC", "BIGNUMERIC"]. If (precision,scale) is:
+     * * (38,9) -> NUMERIC;
+     * * (39,9) -> BIGNUMERIC (NUMERIC cannot hold 30 integer digits);
+     * * (38,10) -> BIGNUMERIC (NUMERIC cannot hold 10 fractional digits);
+     * * (76,38) -> BIGNUMERIC;
+     * * (77,38) -> BIGNUMERIC (error if value exceeds supported range).
+     * This field cannot contain duplicate types. The order of the types in this
+     * field is ignored. For example, ["BIGNUMERIC", "NUMERIC"] is the same as
+     * ["NUMERIC", "BIGNUMERIC"] and NUMERIC always takes precedence over BIGNUMERIC.
+     * Defaults to ["NUMERIC", "STRING"] for ORC and ["NUMERIC"] for the other
+     * file formats.
+     *
+     * Example:
+     * ```
+     * $loadJobConfig->decimalTargetTypes(['NUMERIC', 'BIGNUMERIC']);
+     * ```
+     *
+     * @param string[] $decimalTargetTypes An array of target decimal types.
+     *        Acceptable values include "DECIMAL_TARGET_TYPE_UNSPECIFIED",
+     *        "NUMERIC", "BIGNUMERIC", "STRING".
+     * @return LoadJobConfiguration
+     */
+    public function decimalTargetTypes(array $decimalTargetTypes): self
+    {
+        $this->config['configuration']['load']['decimalTargetTypes'] = $decimalTargetTypes;
+
+        return $this;
+    }
+
+    /**
+     * [Experimental] Properties with which to create the destination table
+     * if it is new.
+     *
+     * Example:
+     * ```
+     * $loadJobConfig->destinationTableProperties([
+     *     'description' => 'My new table',
+     *     'friendlyName' => 'New Table',
+     *     'labels' => ['env' => 'dev']
+     * ]);
+     * ```
+     *
+     * @see https://cloud.google.com/bigquery/docs/reference/rest/v2/Job#destinationtableproperties
+     *      DestinationTableProperties
+     *
+     * @param array $destinationTableProperties Properties for the destination table.
+     * @return LoadJobConfiguration
+     */
+    public function destinationTableProperties(array $destinationTableProperties): self
+    {
+        $this->config['configuration']['load']['destinationTableProperties'] = $destinationTableProperties;
+
+        return $this;
+    }
+
+    /**
+     * Specifies how source URIs are interpreted for constructing the
+     * file set to load. By default, source URIs are expanded against the
+     * underlying storage. You can also specify manifest files to control how the
+     * file set is constructed. This option is only applicable to object storage
+     * systems.
+     *
+     * Example:
+     * ```
+     * $loadJobConfig->fileSetSpecType('FILE_SET_SPEC_TYPE_NEW_LINE_DELIMITED_MANIFEST');
+     * ```
+     *
+     * @param string $fileSetSpecType The file set specification type.
+     *        Acceptable values include "FILE_SET_SPEC_TYPE_FILE_SYSTEM_MATCH",
+     *        "FILE_SET_SPEC_TYPE_NEW_LINE_DELIMITED_MANIFEST".
+     * @return LoadJobConfiguration
+     */
+    public function fileSetSpecType(string $fileSetSpecType): self
+    {
+        $this->config['configuration']['load']['fileSetSpecType'] = $fileSetSpecType;
+
+        return $this;
+    }
+
+    /**
+     * Load option to be used together with source_format
+     * newline-delimited JSON to indicate that a variant of JSON is being loaded.
+     * To load newline-delimited GeoJSON, specify GEOJSON (and source_format
+     * must be set to NEWLINE_DELIMITED_JSON).
+     *
+     * Example:
+     * ```
+     * $loadJobConfig->jsonExtension('GEOJSON');
+     * ```
+     *
+     * @param string $jsonExtension The JSON extension type.
+     *        Acceptable values include "JSON_EXTENSION_UNSPECIFIED", "GEOJSON".
+     * @return LoadJobConfiguration
+     */
+    public function jsonExtension(string $jsonExtension): self
+    {
+        $this->config['configuration']['load']['jsonExtension'] = $jsonExtension;
+
+        return $this;
+    }
+
+    /**
+     * A list of strings represented as SQL NULL value in a CSV file.
+     * null_marker and null_markers can't be set at the same time. If null_marker
+     * is set, null_markers has to be not set. If null_markers is set, null_marker
+     * has to be not set. If both null_marker and null_markers are set at the same
+     * time, a user error would be thrown. Any strings listed in null_markers,
+     * including empty string would be interpreted as SQL NULL. This applies to all
+     * column types.
+     *
+     * Example:
+     * ```
+     * $loadJobConfig->nullMarkers(['\\N', 'NULL']);
+     * ```
+     *
+     * @param string[] $nullMarkers An array of strings to be interpreted as NULL.
+     * @return LoadJobConfiguration
+     */
+    public function nullMarkers(array $nullMarkers): self
+    {
+        $this->config['configuration']['load']['nullMarkers'] = $nullMarkers;
+
+        return $this;
+    }
+
+    /**
+     * Additional properties to set if sourceFormat is set to PARQUET.
+     *
+     * @see https://cloud.google.com/bigquery/docs/reference/rest/v2/tables#ParquetOptions ParquetOptions
+     *
+     * Example:
+     * ```
+     * $loadJobConfig->parquetOptions([
+     *     'enumAsString' => true
+     * ]);
+     * ```
+     *
+     * @param array $parquetOptions Additional Parquet options.
+     * @return LoadJobConfiguration
+     */
+    public function parquetOptions(array $parquetOptions): self
+    {
+        $this->config['configuration']['load']['parquetOptions'] = $parquetOptions;
+
+        return $this;
+    }
+
+    /**
+     * When sourceFormat is set to "CSV", this indicates whether the
+     * embedded ASCII control characters (the first 32 characters in the
+     * ASCII-table, from '\\x00' to '\\x1F') are preserved.
+     *
+     * Example:
+     * ```
+     * $loadJobConfig->preserveAsciiControlCharacters(true);
+     * ```
+     *
+     * @param bool $preserveAsciiControlCharacters Whether to preserve ASCII
+     *        control characters.
+     * @return LoadJobConfiguration
+     */
+    public function preserveAsciiControlCharacters(bool $preserveAsciiControlCharacters): self
+    {
+        $this->config['configuration']['load']['preserveAsciiControlCharacters'] = $preserveAsciiControlCharacters;
+
+        return $this;
+    }
+
+    /**
+     * Controls the strategy used to match loaded columns to the schema.
+     * If not set, a sensible default is chosen based on how the schema is
+     * provided. If autodetect is used, then columns are matched by name.
+     * Otherwise, columns are matched by position. This is done to keep the
+     * behavior backward-compatible.
+     *
+     * Example:
+     * ```
+     * $loadJobConfig->sourceColumnMatch('NAME');
+     * ```
+     *
+     * @param string $sourceColumnMatch The column match strategy.
+     *        Acceptable values include "SOURCE_COLUMN_MATCH_UNSPECIFIED",
+     *        "POSITION", "NAME".
+     * @return LoadJobConfiguration
+     */
+    public function sourceColumnMatch(string $sourceColumnMatch): self
+    {
+        $this->config['configuration']['load']['sourceColumnMatch'] = $sourceColumnMatch;
+
+        return $this;
+    }
+
+    /**
+     * Date format used for parsing TIME values.
+     *
+     * Example:
+     * ```
+     * $loadJobConfig->timeFormat('%H:%M:%S');
+     * ```
+     *
+     * @param string $timeFormat The time format string.
+     * @return LoadJobConfiguration
+     */
+    public function timeFormat(string $timeFormat): self
+    {
+        $this->config['configuration']['load']['timeFormat'] = $timeFormat;
+
+        return $this;
+    }
+
+    /**
+     * Default time zone that will apply when parsing timestamp values
+     * that have no specific time zone.
+     *
+     * Example:
+     * ```
+     * $loadJobConfig->timeZone('America/Los_Angeles');
+     * ```
+     *
+     * @param string $timeZone The default time zone string.
+     * @return LoadJobConfiguration
+     */
+    public function timeZone(string $timeZone): self
+    {
+        $this->config['configuration']['load']['timeZone'] = $timeZone;
+
+        return $this;
+    }
+
+    /**
+     * Date format used for parsing TIMESTAMP values.
+     *
+     * Example:
+     * ```
+     * $loadJobConfig->timestampFormat('%Y-%m-%d %H:%M:%S%F');
+     * ```
+     *
+     * @param string $timestampFormat The timestamp format string.
+     * @return LoadJobConfiguration
+     */
+    public function timestampFormat(string $timestampFormat): self
+    {
+        $this->config['configuration']['load']['timestampFormat'] = $timestampFormat;
 
         return $this;
     }

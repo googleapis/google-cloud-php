@@ -17,7 +17,7 @@ class Disk extends \Google\Protobuf\Internal\Message
 {
     /**
      * The name of the disk, for example,
-     * `https://www.googleapis.com/compute/v1/projects/{project-id}/zones/{zone-id}/disks/{disk-id}`.
+     * "https://www.googleapis.com/compute/v1/projects/{project-id}/zones/{zone-id}/disks/{disk-id}".
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -31,7 +31,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           The name of the disk, for example,
-     *           `https://www.googleapis.com/compute/v1/projects/{project-id}/zones/{zone-id}/disks/{disk-id}`.
+     *           "https://www.googleapis.com/compute/v1/projects/{project-id}/zones/{zone-id}/disks/{disk-id}".
      * }
      */
     public function __construct($data = NULL) {
@@ -41,7 +41,7 @@ class Disk extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the disk, for example,
-     * `https://www.googleapis.com/compute/v1/projects/{project-id}/zones/{zone-id}/disks/{disk-id}`.
+     * "https://www.googleapis.com/compute/v1/projects/{project-id}/zones/{zone-id}/disks/{disk-id}".
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -53,7 +53,7 @@ class Disk extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the disk, for example,
-     * `https://www.googleapis.com/compute/v1/projects/{project-id}/zones/{zone-id}/disks/{disk-id}`.
+     * "https://www.googleapis.com/compute/v1/projects/{project-id}/zones/{zone-id}/disks/{disk-id}".
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var

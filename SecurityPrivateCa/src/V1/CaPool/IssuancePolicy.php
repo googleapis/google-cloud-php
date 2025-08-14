@@ -26,6 +26,18 @@ class IssuancePolicy extends \Google\Protobuf\Internal\Message
      */
     private $allowed_key_types;
     /**
+     * Optional. The duration to backdate all certificates issued from this
+     * [CaPool][google.cloud.security.privateca.v1.CaPool]. If not set, the
+     * certificates will be issued with a not_before_time of the issuance time
+     * (i.e. the current time). If set, the certificates will be issued with a
+     * not_before_time of the issuance time minus the backdate_duration. The
+     * not_after_time will be adjusted to preserve the requested lifetime. The
+     * backdate_duration must be less than or equal to 48 hours.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration backdate_duration = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $backdate_duration = null;
+    /**
      * Optional. The maximum lifetime allowed for issued
      * [Certificates][google.cloud.security.privateca.v1.Certificate]. Note that
      * if the issuing
@@ -104,6 +116,14 @@ class IssuancePolicy extends \Google\Protobuf\Internal\Message
      *           [AllowedKeyType][google.cloud.security.privateca.v1.CaPool.IssuancePolicy.AllowedKeyType]
      *           is specified, then the certificate request's public key must match one of
      *           the key types listed here. Otherwise, any key may be used.
+     *     @type \Google\Protobuf\Duration $backdate_duration
+     *           Optional. The duration to backdate all certificates issued from this
+     *           [CaPool][google.cloud.security.privateca.v1.CaPool]. If not set, the
+     *           certificates will be issued with a not_before_time of the issuance time
+     *           (i.e. the current time). If set, the certificates will be issued with a
+     *           not_before_time of the issuance time minus the backdate_duration. The
+     *           not_after_time will be adjusted to preserve the requested lifetime. The
+     *           backdate_duration must be less than or equal to 48 hours.
      *     @type \Google\Protobuf\Duration $maximum_lifetime
      *           Optional. The maximum lifetime allowed for issued
      *           [Certificates][google.cloud.security.privateca.v1.Certificate]. Note that
@@ -186,6 +206,54 @@ class IssuancePolicy extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Security\PrivateCA\V1\CaPool\IssuancePolicy\AllowedKeyType::class);
         $this->allowed_key_types = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The duration to backdate all certificates issued from this
+     * [CaPool][google.cloud.security.privateca.v1.CaPool]. If not set, the
+     * certificates will be issued with a not_before_time of the issuance time
+     * (i.e. the current time). If set, the certificates will be issued with a
+     * not_before_time of the issuance time minus the backdate_duration. The
+     * not_after_time will be adjusted to preserve the requested lifetime. The
+     * backdate_duration must be less than or equal to 48 hours.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration backdate_duration = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Duration|null
+     */
+    public function getBackdateDuration()
+    {
+        return $this->backdate_duration;
+    }
+
+    public function hasBackdateDuration()
+    {
+        return isset($this->backdate_duration);
+    }
+
+    public function clearBackdateDuration()
+    {
+        unset($this->backdate_duration);
+    }
+
+    /**
+     * Optional. The duration to backdate all certificates issued from this
+     * [CaPool][google.cloud.security.privateca.v1.CaPool]. If not set, the
+     * certificates will be issued with a not_before_time of the issuance time
+     * (i.e. the current time). If set, the certificates will be issued with a
+     * not_before_time of the issuance time minus the backdate_duration. The
+     * not_after_time will be adjusted to preserve the requested lifetime. The
+     * backdate_duration must be less than or equal to 48 hours.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration backdate_duration = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\Duration $var
+     * @return $this
+     */
+    public function setBackdateDuration($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
+        $this->backdate_duration = $var;
 
         return $this;
     }

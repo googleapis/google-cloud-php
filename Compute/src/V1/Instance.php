@@ -147,7 +147,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     private $machine_type = null;
     /**
-     * The metadata key/value pairs assigned to this instance. This includes custom metadata and predefined keys.
+     * The metadata key/value pairs assigned to this instance. This includes metadata keys that were explicitly defined for the instance.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Metadata metadata = 86866735;</code>
      */
@@ -338,7 +338,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *     @type string $machine_type
      *           Full or partial URL of the machine type resource to use for this instance, in the format: zones/zone/machineTypes/machine-type. This is provided by the client when the instance is created. For example, the following is a valid partial url to a predefined machine type: zones/us-central1-f/machineTypes/n1-standard-1 To create a custom machine type, provide a URL to a machine type in the following format, where CPUS is 1 or an even number up to 32 (2, 4, 6, ... 24, etc), and MEMORY is the total memory for this instance. Memory must be a multiple of 256 MB and must be supplied in MB (e.g. 5 GB of memory is 5120 MB): zones/zone/machineTypes/custom-CPUS-MEMORY For example: zones/us-central1-f/machineTypes/custom-4-5120 For a full list of restrictions, read the Specifications for custom machine types.
      *     @type \Google\Cloud\Compute\V1\Metadata $metadata
-     *           The metadata key/value pairs assigned to this instance. This includes custom metadata and predefined keys.
+     *           The metadata key/value pairs assigned to this instance. This includes metadata keys that were explicitly defined for the instance.
      *     @type string $min_cpu_platform
      *           Specifies a minimum CPU platform for the VM instance. Applicable values are the friendly names of CPU platforms, such as minCpuPlatform: "Intel Haswell" or minCpuPlatform: "Intel Sandy Bridge".
      *     @type string $name
@@ -1152,7 +1152,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The metadata key/value pairs assigned to this instance. This includes custom metadata and predefined keys.
+     * The metadata key/value pairs assigned to this instance. This includes metadata keys that were explicitly defined for the instance.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Metadata metadata = 86866735;</code>
      * @return \Google\Cloud\Compute\V1\Metadata|null
@@ -1173,7 +1173,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The metadata key/value pairs assigned to this instance. This includes custom metadata and predefined keys.
+     * The metadata key/value pairs assigned to this instance. This includes metadata keys that were explicitly defined for the instance.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Metadata metadata = 86866735;</code>
      * @param \Google\Cloud\Compute\V1\Metadata $var

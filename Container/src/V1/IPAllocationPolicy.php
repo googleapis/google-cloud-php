@@ -213,6 +213,22 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>double default_pod_ipv4_range_utilization = 25 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $default_pod_ipv4_range_utilization = 0.0;
+    /**
+     * Output only. The additional IP ranges that are added to the cluster.
+     * These IP ranges can be used by new node pools to allocate node and pod IPs
+     * automatically.
+     * Each AdditionalIPRangesConfig corresponds to a single subnetwork.
+     * Once a range is removed it will not show up in IPAllocationPolicy.
+     *
+     * Generated from protobuf field <code>repeated .google.container.v1.AdditionalIPRangesConfig additional_ip_ranges_configs = 29 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $additional_ip_ranges_configs;
+    /**
+     * Optional. AutoIpamConfig contains all information related to Auto IPAM
+     *
+     * Generated from protobuf field <code>.google.container.v1.AutoIpamConfig auto_ipam_config = 30 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $auto_ipam_config = null;
 
     /**
      * Constructor.
@@ -334,6 +350,14 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
      *           Output only. The utilization of the cluster default IPv4 range for the
      *           pod. The ratio is Usage/[Total number of IPs in the secondary range],
      *           Usage=numNodes*numZones*podIPsPerNode.
+     *     @type array<\Google\Cloud\Container\V1\AdditionalIPRangesConfig>|\Google\Protobuf\Internal\RepeatedField $additional_ip_ranges_configs
+     *           Output only. The additional IP ranges that are added to the cluster.
+     *           These IP ranges can be used by new node pools to allocate node and pod IPs
+     *           automatically.
+     *           Each AdditionalIPRangesConfig corresponds to a single subnetwork.
+     *           Once a range is removed it will not show up in IPAllocationPolicy.
+     *     @type \Google\Cloud\Container\V1\AutoIpamConfig $auto_ipam_config
+     *           Optional. AutoIpamConfig contains all information related to Auto IPAM
      * }
      */
     public function __construct($data = NULL) {
@@ -1049,6 +1073,76 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkDouble($var);
         $this->default_pod_ipv4_range_utilization = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The additional IP ranges that are added to the cluster.
+     * These IP ranges can be used by new node pools to allocate node and pod IPs
+     * automatically.
+     * Each AdditionalIPRangesConfig corresponds to a single subnetwork.
+     * Once a range is removed it will not show up in IPAllocationPolicy.
+     *
+     * Generated from protobuf field <code>repeated .google.container.v1.AdditionalIPRangesConfig additional_ip_ranges_configs = 29 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getAdditionalIpRangesConfigs()
+    {
+        return $this->additional_ip_ranges_configs;
+    }
+
+    /**
+     * Output only. The additional IP ranges that are added to the cluster.
+     * These IP ranges can be used by new node pools to allocate node and pod IPs
+     * automatically.
+     * Each AdditionalIPRangesConfig corresponds to a single subnetwork.
+     * Once a range is removed it will not show up in IPAllocationPolicy.
+     *
+     * Generated from protobuf field <code>repeated .google.container.v1.AdditionalIPRangesConfig additional_ip_ranges_configs = 29 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<\Google\Cloud\Container\V1\AdditionalIPRangesConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setAdditionalIpRangesConfigs($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Container\V1\AdditionalIPRangesConfig::class);
+        $this->additional_ip_ranges_configs = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. AutoIpamConfig contains all information related to Auto IPAM
+     *
+     * Generated from protobuf field <code>.google.container.v1.AutoIpamConfig auto_ipam_config = 30 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Container\V1\AutoIpamConfig|null
+     */
+    public function getAutoIpamConfig()
+    {
+        return $this->auto_ipam_config;
+    }
+
+    public function hasAutoIpamConfig()
+    {
+        return isset($this->auto_ipam_config);
+    }
+
+    public function clearAutoIpamConfig()
+    {
+        unset($this->auto_ipam_config);
+    }
+
+    /**
+     * Optional. AutoIpamConfig contains all information related to Auto IPAM
+     *
+     * Generated from protobuf field <code>.google.container.v1.AutoIpamConfig auto_ipam_config = 30 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Container\V1\AutoIpamConfig $var
+     * @return $this
+     */
+    public function setAutoIpamConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\AutoIpamConfig::class);
+        $this->auto_ipam_config = $var;
 
         return $this;
     }

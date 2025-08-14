@@ -47,12 +47,16 @@ use Google\Cloud\Config\V1\ExportPreviewResultResponse;
 use Google\Cloud\Config\V1\ExportRevisionStatefileRequest;
 use Google\Cloud\Config\V1\GetDeploymentRequest;
 use Google\Cloud\Config\V1\GetPreviewRequest;
+use Google\Cloud\Config\V1\GetResourceChangeRequest;
+use Google\Cloud\Config\V1\GetResourceDriftRequest;
 use Google\Cloud\Config\V1\GetResourceRequest;
 use Google\Cloud\Config\V1\GetRevisionRequest;
 use Google\Cloud\Config\V1\GetTerraformVersionRequest;
 use Google\Cloud\Config\V1\ImportStatefileRequest;
 use Google\Cloud\Config\V1\ListDeploymentsRequest;
 use Google\Cloud\Config\V1\ListPreviewsRequest;
+use Google\Cloud\Config\V1\ListResourceChangesRequest;
+use Google\Cloud\Config\V1\ListResourceDriftsRequest;
 use Google\Cloud\Config\V1\ListResourcesRequest;
 use Google\Cloud\Config\V1\ListRevisionsRequest;
 use Google\Cloud\Config\V1\ListTerraformVersionsRequest;
@@ -60,6 +64,8 @@ use Google\Cloud\Config\V1\LockDeploymentRequest;
 use Google\Cloud\Config\V1\LockInfo;
 use Google\Cloud\Config\V1\Preview;
 use Google\Cloud\Config\V1\Resource;
+use Google\Cloud\Config\V1\ResourceChange;
+use Google\Cloud\Config\V1\ResourceDrift;
 use Google\Cloud\Config\V1\Revision;
 use Google\Cloud\Config\V1\Statefile;
 use Google\Cloud\Config\V1\TerraformVersion;
@@ -102,11 +108,15 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<Deployment> getDeploymentAsync(GetDeploymentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Preview> getPreviewAsync(GetPreviewRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Resource> getResourceAsync(GetResourceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ResourceChange> getResourceChangeAsync(GetResourceChangeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ResourceDrift> getResourceDriftAsync(GetResourceDriftRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Revision> getRevisionAsync(GetRevisionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<TerraformVersion> getTerraformVersionAsync(GetTerraformVersionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Statefile> importStatefileAsync(ImportStatefileRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listDeploymentsAsync(ListDeploymentsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listPreviewsAsync(ListPreviewsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listResourceChangesAsync(ListResourceChangesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listResourceDriftsAsync(ListResourceDriftsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listResourcesAsync(ListResourcesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listRevisionsAsync(ListRevisionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listTerraformVersionsAsync(ListTerraformVersionsRequest $request, array $optionalArgs = [])
@@ -301,6 +311,56 @@ final class ConfigClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * resource_change resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $preview
+     * @param string $resourceChange
+     *
+     * @return string The formatted resource_change resource.
+     */
+    public static function resourceChangeName(
+        string $project,
+        string $location,
+        string $preview,
+        string $resourceChange
+    ): string {
+        return self::getPathTemplate('resourceChange')->render([
+            'project' => $project,
+            'location' => $location,
+            'preview' => $preview,
+            'resource_change' => $resourceChange,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * resource_drift resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $preview
+     * @param string $resourceDrift
+     *
+     * @return string The formatted resource_drift resource.
+     */
+    public static function resourceDriftName(
+        string $project,
+        string $location,
+        string $preview,
+        string $resourceDrift
+    ): string {
+        return self::getPathTemplate('resourceDrift')->render([
+            'project' => $project,
+            'location' => $location,
+            'preview' => $preview,
+            'resource_drift' => $resourceDrift,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a revision
      * resource.
      *
@@ -384,6 +444,8 @@ final class ConfigClient
      * - location: projects/{project}/locations/{location}
      * - preview: projects/{project}/locations/{location}/previews/{preview}
      * - resource: projects/{project}/locations/{location}/deployments/{deployment}/revisions/{revision}/resources/{resource}
+     * - resourceChange: projects/{project}/locations/{location}/previews/{preview}/resourceChanges/{resource_change}
+     * - resourceDrift: projects/{project}/locations/{location}/previews/{preview}/resourceDrifts/{resource_drift}
      * - revision: projects/{project}/locations/{location}/deployments/{deployment}/revisions/{revision}
      * - serviceAccount: projects/{project}/serviceAccounts/{service_account}
      * - terraformVersion: projects/{project}/locations/{location}/terraformVersions/{terraform_version}
@@ -804,6 +866,58 @@ final class ConfigClient
     }
 
     /**
+     * Get a ResourceChange for a given preview.
+     *
+     * The async variant is {@see ConfigClient::getResourceChangeAsync()} .
+     *
+     * @example samples/V1/ConfigClient/get_resource_change.php
+     *
+     * @param GetResourceChangeRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ResourceChange
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getResourceChange(GetResourceChangeRequest $request, array $callOptions = []): ResourceChange
+    {
+        return $this->startApiCall('GetResourceChange', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Get a ResourceDrift for a given preview.
+     *
+     * The async variant is {@see ConfigClient::getResourceDriftAsync()} .
+     *
+     * @example samples/V1/ConfigClient/get_resource_drift.php
+     *
+     * @param GetResourceDriftRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ResourceDrift
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getResourceDrift(GetResourceDriftRequest $request, array $callOptions = []): ResourceDrift
+    {
+        return $this->startApiCall('GetResourceDrift', $request, $callOptions)->wait();
+    }
+
+    /**
      * Gets details about a [Revision][google.cloud.config.v1.Revision].
      *
      * The async variant is {@see ConfigClient::getRevisionAsync()} .
@@ -935,6 +1049,58 @@ final class ConfigClient
     public function listPreviews(ListPreviewsRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListPreviews', $request, $callOptions);
+    }
+
+    /**
+     * Lists ResourceChanges for a given preview.
+     *
+     * The async variant is {@see ConfigClient::listResourceChangesAsync()} .
+     *
+     * @example samples/V1/ConfigClient/list_resource_changes.php
+     *
+     * @param ListResourceChangesRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listResourceChanges(ListResourceChangesRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListResourceChanges', $request, $callOptions);
+    }
+
+    /**
+     * List ResourceDrifts for a given preview.
+     *
+     * The async variant is {@see ConfigClient::listResourceDriftsAsync()} .
+     *
+     * @example samples/V1/ConfigClient/list_resource_drifts.php
+     *
+     * @param ListResourceDriftsRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listResourceDrifts(ListResourceDriftsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListResourceDrifts', $request, $callOptions);
     }
 
     /**

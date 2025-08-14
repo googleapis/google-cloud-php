@@ -22,6 +22,14 @@ class SoleTenantConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.container.v1.SoleTenantConfig.NodeAffinity node_affinities = 1;</code>
      */
     private $node_affinities;
+    /**
+     * Optional. The minimum number of virtual CPUs this instance will consume
+     * when running on a sole-tenant node. This field can only be set if the node
+     * pool is created in a shared sole-tenant node group.
+     *
+     * Generated from protobuf field <code>optional int32 min_node_cpus = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $min_node_cpus = null;
 
     /**
      * Constructor.
@@ -31,6 +39,10 @@ class SoleTenantConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type array<\Google\Cloud\Container\V1\SoleTenantConfig\NodeAffinity>|\Google\Protobuf\Internal\RepeatedField $node_affinities
      *           NodeAffinities used to match to a shared sole tenant node group.
+     *     @type int $min_node_cpus
+     *           Optional. The minimum number of virtual CPUs this instance will consume
+     *           when running on a sole-tenant node. This field can only be set if the node
+     *           pool is created in a shared sole-tenant node group.
      * }
      */
     public function __construct($data = NULL) {
@@ -60,6 +72,46 @@ class SoleTenantConfig extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Container\V1\SoleTenantConfig\NodeAffinity::class);
         $this->node_affinities = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The minimum number of virtual CPUs this instance will consume
+     * when running on a sole-tenant node. This field can only be set if the node
+     * pool is created in a shared sole-tenant node group.
+     *
+     * Generated from protobuf field <code>optional int32 min_node_cpus = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getMinNodeCpus()
+    {
+        return isset($this->min_node_cpus) ? $this->min_node_cpus : 0;
+    }
+
+    public function hasMinNodeCpus()
+    {
+        return isset($this->min_node_cpus);
+    }
+
+    public function clearMinNodeCpus()
+    {
+        unset($this->min_node_cpus);
+    }
+
+    /**
+     * Optional. The minimum number of virtual CPUs this instance will consume
+     * when running on a sole-tenant node. This field can only be set if the node
+     * pool is created in a shared sole-tenant node group.
+     *
+     * Generated from protobuf field <code>optional int32 min_node_cpus = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setMinNodeCpus($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->min_node_cpus = $var;
 
         return $this;
     }

@@ -32,11 +32,9 @@ use Google\Rpc\Status;
 /**
  * Deletes a Repository.
  *
- * **Host: Data Plane**
- *
  * @param string $formattedName Name of the repository to delete.
  *                              The format is
- *                              projects/{project_number}/locations/{location_id}/repositories/{repository_id}. Please see
+ *                              `projects/{project_number}/locations/{location_id}/repositories/{repository_id}`. Please see
  *                              {@see SecureSourceManagerClient::repositoryName()} for help formatting this field.
  */
 function delete_repository_sample(string $formattedName): void

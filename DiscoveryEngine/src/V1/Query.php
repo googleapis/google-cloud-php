@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class Query extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Unique Id for the query.
+     * Output only. Unique Id for the query.
      *
-     * Generated from protobuf field <code>string query_id = 1;</code>
+     * Generated from protobuf field <code>string query_id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $query_id = '';
     protected $content;
@@ -32,7 +32,7 @@ class Query extends \Google\Protobuf\Internal\Message
      *     @type string $text
      *           Plain text.
      *     @type string $query_id
-     *           Unique Id for the query.
+     *           Output only. Unique Id for the query.
      * }
      */
     public function __construct($data = NULL) {
@@ -72,9 +72,9 @@ class Query extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Unique Id for the query.
+     * Output only. Unique Id for the query.
      *
-     * Generated from protobuf field <code>string query_id = 1;</code>
+     * Generated from protobuf field <code>string query_id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getQueryId()
@@ -83,9 +83,9 @@ class Query extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Unique Id for the query.
+     * Output only. Unique Id for the query.
      *
-     * Generated from protobuf field <code>string query_id = 1;</code>
+     * Generated from protobuf field <code>string query_id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */

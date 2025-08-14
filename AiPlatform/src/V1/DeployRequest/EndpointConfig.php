@@ -23,16 +23,50 @@ class EndpointConfig extends \Google\Protobuf\Internal\Message
      */
     protected $endpoint_display_name = '';
     /**
-     * Optional. If true, the endpoint will be exposed through a dedicated
-     * DNS [Endpoint.dedicated_endpoint_dns]. Your request to the dedicated DNS
-     * will be isolated from other users' traffic and will have better
-     * performance and reliability. Note: Once you enabled dedicated endpoint,
-     * you won't be able to send request to the shared DNS
+     * Optional. Deprecated. Use dedicated_endpoint_disabled instead.
+     * If true, the endpoint will be exposed through a
+     * dedicated DNS [Endpoint.dedicated_endpoint_dns]. Your request to the
+     * dedicated DNS will be isolated from other users' traffic and will have
+     * better performance and reliability. Note: Once you enabled dedicated
+     * endpoint, you won't be able to send request to the shared DNS
      * {region}-aiplatform.googleapis.com. The limitations will be removed soon.
      *
-     * Generated from protobuf field <code>bool dedicated_endpoint_enabled = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool dedicated_endpoint_enabled = 2 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @deprecated
      */
     protected $dedicated_endpoint_enabled = false;
+    /**
+     * Optional. By default, if dedicated endpoint is enabled, the endpoint will
+     * be exposed through a dedicated DNS [Endpoint.dedicated_endpoint_dns].
+     * Your request to the dedicated DNS will be isolated from other users'
+     * traffic and will have better performance and reliability. Note: Once you
+     * enabled dedicated endpoint, you won't be able to send request to the
+     * shared DNS {region}-aiplatform.googleapis.com. The limitations will be
+     * removed soon.
+     * If this field is set to true, the dedicated endpoint will be disabled
+     * and the deployed model will be exposed through the shared DNS
+     * {region}-aiplatform.googleapis.com.
+     *
+     * Generated from protobuf field <code>bool dedicated_endpoint_disabled = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $dedicated_endpoint_disabled = false;
+    /**
+     * Optional. Immutable. The ID to use for endpoint, which will become the
+     * final component of the endpoint resource name. If not provided, Vertex AI
+     * will generate a value for this ID.
+     * If the first character is a letter, this value may be up to 63
+     * characters, and valid characters are `[a-z0-9-]`. The last character must
+     * be a letter or number.
+     * If the first character is a number, this value may be up to 9 characters,
+     * and valid characters are `[0-9]` with no leading zeros.
+     * When using HTTP/JSON, this field is populated
+     * based on a query string argument, such as `?endpoint_id=12345`. This is
+     * the fallback for fields that are not included in either the URI or the
+     * body.
+     *
+     * Generated from protobuf field <code>string endpoint_user_id = 3 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $endpoint_user_id = '';
 
     /**
      * Constructor.
@@ -44,12 +78,37 @@ class EndpointConfig extends \Google\Protobuf\Internal\Message
      *           Optional. The user-specified display name of the endpoint. If not set, a
      *           default name will be used.
      *     @type bool $dedicated_endpoint_enabled
-     *           Optional. If true, the endpoint will be exposed through a dedicated
-     *           DNS [Endpoint.dedicated_endpoint_dns]. Your request to the dedicated DNS
-     *           will be isolated from other users' traffic and will have better
-     *           performance and reliability. Note: Once you enabled dedicated endpoint,
-     *           you won't be able to send request to the shared DNS
+     *           Optional. Deprecated. Use dedicated_endpoint_disabled instead.
+     *           If true, the endpoint will be exposed through a
+     *           dedicated DNS [Endpoint.dedicated_endpoint_dns]. Your request to the
+     *           dedicated DNS will be isolated from other users' traffic and will have
+     *           better performance and reliability. Note: Once you enabled dedicated
+     *           endpoint, you won't be able to send request to the shared DNS
      *           {region}-aiplatform.googleapis.com. The limitations will be removed soon.
+     *     @type bool $dedicated_endpoint_disabled
+     *           Optional. By default, if dedicated endpoint is enabled, the endpoint will
+     *           be exposed through a dedicated DNS [Endpoint.dedicated_endpoint_dns].
+     *           Your request to the dedicated DNS will be isolated from other users'
+     *           traffic and will have better performance and reliability. Note: Once you
+     *           enabled dedicated endpoint, you won't be able to send request to the
+     *           shared DNS {region}-aiplatform.googleapis.com. The limitations will be
+     *           removed soon.
+     *           If this field is set to true, the dedicated endpoint will be disabled
+     *           and the deployed model will be exposed through the shared DNS
+     *           {region}-aiplatform.googleapis.com.
+     *     @type string $endpoint_user_id
+     *           Optional. Immutable. The ID to use for endpoint, which will become the
+     *           final component of the endpoint resource name. If not provided, Vertex AI
+     *           will generate a value for this ID.
+     *           If the first character is a letter, this value may be up to 63
+     *           characters, and valid characters are `[a-z0-9-]`. The last character must
+     *           be a letter or number.
+     *           If the first character is a number, this value may be up to 9 characters,
+     *           and valid characters are `[0-9]` with no leading zeros.
+     *           When using HTTP/JSON, this field is populated
+     *           based on a query string argument, such as `?endpoint_id=12345`. This is
+     *           the fallback for fields that are not included in either the URI or the
+     *           body.
      * }
      */
     public function __construct($data = NULL) {
@@ -86,37 +145,137 @@ class EndpointConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If true, the endpoint will be exposed through a dedicated
-     * DNS [Endpoint.dedicated_endpoint_dns]. Your request to the dedicated DNS
-     * will be isolated from other users' traffic and will have better
-     * performance and reliability. Note: Once you enabled dedicated endpoint,
-     * you won't be able to send request to the shared DNS
+     * Optional. Deprecated. Use dedicated_endpoint_disabled instead.
+     * If true, the endpoint will be exposed through a
+     * dedicated DNS [Endpoint.dedicated_endpoint_dns]. Your request to the
+     * dedicated DNS will be isolated from other users' traffic and will have
+     * better performance and reliability. Note: Once you enabled dedicated
+     * endpoint, you won't be able to send request to the shared DNS
      * {region}-aiplatform.googleapis.com. The limitations will be removed soon.
      *
-     * Generated from protobuf field <code>bool dedicated_endpoint_enabled = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool dedicated_endpoint_enabled = 2 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
+     * @deprecated
      */
     public function getDedicatedEndpointEnabled()
     {
+        if ($this->dedicated_endpoint_enabled !== false) {
+            @trigger_error('dedicated_endpoint_enabled is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->dedicated_endpoint_enabled;
     }
 
     /**
-     * Optional. If true, the endpoint will be exposed through a dedicated
-     * DNS [Endpoint.dedicated_endpoint_dns]. Your request to the dedicated DNS
-     * will be isolated from other users' traffic and will have better
-     * performance and reliability. Note: Once you enabled dedicated endpoint,
-     * you won't be able to send request to the shared DNS
+     * Optional. Deprecated. Use dedicated_endpoint_disabled instead.
+     * If true, the endpoint will be exposed through a
+     * dedicated DNS [Endpoint.dedicated_endpoint_dns]. Your request to the
+     * dedicated DNS will be isolated from other users' traffic and will have
+     * better performance and reliability. Note: Once you enabled dedicated
+     * endpoint, you won't be able to send request to the shared DNS
      * {region}-aiplatform.googleapis.com. The limitations will be removed soon.
      *
-     * Generated from protobuf field <code>bool dedicated_endpoint_enabled = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool dedicated_endpoint_enabled = 2 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
+     * @deprecated
      */
     public function setDedicatedEndpointEnabled($var)
     {
+        @trigger_error('dedicated_endpoint_enabled is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkBool($var);
         $this->dedicated_endpoint_enabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. By default, if dedicated endpoint is enabled, the endpoint will
+     * be exposed through a dedicated DNS [Endpoint.dedicated_endpoint_dns].
+     * Your request to the dedicated DNS will be isolated from other users'
+     * traffic and will have better performance and reliability. Note: Once you
+     * enabled dedicated endpoint, you won't be able to send request to the
+     * shared DNS {region}-aiplatform.googleapis.com. The limitations will be
+     * removed soon.
+     * If this field is set to true, the dedicated endpoint will be disabled
+     * and the deployed model will be exposed through the shared DNS
+     * {region}-aiplatform.googleapis.com.
+     *
+     * Generated from protobuf field <code>bool dedicated_endpoint_disabled = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getDedicatedEndpointDisabled()
+    {
+        return $this->dedicated_endpoint_disabled;
+    }
+
+    /**
+     * Optional. By default, if dedicated endpoint is enabled, the endpoint will
+     * be exposed through a dedicated DNS [Endpoint.dedicated_endpoint_dns].
+     * Your request to the dedicated DNS will be isolated from other users'
+     * traffic and will have better performance and reliability. Note: Once you
+     * enabled dedicated endpoint, you won't be able to send request to the
+     * shared DNS {region}-aiplatform.googleapis.com. The limitations will be
+     * removed soon.
+     * If this field is set to true, the dedicated endpoint will be disabled
+     * and the deployed model will be exposed through the shared DNS
+     * {region}-aiplatform.googleapis.com.
+     *
+     * Generated from protobuf field <code>bool dedicated_endpoint_disabled = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDedicatedEndpointDisabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->dedicated_endpoint_disabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Immutable. The ID to use for endpoint, which will become the
+     * final component of the endpoint resource name. If not provided, Vertex AI
+     * will generate a value for this ID.
+     * If the first character is a letter, this value may be up to 63
+     * characters, and valid characters are `[a-z0-9-]`. The last character must
+     * be a letter or number.
+     * If the first character is a number, this value may be up to 9 characters,
+     * and valid characters are `[0-9]` with no leading zeros.
+     * When using HTTP/JSON, this field is populated
+     * based on a query string argument, such as `?endpoint_id=12345`. This is
+     * the fallback for fields that are not included in either the URI or the
+     * body.
+     *
+     * Generated from protobuf field <code>string endpoint_user_id = 3 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getEndpointUserId()
+    {
+        return $this->endpoint_user_id;
+    }
+
+    /**
+     * Optional. Immutable. The ID to use for endpoint, which will become the
+     * final component of the endpoint resource name. If not provided, Vertex AI
+     * will generate a value for this ID.
+     * If the first character is a letter, this value may be up to 63
+     * characters, and valid characters are `[a-z0-9-]`. The last character must
+     * be a letter or number.
+     * If the first character is a number, this value may be up to 9 characters,
+     * and valid characters are `[0-9]` with no leading zeros.
+     * When using HTTP/JSON, this field is populated
+     * based on a query string argument, such as `?endpoint_id=12345`. This is
+     * the fallback for fields that are not included in either the URI or the
+     * body.
+     *
+     * Generated from protobuf field <code>string endpoint_user_id = 3 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setEndpointUserId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->endpoint_user_id = $var;
 
         return $this;
     }

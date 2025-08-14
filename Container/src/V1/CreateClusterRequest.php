@@ -26,9 +26,9 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
     protected $project_id = '';
     /**
      * Deprecated. The name of the Google Compute Engine
-     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the
-     * cluster resides. This field has been deprecated and replaced by the parent
-     * field.
+     * [zone](https://cloud.google.com/compute/docs/zones#available)
+     * in which the cluster resides. This field has been deprecated and replaced
+     * by the parent field.
      *
      * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
      * @deprecated
@@ -54,9 +54,9 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
      *                                                      number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
      *                                                      This field has been deprecated and replaced by the parent field.
      * @param string                             $zone      Deprecated. The name of the Google Compute Engine
-     *                                                      [zone](https://cloud.google.com/compute/docs/zones#available) in which the
-     *                                                      cluster resides. This field has been deprecated and replaced by the parent
-     *                                                      field.
+     *                                                      [zone](https://cloud.google.com/compute/docs/zones#available)
+     *                                                      in which the cluster resides. This field has been deprecated and replaced
+     *                                                      by the parent field.
      * @param \Google\Cloud\Container\V1\Cluster $cluster   Required. A [cluster
      *                                                      resource](https://cloud.google.com/container-engine/reference/rest/v1/projects.locations.clusters)
      *
@@ -101,9 +101,9 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
      *           This field has been deprecated and replaced by the parent field.
      *     @type string $zone
      *           Deprecated. The name of the Google Compute Engine
-     *           [zone](https://cloud.google.com/compute/docs/zones#available) in which the
-     *           cluster resides. This field has been deprecated and replaced by the parent
-     *           field.
+     *           [zone](https://cloud.google.com/compute/docs/zones#available)
+     *           in which the cluster resides. This field has been deprecated and replaced
+     *           by the parent field.
      *     @type \Google\Cloud\Container\V1\Cluster $cluster
      *           Required. A [cluster
      *           resource](https://cloud.google.com/container-engine/reference/rest/v1/projects.locations.clusters)
@@ -155,9 +155,9 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Deprecated. The name of the Google Compute Engine
-     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the
-     * cluster resides. This field has been deprecated and replaced by the parent
-     * field.
+     * [zone](https://cloud.google.com/compute/docs/zones#available)
+     * in which the cluster resides. This field has been deprecated and replaced
+     * by the parent field.
      *
      * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
      * @return string
@@ -173,9 +173,9 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Deprecated. The name of the Google Compute Engine
-     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the
-     * cluster resides. This field has been deprecated and replaced by the parent
-     * field.
+     * [zone](https://cloud.google.com/compute/docs/zones#available)
+     * in which the cluster resides. This field has been deprecated and replaced
+     * by the parent field.
      *
      * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
      * @param string $var

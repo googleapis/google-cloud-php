@@ -34,7 +34,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
     protected $description = '';
     /**
      * The number of nodes to create in this cluster. You must ensure that your
-     * Compute Engine [resource quota](https://cloud.google.com/compute/quotas)
+     * Compute Engine [resource
+     * quota](https://cloud.google.com/compute/quotas)
      * is sufficient for this number of instances. You must also have available
      * firewall and routes quota.
      * For requests, this field should only be used in lieu of a
@@ -127,8 +128,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
     protected $addons_config = null;
     /**
      * The name of the Google Compute Engine
-     * [subnetwork](https://cloud.google.com/compute/docs/subnetworks) to which
-     * the cluster is connected.
+     * [subnetwork](https://cloud.google.com/compute/docs/subnetworks)
+     * to which the cluster is connected.
      *
      * Generated from protobuf field <code>string subnetwork = 11;</code>
      */
@@ -143,8 +144,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
     private $node_pools;
     /**
      * The list of Google Compute Engine
-     * [zones](https://cloud.google.com/compute/docs/zones#available) in which the
-     * cluster's nodes should be located.
+     * [zones](https://cloud.google.com/compute/docs/zones#available)
+     * in which the cluster's nodes should be located.
      * This field provides a default value if
      * [NodePool.Locations](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters.nodePools#NodePool.FIELDS.locations)
      * are not specified during node pool creation.
@@ -342,8 +343,9 @@ class Cluster extends \Google\Protobuf\Internal\Message
     protected $self_link = '';
     /**
      * Output only. The name of the Google Compute Engine
-     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the
-     * cluster resides. This field is deprecated, use location instead.
+     * [zone](https://cloud.google.com/compute/docs/zones#available)
+     * in which the cluster resides. This field is deprecated, use location
+     * instead.
      *
      * Generated from protobuf field <code>string zone = 101 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @deprecated
@@ -611,6 +613,12 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     protected $rbac_binding_config = null;
     /**
+     * Configuration for GKE auto upgrades.
+     *
+     * Generated from protobuf field <code>.google.container.v1.GkeAutoUpgradeConfig gke_auto_upgrade_config = 163;</code>
+     */
+    protected $gke_auto_upgrade_config = null;
+    /**
      * Configuration for limiting anonymous access to all endpoints except the
      * health checks.
      *
@@ -635,7 +643,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           An optional description of this cluster.
      *     @type int $initial_node_count
      *           The number of nodes to create in this cluster. You must ensure that your
-     *           Compute Engine [resource quota](https://cloud.google.com/compute/quotas)
+     *           Compute Engine [resource
+     *           quota](https://cloud.google.com/compute/quotas)
      *           is sufficient for this number of instances. You must also have available
      *           firewall and routes quota.
      *           For requests, this field should only be used in lieu of a
@@ -694,16 +703,16 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           Configurations for the various addons available to run in the cluster.
      *     @type string $subnetwork
      *           The name of the Google Compute Engine
-     *           [subnetwork](https://cloud.google.com/compute/docs/subnetworks) to which
-     *           the cluster is connected.
+     *           [subnetwork](https://cloud.google.com/compute/docs/subnetworks)
+     *           to which the cluster is connected.
      *     @type array<\Google\Cloud\Container\V1\NodePool>|\Google\Protobuf\Internal\RepeatedField $node_pools
      *           The node pools associated with this cluster.
      *           This field should not be set if "node_config" or "initial_node_count" are
      *           specified.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $locations
      *           The list of Google Compute Engine
-     *           [zones](https://cloud.google.com/compute/docs/zones#available) in which the
-     *           cluster's nodes should be located.
+     *           [zones](https://cloud.google.com/compute/docs/zones#available)
+     *           in which the cluster's nodes should be located.
      *           This field provides a default value if
      *           [NodePool.Locations](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters.nodePools#NodePool.FIELDS.locations)
      *           are not specified during node pool creation.
@@ -788,8 +797,9 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           Output only. Server-defined URL for the resource.
      *     @type string $zone
      *           Output only. The name of the Google Compute Engine
-     *           [zone](https://cloud.google.com/compute/docs/zones#available) in which the
-     *           cluster resides. This field is deprecated, use location instead.
+     *           [zone](https://cloud.google.com/compute/docs/zones#available)
+     *           in which the cluster resides. This field is deprecated, use location
+     *           instead.
      *     @type string $endpoint
      *           Output only. The IP address of this cluster's master endpoint.
      *           The endpoint can be accessed from the internet at
@@ -905,6 +915,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Container\V1\RBACBindingConfig $rbac_binding_config
      *           RBACBindingConfig allows user to restrict ClusterRoleBindings an
      *           RoleBindings that can be created.
+     *     @type \Google\Cloud\Container\V1\GkeAutoUpgradeConfig $gke_auto_upgrade_config
+     *           Configuration for GKE auto upgrades.
      *     @type \Google\Cloud\Container\V1\AnonymousAuthenticationConfig $anonymous_authentication_config
      *           Configuration for limiting anonymous access to all endpoints except the
      *           health checks.
@@ -979,7 +991,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
 
     /**
      * The number of nodes to create in this cluster. You must ensure that your
-     * Compute Engine [resource quota](https://cloud.google.com/compute/quotas)
+     * Compute Engine [resource
+     * quota](https://cloud.google.com/compute/quotas)
      * is sufficient for this number of instances. You must also have available
      * firewall and routes quota.
      * For requests, this field should only be used in lieu of a
@@ -1002,7 +1015,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
 
     /**
      * The number of nodes to create in this cluster. You must ensure that your
-     * Compute Engine [resource quota](https://cloud.google.com/compute/quotas)
+     * Compute Engine [resource
+     * quota](https://cloud.google.com/compute/quotas)
      * is sufficient for this number of instances. You must also have available
      * firewall and routes quota.
      * For requests, this field should only be used in lieu of a
@@ -1319,8 +1333,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the Google Compute Engine
-     * [subnetwork](https://cloud.google.com/compute/docs/subnetworks) to which
-     * the cluster is connected.
+     * [subnetwork](https://cloud.google.com/compute/docs/subnetworks)
+     * to which the cluster is connected.
      *
      * Generated from protobuf field <code>string subnetwork = 11;</code>
      * @return string
@@ -1332,8 +1346,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the Google Compute Engine
-     * [subnetwork](https://cloud.google.com/compute/docs/subnetworks) to which
-     * the cluster is connected.
+     * [subnetwork](https://cloud.google.com/compute/docs/subnetworks)
+     * to which the cluster is connected.
      *
      * Generated from protobuf field <code>string subnetwork = 11;</code>
      * @param string $var
@@ -1379,8 +1393,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
 
     /**
      * The list of Google Compute Engine
-     * [zones](https://cloud.google.com/compute/docs/zones#available) in which the
-     * cluster's nodes should be located.
+     * [zones](https://cloud.google.com/compute/docs/zones#available)
+     * in which the cluster's nodes should be located.
      * This field provides a default value if
      * [NodePool.Locations](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters.nodePools#NodePool.FIELDS.locations)
      * are not specified during node pool creation.
@@ -1398,8 +1412,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
 
     /**
      * The list of Google Compute Engine
-     * [zones](https://cloud.google.com/compute/docs/zones#available) in which the
-     * cluster's nodes should be located.
+     * [zones](https://cloud.google.com/compute/docs/zones#available)
+     * in which the cluster's nodes should be located.
      * This field provides a default value if
      * [NodePool.Locations](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters.nodePools#NodePool.FIELDS.locations)
      * are not specified during node pool creation.
@@ -2397,8 +2411,9 @@ class Cluster extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The name of the Google Compute Engine
-     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the
-     * cluster resides. This field is deprecated, use location instead.
+     * [zone](https://cloud.google.com/compute/docs/zones#available)
+     * in which the cluster resides. This field is deprecated, use location
+     * instead.
      *
      * Generated from protobuf field <code>string zone = 101 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -2414,8 +2429,9 @@ class Cluster extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The name of the Google Compute Engine
-     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the
-     * cluster resides. This field is deprecated, use location instead.
+     * [zone](https://cloud.google.com/compute/docs/zones#available)
+     * in which the cluster resides. This field is deprecated, use location
+     * instead.
      *
      * Generated from protobuf field <code>string zone = 101 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -3635,6 +3651,42 @@ class Cluster extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\RBACBindingConfig::class);
         $this->rbac_binding_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Configuration for GKE auto upgrades.
+     *
+     * Generated from protobuf field <code>.google.container.v1.GkeAutoUpgradeConfig gke_auto_upgrade_config = 163;</code>
+     * @return \Google\Cloud\Container\V1\GkeAutoUpgradeConfig|null
+     */
+    public function getGkeAutoUpgradeConfig()
+    {
+        return $this->gke_auto_upgrade_config;
+    }
+
+    public function hasGkeAutoUpgradeConfig()
+    {
+        return isset($this->gke_auto_upgrade_config);
+    }
+
+    public function clearGkeAutoUpgradeConfig()
+    {
+        unset($this->gke_auto_upgrade_config);
+    }
+
+    /**
+     * Configuration for GKE auto upgrades.
+     *
+     * Generated from protobuf field <code>.google.container.v1.GkeAutoUpgradeConfig gke_auto_upgrade_config = 163;</code>
+     * @param \Google\Cloud\Container\V1\GkeAutoUpgradeConfig $var
+     * @return $this
+     */
+    public function setGkeAutoUpgradeConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\GkeAutoUpgradeConfig::class);
+        $this->gke_auto_upgrade_config = $var;
 
         return $this;
     }

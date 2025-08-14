@@ -31,11 +31,18 @@ class BackupType
      * Generated from protobuf enum <code>ON_DEMAND = 2;</code>
      */
     const ON_DEMAND = 2;
+    /**
+     * Operational backup.
+     *
+     * Generated from protobuf enum <code>ON_DEMAND_OPERATIONAL = 3;</code>
+     */
+    const ON_DEMAND_OPERATIONAL = 3;
 
     private static $valueToName = [
         self::BACKUP_TYPE_UNSPECIFIED => 'BACKUP_TYPE_UNSPECIFIED',
         self::SCHEDULED => 'SCHEDULED',
         self::ON_DEMAND => 'ON_DEMAND',
+        self::ON_DEMAND_OPERATIONAL => 'ON_DEMAND_OPERATIONAL',
     ];
 
     public static function name($value)

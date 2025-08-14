@@ -42,7 +42,11 @@ use Google\Apps\Chat\V1\DeleteCustomEmojiRequest;
  * permissions](https://support.google.com/a/answer/12850085).
  *
  * Requires [user
- * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+ * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+ * with the [authorization
+ * scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes):
+ *
+ * - `https://www.googleapis.com/auth/chat.customemojis`
  *
  * @param string $formattedName Resource name of the custom emoji to delete.
  *

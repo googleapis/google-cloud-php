@@ -114,7 +114,12 @@ class ValueMapper
             case self::TYPE_TIME:
                 return new Time(new \DateTime($value));
             case self::TYPE_TIMESTAMP:
-                return $this->timestampFromBigQuery($value);
+                if ($value == '') {
+                    return null;
+                }
+                return $this->isInt($value)
+                    ? $this->int64TimestampFromBigQuery($value)
+                    : $this->floatTimestampFromBigQuery($value);
             case self::TYPE_RECORD:
                 return $this->recordFromBigQuery($value, $schema['fields']);
             case self::TYPE_GEOGRAPHY:
@@ -336,13 +341,13 @@ class ValueMapper
     }
 
     /**
-     * Converts a timestamp in string format received from BigQuery to a
+     * Converts a float timestamp in string format received from BigQuery to a
      * {@see Timestamp}.
      *
-     * @param string $value The timestamp.
+     * @param string $value The float timestamp.
      * @return Timestamp
      */
-    private function timestampFromBigQuery($value)
+    private function floatTimestampFromBigQuery($value)
     {
         // If the string contains 'E' convert from exponential notation to
         // decimal notation. This doesn't cast to a float because precision can
@@ -380,5 +385,44 @@ class ValueMapper
                 )
             )
         );
+    }
+
+    /**
+     * Converts an int64 microseconds in string format received from BigQuery to a
+     * {@see Timestamp}.
+     *
+     * @param string $value The Int64 microseconds in string format.
+     * @return Timestamp
+     */
+    private function int64TimestampFromBigQuery(string $value): Timestamp
+    {
+        $microSeconds = (int) $value;
+        $seconds = floor($microSeconds / 1000000);
+        $remainderMicroSeconds = abs($microSeconds % 1000000);
+
+        // Handle negative timestamps
+        if ($microSeconds < 0 && $remainderMicroSeconds > 0) {
+            $remainderMicroSeconds = 1000000 - $remainderMicroSeconds; // Invert remainder
+        }
+        $remainderMicroSeconds = str_pad($remainderMicroSeconds, 6, '0', STR_PAD_LEFT);
+
+        $dateTime = \DateTime::createFromFormat('U u', "{$seconds} {$remainderMicroSeconds}");
+        return new Timestamp($dateTime);
+    }
+
+    /**
+     * Checks if the input is a valid integer.
+     * An integer is considered any string which consists solely of digits
+     * and an optional leading '-' or '+'
+     *
+     * @param mixed $value
+     * @return bool true if $value is a valid integer, false otherwise
+     */
+    private function isInt(mixed $value): bool
+    {
+        $value = (string) $value;
+        return ($value[0] === '-' || $value[0] === '+')
+            ? ctype_digit(substr($value, 1))
+            : ctype_digit($value);
     }
 }

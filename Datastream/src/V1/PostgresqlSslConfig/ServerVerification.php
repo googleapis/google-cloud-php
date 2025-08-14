@@ -23,6 +23,14 @@ class ServerVerification extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string ca_certificate = 1 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $ca_certificate = '';
+    /**
+     * Optional. The hostname mentioned in the Subject or SAN extension of the
+     * server certificate. If this field is not provided, the hostname in the
+     * server certificate is not validated.
+     *
+     * Generated from protobuf field <code>string server_certificate_hostname = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $server_certificate_hostname = '';
 
     /**
      * Constructor.
@@ -32,6 +40,10 @@ class ServerVerification extends \Google\Protobuf\Internal\Message
      *
      *     @type string $ca_certificate
      *           Required. Input only. PEM-encoded server root CA certificate.
+     *     @type string $server_certificate_hostname
+     *           Optional. The hostname mentioned in the Subject or SAN extension of the
+     *           server certificate. If this field is not provided, the hostname in the
+     *           server certificate is not validated.
      * }
      */
     public function __construct($data = NULL) {
@@ -61,6 +73,36 @@ class ServerVerification extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->ca_certificate = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The hostname mentioned in the Subject or SAN extension of the
+     * server certificate. If this field is not provided, the hostname in the
+     * server certificate is not validated.
+     *
+     * Generated from protobuf field <code>string server_certificate_hostname = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getServerCertificateHostname()
+    {
+        return $this->server_certificate_hostname;
+    }
+
+    /**
+     * Optional. The hostname mentioned in the Subject or SAN extension of the
+     * server certificate. If this field is not provided, the hostname in the
+     * server certificate is not validated.
+     *
+     * Generated from protobuf field <code>string server_certificate_hostname = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setServerCertificateHostname($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->server_certificate_hostname = $var;
 
         return $this;
     }

@@ -39,7 +39,11 @@ use Google\Apps\Chat\V1\CustomEmoji;
  * permissions](https://support.google.com/a/answer/12850085).
  *
  * Requires [user
- * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+ * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+ * with the [authorization
+ * scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes):
+ *
+ * - `https://www.googleapis.com/auth/chat.customemojis`
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:

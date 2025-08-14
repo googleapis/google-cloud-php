@@ -80,6 +80,19 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional bool satisfies_pzi = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $satisfies_pzi = null;
+    /**
+     * Optional. Input only. Immutable. Tag keys/values directly bound to this
+     * resource. For example:
+     * - "123/environment": "production",
+     * - "123/costCenter": "marketing"
+     * Tags and Labels (above) are both used to bind metadata to resources, with
+     * different use-cases. See
+     * https://cloud.google.com/resource-manager/docs/tags/tags-overview for an
+     * in-depth overview on the difference between tags and labels.
+     *
+     * Generated from protobuf field <code>map<string, string> tags = 12 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $tags;
 
     /**
      * Constructor.
@@ -117,6 +130,15 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           Output only. Reserved for future use.
      *     @type bool $satisfies_pzi
      *           Output only. Reserved for future use.
+     *     @type array|\Google\Protobuf\Internal\MapField $tags
+     *           Optional. Input only. Immutable. Tag keys/values directly bound to this
+     *           resource. For example:
+     *           - "123/environment": "production",
+     *           - "123/costCenter": "marketing"
+     *           Tags and Labels (above) are both used to bind metadata to resources, with
+     *           different use-cases. See
+     *           https://cloud.google.com/resource-manager/docs/tags/tags-overview for an
+     *           in-depth overview on the difference between tags and labels.
      * }
      */
     public function __construct($data = NULL) {
@@ -386,6 +408,46 @@ class Instance extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->satisfies_pzi = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Input only. Immutable. Tag keys/values directly bound to this
+     * resource. For example:
+     * - "123/environment": "production",
+     * - "123/costCenter": "marketing"
+     * Tags and Labels (above) are both used to bind metadata to resources, with
+     * different use-cases. See
+     * https://cloud.google.com/resource-manager/docs/tags/tags-overview for an
+     * in-depth overview on the difference between tags and labels.
+     *
+     * Generated from protobuf field <code>map<string, string> tags = 12 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    /**
+     * Optional. Input only. Immutable. Tag keys/values directly bound to this
+     * resource. For example:
+     * - "123/environment": "production",
+     * - "123/costCenter": "marketing"
+     * Tags and Labels (above) are both used to bind metadata to resources, with
+     * different use-cases. See
+     * https://cloud.google.com/resource-manager/docs/tags/tags-overview for an
+     * in-depth overview on the difference between tags and labels.
+     *
+     * Generated from protobuf field <code>map<string, string> tags = 12 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setTags($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->tags = $arr;
 
         return $this;
     }

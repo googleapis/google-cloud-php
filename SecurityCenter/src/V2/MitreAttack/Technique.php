@@ -7,8 +7,8 @@ namespace Google\Cloud\SecurityCenter\V2\MitreAttack;
 use UnexpectedValueException;
 
 /**
- * MITRE ATT&CK techniques that can be referenced by SCC findings.
- * See: https://attack.mitre.org/techniques/enterprise/
+ * MITRE ATT&CK techniques that can be referenced by Security Command Center
+ * findings. See: https://attack.mitre.org/techniques/enterprise/
  *
  * Protobuf type <code>google.cloud.securitycenter.v2.MitreAttack.Technique</code>
  */
@@ -20,6 +20,84 @@ class Technique
      * Generated from protobuf enum <code>TECHNIQUE_UNSPECIFIED = 0;</code>
      */
     const TECHNIQUE_UNSPECIFIED = 0;
+    /**
+     * T1001
+     *
+     * Generated from protobuf enum <code>DATA_OBFUSCATION = 70;</code>
+     */
+    const DATA_OBFUSCATION = 70;
+    /**
+     * T1001.002
+     *
+     * Generated from protobuf enum <code>DATA_OBFUSCATION_STEGANOGRAPHY = 71;</code>
+     */
+    const DATA_OBFUSCATION_STEGANOGRAPHY = 71;
+    /**
+     * T1003
+     *
+     * Generated from protobuf enum <code>OS_CREDENTIAL_DUMPING = 114;</code>
+     */
+    const OS_CREDENTIAL_DUMPING = 114;
+    /**
+     * T1003.007
+     *
+     * Generated from protobuf enum <code>OS_CREDENTIAL_DUMPING_PROC_FILESYSTEM = 115;</code>
+     */
+    const OS_CREDENTIAL_DUMPING_PROC_FILESYSTEM = 115;
+    /**
+     * T1003.008
+     *
+     * Generated from protobuf enum <code>OS_CREDENTIAL_DUMPING_ETC_PASSWORD_AND_ETC_SHADOW = 122;</code>
+     */
+    const OS_CREDENTIAL_DUMPING_ETC_PASSWORD_AND_ETC_SHADOW = 122;
+    /**
+     * T1005
+     *
+     * Generated from protobuf enum <code>DATA_FROM_LOCAL_SYSTEM = 117;</code>
+     */
+    const DATA_FROM_LOCAL_SYSTEM = 117;
+    /**
+     * T1020
+     *
+     * Generated from protobuf enum <code>AUTOMATED_EXFILTRATION = 68;</code>
+     */
+    const AUTOMATED_EXFILTRATION = 68;
+    /**
+     * T1027
+     *
+     * Generated from protobuf enum <code>OBFUSCATED_FILES_OR_INFO = 72;</code>
+     */
+    const OBFUSCATED_FILES_OR_INFO = 72;
+    /**
+     * T1027.003
+     *
+     * Generated from protobuf enum <code>STEGANOGRAPHY = 73;</code>
+     */
+    const STEGANOGRAPHY = 73;
+    /**
+     * T1027.004
+     *
+     * Generated from protobuf enum <code>COMPILE_AFTER_DELIVERY = 74;</code>
+     */
+    const COMPILE_AFTER_DELIVERY = 74;
+    /**
+     * T1027.010
+     *
+     * Generated from protobuf enum <code>COMMAND_OBFUSCATION = 75;</code>
+     */
+    const COMMAND_OBFUSCATION = 75;
+    /**
+     * T1029
+     *
+     * Generated from protobuf enum <code>SCHEDULED_TRANSFER = 120;</code>
+     */
+    const SCHEDULED_TRANSFER = 120;
+    /**
+     * T1033
+     *
+     * Generated from protobuf enum <code>SYSTEM_OWNER_USER_DISCOVERY = 118;</code>
+     */
+    const SYSTEM_OWNER_USER_DISCOVERY = 118;
     /**
      * T1036
      *
@@ -50,6 +128,42 @@ class Technique
      * Generated from protobuf enum <code>NETWORK_SERVICE_DISCOVERY = 32;</code>
      */
     const NETWORK_SERVICE_DISCOVERY = 32;
+    /**
+     * T1053
+     *
+     * Generated from protobuf enum <code>SCHEDULED_TASK_JOB = 89;</code>
+     */
+    const SCHEDULED_TASK_JOB = 89;
+    /**
+     * T1053.003
+     *
+     * Generated from protobuf enum <code>SCHEDULED_TASK_JOB_CRON = 119;</code>
+     */
+    const SCHEDULED_TASK_JOB_CRON = 119;
+    /**
+     * T1053.007
+     *
+     * Generated from protobuf enum <code>CONTAINER_ORCHESTRATION_JOB = 90;</code>
+     */
+    const CONTAINER_ORCHESTRATION_JOB = 90;
+    /**
+     * T1055
+     *
+     * Generated from protobuf enum <code>PROCESS_INJECTION = 93;</code>
+     */
+    const PROCESS_INJECTION = 93;
+    /**
+     * T1056
+     *
+     * Generated from protobuf enum <code>INPUT_CAPTURE = 103;</code>
+     */
+    const INPUT_CAPTURE = 103;
+    /**
+     * T1056.001
+     *
+     * Generated from protobuf enum <code>INPUT_CAPTURE_KEYLOGGING = 104;</code>
+     */
+    const INPUT_CAPTURE_KEYLOGGING = 104;
     /**
      * T1057
      *
@@ -93,11 +207,41 @@ class Technique
      */
     const CLOUD_GROUPS = 19;
     /**
+     * T1070
+     *
+     * Generated from protobuf enum <code>INDICATOR_REMOVAL = 123;</code>
+     */
+    const INDICATOR_REMOVAL = 123;
+    /**
+     * T1070.002
+     *
+     * Generated from protobuf enum <code>INDICATOR_REMOVAL_CLEAR_LINUX_OR_MAC_SYSTEM_LOGS = 124;</code>
+     */
+    const INDICATOR_REMOVAL_CLEAR_LINUX_OR_MAC_SYSTEM_LOGS = 124;
+    /**
+     * T1070.003
+     *
+     * Generated from protobuf enum <code>INDICATOR_REMOVAL_CLEAR_COMMAND_HISTORY = 125;</code>
+     */
+    const INDICATOR_REMOVAL_CLEAR_COMMAND_HISTORY = 125;
+    /**
      * T1070.004
      *
      * Generated from protobuf enum <code>INDICATOR_REMOVAL_FILE_DELETION = 64;</code>
      */
     const INDICATOR_REMOVAL_FILE_DELETION = 64;
+    /**
+     * T1070.006
+     *
+     * Generated from protobuf enum <code>INDICATOR_REMOVAL_TIMESTOMP = 128;</code>
+     */
+    const INDICATOR_REMOVAL_TIMESTOMP = 128;
+    /**
+     * T1070.008
+     *
+     * Generated from protobuf enum <code>INDICATOR_REMOVAL_CLEAR_MAILBOX_DATA = 126;</code>
+     */
+    const INDICATOR_REMOVAL_CLEAR_MAILBOX_DATA = 126;
     /**
      * T1071
      *
@@ -141,6 +285,18 @@ class Technique
      */
     const CLOUD_ACCOUNTS = 16;
     /**
+     * T1083
+     *
+     * Generated from protobuf enum <code>FILE_AND_DIRECTORY_DISCOVERY = 121;</code>
+     */
+    const FILE_AND_DIRECTORY_DISCOVERY = 121;
+    /**
+     * T1087.001
+     *
+     * Generated from protobuf enum <code>ACCOUNT_DISCOVERY_LOCAL_ACCOUNT = 116;</code>
+     */
+    const ACCOUNT_DISCOVERY_LOCAL_ACCOUNT = 116;
+    /**
      * T1090
      *
      * Generated from protobuf enum <code>PROXY = 9;</code>
@@ -171,6 +327,12 @@ class Technique
      */
     const ADDITIONAL_CLOUD_CREDENTIALS = 40;
     /**
+     * T1098.003
+     *
+     * Generated from protobuf enum <code>ADDITIONAL_CLOUD_ROLES = 67;</code>
+     */
+    const ADDITIONAL_CLOUD_ROLES = 67;
+    /**
      * T1098.004
      *
      * Generated from protobuf enum <code>SSH_AUTHORIZED_KEYS = 23;</code>
@@ -182,6 +344,12 @@ class Technique
      * Generated from protobuf enum <code>ADDITIONAL_CONTAINER_CLUSTER_ROLES = 58;</code>
      */
     const ADDITIONAL_CONTAINER_CLUSTER_ROLES = 58;
+    /**
+     * T1104
+     *
+     * Generated from protobuf enum <code>MULTI_STAGE_CHANNELS = 76;</code>
+     */
+    const MULTI_STAGE_CHANNELS = 76;
     /**
      * T1105
      *
@@ -201,11 +369,29 @@ class Technique
      */
     const BRUTE_FORCE = 44;
     /**
+     * T1119
+     *
+     * Generated from protobuf enum <code>AUTOMATED_COLLECTION = 94;</code>
+     */
+    const AUTOMATED_COLLECTION = 94;
+    /**
      * T1129
      *
      * Generated from protobuf enum <code>SHARED_MODULES = 5;</code>
      */
     const SHARED_MODULES = 5;
+    /**
+     * T1132
+     *
+     * Generated from protobuf enum <code>DATA_ENCODING = 77;</code>
+     */
+    const DATA_ENCODING = 77;
+    /**
+     * T1132.001
+     *
+     * Generated from protobuf enum <code>STANDARD_ENCODING = 78;</code>
+     */
+    const STANDARD_ENCODING = 78;
     /**
      * T1134
      *
@@ -219,11 +405,59 @@ class Technique
      */
     const TOKEN_IMPERSONATION_OR_THEFT = 39;
     /**
+     * T1136
+     *
+     * Generated from protobuf enum <code>CREATE_ACCOUNT = 79;</code>
+     */
+    const CREATE_ACCOUNT = 79;
+    /**
+     * T1136.001
+     *
+     * Generated from protobuf enum <code>LOCAL_ACCOUNT = 80;</code>
+     */
+    const LOCAL_ACCOUNT = 80;
+    /**
+     * T1140
+     *
+     * Generated from protobuf enum <code>DEOBFUSCATE_DECODE_FILES_OR_INFO = 95;</code>
+     */
+    const DEOBFUSCATE_DECODE_FILES_OR_INFO = 95;
+    /**
      * T1190
      *
      * Generated from protobuf enum <code>EXPLOIT_PUBLIC_FACING_APPLICATION = 27;</code>
      */
     const EXPLOIT_PUBLIC_FACING_APPLICATION = 27;
+    /**
+     * T1195
+     *
+     * Generated from protobuf enum <code>SUPPLY_CHAIN_COMPROMISE = 129;</code>
+     */
+    const SUPPLY_CHAIN_COMPROMISE = 129;
+    /**
+     * T1195.001
+     *
+     * Generated from protobuf enum <code>COMPROMISE_SOFTWARE_DEPENDENCIES_AND_DEVELOPMENT_TOOLS = 130;</code>
+     */
+    const COMPROMISE_SOFTWARE_DEPENDENCIES_AND_DEVELOPMENT_TOOLS = 130;
+    /**
+     * T1203
+     *
+     * Generated from protobuf enum <code>EXPLOITATION_FOR_CLIENT_EXECUTION = 134;</code>
+     */
+    const EXPLOITATION_FOR_CLIENT_EXECUTION = 134;
+    /**
+     * T1204
+     *
+     * Generated from protobuf enum <code>USER_EXECUTION = 69;</code>
+     */
+    const USER_EXECUTION = 69;
+    /**
+     * T1222.002
+     *
+     * Generated from protobuf enum <code>LINUX_AND_MAC_FILE_AND_DIRECTORY_PERMISSIONS_MODIFICATION = 135;</code>
+     */
+    const LINUX_AND_MAC_FILE_AND_DIRECTORY_PERMISSIONS_MODIFICATION = 135;
     /**
      * T1484
      *
@@ -237,6 +471,12 @@ class Technique
      */
     const DATA_DESTRUCTION = 29;
     /**
+     * T1486
+     *
+     * Generated from protobuf enum <code>DATA_ENCRYPTED_FOR_IMPACT = 132;</code>
+     */
+    const DATA_ENCRYPTED_FOR_IMPACT = 132;
+    /**
      * T1489
      *
      * Generated from protobuf enum <code>SERVICE_STOP = 52;</code>
@@ -248,6 +488,12 @@ class Technique
      * Generated from protobuf enum <code>INHIBIT_SYSTEM_RECOVERY = 36;</code>
      */
     const INHIBIT_SYSTEM_RECOVERY = 36;
+    /**
+     * T1495
+     *
+     * Generated from protobuf enum <code>FIRMWARE_CORRUPTION = 81;</code>
+     */
+    const FIRMWARE_CORRUPTION = 81;
     /**
      * T1496
      *
@@ -279,6 +525,12 @@ class Technique
      */
     const ACCOUNT_ACCESS_REMOVAL = 51;
     /**
+     * T1537
+     *
+     * Generated from protobuf enum <code>TRANSFER_DATA_TO_CLOUD_ACCOUNT = 91;</code>
+     */
+    const TRANSFER_DATA_TO_CLOUD_ACCOUNT = 91;
+    /**
      * T1539
      *
      * Generated from protobuf enum <code>STEAL_WEB_SESSION_COOKIE = 25;</code>
@@ -297,11 +549,41 @@ class Technique
      */
     const EVENT_TRIGGERED_EXECUTION = 65;
     /**
+     * T1547
+     *
+     * Generated from protobuf enum <code>BOOT_OR_LOGON_AUTOSTART_EXECUTION = 82;</code>
+     */
+    const BOOT_OR_LOGON_AUTOSTART_EXECUTION = 82;
+    /**
+     * T1547.006
+     *
+     * Generated from protobuf enum <code>KERNEL_MODULES_AND_EXTENSIONS = 83;</code>
+     */
+    const KERNEL_MODULES_AND_EXTENSIONS = 83;
+    /**
+     * T1547.009
+     *
+     * Generated from protobuf enum <code>SHORTCUT_MODIFICATION = 127;</code>
+     */
+    const SHORTCUT_MODIFICATION = 127;
+    /**
      * T1548
      *
      * Generated from protobuf enum <code>ABUSE_ELEVATION_CONTROL_MECHANISM = 34;</code>
      */
     const ABUSE_ELEVATION_CONTROL_MECHANISM = 34;
+    /**
+     * T1548.001
+     *
+     * Generated from protobuf enum <code>ABUSE_ELEVATION_CONTROL_MECHANISM_SETUID_AND_SETGID = 136;</code>
+     */
+    const ABUSE_ELEVATION_CONTROL_MECHANISM_SETUID_AND_SETGID = 136;
+    /**
+     * T1548.003
+     *
+     * Generated from protobuf enum <code>ABUSE_ELEVATION_CONTROL_MECHANISM_SUDO_AND_SUDO_CACHING = 109;</code>
+     */
+    const ABUSE_ELEVATION_CONTROL_MECHANISM_SUDO_AND_SUDO_CACHING = 109;
     /**
      * T1552
      *
@@ -309,11 +591,65 @@ class Technique
      */
     const UNSECURED_CREDENTIALS = 13;
     /**
+     * T1552.001
+     *
+     * Generated from protobuf enum <code>CREDENTIALS_IN_FILES = 105;</code>
+     */
+    const CREDENTIALS_IN_FILES = 105;
+    /**
+     * T1552.003
+     *
+     * Generated from protobuf enum <code>BASH_HISTORY = 96;</code>
+     */
+    const BASH_HISTORY = 96;
+    /**
+     * T1552.004
+     *
+     * Generated from protobuf enum <code>PRIVATE_KEYS = 97;</code>
+     */
+    const PRIVATE_KEYS = 97;
+    /**
+     * T1553
+     *
+     * Generated from protobuf enum <code>SUBVERT_TRUST_CONTROL = 106;</code>
+     */
+    const SUBVERT_TRUST_CONTROL = 106;
+    /**
+     * T1553.004
+     *
+     * Generated from protobuf enum <code>INSTALL_ROOT_CERTIFICATE = 107;</code>
+     */
+    const INSTALL_ROOT_CERTIFICATE = 107;
+    /**
+     * T1554
+     *
+     * Generated from protobuf enum <code>COMPROMISE_HOST_SOFTWARE_BINARY = 84;</code>
+     */
+    const COMPROMISE_HOST_SOFTWARE_BINARY = 84;
+    /**
+     * T1555
+     *
+     * Generated from protobuf enum <code>CREDENTIALS_FROM_PASSWORD_STORES = 98;</code>
+     */
+    const CREDENTIALS_FROM_PASSWORD_STORES = 98;
+    /**
      * T1556
      *
      * Generated from protobuf enum <code>MODIFY_AUTHENTICATION_PROCESS = 28;</code>
      */
     const MODIFY_AUTHENTICATION_PROCESS = 28;
+    /**
+     * T1556.003
+     *
+     * Generated from protobuf enum <code>PLUGGABLE_AUTHENTICATION_MODULES = 108;</code>
+     */
+    const PLUGGABLE_AUTHENTICATION_MODULES = 108;
+    /**
+     * T1556.006
+     *
+     * Generated from protobuf enum <code>MULTI_FACTOR_AUTHENTICATION = 137;</code>
+     */
+    const MULTI_FACTOR_AUTHENTICATION = 137;
     /**
      * T1562
      *
@@ -326,6 +662,36 @@ class Technique
      * Generated from protobuf enum <code>DISABLE_OR_MODIFY_TOOLS = 55;</code>
      */
     const DISABLE_OR_MODIFY_TOOLS = 55;
+    /**
+     * T1562.006
+     *
+     * Generated from protobuf enum <code>INDICATOR_BLOCKING = 110;</code>
+     */
+    const INDICATOR_BLOCKING = 110;
+    /**
+     * T1562.012
+     *
+     * Generated from protobuf enum <code>DISABLE_OR_MODIFY_LINUX_AUDIT_SYSTEM = 111;</code>
+     */
+    const DISABLE_OR_MODIFY_LINUX_AUDIT_SYSTEM = 111;
+    /**
+     * T1564
+     *
+     * Generated from protobuf enum <code>HIDE_ARTIFACTS = 85;</code>
+     */
+    const HIDE_ARTIFACTS = 85;
+    /**
+     * T1564.001
+     *
+     * Generated from protobuf enum <code>HIDDEN_FILES_AND_DIRECTORIES = 86;</code>
+     */
+    const HIDDEN_FILES_AND_DIRECTORIES = 86;
+    /**
+     * T1564.002
+     *
+     * Generated from protobuf enum <code>HIDDEN_USERS = 87;</code>
+     */
+    const HIDDEN_USERS = 87;
     /**
      * T1567
      *
@@ -351,6 +717,18 @@ class Technique
      */
     const LATERAL_TOOL_TRANSFER = 41;
     /**
+     * T1574
+     *
+     * Generated from protobuf enum <code>HIJACK_EXECUTION_FLOW = 112;</code>
+     */
+    const HIJACK_EXECUTION_FLOW = 112;
+    /**
+     * T1574.006
+     *
+     * Generated from protobuf enum <code>HIJACK_EXECUTION_FLOW_DYNAMIC_LINKER_HIJACKING = 113;</code>
+     */
+    const HIJACK_EXECUTION_FLOW_DYNAMIC_LINKER_HIJACKING = 113;
+    /**
      * T1578
      *
      * Generated from protobuf enum <code>MODIFY_CLOUD_COMPUTE_INFRASTRUCTURE = 26;</code>
@@ -369,11 +747,35 @@ class Technique
      */
     const CLOUD_INFRASTRUCTURE_DISCOVERY = 53;
     /**
+     * T1587
+     *
+     * Generated from protobuf enum <code>DEVELOP_CAPABILITIES = 99;</code>
+     */
+    const DEVELOP_CAPABILITIES = 99;
+    /**
+     * T1587.001
+     *
+     * Generated from protobuf enum <code>DEVELOP_CAPABILITIES_MALWARE = 100;</code>
+     */
+    const DEVELOP_CAPABILITIES_MALWARE = 100;
+    /**
      * T1588
      *
      * Generated from protobuf enum <code>OBTAIN_CAPABILITIES = 43;</code>
      */
     const OBTAIN_CAPABILITIES = 43;
+    /**
+     * T1588.001
+     *
+     * Generated from protobuf enum <code>OBTAIN_CAPABILITIES_MALWARE = 101;</code>
+     */
+    const OBTAIN_CAPABILITIES_MALWARE = 101;
+    /**
+     * T1588.006
+     *
+     * Generated from protobuf enum <code>OBTAIN_CAPABILITIES_VULNERABILITIES = 133;</code>
+     */
+    const OBTAIN_CAPABILITIES_VULNERABILITIES = 133;
     /**
      * T1595
      *
@@ -386,6 +788,18 @@ class Technique
      * Generated from protobuf enum <code>SCANNING_IP_BLOCKS = 2;</code>
      */
     const SCANNING_IP_BLOCKS = 2;
+    /**
+     * T1608
+     *
+     * Generated from protobuf enum <code>STAGE_CAPABILITIES = 88;</code>
+     */
+    const STAGE_CAPABILITIES = 88;
+    /**
+     * T1608.001
+     *
+     * Generated from protobuf enum <code>UPLOAD_MALWARE = 102;</code>
+     */
+    const UPLOAD_MALWARE = 102;
     /**
      * T1609
      *
@@ -411,19 +825,50 @@ class Technique
      */
     const CONTAINER_AND_RESOURCE_DISCOVERY = 57;
     /**
+     * T1620
+     *
+     * Generated from protobuf enum <code>REFLECTIVE_CODE_LOADING = 92;</code>
+     */
+    const REFLECTIVE_CODE_LOADING = 92;
+    /**
      * T1649
      *
      * Generated from protobuf enum <code>STEAL_OR_FORGE_AUTHENTICATION_CERTIFICATES = 62;</code>
      */
     const STEAL_OR_FORGE_AUTHENTICATION_CERTIFICATES = 62;
+    /**
+     * T1657
+     *
+     * Generated from protobuf enum <code>FINANCIAL_THEFT = 131;</code>
+     */
+    const FINANCIAL_THEFT = 131;
 
     private static $valueToName = [
         self::TECHNIQUE_UNSPECIFIED => 'TECHNIQUE_UNSPECIFIED',
+        self::DATA_OBFUSCATION => 'DATA_OBFUSCATION',
+        self::DATA_OBFUSCATION_STEGANOGRAPHY => 'DATA_OBFUSCATION_STEGANOGRAPHY',
+        self::OS_CREDENTIAL_DUMPING => 'OS_CREDENTIAL_DUMPING',
+        self::OS_CREDENTIAL_DUMPING_PROC_FILESYSTEM => 'OS_CREDENTIAL_DUMPING_PROC_FILESYSTEM',
+        self::OS_CREDENTIAL_DUMPING_ETC_PASSWORD_AND_ETC_SHADOW => 'OS_CREDENTIAL_DUMPING_ETC_PASSWORD_AND_ETC_SHADOW',
+        self::DATA_FROM_LOCAL_SYSTEM => 'DATA_FROM_LOCAL_SYSTEM',
+        self::AUTOMATED_EXFILTRATION => 'AUTOMATED_EXFILTRATION',
+        self::OBFUSCATED_FILES_OR_INFO => 'OBFUSCATED_FILES_OR_INFO',
+        self::STEGANOGRAPHY => 'STEGANOGRAPHY',
+        self::COMPILE_AFTER_DELIVERY => 'COMPILE_AFTER_DELIVERY',
+        self::COMMAND_OBFUSCATION => 'COMMAND_OBFUSCATION',
+        self::SCHEDULED_TRANSFER => 'SCHEDULED_TRANSFER',
+        self::SYSTEM_OWNER_USER_DISCOVERY => 'SYSTEM_OWNER_USER_DISCOVERY',
         self::MASQUERADING => 'MASQUERADING',
         self::MATCH_LEGITIMATE_NAME_OR_LOCATION => 'MATCH_LEGITIMATE_NAME_OR_LOCATION',
         self::BOOT_OR_LOGON_INITIALIZATION_SCRIPTS => 'BOOT_OR_LOGON_INITIALIZATION_SCRIPTS',
         self::STARTUP_ITEMS => 'STARTUP_ITEMS',
         self::NETWORK_SERVICE_DISCOVERY => 'NETWORK_SERVICE_DISCOVERY',
+        self::SCHEDULED_TASK_JOB => 'SCHEDULED_TASK_JOB',
+        self::SCHEDULED_TASK_JOB_CRON => 'SCHEDULED_TASK_JOB_CRON',
+        self::CONTAINER_ORCHESTRATION_JOB => 'CONTAINER_ORCHESTRATION_JOB',
+        self::PROCESS_INJECTION => 'PROCESS_INJECTION',
+        self::INPUT_CAPTURE => 'INPUT_CAPTURE',
+        self::INPUT_CAPTURE_KEYLOGGING => 'INPUT_CAPTURE_KEYLOGGING',
         self::PROCESS_DISCOVERY => 'PROCESS_DISCOVERY',
         self::COMMAND_AND_SCRIPTING_INTERPRETER => 'COMMAND_AND_SCRIPTING_INTERPRETER',
         self::UNIX_SHELL => 'UNIX_SHELL',
@@ -431,7 +876,12 @@ class Technique
         self::EXPLOITATION_FOR_PRIVILEGE_ESCALATION => 'EXPLOITATION_FOR_PRIVILEGE_ESCALATION',
         self::PERMISSION_GROUPS_DISCOVERY => 'PERMISSION_GROUPS_DISCOVERY',
         self::CLOUD_GROUPS => 'CLOUD_GROUPS',
+        self::INDICATOR_REMOVAL => 'INDICATOR_REMOVAL',
+        self::INDICATOR_REMOVAL_CLEAR_LINUX_OR_MAC_SYSTEM_LOGS => 'INDICATOR_REMOVAL_CLEAR_LINUX_OR_MAC_SYSTEM_LOGS',
+        self::INDICATOR_REMOVAL_CLEAR_COMMAND_HISTORY => 'INDICATOR_REMOVAL_CLEAR_COMMAND_HISTORY',
         self::INDICATOR_REMOVAL_FILE_DELETION => 'INDICATOR_REMOVAL_FILE_DELETION',
+        self::INDICATOR_REMOVAL_TIMESTOMP => 'INDICATOR_REMOVAL_TIMESTOMP',
+        self::INDICATOR_REMOVAL_CLEAR_MAILBOX_DATA => 'INDICATOR_REMOVAL_CLEAR_MAILBOX_DATA',
         self::APPLICATION_LAYER_PROTOCOL => 'APPLICATION_LAYER_PROTOCOL',
         self::DNS => 'DNS',
         self::SOFTWARE_DEPLOYMENT_TOOLS => 'SOFTWARE_DEPLOYMENT_TOOLS',
@@ -439,52 +889,99 @@ class Technique
         self::DEFAULT_ACCOUNTS => 'DEFAULT_ACCOUNTS',
         self::LOCAL_ACCOUNTS => 'LOCAL_ACCOUNTS',
         self::CLOUD_ACCOUNTS => 'CLOUD_ACCOUNTS',
+        self::FILE_AND_DIRECTORY_DISCOVERY => 'FILE_AND_DIRECTORY_DISCOVERY',
+        self::ACCOUNT_DISCOVERY_LOCAL_ACCOUNT => 'ACCOUNT_DISCOVERY_LOCAL_ACCOUNT',
         self::PROXY => 'PROXY',
         self::EXTERNAL_PROXY => 'EXTERNAL_PROXY',
         self::MULTI_HOP_PROXY => 'MULTI_HOP_PROXY',
         self::ACCOUNT_MANIPULATION => 'ACCOUNT_MANIPULATION',
         self::ADDITIONAL_CLOUD_CREDENTIALS => 'ADDITIONAL_CLOUD_CREDENTIALS',
+        self::ADDITIONAL_CLOUD_ROLES => 'ADDITIONAL_CLOUD_ROLES',
         self::SSH_AUTHORIZED_KEYS => 'SSH_AUTHORIZED_KEYS',
         self::ADDITIONAL_CONTAINER_CLUSTER_ROLES => 'ADDITIONAL_CONTAINER_CLUSTER_ROLES',
+        self::MULTI_STAGE_CHANNELS => 'MULTI_STAGE_CHANNELS',
         self::INGRESS_TOOL_TRANSFER => 'INGRESS_TOOL_TRANSFER',
         self::NATIVE_API => 'NATIVE_API',
         self::BRUTE_FORCE => 'BRUTE_FORCE',
+        self::AUTOMATED_COLLECTION => 'AUTOMATED_COLLECTION',
         self::SHARED_MODULES => 'SHARED_MODULES',
+        self::DATA_ENCODING => 'DATA_ENCODING',
+        self::STANDARD_ENCODING => 'STANDARD_ENCODING',
         self::ACCESS_TOKEN_MANIPULATION => 'ACCESS_TOKEN_MANIPULATION',
         self::TOKEN_IMPERSONATION_OR_THEFT => 'TOKEN_IMPERSONATION_OR_THEFT',
+        self::CREATE_ACCOUNT => 'CREATE_ACCOUNT',
+        self::LOCAL_ACCOUNT => 'LOCAL_ACCOUNT',
+        self::DEOBFUSCATE_DECODE_FILES_OR_INFO => 'DEOBFUSCATE_DECODE_FILES_OR_INFO',
         self::EXPLOIT_PUBLIC_FACING_APPLICATION => 'EXPLOIT_PUBLIC_FACING_APPLICATION',
+        self::SUPPLY_CHAIN_COMPROMISE => 'SUPPLY_CHAIN_COMPROMISE',
+        self::COMPROMISE_SOFTWARE_DEPENDENCIES_AND_DEVELOPMENT_TOOLS => 'COMPROMISE_SOFTWARE_DEPENDENCIES_AND_DEVELOPMENT_TOOLS',
+        self::EXPLOITATION_FOR_CLIENT_EXECUTION => 'EXPLOITATION_FOR_CLIENT_EXECUTION',
+        self::USER_EXECUTION => 'USER_EXECUTION',
+        self::LINUX_AND_MAC_FILE_AND_DIRECTORY_PERMISSIONS_MODIFICATION => 'LINUX_AND_MAC_FILE_AND_DIRECTORY_PERMISSIONS_MODIFICATION',
         self::DOMAIN_POLICY_MODIFICATION => 'DOMAIN_POLICY_MODIFICATION',
         self::DATA_DESTRUCTION => 'DATA_DESTRUCTION',
+        self::DATA_ENCRYPTED_FOR_IMPACT => 'DATA_ENCRYPTED_FOR_IMPACT',
         self::SERVICE_STOP => 'SERVICE_STOP',
         self::INHIBIT_SYSTEM_RECOVERY => 'INHIBIT_SYSTEM_RECOVERY',
+        self::FIRMWARE_CORRUPTION => 'FIRMWARE_CORRUPTION',
         self::RESOURCE_HIJACKING => 'RESOURCE_HIJACKING',
         self::NETWORK_DENIAL_OF_SERVICE => 'NETWORK_DENIAL_OF_SERVICE',
         self::CLOUD_SERVICE_DISCOVERY => 'CLOUD_SERVICE_DISCOVERY',
         self::STEAL_APPLICATION_ACCESS_TOKEN => 'STEAL_APPLICATION_ACCESS_TOKEN',
         self::ACCOUNT_ACCESS_REMOVAL => 'ACCOUNT_ACCESS_REMOVAL',
+        self::TRANSFER_DATA_TO_CLOUD_ACCOUNT => 'TRANSFER_DATA_TO_CLOUD_ACCOUNT',
         self::STEAL_WEB_SESSION_COOKIE => 'STEAL_WEB_SESSION_COOKIE',
         self::CREATE_OR_MODIFY_SYSTEM_PROCESS => 'CREATE_OR_MODIFY_SYSTEM_PROCESS',
         self::EVENT_TRIGGERED_EXECUTION => 'EVENT_TRIGGERED_EXECUTION',
+        self::BOOT_OR_LOGON_AUTOSTART_EXECUTION => 'BOOT_OR_LOGON_AUTOSTART_EXECUTION',
+        self::KERNEL_MODULES_AND_EXTENSIONS => 'KERNEL_MODULES_AND_EXTENSIONS',
+        self::SHORTCUT_MODIFICATION => 'SHORTCUT_MODIFICATION',
         self::ABUSE_ELEVATION_CONTROL_MECHANISM => 'ABUSE_ELEVATION_CONTROL_MECHANISM',
+        self::ABUSE_ELEVATION_CONTROL_MECHANISM_SETUID_AND_SETGID => 'ABUSE_ELEVATION_CONTROL_MECHANISM_SETUID_AND_SETGID',
+        self::ABUSE_ELEVATION_CONTROL_MECHANISM_SUDO_AND_SUDO_CACHING => 'ABUSE_ELEVATION_CONTROL_MECHANISM_SUDO_AND_SUDO_CACHING',
         self::UNSECURED_CREDENTIALS => 'UNSECURED_CREDENTIALS',
+        self::CREDENTIALS_IN_FILES => 'CREDENTIALS_IN_FILES',
+        self::BASH_HISTORY => 'BASH_HISTORY',
+        self::PRIVATE_KEYS => 'PRIVATE_KEYS',
+        self::SUBVERT_TRUST_CONTROL => 'SUBVERT_TRUST_CONTROL',
+        self::INSTALL_ROOT_CERTIFICATE => 'INSTALL_ROOT_CERTIFICATE',
+        self::COMPROMISE_HOST_SOFTWARE_BINARY => 'COMPROMISE_HOST_SOFTWARE_BINARY',
+        self::CREDENTIALS_FROM_PASSWORD_STORES => 'CREDENTIALS_FROM_PASSWORD_STORES',
         self::MODIFY_AUTHENTICATION_PROCESS => 'MODIFY_AUTHENTICATION_PROCESS',
+        self::PLUGGABLE_AUTHENTICATION_MODULES => 'PLUGGABLE_AUTHENTICATION_MODULES',
+        self::MULTI_FACTOR_AUTHENTICATION => 'MULTI_FACTOR_AUTHENTICATION',
         self::IMPAIR_DEFENSES => 'IMPAIR_DEFENSES',
         self::DISABLE_OR_MODIFY_TOOLS => 'DISABLE_OR_MODIFY_TOOLS',
+        self::INDICATOR_BLOCKING => 'INDICATOR_BLOCKING',
+        self::DISABLE_OR_MODIFY_LINUX_AUDIT_SYSTEM => 'DISABLE_OR_MODIFY_LINUX_AUDIT_SYSTEM',
+        self::HIDE_ARTIFACTS => 'HIDE_ARTIFACTS',
+        self::HIDDEN_FILES_AND_DIRECTORIES => 'HIDDEN_FILES_AND_DIRECTORIES',
+        self::HIDDEN_USERS => 'HIDDEN_USERS',
         self::EXFILTRATION_OVER_WEB_SERVICE => 'EXFILTRATION_OVER_WEB_SERVICE',
         self::EXFILTRATION_TO_CLOUD_STORAGE => 'EXFILTRATION_TO_CLOUD_STORAGE',
         self::DYNAMIC_RESOLUTION => 'DYNAMIC_RESOLUTION',
         self::LATERAL_TOOL_TRANSFER => 'LATERAL_TOOL_TRANSFER',
+        self::HIJACK_EXECUTION_FLOW => 'HIJACK_EXECUTION_FLOW',
+        self::HIJACK_EXECUTION_FLOW_DYNAMIC_LINKER_HIJACKING => 'HIJACK_EXECUTION_FLOW_DYNAMIC_LINKER_HIJACKING',
         self::MODIFY_CLOUD_COMPUTE_INFRASTRUCTURE => 'MODIFY_CLOUD_COMPUTE_INFRASTRUCTURE',
         self::CREATE_SNAPSHOT => 'CREATE_SNAPSHOT',
         self::CLOUD_INFRASTRUCTURE_DISCOVERY => 'CLOUD_INFRASTRUCTURE_DISCOVERY',
+        self::DEVELOP_CAPABILITIES => 'DEVELOP_CAPABILITIES',
+        self::DEVELOP_CAPABILITIES_MALWARE => 'DEVELOP_CAPABILITIES_MALWARE',
         self::OBTAIN_CAPABILITIES => 'OBTAIN_CAPABILITIES',
+        self::OBTAIN_CAPABILITIES_MALWARE => 'OBTAIN_CAPABILITIES_MALWARE',
+        self::OBTAIN_CAPABILITIES_VULNERABILITIES => 'OBTAIN_CAPABILITIES_VULNERABILITIES',
         self::ACTIVE_SCANNING => 'ACTIVE_SCANNING',
         self::SCANNING_IP_BLOCKS => 'SCANNING_IP_BLOCKS',
+        self::STAGE_CAPABILITIES => 'STAGE_CAPABILITIES',
+        self::UPLOAD_MALWARE => 'UPLOAD_MALWARE',
         self::CONTAINER_ADMINISTRATION_COMMAND => 'CONTAINER_ADMINISTRATION_COMMAND',
         self::DEPLOY_CONTAINER => 'DEPLOY_CONTAINER',
         self::ESCAPE_TO_HOST => 'ESCAPE_TO_HOST',
         self::CONTAINER_AND_RESOURCE_DISCOVERY => 'CONTAINER_AND_RESOURCE_DISCOVERY',
+        self::REFLECTIVE_CODE_LOADING => 'REFLECTIVE_CODE_LOADING',
         self::STEAL_OR_FORGE_AUTHENTICATION_CERTIFICATES => 'STEAL_OR_FORGE_AUTHENTICATION_CERTIFICATES',
+        self::FINANCIAL_THEFT => 'FINANCIAL_THEFT',
     ];
 
     public static function name($value)

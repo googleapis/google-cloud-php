@@ -55,6 +55,12 @@ class State
      * Generated from protobuf enum <code>STOPPED = 6;</code>
      */
     const STOPPED = 6;
+    /**
+     * The instance is being updated.
+     *
+     * Generated from protobuf enum <code>UPDATING = 7;</code>
+     */
+    const UPDATING = 7;
 
     private static $valueToName = [
         self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
@@ -64,6 +70,7 @@ class State
         self::UPGRADING => 'UPGRADING',
         self::REPAIRING => 'REPAIRING',
         self::STOPPED => 'STOPPED',
+        self::UPDATING => 'UPDATING',
     ];
 
     public static function name($value)

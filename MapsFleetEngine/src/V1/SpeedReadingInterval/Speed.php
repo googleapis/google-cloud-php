@@ -20,19 +20,19 @@ class Speed
      */
     const SPEED_UNSPECIFIED = 0;
     /**
-     * Normal speed, no slowdown is detected.
+     * Normal speed, no traffic delays.
      *
      * Generated from protobuf enum <code>NORMAL = 1;</code>
      */
     const NORMAL = 1;
     /**
-     * Slowdown detected, but no traffic jam formed.
+     * Slowdown detected, medium amount of traffic.
      *
      * Generated from protobuf enum <code>SLOW = 2;</code>
      */
     const SLOW = 2;
     /**
-     * Traffic jam detected.
+     * Traffic delays.
      *
      * Generated from protobuf enum <code>TRAFFIC_JAM = 3;</code>
      */

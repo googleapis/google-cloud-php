@@ -225,6 +225,25 @@ final class ManagedKafkaClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a ca_pool
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $caPool
+     *
+     * @return string The formatted ca_pool resource.
+     */
+    public static function caPoolName(string $project, string $location, string $caPool): string
+    {
+        return self::getPathTemplate('caPool')->render([
+            'project' => $project,
+            'location' => $location,
+            'ca_pool' => $caPool,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a cluster
      * resource.
      *
@@ -332,6 +351,7 @@ final class ManagedKafkaClient
      * The following name formats are supported:
      * Template: Pattern
      * - acl: projects/{project}/locations/{location}/clusters/{cluster}/acls/{acl}
+     * - caPool: projects/{project}/locations/{location}/caPools/{ca_pool}
      * - cluster: projects/{project}/locations/{location}/clusters/{cluster}
      * - consumerGroup: projects/{project}/locations/{location}/clusters/{cluster}/consumerGroups/{consumer_group}
      * - cryptoKey: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}

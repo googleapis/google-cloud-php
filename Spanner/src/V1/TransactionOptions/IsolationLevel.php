@@ -35,9 +35,9 @@ class IsolationLevel
     const SERIALIZABLE = 1;
     /**
      * All reads performed during the transaction observe a consistent snapshot
-     * of the database, and the transaction will only successfully commit in the
-     * absence of conflicts between its updates and any concurrent updates that
-     * have occurred since that snapshot. Consequently, in contrast to
+     * of the database, and the transaction is only successfully committed in
+     * the absence of conflicts between its updates and any concurrent updates
+     * that have occurred since that snapshot. Consequently, in contrast to
      * `SERIALIZABLE` transactions, only write-write conflicts are detected in
      * snapshot transactions.
      * This isolation level does not support Read-only and Partitioned DML

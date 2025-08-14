@@ -33,6 +33,8 @@ class SourceObjectIdentifier extends \Google\Protobuf\Internal\Message
      *           SQLServer data source object identifier.
      *     @type \Google\Cloud\Datastream\V1\SourceObjectIdentifier\SalesforceObjectIdentifier $salesforce_identifier
      *           Salesforce data source object identifier.
+     *     @type \Google\Cloud\Datastream\V1\SourceObjectIdentifier\MongodbObjectIdentifier $mongodb_identifier
+     *           MongoDB data source object identifier.
      * }
      */
     public function __construct($data = NULL) {
@@ -191,6 +193,37 @@ class SourceObjectIdentifier extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\SourceObjectIdentifier\SalesforceObjectIdentifier::class);
         $this->writeOneof(5, $var);
+
+        return $this;
+    }
+
+    /**
+     * MongoDB data source object identifier.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.SourceObjectIdentifier.MongodbObjectIdentifier mongodb_identifier = 6;</code>
+     * @return \Google\Cloud\Datastream\V1\SourceObjectIdentifier\MongodbObjectIdentifier|null
+     */
+    public function getMongodbIdentifier()
+    {
+        return $this->readOneof(6);
+    }
+
+    public function hasMongodbIdentifier()
+    {
+        return $this->hasOneof(6);
+    }
+
+    /**
+     * MongoDB data source object identifier.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.SourceObjectIdentifier.MongodbObjectIdentifier mongodb_identifier = 6;</code>
+     * @param \Google\Cloud\Datastream\V1\SourceObjectIdentifier\MongodbObjectIdentifier $var
+     * @return $this
+     */
+    public function setMongodbIdentifier($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\SourceObjectIdentifier\MongodbObjectIdentifier::class);
+        $this->writeOneof(6, $var);
 
         return $this;
     }

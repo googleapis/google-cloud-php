@@ -33,6 +33,47 @@ class DeploymentSpec extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.SecretEnvVar secret_env = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $secret_env;
+    /**
+     * Optional. Configuration for PSC-I.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PscInterfaceConfig psc_interface_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $psc_interface_config = null;
+    /**
+     * Optional. The minimum number of application instances that will be kept
+     * running at all times. Defaults to 1. Range: [0, 10].
+     *
+     * Generated from protobuf field <code>optional int32 min_instances = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $min_instances = null;
+    /**
+     * Optional. The maximum number of application instances that can be
+     * launched to handle increased traffic. Defaults to 100. Range: [1, 1000].
+     * If VPC-SC or PSC-I is enabled, the acceptable range is [1, 100].
+     *
+     * Generated from protobuf field <code>optional int32 max_instances = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $max_instances = null;
+    /**
+     * Optional. Resource limits for each container. Only 'cpu' and 'memory'
+     * keys are supported. Defaults to {"cpu": "4", "memory": "4Gi"}.
+     *   * The only supported values for CPU are '1', '2', '4', '6' and '8'. For
+     *   more information, go to
+     *   https://cloud.google.com/run/docs/configuring/cpu.
+     *   * The only supported values for memory are '1Gi', '2Gi', ... '32 Gi'.
+     *   * For required cpu on different memory values, go to
+     *   https://cloud.google.com/run/docs/configuring/memory-limits
+     *
+     * Generated from protobuf field <code>map<string, string> resource_limits = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $resource_limits;
+    /**
+     * Optional. Concurrency for each container and agent server. Recommended
+     * value: 2 * cpu + 1. Defaults to 9.
+     *
+     * Generated from protobuf field <code>optional int32 container_concurrency = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $container_concurrency = null;
 
     /**
      * Constructor.
@@ -50,6 +91,27 @@ class DeploymentSpec extends \Google\Protobuf\Internal\Message
      *           To use this feature, add 'Secret Manager Secret Accessor' role
      *           (roles/secretmanager.secretAccessor) to AI Platform Reasoning Engine
      *           Service Agent.
+     *     @type \Google\Cloud\AIPlatform\V1\PscInterfaceConfig $psc_interface_config
+     *           Optional. Configuration for PSC-I.
+     *     @type int $min_instances
+     *           Optional. The minimum number of application instances that will be kept
+     *           running at all times. Defaults to 1. Range: [0, 10].
+     *     @type int $max_instances
+     *           Optional. The maximum number of application instances that can be
+     *           launched to handle increased traffic. Defaults to 100. Range: [1, 1000].
+     *           If VPC-SC or PSC-I is enabled, the acceptable range is [1, 100].
+     *     @type array|\Google\Protobuf\Internal\MapField $resource_limits
+     *           Optional. Resource limits for each container. Only 'cpu' and 'memory'
+     *           keys are supported. Defaults to {"cpu": "4", "memory": "4Gi"}.
+     *             * The only supported values for CPU are '1', '2', '4', '6' and '8'. For
+     *             more information, go to
+     *             https://cloud.google.com/run/docs/configuring/cpu.
+     *             * The only supported values for memory are '1Gi', '2Gi', ... '32 Gi'.
+     *             * For required cpu on different memory values, go to
+     *             https://cloud.google.com/run/docs/configuring/memory-limits
+     *     @type int $container_concurrency
+     *           Optional. Concurrency for each container and agent server. Recommended
+     *           value: 2 * cpu + 1. Defaults to 9.
      * }
      */
     public function __construct($data = NULL) {
@@ -117,6 +179,198 @@ class DeploymentSpec extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\SecretEnvVar::class);
         $this->secret_env = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configuration for PSC-I.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PscInterfaceConfig psc_interface_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AIPlatform\V1\PscInterfaceConfig|null
+     */
+    public function getPscInterfaceConfig()
+    {
+        return $this->psc_interface_config;
+    }
+
+    public function hasPscInterfaceConfig()
+    {
+        return isset($this->psc_interface_config);
+    }
+
+    public function clearPscInterfaceConfig()
+    {
+        unset($this->psc_interface_config);
+    }
+
+    /**
+     * Optional. Configuration for PSC-I.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PscInterfaceConfig psc_interface_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AIPlatform\V1\PscInterfaceConfig $var
+     * @return $this
+     */
+    public function setPscInterfaceConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\PscInterfaceConfig::class);
+        $this->psc_interface_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The minimum number of application instances that will be kept
+     * running at all times. Defaults to 1. Range: [0, 10].
+     *
+     * Generated from protobuf field <code>optional int32 min_instances = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getMinInstances()
+    {
+        return isset($this->min_instances) ? $this->min_instances : 0;
+    }
+
+    public function hasMinInstances()
+    {
+        return isset($this->min_instances);
+    }
+
+    public function clearMinInstances()
+    {
+        unset($this->min_instances);
+    }
+
+    /**
+     * Optional. The minimum number of application instances that will be kept
+     * running at all times. Defaults to 1. Range: [0, 10].
+     *
+     * Generated from protobuf field <code>optional int32 min_instances = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setMinInstances($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->min_instances = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The maximum number of application instances that can be
+     * launched to handle increased traffic. Defaults to 100. Range: [1, 1000].
+     * If VPC-SC or PSC-I is enabled, the acceptable range is [1, 100].
+     *
+     * Generated from protobuf field <code>optional int32 max_instances = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getMaxInstances()
+    {
+        return isset($this->max_instances) ? $this->max_instances : 0;
+    }
+
+    public function hasMaxInstances()
+    {
+        return isset($this->max_instances);
+    }
+
+    public function clearMaxInstances()
+    {
+        unset($this->max_instances);
+    }
+
+    /**
+     * Optional. The maximum number of application instances that can be
+     * launched to handle increased traffic. Defaults to 100. Range: [1, 1000].
+     * If VPC-SC or PSC-I is enabled, the acceptable range is [1, 100].
+     *
+     * Generated from protobuf field <code>optional int32 max_instances = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setMaxInstances($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->max_instances = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Resource limits for each container. Only 'cpu' and 'memory'
+     * keys are supported. Defaults to {"cpu": "4", "memory": "4Gi"}.
+     *   * The only supported values for CPU are '1', '2', '4', '6' and '8'. For
+     *   more information, go to
+     *   https://cloud.google.com/run/docs/configuring/cpu.
+     *   * The only supported values for memory are '1Gi', '2Gi', ... '32 Gi'.
+     *   * For required cpu on different memory values, go to
+     *   https://cloud.google.com/run/docs/configuring/memory-limits
+     *
+     * Generated from protobuf field <code>map<string, string> resource_limits = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getResourceLimits()
+    {
+        return $this->resource_limits;
+    }
+
+    /**
+     * Optional. Resource limits for each container. Only 'cpu' and 'memory'
+     * keys are supported. Defaults to {"cpu": "4", "memory": "4Gi"}.
+     *   * The only supported values for CPU are '1', '2', '4', '6' and '8'. For
+     *   more information, go to
+     *   https://cloud.google.com/run/docs/configuring/cpu.
+     *   * The only supported values for memory are '1Gi', '2Gi', ... '32 Gi'.
+     *   * For required cpu on different memory values, go to
+     *   https://cloud.google.com/run/docs/configuring/memory-limits
+     *
+     * Generated from protobuf field <code>map<string, string> resource_limits = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setResourceLimits($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->resource_limits = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Concurrency for each container and agent server. Recommended
+     * value: 2 * cpu + 1. Defaults to 9.
+     *
+     * Generated from protobuf field <code>optional int32 container_concurrency = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getContainerConcurrency()
+    {
+        return isset($this->container_concurrency) ? $this->container_concurrency : 0;
+    }
+
+    public function hasContainerConcurrency()
+    {
+        return isset($this->container_concurrency);
+    }
+
+    public function clearContainerConcurrency()
+    {
+        unset($this->container_concurrency);
+    }
+
+    /**
+     * Optional. Concurrency for each container and agent server. Recommended
+     * value: 2 * cpu + 1. Defaults to 9.
+     *
+     * Generated from protobuf field <code>optional int32 container_concurrency = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setContainerConcurrency($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->container_concurrency = $var;
 
         return $this;
     }

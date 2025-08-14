@@ -97,6 +97,19 @@ class PipelineTaskDetail extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, .google.cloud.aiplatform.v1.PipelineTaskDetail.ArtifactList> outputs = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $outputs;
+    /**
+     * Output only. The unique name of a task.
+     * This field is used by rerun pipeline job.
+     * Console UI and Vertex AI SDK will support triggering pipeline job reruns.
+     * The name is constructed by concatenating all the parent tasks name with
+     * the task name. For example, if a task named "child_task" has a parent task
+     * named "parent_task_1" and parent task 1 has a parent task named
+     * "parent_task_2", the task unique name will be
+     * "parent_task_2.parent_task_1.child_task".
+     *
+     * Generated from protobuf field <code>string task_unique_name = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $task_unique_name = '';
 
     /**
      * Constructor.
@@ -134,6 +147,15 @@ class PipelineTaskDetail extends \Google\Protobuf\Internal\Message
      *           Output only. The runtime input artifacts of the task.
      *     @type array|\Google\Protobuf\Internal\MapField $outputs
      *           Output only. The runtime output artifacts of the task.
+     *     @type string $task_unique_name
+     *           Output only. The unique name of a task.
+     *           This field is used by rerun pipeline job.
+     *           Console UI and Vertex AI SDK will support triggering pipeline job reruns.
+     *           The name is constructed by concatenating all the parent tasks name with
+     *           the task name. For example, if a task named "child_task" has a parent task
+     *           named "parent_task_1" and parent task 1 has a parent task named
+     *           "parent_task_2", the task unique name will be
+     *           "parent_task_2.parent_task_1.child_task".
      * }
      */
     public function __construct($data = NULL) {
@@ -543,6 +565,46 @@ class PipelineTaskDetail extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\PipelineTaskDetail\ArtifactList::class);
         $this->outputs = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The unique name of a task.
+     * This field is used by rerun pipeline job.
+     * Console UI and Vertex AI SDK will support triggering pipeline job reruns.
+     * The name is constructed by concatenating all the parent tasks name with
+     * the task name. For example, if a task named "child_task" has a parent task
+     * named "parent_task_1" and parent task 1 has a parent task named
+     * "parent_task_2", the task unique name will be
+     * "parent_task_2.parent_task_1.child_task".
+     *
+     * Generated from protobuf field <code>string task_unique_name = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getTaskUniqueName()
+    {
+        return $this->task_unique_name;
+    }
+
+    /**
+     * Output only. The unique name of a task.
+     * This field is used by rerun pipeline job.
+     * Console UI and Vertex AI SDK will support triggering pipeline job reruns.
+     * The name is constructed by concatenating all the parent tasks name with
+     * the task name. For example, if a task named "child_task" has a parent task
+     * named "parent_task_1" and parent task 1 has a parent task named
+     * "parent_task_2", the task unique name will be
+     * "parent_task_2.parent_task_1.child_task".
+     *
+     * Generated from protobuf field <code>string task_unique_name = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setTaskUniqueName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->task_unique_name = $var;
 
         return $this;
     }

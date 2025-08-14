@@ -36,11 +36,10 @@ class NotebookExecutionJob extends \Google\Protobuf\Internal\Message
      */
     protected $execution_timeout = null;
     /**
-     * Output only. The Schedule resource name if this job is triggered by one.
-     * Format:
+     * The Schedule resource name if this job is triggered by one. Format:
      * `projects/{project_id}/locations/{location}/schedules/{schedule_id}`
      *
-     * Generated from protobuf field <code>string schedule_resource_name = 6 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string schedule_resource_name = 6 [(.google.api.resource_reference) = {</code>
      */
     protected $schedule_resource_name = '';
     /**
@@ -139,8 +138,7 @@ class NotebookExecutionJob extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Duration $execution_timeout
      *           Max running time of the execution job in seconds (default 86400s / 24 hrs).
      *     @type string $schedule_resource_name
-     *           Output only. The Schedule resource name if this job is triggered by one.
-     *           Format:
+     *           The Schedule resource name if this job is triggered by one. Format:
      *           `projects/{project_id}/locations/{location}/schedules/{schedule_id}`
      *     @type int $job_state
      *           Output only. The state of the NotebookExecutionJob.
@@ -552,11 +550,10 @@ class NotebookExecutionJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The Schedule resource name if this job is triggered by one.
-     * Format:
+     * The Schedule resource name if this job is triggered by one. Format:
      * `projects/{project_id}/locations/{location}/schedules/{schedule_id}`
      *
-     * Generated from protobuf field <code>string schedule_resource_name = 6 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string schedule_resource_name = 6 [(.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getScheduleResourceName()
@@ -565,11 +562,10 @@ class NotebookExecutionJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The Schedule resource name if this job is triggered by one.
-     * Format:
+     * The Schedule resource name if this job is triggered by one. Format:
      * `projects/{project_id}/locations/{location}/schedules/{schedule_id}`
      *
-     * Generated from protobuf field <code>string schedule_resource_name = 6 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string schedule_resource_name = 6 [(.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

@@ -38,6 +38,8 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Firestore\Admin\V1\Backup;
 use Google\Cloud\Firestore\Admin\V1\BackupSchedule;
 use Google\Cloud\Firestore\Admin\V1\BulkDeleteDocumentsRequest;
+use Google\Cloud\Firestore\Admin\V1\CloneDatabaseMetadata;
+use Google\Cloud\Firestore\Admin\V1\CloneDatabaseRequest;
 use Google\Cloud\Firestore\Admin\V1\CreateBackupScheduleRequest;
 use Google\Cloud\Firestore\Admin\V1\CreateDatabaseRequest;
 use Google\Cloud\Firestore\Admin\V1\CreateIndexRequest;
@@ -122,6 +124,7 @@ use Psr\Log\LoggerInterface;
  * contained within formatted names that are returned by the API.
  *
  * @method PromiseInterface<OperationResponse> bulkDeleteDocumentsAsync(BulkDeleteDocumentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> cloneDatabaseAsync(CloneDatabaseRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<BackupSchedule> createBackupScheduleAsync(CreateBackupScheduleRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createDatabaseAsync(CreateDatabaseRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createIndexAsync(CreateIndexRequest $request, array $optionalArgs = [])
@@ -564,6 +567,48 @@ final class FirestoreAdminClient
     public function bulkDeleteDocuments(BulkDeleteDocumentsRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('BulkDeleteDocuments', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates a new database by cloning an existing one.
+     *
+     * The new database must be in the same cloud region or multi-region location
+     * as the existing database. This behaves similar to
+     * [FirestoreAdmin.CreateDatabase][google.firestore.admin.v1.FirestoreAdmin.CreateDatabase]
+     * except instead of creating a new empty database, a new database is created
+     * with the database type, index configuration, and documents from an existing
+     * database.
+     *
+     * The [long-running operation][google.longrunning.Operation] can be used to
+     * track the progress of the clone, with the Operation's
+     * [metadata][google.longrunning.Operation.metadata] field type being the
+     * [CloneDatabaseMetadata][google.firestore.admin.v1.CloneDatabaseMetadata].
+     * The [response][google.longrunning.Operation.response] type is the
+     * [Database][google.firestore.admin.v1.Database] if the clone was
+     * successful. The new database is not readable or writeable until the LRO has
+     * completed.
+     *
+     * The async variant is {@see FirestoreAdminClient::cloneDatabaseAsync()} .
+     *
+     * @example samples/V1/FirestoreAdminClient/clone_database.php
+     *
+     * @param CloneDatabaseRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function cloneDatabase(CloneDatabaseRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('CloneDatabase', $request, $callOptions)->wait();
     }
 
     /**

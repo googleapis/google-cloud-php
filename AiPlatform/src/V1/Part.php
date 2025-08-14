@@ -19,6 +19,19 @@ use Google\Protobuf\Internal\GPBUtil;
  */
 class Part extends \Google\Protobuf\Internal\Message
 {
+    /**
+     * Indicates if the part is thought from the model.
+     *
+     * Generated from protobuf field <code>bool thought = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $thought = false;
+    /**
+     * An opaque signature for the thought so it can be reused in subsequent
+     * requests.
+     *
+     * Generated from protobuf field <code>bytes thought_signature = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $thought_signature = '';
     protected $data;
     protected $metadata;
 
@@ -297,12 +310,7 @@ class Part extends \Google\Protobuf\Internal\Message
      */
     public function getThought()
     {
-        return $this->readOneof(10);
-    }
-
-    public function hasThought()
-    {
-        return $this->hasOneof(10);
+        return $this->thought;
     }
 
     /**
@@ -315,7 +323,7 @@ class Part extends \Google\Protobuf\Internal\Message
     public function setThought($var)
     {
         GPBUtil::checkBool($var);
-        $this->writeOneof(10, $var);
+        $this->thought = $var;
 
         return $this;
     }
@@ -329,12 +337,7 @@ class Part extends \Google\Protobuf\Internal\Message
      */
     public function getThoughtSignature()
     {
-        return $this->readOneof(11);
-    }
-
-    public function hasThoughtSignature()
-    {
-        return $this->hasOneof(11);
+        return $this->thought_signature;
     }
 
     /**
@@ -348,7 +351,7 @@ class Part extends \Google\Protobuf\Internal\Message
     public function setThoughtSignature($var)
     {
         GPBUtil::checkString($var, False);
-        $this->writeOneof(11, $var);
+        $this->thought_signature = $var;
 
         return $this;
     }

@@ -59,7 +59,6 @@ use Google\Cloud\Metastore\V1\ListServicesRequest;
 use Google\Cloud\Metastore\V1\MetadataImport;
 use Google\Cloud\Metastore\V1\MoveTableToDatabaseRequest;
 use Google\Cloud\Metastore\V1\QueryMetadataRequest;
-use Google\Cloud\Metastore\V1\Restore;
 use Google\Cloud\Metastore\V1\RestoreServiceRequest;
 use Google\Cloud\Metastore\V1\Service;
 use Google\Cloud\Metastore\V1\UpdateMetadataImportRequest;

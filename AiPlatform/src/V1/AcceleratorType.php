@@ -94,6 +94,12 @@ class AcceleratorType
      */
     const NVIDIA_B200 = 16;
     /**
+     * Nvidia GB200 GPU.
+     *
+     * Generated from protobuf enum <code>NVIDIA_GB200 = 17;</code>
+     */
+    const NVIDIA_GB200 = 17;
+    /**
      * TPU v2.
      *
      * Generated from protobuf enum <code>TPU_V2 = 6;</code>
@@ -132,6 +138,7 @@ class AcceleratorType
         self::NVIDIA_H100_MEGA_80GB => 'NVIDIA_H100_MEGA_80GB',
         self::NVIDIA_H200_141GB => 'NVIDIA_H200_141GB',
         self::NVIDIA_B200 => 'NVIDIA_B200',
+        self::NVIDIA_GB200 => 'NVIDIA_GB200',
         self::TPU_V2 => 'TPU_V2',
         self::TPU_V3 => 'TPU_V3',
         self::TPU_V4_POD => 'TPU_V4_POD',

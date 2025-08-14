@@ -24,8 +24,9 @@ class Operation extends \Google\Protobuf\Internal\Message
     protected $name = '';
     /**
      * Output only. The name of the Google Compute Engine
-     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the
-     * operation is taking place. This field is deprecated, use location instead.
+     * [zone](https://cloud.google.com/compute/docs/zones#available)
+     * in which the operation is taking place. This field is deprecated, use
+     * location instead.
      *
      * Generated from protobuf field <code>string zone = 2 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @deprecated
@@ -143,8 +144,9 @@ class Operation extends \Google\Protobuf\Internal\Message
      *           Output only. The server-assigned ID for the operation.
      *     @type string $zone
      *           Output only. The name of the Google Compute Engine
-     *           [zone](https://cloud.google.com/compute/docs/zones#available) in which the
-     *           operation is taking place. This field is deprecated, use location instead.
+     *           [zone](https://cloud.google.com/compute/docs/zones#available)
+     *           in which the operation is taking place. This field is deprecated, use
+     *           location instead.
      *     @type int $operation_type
      *           Output only. The operation type.
      *     @type int $status
@@ -226,8 +228,9 @@ class Operation extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The name of the Google Compute Engine
-     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the
-     * operation is taking place. This field is deprecated, use location instead.
+     * [zone](https://cloud.google.com/compute/docs/zones#available)
+     * in which the operation is taking place. This field is deprecated, use
+     * location instead.
      *
      * Generated from protobuf field <code>string zone = 2 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -243,8 +246,9 @@ class Operation extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The name of the Google Compute Engine
-     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the
-     * operation is taking place. This field is deprecated, use location instead.
+     * [zone](https://cloud.google.com/compute/docs/zones#available)
+     * in which the operation is taking place. This field is deprecated, use
+     * location instead.
      *
      * Generated from protobuf field <code>string zone = 2 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

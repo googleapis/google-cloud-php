@@ -13,7 +13,8 @@ use Google\Protobuf\Internal\GPBUtil;
  *  processed product that you see in Merchant Center, in Shopping ads, or
  *  across Google surfaces. Product inputs, rules and supplemental data source
  *  data are combined to create the processed
- *  [Product][google.shopping.merchant.products.v1beta.Product].
+ *  [Product][google.shopping.merchant.products.v1beta.Product]. For more
+ *  information, see [Manage products](/merchant/api/guides/products/overview).
  *  Required product input attributes to pass data validation checks are
  *  primarily defined in the [Products Data
  *  Specification](https://support.google.com/merchants/answer/188494).
@@ -24,8 +25,12 @@ use Google\Protobuf\Internal\GPBUtil;
  *  After inserting, updating, or deleting a product input, it may take several
  *  minutes before the processed product can be retrieved.
  *  All fields in the product input and its sub-messages match the English name
- *  of their corresponding attribute in the vertical spec with [some
- *  exceptions](https://support.google.com/merchants/answer/7052112).
+ *  of their corresponding attribute in the [Products Data
+ *  Specification](https://support.google.com/merchants/answer/188494) with
+ *  [some exceptions](https://support.google.com/merchants/answer/7052112).
+ *  The following reference documentation lists the field names in the
+ *  **camelCase** casing style while the Products Data Specification lists the
+ *  names in the **snake_case** casing style.
  *
  * Generated from protobuf message <code>google.shopping.merchant.products.v1beta.ProductInput</code>
  */
@@ -33,19 +38,18 @@ class ProductInput extends \Google\Protobuf\Internal\Message
 {
     /**
      * Identifier. The name of the product input.
-     * Format: accounts/{account}/productInputs/{productinput}
+     * Format: `accounts/{account}/productInputs/{productinput}`
      * where the last section `productinput` consists of 4 parts:
-     * channel~content_language~feed_label~offer_id
+     * `channel~content_language~feed_label~offer_id`
      * example for product input name is
-     * "accounts/123/productInputs/online~en~US~sku123"
+     * `accounts/123/productInputs/online~en~US~sku123`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
      * Output only. The name of the processed product.
-     * Format:
-     * `"{product.name=accounts/{account}/products/{product}}"`
+     * Format: `accounts/{account}/products/{product}`
      *
      * Generated from protobuf field <code>string product = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -78,26 +82,30 @@ class ProductInput extends \Google\Protobuf\Internal\Message
      */
     protected $content_language = '';
     /**
-     * Required. Immutable. The [feed
-     * label](https://developers.google.com/shopping-content/guides/products/feed-labels)
-     * for the product.
+     * Required. Immutable. The label that lets you categorize and identify your
+     * products. The maximum allowed characters are 20, and the supported
+     * characters are `A-Z`, `0-9`, hyphen, and underscore. The feed label must
+     * not include any spaces. For more information, see [Using feed
+     * labels](//support.google.com/merchants/answer/14994087).
      *
      * Generated from protobuf field <code>string feed_label = 6 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $feed_label = '';
     /**
-     * Optional. Represents the existing version (freshness) of the product, which
-     * can be used to preserve the right order when multiple updates are done at
-     * the same time.
+     * Optional. Immutable. Represents the existing version (freshness) of the
+     * product, which can be used to preserve the right order when multiple
+     * updates are done at the same time.
      * If set, the insertion is prevented when version number is lower than
      * the current version number of the existing product. Re-insertion (for
      * example, product refresh after 30 days) can be performed with the current
      * `version_number`.
      * Only supported for insertions into primary data sources.
+     * Do not set this field for updates.
+     * Do not set this field for insertions into supplemental data sources.
      * If the operation is prevented, the aborted exception will be
      * thrown.
      *
-     * Generated from protobuf field <code>optional int64 version_number = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional int64 version_number = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $version_number = null;
     /**
@@ -112,7 +120,7 @@ class ProductInput extends \Google\Protobuf\Internal\Message
      * form (for example,
      * `{ "name": "size type", "value": "regular" }`).
      * This is useful for submitting attributes not explicitly exposed by the
-     * API, such as additional attributes used for Buy on Google.
+     * API.
      * Maximum allowed number of characters for each
      * custom attribute is 10240 (represents sum of characters for name and
      * value). Maximum 2500 custom attributes can be set per product, with total
@@ -131,15 +139,14 @@ class ProductInput extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Identifier. The name of the product input.
-     *           Format: accounts/{account}/productInputs/{productinput}
+     *           Format: `accounts/{account}/productInputs/{productinput}`
      *           where the last section `productinput` consists of 4 parts:
-     *           channel~content_language~feed_label~offer_id
+     *           `channel~content_language~feed_label~offer_id`
      *           example for product input name is
-     *           "accounts/123/productInputs/online~en~US~sku123"
+     *           `accounts/123/productInputs/online~en~US~sku123`
      *     @type string $product
      *           Output only. The name of the processed product.
-     *           Format:
-     *           `"{product.name=accounts/{account}/products/{product}}"`
+     *           Format: `accounts/{account}/products/{product}`
      *     @type int $channel
      *           Immutable. The
      *           [channel](https://support.google.com/merchants/answer/7361332) of the
@@ -156,18 +163,22 @@ class ProductInput extends \Google\Protobuf\Internal\Message
      *           639-1](http://en.wikipedia.org/wiki/ISO_639-1) language code for the
      *           product.
      *     @type string $feed_label
-     *           Required. Immutable. The [feed
-     *           label](https://developers.google.com/shopping-content/guides/products/feed-labels)
-     *           for the product.
+     *           Required. Immutable. The label that lets you categorize and identify your
+     *           products. The maximum allowed characters are 20, and the supported
+     *           characters are `A-Z`, `0-9`, hyphen, and underscore. The feed label must
+     *           not include any spaces. For more information, see [Using feed
+     *           labels](//support.google.com/merchants/answer/14994087).
      *     @type int|string $version_number
-     *           Optional. Represents the existing version (freshness) of the product, which
-     *           can be used to preserve the right order when multiple updates are done at
-     *           the same time.
+     *           Optional. Immutable. Represents the existing version (freshness) of the
+     *           product, which can be used to preserve the right order when multiple
+     *           updates are done at the same time.
      *           If set, the insertion is prevented when version number is lower than
      *           the current version number of the existing product. Re-insertion (for
      *           example, product refresh after 30 days) can be performed with the current
      *           `version_number`.
      *           Only supported for insertions into primary data sources.
+     *           Do not set this field for updates.
+     *           Do not set this field for insertions into supplemental data sources.
      *           If the operation is prevented, the aborted exception will be
      *           thrown.
      *     @type \Google\Shopping\Merchant\Products\V1beta\Attributes $attributes
@@ -178,7 +189,7 @@ class ProductInput extends \Google\Protobuf\Internal\Message
      *           form (for example,
      *           `{ "name": "size type", "value": "regular" }`).
      *           This is useful for submitting attributes not explicitly exposed by the
-     *           API, such as additional attributes used for Buy on Google.
+     *           API.
      *           Maximum allowed number of characters for each
      *           custom attribute is 10240 (represents sum of characters for name and
      *           value). Maximum 2500 custom attributes can be set per product, with total
@@ -193,11 +204,11 @@ class ProductInput extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. The name of the product input.
-     * Format: accounts/{account}/productInputs/{productinput}
+     * Format: `accounts/{account}/productInputs/{productinput}`
      * where the last section `productinput` consists of 4 parts:
-     * channel~content_language~feed_label~offer_id
+     * `channel~content_language~feed_label~offer_id`
      * example for product input name is
-     * "accounts/123/productInputs/online~en~US~sku123"
+     * `accounts/123/productInputs/online~en~US~sku123`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -209,11 +220,11 @@ class ProductInput extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. The name of the product input.
-     * Format: accounts/{account}/productInputs/{productinput}
+     * Format: `accounts/{account}/productInputs/{productinput}`
      * where the last section `productinput` consists of 4 parts:
-     * channel~content_language~feed_label~offer_id
+     * `channel~content_language~feed_label~offer_id`
      * example for product input name is
-     * "accounts/123/productInputs/online~en~US~sku123"
+     * `accounts/123/productInputs/online~en~US~sku123`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
@@ -229,8 +240,7 @@ class ProductInput extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The name of the processed product.
-     * Format:
-     * `"{product.name=accounts/{account}/products/{product}}"`
+     * Format: `accounts/{account}/products/{product}`
      *
      * Generated from protobuf field <code>string product = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -242,8 +252,7 @@ class ProductInput extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The name of the processed product.
-     * Format:
-     * `"{product.name=accounts/{account}/products/{product}}"`
+     * Format: `accounts/{account}/products/{product}`
      *
      * Generated from protobuf field <code>string product = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -354,9 +363,11 @@ class ProductInput extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. The [feed
-     * label](https://developers.google.com/shopping-content/guides/products/feed-labels)
-     * for the product.
+     * Required. Immutable. The label that lets you categorize and identify your
+     * products. The maximum allowed characters are 20, and the supported
+     * characters are `A-Z`, `0-9`, hyphen, and underscore. The feed label must
+     * not include any spaces. For more information, see [Using feed
+     * labels](//support.google.com/merchants/answer/14994087).
      *
      * Generated from protobuf field <code>string feed_label = 6 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
@@ -367,9 +378,11 @@ class ProductInput extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. The [feed
-     * label](https://developers.google.com/shopping-content/guides/products/feed-labels)
-     * for the product.
+     * Required. Immutable. The label that lets you categorize and identify your
+     * products. The maximum allowed characters are 20, and the supported
+     * characters are `A-Z`, `0-9`, hyphen, and underscore. The feed label must
+     * not include any spaces. For more information, see [Using feed
+     * labels](//support.google.com/merchants/answer/14994087).
      *
      * Generated from protobuf field <code>string feed_label = 6 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
@@ -384,18 +397,20 @@ class ProductInput extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Represents the existing version (freshness) of the product, which
-     * can be used to preserve the right order when multiple updates are done at
-     * the same time.
+     * Optional. Immutable. Represents the existing version (freshness) of the
+     * product, which can be used to preserve the right order when multiple
+     * updates are done at the same time.
      * If set, the insertion is prevented when version number is lower than
      * the current version number of the existing product. Re-insertion (for
      * example, product refresh after 30 days) can be performed with the current
      * `version_number`.
      * Only supported for insertions into primary data sources.
+     * Do not set this field for updates.
+     * Do not set this field for insertions into supplemental data sources.
      * If the operation is prevented, the aborted exception will be
      * thrown.
      *
-     * Generated from protobuf field <code>optional int64 version_number = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional int64 version_number = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return int|string
      */
     public function getVersionNumber()
@@ -414,18 +429,20 @@ class ProductInput extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Represents the existing version (freshness) of the product, which
-     * can be used to preserve the right order when multiple updates are done at
-     * the same time.
+     * Optional. Immutable. Represents the existing version (freshness) of the
+     * product, which can be used to preserve the right order when multiple
+     * updates are done at the same time.
      * If set, the insertion is prevented when version number is lower than
      * the current version number of the existing product. Re-insertion (for
      * example, product refresh after 30 days) can be performed with the current
      * `version_number`.
      * Only supported for insertions into primary data sources.
+     * Do not set this field for updates.
+     * Do not set this field for insertions into supplemental data sources.
      * If the operation is prevented, the aborted exception will be
      * thrown.
      *
-     * Generated from protobuf field <code>optional int64 version_number = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional int64 version_number = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param int|string $var
      * @return $this
      */
@@ -479,7 +496,7 @@ class ProductInput extends \Google\Protobuf\Internal\Message
      * form (for example,
      * `{ "name": "size type", "value": "regular" }`).
      * This is useful for submitting attributes not explicitly exposed by the
-     * API, such as additional attributes used for Buy on Google.
+     * API.
      * Maximum allowed number of characters for each
      * custom attribute is 10240 (represents sum of characters for name and
      * value). Maximum 2500 custom attributes can be set per product, with total
@@ -500,7 +517,7 @@ class ProductInput extends \Google\Protobuf\Internal\Message
      * form (for example,
      * `{ "name": "size type", "value": "regular" }`).
      * This is useful for submitting attributes not explicitly exposed by the
-     * API, such as additional attributes used for Buy on Google.
+     * API.
      * Maximum allowed number of characters for each
      * custom attribute is 10240 (represents sum of characters for name and
      * value). Maximum 2500 custom attributes can be set per product, with total

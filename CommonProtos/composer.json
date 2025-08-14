@@ -2,14 +2,14 @@
   "name": "google/common-protos",
   "type": "library",
   "description": "Google API Common Protos for PHP",
-  "version": "4.12.1",
+  "version": "4.12.2",
   "keywords": [
     "google"
   ],
   "homepage": "https://github.com/googleapis/common-protos-php",
   "license": "Apache-2.0",
   "require": {
-    "php": "^8.0",
+    "php": "^8.1",
     "google/protobuf": "^v3.25.3||^4.26.1"
   },
   "require-dev": {

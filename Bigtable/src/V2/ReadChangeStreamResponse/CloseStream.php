@@ -15,17 +15,17 @@ use Google\Protobuf\Internal\GPBUtil;
  * If `continuation_tokens` & `new_partitions` are present, then a change in
  * partitioning requires the client to open a new stream for each token to
  * resume reading. Example:
- *                                  [B,      D) ends
- *                                       |
- *                                       v
- *               new_partitions:  [A,  C) [C,  E)
- * continuation_tokens.partitions:  [B,C) [C,D)
- *                                  ^---^ ^---^
- *                                  ^     ^
- *                                  |     |
- *                                  |     StreamContinuationToken 2
- *                                  |
- *                                  StreamContinuationToken 1
+ *                                      [B,      D) ends
+ *                                           |
+ *                                           v
+ *                   new_partitions:  [A,  C) [C,  E)
+ *     continuation_tokens.partitions:  [B,C) [C,D)
+ *                                      ^---^ ^---^
+ *                                      ^     ^
+ *                                      |     |
+ *                                      |     StreamContinuationToken 2
+ *                                      |
+ *                                      StreamContinuationToken 1
  * To read the new partition [A,C), supply the continuation tokens whose
  * ranges cover the new partition, for example ContinuationToken[A,B) &
  * ContinuationToken[B,C).

@@ -193,6 +193,55 @@
                     }
                 }
             }
+        },
+        "WorkerPools": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "WorkerPoolsGapicClient",
+                    "rpcs": {
+                        "CreateWorkerPool": {
+                            "methods": [
+                                "createWorkerPool"
+                            ]
+                        },
+                        "DeleteWorkerPool": {
+                            "methods": [
+                                "deleteWorkerPool"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "GetWorkerPool": {
+                            "methods": [
+                                "getWorkerPool"
+                            ]
+                        },
+                        "ListWorkerPools": {
+                            "methods": [
+                                "listWorkerPools"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        },
+                        "UpdateWorkerPool": {
+                            "methods": [
+                                "updateWorkerPool"
+                            ]
+                        }
+                    }
+                }
+            }
         }
     }
 }

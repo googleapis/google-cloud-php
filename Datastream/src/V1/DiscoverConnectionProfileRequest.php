@@ -52,6 +52,10 @@ class DiscoverConnectionProfileRequest extends \Google\Protobuf\Internal\Message
      *           PostgreSQL RDBMS to enrich with child data objects and metadata.
      *     @type \Google\Cloud\Datastream\V1\SqlServerRdbms $sql_server_rdbms
      *           SQLServer RDBMS to enrich with child data objects and metadata.
+     *     @type \Google\Cloud\Datastream\V1\SalesforceOrg $salesforce_org
+     *           Salesforce organization to enrich with child data objects and metadata.
+     *     @type \Google\Cloud\Datastream\V1\MongodbCluster $mongodb_cluster
+     *           MongoDB cluster to enrich with child data objects and metadata.
      * }
      */
     public function __construct($data = NULL) {
@@ -333,6 +337,68 @@ class DiscoverConnectionProfileRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\SqlServerRdbms::class);
         $this->writeOneof(103, $var);
+
+        return $this;
+    }
+
+    /**
+     * Salesforce organization to enrich with child data objects and metadata.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.SalesforceOrg salesforce_org = 104;</code>
+     * @return \Google\Cloud\Datastream\V1\SalesforceOrg|null
+     */
+    public function getSalesforceOrg()
+    {
+        return $this->readOneof(104);
+    }
+
+    public function hasSalesforceOrg()
+    {
+        return $this->hasOneof(104);
+    }
+
+    /**
+     * Salesforce organization to enrich with child data objects and metadata.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.SalesforceOrg salesforce_org = 104;</code>
+     * @param \Google\Cloud\Datastream\V1\SalesforceOrg $var
+     * @return $this
+     */
+    public function setSalesforceOrg($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\SalesforceOrg::class);
+        $this->writeOneof(104, $var);
+
+        return $this;
+    }
+
+    /**
+     * MongoDB cluster to enrich with child data objects and metadata.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.MongodbCluster mongodb_cluster = 105;</code>
+     * @return \Google\Cloud\Datastream\V1\MongodbCluster|null
+     */
+    public function getMongodbCluster()
+    {
+        return $this->readOneof(105);
+    }
+
+    public function hasMongodbCluster()
+    {
+        return $this->hasOneof(105);
+    }
+
+    /**
+     * MongoDB cluster to enrich with child data objects and metadata.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.MongodbCluster mongodb_cluster = 105;</code>
+     * @param \Google\Cloud\Datastream\V1\MongodbCluster $var
+     * @return $this
+     */
+    public function setMongodbCluster($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\MongodbCluster::class);
+        $this->writeOneof(105, $var);
 
         return $this;
     }

@@ -499,6 +499,7 @@ return [
             'templateMap' => [
                 'connectionProfile' => 'projects/{project}/locations/{location}/connectionProfiles/{connection_profile}',
                 'location' => 'projects/{project}/locations/{location}',
+                'networkAttachment' => 'projects/{project}/regions/{region}/networkAttachments/{network_attachment}',
                 'networks' => 'projects/{project}/global/networks/{network}',
                 'privateConnection' => 'projects/{project}/locations/{location}/privateConnections/{private_connection}',
                 'route' => 'projects/{project}/locations/{location}/privateConnections/{private_connection}/routes/{route}',

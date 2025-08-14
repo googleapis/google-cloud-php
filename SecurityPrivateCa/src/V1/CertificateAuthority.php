@@ -21,11 +21,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class CertificateAuthority extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The resource name for this
+     * Identifier. The resource name for this
      * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
      * in the format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificateAuthorities/&#42;`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
@@ -175,6 +175,26 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, string> labels = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $labels;
+    /**
+     * Optional. User-defined URLs for CA certificate and CRLs. The service does
+     * not publish content to these URLs. It is up to the user to mirror content
+     * to these URLs.
+     *
+     * Generated from protobuf field <code>.google.cloud.security.privateca.v1.CertificateAuthority.UserDefinedAccessUrls user_defined_access_urls = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $user_defined_access_urls = null;
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $satisfies_pzs = false;
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $satisfies_pzi = false;
 
     /**
      * Constructor.
@@ -183,7 +203,7 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. The resource name for this
+     *           Identifier. The resource name for this
      *           [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
      *           in the format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificateAuthorities/&#42;`.
      *     @type int $type
@@ -269,6 +289,14 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      *           state.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional. Labels with user-defined metadata.
+     *     @type \Google\Cloud\Security\PrivateCA\V1\CertificateAuthority\UserDefinedAccessUrls $user_defined_access_urls
+     *           Optional. User-defined URLs for CA certificate and CRLs. The service does
+     *           not publish content to these URLs. It is up to the user to mirror content
+     *           to these URLs.
+     *     @type bool $satisfies_pzs
+     *           Output only. Reserved for future use.
+     *     @type bool $satisfies_pzi
+     *           Output only. Reserved for future use.
      * }
      */
     public function __construct($data = NULL) {
@@ -277,11 +305,11 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name for this
+     * Identifier. The resource name for this
      * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
      * in the format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificateAuthorities/&#42;`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -290,11 +318,11 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name for this
+     * Identifier. The resource name for this
      * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
      * in the format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificateAuthorities/&#42;`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */
@@ -910,6 +938,98 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->labels = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. User-defined URLs for CA certificate and CRLs. The service does
+     * not publish content to these URLs. It is up to the user to mirror content
+     * to these URLs.
+     *
+     * Generated from protobuf field <code>.google.cloud.security.privateca.v1.CertificateAuthority.UserDefinedAccessUrls user_defined_access_urls = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Security\PrivateCA\V1\CertificateAuthority\UserDefinedAccessUrls|null
+     */
+    public function getUserDefinedAccessUrls()
+    {
+        return $this->user_defined_access_urls;
+    }
+
+    public function hasUserDefinedAccessUrls()
+    {
+        return isset($this->user_defined_access_urls);
+    }
+
+    public function clearUserDefinedAccessUrls()
+    {
+        unset($this->user_defined_access_urls);
+    }
+
+    /**
+     * Optional. User-defined URLs for CA certificate and CRLs. The service does
+     * not publish content to these URLs. It is up to the user to mirror content
+     * to these URLs.
+     *
+     * Generated from protobuf field <code>.google.cloud.security.privateca.v1.CertificateAuthority.UserDefinedAccessUrls user_defined_access_urls = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Security\PrivateCA\V1\CertificateAuthority\UserDefinedAccessUrls $var
+     * @return $this
+     */
+    public function setUserDefinedAccessUrls($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Security\PrivateCA\V1\CertificateAuthority\UserDefinedAccessUrls::class);
+        $this->user_defined_access_urls = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzs()
+    {
+        return $this->satisfies_pzs;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzs($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzs = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzi()
+    {
+        return $this->satisfies_pzi;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzi($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzi = $var;
 
         return $this;
     }

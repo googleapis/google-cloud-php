@@ -32,10 +32,21 @@ use Google\Apps\Chat\V1\Message;
  * Creates a message in a Google Chat space. For an example, see [Send a
  * message](https://developers.google.com/workspace/chat/create-messages).
  *
- * The `create()` method requires either [user
+ * Supports the following types of
+ * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize):
+ *
+ * - [App
+ * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
+ * with the authorization scope:
+ * - `https://www.googleapis.com/auth/chat.bot`
+ * - [User
  * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
- * or [app
- * authentication](https://developers.google.com/workspace/chat/authorize-import).
+ * with one of the following authorization scopes:
+ * - `https://www.googleapis.com/auth/chat.messages.create`
+ * - `https://www.googleapis.com/auth/chat.messages`
+ * - `https://www.googleapis.com/auth/chat.import` (import mode spaces
+ * only)
+ *
  * Chat attributes the message sender differently depending on the type of
  * authentication that you use in your request.
  *

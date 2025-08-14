@@ -9,21 +9,27 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The mapping for the `Job.edit_list` atoms with audio `EditAtom.inputs`.
+ * The mapping for the
+ * [JobConfig.edit_list][google.cloud.video.transcoder.v1.JobConfig.edit_list]
+ * atoms with audio
+ * [EditAtom.inputs][google.cloud.video.transcoder.v1.EditAtom.inputs].
  *
  * Generated from protobuf message <code>google.cloud.video.transcoder.v1.AudioStream.AudioMapping</code>
  */
 class AudioMapping extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The `EditAtom.key` that references the atom with audio inputs
-     * in the `Job.edit_list`.
+     * Required. The
+     * [EditAtom.key][google.cloud.video.transcoder.v1.EditAtom.key] that
+     * references the atom with audio inputs in the
+     * [JobConfig.edit_list][google.cloud.video.transcoder.v1.JobConfig.edit_list].
      *
      * Generated from protobuf field <code>string atom_key = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $atom_key = '';
     /**
-     * Required. The `Input.key` that identifies the input file.
+     * Required. The [Input.key][google.cloud.video.transcoder.v1.Input.key]
+     * that identifies the input file.
      *
      * Generated from protobuf field <code>string input_key = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -61,10 +67,13 @@ class AudioMapping extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $atom_key
-     *           Required. The `EditAtom.key` that references the atom with audio inputs
-     *           in the `Job.edit_list`.
+     *           Required. The
+     *           [EditAtom.key][google.cloud.video.transcoder.v1.EditAtom.key] that
+     *           references the atom with audio inputs in the
+     *           [JobConfig.edit_list][google.cloud.video.transcoder.v1.JobConfig.edit_list].
      *     @type string $input_key
-     *           Required. The `Input.key` that identifies the input file.
+     *           Required. The [Input.key][google.cloud.video.transcoder.v1.Input.key]
+     *           that identifies the input file.
      *     @type int $input_track
      *           Required. The zero-based index of the track in the input file.
      *     @type int $input_channel
@@ -82,8 +91,10 @@ class AudioMapping extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The `EditAtom.key` that references the atom with audio inputs
-     * in the `Job.edit_list`.
+     * Required. The
+     * [EditAtom.key][google.cloud.video.transcoder.v1.EditAtom.key] that
+     * references the atom with audio inputs in the
+     * [JobConfig.edit_list][google.cloud.video.transcoder.v1.JobConfig.edit_list].
      *
      * Generated from protobuf field <code>string atom_key = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -94,8 +105,10 @@ class AudioMapping extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The `EditAtom.key` that references the atom with audio inputs
-     * in the `Job.edit_list`.
+     * Required. The
+     * [EditAtom.key][google.cloud.video.transcoder.v1.EditAtom.key] that
+     * references the atom with audio inputs in the
+     * [JobConfig.edit_list][google.cloud.video.transcoder.v1.JobConfig.edit_list].
      *
      * Generated from protobuf field <code>string atom_key = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -110,7 +123,8 @@ class AudioMapping extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The `Input.key` that identifies the input file.
+     * Required. The [Input.key][google.cloud.video.transcoder.v1.Input.key]
+     * that identifies the input file.
      *
      * Generated from protobuf field <code>string input_key = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -121,7 +135,8 @@ class AudioMapping extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The `Input.key` that identifies the input file.
+     * Required. The [Input.key][google.cloud.video.transcoder.v1.Input.key]
+     * that identifies the input file.
      *
      * Generated from protobuf field <code>string input_key = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

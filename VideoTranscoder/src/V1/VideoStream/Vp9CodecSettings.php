@@ -41,16 +41,18 @@ class Vp9CodecSettings extends \Google\Protobuf\Internal\Message
     protected $height_pixels = 0;
     /**
      * Required. The target video frame rate in frames per second (FPS). Must be
-     * less than or equal to 120. Will default to the input frame rate if larger
-     * than the input frame rate. The API will generate an output FPS that is
-     * divisible by the input FPS, and smaller or equal to the target FPS. See
-     * [Calculating frame
-     * rate](https://cloud.google.com/transcoder/docs/concepts/frame-rate) for
-     * more information.
+     * less than or equal to 120.
      *
      * Generated from protobuf field <code>double frame_rate = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $frame_rate = 0.0;
+    /**
+     * Optional. Frame rate conversion strategy for desired frame rate. The
+     * default is `DOWNSAMPLE`.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.VideoStream.FrameRateConversionStrategy frame_rate_conversion_strategy = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $frame_rate_conversion_strategy = 0;
     /**
      * Required. The video bitrate in bits per second. The minimum value is
      * 1,000. The maximum value is 480,000,000.
@@ -75,7 +77,7 @@ class Vp9CodecSettings extends \Google\Protobuf\Internal\Message
      */
     protected $pixel_format = '';
     /**
-     * Specify the `rate_control_mode`. The default is `vbr`.
+     * Specify the mode. The default is `vbr`.
      * Supported rate control modes:
      * - `vbr` - variable bitrate
      *
@@ -107,6 +109,7 @@ class Vp9CodecSettings extends \Google\Protobuf\Internal\Message
      */
     protected $profile = '';
     protected $gop_mode;
+    protected $color_format;
 
     /**
      * Constructor.
@@ -132,12 +135,10 @@ class Vp9CodecSettings extends \Google\Protobuf\Internal\Message
      *           and swaps the requested height and width for the output.
      *     @type float $frame_rate
      *           Required. The target video frame rate in frames per second (FPS). Must be
-     *           less than or equal to 120. Will default to the input frame rate if larger
-     *           than the input frame rate. The API will generate an output FPS that is
-     *           divisible by the input FPS, and smaller or equal to the target FPS. See
-     *           [Calculating frame
-     *           rate](https://cloud.google.com/transcoder/docs/concepts/frame-rate) for
-     *           more information.
+     *           less than or equal to 120.
+     *     @type int $frame_rate_conversion_strategy
+     *           Optional. Frame rate conversion strategy for desired frame rate. The
+     *           default is `DOWNSAMPLE`.
      *     @type int $bitrate_bps
      *           Required. The video bitrate in bits per second. The minimum value is
      *           1,000. The maximum value is 480,000,000.
@@ -154,7 +155,7 @@ class Vp9CodecSettings extends \Google\Protobuf\Internal\Message
      *           - `yuv422p12` 12-bit HDR pixel format
      *           - `yuv444p12` 12-bit HDR pixel format
      *     @type string $rate_control_mode
-     *           Specify the `rate_control_mode`. The default is `vbr`.
+     *           Specify the mode. The default is `vbr`.
      *           Supported rate control modes:
      *           - `vbr` - variable bitrate
      *     @type int $crf_level
@@ -182,6 +183,10 @@ class Vp9CodecSettings extends \Google\Protobuf\Internal\Message
      *           Note that certain values for this field may cause the
      *           transcoder to override other fields you set in the `Vp9CodecSettings`
      *           message.
+     *     @type \Google\Cloud\Video\Transcoder\V1\VideoStream\Vp9ColorFormatSDR $sdr
+     *           Optional. SDR color format setting for VP9.
+     *     @type \Google\Cloud\Video\Transcoder\V1\VideoStream\Vp9ColorFormatHLG $hlg
+     *           Optional. HLG color format setting for VP9.
      * }
      */
     public function __construct($data = NULL) {
@@ -267,12 +272,7 @@ class Vp9CodecSettings extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The target video frame rate in frames per second (FPS). Must be
-     * less than or equal to 120. Will default to the input frame rate if larger
-     * than the input frame rate. The API will generate an output FPS that is
-     * divisible by the input FPS, and smaller or equal to the target FPS. See
-     * [Calculating frame
-     * rate](https://cloud.google.com/transcoder/docs/concepts/frame-rate) for
-     * more information.
+     * less than or equal to 120.
      *
      * Generated from protobuf field <code>double frame_rate = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return float
@@ -284,12 +284,7 @@ class Vp9CodecSettings extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The target video frame rate in frames per second (FPS). Must be
-     * less than or equal to 120. Will default to the input frame rate if larger
-     * than the input frame rate. The API will generate an output FPS that is
-     * divisible by the input FPS, and smaller or equal to the target FPS. See
-     * [Calculating frame
-     * rate](https://cloud.google.com/transcoder/docs/concepts/frame-rate) for
-     * more information.
+     * less than or equal to 120.
      *
      * Generated from protobuf field <code>double frame_rate = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param float $var
@@ -299,6 +294,34 @@ class Vp9CodecSettings extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkDouble($var);
         $this->frame_rate = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Frame rate conversion strategy for desired frame rate. The
+     * default is `DOWNSAMPLE`.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.VideoStream.FrameRateConversionStrategy frame_rate_conversion_strategy = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getFrameRateConversionStrategy()
+    {
+        return $this->frame_rate_conversion_strategy;
+    }
+
+    /**
+     * Optional. Frame rate conversion strategy for desired frame rate. The
+     * default is `DOWNSAMPLE`.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.VideoStream.FrameRateConversionStrategy frame_rate_conversion_strategy = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setFrameRateConversionStrategy($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Video\Transcoder\V1\VideoStream\FrameRateConversionStrategy::class);
+        $this->frame_rate_conversion_strategy = $var;
 
         return $this;
     }
@@ -378,7 +401,7 @@ class Vp9CodecSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specify the `rate_control_mode`. The default is `vbr`.
+     * Specify the mode. The default is `vbr`.
      * Supported rate control modes:
      * - `vbr` - variable bitrate
      *
@@ -391,7 +414,7 @@ class Vp9CodecSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specify the `rate_control_mode`. The default is `vbr`.
+     * Specify the mode. The default is `vbr`.
      * Supported rate control modes:
      * - `vbr` - variable bitrate
      *
@@ -556,11 +579,81 @@ class Vp9CodecSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. SDR color format setting for VP9.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.VideoStream.Vp9ColorFormatSDR sdr = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Video\Transcoder\V1\VideoStream\Vp9ColorFormatSDR|null
+     */
+    public function getSdr()
+    {
+        return $this->readOneof(11);
+    }
+
+    public function hasSdr()
+    {
+        return $this->hasOneof(11);
+    }
+
+    /**
+     * Optional. SDR color format setting for VP9.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.VideoStream.Vp9ColorFormatSDR sdr = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Video\Transcoder\V1\VideoStream\Vp9ColorFormatSDR $var
+     * @return $this
+     */
+    public function setSdr($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Video\Transcoder\V1\VideoStream\Vp9ColorFormatSDR::class);
+        $this->writeOneof(11, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. HLG color format setting for VP9.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.VideoStream.Vp9ColorFormatHLG hlg = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Video\Transcoder\V1\VideoStream\Vp9ColorFormatHLG|null
+     */
+    public function getHlg()
+    {
+        return $this->readOneof(12);
+    }
+
+    public function hasHlg()
+    {
+        return $this->hasOneof(12);
+    }
+
+    /**
+     * Optional. HLG color format setting for VP9.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.VideoStream.Vp9ColorFormatHLG hlg = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Video\Transcoder\V1\VideoStream\Vp9ColorFormatHLG $var
+     * @return $this
+     */
+    public function setHlg($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Video\Transcoder\V1\VideoStream\Vp9ColorFormatHLG::class);
+        $this->writeOneof(12, $var);
+
+        return $this;
+    }
+
+    /**
      * @return string
      */
     public function getGopMode()
     {
         return $this->whichOneof("gop_mode");
+    }
+
+    /**
+     * @return string
+     */
+    public function getColorFormat()
+    {
+        return $this->whichOneof("color_format");
     }
 
 }

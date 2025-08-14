@@ -75,10 +75,6 @@ class DocFxCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        if (PHP_VERSION_ID < 80000) {
-            throw new RuntimeException('This command must be run on PHP 8.0 or above');
-        }
-
         // YAML dump configuration
         $inline = 11; // The level where you switch to inline YAML
         $indent = 2; // The amount of spaces to use for indentation of nested nodes

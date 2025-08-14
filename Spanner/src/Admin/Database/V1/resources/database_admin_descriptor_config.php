@@ -258,6 +258,10 @@ return [
                     ],
                 ],
             ],
+            'InternalUpdateGraphOperation' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Spanner\Admin\Database\V1\InternalUpdateGraphOperationResponse',
+            ],
             'ListBackupOperations' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',

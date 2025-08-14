@@ -253,6 +253,30 @@ return [
                     ],
                 ],
             ],
+            'GetResourceChange' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Config\V1\ResourceChange',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetResourceDrift' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Config\V1\ResourceDrift',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetRevision' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Config\V1\Revision',
@@ -320,6 +344,46 @@ return [
                 ],
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
                 'responseType' => 'Google\Cloud\Config\V1\ListPreviewsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListResourceChanges' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getResourceChanges',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Config\V1\ListResourceChangesResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListResourceDrifts' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getResourceDrifts',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Config\V1\ListResourceDriftsResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'parent',
@@ -467,6 +531,8 @@ return [
                 'location' => 'projects/{project}/locations/{location}',
                 'preview' => 'projects/{project}/locations/{location}/previews/{preview}',
                 'resource' => 'projects/{project}/locations/{location}/deployments/{deployment}/revisions/{revision}/resources/{resource}',
+                'resourceChange' => 'projects/{project}/locations/{location}/previews/{preview}/resourceChanges/{resource_change}',
+                'resourceDrift' => 'projects/{project}/locations/{location}/previews/{preview}/resourceDrifts/{resource_drift}',
                 'revision' => 'projects/{project}/locations/{location}/deployments/{deployment}/revisions/{revision}',
                 'serviceAccount' => 'projects/{project}/serviceAccounts/{service_account}',
                 'terraformVersion' => 'projects/{project}/locations/{location}/terraformVersions/{terraform_version}',

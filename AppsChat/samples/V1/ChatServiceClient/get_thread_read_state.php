@@ -35,7 +35,12 @@ use Google\Apps\Chat\V1\ThreadReadState;
  * state](https://developers.google.com/workspace/chat/get-thread-read-state).
  *
  * Requires [user
- * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+ * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+ * with one of the following [authorization
+ * scopes](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes):
+ *
+ * - `https://www.googleapis.com/auth/chat.users.readstate.readonly`
+ * - `https://www.googleapis.com/auth/chat.users.readstate`
  *
  * @param string $formattedName Resource name of the thread read state to retrieve.
  *

@@ -18,11 +18,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class Certificate extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The resource name for this
+     * Identifier. The resource name for this
      * [Certificate][google.cloud.security.privateca.v1.Certificate] in the format
      * `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificates/&#42;`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
@@ -121,7 +121,7 @@ class Certificate extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. The resource name for this
+     *           Identifier. The resource name for this
      *           [Certificate][google.cloud.security.privateca.v1.Certificate] in the format
      *           `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificates/&#42;`.
      *     @type string $pem_csr
@@ -180,11 +180,11 @@ class Certificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name for this
+     * Identifier. The resource name for this
      * [Certificate][google.cloud.security.privateca.v1.Certificate] in the format
      * `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificates/&#42;`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -193,11 +193,11 @@ class Certificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name for this
+     * Identifier. The resource name for this
      * [Certificate][google.cloud.security.privateca.v1.Certificate] in the format
      * `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificates/&#42;`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */

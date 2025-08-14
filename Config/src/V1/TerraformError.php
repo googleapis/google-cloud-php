@@ -37,9 +37,10 @@ class TerraformError extends \Google\Protobuf\Internal\Message
      */
     protected $error_description = '';
     /**
-     * Original error response from underlying Google API, if available.
+     * Output only. Original error response from underlying Google API, if
+     * available.
      *
-     * Generated from protobuf field <code>.google.rpc.Status error = 4;</code>
+     * Generated from protobuf field <code>.google.rpc.Status error = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $error = null;
 
@@ -59,7 +60,8 @@ class TerraformError extends \Google\Protobuf\Internal\Message
      *     @type string $error_description
      *           A human-readable error description.
      *     @type \Google\Rpc\Status $error
-     *           Original error response from underlying Google API, if available.
+     *           Output only. Original error response from underlying Google API, if
+     *           available.
      * }
      */
     public function __construct($data = NULL) {
@@ -152,9 +154,10 @@ class TerraformError extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Original error response from underlying Google API, if available.
+     * Output only. Original error response from underlying Google API, if
+     * available.
      *
-     * Generated from protobuf field <code>.google.rpc.Status error = 4;</code>
+     * Generated from protobuf field <code>.google.rpc.Status error = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Rpc\Status|null
      */
     public function getError()
@@ -173,9 +176,10 @@ class TerraformError extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Original error response from underlying Google API, if available.
+     * Output only. Original error response from underlying Google API, if
+     * available.
      *
-     * Generated from protobuf field <code>.google.rpc.Status error = 4;</code>
+     * Generated from protobuf field <code>.google.rpc.Status error = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Rpc\Status $var
      * @return $this
      */

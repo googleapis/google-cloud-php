@@ -29,6 +29,13 @@ class Entry extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.bigtable.v2.Mutation mutations = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $mutations;
+    /**
+     * If set consistently across retries, prevents this mutation from being
+     * double applied to aggregate column families within a 15m window.
+     *
+     * Generated from protobuf field <code>.google.bigtable.v2.Idempotency idempotency = 3;</code>
+     */
+    protected $idempotency = null;
 
     /**
      * Constructor.
@@ -42,6 +49,9 @@ class Entry extends \Google\Protobuf\Internal\Message
      *           Required. Changes to be atomically applied to the specified row.
      *           Mutations are applied in order, meaning that earlier mutations can be
      *           masked by later ones. You must specify at least one mutation.
+     *     @type \Google\Cloud\Bigtable\V2\Idempotency $idempotency
+     *           If set consistently across retries, prevents this mutation from being
+     *           double applied to aggregate column families within a 15m window.
      * }
      */
     public function __construct($data = NULL) {
@@ -101,6 +111,44 @@ class Entry extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Bigtable\V2\Mutation::class);
         $this->mutations = $arr;
+
+        return $this;
+    }
+
+    /**
+     * If set consistently across retries, prevents this mutation from being
+     * double applied to aggregate column families within a 15m window.
+     *
+     * Generated from protobuf field <code>.google.bigtable.v2.Idempotency idempotency = 3;</code>
+     * @return \Google\Cloud\Bigtable\V2\Idempotency|null
+     */
+    public function getIdempotency()
+    {
+        return $this->idempotency;
+    }
+
+    public function hasIdempotency()
+    {
+        return isset($this->idempotency);
+    }
+
+    public function clearIdempotency()
+    {
+        unset($this->idempotency);
+    }
+
+    /**
+     * If set consistently across retries, prevents this mutation from being
+     * double applied to aggregate column families within a 15m window.
+     *
+     * Generated from protobuf field <code>.google.bigtable.v2.Idempotency idempotency = 3;</code>
+     * @param \Google\Cloud\Bigtable\V2\Idempotency $var
+     * @return $this
+     */
+    public function setIdempotency($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\V2\Idempotency::class);
+        $this->idempotency = $var;
 
         return $this;
     }

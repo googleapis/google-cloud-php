@@ -63,7 +63,6 @@ use Google\Cloud\Metastore\V1alpha\MoveTableToDatabaseRequest;
 use Google\Cloud\Metastore\V1alpha\QueryMetadataRequest;
 use Google\Cloud\Metastore\V1alpha\RemoveIamPolicyRequest;
 use Google\Cloud\Metastore\V1alpha\RemoveIamPolicyResponse;
-use Google\Cloud\Metastore\V1alpha\Restore;
 use Google\Cloud\Metastore\V1alpha\RestoreServiceRequest;
 use Google\Cloud\Metastore\V1alpha\Service;
 use Google\Cloud\Metastore\V1alpha\UpdateMetadataImportRequest;

@@ -51,6 +51,17 @@ class ModelConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ModelContainerSpec container_spec = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $container_spec = null;
+    /**
+     * Optional. The ID to use for the uploaded Model, which will become the
+     * final component of the model resource name. When not provided, Vertex AI
+     * will generate a value for this ID. When Model Registry model is provided,
+     * this field will be ignored.
+     * This value may be up to 63 characters, and valid characters are
+     * `[a-z0-9_-]`. The first character cannot be a number or hyphen.
+     *
+     * Generated from protobuf field <code>string model_user_id = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $model_user_id = '';
 
     /**
      * Constructor.
@@ -74,6 +85,13 @@ class ModelConfig extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\AIPlatform\V1\ModelContainerSpec $container_spec
      *           Optional. The specification of the container that is to be used when
      *           deploying. If not set, the default container spec will be used.
+     *     @type string $model_user_id
+     *           Optional. The ID to use for the uploaded Model, which will become the
+     *           final component of the model resource name. When not provided, Vertex AI
+     *           will generate a value for this ID. When Model Registry model is provided,
+     *           this field will be ignored.
+     *           This value may be up to 63 characters, and valid characters are
+     *           `[a-z0-9_-]`. The first character cannot be a number or hyphen.
      * }
      */
     public function __construct($data = NULL) {
@@ -229,6 +247,42 @@ class ModelConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\ModelContainerSpec::class);
         $this->container_spec = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The ID to use for the uploaded Model, which will become the
+     * final component of the model resource name. When not provided, Vertex AI
+     * will generate a value for this ID. When Model Registry model is provided,
+     * this field will be ignored.
+     * This value may be up to 63 characters, and valid characters are
+     * `[a-z0-9_-]`. The first character cannot be a number or hyphen.
+     *
+     * Generated from protobuf field <code>string model_user_id = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getModelUserId()
+    {
+        return $this->model_user_id;
+    }
+
+    /**
+     * Optional. The ID to use for the uploaded Model, which will become the
+     * final component of the model resource name. When not provided, Vertex AI
+     * will generate a value for this ID. When Model Registry model is provided,
+     * this field will be ignored.
+     * This value may be up to 63 characters, and valid characters are
+     * `[a-z0-9_-]`. The first character cannot be a number or hyphen.
+     *
+     * Generated from protobuf field <code>string model_user_id = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setModelUserId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->model_user_id = $var;
 
         return $this;
     }

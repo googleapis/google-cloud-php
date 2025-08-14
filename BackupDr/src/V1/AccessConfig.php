@@ -18,9 +18,9 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * Optional. In accessConfigs (IPv4), the
-     *  default and only option is ONE_TO_ONE_NAT. In
-     *  ipv6AccessConfigs, the default and only option is
-     *  DIRECT_IPV6.
+     * default and only option is ONE_TO_ONE_NAT. In
+     * ipv6AccessConfigs, the default and only option is
+     * DIRECT_IPV6.
      *
      * Generated from protobuf field <code>optional .google.cloud.backupdr.v1.AccessConfig.AccessType type = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -34,7 +34,7 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The external IP address of this access configuration.
      *
-     * Generated from protobuf field <code>optional string external_ip = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string external_ip = 3 [json_name = "natIP", (.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $external_ip = null;
     /**
@@ -78,9 +78,9 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type int $type
      *           Optional. In accessConfigs (IPv4), the
-     *            default and only option is ONE_TO_ONE_NAT. In
-     *            ipv6AccessConfigs, the default and only option is
-     *            DIRECT_IPV6.
+     *           default and only option is ONE_TO_ONE_NAT. In
+     *           ipv6AccessConfigs, the default and only option is
+     *           DIRECT_IPV6.
      *     @type string $name
      *           Optional. The name of this access configuration.
      *     @type string $external_ip
@@ -106,9 +106,9 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. In accessConfigs (IPv4), the
-     *  default and only option is ONE_TO_ONE_NAT. In
-     *  ipv6AccessConfigs, the default and only option is
-     *  DIRECT_IPV6.
+     * default and only option is ONE_TO_ONE_NAT. In
+     * ipv6AccessConfigs, the default and only option is
+     * DIRECT_IPV6.
      *
      * Generated from protobuf field <code>optional .google.cloud.backupdr.v1.AccessConfig.AccessType type = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -130,9 +130,9 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. In accessConfigs (IPv4), the
-     *  default and only option is ONE_TO_ONE_NAT. In
-     *  ipv6AccessConfigs, the default and only option is
-     *  DIRECT_IPV6.
+     * default and only option is ONE_TO_ONE_NAT. In
+     * ipv6AccessConfigs, the default and only option is
+     * DIRECT_IPV6.
      *
      * Generated from protobuf field <code>optional .google.cloud.backupdr.v1.AccessConfig.AccessType type = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -185,7 +185,7 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The external IP address of this access configuration.
      *
-     * Generated from protobuf field <code>optional string external_ip = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string external_ip = 3 [json_name = "natIP", (.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getExternalIp()
@@ -206,7 +206,7 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The external IP address of this access configuration.
      *
-     * Generated from protobuf field <code>optional string external_ip = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string external_ip = 3 [json_name = "natIP", (.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

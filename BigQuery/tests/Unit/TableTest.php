@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2016 Google Inc.
  *
@@ -25,6 +26,7 @@ use Google\Cloud\BigQuery\Job;
 use Google\Cloud\BigQuery\JobConfigurationInterface;
 use Google\Cloud\BigQuery\LoadJobConfiguration;
 use Google\Cloud\BigQuery\Table;
+use Google\Cloud\BigQuery\Timestamp;
 use Google\Cloud\BigQuery\ValueMapper;
 use Google\Cloud\Core\Exception\ConflictException;
 use Google\Cloud\Core\Exception\NotFoundException;
@@ -56,7 +58,7 @@ class TableTest extends TestCase
     public $mapper;
     public $rowData = [
         'rows' => [
-            ['f' => [['v' => 'Alton']]]
+            ['f' => [['v' => 'Alton'], ['v' => '40969200000000']]]
         ]
     ];
     public $schemaData = [
@@ -65,6 +67,10 @@ class TableTest extends TestCase
                 [
                     'name' => 'first_name',
                     'type' => 'STRING'
+                ],
+                [
+                    'name' => 'timestamp',
+                    'type' => 'TIMESTAMP'
                 ]
             ]
         ]
@@ -222,6 +228,39 @@ class TableTest extends TestCase
         $this->connection->listTableData(Argument::allOf(
             Argument::withEntry('projectId', self::PROJECT_ID),
             Argument::withEntry('datasetId', self::DATASET_ID),
+            Argument::withEntry('tableId', self::TABLE_ID),
+            Argument::withEntry('formatOptions.useInt64Timestamp', true)
+        ))
+            ->willReturn($this->rowData)
+            ->shouldBeCalledTimes(1);
+
+        $table = $this->getTable($this->connection);
+        $rows = iterator_to_array($table->rows(['formatOptions.useInt64Timestamp' => true]));
+
+        $this->assertEquals(
+            $this->rowData['rows'][0]['f'][0]['v'],
+            $rows[0]['first_name']
+        );
+        $this->assertEquals(
+            new Timestamp(new \DateTime('1971-04-20T04:20:00.000000Z')),
+            $rows[0]['timestamp']
+        );
+    }
+
+    public function testGetsRowWithFloatTimestamp()
+    {
+        $this->rowData['rows'][0]['f'][1]['v'] = '1.438712914E9';
+        $this->connection->getTable(Argument::allOf(
+            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry('datasetId', self::DATASET_ID),
+            Argument::withEntry('tableId', self::TABLE_ID)
+        ))
+            ->willReturn($this->schemaData)
+            ->shouldBeCalledTimes(1);
+
+        $this->connection->listTableData(Argument::allOf(
+            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry('datasetId', self::DATASET_ID),
             Argument::withEntry('tableId', self::TABLE_ID)
         ))
             ->willReturn($this->rowData)
@@ -233,6 +272,10 @@ class TableTest extends TestCase
         $this->assertEquals(
             $this->rowData['rows'][0]['f'][0]['v'],
             $rows[0]['first_name']
+        );
+        $this->assertEquals(
+            new Timestamp(new \DateTime('2015-08-04 18:28:34Z')),
+            $rows[0]['timestamp']
         );
     }
 
@@ -252,7 +295,8 @@ class TableTest extends TestCase
         $this->connection->listTableData(Argument::allOf(
             Argument::withEntry('projectId', self::PROJECT_ID),
             Argument::withEntry('datasetId', self::DATASET_ID),
-            Argument::withEntry('tableId', self::TABLE_ID)
+            Argument::withEntry('tableId', self::TABLE_ID),
+            Argument::withEntry('formatOptions.useInt64Timestamp', true)
         ))
             ->willReturn(
                 $this->rowData + ['pageToken' => 'abc'],
@@ -261,9 +305,13 @@ class TableTest extends TestCase
             ->shouldBeCalledTimes(2);
 
         $table = $this->getTable($this->connection);
-        $rows = iterator_to_array($table->rows());
+        $rows = iterator_to_array($table->rows(['formatOptions.useInt64Timestamp' => true]));
 
         $this->assertEquals($name, $rows[1]['first_name']);
+        $this->assertEquals(
+            new Timestamp(new \DateTime('1971-04-20T04:20:00.000000Z')),
+            $rows[1]['timestamp']
+        );
     }
 
     /**

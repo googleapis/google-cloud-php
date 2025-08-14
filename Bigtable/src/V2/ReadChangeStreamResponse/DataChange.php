@@ -85,8 +85,8 @@ class DataChange extends \Google\Protobuf\Internal\Message
      * An estimate of the commit timestamp that is usually lower than or equal
      * to any timestamp for a record that will be delivered in the future on the
      * stream. It is possible that, under particular circumstances that a future
-     * record has a timestamp is is lower than a previously seen timestamp. For
-     * an example usage see
+     * record has a timestamp that is lower than a previously seen timestamp.
+     * For an example usage see
      * https://beam.apache.org/documentation/basics/#watermarks
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp estimated_low_watermark = 10;</code>
@@ -132,8 +132,8 @@ class DataChange extends \Google\Protobuf\Internal\Message
      *           An estimate of the commit timestamp that is usually lower than or equal
      *           to any timestamp for a record that will be delivered in the future on the
      *           stream. It is possible that, under particular circumstances that a future
-     *           record has a timestamp is is lower than a previously seen timestamp. For
-     *           an example usage see
+     *           record has a timestamp that is lower than a previously seen timestamp.
+     *           For an example usage see
      *           https://beam.apache.org/documentation/basics/#watermarks
      * }
      */
@@ -390,8 +390,8 @@ class DataChange extends \Google\Protobuf\Internal\Message
      * An estimate of the commit timestamp that is usually lower than or equal
      * to any timestamp for a record that will be delivered in the future on the
      * stream. It is possible that, under particular circumstances that a future
-     * record has a timestamp is is lower than a previously seen timestamp. For
-     * an example usage see
+     * record has a timestamp that is lower than a previously seen timestamp.
+     * For an example usage see
      * https://beam.apache.org/documentation/basics/#watermarks
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp estimated_low_watermark = 10;</code>
@@ -416,8 +416,8 @@ class DataChange extends \Google\Protobuf\Internal\Message
      * An estimate of the commit timestamp that is usually lower than or equal
      * to any timestamp for a record that will be delivered in the future on the
      * stream. It is possible that, under particular circumstances that a future
-     * record has a timestamp is is lower than a previously seen timestamp. For
-     * an example usage see
+     * record has a timestamp that is lower than a previously seen timestamp.
+     * For an example usage see
      * https://beam.apache.org/documentation/basics/#watermarks
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp estimated_low_watermark = 10;</code>

@@ -18,7 +18,7 @@ class DeleteRepositoryRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Name of the repository to delete.
      * The format is
-     * projects/{project_number}/locations/{location_id}/repositories/{repository_id}.
+     * `projects/{project_number}/locations/{location_id}/repositories/{repository_id}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -34,7 +34,7 @@ class DeleteRepositoryRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. Name of the repository to delete.
      *                     The format is
-     *                     projects/{project_number}/locations/{location_id}/repositories/{repository_id}. Please see
+     *                     `projects/{project_number}/locations/{location_id}/repositories/{repository_id}`. Please see
      *                     {@see SecureSourceManagerClient::repositoryName()} for help formatting this field.
      *
      * @return \Google\Cloud\SecureSourceManager\V1\DeleteRepositoryRequest
@@ -56,7 +56,7 @@ class DeleteRepositoryRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. Name of the repository to delete.
      *           The format is
-     *           projects/{project_number}/locations/{location_id}/repositories/{repository_id}.
+     *           `projects/{project_number}/locations/{location_id}/repositories/{repository_id}`.
      *     @type bool $allow_missing
      *           Optional. If set to true, and the repository is not found, the request will
      *           succeed but no action will be taken on the server.
@@ -70,7 +70,7 @@ class DeleteRepositoryRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Name of the repository to delete.
      * The format is
-     * projects/{project_number}/locations/{location_id}/repositories/{repository_id}.
+     * `projects/{project_number}/locations/{location_id}/repositories/{repository_id}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -83,7 +83,7 @@ class DeleteRepositoryRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Name of the repository to delete.
      * The format is
-     * projects/{project_number}/locations/{location_id}/repositories/{repository_id}.
+     * `projects/{project_number}/locations/{location_id}/repositories/{repository_id}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

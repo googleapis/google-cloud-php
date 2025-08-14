@@ -26,9 +26,9 @@ class SetMasterAuthRequest extends \Google\Protobuf\Internal\Message
     protected $project_id = '';
     /**
      * Deprecated. The name of the Google Compute Engine
-     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the
-     * cluster resides. This field has been deprecated and replaced by the name
-     * field.
+     * [zone](https://cloud.google.com/compute/docs/zones#available)
+     * in which the cluster resides. This field has been deprecated and replaced
+     * by the name field.
      *
      * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
      * @deprecated
@@ -74,9 +74,9 @@ class SetMasterAuthRequest extends \Google\Protobuf\Internal\Message
      *           This field has been deprecated and replaced by the name field.
      *     @type string $zone
      *           Deprecated. The name of the Google Compute Engine
-     *           [zone](https://cloud.google.com/compute/docs/zones#available) in which the
-     *           cluster resides. This field has been deprecated and replaced by the name
-     *           field.
+     *           [zone](https://cloud.google.com/compute/docs/zones#available)
+     *           in which the cluster resides. This field has been deprecated and replaced
+     *           by the name field.
      *     @type string $cluster_id
      *           Deprecated. The name of the cluster to upgrade.
      *           This field has been deprecated and replaced by the name field.
@@ -132,9 +132,9 @@ class SetMasterAuthRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Deprecated. The name of the Google Compute Engine
-     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the
-     * cluster resides. This field has been deprecated and replaced by the name
-     * field.
+     * [zone](https://cloud.google.com/compute/docs/zones#available)
+     * in which the cluster resides. This field has been deprecated and replaced
+     * by the name field.
      *
      * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
      * @return string
@@ -150,9 +150,9 @@ class SetMasterAuthRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Deprecated. The name of the Google Compute Engine
-     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the
-     * cluster resides. This field has been deprecated and replaced by the name
-     * field.
+     * [zone](https://cloud.google.com/compute/docs/zones#available)
+     * in which the cluster resides. This field has been deprecated and replaced
+     * by the name field.
      *
      * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
      * @param string $var

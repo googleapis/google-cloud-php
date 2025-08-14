@@ -116,6 +116,19 @@ class DeployedIndex extends \Google\Protobuf\Internal\Message
      */
     protected $enable_access_logging = false;
     /**
+     * Optional. If true, logs to Cloud Logging errors relating to datapoint
+     * upserts.
+     * Under normal operation conditions, these log entries should be very rare.
+     * However, if incompatible datapoint updates are being uploaded to an index,
+     * a high volume of log entries may be generated in a short period of time.
+     * Note that logs may incur a cost, especially if the deployed index receives
+     * a high volume of datapoint upserts. Estimate your costs before enabling
+     * this option.
+     *
+     * Generated from protobuf field <code>bool enable_datapoint_upsert_logging = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $enable_datapoint_upsert_logging = false;
+    /**
      * Optional. If set, the authentication is enabled for the private endpoint.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.DeployedIndexAuthConfig deployed_index_auth_config = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -230,6 +243,15 @@ class DeployedIndex extends \Google\Protobuf\Internal\Message
      *           Note that logs may incur a cost, especially if the deployed
      *           index receives a high queries per second rate (QPS).
      *           Estimate your costs before enabling this option.
+     *     @type bool $enable_datapoint_upsert_logging
+     *           Optional. If true, logs to Cloud Logging errors relating to datapoint
+     *           upserts.
+     *           Under normal operation conditions, these log entries should be very rare.
+     *           However, if incompatible datapoint updates are being uploaded to an index,
+     *           a high volume of log entries may be generated in a short period of time.
+     *           Note that logs may incur a cost, especially if the deployed index receives
+     *           a high volume of datapoint upserts. Estimate your costs before enabling
+     *           this option.
      *     @type \Google\Cloud\AIPlatform\V1\DeployedIndexAuthConfig $deployed_index_auth_config
      *           Optional. If set, the authentication is enabled for the private endpoint.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $reserved_ip_ranges
@@ -637,6 +659,46 @@ class DeployedIndex extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->enable_access_logging = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If true, logs to Cloud Logging errors relating to datapoint
+     * upserts.
+     * Under normal operation conditions, these log entries should be very rare.
+     * However, if incompatible datapoint updates are being uploaded to an index,
+     * a high volume of log entries may be generated in a short period of time.
+     * Note that logs may incur a cost, especially if the deployed index receives
+     * a high volume of datapoint upserts. Estimate your costs before enabling
+     * this option.
+     *
+     * Generated from protobuf field <code>bool enable_datapoint_upsert_logging = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getEnableDatapointUpsertLogging()
+    {
+        return $this->enable_datapoint_upsert_logging;
+    }
+
+    /**
+     * Optional. If true, logs to Cloud Logging errors relating to datapoint
+     * upserts.
+     * Under normal operation conditions, these log entries should be very rare.
+     * However, if incompatible datapoint updates are being uploaded to an index,
+     * a high volume of log entries may be generated in a short period of time.
+     * Note that logs may incur a cost, especially if the deployed index receives
+     * a high volume of datapoint upserts. Estimate your costs before enabling
+     * this option.
+     *
+     * Generated from protobuf field <code>bool enable_datapoint_upsert_logging = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableDatapointUpsertLogging($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_datapoint_upsert_logging = $var;
 
         return $this;
     }

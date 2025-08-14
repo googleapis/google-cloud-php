@@ -46,12 +46,18 @@ class ClusterAutoscaling extends \Google\Protobuf\Internal\Message
     protected $autoprovisioning_node_pool_defaults = null;
     /**
      * The list of Google Compute Engine
-     * [zones](https://cloud.google.com/compute/docs/zones#available) in which the
-     * NodePool's nodes can be created by NAP.
+     * [zones](https://cloud.google.com/compute/docs/zones#available)
+     * in which the NodePool's nodes can be created by NAP.
      *
      * Generated from protobuf field <code>repeated string autoprovisioning_locations = 5;</code>
      */
     private $autoprovisioning_locations;
+    /**
+     * Default compute class is a configuration for default compute class.
+     *
+     * Generated from protobuf field <code>.google.container.v1.DefaultComputeClassConfig default_compute_class_config = 9;</code>
+     */
+    protected $default_compute_class_config = null;
 
     /**
      * Constructor.
@@ -71,8 +77,10 @@ class ClusterAutoscaling extends \Google\Protobuf\Internal\Message
      *           created by NAP.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $autoprovisioning_locations
      *           The list of Google Compute Engine
-     *           [zones](https://cloud.google.com/compute/docs/zones#available) in which the
-     *           NodePool's nodes can be created by NAP.
+     *           [zones](https://cloud.google.com/compute/docs/zones#available)
+     *           in which the NodePool's nodes can be created by NAP.
+     *     @type \Google\Cloud\Container\V1\DefaultComputeClassConfig $default_compute_class_config
+     *           Default compute class is a configuration for default compute class.
      * }
      */
     public function __construct($data = NULL) {
@@ -200,8 +208,8 @@ class ClusterAutoscaling extends \Google\Protobuf\Internal\Message
 
     /**
      * The list of Google Compute Engine
-     * [zones](https://cloud.google.com/compute/docs/zones#available) in which the
-     * NodePool's nodes can be created by NAP.
+     * [zones](https://cloud.google.com/compute/docs/zones#available)
+     * in which the NodePool's nodes can be created by NAP.
      *
      * Generated from protobuf field <code>repeated string autoprovisioning_locations = 5;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -213,8 +221,8 @@ class ClusterAutoscaling extends \Google\Protobuf\Internal\Message
 
     /**
      * The list of Google Compute Engine
-     * [zones](https://cloud.google.com/compute/docs/zones#available) in which the
-     * NodePool's nodes can be created by NAP.
+     * [zones](https://cloud.google.com/compute/docs/zones#available)
+     * in which the NodePool's nodes can be created by NAP.
      *
      * Generated from protobuf field <code>repeated string autoprovisioning_locations = 5;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -224,6 +232,42 @@ class ClusterAutoscaling extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->autoprovisioning_locations = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Default compute class is a configuration for default compute class.
+     *
+     * Generated from protobuf field <code>.google.container.v1.DefaultComputeClassConfig default_compute_class_config = 9;</code>
+     * @return \Google\Cloud\Container\V1\DefaultComputeClassConfig|null
+     */
+    public function getDefaultComputeClassConfig()
+    {
+        return $this->default_compute_class_config;
+    }
+
+    public function hasDefaultComputeClassConfig()
+    {
+        return isset($this->default_compute_class_config);
+    }
+
+    public function clearDefaultComputeClassConfig()
+    {
+        unset($this->default_compute_class_config);
+    }
+
+    /**
+     * Default compute class is a configuration for default compute class.
+     *
+     * Generated from protobuf field <code>.google.container.v1.DefaultComputeClassConfig default_compute_class_config = 9;</code>
+     * @param \Google\Cloud\Container\V1\DefaultComputeClassConfig $var
+     * @return $this
+     */
+    public function setDefaultComputeClassConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\DefaultComputeClassConfig::class);
+        $this->default_compute_class_config = $var;
 
         return $this;
     }

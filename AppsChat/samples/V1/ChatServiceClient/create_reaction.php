@@ -35,7 +35,14 @@ use Google\Apps\Chat\V1\Reaction;
  * message](https://developers.google.com/workspace/chat/create-reactions).
  *
  * Requires [user
- * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+ * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+ * with one of the following [authorization
+ * scopes](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes):
+ *
+ * - `https://www.googleapis.com/auth/chat.messages.reactions.create`
+ * - `https://www.googleapis.com/auth/chat.messages.reactions`
+ * - `https://www.googleapis.com/auth/chat.messages`
+ * - `https://www.googleapis.com/auth/chat.import` (import mode spaces only)
  *
  * @param string $formattedParent The message where the reaction is created.
  *

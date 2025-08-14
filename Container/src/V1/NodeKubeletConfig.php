@@ -170,6 +170,62 @@ class NodeKubeletConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string allowed_unsafe_sysctls = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $allowed_unsafe_sysctls;
+    /**
+     * Optional. eviction_soft is a map of signal names to quantities that defines
+     * soft eviction thresholds. Each signal is compared to its corresponding
+     * threshold to determine if a pod eviction should occur.
+     *
+     * Generated from protobuf field <code>.google.container.v1.EvictionSignals eviction_soft = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $eviction_soft = null;
+    /**
+     * Optional. eviction_soft_grace_period is a map of signal names to quantities
+     * that defines grace periods for each soft eviction signal. The grace period
+     * is the amount of time that a pod must be under pressure before an eviction
+     * occurs.
+     *
+     * Generated from protobuf field <code>.google.container.v1.EvictionGracePeriod eviction_soft_grace_period = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $eviction_soft_grace_period = null;
+    /**
+     * Optional. eviction_minimum_reclaim is a map of signal names to quantities
+     * that defines minimum reclaims, which describe the minimum amount of a given
+     * resource the kubelet will reclaim when performing a pod eviction while that
+     * resource is under pressure.
+     *
+     * Generated from protobuf field <code>.google.container.v1.EvictionMinimumReclaim eviction_minimum_reclaim = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $eviction_minimum_reclaim = null;
+    /**
+     * Optional. eviction_max_pod_grace_period_seconds is the maximum allowed
+     * grace period (in seconds) to use when terminating pods in response to a
+     * soft eviction threshold being met. This value effectively caps the Pod's
+     * terminationGracePeriodSeconds value during soft evictions. Default: 0.
+     * Range: [0, 300].
+     *
+     * Generated from protobuf field <code>int32 eviction_max_pod_grace_period_seconds = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $eviction_max_pod_grace_period_seconds = 0;
+    /**
+     * Optional. Defines the maximum number of image pulls in parallel.
+     * The range is 2 to 5, inclusive.
+     * The default value is 2 or 3 depending on the disk type.
+     * See
+     * https://kubernetes.io/docs/concepts/containers/images/#maximum-parallel-image-pulls
+     * for more details.
+     *
+     * Generated from protobuf field <code>int32 max_parallel_image_pulls = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $max_parallel_image_pulls = 0;
+    /**
+     * Optional. Defines whether to enable single process OOM killer.
+     * If true, will prevent the memory.oom.group flag from being set for
+     * container cgroups in cgroups v2. This causes processes in the container to
+     * be OOM killed individually instead of as a group.
+     *
+     * Generated from protobuf field <code>optional bool single_process_oom_kill = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $single_process_oom_kill = null;
 
     /**
      * Constructor.
@@ -276,6 +332,38 @@ class NodeKubeletConfig extends \Google\Protobuf\Internal\Message
      *           For example: `kernel.msg*,net.ipv4.route.min_pmtu`.
      *           See https://kubernetes.io/docs/tasks/administer-cluster/sysctl-cluster/
      *           for more details.
+     *     @type \Google\Cloud\Container\V1\EvictionSignals $eviction_soft
+     *           Optional. eviction_soft is a map of signal names to quantities that defines
+     *           soft eviction thresholds. Each signal is compared to its corresponding
+     *           threshold to determine if a pod eviction should occur.
+     *     @type \Google\Cloud\Container\V1\EvictionGracePeriod $eviction_soft_grace_period
+     *           Optional. eviction_soft_grace_period is a map of signal names to quantities
+     *           that defines grace periods for each soft eviction signal. The grace period
+     *           is the amount of time that a pod must be under pressure before an eviction
+     *           occurs.
+     *     @type \Google\Cloud\Container\V1\EvictionMinimumReclaim $eviction_minimum_reclaim
+     *           Optional. eviction_minimum_reclaim is a map of signal names to quantities
+     *           that defines minimum reclaims, which describe the minimum amount of a given
+     *           resource the kubelet will reclaim when performing a pod eviction while that
+     *           resource is under pressure.
+     *     @type int $eviction_max_pod_grace_period_seconds
+     *           Optional. eviction_max_pod_grace_period_seconds is the maximum allowed
+     *           grace period (in seconds) to use when terminating pods in response to a
+     *           soft eviction threshold being met. This value effectively caps the Pod's
+     *           terminationGracePeriodSeconds value during soft evictions. Default: 0.
+     *           Range: [0, 300].
+     *     @type int $max_parallel_image_pulls
+     *           Optional. Defines the maximum number of image pulls in parallel.
+     *           The range is 2 to 5, inclusive.
+     *           The default value is 2 or 3 depending on the disk type.
+     *           See
+     *           https://kubernetes.io/docs/concepts/containers/images/#maximum-parallel-image-pulls
+     *           for more details.
+     *     @type bool $single_process_oom_kill
+     *           Optional. Defines whether to enable single process OOM killer.
+     *           If true, will prevent the memory.oom.group flag from being set for
+     *           container cgroups in cgroups v2. This causes processes in the container to
+     *           be OOM killed individually instead of as a group.
      * }
      */
     public function __construct($data = NULL) {
@@ -866,6 +954,242 @@ class NodeKubeletConfig extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->allowed_unsafe_sysctls = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. eviction_soft is a map of signal names to quantities that defines
+     * soft eviction thresholds. Each signal is compared to its corresponding
+     * threshold to determine if a pod eviction should occur.
+     *
+     * Generated from protobuf field <code>.google.container.v1.EvictionSignals eviction_soft = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Container\V1\EvictionSignals|null
+     */
+    public function getEvictionSoft()
+    {
+        return $this->eviction_soft;
+    }
+
+    public function hasEvictionSoft()
+    {
+        return isset($this->eviction_soft);
+    }
+
+    public function clearEvictionSoft()
+    {
+        unset($this->eviction_soft);
+    }
+
+    /**
+     * Optional. eviction_soft is a map of signal names to quantities that defines
+     * soft eviction thresholds. Each signal is compared to its corresponding
+     * threshold to determine if a pod eviction should occur.
+     *
+     * Generated from protobuf field <code>.google.container.v1.EvictionSignals eviction_soft = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Container\V1\EvictionSignals $var
+     * @return $this
+     */
+    public function setEvictionSoft($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\EvictionSignals::class);
+        $this->eviction_soft = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. eviction_soft_grace_period is a map of signal names to quantities
+     * that defines grace periods for each soft eviction signal. The grace period
+     * is the amount of time that a pod must be under pressure before an eviction
+     * occurs.
+     *
+     * Generated from protobuf field <code>.google.container.v1.EvictionGracePeriod eviction_soft_grace_period = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Container\V1\EvictionGracePeriod|null
+     */
+    public function getEvictionSoftGracePeriod()
+    {
+        return $this->eviction_soft_grace_period;
+    }
+
+    public function hasEvictionSoftGracePeriod()
+    {
+        return isset($this->eviction_soft_grace_period);
+    }
+
+    public function clearEvictionSoftGracePeriod()
+    {
+        unset($this->eviction_soft_grace_period);
+    }
+
+    /**
+     * Optional. eviction_soft_grace_period is a map of signal names to quantities
+     * that defines grace periods for each soft eviction signal. The grace period
+     * is the amount of time that a pod must be under pressure before an eviction
+     * occurs.
+     *
+     * Generated from protobuf field <code>.google.container.v1.EvictionGracePeriod eviction_soft_grace_period = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Container\V1\EvictionGracePeriod $var
+     * @return $this
+     */
+    public function setEvictionSoftGracePeriod($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\EvictionGracePeriod::class);
+        $this->eviction_soft_grace_period = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. eviction_minimum_reclaim is a map of signal names to quantities
+     * that defines minimum reclaims, which describe the minimum amount of a given
+     * resource the kubelet will reclaim when performing a pod eviction while that
+     * resource is under pressure.
+     *
+     * Generated from protobuf field <code>.google.container.v1.EvictionMinimumReclaim eviction_minimum_reclaim = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Container\V1\EvictionMinimumReclaim|null
+     */
+    public function getEvictionMinimumReclaim()
+    {
+        return $this->eviction_minimum_reclaim;
+    }
+
+    public function hasEvictionMinimumReclaim()
+    {
+        return isset($this->eviction_minimum_reclaim);
+    }
+
+    public function clearEvictionMinimumReclaim()
+    {
+        unset($this->eviction_minimum_reclaim);
+    }
+
+    /**
+     * Optional. eviction_minimum_reclaim is a map of signal names to quantities
+     * that defines minimum reclaims, which describe the minimum amount of a given
+     * resource the kubelet will reclaim when performing a pod eviction while that
+     * resource is under pressure.
+     *
+     * Generated from protobuf field <code>.google.container.v1.EvictionMinimumReclaim eviction_minimum_reclaim = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Container\V1\EvictionMinimumReclaim $var
+     * @return $this
+     */
+    public function setEvictionMinimumReclaim($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\EvictionMinimumReclaim::class);
+        $this->eviction_minimum_reclaim = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. eviction_max_pod_grace_period_seconds is the maximum allowed
+     * grace period (in seconds) to use when terminating pods in response to a
+     * soft eviction threshold being met. This value effectively caps the Pod's
+     * terminationGracePeriodSeconds value during soft evictions. Default: 0.
+     * Range: [0, 300].
+     *
+     * Generated from protobuf field <code>int32 eviction_max_pod_grace_period_seconds = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getEvictionMaxPodGracePeriodSeconds()
+    {
+        return $this->eviction_max_pod_grace_period_seconds;
+    }
+
+    /**
+     * Optional. eviction_max_pod_grace_period_seconds is the maximum allowed
+     * grace period (in seconds) to use when terminating pods in response to a
+     * soft eviction threshold being met. This value effectively caps the Pod's
+     * terminationGracePeriodSeconds value during soft evictions. Default: 0.
+     * Range: [0, 300].
+     *
+     * Generated from protobuf field <code>int32 eviction_max_pod_grace_period_seconds = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setEvictionMaxPodGracePeriodSeconds($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->eviction_max_pod_grace_period_seconds = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Defines the maximum number of image pulls in parallel.
+     * The range is 2 to 5, inclusive.
+     * The default value is 2 or 3 depending on the disk type.
+     * See
+     * https://kubernetes.io/docs/concepts/containers/images/#maximum-parallel-image-pulls
+     * for more details.
+     *
+     * Generated from protobuf field <code>int32 max_parallel_image_pulls = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getMaxParallelImagePulls()
+    {
+        return $this->max_parallel_image_pulls;
+    }
+
+    /**
+     * Optional. Defines the maximum number of image pulls in parallel.
+     * The range is 2 to 5, inclusive.
+     * The default value is 2 or 3 depending on the disk type.
+     * See
+     * https://kubernetes.io/docs/concepts/containers/images/#maximum-parallel-image-pulls
+     * for more details.
+     *
+     * Generated from protobuf field <code>int32 max_parallel_image_pulls = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setMaxParallelImagePulls($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->max_parallel_image_pulls = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Defines whether to enable single process OOM killer.
+     * If true, will prevent the memory.oom.group flag from being set for
+     * container cgroups in cgroups v2. This causes processes in the container to
+     * be OOM killed individually instead of as a group.
+     *
+     * Generated from protobuf field <code>optional bool single_process_oom_kill = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getSingleProcessOomKill()
+    {
+        return isset($this->single_process_oom_kill) ? $this->single_process_oom_kill : false;
+    }
+
+    public function hasSingleProcessOomKill()
+    {
+        return isset($this->single_process_oom_kill);
+    }
+
+    public function clearSingleProcessOomKill()
+    {
+        unset($this->single_process_oom_kill);
+    }
+
+    /**
+     * Optional. Defines whether to enable single process OOM killer.
+     * If true, will prevent the memory.oom.group flag from being set for
+     * container cgroups in cgroups v2. This causes processes in the container to
+     * be OOM killed individually instead of as a group.
+     *
+     * Generated from protobuf field <code>optional bool single_process_oom_kill = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSingleProcessOomKill($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->single_process_oom_kill = $var;
 
         return $this;
     }

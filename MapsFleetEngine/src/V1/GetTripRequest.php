@@ -46,12 +46,13 @@ class GetTripRequest extends \Google\Protobuf\Internal\Message
      */
     protected $current_route_segment_version = null;
     /**
-     * Indicates the minimum timestamp (exclusive) for which
-     * `Trip.remaining_waypoints` are retrieved. If they are unchanged since this
-     * timestamp, the `remaining_waypoints` are not set in the response. If this
-     * field is unspecified, `remaining_waypoints` is always retrieved.
+     * Deprecated: `Trip.remaining_waypoints` are always retrieved. Use
+     * `remaining_waypoints_route_version` to control when
+     * `Trip.remaining_waypoints.traffic_to_waypoint` and
+     * `Trip.remaining_waypoints.path_to_waypoint` data are retrieved.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp remaining_waypoints_version = 7;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp remaining_waypoints_version = 7 [deprecated = true];</code>
+     * @deprecated
      */
     protected $remaining_waypoints_version = null;
     /**
@@ -106,10 +107,10 @@ class GetTripRequest extends \Google\Protobuf\Internal\Message
      *           unchanged since this timestamp, the route field is not set in the response.
      *           If a minimum is unspecified, the route data are always retrieved.
      *     @type \Google\Protobuf\Timestamp $remaining_waypoints_version
-     *           Indicates the minimum timestamp (exclusive) for which
-     *           `Trip.remaining_waypoints` are retrieved. If they are unchanged since this
-     *           timestamp, the `remaining_waypoints` are not set in the response. If this
-     *           field is unspecified, `remaining_waypoints` is always retrieved.
+     *           Deprecated: `Trip.remaining_waypoints` are always retrieved. Use
+     *           `remaining_waypoints_route_version` to control when
+     *           `Trip.remaining_waypoints.traffic_to_waypoint` and
+     *           `Trip.remaining_waypoints.path_to_waypoint` data are retrieved.
      *     @type int $route_format_type
      *           The returned current route format, `LAT_LNG_LIST_TYPE` (in `Trip.route`),
      *           or `ENCODED_POLYLINE_TYPE` (in `Trip.current_route_segment`). The default
@@ -272,41 +273,51 @@ class GetTripRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Indicates the minimum timestamp (exclusive) for which
-     * `Trip.remaining_waypoints` are retrieved. If they are unchanged since this
-     * timestamp, the `remaining_waypoints` are not set in the response. If this
-     * field is unspecified, `remaining_waypoints` is always retrieved.
+     * Deprecated: `Trip.remaining_waypoints` are always retrieved. Use
+     * `remaining_waypoints_route_version` to control when
+     * `Trip.remaining_waypoints.traffic_to_waypoint` and
+     * `Trip.remaining_waypoints.path_to_waypoint` data are retrieved.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp remaining_waypoints_version = 7;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp remaining_waypoints_version = 7 [deprecated = true];</code>
      * @return \Google\Protobuf\Timestamp|null
+     * @deprecated
      */
     public function getRemainingWaypointsVersion()
     {
+        if (isset($this->remaining_waypoints_version)) {
+            @trigger_error('remaining_waypoints_version is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->remaining_waypoints_version;
     }
 
     public function hasRemainingWaypointsVersion()
     {
+        if (isset($this->remaining_waypoints_version)) {
+            @trigger_error('remaining_waypoints_version is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->remaining_waypoints_version);
     }
 
     public function clearRemainingWaypointsVersion()
     {
+        @trigger_error('remaining_waypoints_version is deprecated.', E_USER_DEPRECATED);
         unset($this->remaining_waypoints_version);
     }
 
     /**
-     * Indicates the minimum timestamp (exclusive) for which
-     * `Trip.remaining_waypoints` are retrieved. If they are unchanged since this
-     * timestamp, the `remaining_waypoints` are not set in the response. If this
-     * field is unspecified, `remaining_waypoints` is always retrieved.
+     * Deprecated: `Trip.remaining_waypoints` are always retrieved. Use
+     * `remaining_waypoints_route_version` to control when
+     * `Trip.remaining_waypoints.traffic_to_waypoint` and
+     * `Trip.remaining_waypoints.path_to_waypoint` data are retrieved.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp remaining_waypoints_version = 7;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp remaining_waypoints_version = 7 [deprecated = true];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
+     * @deprecated
      */
     public function setRemainingWaypointsVersion($var)
     {
+        @trigger_error('remaining_waypoints_version is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->remaining_waypoints_version = $var;
 

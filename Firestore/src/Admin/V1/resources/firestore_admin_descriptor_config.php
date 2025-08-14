@@ -42,6 +42,35 @@ return [
                     ],
                 ],
             ],
+            'CloneDatabase' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Firestore\Admin\V1\Database',
+                    'metadataReturnType' => '\Google\Cloud\Firestore\Admin\V1\CloneDatabaseMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'project_id',
+                        'fieldAccessors' => [
+                            'getPitrSnapshot',
+                            'getDatabase',
+                        ],
+                        'matchers' => [],
+                    ],
+                    [
+                        'keyName' => 'database_id',
+                        'fieldAccessors' => [
+                            'getPitrSnapshot',
+                            'getDatabase',
+                        ],
+                        'matchers' => [],
+                    ],
+                ],
+            ],
             'CreateDatabase' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Firestore\Admin\V1\Database',

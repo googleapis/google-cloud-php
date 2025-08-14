@@ -96,8 +96,8 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
     /**
      * The image type to use for this node. Note that for a given image type,
      * the latest version of it will be used. Please see
-     * https://cloud.google.com/kubernetes-engine/docs/concepts/node-images for
-     * available image types.
+     * https://cloud.google.com/kubernetes-engine/docs/concepts/node-images
+     * for available image types.
      *
      * Generated from protobuf field <code>string image_type = 5;</code>
      */
@@ -136,16 +136,17 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
     private $tags;
     /**
      * Whether the nodes are created as preemptible VM instances. See:
-     * https://cloud.google.com/compute/docs/instances/preemptible for more
-     * information about preemptible VM instances.
+     * https://cloud.google.com/compute/docs/instances/preemptible
+     * for more information about preemptible VM instances.
      *
      * Generated from protobuf field <code>bool preemptible = 10;</code>
      */
     protected $preemptible = false;
     /**
      * A list of hardware accelerators to be attached to each node.
-     * See https://cloud.google.com/compute/docs/gpus for more information about
-     * support for GPUs.
+     * See
+     * https://cloud.google.com/compute/docs/gpus
+     * for more information about support for GPUs.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.AcceleratorConfig accelerators = 11;</code>
      */
@@ -378,6 +379,12 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional bool flex_start = 56;</code>
      */
     protected $flex_start = null;
+    /**
+     * The boot disk configuration for the node pool.
+     *
+     * Generated from protobuf field <code>.google.container.v1.BootDisk boot_disk = 57;</code>
+     */
+    protected $boot_disk = null;
 
     /**
      * Constructor.
@@ -442,8 +449,8 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *     @type string $image_type
      *           The image type to use for this node. Note that for a given image type,
      *           the latest version of it will be used. Please see
-     *           https://cloud.google.com/kubernetes-engine/docs/concepts/node-images for
-     *           available image types.
+     *           https://cloud.google.com/kubernetes-engine/docs/concepts/node-images
+     *           for available image types.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           The map of Kubernetes labels (key/value pairs) to be applied to each node.
      *           These will added in addition to any default label(s) that
@@ -466,12 +473,13 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *           must comply with RFC1035.
      *     @type bool $preemptible
      *           Whether the nodes are created as preemptible VM instances. See:
-     *           https://cloud.google.com/compute/docs/instances/preemptible for more
-     *           information about preemptible VM instances.
+     *           https://cloud.google.com/compute/docs/instances/preemptible
+     *           for more information about preemptible VM instances.
      *     @type array<\Google\Cloud\Container\V1\AcceleratorConfig>|\Google\Protobuf\Internal\RepeatedField $accelerators
      *           A list of hardware accelerators to be attached to each node.
-     *           See https://cloud.google.com/compute/docs/gpus for more information about
-     *           support for GPUs.
+     *           See
+     *           https://cloud.google.com/compute/docs/gpus
+     *           for more information about support for GPUs.
      *     @type string $disk_type
      *           Type of the disk attached to each node (e.g. 'pd-standard', 'pd-ssd' or
      *           'pd-balanced')
@@ -568,6 +576,8 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *           version.
      *     @type bool $flex_start
      *           Flex Start flag for enabling Flex Start VM.
+     *     @type \Google\Cloud\Container\V1\BootDisk $boot_disk
+     *           The boot disk configuration for the node pool.
      * }
      */
     public function __construct($data = NULL) {
@@ -796,8 +806,8 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
     /**
      * The image type to use for this node. Note that for a given image type,
      * the latest version of it will be used. Please see
-     * https://cloud.google.com/kubernetes-engine/docs/concepts/node-images for
-     * available image types.
+     * https://cloud.google.com/kubernetes-engine/docs/concepts/node-images
+     * for available image types.
      *
      * Generated from protobuf field <code>string image_type = 5;</code>
      * @return string
@@ -810,8 +820,8 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
     /**
      * The image type to use for this node. Note that for a given image type,
      * the latest version of it will be used. Please see
-     * https://cloud.google.com/kubernetes-engine/docs/concepts/node-images for
-     * available image types.
+     * https://cloud.google.com/kubernetes-engine/docs/concepts/node-images
+     * for available image types.
      *
      * Generated from protobuf field <code>string image_type = 5;</code>
      * @param string $var
@@ -933,8 +943,8 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Whether the nodes are created as preemptible VM instances. See:
-     * https://cloud.google.com/compute/docs/instances/preemptible for more
-     * information about preemptible VM instances.
+     * https://cloud.google.com/compute/docs/instances/preemptible
+     * for more information about preemptible VM instances.
      *
      * Generated from protobuf field <code>bool preemptible = 10;</code>
      * @return bool
@@ -946,8 +956,8 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Whether the nodes are created as preemptible VM instances. See:
-     * https://cloud.google.com/compute/docs/instances/preemptible for more
-     * information about preemptible VM instances.
+     * https://cloud.google.com/compute/docs/instances/preemptible
+     * for more information about preemptible VM instances.
      *
      * Generated from protobuf field <code>bool preemptible = 10;</code>
      * @param bool $var
@@ -963,8 +973,9 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * A list of hardware accelerators to be attached to each node.
-     * See https://cloud.google.com/compute/docs/gpus for more information about
-     * support for GPUs.
+     * See
+     * https://cloud.google.com/compute/docs/gpus
+     * for more information about support for GPUs.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.AcceleratorConfig accelerators = 11;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -976,8 +987,9 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * A list of hardware accelerators to be attached to each node.
-     * See https://cloud.google.com/compute/docs/gpus for more information about
-     * support for GPUs.
+     * See
+     * https://cloud.google.com/compute/docs/gpus
+     * for more information about support for GPUs.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.AcceleratorConfig accelerators = 11;</code>
      * @param array<\Google\Cloud\Container\V1\AcceleratorConfig>|\Google\Protobuf\Internal\RepeatedField $var
@@ -2125,6 +2137,42 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->flex_start = $var;
+
+        return $this;
+    }
+
+    /**
+     * The boot disk configuration for the node pool.
+     *
+     * Generated from protobuf field <code>.google.container.v1.BootDisk boot_disk = 57;</code>
+     * @return \Google\Cloud\Container\V1\BootDisk|null
+     */
+    public function getBootDisk()
+    {
+        return $this->boot_disk;
+    }
+
+    public function hasBootDisk()
+    {
+        return isset($this->boot_disk);
+    }
+
+    public function clearBootDisk()
+    {
+        unset($this->boot_disk);
+    }
+
+    /**
+     * The boot disk configuration for the node pool.
+     *
+     * Generated from protobuf field <code>.google.container.v1.BootDisk boot_disk = 57;</code>
+     * @param \Google\Cloud\Container\V1\BootDisk $var
+     * @return $this
+     */
+    public function setBootDisk($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\BootDisk::class);
+        $this->boot_disk = $var;
 
         return $this;
     }
