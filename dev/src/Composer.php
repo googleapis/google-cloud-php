@@ -72,8 +72,10 @@ class Composer
         $composer = json_decode(file_get_contents($rootComposer), true);
 
         // Add `replace` to main composer file.
-        $composer['replace'][$this->composerPackage] = '0.0.0';
-        ksort($composer['replace']);
+        if (!isset($composer['replace'][$this->composerPackage])) {
+            $composer['replace'][$this->composerPackage] = '0.0.0';
+            ksort($composer['replace']);
+        }
 
         // Add namespaces to main composer file.
         $composer['autoload']['psr-4'][$this->phpNamespace . '\\'] = $this->relativePath . '/src';
