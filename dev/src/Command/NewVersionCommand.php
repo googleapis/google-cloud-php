@@ -17,25 +17,14 @@
 
 namespace Google\Cloud\Dev\Command;
 
-use Google\Cloud\Dev\Composer;
-use Google\Cloud\Dev\NewComponent;
-use Google\Cloud\Dev\RunProcess;
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Question\Question;
-use Symfony\Component\Console\Question\ConfirmationQuestion;
-use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Yaml\Yaml;
-use GuzzleHttp\Client;
-use Twig\Loader\FilesystemLoader;
-use Twig\Environment;
 use RuntimeException;
-use Exception;
 use Google\Cloud\Dev\Component;
 
 /**
@@ -84,13 +73,11 @@ class NewVersionCommand extends Command
         $version = $input->getArgument('version');
 
         // Ensure component exists
-        $components = Component::getComponents([$componentName]);
-        if (empty($components)) {
+        $owlbotFile = sprintf('%s/%s/.OwlBot.yaml', $this->rootPath, $componentName);
+        if (!file_exists($owlbotFile)) {
             throw new RuntimeException("Component '$componentName' not found.");
         }
-
         $output->writeln("Adding new version '$version' to .OwlBot.yaml.");
-        $owlbotFile = sprintf('%s/%s/.OwlBot.yaml', $this->rootPath, $componentName);
         $yaml = Yaml::parse(file_get_contents($owlbotFile));
         foreach ($yaml['deep-copy-regex'] as $i => $deepCopyRegex) {
             if (preg_match(self::OWL_BOT_REGEX, $deepCopyRegex['source'], $matches)) {
