@@ -17,10 +17,10 @@
 
 namespace Google\Cloud\Spanner\Tests\Snippet;
 
+use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Timestamp;
-use Google\Cloud\Core\Testing\GrpcTestTrait;
 
 /**
  * @group spanner
@@ -35,7 +35,7 @@ class TimestampTest extends SnippetTestCase
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->dt = new \DateTime;
+        $this->dt = new \DateTime();
         $this->timestamp = new Timestamp($this->dt);
     }
 
@@ -52,7 +52,7 @@ class TimestampTest extends SnippetTestCase
         $snippet->addLocal('timestamp', $this->timestamp);
 
         $res = $snippet->invoke();
-        $this->assertEquals((string)$this->timestamp, $res->output());
+        $this->assertEquals((string) $this->timestamp, $res->output());
     }
 
     public function testGet()

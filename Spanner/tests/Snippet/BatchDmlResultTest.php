@@ -17,17 +17,24 @@
 
 namespace Google\Cloud\Spanner\Tests\Snippet;
 
-use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
-use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\TimeTrait;
+use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\BatchDmlResult;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
+use Google\Cloud\Spanner\Serializer;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
-use Google\Cloud\Spanner\Tests\StubCreationTrait;
+use Google\Cloud\Spanner\V1\BeginTransactionRequest;
+use Google\Cloud\Spanner\V1\Client\SpannerClient;
+use Google\Cloud\Spanner\V1\CommitRequest;
+use Google\Cloud\Spanner\V1\CommitResponse;
+use Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest;
+use Google\Cloud\Spanner\V1\ExecuteBatchDmlResponse;
+use Google\Cloud\Spanner\V1\Transaction as TransactionProto;
+use Google\Protobuf\Timestamp as TimestampProto;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -38,15 +45,18 @@ class BatchDmlResultTest extends SnippetTestCase
 {
     use GrpcTestTrait;
     use ProphecyTrait;
-    use StubCreationTrait;
     use TimeTrait;
 
+    private $spannerClient;
+    private $serializer;
     private $result;
 
     public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 
+        $this->serializer = new Serializer();
+        $this->spannerClient = $this->prophesize(SpannerClient::class);
         $this->result = new BatchDmlResult([
             'resultSets' => [
                 [
@@ -69,24 +79,23 @@ class BatchDmlResultTest extends SnippetTestCase
 
     public function testClass()
     {
-        $connection = $this->getConnStub();
-        $connection->executeBatchDml(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
-                'resultSets' => []
-            ]);
+        $this->spannerClient->executeBatchDml(
+            Argument::type(ExecuteBatchDmlRequest::class),
+            Argument::type('array')
+        )->willReturn(new ExecuteBatchDmlResponse(['result_sets' => []]));
 
-        $connection->beginTransaction(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
-                'id' => 'ddfdfd'
-            ]);
+        $this->spannerClient->beginTransaction(
+            Argument::type(BeginTransactionRequest::class),
+            Argument::type('array')
+        )
+            ->willReturn(new TransactionProto(['id' => 'id']));
 
-        $connection->commit(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
-                'commitTimestamp' => $this->formatTimeAsString(new \DateTime, 0)
-            ]);
+        $this->spannerClient->commit(
+            Argument::type(CommitRequest::class),
+            Argument::type('array')
+        )->willReturn(new CommitResponse([
+                'commit_timestamp' => new TimestampProto(['seconds' => time()])
+            ]));
 
         $session = $this->prophesize(Session::class);
         $session->name()->willReturn(
@@ -95,7 +104,7 @@ class BatchDmlResultTest extends SnippetTestCase
         $session->info()->willReturn([
             'databaseName' => 'projects/test-project/instances/my-instance/databases/my-database'
         ]);
-        $session->setExpiration(Argument::any())->willReturn(null);
+        $session->setExpiration(Argument::any());
 
         $sessionPool = $this->prophesize(SessionPoolInterface::class);
         $sessionPool->acquire(Argument::any())
@@ -108,15 +117,17 @@ class BatchDmlResultTest extends SnippetTestCase
         $instance->name()->willReturn('projects/test-project/instances/my-instance');
         $instance->directedReadOptions()->willReturn([]);
 
-        $database = TestHelpers::stub(Database::class, [
-            $connection->reveal(),
+        $databaseAdminClient = $this->prophesize(DatabaseAdminClient::class);
+
+        $database = new Database(
+            $this->spannerClient->reveal(),
+            $databaseAdminClient->reveal(),
+            $this->serializer,
             $instance->reveal(),
-            $this->prophesize(LongRunningConnectionInterface::class)->reveal(),
-            [],
             'test-project',
             'projects/test-project/instances/my-instance/databases/my-database',
-            $sessionPool->reveal()
-        ]);
+            ['sessionPool' => $sessionPool->reveal()],
+        );
 
         $snippet = $this->snippetFromClass(BatchDmlResult::class);
         $snippet->replace('$database = $spanner->connect(\'my-instance\', \'my-database\');', '');

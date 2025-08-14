@@ -17,12 +17,12 @@
 
 namespace Google\Cloud\Spanner\Tests\System;
 
+use Google\Auth\Cache\MemoryCacheItemPool;
 use Google\Cloud\Core\Testing\System\SystemTestCase;
 use Google\Cloud\Spanner;
-use Google\Cloud\Spanner\SpannerClient;
-use Google\Cloud\Spanner\Session\CacheSessionPool;
-use Google\Auth\Cache\MemoryCacheItemPool;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
+use Google\Cloud\Spanner\Session\CacheSessionPool;
+use Google\Cloud\Spanner\SpannerClient;
 
 /**
  * @group spanner
@@ -46,10 +46,7 @@ abstract class SpannerTestCase extends SystemTestCase
 
     private static $hasSetUp = false;
 
-    /**
-     * @beforeClass
-     */
-    public static function setUpTestFixtures(): void
+    protected static function setUpTestDatabase(): void
     {
         if (self::$hasSetUp) {
             return;
@@ -59,45 +56,45 @@ abstract class SpannerTestCase extends SystemTestCase
 
         self::$instance = self::$client->instance(self::INSTANCE_NAME);
 
-        self::$dbName = uniqid(self::TESTING_PREFIX);
-        $op = self::$instance->createDatabase(self::$dbName);
-        $op->pollUntilComplete();
+        if (!self::$dbName = getenv('GOOGLE_CLOUD_SPANNER_TEST_DATABASE')) {
+            self::$dbName = uniqid(self::TESTING_PREFIX);
+            self::$deletionQueue->add(function () {
+                self::getDatabaseInstance(self::$dbName)->drop();
+            });
+        }
+        self::$database = self::getDatabaseInstance(self::$dbName);
 
-        $db = self::getDatabaseInstance(self::$dbName);
-
-        self::$deletionQueue->add(function () use ($db) {
-            $db->drop();
-        });
-
-        $op = $db->updateDdlBatch(
-            [
-                'CREATE TABLE ' . self::TEST_TABLE_NAME . ' (
-                  id INT64 NOT NULL,
-                  name STRING(MAX) NOT NULL,
-                  birthday DATE
-                ) PRIMARY KEY (id)',
-                'CREATE UNIQUE INDEX ' . self::TEST_INDEX_NAME . '
-                ON ' . self::TEST_TABLE_NAME . ' (name)',
-            ]
-        );
-        $op->pollUntilComplete();
-
-        self::$database = $db;
-        self::$database2 = self::getDatabaseInstance(self::$dbName);
-
-        if ($db->info()['databaseDialect'] == DatabaseDialect::GOOGLE_STANDARD_SQL) {
-            $db->updateDdlBatch(
+        if (!self::$database->exists()) {
+            $op = self::$instance->createDatabase(self::$dbName);
+            $op->pollUntilComplete();
+            $op = self::$database->updateDdlBatch(
                 [
-                    'CREATE ROLE ' . self::DATABASE_ROLE,
-                    'CREATE ROLE ' . self::RESTRICTIVE_DATABASE_ROLE,
-                    'GRANT SELECT ON TABLE ' . self::TEST_TABLE_NAME .
-                    ' TO ROLE ' . self::DATABASE_ROLE,
-                    'GRANT SELECT(id, name), INSERT(id, name), UPDATE(id, name) ON TABLE '
-                    . self::TEST_TABLE_NAME . ' TO ROLE ' . self::RESTRICTIVE_DATABASE_ROLE,
+                    'CREATE TABLE ' . self::TEST_TABLE_NAME . ' (
+                    id INT64 NOT NULL,
+                    name STRING(MAX) NOT NULL,
+                    birthday DATE
+                    ) PRIMARY KEY (id)',
+                    'CREATE UNIQUE INDEX ' . self::TEST_INDEX_NAME . '
+                    ON ' . self::TEST_TABLE_NAME . ' (name)',
                 ]
-            )->pollUntilComplete();
+            );
+            $op->pollUntilComplete();
+
+            if (self::$database->info()['databaseDialect'] == DatabaseDialect::GOOGLE_STANDARD_SQL) {
+                self::$database->updateDdlBatch(
+                    [
+                        'CREATE ROLE ' . self::DATABASE_ROLE,
+                        'CREATE ROLE ' . self::RESTRICTIVE_DATABASE_ROLE,
+                        'GRANT SELECT ON TABLE ' . self::TEST_TABLE_NAME .
+                        ' TO ROLE ' . self::DATABASE_ROLE,
+                        'GRANT SELECT(id, name), INSERT(id, name), UPDATE(id, name) ON TABLE '
+                        . self::TEST_TABLE_NAME . ' TO ROLE ' . self::RESTRICTIVE_DATABASE_ROLE,
+                    ]
+                )->pollUntilComplete();
+            }
         }
 
+        self::$database2 = self::getDatabaseInstance(self::$dbName);
         self::$hasSetUp = true;
     }
 
@@ -119,13 +116,13 @@ abstract class SpannerTestCase extends SystemTestCase
                 'serviceAddress' => $serviceAddress
             ];
 
-            $clientConfig['gapicSpannerClient'] = new Spanner\V1\SpannerClient($gapicConfig);
+            $clientConfig['gapicSpannerClient'] = new Spanner\V1\Client\SpannerClient($gapicConfig);
             $clientConfig['gapicSpannerDatabaseAdminClient'] =
-                new Spanner\Admin\Database\V1\DatabaseAdminClient($gapicConfig);
+                new Spanner\Admin\Database\V1\Client\DatabaseAdminClient($gapicConfig);
             $clientConfig['gapicSpannerInstanceAdminClient'] =
-                new Spanner\Admin\Instance\V1\InstanceAdminClient($gapicConfig);
+                new Spanner\Admin\Instance\V1\Client\InstanceAdminClient($gapicConfig);
 
-            echo "Using Service Address: ". $serviceAddress . PHP_EOL;
+            echo 'Using Service Address: ' . $serviceAddress . PHP_EOL;
         }
 
         self::$client = new SpannerClient($clientConfig);
@@ -146,7 +143,7 @@ abstract class SpannerTestCase extends SystemTestCase
 
     public static function getDatabaseWithSessionPool($dbName, $options = [])
     {
-        $sessionCache = new MemoryCacheItemPool;
+        $sessionCache = new MemoryCacheItemPool();
         $sessionPool = new CacheSessionPool(
             $sessionCache,
             $options
@@ -163,7 +160,7 @@ abstract class SpannerTestCase extends SystemTestCase
 
     public static function skipEmulatorTests()
     {
-        if ((bool) getenv("SPANNER_EMULATOR_HOST")) {
+        if ((bool) getenv('SPANNER_EMULATOR_HOST')) {
             self::markTestSkipped('This test is not supported by the emulator.');
         }
     }

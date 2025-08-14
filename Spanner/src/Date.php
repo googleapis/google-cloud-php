@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Spanner;
 
+use DateTimeInterface;
+
 /**
  * Represents a value with a data type of
  * [Date](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#google.spanner.v1.TypeCode).
@@ -25,7 +27,7 @@ namespace Google\Cloud\Spanner;
  * ```
  * use Google\Cloud\Spanner\SpannerClient;
  *
- * $spanner = new SpannerClient();
+ * $spanner = new SpannerClient(['projectId' => 'my-project']);
  *
  * $date = $spanner->date(new \DateTimeImmutable('1995-02-04'));
  * ```
@@ -40,14 +42,14 @@ class Date implements ValueInterface
     const FORMAT = 'Y-m-d';
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
-    protected $value;
+    protected DateTimeInterface $value;
 
     /**
-     * @param \DateTimeInterface $value The date value.
+     * @param DateTimeInterface $value The date value.
      */
-    public function __construct(\DateTimeInterface $value)
+    public function __construct(DateTimeInterface $value)
     {
         $this->value = $value;
     }
@@ -65,8 +67,11 @@ class Date implements ValueInterface
      * @param int|string $day The day of the month.
      * @return Date
      */
-    public static function createFromValues($year, $month, $day)
-    {
+    public static function createFromValues(
+        int|string $year,
+        int|string $month,
+        int|string $day
+    ): Date {
         $value = sprintf('%s-%s-%s', $year, $month, $day);
         $dt = \DateTimeImmutable::createFromFormat(self::FORMAT, $value);
 
@@ -74,16 +79,16 @@ class Date implements ValueInterface
     }
 
     /**
-     * Get the underlying `\DateTimeInterface` implementation.
+     * Get the underlying `DateTimeInterface` implementation.
      *
      * Example:
      * ```
      * $dateTime = $date->get();
      * ```
      *
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
-    public function get()
+    public function get(): DateTimeInterface
     {
         return $this->value;
     }
@@ -98,7 +103,7 @@ class Date implements ValueInterface
      *
      * @return int
      */
-    public function type()
+    public function type(): int
     {
         return Database::TYPE_DATE;
     }
@@ -113,7 +118,7 @@ class Date implements ValueInterface
      *
      * @return string
      */
-    public function formatAsString()
+    public function formatAsString(): string
     {
         return $this->value->format(self::FORMAT);
     }
@@ -124,7 +129,7 @@ class Date implements ValueInterface
      * @return string
      * @access private
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->formatAsString();
     }

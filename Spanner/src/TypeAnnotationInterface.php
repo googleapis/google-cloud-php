@@ -27,5 +27,5 @@ interface TypeAnnotationInterface
     /**
      * @return int
      */
-    public function typeAnnotation();
+    public function typeAnnotation(): int;
 }

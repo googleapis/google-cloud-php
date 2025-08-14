@@ -30,11 +30,11 @@ interface PartitionInterface
     /**
      * @return string
      */
-    public function serialize();
+    public function serialize(): string;
 
     /**
      * @param array $data
      * @return PartitionInterface
      */
-    public static function hydrate(array $data);
+    public static function hydrate(array $data): PartitionInterface;
 }
