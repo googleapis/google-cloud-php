@@ -127,6 +127,50 @@ class Reservation extends \Google\Protobuf\Internal\Message
      */
     protected $original_primary_location = '';
     /**
+     * Optional. The overall max slots for the reservation, covering slot_capacity
+     * (baseline), idle slots (if ignore_idle_slots is false) and scaled slots.
+     * If present, the reservation won't use more than the specified number of
+     * slots, even if there is demand and supply (from idle slots).
+     * NOTE: capping a reservation's idle slot usage is best effort and its
+     * usage may exceed the max_slots value. However, in terms of
+     * autoscale.current_slots (which accounts for the additional added slots), it
+     * will never exceed the max_slots - baseline.
+     * This field must be set together with the scaling_mode enum value.
+     * If the max_slots and scaling_mode are set, the autoscale or
+     * autoscale.max_slots field must be unset. However, the
+     * autoscale field may still be in the output. The autopscale.max_slots will
+     * always show as 0 and the autoscaler.current_slots will represent the
+     * current slots from autoscaler excluding idle slots.
+     * For example, if the max_slots is 1000 and scaling_mode is AUTOSCALE_ONLY,
+     * then in the output, the autoscaler.max_slots will be 0 and the
+     * autoscaler.current_slots may be any value between 0 and 1000.
+     * If the max_slots is 1000, scaling_mode is ALL_SLOTS, the baseline is 100
+     * and idle slots usage is 200, then in the output, the autoscaler.max_slots
+     * will be 0 and the autoscaler.current_slots will not be higher than 700.
+     * If the max_slots is 1000, scaling_mode is IDLE_SLOTS_ONLY, then in the
+     * output, the autoscaler field will be null.
+     * If the max_slots and scaling_mode are set, then the ignore_idle_slots field
+     * must be aligned with the scaling_mode enum value.(See details in
+     * ScalingMode comments).
+     * Please note,  the max_slots is for user to manage the part of slots greater
+     * than the baseline. Therefore, we don't allow users to set max_slots smaller
+     * or equal to the baseline as it will not be meaningful. If the field is
+     * present and slot_capacity>=max_slots.
+     * Please note that if max_slots is set to 0, we will treat it as unset.
+     * Customers can set max_slots to 0 and set scaling_mode to
+     * SCALING_MODE_UNSPECIFIED to disable the max_slots feature.
+     *
+     * Generated from protobuf field <code>optional int64 max_slots = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $max_slots = null;
+    /**
+     * Optional. The scaling mode for the reservation.
+     * If the field is present but max_slots is not present.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.Reservation.ScalingMode scaling_mode = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $scaling_mode = 0;
+    /**
      * Output only. The Disaster Recovery(DR) replication status of the
      * reservation. This is only available for the primary replicas of DR/failover
      * reservations and provides information about the both the staleness of the
@@ -209,6 +253,42 @@ class Reservation extends \Google\Protobuf\Internal\Message
      *           Output only. The location where the reservation was originally created.
      *           This is set only during the failover reservation's creation. All billing
      *           charges for the failover reservation will be applied to this location.
+     *     @type int|string $max_slots
+     *           Optional. The overall max slots for the reservation, covering slot_capacity
+     *           (baseline), idle slots (if ignore_idle_slots is false) and scaled slots.
+     *           If present, the reservation won't use more than the specified number of
+     *           slots, even if there is demand and supply (from idle slots).
+     *           NOTE: capping a reservation's idle slot usage is best effort and its
+     *           usage may exceed the max_slots value. However, in terms of
+     *           autoscale.current_slots (which accounts for the additional added slots), it
+     *           will never exceed the max_slots - baseline.
+     *           This field must be set together with the scaling_mode enum value.
+     *           If the max_slots and scaling_mode are set, the autoscale or
+     *           autoscale.max_slots field must be unset. However, the
+     *           autoscale field may still be in the output. The autopscale.max_slots will
+     *           always show as 0 and the autoscaler.current_slots will represent the
+     *           current slots from autoscaler excluding idle slots.
+     *           For example, if the max_slots is 1000 and scaling_mode is AUTOSCALE_ONLY,
+     *           then in the output, the autoscaler.max_slots will be 0 and the
+     *           autoscaler.current_slots may be any value between 0 and 1000.
+     *           If the max_slots is 1000, scaling_mode is ALL_SLOTS, the baseline is 100
+     *           and idle slots usage is 200, then in the output, the autoscaler.max_slots
+     *           will be 0 and the autoscaler.current_slots will not be higher than 700.
+     *           If the max_slots is 1000, scaling_mode is IDLE_SLOTS_ONLY, then in the
+     *           output, the autoscaler field will be null.
+     *           If the max_slots and scaling_mode are set, then the ignore_idle_slots field
+     *           must be aligned with the scaling_mode enum value.(See details in
+     *           ScalingMode comments).
+     *           Please note,  the max_slots is for user to manage the part of slots greater
+     *           than the baseline. Therefore, we don't allow users to set max_slots smaller
+     *           or equal to the baseline as it will not be meaningful. If the field is
+     *           present and slot_capacity>=max_slots.
+     *           Please note that if max_slots is set to 0, we will treat it as unset.
+     *           Customers can set max_slots to 0 and set scaling_mode to
+     *           SCALING_MODE_UNSPECIFIED to disable the max_slots feature.
+     *     @type int $scaling_mode
+     *           Optional. The scaling mode for the reservation.
+     *           If the field is present but max_slots is not present.
      *     @type \Google\Cloud\BigQuery\Reservation\V1\Reservation\ReplicationStatus $replication_status
      *           Output only. The Disaster Recovery(DR) replication status of the
      *           reservation. This is only available for the primary replicas of DR/failover
@@ -641,6 +721,132 @@ class Reservation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->original_primary_location = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The overall max slots for the reservation, covering slot_capacity
+     * (baseline), idle slots (if ignore_idle_slots is false) and scaled slots.
+     * If present, the reservation won't use more than the specified number of
+     * slots, even if there is demand and supply (from idle slots).
+     * NOTE: capping a reservation's idle slot usage is best effort and its
+     * usage may exceed the max_slots value. However, in terms of
+     * autoscale.current_slots (which accounts for the additional added slots), it
+     * will never exceed the max_slots - baseline.
+     * This field must be set together with the scaling_mode enum value.
+     * If the max_slots and scaling_mode are set, the autoscale or
+     * autoscale.max_slots field must be unset. However, the
+     * autoscale field may still be in the output. The autopscale.max_slots will
+     * always show as 0 and the autoscaler.current_slots will represent the
+     * current slots from autoscaler excluding idle slots.
+     * For example, if the max_slots is 1000 and scaling_mode is AUTOSCALE_ONLY,
+     * then in the output, the autoscaler.max_slots will be 0 and the
+     * autoscaler.current_slots may be any value between 0 and 1000.
+     * If the max_slots is 1000, scaling_mode is ALL_SLOTS, the baseline is 100
+     * and idle slots usage is 200, then in the output, the autoscaler.max_slots
+     * will be 0 and the autoscaler.current_slots will not be higher than 700.
+     * If the max_slots is 1000, scaling_mode is IDLE_SLOTS_ONLY, then in the
+     * output, the autoscaler field will be null.
+     * If the max_slots and scaling_mode are set, then the ignore_idle_slots field
+     * must be aligned with the scaling_mode enum value.(See details in
+     * ScalingMode comments).
+     * Please note,  the max_slots is for user to manage the part of slots greater
+     * than the baseline. Therefore, we don't allow users to set max_slots smaller
+     * or equal to the baseline as it will not be meaningful. If the field is
+     * present and slot_capacity>=max_slots.
+     * Please note that if max_slots is set to 0, we will treat it as unset.
+     * Customers can set max_slots to 0 and set scaling_mode to
+     * SCALING_MODE_UNSPECIFIED to disable the max_slots feature.
+     *
+     * Generated from protobuf field <code>optional int64 max_slots = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int|string
+     */
+    public function getMaxSlots()
+    {
+        return isset($this->max_slots) ? $this->max_slots : 0;
+    }
+
+    public function hasMaxSlots()
+    {
+        return isset($this->max_slots);
+    }
+
+    public function clearMaxSlots()
+    {
+        unset($this->max_slots);
+    }
+
+    /**
+     * Optional. The overall max slots for the reservation, covering slot_capacity
+     * (baseline), idle slots (if ignore_idle_slots is false) and scaled slots.
+     * If present, the reservation won't use more than the specified number of
+     * slots, even if there is demand and supply (from idle slots).
+     * NOTE: capping a reservation's idle slot usage is best effort and its
+     * usage may exceed the max_slots value. However, in terms of
+     * autoscale.current_slots (which accounts for the additional added slots), it
+     * will never exceed the max_slots - baseline.
+     * This field must be set together with the scaling_mode enum value.
+     * If the max_slots and scaling_mode are set, the autoscale or
+     * autoscale.max_slots field must be unset. However, the
+     * autoscale field may still be in the output. The autopscale.max_slots will
+     * always show as 0 and the autoscaler.current_slots will represent the
+     * current slots from autoscaler excluding idle slots.
+     * For example, if the max_slots is 1000 and scaling_mode is AUTOSCALE_ONLY,
+     * then in the output, the autoscaler.max_slots will be 0 and the
+     * autoscaler.current_slots may be any value between 0 and 1000.
+     * If the max_slots is 1000, scaling_mode is ALL_SLOTS, the baseline is 100
+     * and idle slots usage is 200, then in the output, the autoscaler.max_slots
+     * will be 0 and the autoscaler.current_slots will not be higher than 700.
+     * If the max_slots is 1000, scaling_mode is IDLE_SLOTS_ONLY, then in the
+     * output, the autoscaler field will be null.
+     * If the max_slots and scaling_mode are set, then the ignore_idle_slots field
+     * must be aligned with the scaling_mode enum value.(See details in
+     * ScalingMode comments).
+     * Please note,  the max_slots is for user to manage the part of slots greater
+     * than the baseline. Therefore, we don't allow users to set max_slots smaller
+     * or equal to the baseline as it will not be meaningful. If the field is
+     * present and slot_capacity>=max_slots.
+     * Please note that if max_slots is set to 0, we will treat it as unset.
+     * Customers can set max_slots to 0 and set scaling_mode to
+     * SCALING_MODE_UNSPECIFIED to disable the max_slots feature.
+     *
+     * Generated from protobuf field <code>optional int64 max_slots = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setMaxSlots($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->max_slots = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The scaling mode for the reservation.
+     * If the field is present but max_slots is not present.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.Reservation.ScalingMode scaling_mode = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getScalingMode()
+    {
+        return $this->scaling_mode;
+    }
+
+    /**
+     * Optional. The scaling mode for the reservation.
+     * If the field is present but max_slots is not present.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.Reservation.ScalingMode scaling_mode = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setScalingMode($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\BigQuery\Reservation\V1\Reservation\ScalingMode::class);
+        $this->scaling_mode = $var;
 
         return $this;
     }

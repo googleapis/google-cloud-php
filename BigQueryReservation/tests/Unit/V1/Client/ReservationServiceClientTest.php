@@ -253,6 +253,7 @@ class ReservationServiceClientTest extends GeneratedTest
         $primaryLocation = 'primaryLocation182084946';
         $secondaryLocation = 'secondaryLocation-1339637216';
         $originalPrimaryLocation = 'originalPrimaryLocation-1626473984';
+        $maxSlots = 234568806;
         $expectedResponse = new Reservation();
         $expectedResponse->setName($name);
         $expectedResponse->setSlotCapacity($slotCapacity);
@@ -262,6 +263,7 @@ class ReservationServiceClientTest extends GeneratedTest
         $expectedResponse->setPrimaryLocation($primaryLocation);
         $expectedResponse->setSecondaryLocation($secondaryLocation);
         $expectedResponse->setOriginalPrimaryLocation($originalPrimaryLocation);
+        $expectedResponse->setMaxSlots($maxSlots);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -527,6 +529,7 @@ class ReservationServiceClientTest extends GeneratedTest
         $primaryLocation = 'primaryLocation182084946';
         $secondaryLocation = 'secondaryLocation-1339637216';
         $originalPrimaryLocation = 'originalPrimaryLocation-1626473984';
+        $maxSlots = 234568806;
         $expectedResponse = new Reservation();
         $expectedResponse->setName($name2);
         $expectedResponse->setSlotCapacity($slotCapacity);
@@ -536,6 +539,7 @@ class ReservationServiceClientTest extends GeneratedTest
         $expectedResponse->setPrimaryLocation($primaryLocation);
         $expectedResponse->setSecondaryLocation($secondaryLocation);
         $expectedResponse->setOriginalPrimaryLocation($originalPrimaryLocation);
+        $expectedResponse->setMaxSlots($maxSlots);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->reservationName('[PROJECT]', '[LOCATION]', '[RESERVATION]');
@@ -750,6 +754,7 @@ class ReservationServiceClientTest extends GeneratedTest
         $primaryLocation = 'primaryLocation182084946';
         $secondaryLocation = 'secondaryLocation-1339637216';
         $originalPrimaryLocation = 'originalPrimaryLocation-1626473984';
+        $maxSlots = 234568806;
         $expectedResponse = new Reservation();
         $expectedResponse->setName($name2);
         $expectedResponse->setSlotCapacity($slotCapacity);
@@ -759,6 +764,7 @@ class ReservationServiceClientTest extends GeneratedTest
         $expectedResponse->setPrimaryLocation($primaryLocation);
         $expectedResponse->setSecondaryLocation($secondaryLocation);
         $expectedResponse->setOriginalPrimaryLocation($originalPrimaryLocation);
+        $expectedResponse->setMaxSlots($maxSlots);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->reservationName('[PROJECT]', '[LOCATION]', '[RESERVATION]');
@@ -1591,6 +1597,7 @@ class ReservationServiceClientTest extends GeneratedTest
         $primaryLocation = 'primaryLocation182084946';
         $secondaryLocation = 'secondaryLocation-1339637216';
         $originalPrimaryLocation = 'originalPrimaryLocation-1626473984';
+        $maxSlots = 234568806;
         $expectedResponse = new Reservation();
         $expectedResponse->setName($name);
         $expectedResponse->setSlotCapacity($slotCapacity);
@@ -1600,6 +1607,7 @@ class ReservationServiceClientTest extends GeneratedTest
         $expectedResponse->setPrimaryLocation($primaryLocation);
         $expectedResponse->setSecondaryLocation($secondaryLocation);
         $expectedResponse->setOriginalPrimaryLocation($originalPrimaryLocation);
+        $expectedResponse->setMaxSlots($maxSlots);
         $transport->addResponse($expectedResponse);
         $request = new UpdateReservationRequest();
         $response = $gapicClient->updateReservation($request);
