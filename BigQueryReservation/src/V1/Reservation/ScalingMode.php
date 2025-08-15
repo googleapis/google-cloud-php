@@ -104,6 +104,4 @@ class ScalingMode
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ScalingMode::class, \Google\Cloud\BigQuery\Reservation\V1\Reservation_ScalingMode::class);
 
