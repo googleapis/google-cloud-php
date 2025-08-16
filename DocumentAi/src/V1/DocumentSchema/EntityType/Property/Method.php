@@ -61,6 +61,4 @@ class Method
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Method::class, \Google\Cloud\DocumentAI\V1\DocumentSchema_EntityType_Property_Method::class);
 
