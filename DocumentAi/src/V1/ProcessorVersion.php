@@ -33,9 +33,9 @@ class ProcessorVersion extends \Google\Protobuf\Internal\Message
      */
     protected $display_name = '';
     /**
-     * The schema of the processor version. Describes the output.
+     * Output only. The schema of the processor version. Describes the output.
      *
-     * Generated from protobuf field <code>.google.cloud.documentai.v1.DocumentSchema document_schema = 12;</code>
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.DocumentSchema document_schema = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $document_schema = null;
     /**
@@ -45,27 +45,28 @@ class ProcessorVersion extends \Google\Protobuf\Internal\Message
      */
     protected $state = 0;
     /**
-     * The time the processor version was created.
+     * Output only. The time the processor version was created.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $create_time = null;
     /**
-     * The most recently invoked evaluation for the processor version.
+     * Output only. The most recently invoked evaluation for the processor
+     * version.
      *
-     * Generated from protobuf field <code>.google.cloud.documentai.v1.EvaluationReference latest_evaluation = 8;</code>
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.EvaluationReference latest_evaluation = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $latest_evaluation = null;
     /**
-     * The KMS key name used for encryption.
+     * Output only. The KMS key name used for encryption.
      *
-     * Generated from protobuf field <code>string kms_key_name = 9;</code>
+     * Generated from protobuf field <code>string kms_key_name = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $kms_key_name = '';
     /**
-     * The KMS key version with which data is encrypted.
+     * Output only. The KMS key version with which data is encrypted.
      *
-     * Generated from protobuf field <code>string kms_key_version_name = 10;</code>
+     * Generated from protobuf field <code>string kms_key_version_name = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $kms_key_version_name = '';
     /**
@@ -75,9 +76,10 @@ class ProcessorVersion extends \Google\Protobuf\Internal\Message
      */
     protected $google_managed = false;
     /**
-     * If set, information about the eventual deprecation of this version.
+     * Output only. If set, information about the eventual deprecation of this
+     * version.
      *
-     * Generated from protobuf field <code>.google.cloud.documentai.v1.ProcessorVersion.DeprecationInfo deprecation_info = 13;</code>
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.ProcessorVersion.DeprecationInfo deprecation_info = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $deprecation_info = null;
     /**
@@ -119,21 +121,23 @@ class ProcessorVersion extends \Google\Protobuf\Internal\Message
      *     @type string $display_name
      *           The display name of the processor version.
      *     @type \Google\Cloud\DocumentAI\V1\DocumentSchema $document_schema
-     *           The schema of the processor version. Describes the output.
+     *           Output only. The schema of the processor version. Describes the output.
      *     @type int $state
      *           Output only. The state of the processor version.
      *     @type \Google\Protobuf\Timestamp $create_time
-     *           The time the processor version was created.
+     *           Output only. The time the processor version was created.
      *     @type \Google\Cloud\DocumentAI\V1\EvaluationReference $latest_evaluation
-     *           The most recently invoked evaluation for the processor version.
+     *           Output only. The most recently invoked evaluation for the processor
+     *           version.
      *     @type string $kms_key_name
-     *           The KMS key name used for encryption.
+     *           Output only. The KMS key name used for encryption.
      *     @type string $kms_key_version_name
-     *           The KMS key version with which data is encrypted.
+     *           Output only. The KMS key version with which data is encrypted.
      *     @type bool $google_managed
      *           Output only. Denotes that this `ProcessorVersion` is managed by Google.
      *     @type \Google\Cloud\DocumentAI\V1\ProcessorVersion\DeprecationInfo $deprecation_info
-     *           If set, information about the eventual deprecation of this version.
+     *           Output only. If set, information about the eventual deprecation of this
+     *           version.
      *     @type int $model_type
      *           Output only. The model type of this processor version.
      *     @type bool $satisfies_pzs
@@ -207,9 +211,9 @@ class ProcessorVersion extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The schema of the processor version. Describes the output.
+     * Output only. The schema of the processor version. Describes the output.
      *
-     * Generated from protobuf field <code>.google.cloud.documentai.v1.DocumentSchema document_schema = 12;</code>
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.DocumentSchema document_schema = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\DocumentAI\V1\DocumentSchema|null
      */
     public function getDocumentSchema()
@@ -228,9 +232,9 @@ class ProcessorVersion extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The schema of the processor version. Describes the output.
+     * Output only. The schema of the processor version. Describes the output.
      *
-     * Generated from protobuf field <code>.google.cloud.documentai.v1.DocumentSchema document_schema = 12;</code>
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.DocumentSchema document_schema = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\DocumentAI\V1\DocumentSchema $var
      * @return $this
      */
@@ -269,9 +273,9 @@ class ProcessorVersion extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time the processor version was created.
+     * Output only. The time the processor version was created.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
@@ -290,9 +294,9 @@ class ProcessorVersion extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time the processor version was created.
+     * Output only. The time the processor version was created.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -305,9 +309,10 @@ class ProcessorVersion extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The most recently invoked evaluation for the processor version.
+     * Output only. The most recently invoked evaluation for the processor
+     * version.
      *
-     * Generated from protobuf field <code>.google.cloud.documentai.v1.EvaluationReference latest_evaluation = 8;</code>
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.EvaluationReference latest_evaluation = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\DocumentAI\V1\EvaluationReference|null
      */
     public function getLatestEvaluation()
@@ -326,9 +331,10 @@ class ProcessorVersion extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The most recently invoked evaluation for the processor version.
+     * Output only. The most recently invoked evaluation for the processor
+     * version.
      *
-     * Generated from protobuf field <code>.google.cloud.documentai.v1.EvaluationReference latest_evaluation = 8;</code>
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.EvaluationReference latest_evaluation = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\DocumentAI\V1\EvaluationReference $var
      * @return $this
      */
@@ -341,9 +347,9 @@ class ProcessorVersion extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The KMS key name used for encryption.
+     * Output only. The KMS key name used for encryption.
      *
-     * Generated from protobuf field <code>string kms_key_name = 9;</code>
+     * Generated from protobuf field <code>string kms_key_name = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getKmsKeyName()
@@ -352,9 +358,9 @@ class ProcessorVersion extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The KMS key name used for encryption.
+     * Output only. The KMS key name used for encryption.
      *
-     * Generated from protobuf field <code>string kms_key_name = 9;</code>
+     * Generated from protobuf field <code>string kms_key_name = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -367,9 +373,9 @@ class ProcessorVersion extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The KMS key version with which data is encrypted.
+     * Output only. The KMS key version with which data is encrypted.
      *
-     * Generated from protobuf field <code>string kms_key_version_name = 10;</code>
+     * Generated from protobuf field <code>string kms_key_version_name = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getKmsKeyVersionName()
@@ -378,9 +384,9 @@ class ProcessorVersion extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The KMS key version with which data is encrypted.
+     * Output only. The KMS key version with which data is encrypted.
      *
-     * Generated from protobuf field <code>string kms_key_version_name = 10;</code>
+     * Generated from protobuf field <code>string kms_key_version_name = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -419,9 +425,10 @@ class ProcessorVersion extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If set, information about the eventual deprecation of this version.
+     * Output only. If set, information about the eventual deprecation of this
+     * version.
      *
-     * Generated from protobuf field <code>.google.cloud.documentai.v1.ProcessorVersion.DeprecationInfo deprecation_info = 13;</code>
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.ProcessorVersion.DeprecationInfo deprecation_info = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\DocumentAI\V1\ProcessorVersion\DeprecationInfo|null
      */
     public function getDeprecationInfo()
@@ -440,9 +447,10 @@ class ProcessorVersion extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If set, information about the eventual deprecation of this version.
+     * Output only. If set, information about the eventual deprecation of this
+     * version.
      *
-     * Generated from protobuf field <code>.google.cloud.documentai.v1.ProcessorVersion.DeprecationInfo deprecation_info = 13;</code>
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.ProcessorVersion.DeprecationInfo deprecation_info = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\DocumentAI\V1\ProcessorVersion\DeprecationInfo $var
      * @return $this
      */
