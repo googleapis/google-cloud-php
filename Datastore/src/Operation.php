@@ -21,7 +21,6 @@ use Google\ApiCore\Serializer;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\TimestampTrait;
 use Google\Cloud\Core\ValidateTrait;
-use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\Query\AggregationQuery;
 use Google\Cloud\Datastore\Query\AggregationQueryResult;
 use Google\Cloud\Datastore\Query\Query;
@@ -110,6 +109,7 @@ class Operation
         $this->namespaceId = $namespaceId;
         $this->databaseId = $databaseId;
         $this->entityMapper = $entityMapper;
+        $this->serializer = new Serializer();
     }
 
     /**
@@ -531,7 +531,7 @@ class Operation
             ] + $this->readOptions($options) + $options;
 
             $runQueryRequest = new RunQueryRequest();
-            $runQueryRequest->mergeFromJsonString(json_encode($request));
+            $runQueryRequest->mergeFromJsonString(json_encode($request), true);
             $runQueryResponse = $this->gapicClient->runQuery($runQueryRequest);
 
             $res = $this->serializer->encodeMessage($runQueryResponse);
