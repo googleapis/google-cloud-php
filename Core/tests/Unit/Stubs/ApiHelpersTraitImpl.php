@@ -33,4 +33,6 @@ class ApiHelpersTraitImpl
         unpackValue as public;
         validateOptions as public;
     }
+
+    public $serializer;
 }

@@ -18,10 +18,11 @@
 namespace Google\Cloud\Core\Tests\Unit;
 
 use Google\ApiCore\Options\CallOptions;
+use Google\ApiCore\Serializer;
+use Google\ApiCore\Testing\MockRequest;
 use Google\Cloud\Core\Duration;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Tests\Unit\Stubs\ApiHelpersTraitImpl;
-use Google\Cloud\Core\Tests\Unit\Stubs\TestMessage;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -38,6 +39,7 @@ class ApiHelperTraitTest extends TestCase
     public function setUp(): void
     {
         $this->implementation = new ApiHelpersTraitImpl();
+        $this->implementation->serializer = new Serializer();
     }
 
     public function testFormatsTimestamp()
@@ -294,18 +296,18 @@ class ApiHelperTraitTest extends TestCase
             ],
             [
                 [
-                    'baz' => 'bat',
+                    'pageToken' => 'bat',
                     'qux' => 'quux',
                     'timeoutMillis' => 123,
                 ],
                 [
                     CallOptions::class,
-                    TestMessage::class,
+                    MockRequest::class,
                     ['qux'],
                 ],
                 [
                     ['timeoutMillis' => 123],
-                    ['baz' => 'bat'],
+                    ['pageToken' => 'bat'],
                     ['qux' => 'quux'],
                 ]
             ],
@@ -315,13 +317,27 @@ class ApiHelperTraitTest extends TestCase
                 ],
                 [
                     ['baz'],
-                    TestMessage::class,
+                    MockRequest::class,
                     CallOptions::class,
                 ],
                 [
                     ['baz' => 'bat'],
                     [],
                     [],
+                ]
+            ],
+            [
+                [
+                    'baz' => 'bat',
+                    'pageToken' => 'foo1',
+                ],
+                [
+                    ['baz'],
+                    new MockRequest(),
+                ],
+                [
+                    ['baz' => 'bat'],
+                    (new MockRequest())->setPageToken('foo1'),
                 ]
             ],
         ];
