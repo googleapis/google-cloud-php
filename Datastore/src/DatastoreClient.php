@@ -30,6 +30,7 @@ use Google\Cloud\Datastore\Query\AggregationQueryResult;
 use Google\Cloud\Datastore\Query\GqlQuery;
 use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Query\QueryInterface;
+use Google\Cloud\Datastore\V1\Client\DatastoreClient as GapicDatastoreClient;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\Http\Message\StreamInterface;
 
@@ -96,12 +97,6 @@ class DatastoreClient
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/datastore';
 
     /**
-     * @deprecated
-     * @var ConnectionInterface
-     */
-    protected $connection;
-
-    /**
      * @var Operation
      */
     protected $operation;
@@ -110,6 +105,11 @@ class DatastoreClient
      * @var EntityMapper
      */
     private $entityMapper;
+
+    /**
+     * @var GapicDatastoreClient
+     */
+    private GapicDatastoreClient $gapicClient;
 
     /**
      * Create a Datastore client.
@@ -194,7 +194,7 @@ class DatastoreClient
     {
         $emulatorHost = getenv('DATASTORE_EMULATOR_HOST');
 
-        $connectionType = $this->getConnectionType($config);
+        // $connectionType = $this->getConnectionType($config);
 
         $config += [
             'namespaceId' => null,
@@ -207,9 +207,9 @@ class DatastoreClient
         ];
 
         $config = $this->configureAuthentication($config);
-        $this->connection = $connectionType === 'grpc'
-            ? new Grpc($config)
-            : new Rest($config);
+        // $this->connection = $connectionType === 'grpc'
+        //     ? new Grpc($config)
+        //     : new Rest($config);
 
         // The second parameter here should change to a variable
         // when gRPC support is added for variable encoding.
@@ -220,11 +220,29 @@ class DatastoreClient
             $connectionType
         );
         $this->operation = new Operation(
-            $this->connection,
+            $this->gapicClient,
             $this->projectId,
             $config['namespaceId'],
             $this->entityMapper,
             $config['databaseId']
+        );
+
+        /** Version 2 */
+        $this->projectId = $config['projectId'];
+        $this->gapicClient = new GapicDatastoreClient();
+
+        $this->entityMapper = new EntityMapper(
+            $this->projectId,
+            true,
+            $config['returnInt64AsObject'],
+        );
+
+        $this->operation = new Operation(
+            $this->gapicClient,
+            $this->projectId,
+            $config['namespaceId'],
+            $this->entityMapper,
+            $config['databaseId'],
         );
     }
 
