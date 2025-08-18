@@ -56,6 +56,7 @@ class NormalizedValue extends \Google\Protobuf\Internal\Message
      *           Integer value.
      *     @type float $float_value
      *           Float value.
+     *     @type bool $signature_value
      *     @type string $text
      *           Optional. An optional field to store a normalized string.
      *           For some entity types, one of respective `structured_value` fields may
@@ -296,6 +297,33 @@ class NormalizedValue extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkFloat($var);
         $this->writeOneof(8, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>bool signature_value = 10;</code>
+     * @return bool
+     */
+    public function getSignatureValue()
+    {
+        return $this->readOneof(10);
+    }
+
+    public function hasSignatureValue()
+    {
+        return $this->hasOneof(10);
+    }
+
+    /**
+     * Generated from protobuf field <code>bool signature_value = 10;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSignatureValue($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->writeOneof(10, $var);
 
         return $this;
     }
