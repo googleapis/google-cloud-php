@@ -156,7 +156,7 @@ class DatastoreClient
     {
         $emulatorHost = getenv('DATASTORE_EMULATOR_HOST');
 
-        // $connectionType = $this->getConnectionType($config);
+        $connectionType = $this->getConnectionType($config);
 
         $config += [
             'namespaceId' => null,
@@ -172,6 +172,8 @@ class DatastoreClient
         // $this->connection = $connectionType === 'grpc'
         //     ? new Grpc($config)
         //     : new Rest($config);
+
+        $this->gapicClient = new GapicDatastoreClient($config);
 
         // The second parameter here should change to a variable
         // when gRPC support is added for variable encoding.
