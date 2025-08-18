@@ -1,5 +1,283 @@
 # Changelog
 
+## 0.299.0
+
+<details><summary>google/cloud-ai-platform 1.35.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* [AiPlatform] fields are not part of `oneof` ([#8521](https://github.com/googleapis/google-cloud-php/issues/8521))
+
+### Features
+
+* [AiPlatform] add option EndpointUserId and ModelUserId fields ([#8512](https://github.com/googleapis/google-cloud-php/issues/8512)) ([0e66bdd](https://github.com/googleapis/google-cloud-php/commit/0e66bddc8e21e172701eb7192e50d812da72d3d6))
+* Add support for CMEK, runtime controls, and PSC-I to Reasoning Engine protos ([0e66bdd](https://github.com/googleapis/google-cloud-php/commit/0e66bddc8e21e172701eb7192e50d812da72d3d6))
+* Added document_name for vertex ai search as part of retrieved context from grounding chunk ([0e66bdd](https://github.com/googleapis/google-cloud-php/commit/0e66bddc8e21e172701eb7192e50d812da72d3d6))
+* Migrate dedicated endpoint to be enabled by default ([0e66bdd](https://github.com/googleapis/google-cloud-php/commit/0e66bddc8e21e172701eb7192e50d812da72d3d6))
+
+
+### Bug Fixes
+
+* [AiPlatform] fields are not part of `oneof` ([#8521](https://github.com/googleapis/google-cloud-php/issues/8521)) ([18a4067](https://github.com/googleapis/google-cloud-php/commit/18a4067f49a4c020dabef31bb5251303313a8573))
+
+
+### Documentation
+
+* A comment for field `dedicated_endpoint_enabled` in message `.google.cloud.aiplatform.v1.DeployRequest` is changed ([0e66bdd](https://github.com/googleapis/google-cloud-php/commit/0e66bddc8e21e172701eb7192e50d812da72d3d6))
+* Add encryption_spec to ReasoningEngine ([0e66bdd](https://github.com/googleapis/google-cloud-php/commit/0e66bddc8e21e172701eb7192e50d812da72d3d6))
+* Add psc_interface_config, min/max_instances, resource_limits, container_concurrency to ReasoningEngineSpec ([0e66bdd](https://github.com/googleapis/google-cloud-php/commit/0e66bddc8e21e172701eb7192e50d812da72d3d6))
+
+</details>
+
+<details><summary>google/cloud-bigquery-reservation 2.3.0</summary>
+
+
+
+### Features
+
+* [BigQueryReservation] Add Reservation.max_slots field to Reservation proto, indicating the total max number of slots this reservation can use up to ([#8525](https://github.com/googleapis/google-cloud-php/issues/8525)) ([4046366](https://github.com/googleapis/google-cloud-php/commit/4046366b2525e66b4185caa5e825198e67b217b2))
+* Add Reservation.scaling_mode field and its corresponding enum message ScalingMode. This field should be used together with Reservation.max_slots ([4046366](https://github.com/googleapis/google-cloud-php/commit/4046366b2525e66b4185caa5e825198e67b217b2))
+
+</details>
+
+<details><summary>google/cloud-bigtable 2.17.1</summary>
+
+
+
+### Bug Fixes
+
+* [Bigtable] Add ReadRows/SampleRowKeys bindings for materialized views ([#8515](https://github.com/googleapis/google-cloud-php/issues/8515)) ([a05fe03](https://github.com/googleapis/google-cloud-php/commit/a05fe037ce52000ad3c8bb1cf08f064e4ff4773e))
+
+</details>
+
+<details><summary>google/cloud-common-protos 0.8.2</summary>
+
+
+
+</details>
+
+<details><summary>google/common-protos 4.12.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-compute 1.35.0</summary>
+
+
+
+### Features
+
+* [Compute] Update Compute Engine v1 API to revision 20250729 ([#1085](https://github.com/googleapis/google-cloud-php/issues/1085)) ([#8498](https://github.com/googleapis/google-cloud-php/issues/8498)) ([144095f](https://github.com/googleapis/google-cloud-php/commit/144095f1d12ec1fb42a2f80e7acc88e0ccd9dcd0))
+
+</details>
+
+<details><summary>google/cloud-core 1.64.2</summary>
+
+
+
+### Bug Fixes
+
+* Retry options for Storage Client. ([#8489](https://github.com/googleapis/google-cloud-php/issues/8489)) ([b6de1e9](https://github.com/googleapis/google-cloud-php/commit/b6de1e9d68da1ff7eb4190bad693b36fc9975781))
+
+</details>
+
+<details><summary>google/cloud-document-ai 2.3.0</summary>
+
+
+
+### Features
+
+* [DocumentAi] Added config options for derived fields and signature detection. Some annotation changes changes to mark fields explicitly output only (no changes in semantics just readability) ([#8526](https://github.com/googleapis/google-cloud-php/issues/8526)) ([6812039](https://github.com/googleapis/google-cloud-php/commit/681203987449167a6e0ebcec5608660965519e37))
+
+</details>
+
+<details><summary>google/cloud-gke-hub 1.0.6</summary>
+
+
+
+### Documentation
+
+* Reformat comments for several messages, including ListFeaturesRequest, CreateFeatureRequest, and OperationMetadata ([c0d0fcd](https://github.com/googleapis/google-cloud-php/commit/c0d0fcd0c6ac5421db4f9ee67d481b775e713b82))
+
+</details>
+
+<details><summary>google/cloud-network-management 2.5.0</summary>
+
+
+
+### Features
+
+* [NetworkManagement] add `service_uri` field to CloudRunRevisionEndpoint ([#8514](https://github.com/googleapis/google-cloud-php/issues/8514)) ([91d3e2b](https://github.com/googleapis/google-cloud-php/commit/91d3e2b773e6df7954bf1013c5c3faab5ddb4d83))
+
+</details>
+
+<details><summary>google/cloud-osconfig 2.1.0</summary>
+
+
+
+### Features
+
+* [OsConfig] Add highest_upgradable_cve_severity field to Vulnerability report ([#8513](https://github.com/googleapis/google-cloud-php/issues/8513)) ([9ba0a9a](https://github.com/googleapis/google-cloud-php/commit/9ba0a9a2f65f5d27e9dd0918423e95bfee01f86f))
+
+</details>
+
+<details><summary>google/cloud-run 1.9.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* A type of an existing resource_reference option of the field `worker_pool` in message `.google.cloud.run.v2.SubmitBuildRequest` is changed from `cloudbuild.googleapis.com/WorkerPool` to `cloudbuild.googleapis.com/BuildWorkerPool`
+* A type of an existing resource_reference option of the field `worker_pool` in message `.google.cloud.run.v2.BuildConfig` is changed from `cloudbuild.googleapis.com/WorkerPool` to `cloudbuild.googleapis.com/BuildWorkerPool`
+* [Run] An existing resource_definition `cloudbuild.googleapis.com/WorkerPool` is removed ([#8499](https://github.com/googleapis/google-cloud-php/issues/8499))
+
+### Features
+
+* Adding new resource tpye run.googleapis.com/WorkerPool. ([87293f8](https://github.com/googleapis/google-cloud-php/commit/87293f8f9ee7e4e7793008e3b7ed6e98eaebf03e))
+
+
+### Bug Fixes
+
+* [Run] An existing resource_definition `cloudbuild.googleapis.com/WorkerPool` is removed ([#8499](https://github.com/googleapis/google-cloud-php/issues/8499)) ([87293f8](https://github.com/googleapis/google-cloud-php/commit/87293f8f9ee7e4e7793008e3b7ed6e98eaebf03e))
+* A type of an existing resource_reference option of the field `worker_pool` in message `.google.cloud.run.v2.BuildConfig` is changed from `cloudbuild.googleapis.com/WorkerPool` to `cloudbuild.googleapis.com/BuildWorkerPool` ([87293f8](https://github.com/googleapis/google-cloud-php/commit/87293f8f9ee7e4e7793008e3b7ed6e98eaebf03e))
+* A type of an existing resource_reference option of the field `worker_pool` in message `.google.cloud.run.v2.SubmitBuildRequest` is changed from `cloudbuild.googleapis.com/WorkerPool` to `cloudbuild.googleapis.com/BuildWorkerPool` ([87293f8](https://github.com/googleapis/google-cloud-php/commit/87293f8f9ee7e4e7793008e3b7ed6e98eaebf03e))
+
+</details>
+
+<details><summary>google/shopping-common-protos 0.4.2</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-accounts 0.10.0</summary>
+
+
+
+### Features
+
+* Add V1 for ShoppingMerchantAccounts ([#8511](https://github.com/googleapis/google-cloud-php/issues/8511)) ([8ccf7ae](https://github.com/googleapis/google-cloud-php/commit/8ccf7aefe9b714cbb26bb72e3a1f535b363ec820))
+
+
+### Documentation
+
+* [ShoppingMerchantAccounts] fix comment for online return policy ([#8524](https://github.com/googleapis/google-cloud-php/issues/8524)) ([7422c50](https://github.com/googleapis/google-cloud-php/commit/7422c50d2318d16fa3674e1dd328a3189380c2e1))
+
+</details>
+
+<details><summary>google/shopping-merchant-datasources 0.6.0</summary>
+
+
+
+### Features
+
+* Add V1 for ShoppingMerchantDataSources ([#8501](https://github.com/googleapis/google-cloud-php/issues/8501)) ([daed1a1](https://github.com/googleapis/google-cloud-php/commit/daed1a1552508fdbb302f4c2a3dbadfcad838f42))
+
+</details>
+
+<details><summary>google/shopping-merchant-inventories 0.7.0</summary>
+
+
+
+### Features
+
+* Add the v1 version for ShoppingMerchantInventories ([#8500](https://github.com/googleapis/google-cloud-php/issues/8500)) ([925a4f0](https://github.com/googleapis/google-cloud-php/commit/925a4f0641f102be8dd08d1c39d167b34c1a2623))
+
+</details>
+
+<details><summary>google/shopping-merchant-issueresolution 0.1.0</summary>
+
+
+
+### Features
+
+* Add V1 for ShoppingMerchantIssueResolution ([#8505](https://github.com/googleapis/google-cloud-php/issues/8505)) ([a88f07b](https://github.com/googleapis/google-cloud-php/commit/a88f07b13bd530e75e389df060b48906c4644651))
+
+</details>
+
+<details><summary>google/shopping-merchant-lfp 0.4.0</summary>
+
+
+
+### Features
+
+* Add V1 for ShoppingMerchantLfp ([#8504](https://github.com/googleapis/google-cloud-php/issues/8504)) ([9bcb1d9](https://github.com/googleapis/google-cloud-php/commit/9bcb1d94685f6b76882c21ce05f15543f8ab42f2))
+
+</details>
+
+<details><summary>google/shopping-merchant-notifications 0.3.0</summary>
+
+
+
+### Features
+
+* Add V1 for ShoppingMerchantNotifications ([#8502](https://github.com/googleapis/google-cloud-php/issues/8502)) ([dba17ae](https://github.com/googleapis/google-cloud-php/commit/dba17aed64bd6d56aba2bef6c9bd1a4c53b4eb54))
+
+</details>
+
+<details><summary>google/shopping-merchant-ordertracking 0.2.0</summary>
+
+
+
+### Features
+
+* Add V1 for ShoppingMerchantOrderTracking ([#8508](https://github.com/googleapis/google-cloud-php/issues/8508)) ([eedcdbb](https://github.com/googleapis/google-cloud-php/commit/eedcdbbd15be5b186a417453ac85c91793858cd9))
+
+</details>
+
+<details><summary>google/shopping-merchant-products 0.7.0</summary>
+
+
+
+### Features
+
+* Add V1 for ShoppingMerchantProducts ([#8509](https://github.com/googleapis/google-cloud-php/issues/8509)) ([20a9e68](https://github.com/googleapis/google-cloud-php/commit/20a9e684476fccfc5b8bb430df0e77291541d000))
+
+</details>
+
+<details><summary>google/shopping-merchant-promotions 0.3.0</summary>
+
+
+
+### Features
+
+* Add V1 for ShoppingMerchantPromotions: ([#8506](https://github.com/googleapis/google-cloud-php/issues/8506)) ([55a133f](https://github.com/googleapis/google-cloud-php/commit/55a133ffb1b9208dae8920c0df77f7a9eec977b6))
+
+</details>
+
+<details><summary>google/shopping-merchant-quota 0.3.0</summary>
+
+
+
+### Features
+
+* Add V1 for ShoppingMerchantQuota ([#8503](https://github.com/googleapis/google-cloud-php/issues/8503)) ([5bb860e](https://github.com/googleapis/google-cloud-php/commit/5bb860ecd6accfaf768a0dbcb7eac4565c5b8f0b))
+
+</details>
+
+<details><summary>google/shopping-merchant-reports 0.10.0</summary>
+
+
+
+### Features
+
+* Add V1 for ShoppingMerchantReports ([#8510](https://github.com/googleapis/google-cloud-php/issues/8510)) ([2993b69](https://github.com/googleapis/google-cloud-php/commit/2993b69f5d385cfeec34122ee0debead78755e71))
+
+</details>
+
+<details><summary>google/cloud-storage 1.48.3</summary>
+
+
+
+### Bug Fixes
+
+* Retry options for Storage Client. ([#8489](https://github.com/googleapis/google-cloud-php/issues/8489)) ([b6de1e9](https://github.com/googleapis/google-cloud-php/commit/b6de1e9d68da1ff7eb4190bad693b36fc9975781))
+
+</details>
+
 ## 0.298.0
 
 <details><summary>google/cloud-ai-platform 1.34.0</summary>
