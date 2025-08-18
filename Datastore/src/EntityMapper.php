@@ -47,6 +47,14 @@ class EntityMapper
     private $returnInt64AsObject;
 
     /**
+     * The connection type of the client. Required while mapping
+     * `INF`, `-INF` and `NAN` to datastore equivalent values.
+     *
+     * @var string
+     */
+    private $connectionType;
+
+    /**
      * Create an Entity Mapper
      *
      * @param string $projectId The datastore project ID
@@ -66,6 +74,7 @@ class EntityMapper
         $this->projectId = $projectId;
         $this->encode = $encode;
         $this->returnInt64AsObject = $returnInt64AsObject;
+        $this->connectionType = $connectionType;
     }
 
     /**
