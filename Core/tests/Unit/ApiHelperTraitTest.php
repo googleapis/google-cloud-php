@@ -20,6 +20,7 @@ namespace Google\Cloud\Core\Tests\Unit;
 use Google\ApiCore\Options\CallOptions;
 use Google\ApiCore\Serializer;
 use Google\ApiCore\Testing\MockRequest;
+use Google\Cloud\Core\Blob;
 use Google\Cloud\Core\Duration;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Tests\Unit\Stubs\ApiHelpersTraitImpl;
@@ -343,7 +344,7 @@ class ApiHelperTraitTest extends TestCase
         ];
     }
 
-    public function testValidateOptionsThrowsException()
+    public function testValidateOptionsWithUnknownOptionThrowsException()
     {
         $this->expectException(\Exception::class);
         $this->expectExceptionMessage('Unexpected option(s) provided: bar');
@@ -354,5 +355,22 @@ class ApiHelperTraitTest extends TestCase
         ];
 
         $this->implementation->validateOptions($options, ['foo']);
+    }
+
+    public function testValidateOptionsWithUnknownClassIsIgnored()
+    {
+        $options = [
+            'foo' => 'bar',
+            'bar' => 'baz',
+        ];
+
+        [$blob, $validated] = $this->implementation->validateOptions(
+            $options,
+            Blob::class,
+            ['foo', 'bar']
+        );
+
+        $this->assertEquals([], $blob);
+        $this->assertEquals($options, $validated);
     }
 }
