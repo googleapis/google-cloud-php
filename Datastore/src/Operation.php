@@ -350,8 +350,11 @@ class Operation
         /** @var GrpcKey $responseKey */
         foreach ($allocateIdsResponse->getKeys() as $index => $responseKey) {
             $path = $responseKey->getPath();
-            $lastPathElement = end($path);
-            $id = $lastPathElement->getId();
+
+            // @phpstan-ignore argument.type
+            $lastPathElement = count($path) - 1;
+
+            $id = $path[$lastPathElement]->getId();
             $keys[$index]->setLastElementIdentifier($id);
         }
 
@@ -433,11 +436,11 @@ class Operation
             $result['found'] = $this->sortEntities($result['found'], $keys);
         }
 
-        /** @var GrpcKey $missing */
+        /** @var GrpcEntity $missing */
         foreach ($lookupResponse->getMissing() as $missing) {
             $result['missing'][] = $this->key(
-                $missing->getPath(),
-                $missing->getPartitionId()
+                $missing->getEntity()->getKey()->getPath(),
+                $missing->getEntity()->getKey()->getPartitionId()
             );
         }
 
@@ -616,8 +619,8 @@ class Operation
         ] + $requestQueryArr + $this->readOptions($options) + $options;
 
         $runAggregationQueryRequest = new RunAggregationQueryRequest();
-        $runAggregationQueryRequest->mergeFromJsonString(json_encode($request));
-        $runAggregationQueryResponse = $this->gapicClient->runAggregationQuery($runAggregationQueryRequest);
+        $runAggregationQueryRequest->mergeFromJsonString(json_encode($request), true);
+        $runAggregationQueryResponse = $this->gapicClient->runAggregationQuery($runAggregationQueryRequest, $options);
 
         $res = $this->serializer->encodeMessage($runAggregationQueryResponse);
 
