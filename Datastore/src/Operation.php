@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Datastore;
 
+use Google\ApiCore\Serializer;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\TimestampTrait;
 use Google\Cloud\Core\ValidateTrait;
@@ -25,8 +26,19 @@ use Google\Cloud\Datastore\Query\AggregationQuery;
 use Google\Cloud\Datastore\Query\AggregationQueryResult;
 use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Query\QueryInterface;
+use Google\Cloud\Datastore\V1\AllocateIdsRequest;
+use Google\Cloud\Datastore\V1\BeginTransactionRequest;
 use Google\Cloud\Datastore\V1\ExplainOptions;
 use Google\Cloud\Datastore\V1\QueryResultBatch\MoreResultsType;
+use Google\Cloud\Datastore\V1\Client\DatastoreClient;
+use Google\Cloud\Datastore\V1\CommitRequest;
+use Google\Cloud\Datastore\V1\CommitRequest\Mode;
+use Google\Cloud\Datastore\V1\Key as GrpcKey;
+use Google\Cloud\Datastore\V1\LookupRequest;
+use Google\Cloud\Datastore\V1\RollbackRequest;
+use Google\Cloud\Datastore\V1\RunAggregationQueryRequest;
+use Google\Cloud\Datastore\V1\RunQueryRequest;
+use Google\Cloud\Datastore\V1\TransactionOptions;
 use InvalidArgumentException;
 
 /**
@@ -47,10 +59,10 @@ class Operation
     use TimestampTrait;
 
     /**
-     * @var ConnectionInterface
+     * @var DatastoreClient
      * @internal
      */
-    protected $connection;
+    protected DatastoreClient $gapicClient;
 
     /**
      * @var string
@@ -73,24 +85,27 @@ class Operation
     private $entityMapper;
 
     /**
+     * @var Serializer
+     */
+    private Serializer $serializer;
+
+    /**
      * Create an operation
      *
-     * @param ConnectionInterface $connection A connection to Google Cloud Platform's Datastore API.
-     *        This object is created by DatastoreClient,
-     *        and should not be instantiated outside of this client.
+     * @param DatastoreClient $gapicClient A Datastore Gapic Client instance.
      * @param string $projectId The Google Cloud Platform project ID.
      * @param string $namespaceId The namespace to use for all service requests.
      * @param EntityMapper $entityMapper A Datastore Entity Mapper instance.
      * @param string $databaseId ID of the database to which the entities belong.
      */
     public function __construct(
-        ConnectionInterface $connection,
+        DatastoreClient $gapicClient,
         $projectId,
         $namespaceId,
         EntityMapper $entityMapper,
         $databaseId = ''
     ) {
-        $this->connection = $connection;
+        $this->gapicClient = $gapicClient;
         $this->projectId = $projectId;
         $this->namespaceId = $namespaceId;
         $this->databaseId = $databaseId;
@@ -274,21 +289,17 @@ class Operation
      */
     public function beginTransaction($transactionOptions, array $options = [])
     {
-        // Read Only option might not be present or empty
-        if (isset($transactionOptions['readOnly']) &&
-            is_array($transactionOptions['readOnly'])
-        ) {
-            $transactionOptions['readOnly'] = $this->formatReadTimeOption(
-                $transactionOptions['readOnly']
-            );
-        }
-        $res = $this->connection->beginTransaction($options + [
-            'projectId' => $this->projectId,
-            'databaseId' => $this->databaseId,
-            'transactionOptions' => $transactionOptions,
-        ]);
+        $transactionOptions = new TransactionOptions();
+        $transactionOptions->mergeFromJsonString(json_encode($transactionOptions));
 
-        return $res['transaction'];
+        $beginTransactionRequest = new BeginTransactionRequest();
+        $beginTransactionRequest->setProjectId($this->projectId);
+        $beginTransactionRequest->setDatabaseId($this->databaseId);
+        $beginTransactionRequest->setTransactionOptions($transactionOptions);
+
+        $res = $this->gapicClient->beginTransaction($beginTransactionRequest, $options);
+
+        return $res->getTransaction();
     }
 
     /**
@@ -324,25 +335,24 @@ class Operation
 
         $serviceKeys = [];
         foreach ($keys as $key) {
-            $serviceKeys[] = $key->keyObject();
+            $keyMessage = new GrpcKey();
+            $keyMessage->mergeFromJsonString(json_encode($key->keyObject()));
+            $serviceKeys[] = $keyMessage;
         }
 
-        $res = $this->connection->allocateIds($options + [
-            'projectId' => $this->projectId,
-            'databaseId' => $this->databaseId,
-            'keys' => $serviceKeys,
-        ]);
+        $request = new AllocateIdsRequest();
+        $request->setProjectId($this->projectId);
+        $request->setDatabaseId($this->databaseId);
+        $request->setKeys($serviceKeys);
 
-        if (isset($res['keys'])) {
-            foreach ($res['keys'] as $index => $key) {
-                if (!isset($keys[$index])) {
-                    continue;
-                }
+        $allocateIdsResponse = $this->gapicClient->allocateIds($request, $options);
 
-                $end = end($key['path']);
-                $id = $end['id'];
-                $keys[$index]->setLastElementIdentifier($id);
-            }
+        /** @var GrpcKey $responseKey */
+        foreach ($allocateIdsResponse->getKeys() as $index => $responseKey) {
+            $path = $responseKey->getPath();
+            $lastPathElement = end($path);
+            $id = $lastPathElement->getId();
+            $keys[$index]->setLastElementIdentifier($id);
         }
 
         return $keys;
@@ -394,48 +404,49 @@ class Operation
                 ));
             }
 
-            $serviceKeys[] = $key->keyObject();
+            $grpcKey = new GrpcKey();
+            $grpcKey->mergeFromJsonString(json_encode($key->keyObject()));
+            $serviceKeys[] = $grpcKey;
         });
 
-        $res = $this->connection->lookup($options + $this->readOptions($options) + [
-            'projectId' => $this->projectId,
-            'databaseId' => $this->databaseId,
-            'keys' => $serviceKeys,
-        ]);
+        $lookupRequest = new LookupRequest();
+        $lookupRequest->setDatabaseId($this->databaseId);
+        $lookupRequest->setProjectId($this->projectId);
+        $lookupRequest->setKeys($serviceKeys);
 
-        $result = [];
-        if (isset($res['found'])) {
-            foreach ($res['found'] as $found) {
-                $result['found'][] = $this->mapEntityResult($found, $options['className']);
-            }
+        $lookupResponse = $this->gapicClient->lookup($lookupRequest, $options);
 
-            if ($options['sort']) {
-                $result['found'] = $this->sortEntities($result['found'], $keys);
-            }
+        $result = [
+            'result' => [],
+            'missing' => [],
+            'deferred' => [],
+        ];
+
+        /** @var GrpcEntity $found */
+        foreach ($lookupResponse->getFound() as $found) {
+            $result['found'][] = $this->mapEntityResult(
+                $this->serializer->encodeMessage($found), $options['className']
+            );
         }
 
-        if (isset($res['missing'])) {
-            $result['missing'] = [];
-            foreach ($res['missing'] as $missing) {
-                $key = $this->key(
-                    $missing['entity']['key']['path'],
-                    $missing['entity']['key']['partitionId']
-                );
-
-                $result['missing'][] = $key;
-            }
+        if ($options['sort']) {
+            $result['found'] = $this->sortEntities($result['found'], $keys);
         }
 
-        if (isset($res['deferred'])) {
-            $result['deferred'] = [];
-            foreach ($res['deferred'] as $deferred) {
-                $key = $this->key(
-                    $deferred['path'],
-                    $deferred['partitionId']
-                );
+        /** @var GrpcKey $missing */
+        foreach ($lookupResponse->getMissing() as $missing) {
+            $result['missing'][] = $this->key(
+                $missing->getPath(),
+                $missing->getPartitionId()
+            );
+        }
 
-                $result['deferred'][] = $key;
-            }
+        /** @var GrpcKey $deferred */
+        foreach ($lookupResponse->getDeferred() as $deferred) {
+            $result['deferred'][] = $this->key(
+                $deferred->getPath(),
+                $deferred->getPartitionId()
+            );
         }
 
         return $result;
@@ -519,7 +530,11 @@ class Operation
                 $runQueryObj->queryKey() => $requestQueryArr,
             ] + $this->readOptions($options) + $options;
 
-            $res = $this->connection->runQuery($request);
+            $runQueryRequest = new RunQueryRequest();
+            $runQueryRequest->mergeFromJsonString(json_encode($request));
+            $runQueryResponse = $this->gapicClient->runQuery($runQueryRequest);
+
+            $res = $this->serializer->encodeMessage($runQueryResponse);
 
             // When executing a GQL Query, the server will compute a query object
             // and return it with the first response batch.
@@ -600,7 +615,12 @@ class Operation
             ),
         ] + $requestQueryArr + $this->readOptions($options) + $options;
 
-        $res = $this->connection->runAggregationQuery($request);
+        $runAggregationQueryRequest = new RunAggregationQueryRequest();
+        $runAggregationQueryRequest->mergeFromJsonString(json_encode($request));
+        $runAggregationQueryResponse = $this->gapicClient->runAggregationQuery($runAggregationQueryRequest);
+
+        $res = $this->serializer->encodeMessage($runAggregationQueryResponse);
+
         return new AggregationQueryResult($res, $this->entityMapper);
     }
 
@@ -629,13 +649,15 @@ class Operation
             'databaseId' => $this->databaseId,
         ];
 
-        $res = $this->connection->commit($options + [
-            'mode' => ($options['transaction']) ? 'TRANSACTIONAL' : 'NON_TRANSACTIONAL',
-            'mutations' => $mutations,
-            'projectId' => $this->projectId,
-        ]);
+        $commitRequest = new CommitRequest();
+        $commitRequest->setMutations($mutations);
+        $commitRequest->setDatabaseId($this->databaseId);
+        $commitRequest->setProjectId($this->projectId);
+        $commitRequest->setMode(($options['transaction']) ? Mode::TRANSACTIONAL : Mode::NON_TRANSACTIONAL);
 
-        return $res;
+        $commitResponse = $this->gapicClient->commit($commitRequest, $options);
+
+        return $this->serializer->encodeMessage($commitResponse);
     }
 
     /**
@@ -725,11 +747,12 @@ class Operation
      */
     public function rollback($transactionId)
     {
-        $this->connection->rollback([
-            'projectId' => $this->projectId,
-            'transaction' => $transactionId,
-            'databaseId' => $this->databaseId,
-        ]);
+        $rollbackRequest = new RollbackRequest();
+        $rollbackRequest->setTransaction($transactionId);
+        $rollbackRequest->setProjectId($this->projectId);
+        $rollbackRequest->setDatabaseId($this->databaseId);
+
+        $this->gapicClient->rollback($rollbackRequest);
     }
 
     /**
