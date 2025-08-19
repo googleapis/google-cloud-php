@@ -1,5 +1,79 @@
 # Changelog
 
+## 0.299.1
+
+<details><summary>google/shopping-merchant-accounts 1.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-conversions 1.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-datasources 1.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-inventories 1.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-issueresolution 1.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-lfp 1.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-notifications 1.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-ordertracking 1.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-products 1.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-promotions 1.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-quota 1.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-reports 1.0.0</summary>
+
+
+
+</details>
+
 ## 0.299.0
 
 <details><summary>google/cloud-ai-platform 1.35.0</summary>
