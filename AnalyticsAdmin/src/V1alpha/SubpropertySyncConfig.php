@@ -26,7 +26,7 @@ class SubpropertySyncConfig extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * Output only. Immutable. Resource name of the Subproperty that these
+     * Output only. Immutable. Resource name of the subproperty that these
      * settings apply to.
      *
      * Generated from protobuf field <code>string apply_to_property = 2 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -34,10 +34,10 @@ class SubpropertySyncConfig extends \Google\Protobuf\Internal\Message
     protected $apply_to_property = '';
     /**
      * Required. Specifies the Custom Dimension / Metric synchronization mode for
-     * the Subproperty.
+     * the subproperty.
      * If set to ALL, Custom Dimension / Metric synchronization will be
      * immediately enabled.  Local configuration of Custom Dimensions / Metrics
-     * will not be allowed on the Subproperty so long as the synchronization mode
+     * will not be allowed on the subproperty so long as the synchronization mode
      * is set to ALL.
      * If set to NONE, Custom Dimensions / Metric synchronization is disabled.
      * Custom Dimensions / Metrics must be configured explicitly on the
@@ -58,14 +58,14 @@ class SubpropertySyncConfig extends \Google\Protobuf\Internal\Message
      *           properties/{ordinary_property_id}/subpropertySyncConfigs/{subproperty_id}
      *           Example: properties/1234/subpropertySyncConfigs/5678
      *     @type string $apply_to_property
-     *           Output only. Immutable. Resource name of the Subproperty that these
+     *           Output only. Immutable. Resource name of the subproperty that these
      *           settings apply to.
      *     @type int $custom_dimension_and_metric_sync_mode
      *           Required. Specifies the Custom Dimension / Metric synchronization mode for
-     *           the Subproperty.
+     *           the subproperty.
      *           If set to ALL, Custom Dimension / Metric synchronization will be
      *           immediately enabled.  Local configuration of Custom Dimensions / Metrics
-     *           will not be allowed on the Subproperty so long as the synchronization mode
+     *           will not be allowed on the subproperty so long as the synchronization mode
      *           is set to ALL.
      *           If set to NONE, Custom Dimensions / Metric synchronization is disabled.
      *           Custom Dimensions / Metrics must be configured explicitly on the
@@ -108,7 +108,7 @@ class SubpropertySyncConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Immutable. Resource name of the Subproperty that these
+     * Output only. Immutable. Resource name of the subproperty that these
      * settings apply to.
      *
      * Generated from protobuf field <code>string apply_to_property = 2 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -120,7 +120,7 @@ class SubpropertySyncConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Immutable. Resource name of the Subproperty that these
+     * Output only. Immutable. Resource name of the subproperty that these
      * settings apply to.
      *
      * Generated from protobuf field <code>string apply_to_property = 2 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -137,10 +137,10 @@ class SubpropertySyncConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Specifies the Custom Dimension / Metric synchronization mode for
-     * the Subproperty.
+     * the subproperty.
      * If set to ALL, Custom Dimension / Metric synchronization will be
      * immediately enabled.  Local configuration of Custom Dimensions / Metrics
-     * will not be allowed on the Subproperty so long as the synchronization mode
+     * will not be allowed on the subproperty so long as the synchronization mode
      * is set to ALL.
      * If set to NONE, Custom Dimensions / Metric synchronization is disabled.
      * Custom Dimensions / Metrics must be configured explicitly on the
@@ -156,10 +156,10 @@ class SubpropertySyncConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Specifies the Custom Dimension / Metric synchronization mode for
-     * the Subproperty.
+     * the subproperty.
      * If set to ALL, Custom Dimension / Metric synchronization will be
      * immediately enabled.  Local configuration of Custom Dimensions / Metrics
-     * will not be allowed on the Subproperty so long as the synchronization mode
+     * will not be allowed on the subproperty so long as the synchronization mode
      * is set to ALL.
      * If set to NONE, Custom Dimensions / Metric synchronization is disabled.
      * Custom Dimensions / Metrics must be configured explicitly on the
