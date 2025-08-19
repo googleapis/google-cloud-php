@@ -36,8 +36,8 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 
 ```php
 Google\ApiCore\ApiException;
-Google\Shopping\Merchant\Inventories\V1beta\Client\LocalInventoryServiceClient;
-Google\Shopping\Merchant\Inventories\V1beta\DeleteLocalInventoryRequest;
+Google\Shopping\Merchant\Inventories\V1\Client\LocalInventoryServiceClient;
+Google\Shopping\Merchant\Inventories\V1\DeleteLocalInventoryRequest;
 
 // Create a client.
 $localInventoryServiceClient = new LocalInventoryServiceClient();
@@ -64,7 +64,8 @@ for more information about the debugging tools.
 
 ### Version
 
-This component is considered alpha. As such, it is still a work-in-progress and is more likely to get backwards-incompatible updates.
+This component is considered GA (generally available). As such, it will not introduce backwards-incompatible changes in
+any minor or patch releases. We will address issues and requests with the highest priority.
 
 ### Next Steps
 
