@@ -102,7 +102,10 @@ trait TransactionConfigurationTrait
             $transactionOptions = $id;
         } elseif ($context === SessionPoolInterface::CONTEXT_READ) {
             $options += ['singleUse' => null];
-            $transactionOptions = $this->configureReadOnlyTransactionOptions($options, $transactionLevelReadOnlyOptions);
+            $transactionOptions = $this->configureReadOnlyTransactionOptions(
+                $options,
+                $transactionLevelReadOnlyOptions
+            );
         } elseif ($context === SessionPoolInterface::CONTEXT_READWRITE) {
             $transactionOptions = $this->configureReadWriteTransactionOptions(
                 // TODO: Find out when $begin is a bool and fix it
@@ -189,8 +192,10 @@ trait TransactionConfigurationTrait
      * @param PBReadOnly $transactionLevelReadOnlyOptions Previously given call options (for single-use snapshots).
      * @return array
      */
-    private function configureReadOnlyTransactionOptions(array $options, ?PBReadOnly $transactionLevelReadOnlyOptions = null): array
-    {
+    private function configureReadOnlyTransactionOptions(
+        array $options,
+        ?PBReadOnly $transactionLevelReadOnlyOptions = null
+    ): array {
         // select only the PBReadOnly fields from $options
         $readOnly = array_intersect_key($options, array_flip([
             'minReadTimestamp',

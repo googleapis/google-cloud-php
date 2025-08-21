@@ -877,7 +877,8 @@ class Operation
      * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.BeginTransactionRequest BeginTransactionRequest
      *
      * @param Session $session The session to start the snapshot in.
-     * @param array $options [optional] Configuration options.
+     * @param BeginTransactionRequest $beginTransaction
+     * @param array $callOptions
      *
      * @return array
      */
@@ -1083,7 +1084,9 @@ class Operation
     }
 
     /**
-     * @param array $args
+     * @param string $databaseName
+     * @param ExecuteSqlRequest $executeSqlRequest
+     * @param array $callOptions
      * @return \Generator
      */
     private function executeStreamingSql(string $databaseName, ExecuteSqlRequest $executeSqlRequest, array $callOptions): \Generator
@@ -1100,7 +1103,9 @@ class Operation
     }
 
     /**
-     * @param array $args
+     * @param string $databaseName
+     * @param ReadRequest $readRequest
+     * @param array $callOptions
      * @return \Generator
      */
     private function streamingRead(string $databaseName, ReadRequest $readRequest, array $callOptions): \Generator
