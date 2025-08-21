@@ -2,12 +2,10 @@
 
 namespace Google\Cloud\Spanner;
 
-use Google\ApiCore\GPBType;
 use Google\ApiCore\Serializer as ApiCoreSerializer;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Spanner\V1\PartialResultSet;
 use Google\Cloud\Spanner\V1\Type;
-use Google\Protobuf\Internal\MapField;
 use Google\Protobuf\Internal\RepeatedField as DeprecatedRepeatedField;
 use Google\Protobuf\RepeatedField;
 use Google\Protobuf\Struct;
@@ -71,7 +69,20 @@ class Serializer extends ApiCoreSerializer
                 return $v;
             },
             'google.protobuf.Value' => function ($v) {
-                if (!is_array($v)) {
+                if (!is_array($v) || (
+                    !isset($v['nullValue']) &&
+                  !isset($v['null_value']) &&
+                  !isset($v['numberValue']) &&
+                  !isset($v['number_value']) &&
+                  !isset($v['stringValue']) &&
+                  !isset($v['string_value']) &&
+                  !isset($v['boolValue']) &&
+                  !isset($v['bool_value']) &&
+                  !isset($v['structValue']) &&
+                  !isset($v['struct_value']) &&
+                  !isset($v['listValue']) &&
+                  !isset($v['list_value'])
+                )) {
                     return $this->formatValueForApi($v);
                 }
                 return $v;

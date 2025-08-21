@@ -19,8 +19,8 @@ namespace Google\Cloud\Core;
 
 use Google\ApiCore\ArrayTrait;
 use Google\ApiCore\Options\CallOptions;
-use Google\Protobuf\NullValue;
 use Google\Protobuf\Internal\Message;
+use Google\Protobuf\NullValue;
 
 /**
  * @internal

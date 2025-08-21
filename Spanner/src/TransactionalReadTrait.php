@@ -20,7 +20,6 @@ namespace Google\Cloud\Spanner;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\V1\TransactionOptions;
-use Google\Cloud\Spanner\V1\TransactionOptions\PBReadOnly;
 
 /**
  * Shared methods for reads inside a transaction.
