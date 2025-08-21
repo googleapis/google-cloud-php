@@ -51,7 +51,7 @@ use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Service to ask a natural language question on top of BigQuery
- * and LookerStudio datasources to get back streamed responses of various kinds
+ * and Looker Studio datasources to get back streamed responses of various kinds
  * to help provide a rich conversational answer.
  *
  * This class provides the ability to make remote calls to the backing service through method
@@ -307,7 +307,8 @@ final class DataChatServiceClient
     }
 
     /**
-     * Answers a data question by generating a stream of [Message]s.
+     * Answers a data question by generating a stream of
+     * [Message][google.cloud.geminidataanalytics.v1alpha.Message] objects.
      *
      * @example samples/V1beta/DataChatServiceClient/chat.php
      *
@@ -360,7 +361,7 @@ final class DataChatServiceClient
     }
 
     /**
-     * Gets details of a single conversation using conversation id and parent.
+     * Gets details of a single conversation by using conversation id and parent.
      *
      * The async variant is {@see DataChatServiceClient::getConversationAsync()} .
      *
