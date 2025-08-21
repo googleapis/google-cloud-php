@@ -2,12 +2,15 @@
 
 namespace Google\Cloud\Spanner;
 
+use Google\ApiCore\GPBType;
 use Google\ApiCore\Serializer as ApiCoreSerializer;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Spanner\V1\PartialResultSet;
 use Google\Cloud\Spanner\V1\Type;
+use Google\Protobuf\Internal\MapField;
 use Google\Protobuf\Internal\RepeatedField as DeprecatedRepeatedField;
 use Google\Protobuf\RepeatedField;
+use Google\Protobuf\Struct;
 use Google\Protobuf\Value;
 
 /**
@@ -60,7 +63,19 @@ class Serializer extends ApiCoreSerializer
                 }
 
                 return $keySet;
-            }
+            },
+            'google.protobuf.Struct' => function ($v) {
+                if (!isset($v['fields'])) {
+                    return ['fields' => $v];
+                }
+                return $v;
+            },
+            'google.protobuf.Value' => function ($v) {
+                if (!is_array($v)) {
+                    return $this->formatValueForApi($v);
+                }
+                return $v;
+            },
         ];
         $customEncoders = [
             // A custom encoder that short-circuits the encodeMessage in Serializer class,

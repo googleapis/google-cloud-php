@@ -19,6 +19,8 @@ namespace Google\Cloud\Spanner;
 
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
+use Google\Cloud\Spanner\V1\TransactionOptions;
+use Google\Cloud\Spanner\V1\TransactionOptions\PBReadOnly;
 
 /**
  * Shared methods for reads inside a transaction.
@@ -42,7 +44,7 @@ trait TransactionalReadTrait
     /**
      * @see V1\TransactionOptions
      */
-    private array $transactionOptions = [];
+    private TransactionOptions $transactionOptions;
     private int $seqno = 1;
     private string|null $tag = null;
     private array $directedReadOptions = [];
@@ -256,10 +258,8 @@ trait TransactionalReadTrait
         $executeSqlOptions['seqno'] = $this->seqno;
         $this->seqno++;
 
-        $selector = $this->transactionSelector(
-            $executeSqlOptions,
-            $this->transactionOptions['readOnly'] ?? []
-        );
+        $readOnly = $this->transactionOptions->getReadOnly();
+        $selector = $this->transactionSelector($executeSqlOptions, $readOnly);
 
         $executeSqlOptions['transaction'] = $selector[0];
 
@@ -341,11 +341,10 @@ trait TransactionalReadTrait
         } else {
             $options['transactionId'] = $this->transactionId;
         }
+
         $options['transactionType'] = $this->context;
-        $selector = $this->transactionSelector(
-            $options,
-            $this->transactionOptions['readOnly'] ?? []
-        );
+        $readOnly = $this->transactionOptions->getReadOnly();
+        $selector = $this->transactionSelector($options, $readOnly);
 
         $options['transaction'] = $selector[0];
 

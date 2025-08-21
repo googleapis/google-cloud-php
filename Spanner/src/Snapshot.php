@@ -52,6 +52,7 @@ class Snapshot implements TransactionalReadInterface
      *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions}
      *           If using the `replicaSelection::type` setting, utilize the constants available in
      *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type} to set a value.
+     *     @type array $transactonOptions
      * }
      * @throws \InvalidArgumentException if a tag is specified as this is a read-only transaction.
      */
