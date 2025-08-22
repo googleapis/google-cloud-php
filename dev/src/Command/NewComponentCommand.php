@@ -36,6 +36,7 @@ use Twig\Loader\FilesystemLoader;
 use Twig\Environment;
 use RuntimeException;
 use Exception;
+use Google\Cloud\Dev\Component;
 
 /**
  * Add a Component
@@ -57,24 +58,18 @@ class NewComponentCommand extends Command
         'phpunit.xml.dist.twig',
         'README.md.twig',
     ];
-    private const BAZEL_VERSION = '6.0.0';
-    private const OWLBOT_CLI_IMAGE = 'gcr.io/cloud-devrel-public-resources/owlbot-cli:latest';
-    private const OWLBOT_PHP_IMAGE = 'gcr.io/cloud-devrel-public-resources/owlbot-php:latest';
 
     private $rootPath;
     private $httpClient;
-    private RunProcess $runProcess;
 
     /**
      * @param string $rootPath The path to the repository root directory.
      * @param Client $httpClient specify the HTTP client, useful for tests.
-     * @param RunProcess $runProcess Instance to execute Symfony Process commands, useful for tests.
      */
-    public function __construct($rootPath, ?Client $httpClient = null, ?RunProcess $runProcess = null)
+    public function __construct($rootPath, ?Client $httpClient = null)
     {
         $this->rootPath = realpath($rootPath);
         $this->httpClient = $httpClient ?: new Client();
-        $this->runProcess = $runProcess ?: new RunProcess();
         parent::__construct();
     }
 
@@ -105,14 +100,25 @@ class NewComponentCommand extends Command
         $new = NewComponent::fromProto($this->loadProtoContent($proto), $protoFile);
         $new->componentPath = $this->rootPath;
 
-        $unsafeTimeout = $input->getOption('timeout');
+        $existingComponent = null;
+        if ($components = Component::getComponents([$new->componentName])) {
+            // component already exists
+            $existingComponent = array_pop($components);
+            $output->writeln(''); // blank line
+            if (!$this->getHelper('question')->ask($input, $output, new ConfirmationQuestion(
+                sprintf('Component %s already exists. Overwrite it? [Y/n]', $existingComponent->getName()),
+                'Y'
+            ))) {
+                return 0;
+            }
+        }
 
+        $unsafeTimeout = $input->getOption('timeout');
         if (!is_numeric($unsafeTimeout)) {
             throw new RuntimeException(
                 'Error: The timeout option must be a positive integer'
             );
         }
-
         $timeout = (int) $unsafeTimeout;
 
         $output->writeln(''); // blank line
