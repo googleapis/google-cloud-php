@@ -35,10 +35,10 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-Google\ApiCore\ApiException;
-Google\Shopping\Css\V1\Account;
-Google\Shopping\Css\V1\Client\AccountsServiceClient;
-Google\Shopping\Css\V1\GetAccountRequest;
+use Google\ApiCore\ApiException;
+use Google\Shopping\Css\V1\Account;
+use Google\Shopping\Css\V1\Client\AccountsServiceClient;
+use Google\Shopping\Css\V1\GetAccountRequest;
 
 // Create a client.
 $accountsServiceClient = new AccountsServiceClient();

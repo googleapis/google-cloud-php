@@ -35,10 +35,10 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-Google\ApiCore\ApiException;
-Google\Cloud\StorageBatchOperations\V1\Client\StorageBatchOperationsClient;
-Google\Cloud\StorageBatchOperations\V1\GetJobRequest;
-Google\Cloud\StorageBatchOperations\V1\Job;
+use Google\ApiCore\ApiException;
+use Google\Cloud\StorageBatchOperations\V1\Client\StorageBatchOperationsClient;
+use Google\Cloud\StorageBatchOperations\V1\GetJobRequest;
+use Google\Cloud\StorageBatchOperations\V1\Job;
 
 // Create a client.
 $storageBatchOperationsClient = new StorageBatchOperationsClient();

@@ -28,6 +28,36 @@ please see our [gRPC installation guide](https://cloud.google.com/php/grpc).
 Please see our [Authentication guide](https://github.com/googleapis/google-cloud-php/blob/main/AUTHENTICATION.md) for more information
 on authenticating your client. Once authenticated, you'll be ready to start making requests.
 
+### Sample
+
+```php
+use Google\ApiCore\ApiException;
+use Google\ApiCore\PagedListResponse;
+use Google\Cloud\PrivateCatalog\V1beta1\Client\PrivateCatalogClient;
+use Google\Cloud\PrivateCatalog\V1beta1\Product;
+use Google\Cloud\PrivateCatalog\V1beta1\SearchProductsRequest;
+
+// Create a client.
+$privateCatalogClient = new PrivateCatalogClient();
+
+// Prepare the request message.
+$request = (new SearchProductsRequest())
+    ->setResource($resource);
+
+// Call the API and handle any network failures.
+try {
+    /** @var PagedListResponse $response */
+    $response = $privateCatalogClient->searchProducts($request);
+
+    /** @var Product $element */
+    foreach ($response as $element) {
+        printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
+    }
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
+```
+
 ### Debugging
 
 Please see our [Debugging guide](https://github.com/googleapis/google-cloud-php/blob/main/DEBUG.md)

@@ -35,10 +35,10 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-Google\ApiCore\ApiException;
-Google\Apps\Meet\V2\Client\ConferenceRecordsServiceClient;
-Google\Apps\Meet\V2\ConferenceRecord;
-Google\Apps\Meet\V2\GetConferenceRecordRequest;
+use Google\ApiCore\ApiException;
+use Google\Apps\Meet\V2\Client\ConferenceRecordsServiceClient;
+use Google\Apps\Meet\V2\ConferenceRecord;
+use Google\Apps\Meet\V2\GetConferenceRecordRequest;
 
 // Create a client.
 $conferenceRecordsServiceClient = new ConferenceRecordsServiceClient();

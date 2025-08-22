@@ -28,6 +28,31 @@ please see our [gRPC installation guide](https://cloud.google.com/php/grpc).
 Please see our [Authentication guide](https://github.com/googleapis/google-cloud-php/blob/main/AUTHENTICATION.md) for more information
 on authenticating your client. Once authenticated, you'll be ready to start making requests.
 
+### Sample
+
+```php
+use Google\ApiCore\ApiException;
+use Google\Cloud\OrgPolicy\V2\Client\OrgPolicyClient;
+use Google\Cloud\OrgPolicy\V2\CustomConstraint;
+use Google\Cloud\OrgPolicy\V2\GetCustomConstraintRequest;
+
+// Create a client.
+$orgPolicyClient = new OrgPolicyClient();
+
+// Prepare the request message.
+$request = (new GetCustomConstraintRequest())
+    ->setName($formattedName);
+
+// Call the API and handle any network failures.
+try {
+    /** @var CustomConstraint $response */
+    $response = $orgPolicyClient->getCustomConstraint($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
+```
+
 ### Debugging
 
 Please see our [Debugging guide](https://github.com/googleapis/google-cloud-php/blob/main/DEBUG.md)

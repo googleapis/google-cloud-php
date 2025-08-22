@@ -31,38 +31,25 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-require 'vendor/autoload.php';
+use Google\ApiCore\ApiException;
+use Google\Cloud\Vision\V1\Client\ProductSearchClient;
+use Google\Cloud\Vision\V1\GetProductRequest;
+use Google\Cloud\Vision\V1\Product;
 
-use Google\Cloud\Vision\V1\AnnotateImageRequest;
-use Google\Cloud\Vision\V1\BatchAnnotateImagesRequest;
-use Google\Cloud\Vision\V1\Client\ImageAnnotatorClient;
-use Google\Cloud\Vision\V1\Feature;
-use Google\Cloud\Vision\V1\Image;
-use Google\Cloud\Vision\V1\Likelihood;
+// Create a client.
+$productSearchClient = new ProductSearchClient();
 
-$client = new ImageAnnotatorClient();
+// Prepare the request message.
+$request = (new GetProductRequest())
+    ->setName($formattedName);
 
-// Prepare the request
-$content = file_get_contents('/data/photos/family-photo.jpg', 'r');
-$image = (new Image())
-    ->setContent($content);
-$feature = (new Feature())
-    ->setType(Feature\Type::FACE_DETECTION);
-$request = (new AnnotateImageRequest())
-    ->setImage($image)
-    ->setFeatures([$feature]);
-$batchRequest = (new BatchAnnotateImagesRequest())
-    ->setRequests([$request]);
-
-// Annotate an image, detecting faces.
-$batchResponse = $client->batchAnnotateImages($batchRequest);
-
-// Determine if the detected faces have headwear.
-foreach ($batchResponse->getResponses() as $response) {
-    foreach ($response->getFaceAnnotations() as $faceAnnotation) {
-        $likelihood = Likelihood::name($faceAnnotation->getHeadwearLikelihood());
-        echo "Likelihood of headwear: $likelihood" . PHP_EOL;
-    }
+// Call the API and handle any network failures.
+try {
+    /** @var Product $response */
+    $response = $productSearchClient->getProduct($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
 }
 ```
 

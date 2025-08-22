@@ -35,22 +35,22 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-Google\ApiCore\ApiException;
-Google\Cloud\NetworkServices\V1\Client\DepServiceClient;
-Google\Cloud\NetworkServices\V1\GetLbRouteExtensionRequest;
-Google\Cloud\NetworkServices\V1\LbRouteExtension;
+use Google\ApiCore\ApiException;
+use Google\Cloud\NetworkServices\V1\AuthzExtension;
+use Google\Cloud\NetworkServices\V1\Client\DepServiceClient;
+use Google\Cloud\NetworkServices\V1\GetAuthzExtensionRequest;
 
 // Create a client.
 $depServiceClient = new DepServiceClient();
 
 // Prepare the request message.
-$request = (new GetLbRouteExtensionRequest())
+$request = (new GetAuthzExtensionRequest())
     ->setName($formattedName);
 
 // Call the API and handle any network failures.
 try {
-    /** @var LbRouteExtension $response */
-    $response = $depServiceClient->getLbRouteExtension($request);
+    /** @var AuthzExtension $response */
+    $response = $depServiceClient->getAuthzExtension($request);
     printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
 } catch (ApiException $ex) {
     printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

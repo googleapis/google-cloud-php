@@ -35,22 +35,22 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-Google\ApiCore\ApiException;
-Google\Cloud\DeveloperConnect\V1\Client\DeveloperConnectClient;
-Google\Cloud\DeveloperConnect\V1\Connection;
-Google\Cloud\DeveloperConnect\V1\GetConnectionRequest;
+use Google\ApiCore\ApiException;
+use Google\Cloud\DeveloperConnect\V1\AccountConnector;
+use Google\Cloud\DeveloperConnect\V1\Client\DeveloperConnectClient;
+use Google\Cloud\DeveloperConnect\V1\GetAccountConnectorRequest;
 
 // Create a client.
 $developerConnectClient = new DeveloperConnectClient();
 
 // Prepare the request message.
-$request = (new GetConnectionRequest())
+$request = (new GetAccountConnectorRequest())
     ->setName($formattedName);
 
 // Call the API and handle any network failures.
 try {
-    /** @var Connection $response */
-    $response = $developerConnectClient->getConnection($request);
+    /** @var AccountConnector $response */
+    $response = $developerConnectClient->getAccountConnector($request);
     printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
 } catch (ApiException $ex) {
     printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

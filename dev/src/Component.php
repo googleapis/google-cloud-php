@@ -47,9 +47,9 @@ class Component
         $this->validateComponentFiles();
     }
 
-    private static function getComponentNames(): array
+    private static function getComponentNames(string $rootDir): array
     {
-        $components = scandir(self::ROOT_DIR);
+        $components = scandir($rootDir);
         foreach ($components as $i => $name) {
             if (!is_dir(self::ROOT_DIR . $name) || !preg_match('/^[A-Z]/', $name)) {
                 unset($components[$i]);
@@ -59,11 +59,14 @@ class Component
         return $components;
     }
 
-    public static function getComponents(array $componentNames = []): array
+    public static function getComponents(array $componentNames = [], ?string $rootDir = null): array
     {
+        if (is_null($rootDir)) {
+            $rootDir = realpath(self::ROOT_DIR);
+        }
         $components = [];
-        foreach ($componentNames ?: self::getComponentNames() as $name) {
-            $components[] = new Component($name);
+        foreach ($componentNames ?: self::getComponentNames($rootDir) as $name) {
+            $components[] = new Component($name, $rootDir . '/' . $name);
         }
 
         return $components;
@@ -144,7 +147,7 @@ class Component
 
     private function getComponentPath(string $component): string
     {
-        $components = $this->getComponentNames();
+        $components = $this->getComponentNames(self::ROOT_DIR);
 
         if (!in_array($component, $components)) {
             throw new \Exception('Invalid component name provided: ' . $component);
@@ -164,7 +167,7 @@ class Component
         $composerPath = $this->path . '/composer.json';
         if (!file_exists($composerPath)) {
             throw new RuntimeException(
-                sprintf('composer.json not found for component "%s"', $this->name)
+                sprintf('composer.json not found in path "%s"', $composerPath)
             );
         }
         $composerJson = json_decode(file_get_contents($composerPath), true);
@@ -373,56 +376,13 @@ class Component
 
     public function getSimplestSample(): string
     {
-        if (!file_exists($this->path . '/samples')) {
-            return '';
-        }
-
-        $result = (new Finder())->files()->in($this->path . '/samples')
-            ->name('*.php')->sortByName();
-
-        $preferredFile = array_filter(
-            iterator_to_array($result),
-            fn ($f) => str_starts_with($f->getFilename(), 'get') && $f->getFilename() !== 'get_iam_policy.php'
-        )[0] ?? null;
-
-        // grab the shortest file if no "get" example exists
-        if ($preferredFile === null) {
-            foreach ($result as $file) {
-                if (str_starts_with($file->getFilename(),'get')
-                    && $file->getFilename() !== 'get_iam_policy.php'
-                ) {
-                    $preferredFile = $file;
-                    break;
-                }
-                $preferredFile ??= $file; // set first file to default preferred file
-
-                $preferredFile = count(file($file->getRealPath())) < count(file($preferredFile->getRealPath()))
-                    ? $file
-                    : $preferredFile;
+        // Sorted by most recent
+        foreach ($this->getComponentPackages() as $version) {
+            if ($sample = $version->getSimplestSample()) {
+                return $sample;
             }
         }
 
-        if ($preferredFile === null || !preg_match('/^{(.|\n)*?(^})/m', $preferredFile->getContents(), $matches)) {
-            return '';
-        }
-
-        $lines = explode("\n", $matches[0]);
-
-        // remove wrapped parenthesis
-        array_shift($lines);
-        array_pop($lines);
-
-        // add imports
-        $imports = array_filter(
-            explode("\n", $preferredFile->getContents()),
-            fn ($line) => str_starts_with($line, 'use Google\\')
-        );
-
-        if ($imports) {
-            $imports[] = "\n";
-            $lines = array_merge($imports, $lines);
-        }
-
-        return implode("\n", array_map(fn ($line) => substr($line, 4), $lines));
+        return '';
     }
 }

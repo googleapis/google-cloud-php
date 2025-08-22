@@ -28,6 +28,30 @@ please see our [gRPC installation guide](https://cloud.google.com/php/grpc).
 Please see our [Authentication guide](https://github.com/googleapis/google-cloud-php/blob/main/AUTHENTICATION.md) for more information
 on authenticating your client. Once authenticated, you'll be ready to start making requests.
 
+### Sample
+
+```php
+use Google\ApiCore\ApiException;
+use Google\Cloud\ServiceUsage\V1\Client\ServiceUsageClient;
+use Google\Cloud\ServiceUsage\V1\GetServiceRequest;
+use Google\Cloud\ServiceUsage\V1\Service;
+
+// Create a client.
+$serviceUsageClient = new ServiceUsageClient();
+
+// Prepare the request message.
+$request = new GetServiceRequest();
+
+// Call the API and handle any network failures.
+try {
+    /** @var Service $response */
+    $response = $serviceUsageClient->getService($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
+```
+
 ### Debugging
 
 Please see our [Debugging guide](https://github.com/googleapis/google-cloud-php/blob/main/DEBUG.md)

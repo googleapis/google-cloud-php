@@ -29,6 +29,36 @@ Please see our [Authentication guide](https://github.com/googleapis/google-cloud
 on authenticating your client. Once authenticated, you'll be ready to start making requests.
 
 
+### Sample
+
+```php
+use Google\ApiCore\ApiException;
+use Google\ApiCore\BidiStream;
+use Google\Cloud\ApigeeConnect\V1\Client\TetherClient;
+use Google\Cloud\ApigeeConnect\V1\EgressRequest;
+use Google\Cloud\ApigeeConnect\V1\EgressResponse;
+
+// Create a client.
+$tetherClient = new TetherClient();
+
+// Prepare the request message.
+$request = new EgressResponse();
+
+// Call the API and handle any network failures.
+try {
+    /** @var BidiStream $stream */
+    $stream = $tetherClient->egress();
+    $stream->writeAll([$request,]);
+
+    /** @var EgressRequest $element */
+    foreach ($stream->closeWriteAndReadAll() as $element) {
+        printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
+    }
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
+```
+
 ### Debugging
 
 Please see our [Debugging guide](https://github.com/googleapis/google-cloud-php/blob/main/DEBUG.md)
