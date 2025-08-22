@@ -81,12 +81,31 @@ class NewVersionCommand extends Command
         $yaml = Yaml::parse(file_get_contents($owlbotFile));
         foreach ($yaml['deep-copy-regex'] as $i => $deepCopyRegex) {
             if (preg_match(self::OWL_BOT_REGEX, $deepCopyRegex['source'], $matches)) {
+                // ensure version doesn't already exist in .OwlBot.yaml before adding it
+                if (false !== array_search($version, explode('|', $matches[1]))) {
+                    $output->writeln("Version '$version' already exists in deep-copy-regex. Skipping... ");
+                    continue;
+                }
                 $newVersion = $matches[1] . '|' . $version;
                 $yaml['deep-copy-regex'][$i]['source'] = str_replace($matches[1], $newVersion, $matches[0]);
             }
         }
-        file_put_contents($owlbotFile, Yaml::dump($yaml, 3, 2, Yaml::DUMP_MULTI_LINE_LITERAL_BLOCK));
+        // Ensure YAML has changed before writing it
+        if ($yaml != Yaml::parse(file_get_contents($owlbotFile))) {
+            file_put_contents($owlbotFile, Yaml::dump($yaml, 3, 2, Yaml::DUMP_MULTI_LINE_LITERAL_BLOCK));
+        }
 
+        // Run "add-sample-to-readme" command to ensure our README contains the latest version's sample.
+        $addSamplesArgs = ['--component' => [$componentName]];
+        if (!$addSampleCommand = $this->getApplication()->find('add-sample-to-readme')) {
+            throw new \RuntimeException('Application does not have an add-samples-to-readme command.');
+        }
+        $returnCode = $addSampleCommand->run(new ArrayInput($addSamplesArgs), $output);
+        if ($returnCode !== Command::SUCCESS) {
+            return $returnCode;
+        }
+
+        // Run "update-component" command to generate the new version
         if ($input->getOption('no-update-component')) {
             // nothing left to do
             $output->writeln('Skipping component update: "--no-update-component" flag set');

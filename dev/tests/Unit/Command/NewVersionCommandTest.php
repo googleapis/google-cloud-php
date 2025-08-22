@@ -18,7 +18,7 @@ class NewVersionCommandTest extends TestCase
 
     public static function setUpBeforeClass(): void
     {
-        self::$rootPath = sys_get_temp_dir() . '/gcloud-tests';
+        self::$rootPath = sys_get_temp_dir() . '/google-cloud-php-tests';
         self::$componentPath = self::$rootPath . '/component';
         self::$owlbotFile = self::$componentPath . '/.OwlBot.yaml';
         $filesystem = new Filesystem();
@@ -43,7 +43,7 @@ class NewVersionCommandTest extends TestCase
         ]);
 
         $this->assertStringContainsString('Adding new version \'v2\' to .OwlBot.yaml', $tester->getDisplay());
-        $this->assertStringContainsString('v1|v1beta1|v2', file_get_contents(self::$owlbotFile));
+        $this->assertStringContainsString('(v1|v1beta1|v2)', file_get_contents(self::$owlbotFile));
     }
 
     public function testAddNewVersionNoUpdate()
@@ -59,14 +59,30 @@ class NewVersionCommandTest extends TestCase
         ]);
 
         $this->assertStringContainsString('Adding new version \'v3\' to .OwlBot.yaml', $tester->getDisplay());
-        $this->assertStringContainsString('v1|v1beta1|v2|v3', file_get_contents(self::$owlbotFile));
+        $this->assertStringContainsString('(v1|v1beta1|v2|v3)', file_get_contents(self::$owlbotFile));
         $this->assertStringContainsString('Skipping component update', $tester->getDisplay());
+    }
+
+    public function testDoesNotUpdateOwlBotIfVersionExists()
+    {
+        $command = new NewVersionCommand(self::$rootPath);
+        $command->setApplication($this->mockApplication());
+        $tester = new CommandTester($command);
+
+        $tester->execute([
+            'component' => 'component',
+            'version' => 'v1beta1',
+        ]);
+
+        $this->assertStringContainsString('Adding new version \'v1beta1\' to .OwlBot.yaml', $tester->getDisplay());
+        $this->assertStringContainsString('Version \'v1beta1\' already exists in deep-copy-regex', $tester->getDisplay());
+        $this->assertStringContainsString('(v1|v1beta1|v2|v3)', file_get_contents(self::$owlbotFile));
     }
 
     private function mockApplication(bool $shouldCallUpdate = true): Application
     {
         $updateCommand = $this->createMock(Command::class);
-        $updateCommand->expects($shouldCallUpdate ? $this->once() : $this->never())
+        $updateCommand->expects($shouldCallUpdate ? $this->exactly(2) : $this->once())
             ->method('run')
             ->willReturn(0);
 
