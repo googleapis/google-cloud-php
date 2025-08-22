@@ -32,21 +32,20 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 
 ```php
 use Google\ApiCore\ApiException;
-use Google\Cloud\AIPlatform\V1\AnnotationSpec;
-use Google\Cloud\AIPlatform\V1\Client\DatasetServiceClient;
-use Google\Cloud\AIPlatform\V1\GetAnnotationSpecRequest;
+use Google\Cloud\AIPlatform\V1\Client\DataFoundryServiceClient;
+use Google\Cloud\Location\GetLocationRequest;
+use Google\Cloud\Location\Location;
 
 // Create a client.
-$datasetServiceClient = new DatasetServiceClient();
+$dataFoundryServiceClient = new DataFoundryServiceClient();
 
 // Prepare the request message.
-$request = (new GetAnnotationSpecRequest())
-    ->setName($formattedName);
+$request = new GetLocationRequest();
 
 // Call the API and handle any network failures.
 try {
-    /** @var AnnotationSpec $response */
-    $response = $datasetServiceClient->getAnnotationSpec($request);
+    /** @var Location $response */
+    $response = $dataFoundryServiceClient->getLocation($request);
     printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
 } catch (ApiException $ex) {
     printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

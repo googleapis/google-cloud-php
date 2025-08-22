@@ -1381,7 +1381,7 @@
     "ShoppingMerchantAccounts": {
         "language": "php",
         "distribution_name": "google/shopping-merchant-accounts",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/shopping-merchant-accounts/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "merchantapi"
@@ -1389,7 +1389,7 @@
     "ShoppingMerchantConversions": {
         "language": "php",
         "distribution_name": "google/shopping-merchant-conversions",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/shopping-merchant-conversions/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "merchantapi"
@@ -1397,14 +1397,14 @@
     "ShoppingMerchantDataSources": {
         "language": "php",
         "distribution_name": "google/shopping-merchant-datasources",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/shopping-merchant-datasources/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "merchantapi"
     },
     "ShoppingMerchantInventories": {
         "distribution_name": "google/shopping-merchant-inventories",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/shopping-merchant-inventories/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "merchantapi"
@@ -1412,7 +1412,7 @@
     "ShoppingMerchantIssueResolution": {
         "language": "php",
         "distribution_name": "google/shopping-merchant-issueresolution",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/shopping-merchant-issueresolution/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "merchantapi"
@@ -1420,7 +1420,7 @@
     "ShoppingMerchantLfp": {
         "language": "php",
         "distribution_name": "google/shopping-merchant-lfp",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/shopping-merchant-lfp/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "merchantapi"
@@ -1428,7 +1428,7 @@
     "ShoppingMerchantNotifications": {
         "language": "php",
         "distribution_name": "google/shopping-merchant-notifications",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/shopping-merchant-notifications/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "merchantapi"
@@ -1436,7 +1436,7 @@
     "ShoppingMerchantOrderTracking": {
         "language": "php",
         "distribution_name": "google/shopping-merchant-ordertracking",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/shopping-merchant-ordertracking/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "merchantapi"
@@ -1444,7 +1444,7 @@
     "ShoppingMerchantProducts": {
         "language": "php",
         "distribution_name": "google/shopping-merchant-products",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/shopping-merchant-products/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "merchantapi"
@@ -1452,7 +1452,7 @@
     "ShoppingMerchantPromotions": {
         "language": "php",
         "distribution_name": "google/shopping-merchant-promotions",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/shopping-merchant-promotions/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "merchantapi"
@@ -1460,7 +1460,7 @@
     "ShoppingMerchantQuota": {
         "language": "php",
         "distribution_name": "google/shopping-merchant-quota",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/shopping-merchant-quota/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "merchantapi"
@@ -1468,7 +1468,7 @@
     "ShoppingMerchantReports": {
         "language": "php",
         "distribution_name": "google/shopping-merchant-reports",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/shopping-merchant-reports/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "merchantapi"

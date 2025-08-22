@@ -5,6 +5,45 @@
     "protoPackage": "google.cloud.aiplatform.v1",
     "libraryPackage": "Google\\Cloud\\AIPlatform\\V1",
     "services": {
+        "DataFoundryService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "DataFoundryServiceGapicClient",
+                    "rpcs": {
+                        "GenerateSyntheticData": {
+                            "methods": [
+                                "generateSyntheticData"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "DatasetService": {
             "clients": {
                 "grpc": {
