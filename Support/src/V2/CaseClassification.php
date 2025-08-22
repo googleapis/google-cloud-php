@@ -9,7 +9,11 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A classification object with a product type and value.
+ * A Case Classification represents the topic that a case is about. It's very
+ * important to use accurate classifications, because they're
+ * used to route your cases to specialists who can help you.
+ * A classification always has an ID that is its unique identifier.
+ * A valid ID is required when creating a case.
  *
  * Generated from protobuf message <code>google.cloud.support.v2.CaseClassification</code>
  */
@@ -19,12 +23,18 @@ class CaseClassification extends \Google\Protobuf\Internal\Message
      * The unique ID for a classification. Must be specified for case creation.
      * To retrieve valid classification IDs for case creation, use
      * `caseClassifications.search`.
+     * Classification IDs returned by `caseClassifications.search` are guaranteed
+     * to be valid for at least 6 months. If a given classification is
+     * deactiveated, it will immediately stop being returned. After 6 months,
+     * `case.create` requests using the classification ID will fail.
      *
      * Generated from protobuf field <code>string id = 3;</code>
      */
     protected $id = '';
     /**
-     * The display name of the classification.
+     * A display name for the classification.
+     * The display name is not static and can change. To uniquely and consistently
+     * identify classifications, use the `CaseClassification.id` field.
      *
      * Generated from protobuf field <code>string display_name = 4;</code>
      */
@@ -40,8 +50,14 @@ class CaseClassification extends \Google\Protobuf\Internal\Message
      *           The unique ID for a classification. Must be specified for case creation.
      *           To retrieve valid classification IDs for case creation, use
      *           `caseClassifications.search`.
+     *           Classification IDs returned by `caseClassifications.search` are guaranteed
+     *           to be valid for at least 6 months. If a given classification is
+     *           deactiveated, it will immediately stop being returned. After 6 months,
+     *           `case.create` requests using the classification ID will fail.
      *     @type string $display_name
-     *           The display name of the classification.
+     *           A display name for the classification.
+     *           The display name is not static and can change. To uniquely and consistently
+     *           identify classifications, use the `CaseClassification.id` field.
      * }
      */
     public function __construct($data = NULL) {
@@ -53,6 +69,10 @@ class CaseClassification extends \Google\Protobuf\Internal\Message
      * The unique ID for a classification. Must be specified for case creation.
      * To retrieve valid classification IDs for case creation, use
      * `caseClassifications.search`.
+     * Classification IDs returned by `caseClassifications.search` are guaranteed
+     * to be valid for at least 6 months. If a given classification is
+     * deactiveated, it will immediately stop being returned. After 6 months,
+     * `case.create` requests using the classification ID will fail.
      *
      * Generated from protobuf field <code>string id = 3;</code>
      * @return string
@@ -66,6 +86,10 @@ class CaseClassification extends \Google\Protobuf\Internal\Message
      * The unique ID for a classification. Must be specified for case creation.
      * To retrieve valid classification IDs for case creation, use
      * `caseClassifications.search`.
+     * Classification IDs returned by `caseClassifications.search` are guaranteed
+     * to be valid for at least 6 months. If a given classification is
+     * deactiveated, it will immediately stop being returned. After 6 months,
+     * `case.create` requests using the classification ID will fail.
      *
      * Generated from protobuf field <code>string id = 3;</code>
      * @param string $var
@@ -80,7 +104,9 @@ class CaseClassification extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The display name of the classification.
+     * A display name for the classification.
+     * The display name is not static and can change. To uniquely and consistently
+     * identify classifications, use the `CaseClassification.id` field.
      *
      * Generated from protobuf field <code>string display_name = 4;</code>
      * @return string
@@ -91,7 +117,9 @@ class CaseClassification extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The display name of the classification.
+     * A display name for the classification.
+     * The display name is not static and can change. To uniquely and consistently
+     * identify classifications, use the `CaseClassification.id` field.
      *
      * Generated from protobuf field <code>string display_name = 4;</code>
      * @param string $var

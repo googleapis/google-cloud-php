@@ -39,8 +39,6 @@ use Google\Rpc\Status;
  *                                          format `projects/&#42;/locations/global`. Please see
  *                                          {@see NetworkServicesClient::locationName()} for help formatting this field.
  * @param string $grpcRouteId               Short name of the GrpcRoute resource to be created.
- * @param string $grpcRouteName             Name of the GrpcRoute resource. It matches pattern
- *                                          `projects/&#42;/locations/global/grpcRoutes/<grpc_route_name>`
  * @param string $grpcRouteHostnamesElement Service hostnames with an optional port for which this route
  *                                          describes traffic.
  *
@@ -76,7 +74,6 @@ use Google\Rpc\Status;
 function create_grpc_route_sample(
     string $formattedParent,
     string $grpcRouteId,
-    string $grpcRouteName,
     string $grpcRouteHostnamesElement
 ): void {
     // Create a client.
@@ -89,7 +86,6 @@ function create_grpc_route_sample(
         ->setAction($grpcRouteRulesAction);
     $grpcRouteRules = [$routeRule,];
     $grpcRoute = (new GrpcRoute())
-        ->setName($grpcRouteName)
         ->setHostnames($grpcRouteHostnames)
         ->setRules($grpcRouteRules);
     $request = (new CreateGrpcRouteRequest())
@@ -130,14 +126,8 @@ function callSample(): void
 {
     $formattedParent = NetworkServicesClient::locationName('[PROJECT]', '[LOCATION]');
     $grpcRouteId = '[GRPC_ROUTE_ID]';
-    $grpcRouteName = '[NAME]';
     $grpcRouteHostnamesElement = '[HOSTNAMES]';
 
-    create_grpc_route_sample(
-        $formattedParent,
-        $grpcRouteId,
-        $grpcRouteName,
-        $grpcRouteHostnamesElement
-    );
+    create_grpc_route_sample($formattedParent, $grpcRouteId, $grpcRouteHostnamesElement);
 }
 // [END networkservices_v1_generated_NetworkServices_CreateGrpcRoute_sync]

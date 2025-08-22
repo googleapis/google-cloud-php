@@ -246,6 +246,40 @@ return [
                     ],
                 ],
             ],
+            'FetchClusterUpgradeInfo' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*}:fetchClusterUpgradeInfo',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/zones/*/clusters/*}:fetchClusterUpgradeInfo',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'FetchNodePoolUpgradeInfo' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*/nodePools/*}:fetchNodePoolUpgradeInfo',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/zones/*/clusters/*/nodePools/*}:fetchNodePoolUpgradeInfo',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetCluster' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*}',

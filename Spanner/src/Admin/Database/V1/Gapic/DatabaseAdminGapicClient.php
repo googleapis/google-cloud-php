@@ -64,6 +64,8 @@ use Google\Cloud\Spanner\Admin\Database\V1\GetBackupScheduleRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\GetDatabaseDdlRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\GetDatabaseDdlResponse;
 use Google\Cloud\Spanner\Admin\Database\V1\GetDatabaseRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\InternalUpdateGraphOperationRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\InternalUpdateGraphOperationResponse;
 use Google\Cloud\Spanner\Admin\Database\V1\ListBackupOperationsRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\ListBackupOperationsResponse;
 use Google\Cloud\Spanner\Admin\Database\V1\ListBackupSchedulesRequest;
@@ -90,6 +92,7 @@ use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Protobuf\Timestamp;
+use Google\Rpc\Status;
 
 /**
  * Service Description: Cloud Spanner Database Admin API
@@ -1495,6 +1498,69 @@ class DatabaseAdminGapicClient
     }
 
     /**
+     * This is an internal API called by Spanner Graph jobs. You should never need
+     * to call this API directly.
+     *
+     * Sample code:
+     * ```
+     * $databaseAdminClient = new DatabaseAdminClient();
+     * try {
+     *     $formattedDatabase = $databaseAdminClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+     *     $operationId = 'operation_id';
+     *     $vmIdentityToken = 'vm_identity_token';
+     *     $response = $databaseAdminClient->internalUpdateGraphOperation($formattedDatabase, $operationId, $vmIdentityToken);
+     * } finally {
+     *     $databaseAdminClient->close();
+     * }
+     * ```
+     *
+     * @param string $database        Internal field, do not use directly.
+     * @param string $operationId     Internal field, do not use directly.
+     * @param string $vmIdentityToken Internal field, do not use directly.
+     * @param array  $optionalArgs    {
+     *     Optional.
+     *
+     *     @type float $progress
+     *           Internal field, do not use directly.
+     *     @type Status $status
+     *           Internal field, do not use directly.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Spanner\Admin\Database\V1\InternalUpdateGraphOperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function internalUpdateGraphOperation(
+        $database,
+        $operationId,
+        $vmIdentityToken,
+        array $optionalArgs = []
+    ) {
+        $request = new InternalUpdateGraphOperationRequest();
+        $request->setDatabase($database);
+        $request->setOperationId($operationId);
+        $request->setVmIdentityToken($vmIdentityToken);
+        if (isset($optionalArgs['progress'])) {
+            $request->setProgress($optionalArgs['progress']);
+        }
+
+        if (isset($optionalArgs['status'])) {
+            $request->setStatus($optionalArgs['status']);
+        }
+
+        return $this->startCall(
+            'InternalUpdateGraphOperation',
+            InternalUpdateGraphOperationResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Lists the backup [long-running operations][google.longrunning.Operation] in
      * the given instance. A backup operation has a name of the form
      * `projects/<project>/instances/<instance>/backups/<backup>/operations/<operation>`.
@@ -2735,6 +2801,10 @@ class DatabaseAdminGapicClient
      *           ```
      *           For more details, see protobuffer [self
      *           description](https://developers.google.com/protocol-buffers/docs/techniques#self-description).
+     *     @type bool $throughputMode
+     *           Optional. This field is exposed to be used by the Spanner Migration Tool.
+     *           For more details, see
+     *           [SMT](https://github.com/GoogleCloudPlatform/spanner-migration-tool).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2761,6 +2831,10 @@ class DatabaseAdminGapicClient
 
         if (isset($optionalArgs['protoDescriptors'])) {
             $request->setProtoDescriptors($optionalArgs['protoDescriptors']);
+        }
+
+        if (isset($optionalArgs['throughputMode'])) {
+            $request->setThroughputMode($optionalArgs['throughputMode']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(

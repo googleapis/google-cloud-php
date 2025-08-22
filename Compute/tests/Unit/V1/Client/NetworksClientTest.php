@@ -43,11 +43,13 @@ use Google\Cloud\Compute\V1\NetworkList;
 use Google\Cloud\Compute\V1\NetworksAddPeeringRequest;
 use Google\Cloud\Compute\V1\NetworksGetEffectiveFirewallsResponse;
 use Google\Cloud\Compute\V1\NetworksRemovePeeringRequest;
+use Google\Cloud\Compute\V1\NetworksRequestRemovePeeringRequest;
 use Google\Cloud\Compute\V1\NetworksUpdatePeeringRequest;
 use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\Operation\Status;
 use Google\Cloud\Compute\V1\PatchNetworkRequest;
 use Google\Cloud\Compute\V1\RemovePeeringNetworkRequest;
+use Google\Cloud\Compute\V1\RequestRemovePeeringNetworkRequest;
 use Google\Cloud\Compute\V1\SwitchToCustomModeNetworkRequest;
 use Google\Cloud\Compute\V1\UpdatePeeringNetworkRequest;
 use Google\Rpc\Code;
@@ -1010,6 +1012,132 @@ class NetworksClientTest extends GeneratedTest
             ->setNetworksRemovePeeringRequestResource($networksRemovePeeringRequestResource)
             ->setProject($project);
         $response = $gapicClient->removePeering($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function requestRemovePeeringTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new GlobalOperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/requestRemovePeeringTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
+        $completeOperation = new Operation();
+        $completeOperation->setName('customOperations/requestRemovePeeringTest');
+        $completeOperation->setStatus(Status::DONE);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $network = 'network1843485230';
+        $networksRequestRemovePeeringRequestResource = new NetworksRequestRemovePeeringRequest();
+        $project = 'project-309310695';
+        $request = (new RequestRemovePeeringNetworkRequest())
+            ->setNetwork($network)
+            ->setNetworksRequestRemovePeeringRequestResource($networksRequestRemovePeeringRequestResource)
+            ->setProject($project);
+        $response = $gapicClient->requestRemovePeering($request);
+        $this->assertFalse($response->isDone());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.Networks/RequestRemovePeering', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getNetwork();
+        $this->assertProtobufEquals($network, $actualValue);
+        $actualValue = $actualApiRequestObject->getNetworksRequestRemovePeeringRequestResource();
+        $this->assertProtobufEquals($networksRequestRemovePeeringRequestResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $expectedOperationsRequestObject = new GetGlobalOperationRequest();
+        $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.GlobalOperations/Get', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function requestRemovePeeringExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new GlobalOperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/requestRemovePeeringExceptionTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $network = 'network1843485230';
+        $networksRequestRemovePeeringRequestResource = new NetworksRequestRemovePeeringRequest();
+        $project = 'project-309310695';
+        $request = (new RequestRemovePeeringNetworkRequest())
+            ->setNetwork($network)
+            ->setNetworksRequestRemovePeeringRequestResource($networksRequestRemovePeeringRequestResource)
+            ->setProject($project);
+        $response = $gapicClient->requestRemovePeering($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {

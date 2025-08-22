@@ -17,7 +17,7 @@ class TransferOptions extends \Google\Protobuf\Internal\Message
 {
     /**
      * When to overwrite objects that already exist in the sink. The default is
-     * that only objects that are different from the source are ovewritten. If
+     * that only objects that are different from the source are overwritten. If
      * true, all objects in the sink whose name matches an object in the source
      * are overwritten with the source object.
      *
@@ -66,7 +66,7 @@ class TransferOptions extends \Google\Protobuf\Internal\Message
      *
      *     @type bool $overwrite_objects_already_existing_in_sink
      *           When to overwrite objects that already exist in the sink. The default is
-     *           that only objects that are different from the source are ovewritten. If
+     *           that only objects that are different from the source are overwritten. If
      *           true, all objects in the sink whose name matches an object in the source
      *           are overwritten with the source object.
      *     @type bool $delete_objects_unique_in_sink
@@ -95,7 +95,7 @@ class TransferOptions extends \Google\Protobuf\Internal\Message
 
     /**
      * When to overwrite objects that already exist in the sink. The default is
-     * that only objects that are different from the source are ovewritten. If
+     * that only objects that are different from the source are overwritten. If
      * true, all objects in the sink whose name matches an object in the source
      * are overwritten with the source object.
      *
@@ -109,7 +109,7 @@ class TransferOptions extends \Google\Protobuf\Internal\Message
 
     /**
      * When to overwrite objects that already exist in the sink. The default is
-     * that only objects that are different from the source are ovewritten. If
+     * that only objects that are different from the source are overwritten. If
      * true, all objects in the sink whose name matches an object in the source
      * are overwritten with the source object.
      *

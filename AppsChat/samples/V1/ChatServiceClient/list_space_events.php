@@ -39,7 +39,20 @@ use Google\Apps\Chat\V1\SpaceEvent;
  * `Membership` resource.
  *
  * Requires [user
- * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+ * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+ * with an [authorization
+ * scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes)
+ * appropriate for reading the requested data:
+ *
+ * - `https://www.googleapis.com/auth/chat.spaces.readonly`
+ * - `https://www.googleapis.com/auth/chat.spaces`
+ * - `https://www.googleapis.com/auth/chat.messages.readonly`
+ * - `https://www.googleapis.com/auth/chat.messages`
+ * - `https://www.googleapis.com/auth/chat.messages.reactions.readonly`
+ * - `https://www.googleapis.com/auth/chat.messages.reactions`
+ * - `https://www.googleapis.com/auth/chat.memberships.readonly`
+ * - `https://www.googleapis.com/auth/chat.memberships`
+ *
  * To list events, the authenticated user must be a member of the space.
  *
  * For an example, see [List events from a Google Chat

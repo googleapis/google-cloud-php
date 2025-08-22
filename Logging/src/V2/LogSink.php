@@ -438,7 +438,9 @@ class LogSink extends \Google\Protobuf\Internal\Message
      */
     public function getOutputVersionFormat()
     {
-        @trigger_error('output_version_format is deprecated.', E_USER_DEPRECATED);
+        if ($this->output_version_format !== 0) {
+            @trigger_error('output_version_format is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->output_version_format;
     }
 

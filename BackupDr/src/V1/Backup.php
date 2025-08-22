@@ -107,6 +107,18 @@ class Backup extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int64 resource_size_bytes = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $resource_size_bytes = 0;
+    /**
+     * Optional. Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzs = 24 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $satisfies_pzs = null;
+    /**
+     * Optional. Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzi = 25 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $satisfies_pzi = null;
     protected $backup_properties;
     protected $plan_info;
 
@@ -150,14 +162,22 @@ class Backup extends \Google\Protobuf\Internal\Message
      *           Optional. The list of BackupLocks taken by the accessor Backup Appliance.
      *     @type \Google\Cloud\BackupDR\V1\ComputeInstanceBackupProperties $compute_instance_backup_properties
      *           Output only. Compute Engine specific backup properties.
+     *     @type \Google\Cloud\BackupDR\V1\CloudSqlInstanceBackupProperties $cloud_sql_instance_backup_properties
+     *           Output only. Cloud SQL specific backup properties.
      *     @type \Google\Cloud\BackupDR\V1\BackupApplianceBackupProperties $backup_appliance_backup_properties
      *           Output only. Backup Appliance specific backup properties.
+     *     @type \Google\Cloud\BackupDR\V1\DiskBackupProperties $disk_backup_properties
+     *           Output only. Disk specific backup properties.
      *     @type int $backup_type
      *           Output only. Type of the backup, unspecified, scheduled or ondemand.
      *     @type \Google\Cloud\BackupDR\V1\Backup\GCPBackupPlanInfo $gcp_backup_plan_info
      *           Output only. Configuration for a Google Cloud resource.
      *     @type int|string $resource_size_bytes
      *           Output only. source resource size in bytes at the time of the backup.
+     *     @type bool $satisfies_pzs
+     *           Optional. Output only. Reserved for future use.
+     *     @type bool $satisfies_pzi
+     *           Optional. Output only. Reserved for future use.
      * }
      */
     public function __construct($data = NULL) {
@@ -595,6 +615,37 @@ class Backup extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Output only. Cloud SQL specific backup properties.
+     *
+     * Generated from protobuf field <code>.google.cloud.backupdr.v1.CloudSqlInstanceBackupProperties cloud_sql_instance_backup_properties = 26 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\BackupDR\V1\CloudSqlInstanceBackupProperties|null
+     */
+    public function getCloudSqlInstanceBackupProperties()
+    {
+        return $this->readOneof(26);
+    }
+
+    public function hasCloudSqlInstanceBackupProperties()
+    {
+        return $this->hasOneof(26);
+    }
+
+    /**
+     * Output only. Cloud SQL specific backup properties.
+     *
+     * Generated from protobuf field <code>.google.cloud.backupdr.v1.CloudSqlInstanceBackupProperties cloud_sql_instance_backup_properties = 26 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\BackupDR\V1\CloudSqlInstanceBackupProperties $var
+     * @return $this
+     */
+    public function setCloudSqlInstanceBackupProperties($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\BackupDR\V1\CloudSqlInstanceBackupProperties::class);
+        $this->writeOneof(26, $var);
+
+        return $this;
+    }
+
+    /**
      * Output only. Backup Appliance specific backup properties.
      *
      * Generated from protobuf field <code>.google.cloud.backupdr.v1.BackupApplianceBackupProperties backup_appliance_backup_properties = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -621,6 +672,37 @@ class Backup extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\BackupDR\V1\BackupApplianceBackupProperties::class);
         $this->writeOneof(21, $var);
+
+        return $this;
+    }
+
+    /**
+     * Output only. Disk specific backup properties.
+     *
+     * Generated from protobuf field <code>.google.cloud.backupdr.v1.DiskBackupProperties disk_backup_properties = 28 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\BackupDR\V1\DiskBackupProperties|null
+     */
+    public function getDiskBackupProperties()
+    {
+        return $this->readOneof(28);
+    }
+
+    public function hasDiskBackupProperties()
+    {
+        return $this->hasOneof(28);
+    }
+
+    /**
+     * Output only. Disk specific backup properties.
+     *
+     * Generated from protobuf field <code>.google.cloud.backupdr.v1.DiskBackupProperties disk_backup_properties = 28 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\BackupDR\V1\DiskBackupProperties $var
+     * @return $this
+     */
+    public function setDiskBackupProperties($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\BackupDR\V1\DiskBackupProperties::class);
+        $this->writeOneof(28, $var);
 
         return $this;
     }
@@ -704,6 +786,78 @@ class Backup extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->resource_size_bytes = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzs = 24 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzs()
+    {
+        return isset($this->satisfies_pzs) ? $this->satisfies_pzs : false;
+    }
+
+    public function hasSatisfiesPzs()
+    {
+        return isset($this->satisfies_pzs);
+    }
+
+    public function clearSatisfiesPzs()
+    {
+        unset($this->satisfies_pzs);
+    }
+
+    /**
+     * Optional. Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzs = 24 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzs($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzs = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzi = 25 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzi()
+    {
+        return isset($this->satisfies_pzi) ? $this->satisfies_pzi : false;
+    }
+
+    public function hasSatisfiesPzi()
+    {
+        return isset($this->satisfies_pzi);
+    }
+
+    public function clearSatisfiesPzi()
+    {
+        unset($this->satisfies_pzi);
+    }
+
+    /**
+     * Optional. Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzi = 25 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzi($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzi = $var;
 
         return $this;
     }

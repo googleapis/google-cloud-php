@@ -235,12 +235,12 @@ class GlobalOrganizationOperationsGapicClient
      * }
      * ```
      *
-     * @param string $operation    Name of the Operations resource to return, or its unique numeric identifier.
+     * @param string $operation    Name of the Operations resource to return. Parent is derived from this field.
      * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type string $parentId
-     *           Parent ID for this request.
+     *           Parent ID for this request. Not used. Parent is derived from resource_id.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on

@@ -22,8 +22,7 @@ class HostConfig extends \Google\Protobuf\Internal\Message
      */
     protected $html = '';
     /**
-     * Output only. API hostname. This is the hostname to use for **Host: Data
-     * Plane** endpoints.
+     * Output only. API hostname.
      *
      * Generated from protobuf field <code>string api = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -50,8 +49,7 @@ class HostConfig extends \Google\Protobuf\Internal\Message
      *     @type string $html
      *           Output only. HTML hostname.
      *     @type string $api
-     *           Output only. API hostname. This is the hostname to use for **Host: Data
-     *           Plane** endpoints.
+     *           Output only. API hostname.
      *     @type string $git_http
      *           Output only. Git HTTP hostname.
      *     @type string $git_ssh
@@ -90,8 +88,7 @@ class HostConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. API hostname. This is the hostname to use for **Host: Data
-     * Plane** endpoints.
+     * Output only. API hostname.
      *
      * Generated from protobuf field <code>string api = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -102,8 +99,7 @@ class HostConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. API hostname. This is the hostname to use for **Host: Data
-     * Plane** endpoints.
+     * Output only. API hostname.
      *
      * Generated from protobuf field <code>string api = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

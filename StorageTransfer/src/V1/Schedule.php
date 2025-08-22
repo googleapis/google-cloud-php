@@ -71,7 +71,7 @@ class Schedule extends \Google\Protobuf\Internal\Message
      * [schedule_end_date][google.storagetransfer.v1.Schedule.schedule_end_date],
      * `end_time_of_day` specifies the end date and time for starting new transfer
      * operations. This field must be greater than or equal to the timestamp
-     * corresponding to the combintation of
+     * corresponding to the combination of
      * [schedule_start_date][google.storagetransfer.v1.Schedule.schedule_start_date]
      * and
      * [start_time_of_day][google.storagetransfer.v1.Schedule.start_time_of_day],
@@ -143,7 +143,7 @@ class Schedule extends \Google\Protobuf\Internal\Message
      *           [schedule_end_date][google.storagetransfer.v1.Schedule.schedule_end_date],
      *           `end_time_of_day` specifies the end date and time for starting new transfer
      *           operations. This field must be greater than or equal to the timestamp
-     *           corresponding to the combintation of
+     *           corresponding to the combination of
      *           [schedule_start_date][google.storagetransfer.v1.Schedule.schedule_start_date]
      *           and
      *           [start_time_of_day][google.storagetransfer.v1.Schedule.start_time_of_day],
@@ -341,7 +341,7 @@ class Schedule extends \Google\Protobuf\Internal\Message
      * [schedule_end_date][google.storagetransfer.v1.Schedule.schedule_end_date],
      * `end_time_of_day` specifies the end date and time for starting new transfer
      * operations. This field must be greater than or equal to the timestamp
-     * corresponding to the combintation of
+     * corresponding to the combination of
      * [schedule_start_date][google.storagetransfer.v1.Schedule.schedule_start_date]
      * and
      * [start_time_of_day][google.storagetransfer.v1.Schedule.start_time_of_day],
@@ -375,7 +375,7 @@ class Schedule extends \Google\Protobuf\Internal\Message
      * [schedule_end_date][google.storagetransfer.v1.Schedule.schedule_end_date],
      * `end_time_of_day` specifies the end date and time for starting new transfer
      * operations. This field must be greater than or equal to the timestamp
-     * corresponding to the combintation of
+     * corresponding to the combination of
      * [schedule_start_date][google.storagetransfer.v1.Schedule.schedule_start_date]
      * and
      * [start_time_of_day][google.storagetransfer.v1.Schedule.start_time_of_day],

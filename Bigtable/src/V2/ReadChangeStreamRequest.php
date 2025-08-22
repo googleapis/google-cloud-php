@@ -121,10 +121,10 @@ class ReadChangeStreamRequest extends \Google\Protobuf\Internal\Message
      *           previously left off. If specified, changes will be read starting at the
      *           the position. Tokens are delivered on the stream as part of `Heartbeat`
      *           and `CloseStream` messages.
-     *           If a single token is provided, the token’s partition must exactly match
-     *           the request’s partition. If multiple tokens are provided, as in the case
+     *           If a single token is provided, the token's partition must exactly match
+     *           the request's partition. If multiple tokens are provided, as in the case
      *           of a partition merge, the union of the token partitions must exactly
-     *           cover the request’s partition. Otherwise, INVALID_ARGUMENT will be
+     *           cover the request's partition. Otherwise, INVALID_ARGUMENT will be
      *           returned.
      *     @type \Google\Protobuf\Timestamp $end_time
      *           If specified, OK will be returned when the stream advances beyond
@@ -280,10 +280,10 @@ class ReadChangeStreamRequest extends \Google\Protobuf\Internal\Message
      * previously left off. If specified, changes will be read starting at the
      * the position. Tokens are delivered on the stream as part of `Heartbeat`
      * and `CloseStream` messages.
-     * If a single token is provided, the token’s partition must exactly match
-     * the request’s partition. If multiple tokens are provided, as in the case
+     * If a single token is provided, the token's partition must exactly match
+     * the request's partition. If multiple tokens are provided, as in the case
      * of a partition merge, the union of the token partitions must exactly
-     * cover the request’s partition. Otherwise, INVALID_ARGUMENT will be
+     * cover the request's partition. Otherwise, INVALID_ARGUMENT will be
      * returned.
      *
      * Generated from protobuf field <code>.google.bigtable.v2.StreamContinuationTokens continuation_tokens = 6;</code>
@@ -304,10 +304,10 @@ class ReadChangeStreamRequest extends \Google\Protobuf\Internal\Message
      * previously left off. If specified, changes will be read starting at the
      * the position. Tokens are delivered on the stream as part of `Heartbeat`
      * and `CloseStream` messages.
-     * If a single token is provided, the token’s partition must exactly match
-     * the request’s partition. If multiple tokens are provided, as in the case
+     * If a single token is provided, the token's partition must exactly match
+     * the request's partition. If multiple tokens are provided, as in the case
      * of a partition merge, the union of the token partitions must exactly
-     * cover the request’s partition. Otherwise, INVALID_ARGUMENT will be
+     * cover the request's partition. Otherwise, INVALID_ARGUMENT will be
      * returned.
      *
      * Generated from protobuf field <code>.google.bigtable.v2.StreamContinuationTokens continuation_tokens = 6;</code>

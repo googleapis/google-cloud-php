@@ -10,9 +10,6 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Response metadata proto
- * This is an experimental feature that will be used to get zone_id and
- * cluster_id from response trailers to tag the metrics. This should not be
- * used by customers directly
  *
  * Generated from protobuf message <code>google.bigtable.v2.ResponseParams</code>
  */

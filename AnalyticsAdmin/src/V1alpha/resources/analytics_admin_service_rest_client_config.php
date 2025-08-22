@@ -1102,6 +1102,17 @@ return [
                     ],
                 ],
             ],
+            'GetSubpropertySyncConfig' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{name=properties/*/subpropertySyncConfigs/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ListAccessBindings' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{parent=accounts/*}/accessBindings',
@@ -1384,6 +1395,17 @@ return [
             'ListSubpropertyEventFilters' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{parent=properties/*}/subpropertyEventFilters',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListSubpropertySyncConfigs' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/subpropertySyncConfigs',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -1893,6 +1915,19 @@ return [
                 ],
                 'queryParams' => [
                     'update_mask',
+                ],
+            ],
+            'UpdateSubpropertySyncConfig' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1alpha/{subproperty_sync_config.name=properties/*/subpropertySyncConfigs/*}',
+                'body' => 'subproperty_sync_config',
+                'placeholders' => [
+                    'subproperty_sync_config.name' => [
+                        'getters' => [
+                            'getSubpropertySyncConfig',
+                            'getName',
+                        ],
+                    ],
                 ],
             ],
         ],

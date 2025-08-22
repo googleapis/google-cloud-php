@@ -77,6 +77,21 @@ return [
                     'backup_id',
                 ],
             ],
+            'CreateSchemaBundle' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{parent=projects/*/instances/*/tables/*}/schemaBundles',
+                'body' => 'schema_bundle',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'schema_bundle_id',
+                ],
+            ],
             'CreateTable' => [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{parent=projects/*/instances/*}/tables',
@@ -115,6 +130,17 @@ return [
             'DeleteBackup' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v2/{name=projects/*/instances/*/clusters/*/backups/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteSchemaBundle' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v2/{name=projects/*/instances/*/tables/*/schemaBundles/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -201,11 +227,32 @@ return [
                         'uriTemplate' => '/v2/{resource=projects/*/instances/*/clusters/*/backups/*}:getIamPolicy',
                         'body' => '*',
                     ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{resource=projects/*/instances/*/tables/*/authorizedViews/*}:getIamPolicy',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{resource=projects/*/instances/*/tables/*/schemaBundles/*}:getIamPolicy',
+                        'body' => '*',
+                    ],
                 ],
                 'placeholders' => [
                     'resource' => [
                         'getters' => [
                             'getResource',
+                        ],
+                    ],
+                ],
+            ],
+            'GetSchemaBundle' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{name=projects/*/instances/*/tables/*/schemaBundles/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
                         ],
                     ],
                 ],
@@ -246,6 +293,17 @@ return [
             'ListBackups' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{parent=projects/*/instances/*/clusters/*}/backups',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListSchemaBundles' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{parent=projects/*/instances/*/tables/*}/schemaBundles',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -310,6 +368,16 @@ return [
                         'uriTemplate' => '/v2/{resource=projects/*/instances/*/clusters/*/backups/*}:setIamPolicy',
                         'body' => '*',
                     ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{resource=projects/*/instances/*/tables/*/authorizedViews/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{resource=projects/*/instances/*/tables/*/schemaBundles/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
                 ],
                 'placeholders' => [
                     'resource' => [
@@ -339,6 +407,16 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v2/{resource=projects/*/instances/*/clusters/*/backups/*}:testIamPermissions',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{resource=projects/*/instances/*/tables/*/authorizedViews/*}:testIamPermissions',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{resource=projects/*/instances/*/tables/*/schemaBundles/*}:testIamPermissions',
                         'body' => '*',
                     ],
                 ],
@@ -389,6 +467,19 @@ return [
                 ],
                 'queryParams' => [
                     'update_mask',
+                ],
+            ],
+            'UpdateSchemaBundle' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v2/{schema_bundle.name=projects/*/instances/*/tables/*/schemaBundles/*}',
+                'body' => 'schema_bundle',
+                'placeholders' => [
+                    'schema_bundle.name' => [
+                        'getters' => [
+                            'getSchemaBundle',
+                            'getName',
+                        ],
+                    ],
                 ],
             ],
             'UpdateTable' => [

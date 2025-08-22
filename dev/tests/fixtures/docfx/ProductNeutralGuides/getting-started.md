@@ -134,7 +134,6 @@ A list of clients that accept these parameters are:
 - [Firestore](https://github.com/googleapis/google-cloud-php-firestore)
 - [Datastore](https://github.com/googleapis/google-cloud-php-datastore)
 - [Pubsub](https://github.com/googleapis/google-cloud-php-pubsub)
-- [Debugger](https://github.com/googleapis/google-cloud-php-debugger)
 - [Logging](https://github.com/googleapis/google-cloud-php-logging)
 - [Translate](https://github.com/googleapis/google-cloud-php-translate)
 - [Bigquery](https://github.com/googleapis/google-cloud-php-bigquery)
@@ -212,7 +211,7 @@ $spanner = new SpannerClient([
 
 ## PHP Versions Supported
 
-All client libraries support PHP 8.0 and above.
+All client libraries support PHP 8.1 and above.
 
 ## Versioning
 

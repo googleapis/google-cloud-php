@@ -38,6 +38,12 @@ class EphemeralStorageLocalSsdConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 local_ssd_count = 1;</code>
      */
     protected $local_ssd_count = 0;
+    /**
+     * Number of local SSDs to use for GKE Data Cache.
+     *
+     * Generated from protobuf field <code>int32 data_cache_count = 2;</code>
+     */
+    protected $data_cache_count = 0;
 
     /**
      * Constructor.
@@ -63,6 +69,8 @@ class EphemeralStorageLocalSsdConfig extends \Google\Protobuf\Internal\Message
      *           ssds), 0 will be provisioned. See
      *           https://cloud.google.com/compute/docs/disks/local-ssd#choose_number_local_ssds
      *           for more info.
+     *     @type int $data_cache_count
+     *           Number of local SSDs to use for GKE Data Cache.
      * }
      */
     public function __construct($data = NULL) {
@@ -124,6 +132,32 @@ class EphemeralStorageLocalSsdConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->local_ssd_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * Number of local SSDs to use for GKE Data Cache.
+     *
+     * Generated from protobuf field <code>int32 data_cache_count = 2;</code>
+     * @return int
+     */
+    public function getDataCacheCount()
+    {
+        return $this->data_cache_count;
+    }
+
+    /**
+     * Number of local SSDs to use for GKE Data Cache.
+     *
+     * Generated from protobuf field <code>int32 data_cache_count = 2;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setDataCacheCount($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->data_cache_count = $var;
 
         return $this;
     }

@@ -138,6 +138,28 @@ return [
                     ],
                 ],
             ],
+            'FetchBackupPlanAssociationsForResourceType' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/backupPlanAssociations:fetchForResourceType',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'FetchDataSourceReferencesForResourceType' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/dataSourceReferences:fetchForResourceType',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'FetchUsableBackupVaults' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/backupVaults:fetchUsable',
@@ -182,6 +204,17 @@ return [
                     ],
                 ],
             ],
+            'GetBackupPlanRevision' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/backupPlans/*/revisions/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetBackupVault' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/backupVaults/*}',
@@ -196,6 +229,17 @@ return [
             'GetDataSource' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/backupVaults/*/dataSources/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetDataSourceReference' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/dataSourceReferences/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -230,6 +274,17 @@ return [
             'ListBackupPlanAssociations' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/backupPlanAssociations',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListBackupPlanRevisions' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/backupPlans/*}/revisions',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -325,6 +380,38 @@ return [
                     'backup.name' => [
                         'getters' => [
                             'getBackup',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
+            'UpdateBackupPlan' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{backup_plan.name=projects/*/locations/*/backupPlans/*}',
+                'body' => 'backup_plan',
+                'placeholders' => [
+                    'backup_plan.name' => [
+                        'getters' => [
+                            'getBackupPlan',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
+            'UpdateBackupPlanAssociation' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{backup_plan_association.name=projects/*/locations/*/backupPlanAssociations/*}',
+                'body' => 'backup_plan_association',
+                'placeholders' => [
+                    'backup_plan_association.name' => [
+                        'getters' => [
+                            'getBackupPlanAssociation',
                             'getName',
                         ],
                     ],

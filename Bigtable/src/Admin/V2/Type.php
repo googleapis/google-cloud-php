@@ -64,6 +64,10 @@ class Type extends \Google\Protobuf\Internal\Message
      *           Array
      *     @type \Google\Cloud\Bigtable\Admin\V2\Type\Map $map_type
      *           Map
+     *     @type \Google\Cloud\Bigtable\Admin\V2\Type\Proto $proto_type
+     *           Proto
+     *     @type \Google\Cloud\Bigtable\Admin\V2\Type\Enum $enum_type
+     *           Enum
      * }
      */
     public function __construct($data = NULL) {
@@ -439,6 +443,68 @@ class Type extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\Admin\V2\Type\Map::class);
         $this->writeOneof(4, $var);
+
+        return $this;
+    }
+
+    /**
+     * Proto
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Type.Proto proto_type = 13;</code>
+     * @return \Google\Cloud\Bigtable\Admin\V2\Type\Proto|null
+     */
+    public function getProtoType()
+    {
+        return $this->readOneof(13);
+    }
+
+    public function hasProtoType()
+    {
+        return $this->hasOneof(13);
+    }
+
+    /**
+     * Proto
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Type.Proto proto_type = 13;</code>
+     * @param \Google\Cloud\Bigtable\Admin\V2\Type\Proto $var
+     * @return $this
+     */
+    public function setProtoType($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\Admin\V2\Type\Proto::class);
+        $this->writeOneof(13, $var);
+
+        return $this;
+    }
+
+    /**
+     * Enum
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Type.Enum enum_type = 14;</code>
+     * @return \Google\Cloud\Bigtable\Admin\V2\Type\Enum|null
+     */
+    public function getEnumType()
+    {
+        return $this->readOneof(14);
+    }
+
+    public function hasEnumType()
+    {
+        return $this->hasOneof(14);
+    }
+
+    /**
+     * Enum
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Type.Enum enum_type = 14;</code>
+     * @param \Google\Cloud\Bigtable\Admin\V2\Type\Enum $var
+     * @return $this
+     */
+    public function setEnumType($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\Admin\V2\Type\Enum::class);
+        $this->writeOneof(14, $var);
 
         return $this;
     }

@@ -32,9 +32,9 @@ class CachedContent extends \Google\Protobuf\Internal\Message
      */
     protected $display_name = '';
     /**
-     * Immutable. The name of the publisher model to use for cached content.
-     * Format:
-     * projects/{project}/locations/{location}/publishers/{publisher}/models/{model}
+     * Immutable. The name of the `Model` to use for cached content. Currently,
+     * only the published Gemini base models are supported, in form of
+     * projects/{PROJECT}/locations/{LOCATION}/publishers/google/models/{MODEL}
      *
      * Generated from protobuf field <code>string model = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
@@ -67,7 +67,7 @@ class CachedContent extends \Google\Protobuf\Internal\Message
      */
     protected $tool_config = null;
     /**
-     * Output only. Creatation time of the cache entry.
+     * Output only. Creation time of the cache entry.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -84,6 +84,14 @@ class CachedContent extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.CachedContent.UsageMetadata usage_metadata = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $usage_metadata = null;
+    /**
+     * Input only. Immutable. Customer-managed encryption key spec for a
+     * `CachedContent`. If set, this `CachedContent` and all its sub-resources
+     * will be secured by this key.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 13 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
+     */
+    protected $encryption_spec = null;
     protected $expiration;
 
     /**
@@ -107,9 +115,9 @@ class CachedContent extends \Google\Protobuf\Internal\Message
      *           Optional. Immutable. The user-generated meaningful display name of the
      *           cached content.
      *     @type string $model
-     *           Immutable. The name of the publisher model to use for cached content.
-     *           Format:
-     *           projects/{project}/locations/{location}/publishers/{publisher}/models/{model}
+     *           Immutable. The name of the `Model` to use for cached content. Currently,
+     *           only the published Gemini base models are supported, in form of
+     *           projects/{PROJECT}/locations/{LOCATION}/publishers/google/models/{MODEL}
      *     @type \Google\Cloud\AIPlatform\V1\Content $system_instruction
      *           Optional. Input only. Immutable. Developer set system instruction.
      *           Currently, text only
@@ -122,11 +130,15 @@ class CachedContent extends \Google\Protobuf\Internal\Message
      *           Optional. Input only. Immutable. Tool config. This config is shared for all
      *           tools
      *     @type \Google\Protobuf\Timestamp $create_time
-     *           Output only. Creatation time of the cache entry.
+     *           Output only. Creation time of the cache entry.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. When the cache entry was last updated in UTC time.
      *     @type \Google\Cloud\AIPlatform\V1\CachedContent\UsageMetadata $usage_metadata
      *           Output only. Metadata on the usage of the cached content.
+     *     @type \Google\Cloud\AIPlatform\V1\EncryptionSpec $encryption_spec
+     *           Input only. Immutable. Customer-managed encryption key spec for a
+     *           `CachedContent`. If set, this `CachedContent` and all its sub-resources
+     *           will be secured by this key.
      * }
      */
     public function __construct($data = NULL) {
@@ -261,9 +273,9 @@ class CachedContent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The name of the publisher model to use for cached content.
-     * Format:
-     * projects/{project}/locations/{location}/publishers/{publisher}/models/{model}
+     * Immutable. The name of the `Model` to use for cached content. Currently,
+     * only the published Gemini base models are supported, in form of
+     * projects/{PROJECT}/locations/{LOCATION}/publishers/google/models/{MODEL}
      *
      * Generated from protobuf field <code>string model = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
@@ -274,9 +286,9 @@ class CachedContent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The name of the publisher model to use for cached content.
-     * Format:
-     * projects/{project}/locations/{location}/publishers/{publisher}/models/{model}
+     * Immutable. The name of the `Model` to use for cached content. Currently,
+     * only the published Gemini base models are supported, in form of
+     * projects/{PROJECT}/locations/{LOCATION}/publishers/google/models/{MODEL}
      *
      * Generated from protobuf field <code>string model = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
@@ -421,7 +433,7 @@ class CachedContent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Creatation time of the cache entry.
+     * Output only. Creation time of the cache entry.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -442,7 +454,7 @@ class CachedContent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Creatation time of the cache entry.
+     * Output only. Creation time of the cache entry.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -524,6 +536,46 @@ class CachedContent extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\CachedContent\UsageMetadata::class);
         $this->usage_metadata = $var;
+
+        return $this;
+    }
+
+    /**
+     * Input only. Immutable. Customer-managed encryption key spec for a
+     * `CachedContent`. If set, this `CachedContent` and all its sub-resources
+     * will be secured by this key.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 13 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return \Google\Cloud\AIPlatform\V1\EncryptionSpec|null
+     */
+    public function getEncryptionSpec()
+    {
+        return $this->encryption_spec;
+    }
+
+    public function hasEncryptionSpec()
+    {
+        return isset($this->encryption_spec);
+    }
+
+    public function clearEncryptionSpec()
+    {
+        unset($this->encryption_spec);
+    }
+
+    /**
+     * Input only. Immutable. Customer-managed encryption key spec for a
+     * `CachedContent`. If set, this `CachedContent` and all its sub-resources
+     * will be secured by this key.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 13 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param \Google\Cloud\AIPlatform\V1\EncryptionSpec $var
+     * @return $this
+     */
+    public function setEncryptionSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\EncryptionSpec::class);
+        $this->encryption_spec = $var;
 
         return $this;
     }

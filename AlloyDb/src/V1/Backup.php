@@ -50,6 +50,8 @@ class Backup extends \Google\Protobuf\Internal\Message
     protected $create_time = null;
     /**
      * Output only. Update time stamp
+     * Users should not infer any meaning from this field. Its value is generally
+     * unrelated to the timing of the backup creation operation.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -60,6 +62,12 @@ class Backup extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp delete_time = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $delete_time = null;
+    /**
+     * Output only. Timestamp when the resource finished being created.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_completion_time = 26 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $create_completion_time = null;
     /**
      * Labels as key value pairs
      *
@@ -209,8 +217,12 @@ class Backup extends \Google\Protobuf\Internal\Message
      *           Output only. Create time stamp
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. Update time stamp
+     *           Users should not infer any meaning from this field. Its value is generally
+     *           unrelated to the timing of the backup creation operation.
      *     @type \Google\Protobuf\Timestamp $delete_time
      *           Output only. Delete time stamp
+     *     @type \Google\Protobuf\Timestamp $create_completion_time
+     *           Output only. Timestamp when the resource finished being created.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Labels as key value pairs
      *     @type int $state
@@ -407,6 +419,8 @@ class Backup extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Update time stamp
+     * Users should not infer any meaning from this field. Its value is generally
+     * unrelated to the timing of the backup creation operation.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -428,6 +442,8 @@ class Backup extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Update time stamp
+     * Users should not infer any meaning from this field. Its value is generally
+     * unrelated to the timing of the backup creation operation.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -473,6 +489,42 @@ class Backup extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->delete_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Timestamp when the resource finished being created.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_completion_time = 26 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getCreateCompletionTime()
+    {
+        return $this->create_completion_time;
+    }
+
+    public function hasCreateCompletionTime()
+    {
+        return isset($this->create_completion_time);
+    }
+
+    public function clearCreateCompletionTime()
+    {
+        unset($this->create_completion_time);
+    }
+
+    /**
+     * Output only. Timestamp when the resource finished being created.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_completion_time = 26 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setCreateCompletionTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->create_completion_time = $var;
 
         return $this;
     }

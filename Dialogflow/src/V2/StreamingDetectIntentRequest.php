@@ -344,7 +344,9 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
      */
     public function getSingleUtterance()
     {
-        @trigger_error('single_utterance is deprecated.', E_USER_DEPRECATED);
+        if ($this->single_utterance !== false) {
+            @trigger_error('single_utterance is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->single_utterance;
     }
 

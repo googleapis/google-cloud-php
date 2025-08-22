@@ -30,7 +30,7 @@ class AnalyticsAdmin
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-¦ü
+‘ˆ
 4google/analytics/admin/v1alpha/analytics_admin.protogoogle.analytics.admin.v1alpha-google/analytics/admin/v1alpha/audience.proto2google/analytics/admin/v1alpha/channel_group.proto:google/analytics/admin/v1alpha/event_create_and_edit.proto6google/analytics/admin/v1alpha/expanded_data_set.proto.google/analytics/admin/v1alpha/resources.proto=google/analytics/admin/v1alpha/subproperty_event_filter.protogoogle/api/annotations.protogoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"à
 RunAccessReportRequest
 entity (	C
@@ -643,10 +643,11 @@ page_token (	BàA" 
 rollup_property_source_link (28.google.analytics.admin.v1alpha.RollupPropertySourceLinkBàA"u
 %DeleteRollupPropertySourceLinkRequestL
 name (	B>àAúA8
-6analyticsadmin.googleapis.com/RollupPropertySourceLink"À
+6analyticsadmin.googleapis.com/RollupPropertySourceLink"Ë
 ProvisionSubpropertyRequestB
 subproperty (2(.google.analytics.admin.v1alpha.PropertyBàA]
-subproperty_event_filter (26.google.analytics.admin.v1alpha.SubpropertyEventFilterBàA"·
+subproperty_event_filter (26.google.analytics.admin.v1alpha.SubpropertyEventFilterBàAˆ
+0custom_dimension_and_metric_synchronization_mode (2I.google.analytics.admin.v1alpha.SubpropertySyncConfig.SynchronizationModeBàA"·
 ProvisionSubpropertyResponse=
 subproperty (2(.google.analytics.admin.v1alpha.PropertyX
 subproperty_event_filter (26.google.analytics.admin.v1alpha.SubpropertyEventFilter"Ò
@@ -700,7 +701,21 @@ $DeleteReportingDataAnnotationRequestK
 &analyticsadmin.googleapis.com/PropertyB
 user"W
 SubmitUserDeletionResponse9
-deletion_request_time (2.google.protobuf.Timestamp2ì™
+deletion_request_time (2.google.protobuf.Timestamp"l
+GetSubpropertySyncConfigRequestI
+name (	B;àAúA5
+3analyticsadmin.googleapis.com/SubpropertySyncConfig"¡
+!ListSubpropertySyncConfigsRequestK
+parent (	B;àAúA53analyticsadmin.googleapis.com/SubpropertySyncConfig
+	page_size (BàA
+
+page_token (	BàA"–
+"ListSubpropertySyncConfigsResponseW
+subproperty_sync_configs (25.google.analytics.admin.v1alpha.SubpropertySyncConfig
+next_page_token (	"·
+"UpdateSubpropertySyncConfigRequest[
+subproperty_sync_config (25.google.analytics.admin.v1alpha.SubpropertySyncConfigBàA4
+update_mask (2.google.protobuf.FieldMaskBàA2çŸ
 AnalyticsAdminService“
 
 GetAccount1.google.analytics.admin.v1alpha.GetAccountRequest\'.google.analytics.admin.v1alpha.Account")ÚAname‚Óä“/v1alpha/{name=accounts/*}”
@@ -858,7 +873,10 @@ $FetchAutomatedGa4ConfigurationOptOutK.google.analytics.admin.v1alpha.FetchAuto
 ListReportingDataAnnotationsC.google.analytics.admin.v1alpha.ListReportingDataAnnotationsRequestD.google.analytics.admin.v1alpha.ListReportingDataAnnotationsResponse"HÚAparent‚Óä“97/v1alpha/{parent=properties/*}/reportingDataAnnotations½
 UpdateReportingDataAnnotationD.google.analytics.admin.v1alpha.UpdateReportingDataAnnotationRequest7.google.analytics.admin.v1alpha.ReportingDataAnnotation"œÚA%reporting_data_annotation,update_mask‚Óä“n2Q/v1alpha/{reporting_data_annotation.name=properties/*/reportingDataAnnotations/*}:reporting_data_annotationÅ
 DeleteReportingDataAnnotationD.google.analytics.admin.v1alpha.DeleteReportingDataAnnotationRequest.google.protobuf.Empty"FÚAname‚Óä“9*7/v1alpha/{name=properties/*/reportingDataAnnotations/*}Î
-SubmitUserDeletion9.google.analytics.admin.v1alpha.SubmitUserDeletionRequest:.google.analytics.admin.v1alpha.SubmitUserDeletionResponse"AÚAname‚Óä“4"//v1alpha/{name=properties/*}:submitUserDeletion:*üÊAanalyticsadmin.googleapis.comÒAØhttps://www.googleapis.com/auth/analytics.edit,https://www.googleapis.com/auth/analytics.manage.users,https://www.googleapis.com/auth/analytics.manage.users.readonly,https://www.googleapis.com/auth/analytics.readonlyB{
+SubmitUserDeletion9.google.analytics.admin.v1alpha.SubmitUserDeletionRequest:.google.analytics.admin.v1alpha.SubmitUserDeletionResponse"AÚAname‚Óä“4"//v1alpha/{name=properties/*}:submitUserDeletion:*ë
+ListSubpropertySyncConfigsA.google.analytics.admin.v1alpha.ListSubpropertySyncConfigsRequestB.google.analytics.admin.v1alpha.ListSubpropertySyncConfigsResponse"FÚAparent‚Óä“75/v1alpha/{parent=properties/*}/subpropertySyncConfigs¯
+UpdateSubpropertySyncConfigB.google.analytics.admin.v1alpha.UpdateSubpropertySyncConfigRequest5.google.analytics.admin.v1alpha.SubpropertySyncConfig"”ÚA#subproperty_sync_config,update_mask‚Óä“h2M/v1alpha/{subproperty_sync_config.name=properties/*/subpropertySyncConfigs/*}:subproperty_sync_configØ
+GetSubpropertySyncConfig?.google.analytics.admin.v1alpha.GetSubpropertySyncConfigRequest5.google.analytics.admin.v1alpha.SubpropertySyncConfig"DÚAname‚Óä“75/v1alpha/{name=properties/*/subpropertySyncConfigs/*}üÊAanalyticsadmin.googleapis.comÒAØhttps://www.googleapis.com/auth/analytics.edit,https://www.googleapis.com/auth/analytics.manage.users,https://www.googleapis.com/auth/analytics.manage.users.readonly,https://www.googleapis.com/auth/analytics.readonlyB{
 "com.google.analytics.admin.v1alphaBAnalyticsAdminProtoPZ>cloud.google.com/go/analytics/admin/apiv1alpha/adminpb;adminpbbproto3'
         , true);
 

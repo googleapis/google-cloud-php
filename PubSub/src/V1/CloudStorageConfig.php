@@ -50,7 +50,7 @@ class CloudStorageConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The maximum duration that can elapse before a new Cloud Storage
      * file is created. Min 1 minute, max 10 minutes, default 5 minutes. May not
-     * exceed the subscription's acknowledgement deadline.
+     * exceed the subscription's acknowledgment deadline.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration max_duration = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -121,7 +121,7 @@ class CloudStorageConfig extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Duration $max_duration
      *           Optional. The maximum duration that can elapse before a new Cloud Storage
      *           file is created. Min 1 minute, max 10 minutes, default 5 minutes. May not
-     *           exceed the subscription's acknowledgement deadline.
+     *           exceed the subscription's acknowledgment deadline.
      *     @type int|string $max_bytes
      *           Optional. The maximum bytes that can be written to a Cloud Storage file
      *           before a new file is created. Min 1 KB, max 10 GiB. The max_bytes limit may
@@ -335,7 +335,7 @@ class CloudStorageConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The maximum duration that can elapse before a new Cloud Storage
      * file is created. Min 1 minute, max 10 minutes, default 5 minutes. May not
-     * exceed the subscription's acknowledgement deadline.
+     * exceed the subscription's acknowledgment deadline.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration max_duration = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Duration|null
@@ -358,7 +358,7 @@ class CloudStorageConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The maximum duration that can elapse before a new Cloud Storage
      * file is created. Min 1 minute, max 10 minutes, default 5 minutes. May not
-     * exceed the subscription's acknowledgement deadline.
+     * exceed the subscription's acknowledgment deadline.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration max_duration = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Duration $var

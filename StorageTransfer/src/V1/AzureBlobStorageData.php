@@ -69,6 +69,16 @@ class AzureBlobStorageData extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string credentials_secret = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $credentials_secret = '';
+    /**
+     * Optional. Federated identity config of a user registered Azure application.
+     * If `federated_identity_config` is specified, do not specify
+     * [azure_credentials][google.storagetransfer.v1.AzureBlobStorageData.azure_credentials]
+     * or
+     * [credentials_secret][google.storagetransfer.v1.AzureBlobStorageData.credentials_secret].
+     *
+     * Generated from protobuf field <code>.google.storagetransfer.v1.AzureBlobStorageData.FederatedIdentityConfig federated_identity_config = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $federated_identity_config = null;
 
     /**
      * Constructor.
@@ -104,6 +114,12 @@ class AzureBlobStorageData extends \Google\Protobuf\Internal\Message
      *           If `credentials_secret` is specified, do not specify
      *           [azure_credentials][google.storagetransfer.v1.AzureBlobStorageData.azure_credentials].
      *           Format: `projects/{project_number}/secrets/{secret_name}`
+     *     @type \Google\Cloud\StorageTransfer\V1\AzureBlobStorageData\FederatedIdentityConfig $federated_identity_config
+     *           Optional. Federated identity config of a user registered Azure application.
+     *           If `federated_identity_config` is specified, do not specify
+     *           [azure_credentials][google.storagetransfer.v1.AzureBlobStorageData.azure_credentials]
+     *           or
+     *           [credentials_secret][google.storagetransfer.v1.AzureBlobStorageData.credentials_secret].
      * }
      */
     public function __construct($data = NULL) {
@@ -283,6 +299,50 @@ class AzureBlobStorageData extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->credentials_secret = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Federated identity config of a user registered Azure application.
+     * If `federated_identity_config` is specified, do not specify
+     * [azure_credentials][google.storagetransfer.v1.AzureBlobStorageData.azure_credentials]
+     * or
+     * [credentials_secret][google.storagetransfer.v1.AzureBlobStorageData.credentials_secret].
+     *
+     * Generated from protobuf field <code>.google.storagetransfer.v1.AzureBlobStorageData.FederatedIdentityConfig federated_identity_config = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\StorageTransfer\V1\AzureBlobStorageData\FederatedIdentityConfig|null
+     */
+    public function getFederatedIdentityConfig()
+    {
+        return $this->federated_identity_config;
+    }
+
+    public function hasFederatedIdentityConfig()
+    {
+        return isset($this->federated_identity_config);
+    }
+
+    public function clearFederatedIdentityConfig()
+    {
+        unset($this->federated_identity_config);
+    }
+
+    /**
+     * Optional. Federated identity config of a user registered Azure application.
+     * If `federated_identity_config` is specified, do not specify
+     * [azure_credentials][google.storagetransfer.v1.AzureBlobStorageData.azure_credentials]
+     * or
+     * [credentials_secret][google.storagetransfer.v1.AzureBlobStorageData.credentials_secret].
+     *
+     * Generated from protobuf field <code>.google.storagetransfer.v1.AzureBlobStorageData.FederatedIdentityConfig federated_identity_config = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\StorageTransfer\V1\AzureBlobStorageData\FederatedIdentityConfig $var
+     * @return $this
+     */
+    public function setFederatedIdentityConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\StorageTransfer\V1\AzureBlobStorageData\FederatedIdentityConfig::class);
+        $this->federated_identity_config = $var;
 
         return $this;
     }

@@ -106,7 +106,7 @@ class DeployPolicy extends \Google\Protobuf\Internal\Message
      */
     private $rules;
     /**
-     * The weak etag of the `Automation` resource.
+     * The weak etag of the `DeployPolicy` resource.
      * This checksum is computed by the server based on the value of other
      * fields, and may be sent on update and delete requests to ensure the
      * client has an up-to-date value before proceeding.
@@ -170,7 +170,7 @@ class DeployPolicy extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\Deploy\V1\PolicyRule>|\Google\Protobuf\Internal\RepeatedField $rules
      *           Required. Rules to apply. At least one rule must be present.
      *     @type string $etag
-     *           The weak etag of the `Automation` resource.
+     *           The weak etag of the `DeployPolicy` resource.
      *           This checksum is computed by the server based on the value of other
      *           fields, and may be sent on update and delete requests to ensure the
      *           client has an up-to-date value before proceeding.
@@ -518,7 +518,7 @@ class DeployPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The weak etag of the `Automation` resource.
+     * The weak etag of the `DeployPolicy` resource.
      * This checksum is computed by the server based on the value of other
      * fields, and may be sent on update and delete requests to ensure the
      * client has an up-to-date value before proceeding.
@@ -532,7 +532,7 @@ class DeployPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The weak etag of the `Automation` resource.
+     * The weak etag of the `DeployPolicy` resource.
      * This checksum is computed by the server based on the value of other
      * fields, and may be sent on update and delete requests to ensure the
      * client has an up-to-date value before proceeding.

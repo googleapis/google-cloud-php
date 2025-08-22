@@ -16,6 +16,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class ClusterConfig extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Optional. The cluster tier.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ClusterConfig.ClusterTier cluster_tier = 29 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $cluster_tier = 0;
+    /**
      * Optional. A Cloud Storage bucket used to stage job
      * dependencies, config files, and job driver console output.
      * If you do not specify a staging bucket, Cloud
@@ -154,6 +160,8 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type int $cluster_tier
+     *           Optional. The cluster tier.
      *     @type string $config_bucket
      *           Optional. A Cloud Storage bucket used to stage job
      *           dependencies, config files, and job driver console output.
@@ -227,6 +235,32 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dataproc\V1\Clusters::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Optional. The cluster tier.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ClusterConfig.ClusterTier cluster_tier = 29 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getClusterTier()
+    {
+        return $this->cluster_tier;
+    }
+
+    /**
+     * Optional. The cluster tier.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ClusterConfig.ClusterTier cluster_tier = 29 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setClusterTier($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Dataproc\V1\ClusterConfig\ClusterTier::class);
+        $this->cluster_tier = $var;
+
+        return $this;
     }
 
     /**

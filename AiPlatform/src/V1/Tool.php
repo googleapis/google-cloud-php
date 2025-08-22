@@ -58,6 +58,13 @@ class Tool extends \Google\Protobuf\Internal\Message
      */
     protected $google_search_retrieval = null;
     /**
+     * Optional. GoogleMaps tool type.
+     * Tool to support Google Maps in Model.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.GoogleMaps google_maps = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $google_maps = null;
+    /**
      * Optional. Tool to support searching public web data, powered by Vertex AI
      * Search and Sec4 compliance.
      *
@@ -71,6 +78,20 @@ class Tool extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Tool.CodeExecution code_execution = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $code_execution = null;
+    /**
+     * Optional. Tool to support URL context retrieval.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.UrlContext url_context = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $url_context = null;
+    /**
+     * Optional. Tool to support the model interacting directly with the computer.
+     * If enabled, it automatically populates computer-use specific Function
+     * Declarations.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Tool.ComputerUse computer_use = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $computer_use = null;
 
     /**
      * Constructor.
@@ -99,12 +120,21 @@ class Tool extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\AIPlatform\V1\GoogleSearchRetrieval $google_search_retrieval
      *           Optional. GoogleSearchRetrieval tool type.
      *           Specialized retrieval tool that is powered by Google search.
+     *     @type \Google\Cloud\AIPlatform\V1\GoogleMaps $google_maps
+     *           Optional. GoogleMaps tool type.
+     *           Tool to support Google Maps in Model.
      *     @type \Google\Cloud\AIPlatform\V1\EnterpriseWebSearch $enterprise_web_search
      *           Optional. Tool to support searching public web data, powered by Vertex AI
      *           Search and Sec4 compliance.
      *     @type \Google\Cloud\AIPlatform\V1\Tool\CodeExecution $code_execution
      *           Optional. CodeExecution tool type.
      *           Enables the model to execute code as part of generation.
+     *     @type \Google\Cloud\AIPlatform\V1\UrlContext $url_context
+     *           Optional. Tool to support URL context retrieval.
+     *     @type \Google\Cloud\AIPlatform\V1\Tool\ComputerUse $computer_use
+     *           Optional. Tool to support the model interacting directly with the computer.
+     *           If enabled, it automatically populates computer-use specific Function
+     *           Declarations.
      * }
      */
     public function __construct($data = NULL) {
@@ -273,6 +303,44 @@ class Tool extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. GoogleMaps tool type.
+     * Tool to support Google Maps in Model.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.GoogleMaps google_maps = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AIPlatform\V1\GoogleMaps|null
+     */
+    public function getGoogleMaps()
+    {
+        return $this->google_maps;
+    }
+
+    public function hasGoogleMaps()
+    {
+        return isset($this->google_maps);
+    }
+
+    public function clearGoogleMaps()
+    {
+        unset($this->google_maps);
+    }
+
+    /**
+     * Optional. GoogleMaps tool type.
+     * Tool to support Google Maps in Model.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.GoogleMaps google_maps = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AIPlatform\V1\GoogleMaps $var
+     * @return $this
+     */
+    public function setGoogleMaps($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\GoogleMaps::class);
+        $this->google_maps = $var;
+
+        return $this;
+    }
+
+    /**
      * Optional. Tool to support searching public web data, powered by Vertex AI
      * Search and Sec4 compliance.
      *
@@ -344,6 +412,82 @@ class Tool extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\Tool\CodeExecution::class);
         $this->code_execution = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Tool to support URL context retrieval.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.UrlContext url_context = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AIPlatform\V1\UrlContext|null
+     */
+    public function getUrlContext()
+    {
+        return $this->url_context;
+    }
+
+    public function hasUrlContext()
+    {
+        return isset($this->url_context);
+    }
+
+    public function clearUrlContext()
+    {
+        unset($this->url_context);
+    }
+
+    /**
+     * Optional. Tool to support URL context retrieval.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.UrlContext url_context = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AIPlatform\V1\UrlContext $var
+     * @return $this
+     */
+    public function setUrlContext($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\UrlContext::class);
+        $this->url_context = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Tool to support the model interacting directly with the computer.
+     * If enabled, it automatically populates computer-use specific Function
+     * Declarations.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Tool.ComputerUse computer_use = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AIPlatform\V1\Tool\ComputerUse|null
+     */
+    public function getComputerUse()
+    {
+        return $this->computer_use;
+    }
+
+    public function hasComputerUse()
+    {
+        return isset($this->computer_use);
+    }
+
+    public function clearComputerUse()
+    {
+        unset($this->computer_use);
+    }
+
+    /**
+     * Optional. Tool to support the model interacting directly with the computer.
+     * If enabled, it automatically populates computer-use specific Function
+     * Declarations.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Tool.ComputerUse computer_use = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AIPlatform\V1\Tool\ComputerUse $var
+     * @return $this
+     */
+    public function setComputerUse($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\Tool\ComputerUse::class);
+        $this->computer_use = $var;
 
         return $this;
     }

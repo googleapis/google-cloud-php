@@ -69,6 +69,20 @@ class DataProfileFinding extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.privacy.dlp.v2.ResourceVisibility resource_visibility = 8;</code>
      */
     protected $resource_visibility = 0;
+    /**
+     * The [full resource
+     * name](https://cloud.google.com/apis/design/resource_names#full_resource_name)
+     * of the resource profiled for this finding.
+     *
+     * Generated from protobuf field <code>string full_resource_name = 9;</code>
+     */
+    protected $full_resource_name = '';
+    /**
+     * The type of the resource that was profiled.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.DataSourceType data_source_type = 10;</code>
+     */
+    protected $data_source_type = null;
 
     /**
      * Constructor.
@@ -97,6 +111,12 @@ class DataProfileFinding extends \Google\Protobuf\Internal\Message
      *           Where the content was found.
      *     @type int $resource_visibility
      *           How broadly a resource has been shared.
+     *     @type string $full_resource_name
+     *           The [full resource
+     *           name](https://cloud.google.com/apis/design/resource_names#full_resource_name)
+     *           of the resource profiled for this finding.
+     *     @type \Google\Cloud\Dlp\V2\DataSourceType $data_source_type
+     *           The type of the resource that was profiled.
      * }
      */
     public function __construct($data = NULL) {
@@ -358,6 +378,72 @@ class DataProfileFinding extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Dlp\V2\ResourceVisibility::class);
         $this->resource_visibility = $var;
+
+        return $this;
+    }
+
+    /**
+     * The [full resource
+     * name](https://cloud.google.com/apis/design/resource_names#full_resource_name)
+     * of the resource profiled for this finding.
+     *
+     * Generated from protobuf field <code>string full_resource_name = 9;</code>
+     * @return string
+     */
+    public function getFullResourceName()
+    {
+        return $this->full_resource_name;
+    }
+
+    /**
+     * The [full resource
+     * name](https://cloud.google.com/apis/design/resource_names#full_resource_name)
+     * of the resource profiled for this finding.
+     *
+     * Generated from protobuf field <code>string full_resource_name = 9;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setFullResourceName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->full_resource_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * The type of the resource that was profiled.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.DataSourceType data_source_type = 10;</code>
+     * @return \Google\Cloud\Dlp\V2\DataSourceType|null
+     */
+    public function getDataSourceType()
+    {
+        return $this->data_source_type;
+    }
+
+    public function hasDataSourceType()
+    {
+        return isset($this->data_source_type);
+    }
+
+    public function clearDataSourceType()
+    {
+        unset($this->data_source_type);
+    }
+
+    /**
+     * The type of the resource that was profiled.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.DataSourceType data_source_type = 10;</code>
+     * @param \Google\Cloud\Dlp\V2\DataSourceType $var
+     * @return $this
+     */
+    public function setDataSourceType($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\DataSourceType::class);
+        $this->data_source_type = $var;
 
         return $this;
     }

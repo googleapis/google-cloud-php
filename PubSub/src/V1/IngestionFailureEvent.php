@@ -50,6 +50,8 @@ class IngestionFailureEvent extends \Google\Protobuf\Internal\Message
      *           Optional. Failure when ingesting from Azure Event Hubs.
      *     @type \Google\Cloud\PubSub\V1\IngestionFailureEvent\ConfluentCloudFailureReason $confluent_cloud_failure
      *           Optional. Failure when ingesting from Confluent Cloud.
+     *     @type \Google\Cloud\PubSub\V1\IngestionFailureEvent\AwsKinesisFailureReason $aws_kinesis_failure
+     *           Optional. Failure when ingesting from AWS Kinesis.
      * }
      */
     public function __construct($data = NULL) {
@@ -231,6 +233,37 @@ class IngestionFailureEvent extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\PubSub\V1\IngestionFailureEvent\ConfluentCloudFailureReason::class);
         $this->writeOneof(6, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. Failure when ingesting from AWS Kinesis.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.IngestionFailureEvent.AwsKinesisFailureReason aws_kinesis_failure = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\PubSub\V1\IngestionFailureEvent\AwsKinesisFailureReason|null
+     */
+    public function getAwsKinesisFailure()
+    {
+        return $this->readOneof(7);
+    }
+
+    public function hasAwsKinesisFailure()
+    {
+        return $this->hasOneof(7);
+    }
+
+    /**
+     * Optional. Failure when ingesting from AWS Kinesis.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.IngestionFailureEvent.AwsKinesisFailureReason aws_kinesis_failure = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\PubSub\V1\IngestionFailureEvent\AwsKinesisFailureReason $var
+     * @return $this
+     */
+    public function setAwsKinesisFailure($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\PubSub\V1\IngestionFailureEvent\AwsKinesisFailureReason::class);
+        $this->writeOneof(7, $var);
 
         return $this;
     }

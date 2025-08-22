@@ -16,6 +16,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class Reservation extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Advanced control for cluster management, applicable only to DENSE deployment type reservations.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ReservationAdvancedDeploymentControl advanced_deployment_control = 410618144;</code>
+     */
+    private $advanced_deployment_control = null;
+    /**
      * Reservation for aggregated resources, providing shape flexibility.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.AllocationAggregateReservation aggregate_reservation = 291567948;</code>
@@ -34,6 +40,18 @@ class Reservation extends \Google\Protobuf\Internal\Message
      */
     private $creation_timestamp = null;
     /**
+     * Duration time relative to reservation creation when Compute Engine will automatically delete this resource.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Duration delete_after_duration = 323997099;</code>
+     */
+    private $delete_after_duration = null;
+    /**
+     * Absolute time in future when the reservation will be auto-deleted by Compute Engine. Timestamp is represented in RFC3339 text format.
+     *
+     * Generated from protobuf field <code>optional string delete_at_time = 83294405;</code>
+     */
+    private $delete_at_time = null;
+    /**
      * Specifies the deployment strategy for this reservation.
      * Check the DeploymentType enum for the list of possible values.
      *
@@ -46,6 +64,12 @@ class Reservation extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
     private $description = null;
+    /**
+     * Indicates whether Compute Engine allows unplanned maintenance for your VMs; for example, to fix hardware errors.
+     *
+     * Generated from protobuf field <code>optional bool enable_emergent_maintenance = 353759497;</code>
+     */
+    private $enable_emergent_maintenance = null;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
@@ -95,6 +119,13 @@ class Reservation extends \Google\Protobuf\Internal\Message
      */
     private $satisfies_pzs = null;
     /**
+     * The type of maintenance for the reservation.
+     * Check the SchedulingType enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string scheduling_type = 199835397;</code>
+     */
+    private $scheduling_type = null;
+    /**
      * [Output Only] Server-defined fully-qualified URL for this resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
@@ -138,17 +169,25 @@ class Reservation extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type \Google\Cloud\Compute\V1\ReservationAdvancedDeploymentControl $advanced_deployment_control
+     *           Advanced control for cluster management, applicable only to DENSE deployment type reservations.
      *     @type \Google\Cloud\Compute\V1\AllocationAggregateReservation $aggregate_reservation
      *           Reservation for aggregated resources, providing shape flexibility.
      *     @type string $commitment
      *           [Output Only] Full or partial URL to a parent commitment. This field displays for reservations that are tied to a commitment.
      *     @type string $creation_timestamp
      *           [Output Only] Creation timestamp in RFC3339 text format.
+     *     @type \Google\Cloud\Compute\V1\Duration $delete_after_duration
+     *           Duration time relative to reservation creation when Compute Engine will automatically delete this resource.
+     *     @type string $delete_at_time
+     *           Absolute time in future when the reservation will be auto-deleted by Compute Engine. Timestamp is represented in RFC3339 text format.
      *     @type string $deployment_type
      *           Specifies the deployment strategy for this reservation.
      *           Check the DeploymentType enum for the list of possible values.
      *     @type string $description
      *           An optional description of this resource. Provide this property when you create the resource.
+     *     @type bool $enable_emergent_maintenance
+     *           Indicates whether Compute Engine allows unplanned maintenance for your VMs; for example, to fix hardware errors.
      *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *     @type string $kind
@@ -165,6 +204,9 @@ class Reservation extends \Google\Protobuf\Internal\Message
      *           [Output Only] Status information for Reservation resource.
      *     @type bool $satisfies_pzs
      *           [Output Only] Reserved for future use.
+     *     @type string $scheduling_type
+     *           The type of maintenance for the reservation.
+     *           Check the SchedulingType enum for the list of possible values.
      *     @type string $self_link
      *           [Output Only] Server-defined fully-qualified URL for this resource.
      *     @type \Google\Cloud\Compute\V1\ShareSettings $share_settings
@@ -183,6 +225,42 @@ class Reservation extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Compute\V1\Compute::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Advanced control for cluster management, applicable only to DENSE deployment type reservations.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ReservationAdvancedDeploymentControl advanced_deployment_control = 410618144;</code>
+     * @return \Google\Cloud\Compute\V1\ReservationAdvancedDeploymentControl|null
+     */
+    public function getAdvancedDeploymentControl()
+    {
+        return $this->advanced_deployment_control;
+    }
+
+    public function hasAdvancedDeploymentControl()
+    {
+        return isset($this->advanced_deployment_control);
+    }
+
+    public function clearAdvancedDeploymentControl()
+    {
+        unset($this->advanced_deployment_control);
+    }
+
+    /**
+     * Advanced control for cluster management, applicable only to DENSE deployment type reservations.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ReservationAdvancedDeploymentControl advanced_deployment_control = 410618144;</code>
+     * @param \Google\Cloud\Compute\V1\ReservationAdvancedDeploymentControl $var
+     * @return $this
+     */
+    public function setAdvancedDeploymentControl($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\ReservationAdvancedDeploymentControl::class);
+        $this->advanced_deployment_control = $var;
+
+        return $this;
     }
 
     /**
@@ -294,6 +372,78 @@ class Reservation extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Duration time relative to reservation creation when Compute Engine will automatically delete this resource.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Duration delete_after_duration = 323997099;</code>
+     * @return \Google\Cloud\Compute\V1\Duration|null
+     */
+    public function getDeleteAfterDuration()
+    {
+        return $this->delete_after_duration;
+    }
+
+    public function hasDeleteAfterDuration()
+    {
+        return isset($this->delete_after_duration);
+    }
+
+    public function clearDeleteAfterDuration()
+    {
+        unset($this->delete_after_duration);
+    }
+
+    /**
+     * Duration time relative to reservation creation when Compute Engine will automatically delete this resource.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Duration delete_after_duration = 323997099;</code>
+     * @param \Google\Cloud\Compute\V1\Duration $var
+     * @return $this
+     */
+    public function setDeleteAfterDuration($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\Duration::class);
+        $this->delete_after_duration = $var;
+
+        return $this;
+    }
+
+    /**
+     * Absolute time in future when the reservation will be auto-deleted by Compute Engine. Timestamp is represented in RFC3339 text format.
+     *
+     * Generated from protobuf field <code>optional string delete_at_time = 83294405;</code>
+     * @return string
+     */
+    public function getDeleteAtTime()
+    {
+        return isset($this->delete_at_time) ? $this->delete_at_time : '';
+    }
+
+    public function hasDeleteAtTime()
+    {
+        return isset($this->delete_at_time);
+    }
+
+    public function clearDeleteAtTime()
+    {
+        unset($this->delete_at_time);
+    }
+
+    /**
+     * Absolute time in future when the reservation will be auto-deleted by Compute Engine. Timestamp is represented in RFC3339 text format.
+     *
+     * Generated from protobuf field <code>optional string delete_at_time = 83294405;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDeleteAtTime($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->delete_at_time = $var;
+
+        return $this;
+    }
+
+    /**
      * Specifies the deployment strategy for this reservation.
      * Check the DeploymentType enum for the list of possible values.
      *
@@ -363,6 +513,42 @@ class Reservation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->description = $var;
+
+        return $this;
+    }
+
+    /**
+     * Indicates whether Compute Engine allows unplanned maintenance for your VMs; for example, to fix hardware errors.
+     *
+     * Generated from protobuf field <code>optional bool enable_emergent_maintenance = 353759497;</code>
+     * @return bool
+     */
+    public function getEnableEmergentMaintenance()
+    {
+        return isset($this->enable_emergent_maintenance) ? $this->enable_emergent_maintenance : false;
+    }
+
+    public function hasEnableEmergentMaintenance()
+    {
+        return isset($this->enable_emergent_maintenance);
+    }
+
+    public function clearEnableEmergentMaintenance()
+    {
+        unset($this->enable_emergent_maintenance);
+    }
+
+    /**
+     * Indicates whether Compute Engine allows unplanned maintenance for your VMs; for example, to fix hardware errors.
+     *
+     * Generated from protobuf field <code>optional bool enable_emergent_maintenance = 353759497;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableEmergentMaintenance($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_emergent_maintenance = $var;
 
         return $this;
     }
@@ -631,6 +817,44 @@ class Reservation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->satisfies_pzs = $var;
+
+        return $this;
+    }
+
+    /**
+     * The type of maintenance for the reservation.
+     * Check the SchedulingType enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string scheduling_type = 199835397;</code>
+     * @return string
+     */
+    public function getSchedulingType()
+    {
+        return isset($this->scheduling_type) ? $this->scheduling_type : '';
+    }
+
+    public function hasSchedulingType()
+    {
+        return isset($this->scheduling_type);
+    }
+
+    public function clearSchedulingType()
+    {
+        unset($this->scheduling_type);
+    }
+
+    /**
+     * The type of maintenance for the reservation.
+     * Check the SchedulingType enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string scheduling_type = 199835397;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSchedulingType($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->scheduling_type = $var;
 
         return $this;
     }

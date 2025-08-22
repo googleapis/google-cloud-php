@@ -47,7 +47,7 @@ class StorageClient
     use ArrayTrait;
     use ClientTrait;
 
-    const VERSION = '1.48.0';
+    const VERSION = '1.48.3';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/devstorage.full_control';
     const READ_ONLY_SCOPE = 'https://www.googleapis.com/auth/devstorage.read_only';
@@ -107,6 +107,23 @@ class StorageClient
      *           request. **Defaults to** `0` with REST and `60` with gRPC.
      *     @type int $retries Number of retries for a failed request.
      *           **Defaults to** `3`.
+     *     @type string $retryStrategy Retry strategy to signify that we never
+     *           want to retry an operation even if the error is retryable.
+     *           **Defaults to** `StorageClient::RETRY_IDEMPOTENT`.
+     *     @type callable $restDelayFunction Executes a delay, defaults to
+     *           utilizing `usleep`. Function signature should match:
+     *           `function (int $delay) : void`.
+     *     @type callable $restCalcDelayFunction Sets the conditions for
+     *           determining how long to wait between attempts to retry. Function
+     *           signature should match: `function (int $attempt) : int`.
+     *     @type callable $restRetryFunction Sets the conditions for whether or
+     *           not a request should attempt to retry. Function signature should
+     *           match: `function (\Exception $ex) : bool`.
+     *     @type callable $restRetryListener Runs after the restRetryFunction.
+     *           This might be used to simply consume the exception and
+     *           $arguments b/w retries. This returns the new $arguments thus
+     *           allowing modification on demand for $arguments. For ex:
+     *           changing the headers in b/w retries.
      *     @type array $scopes Scopes to be used for the request.
      *     @type string $quotaProject Specifies a user project to bill for
      *           access charges associated with the request.

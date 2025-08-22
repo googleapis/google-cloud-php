@@ -55,6 +55,16 @@
                                 "deleteManagementServer"
                             ]
                         },
+                        "FetchBackupPlanAssociationsForResourceType": {
+                            "methods": [
+                                "fetchBackupPlanAssociationsForResourceType"
+                            ]
+                        },
+                        "FetchDataSourceReferencesForResourceType": {
+                            "methods": [
+                                "fetchDataSourceReferencesForResourceType"
+                            ]
+                        },
                         "FetchUsableBackupVaults": {
                             "methods": [
                                 "fetchUsableBackupVaults"
@@ -75,6 +85,11 @@
                                 "getBackupPlanAssociation"
                             ]
                         },
+                        "GetBackupPlanRevision": {
+                            "methods": [
+                                "getBackupPlanRevision"
+                            ]
+                        },
                         "GetBackupVault": {
                             "methods": [
                                 "getBackupVault"
@@ -83,6 +98,11 @@
                         "GetDataSource": {
                             "methods": [
                                 "getDataSource"
+                            ]
+                        },
+                        "GetDataSourceReference": {
+                            "methods": [
+                                "getDataSourceReference"
                             ]
                         },
                         "GetManagementServer": {
@@ -98,6 +118,11 @@
                         "ListBackupPlanAssociations": {
                             "methods": [
                                 "listBackupPlanAssociations"
+                            ]
+                        },
+                        "ListBackupPlanRevisions": {
+                            "methods": [
+                                "listBackupPlanRevisions"
                             ]
                         },
                         "ListBackupPlans": {
@@ -138,6 +163,16 @@
                         "UpdateBackup": {
                             "methods": [
                                 "updateBackup"
+                            ]
+                        },
+                        "UpdateBackupPlan": {
+                            "methods": [
+                                "updateBackupPlan"
+                            ]
+                        },
+                        "UpdateBackupPlanAssociation": {
+                            "methods": [
+                                "updateBackupPlanAssociation"
                             ]
                         },
                         "UpdateBackupVault": {

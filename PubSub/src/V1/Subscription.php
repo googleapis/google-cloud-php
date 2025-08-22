@@ -155,8 +155,8 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * this subscription.
      * If not set, the default retry policy is applied. This generally implies
      * that messages will be retried as soon as possible for healthy subscribers.
-     * RetryPolicy will be triggered on NACKs or acknowledgement deadline
-     * exceeded events for a given message.
+     * RetryPolicy will be triggered on NACKs or acknowledgment deadline exceeded
+     * events for a given message.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.RetryPolicy retry_policy = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -176,7 +176,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * delivery of a message with a given value of `message_id` on this
      * subscription:
      * * The message sent to a subscriber is guaranteed not to be resent
-     * before the message's acknowledgement deadline expires.
+     * before the message's acknowledgment deadline expires.
      * * An acknowledged message will not be resent to a subscriber.
      * Note that subscribers may still receive multiple copies of a message
      * when `enable_exactly_once_delivery` is true if the message was published
@@ -358,8 +358,8 @@ class Subscription extends \Google\Protobuf\Internal\Message
      *           this subscription.
      *           If not set, the default retry policy is applied. This generally implies
      *           that messages will be retried as soon as possible for healthy subscribers.
-     *           RetryPolicy will be triggered on NACKs or acknowledgement deadline
-     *           exceeded events for a given message.
+     *           RetryPolicy will be triggered on NACKs or acknowledgment deadline exceeded
+     *           events for a given message.
      *     @type bool $detached
      *           Optional. Indicates whether the subscription is detached from its topic.
      *           Detached subscriptions don't receive messages from their topic and don't
@@ -371,7 +371,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      *           delivery of a message with a given value of `message_id` on this
      *           subscription:
      *           * The message sent to a subscriber is guaranteed not to be resent
-     *           before the message's acknowledgement deadline expires.
+     *           before the message's acknowledgment deadline expires.
      *           * An acknowledged message will not be resent to a subscriber.
      *           Note that subscribers may still receive multiple copies of a message
      *           when `enable_exactly_once_delivery` is true if the message was published
@@ -913,8 +913,8 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * this subscription.
      * If not set, the default retry policy is applied. This generally implies
      * that messages will be retried as soon as possible for healthy subscribers.
-     * RetryPolicy will be triggered on NACKs or acknowledgement deadline
-     * exceeded events for a given message.
+     * RetryPolicy will be triggered on NACKs or acknowledgment deadline exceeded
+     * events for a given message.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.RetryPolicy retry_policy = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\PubSub\V1\RetryPolicy|null
@@ -939,8 +939,8 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * this subscription.
      * If not set, the default retry policy is applied. This generally implies
      * that messages will be retried as soon as possible for healthy subscribers.
-     * RetryPolicy will be triggered on NACKs or acknowledgement deadline
-     * exceeded events for a given message.
+     * RetryPolicy will be triggered on NACKs or acknowledgment deadline exceeded
+     * events for a given message.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.RetryPolicy retry_policy = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\PubSub\V1\RetryPolicy $var
@@ -993,7 +993,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * delivery of a message with a given value of `message_id` on this
      * subscription:
      * * The message sent to a subscriber is guaranteed not to be resent
-     * before the message's acknowledgement deadline expires.
+     * before the message's acknowledgment deadline expires.
      * * An acknowledged message will not be resent to a subscriber.
      * Note that subscribers may still receive multiple copies of a message
      * when `enable_exactly_once_delivery` is true if the message was published
@@ -1013,7 +1013,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * delivery of a message with a given value of `message_id` on this
      * subscription:
      * * The message sent to a subscriber is guaranteed not to be resent
-     * before the message's acknowledgement deadline expires.
+     * before the message's acknowledgment deadline expires.
      * * An acknowledged message will not be resent to a subscriber.
      * Note that subscribers may still receive multiple copies of a message
      * when `enable_exactly_once_delivery` is true if the message was published

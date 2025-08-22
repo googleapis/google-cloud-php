@@ -35,9 +35,10 @@ class RunProcess
      * @param string|null $cwd
      * @return string $shellOutput
      */
-    public function execute(array $command, ?string $cwd = null): string
+    public function execute(array $command, ?string $cwd = null, int $timeout = 60): string
     {
         $process = new Process($command, $cwd);
+        $process->setTimeout($timeout);
         $process->mustRun();
 
         return $process->getOutput() . $process->getErrorOutput();

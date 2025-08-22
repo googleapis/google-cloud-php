@@ -11,8 +11,10 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * When a read-write transaction is executed on a multiplexed session,
  * this precommit token is sent back to the client
- * as a part of the [Transaction] message in the BeginTransaction response and
- * also as a part of the [ResultSet] and [PartialResultSet] responses.
+ * as a part of the [Transaction][google.spanner.v1.Transaction] message in the
+ * [BeginTransaction][google.spanner.v1.BeginTransactionRequest] response and
+ * also as a part of the [ResultSet][google.spanner.v1.ResultSet] and
+ * [PartialResultSet][google.spanner.v1.PartialResultSet] responses.
  *
  * Generated from protobuf message <code>google.spanner.v1.MultiplexedSessionPrecommitToken</code>
  */

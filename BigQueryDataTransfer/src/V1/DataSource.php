@@ -372,7 +372,9 @@ class DataSource extends \Google\Protobuf\Internal\Message
      */
     public function getTransferType()
     {
-        @trigger_error('transfer_type is deprecated.', E_USER_DEPRECATED);
+        if ($this->transfer_type !== 0) {
+            @trigger_error('transfer_type is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->transfer_type;
     }
 
@@ -402,7 +404,9 @@ class DataSource extends \Google\Protobuf\Internal\Message
      */
     public function getSupportsMultipleTransfers()
     {
-        @trigger_error('supports_multiple_transfers is deprecated.', E_USER_DEPRECATED);
+        if ($this->supports_multiple_transfers !== false) {
+            @trigger_error('supports_multiple_transfers is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->supports_multiple_transfers;
     }
 

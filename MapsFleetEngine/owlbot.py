@@ -38,6 +38,12 @@ php.owlbot_main(
     ]
 )
 
+# fix protobuf bug (b/418528083)
+s.replace(
+    "src/V*/**/*.php",
+    "\$arr->count\(\)",
+    "count($arr)")
+
 # remove class_alias code
 s.replace(
     "src/V*/**/*.php",

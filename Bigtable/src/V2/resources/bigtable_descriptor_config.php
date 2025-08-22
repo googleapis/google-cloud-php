@@ -34,21 +34,13 @@ return [
                         ],
                         'matchers' => [
                             '/^(?<table_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+)$/',
+                            '/^(?<table_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+)(?:\/.*)?$/',
                         ],
                     ],
                     [
                         'keyName' => 'app_profile_id',
                         'fieldAccessors' => [
                             'getAppProfileId',
-                        ],
-                    ],
-                    [
-                        'keyName' => 'authorized_view_name',
-                        'fieldAccessors' => [
-                            'getAuthorizedViewName',
-                        ],
-                        'matchers' => [
-                            '/^(?<authorized_view_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+\/authorizedViews\/[^\/]+)$/',
                         ],
                     ],
                 ],
@@ -103,21 +95,13 @@ return [
                         ],
                         'matchers' => [
                             '/^(?<table_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+)$/',
+                            '/^(?<table_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+)(?:\/.*)?$/',
                         ],
                     ],
                     [
                         'keyName' => 'app_profile_id',
                         'fieldAccessors' => [
                             'getAppProfileId',
-                        ],
-                    ],
-                    [
-                        'keyName' => 'authorized_view_name',
-                        'fieldAccessors' => [
-                            'getAuthorizedViewName',
-                        ],
-                        'matchers' => [
-                            '/^(?<authorized_view_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+\/authorizedViews\/[^\/]+)$/',
                         ],
                     ],
                 ],
@@ -136,21 +120,13 @@ return [
                         ],
                         'matchers' => [
                             '/^(?<table_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+)$/',
+                            '/^(?<table_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+)(?:\/.*)?$/',
                         ],
                     ],
                     [
                         'keyName' => 'app_profile_id',
                         'fieldAccessors' => [
                             'getAppProfileId',
-                        ],
-                    ],
-                    [
-                        'keyName' => 'authorized_view_name',
-                        'fieldAccessors' => [
-                            'getAuthorizedViewName',
-                        ],
-                        'matchers' => [
-                            '/^(?<authorized_view_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+\/authorizedViews\/[^\/]+)$/',
                         ],
                     ],
                 ],
@@ -223,21 +199,13 @@ return [
                         ],
                         'matchers' => [
                             '/^(?<table_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+)$/',
+                            '/^(?<table_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+)(?:\/.*)?$/',
                         ],
                     ],
                     [
                         'keyName' => 'app_profile_id',
                         'fieldAccessors' => [
                             'getAppProfileId',
-                        ],
-                    ],
-                    [
-                        'keyName' => 'authorized_view_name',
-                        'fieldAccessors' => [
-                            'getAuthorizedViewName',
-                        ],
-                        'matchers' => [
-                            '/^(?<authorized_view_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+\/authorizedViews\/[^\/]+)$/',
                         ],
                     ],
                 ],
@@ -256,6 +224,7 @@ return [
                         ],
                         'matchers' => [
                             '/^(?<table_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+)$/',
+                            '/^(?<table_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+)(?:\/.*)?$/',
                         ],
                     ],
                     [
@@ -265,12 +234,12 @@ return [
                         ],
                     ],
                     [
-                        'keyName' => 'authorized_view_name',
+                        'keyName' => 'name',
                         'fieldAccessors' => [
-                            'getAuthorizedViewName',
+                            'getMaterializedViewName',
                         ],
                         'matchers' => [
-                            '/^(?<authorized_view_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+\/authorizedViews\/[^\/]+)$/',
+                            '/^(?<name>projects\/[^\/]+\/instances\/[^\/]+)(?:\/.*)?$/',
                         ],
                     ],
                 ],
@@ -289,6 +258,7 @@ return [
                         ],
                         'matchers' => [
                             '/^(?<table_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+)$/',
+                            '/^(?<table_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+)(?:\/.*)?$/',
                         ],
                     ],
                     [
@@ -298,12 +268,12 @@ return [
                         ],
                     ],
                     [
-                        'keyName' => 'authorized_view_name',
+                        'keyName' => 'name',
                         'fieldAccessors' => [
-                            'getAuthorizedViewName',
+                            'getMaterializedViewName',
                         ],
                         'matchers' => [
-                            '/^(?<authorized_view_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+\/authorizedViews\/[^\/]+)$/',
+                            '/^(?<name>projects\/[^\/]+\/instances\/[^\/]+)(?:\/.*)?$/',
                         ],
                     ],
                 ],

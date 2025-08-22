@@ -8,8 +8,6 @@
       <exclude>Firestore/tests/System</exclude>
       <exclude>Logging/tests/System</exclude>
       <exclude>Spanner/tests/System</exclude>
-      <!-- Exclude packages which are deprecated -->
-      <exclude>Debugger/tests/System</exclude>
     </testsuite>
   </testsuites>
   <php>

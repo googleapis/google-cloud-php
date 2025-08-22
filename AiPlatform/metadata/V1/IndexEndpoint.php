@@ -22,7 +22,7 @@ class IndexEndpoint
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ÿ
+Ü
 /google/cloud/aiplatform/v1/index_endpoint.protogoogle.cloud.aiplatform.v1google/api/resource.proto0google/cloud/aiplatform/v1/encryption_spec.proto2google/cloud/aiplatform/v1/machine_resources.proto3google/cloud/aiplatform/v1/service_networking.protogoogle/protobuf/timestamp.proto"Ä
 IndexEndpoint
 name (	B‡A
@@ -45,7 +45,7 @@ class IndexEndpoint
 LabelsEntry
 key (	
 value (	:8:uÍAr
-\'aiplatform.googleapis.com/IndexEndpointGprojects/{project}/locations/{location}/indexEndpoints/{index_endpoint}"Ì
+\'aiplatform.googleapis.com/IndexEndpointGprojects/{project}/locations/{location}/indexEndpoints/{index_endpoint}"õ
 DeployedIndex
 id (	B‡A6
 index (	B\'‡A˙A!
@@ -56,7 +56,8 @@ class IndexEndpoint
 index_sync_time (2.google.protobuf.TimestampB‡AP
 automatic_resources (2..google.cloud.aiplatform.v1.AutomaticResourcesB‡AP
 dedicated_resources (2..google.cloud.aiplatform.v1.DedicatedResourcesB‡A"
-enable_access_logging (B‡A\\
+enable_access_logging (B‡A,
+enable_datapoint_upsert_logging (B‡A\\
 deployed_index_auth_config	 (23.google.cloud.aiplatform.v1.DeployedIndexAuthConfigB‡A
 reserved_ip_ranges
  (	B‡A

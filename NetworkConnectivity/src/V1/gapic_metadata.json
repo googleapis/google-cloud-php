@@ -278,6 +278,65 @@
                 }
             }
         },
+        "InternalRangeService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "InternalRangeServiceGapicClient",
+                    "rpcs": {
+                        "CreateInternalRange": {
+                            "methods": [
+                                "createInternalRange"
+                            ]
+                        },
+                        "DeleteInternalRange": {
+                            "methods": [
+                                "deleteInternalRange"
+                            ]
+                        },
+                        "GetInternalRange": {
+                            "methods": [
+                                "getInternalRange"
+                            ]
+                        },
+                        "ListInternalRanges": {
+                            "methods": [
+                                "listInternalRanges"
+                            ]
+                        },
+                        "UpdateInternalRange": {
+                            "methods": [
+                                "updateInternalRange"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "PolicyBasedRoutingService": {
             "clients": {
                 "grpc": {

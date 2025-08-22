@@ -56,6 +56,12 @@ class DataSourceGcpResource extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\BackupDR\V1\ComputeInstanceDataSourceProperties $compute_instance_datasource_properties
      *           ComputeInstanceDataSourceProperties has a subset of Compute Instance
      *           properties that are useful at the Datasource level.
+     *     @type \Google\Cloud\BackupDR\V1\CloudSqlInstanceDataSourceProperties $cloud_sql_instance_datasource_properties
+     *           Output only. CloudSqlInstanceDataSourceProperties has a subset of Cloud
+     *           SQL Instance properties that are useful at the Datasource level.
+     *     @type \Google\Cloud\BackupDR\V1\DiskDataSourceProperties $disk_datasource_properties
+     *           DiskDataSourceProperties has a subset of Disk properties that are useful
+     *           at the Datasource level.
      * }
      */
     public function __construct($data = NULL) {
@@ -174,6 +180,72 @@ class DataSourceGcpResource extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\BackupDR\V1\ComputeInstanceDataSourceProperties::class);
         $this->writeOneof(4, $var);
+
+        return $this;
+    }
+
+    /**
+     * Output only. CloudSqlInstanceDataSourceProperties has a subset of Cloud
+     * SQL Instance properties that are useful at the Datasource level.
+     *
+     * Generated from protobuf field <code>.google.cloud.backupdr.v1.CloudSqlInstanceDataSourceProperties cloud_sql_instance_datasource_properties = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\BackupDR\V1\CloudSqlInstanceDataSourceProperties|null
+     */
+    public function getCloudSqlInstanceDatasourceProperties()
+    {
+        return $this->readOneof(5);
+    }
+
+    public function hasCloudSqlInstanceDatasourceProperties()
+    {
+        return $this->hasOneof(5);
+    }
+
+    /**
+     * Output only. CloudSqlInstanceDataSourceProperties has a subset of Cloud
+     * SQL Instance properties that are useful at the Datasource level.
+     *
+     * Generated from protobuf field <code>.google.cloud.backupdr.v1.CloudSqlInstanceDataSourceProperties cloud_sql_instance_datasource_properties = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\BackupDR\V1\CloudSqlInstanceDataSourceProperties $var
+     * @return $this
+     */
+    public function setCloudSqlInstanceDatasourceProperties($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\BackupDR\V1\CloudSqlInstanceDataSourceProperties::class);
+        $this->writeOneof(5, $var);
+
+        return $this;
+    }
+
+    /**
+     * DiskDataSourceProperties has a subset of Disk properties that are useful
+     * at the Datasource level.
+     *
+     * Generated from protobuf field <code>.google.cloud.backupdr.v1.DiskDataSourceProperties disk_datasource_properties = 7;</code>
+     * @return \Google\Cloud\BackupDR\V1\DiskDataSourceProperties|null
+     */
+    public function getDiskDatasourceProperties()
+    {
+        return $this->readOneof(7);
+    }
+
+    public function hasDiskDatasourceProperties()
+    {
+        return $this->hasOneof(7);
+    }
+
+    /**
+     * DiskDataSourceProperties has a subset of Disk properties that are useful
+     * at the Datasource level.
+     *
+     * Generated from protobuf field <code>.google.cloud.backupdr.v1.DiskDataSourceProperties disk_datasource_properties = 7;</code>
+     * @param \Google\Cloud\BackupDR\V1\DiskDataSourceProperties $var
+     * @return $this
+     */
+    public function setDiskDatasourceProperties($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\BackupDR\V1\DiskDataSourceProperties::class);
+        $this->writeOneof(7, $var);
 
         return $this;
     }

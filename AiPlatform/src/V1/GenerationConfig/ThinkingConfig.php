@@ -16,6 +16,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class ThinkingConfig extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Indicates whether to include thoughts in the response.
+     * If true, thoughts are returned only when available.
+     *
+     * Generated from protobuf field <code>optional bool include_thoughts = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $include_thoughts = null;
+    /**
      * Optional. Indicates the thinking budget in tokens.
      * This is only applied when enable_thinking is true.
      *
@@ -29,6 +36,9 @@ class ThinkingConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type bool $include_thoughts
+     *           Indicates whether to include thoughts in the response.
+     *           If true, thoughts are returned only when available.
      *     @type int $thinking_budget
      *           Optional. Indicates the thinking budget in tokens.
      *           This is only applied when enable_thinking is true.
@@ -37,6 +47,44 @@ class ThinkingConfig extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Aiplatform\V1\Content::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Indicates whether to include thoughts in the response.
+     * If true, thoughts are returned only when available.
+     *
+     * Generated from protobuf field <code>optional bool include_thoughts = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getIncludeThoughts()
+    {
+        return isset($this->include_thoughts) ? $this->include_thoughts : false;
+    }
+
+    public function hasIncludeThoughts()
+    {
+        return isset($this->include_thoughts);
+    }
+
+    public function clearIncludeThoughts()
+    {
+        unset($this->include_thoughts);
+    }
+
+    /**
+     * Indicates whether to include thoughts in the response.
+     * If true, thoughts are returned only when available.
+     *
+     * Generated from protobuf field <code>optional bool include_thoughts = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setIncludeThoughts($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->include_thoughts = $var;
+
+        return $this;
     }
 
     /**

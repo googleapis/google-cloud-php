@@ -16,16 +16,16 @@ use Google\Protobuf\Internal\GPBUtil;
 class SearchCasesResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The list of cases associated with the Google Cloud Resource, after any
+     * The list of cases associated with the parent after any
      * filters have been applied.
      *
      * Generated from protobuf field <code>repeated .google.cloud.support.v2.Case cases = 1;</code>
      */
     private $cases;
     /**
-     * A token to retrieve the next page of results. This should be set in the
-     * `page_token` field of subsequent `SearchCaseRequest` message that is
-     * issued. If unspecified, there are no more results to retrieve.
+     * A token to retrieve the next page of results. Set this in the
+     * `page_token` field of subsequent `cases.search` requests. If unspecified,
+     * there are no more results to retrieve.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
@@ -38,12 +38,12 @@ class SearchCasesResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\Support\V2\PBCase>|\Google\Protobuf\Internal\RepeatedField $cases
-     *           The list of cases associated with the Google Cloud Resource, after any
+     *           The list of cases associated with the parent after any
      *           filters have been applied.
      *     @type string $next_page_token
-     *           A token to retrieve the next page of results. This should be set in the
-     *           `page_token` field of subsequent `SearchCaseRequest` message that is
-     *           issued. If unspecified, there are no more results to retrieve.
+     *           A token to retrieve the next page of results. Set this in the
+     *           `page_token` field of subsequent `cases.search` requests. If unspecified,
+     *           there are no more results to retrieve.
      * }
      */
     public function __construct($data = NULL) {
@@ -52,7 +52,7 @@ class SearchCasesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The list of cases associated with the Google Cloud Resource, after any
+     * The list of cases associated with the parent after any
      * filters have been applied.
      *
      * Generated from protobuf field <code>repeated .google.cloud.support.v2.Case cases = 1;</code>
@@ -64,7 +64,7 @@ class SearchCasesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The list of cases associated with the Google Cloud Resource, after any
+     * The list of cases associated with the parent after any
      * filters have been applied.
      *
      * Generated from protobuf field <code>repeated .google.cloud.support.v2.Case cases = 1;</code>
@@ -80,9 +80,9 @@ class SearchCasesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A token to retrieve the next page of results. This should be set in the
-     * `page_token` field of subsequent `SearchCaseRequest` message that is
-     * issued. If unspecified, there are no more results to retrieve.
+     * A token to retrieve the next page of results. Set this in the
+     * `page_token` field of subsequent `cases.search` requests. If unspecified,
+     * there are no more results to retrieve.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
@@ -93,9 +93,9 @@ class SearchCasesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A token to retrieve the next page of results. This should be set in the
-     * `page_token` field of subsequent `SearchCaseRequest` message that is
-     * issued. If unspecified, there are no more results to retrieve.
+     * A token to retrieve the next page of results. Set this in the
+     * `page_token` field of subsequent `cases.search` requests. If unspecified,
+     * there are no more results to retrieve.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var

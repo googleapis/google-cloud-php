@@ -83,6 +83,13 @@ class DataSource extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.backupdr.v1.BackupConfigInfo backup_config_info = 25 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $backup_config_info = null;
+    /**
+     * Output only. This field is set to true if the backup is blocked by vault
+     * access restriction.
+     *
+     * Generated from protobuf field <code>bool backup_blocked_by_vault_access_restriction = 28 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $backup_blocked_by_vault_access_restriction = false;
     protected $source_resource;
 
     /**
@@ -124,6 +131,9 @@ class DataSource extends \Google\Protobuf\Internal\Message
      *           DataSource object.
      *     @type \Google\Cloud\BackupDR\V1\DataSourceBackupApplianceApplication $data_source_backup_appliance_application
      *           The backed up resource is a backup appliance application.
+     *     @type bool $backup_blocked_by_vault_access_restriction
+     *           Output only. This field is set to true if the backup is blocked by vault
+     *           access restriction.
      * }
      */
     public function __construct($data = NULL) {
@@ -527,6 +537,34 @@ class DataSource extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\BackupDR\V1\DataSourceBackupApplianceApplication::class);
         $this->writeOneof(27, $var);
+
+        return $this;
+    }
+
+    /**
+     * Output only. This field is set to true if the backup is blocked by vault
+     * access restriction.
+     *
+     * Generated from protobuf field <code>bool backup_blocked_by_vault_access_restriction = 28 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getBackupBlockedByVaultAccessRestriction()
+    {
+        return $this->backup_blocked_by_vault_access_restriction;
+    }
+
+    /**
+     * Output only. This field is set to true if the backup is blocked by vault
+     * access restriction.
+     *
+     * Generated from protobuf field <code>bool backup_blocked_by_vault_access_restriction = 28 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setBackupBlockedByVaultAccessRestriction($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->backup_blocked_by_vault_access_restriction = $var;
 
         return $this;
     }

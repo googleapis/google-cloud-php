@@ -33,6 +33,9 @@ class ListCryptoKeysResponse extends \Google\Protobuf\Internal\Message
     /**
      * The total number of [CryptoKeys][google.cloud.kms.v1.CryptoKey] that
      * matched the query.
+     * This field is not populated if
+     * [ListCryptoKeysRequest.filter][google.cloud.kms.v1.ListCryptoKeysRequest.filter]
+     * is applied.
      *
      * Generated from protobuf field <code>int32 total_size = 3;</code>
      */
@@ -53,6 +56,9 @@ class ListCryptoKeysResponse extends \Google\Protobuf\Internal\Message
      *     @type int $total_size
      *           The total number of [CryptoKeys][google.cloud.kms.v1.CryptoKey] that
      *           matched the query.
+     *           This field is not populated if
+     *           [ListCryptoKeysRequest.filter][google.cloud.kms.v1.ListCryptoKeysRequest.filter]
+     *           is applied.
      * }
      */
     public function __construct($data = NULL) {
@@ -119,6 +125,9 @@ class ListCryptoKeysResponse extends \Google\Protobuf\Internal\Message
     /**
      * The total number of [CryptoKeys][google.cloud.kms.v1.CryptoKey] that
      * matched the query.
+     * This field is not populated if
+     * [ListCryptoKeysRequest.filter][google.cloud.kms.v1.ListCryptoKeysRequest.filter]
+     * is applied.
      *
      * Generated from protobuf field <code>int32 total_size = 3;</code>
      * @return int
@@ -131,6 +140,9 @@ class ListCryptoKeysResponse extends \Google\Protobuf\Internal\Message
     /**
      * The total number of [CryptoKeys][google.cloud.kms.v1.CryptoKey] that
      * matched the query.
+     * This field is not populated if
+     * [ListCryptoKeysRequest.filter][google.cloud.kms.v1.ListCryptoKeysRequest.filter]
+     * is applied.
      *
      * Generated from protobuf field <code>int32 total_size = 3;</code>
      * @param int $var

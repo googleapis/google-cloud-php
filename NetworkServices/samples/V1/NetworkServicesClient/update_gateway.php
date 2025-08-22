@@ -33,34 +33,21 @@ use Google\Rpc\Status;
 /**
  * Updates the parameters of a single Gateway.
  *
- * @param string $gatewayName         Name of the Gateway resource. It matches pattern
- *                                    `projects/&#42;/locations/&#42;/gateways/<gateway_name>`.
- * @param int    $gatewayPortsElement One or more ports that the Gateway must receive traffic on. The
- *                                    proxy binds to the ports specified. Gateway listen on 0.0.0.0 on the ports
- *                                    specified below.
- * @param string $gatewayScope        Immutable. Scope determines how configuration across multiple
- *                                    Gateway instances are merged. The configuration for multiple Gateway
- *                                    instances with the same scope will be merged as presented as a single
- *                                    coniguration to the proxy/load balancer.
- *
- *                                    Max length 64 characters.
- *                                    Scope should start with a letter and can only have letters, numbers,
- *                                    hyphens.
+ * @param int $gatewayPortsElement One or more port numbers (1-65535), on which the Gateway will
+ *                                 receive traffic. The proxy binds to the specified ports.
+ *                                 Gateways of type 'SECURE_WEB_GATEWAY' are limited to 1 port.
+ *                                 Gateways of type 'OPEN_MESH' listen on 0.0.0.0 for IPv4 and :: for IPv6 and
+ *                                 support multiple ports.
  */
-function update_gateway_sample(
-    string $gatewayName,
-    int $gatewayPortsElement,
-    string $gatewayScope
-): void {
+function update_gateway_sample(int $gatewayPortsElement): void
+{
     // Create a client.
     $networkServicesClient = new NetworkServicesClient();
 
     // Prepare the request message.
     $gatewayPorts = [$gatewayPortsElement,];
     $gateway = (new Gateway())
-        ->setName($gatewayName)
-        ->setPorts($gatewayPorts)
-        ->setScope($gatewayScope);
+        ->setPorts($gatewayPorts);
     $request = (new UpdateGatewayRequest())
         ->setGateway($gateway);
 
@@ -95,10 +82,8 @@ function update_gateway_sample(
  */
 function callSample(): void
 {
-    $gatewayName = '[NAME]';
     $gatewayPortsElement = 0;
-    $gatewayScope = '[SCOPE]';
 
-    update_gateway_sample($gatewayName, $gatewayPortsElement, $gatewayScope);
+    update_gateway_sample($gatewayPortsElement);
 }
 // [END networkservices_v1_generated_NetworkServices_UpdateGateway_sync]

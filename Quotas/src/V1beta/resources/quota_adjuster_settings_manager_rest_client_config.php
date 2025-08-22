@@ -26,6 +26,16 @@ return [
             'GetQuotaAdjusterSettings' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1beta/{name=projects/*/locations/*/quotaAdjusterSettings}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1beta/{name=folders/*/locations/*/quotaAdjusterSettings}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1beta/{name=organizations/*/locations/*/quotaAdjusterSettings}',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -38,6 +48,18 @@ return [
                 'method' => 'patch',
                 'uriTemplate' => '/v1beta/{quota_adjuster_settings.name=projects/*/locations/*/quotaAdjusterSettings}',
                 'body' => 'quota_adjuster_settings',
+                'additionalBindings' => [
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v1beta/{quota_adjuster_settings.name=folders/*/locations/*/quotaAdjusterSettings}',
+                        'body' => 'quota_adjuster_settings',
+                    ],
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v1beta/{quota_adjuster_settings.name=organizations/*/locations/*/quotaAdjusterSettings}',
+                        'body' => 'quota_adjuster_settings',
+                    ],
+                ],
                 'placeholders' => [
                     'quota_adjuster_settings.name' => [
                         'getters' => [
