@@ -70,8 +70,8 @@ class UpdateReadmeSampleCommandTest extends TestCase
 
     public function testUpdateSampleWithNewVersion()
     {
-        $v1SamplePath = $this->componentDir . '/samples/v1/ClientSnippetsClient/an_rpc_method.php';
-        $v2SampleDir = $this->componentDir . '/samples/v2/ClientSnippetsClient';
+        $v1SamplePath = $this->componentDir . '/samples/V1/ClientSnippetsClient/an_rpc_method.php';
+        $v2SampleDir = $this->componentDir . '/samples/V2/ClientSnippetsClient';
         $v2Sample = str_replace('V1', 'V2', file_get_contents($v1SamplePath));
         if (!is_dir($v2SampleDir)) {
             mkdir($v2SampleDir, 0777, true);
