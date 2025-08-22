@@ -120,7 +120,9 @@ class PBParent extends \Google\Protobuf\Internal\Message
      */
     public function getId()
     {
-        @trigger_error('id is deprecated.', E_USER_DEPRECATED);
+        if ($this->id !== 0) {
+            @trigger_error('id is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->id;
     }
 

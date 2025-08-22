@@ -36,7 +36,7 @@ use Google\Rpc\Status;
  * operation as it may create many linked datasets.
  *
  * @param string $formattedName Resource name of the Subscription to refresh.
- *                              e.g. `projects/subscriberproject/locations/US/subscriptions/123`
+ *                              e.g. `projects/subscriberproject/locations/us/subscriptions/123`
  *                              Please see {@see AnalyticsHubServiceClient::subscriptionName()} for help formatting this field.
  */
 function refresh_subscription_sample(string $formattedName): void

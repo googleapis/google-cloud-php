@@ -1115,7 +1115,9 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      */
     public function getKmsKey()
     {
-        @trigger_error('kms_key is deprecated.', E_USER_DEPRECATED);
+        if ($this->kms_key !== '') {
+            @trigger_error('kms_key is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->kms_key;
     }
 
@@ -1583,7 +1585,9 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      */
     public function getTagKeys()
     {
-        @trigger_error('tag_keys is deprecated.', E_USER_DEPRECATED);
+        if ($this->tag_keys->count() !== 0) {
+            @trigger_error('tag_keys is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->tag_keys;
     }
 
@@ -1606,8 +1610,10 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      */
     public function setTagKeys($var)
     {
-        @trigger_error('tag_keys is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        if (count($arr) !== 0) {
+            @trigger_error('tag_keys is deprecated.', E_USER_DEPRECATED);
+        }
         $this->tag_keys = $arr;
 
         return $this;
@@ -1633,7 +1639,9 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      */
     public function getTagValues()
     {
-        @trigger_error('tag_values is deprecated.', E_USER_DEPRECATED);
+        if ($this->tag_values->count() !== 0) {
+            @trigger_error('tag_values is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->tag_values;
     }
 
@@ -1658,8 +1666,10 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      */
     public function setTagValues($var)
     {
-        @trigger_error('tag_values is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        if (count($arr) !== 0) {
+            @trigger_error('tag_values is deprecated.', E_USER_DEPRECATED);
+        }
         $this->tag_values = $arr;
 
         return $this;
@@ -1681,7 +1691,9 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      */
     public function getTagValueIds()
     {
-        @trigger_error('tag_value_ids is deprecated.', E_USER_DEPRECATED);
+        if ($this->tag_value_ids->count() !== 0) {
+            @trigger_error('tag_value_ids is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->tag_value_ids;
     }
 
@@ -1702,8 +1714,10 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      */
     public function setTagValueIds($var)
     {
-        @trigger_error('tag_value_ids is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        if (count($arr) !== 0) {
+            @trigger_error('tag_value_ids is deprecated.', E_USER_DEPRECATED);
+        }
         $this->tag_value_ids = $arr;
 
         return $this;

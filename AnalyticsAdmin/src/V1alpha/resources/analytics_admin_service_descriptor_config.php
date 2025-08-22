@@ -1103,6 +1103,18 @@ return [
                     ],
                 ],
             ],
+            'GetSubpropertySyncConfig' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Analytics\Admin\V1alpha\SubpropertySyncConfig',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ListAccessBindings' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -1623,6 +1635,26 @@ return [
                     ],
                 ],
             ],
+            'ListSubpropertySyncConfigs' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getSubpropertySyncConfigs',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Analytics\Admin\V1alpha\ListSubpropertySyncConfigsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ProvisionAccountTicket' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Analytics\Admin\V1alpha\ProvisionAccountTicketResponse',
@@ -2042,6 +2074,19 @@ return [
                     ],
                 ],
             ],
+            'UpdateSubpropertySyncConfig' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Analytics\Admin\V1alpha\SubpropertySyncConfig',
+                'headerParams' => [
+                    [
+                        'keyName' => 'subproperty_sync_config.name',
+                        'fieldAccessors' => [
+                            'getSubpropertySyncConfig',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'templateMap' => [
                 'accessBinding' => 'accounts/{account}/accessBindings/{access_binding}',
                 'account' => 'accounts/{account}',
@@ -2079,6 +2124,7 @@ return [
                 'sKAdNetworkConversionValueSchema' => 'properties/{property}/dataStreams/{data_stream}/sKAdNetworkConversionValueSchema/{skadnetwork_conversion_value_schema}',
                 'searchAds360Link' => 'properties/{property}/searchAds360Links/{search_ads_360_link}',
                 'subpropertyEventFilter' => 'properties/{property}/subpropertyEventFilters/{sub_property_event_filter}',
+                'subpropertySyncConfig' => 'properties/{property}/subpropertySyncConfigs/{subproperty_sync_config}',
             ],
         ],
     ],

@@ -34,7 +34,11 @@ use Google\Apps\Chat\V1\SpaceNotificationSetting;
  * setting](https://developers.google.com/workspace/chat/get-space-notification-setting).
  *
  * Requires [user
- * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+ * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+ * with the [authorization
+ * scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes):
+ *
+ * - `https://www.googleapis.com/auth/chat.users.spacesettings`
  *
  * @param string $formattedName Format: users/{user}/spaces/{space}/spaceNotificationSetting
  *

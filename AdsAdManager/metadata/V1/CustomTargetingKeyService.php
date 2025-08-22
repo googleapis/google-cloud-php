@@ -21,7 +21,7 @@ class CustomTargetingKeyService
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-´
+à
 
 :google/ads/admanager/v1/custom_targeting_key_service.protogoogle.ads.admanager.v1google/api/annotations.protogoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto"a
 GetCustomTargetingKeyRequestA
@@ -40,10 +40,10 @@ page_token (	BàA
 custom_targeting_keys (2+.google.ads.admanager.v1.CustomTargetingKey
 next_page_token (	
 
-total_size (2¿
+total_size (2ë
 CustomTargetingKeyService·
 GetCustomTargetingKey5.google.ads.admanager.v1.GetCustomTargetingKeyRequest+.google.ads.admanager.v1.CustomTargetingKey":ÚAname‚Óä“-+/v1/{name=networks/*/customTargetingKeys/*}Ê
-ListCustomTargetingKeys7.google.ads.admanager.v1.ListCustomTargetingKeysRequest8.google.ads.admanager.v1.ListCustomTargetingKeysResponse"<ÚAparent‚Óä“-+/v1/{parent=networks/*}/customTargetingKeysÊAadmanager.googleapis.comBÒ
+ListCustomTargetingKeys7.google.ads.admanager.v1.ListCustomTargetingKeysRequest8.google.ads.admanager.v1.ListCustomTargetingKeysResponse"<ÚAparent‚Óä“-+/v1/{parent=networks/*}/customTargetingKeysGÊAadmanager.googleapis.comÒA)https://www.googleapis.com/auth/admanagerBÒ
 com.google.ads.admanager.v1BCustomTargetingKeyServiceProtoPZ@google.golang.org/genproto/googleapis/ads/admanager/v1;admanagerªGoogle.Ads.AdManager.V1ÊGoogle\\Ads\\AdManager\\V1êGoogle::Ads::AdManager::V1bproto3'
         , true);
 

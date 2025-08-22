@@ -18,6 +18,7 @@ class EndpointService
         \GPBMetadata\Google\Api\Client::initOnce();
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
+        \GPBMetadata\Google\Cloud\Aiplatform\V1\DeploymentStage::initOnce();
         \GPBMetadata\Google\Cloud\Aiplatform\V1\Endpoint::initOnce();
         \GPBMetadata\Google\Cloud\Aiplatform\V1\Operation::initOnce();
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
@@ -25,15 +26,16 @@ class EndpointService
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ñ)
-1google/cloud/aiplatform/v1/endpoint_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto)google/cloud/aiplatform/v1/endpoint.proto*google/cloud/aiplatform/v1/operation.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"©
+„*
+1google/cloud/aiplatform/v1/endpoint_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto1google/cloud/aiplatform/v1/deployment_stage.proto)google/cloud/aiplatform/v1/endpoint.proto*google/cloud/aiplatform/v1/operation.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"©
 CreateEndpointRequest9
 parent (	B)‡A˙A#
 !locations.googleapis.com/Location;
 endpoint (2$.google.cloud.aiplatform.v1.EndpointB‡A
-endpoint_id (	B‡A"q
+endpoint_id (	B‡A"Ω
 CreateEndpointOperationMetadataN
-generic_metadata (24.google.cloud.aiplatform.v1.GenericOperationMetadata"N
+generic_metadata (24.google.cloud.aiplatform.v1.GenericOperationMetadataJ
+deployment_stage (2+.google.cloud.aiplatform.v1.DeploymentStageB‡A"N
 GetEndpointRequest8
 name (	B*‡A˙A$
 "aiplatform.googleapis.com/Endpoint"›
@@ -68,9 +70,10 @@ page_token (	B‡A2
 key (	
 value (:8"X
 DeployModelResponseA
-deployed_model (2).google.cloud.aiplatform.v1.DeployedModel"n
+deployed_model (2).google.cloud.aiplatform.v1.DeployedModel"∫
 DeployModelOperationMetadataN
-generic_metadata (24.google.cloud.aiplatform.v1.GenericOperationMetadata"Ñ
+generic_metadata (24.google.cloud.aiplatform.v1.GenericOperationMetadataJ
+deployment_stage (2+.google.cloud.aiplatform.v1.DeploymentStageB‡A"Ñ
 UndeployModelRequest<
 endpoint (	B*‡A˙A$
 "aiplatform.googleapis.com/Endpoint

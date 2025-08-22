@@ -31,6 +31,7 @@ use Google\Cloud\AIPlatform\V1\CreateRagCorpusRequest;
 use Google\Cloud\AIPlatform\V1\DeleteRagCorpusRequest;
 use Google\Cloud\AIPlatform\V1\DeleteRagFileRequest;
 use Google\Cloud\AIPlatform\V1\GetRagCorpusRequest;
+use Google\Cloud\AIPlatform\V1\GetRagEngineConfigRequest;
 use Google\Cloud\AIPlatform\V1\GetRagFileRequest;
 use Google\Cloud\AIPlatform\V1\ImportRagFilesConfig;
 use Google\Cloud\AIPlatform\V1\ImportRagFilesRequest;
@@ -40,8 +41,10 @@ use Google\Cloud\AIPlatform\V1\ListRagCorporaResponse;
 use Google\Cloud\AIPlatform\V1\ListRagFilesRequest;
 use Google\Cloud\AIPlatform\V1\ListRagFilesResponse;
 use Google\Cloud\AIPlatform\V1\RagCorpus;
+use Google\Cloud\AIPlatform\V1\RagEngineConfig;
 use Google\Cloud\AIPlatform\V1\RagFile;
 use Google\Cloud\AIPlatform\V1\UpdateRagCorpusRequest;
+use Google\Cloud\AIPlatform\V1\UpdateRagEngineConfigRequest;
 use Google\Cloud\AIPlatform\V1\UploadRagFileConfig;
 use Google\Cloud\AIPlatform\V1\UploadRagFileRequest;
 use Google\Cloud\AIPlatform\V1\UploadRagFileResponse;
@@ -542,6 +545,71 @@ class VertexRagDataServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function getRagEngineConfigTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $expectedResponse = new RagEngineConfig();
+        $expectedResponse->setName($name2);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->ragEngineConfigName('[PROJECT]', '[LOCATION]');
+        $request = (new GetRagEngineConfigRequest())->setName($formattedName);
+        $response = $gapicClient->getRagEngineConfig($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.aiplatform.v1.VertexRagDataService/GetRagEngineConfig', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getRagEngineConfigExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->ragEngineConfigName('[PROJECT]', '[LOCATION]');
+        $request = (new GetRagEngineConfigRequest())->setName($formattedName);
+        try {
+            $gapicClient->getRagEngineConfig($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function getRagFileTest()
     {
         $transport = $this->createTransport();
@@ -1005,6 +1073,130 @@ class VertexRagDataServiceClientTest extends GeneratedTest
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateRagCorpusTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function updateRagEngineConfigTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateRagEngineConfigTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $expectedResponse = new RagEngineConfig();
+        $expectedResponse->setName($name);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/updateRagEngineConfigTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $ragEngineConfig = new RagEngineConfig();
+        $request = (new UpdateRagEngineConfigRequest())->setRagEngineConfig($ragEngineConfig);
+        $response = $gapicClient->updateRagEngineConfig($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.aiplatform.v1.VertexRagDataService/UpdateRagEngineConfig', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getRagEngineConfig();
+        $this->assertProtobufEquals($ragEngineConfig, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateRagEngineConfigTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function updateRagEngineConfigExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateRagEngineConfigTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $ragEngineConfig = new RagEngineConfig();
+        $request = (new UpdateRagEngineConfigRequest())->setRagEngineConfig($ragEngineConfig);
+        $response = $gapicClient->updateRagEngineConfig($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateRagEngineConfigTest');
         try {
             $response->pollUntilComplete([
                 'initialPollDelayMillis' => 1,

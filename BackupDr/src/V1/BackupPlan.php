@@ -70,7 +70,8 @@ class BackupPlan extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource type to which the `BackupPlan` will be applied.
      * Examples include, "compute.googleapis.com/Instance",
-     * "sqladmin.googleapis.com/Instance", or "alloydb.googleapis.com/Cluster".
+     * "sqladmin.googleapis.com/Instance", "alloydb.googleapis.com/Cluster",
+     * "compute.googleapis.com/Disk".
      *
      * Generated from protobuf field <code>string resource_type = 8 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -99,6 +100,36 @@ class BackupPlan extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string backup_vault_service_account = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $backup_vault_service_account = '';
+    /**
+     * Optional. Applicable only for CloudSQL resource_type.
+     * Configures how long logs will be stored. It is defined in “days”. This
+     * value should be greater than or equal to minimum enforced log retention
+     * duration of the backup vault.
+     *
+     * Generated from protobuf field <code>int64 log_retention_days = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $log_retention_days = 0;
+    /**
+     * Output only. All resource types to which backupPlan can be applied.
+     *
+     * Generated from protobuf field <code>repeated string supported_resource_types = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $supported_resource_types;
+    /**
+     * Output only. The user friendly revision ID of the `BackupPlanRevision`.
+     * Example: v0, v1, v2, etc.
+     *
+     * Generated from protobuf field <code>string revision_id = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $revision_id = '';
+    /**
+     * Output only. The resource id of the `BackupPlanRevision`.
+     * Format:
+     * `projects/{project}/locations/{location}/backupPlans/{backup_plan}/revisions/{revision_id}`
+     *
+     * Generated from protobuf field <code>string revision_name = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $revision_name = '';
 
     /**
      * Constructor.
@@ -130,7 +161,8 @@ class BackupPlan extends \Google\Protobuf\Internal\Message
      *     @type string $resource_type
      *           Required. The resource type to which the `BackupPlan` will be applied.
      *           Examples include, "compute.googleapis.com/Instance",
-     *           "sqladmin.googleapis.com/Instance", or "alloydb.googleapis.com/Cluster".
+     *           "sqladmin.googleapis.com/Instance", "alloydb.googleapis.com/Cluster",
+     *           "compute.googleapis.com/Disk".
      *     @type string $etag
      *           Optional. `etag` is returned from the service in the response. As a user of
      *           the service, you may provide an etag value in this field to prevent stale
@@ -143,6 +175,20 @@ class BackupPlan extends \Google\Protobuf\Internal\Message
      *           Output only. The Google Cloud Platform Service Account to be used by the
      *           BackupVault for taking backups. Specify the email address of the Backup
      *           Vault Service Account.
+     *     @type int|string $log_retention_days
+     *           Optional. Applicable only for CloudSQL resource_type.
+     *           Configures how long logs will be stored. It is defined in “days”. This
+     *           value should be greater than or equal to minimum enforced log retention
+     *           duration of the backup vault.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $supported_resource_types
+     *           Output only. All resource types to which backupPlan can be applied.
+     *     @type string $revision_id
+     *           Output only. The user friendly revision ID of the `BackupPlanRevision`.
+     *           Example: v0, v1, v2, etc.
+     *     @type string $revision_name
+     *           Output only. The resource id of the `BackupPlanRevision`.
+     *           Format:
+     *           `projects/{project}/locations/{location}/backupPlans/{backup_plan}/revisions/{revision_id}`
      * }
      */
     public function __construct($data = NULL) {
@@ -369,7 +415,8 @@ class BackupPlan extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource type to which the `BackupPlan` will be applied.
      * Examples include, "compute.googleapis.com/Instance",
-     * "sqladmin.googleapis.com/Instance", or "alloydb.googleapis.com/Cluster".
+     * "sqladmin.googleapis.com/Instance", "alloydb.googleapis.com/Cluster",
+     * "compute.googleapis.com/Disk".
      *
      * Generated from protobuf field <code>string resource_type = 8 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -382,7 +429,8 @@ class BackupPlan extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource type to which the `BackupPlan` will be applied.
      * Examples include, "compute.googleapis.com/Instance",
-     * "sqladmin.googleapis.com/Instance", or "alloydb.googleapis.com/Cluster".
+     * "sqladmin.googleapis.com/Instance", "alloydb.googleapis.com/Cluster",
+     * "compute.googleapis.com/Disk".
      *
      * Generated from protobuf field <code>string resource_type = 8 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -482,6 +530,122 @@ class BackupPlan extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->backup_vault_service_account = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Applicable only for CloudSQL resource_type.
+     * Configures how long logs will be stored. It is defined in “days”. This
+     * value should be greater than or equal to minimum enforced log retention
+     * duration of the backup vault.
+     *
+     * Generated from protobuf field <code>int64 log_retention_days = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int|string
+     */
+    public function getLogRetentionDays()
+    {
+        return $this->log_retention_days;
+    }
+
+    /**
+     * Optional. Applicable only for CloudSQL resource_type.
+     * Configures how long logs will be stored. It is defined in “days”. This
+     * value should be greater than or equal to minimum enforced log retention
+     * duration of the backup vault.
+     *
+     * Generated from protobuf field <code>int64 log_retention_days = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setLogRetentionDays($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->log_retention_days = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. All resource types to which backupPlan can be applied.
+     *
+     * Generated from protobuf field <code>repeated string supported_resource_types = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getSupportedResourceTypes()
+    {
+        return $this->supported_resource_types;
+    }
+
+    /**
+     * Output only. All resource types to which backupPlan can be applied.
+     *
+     * Generated from protobuf field <code>repeated string supported_resource_types = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setSupportedResourceTypes($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->supported_resource_types = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The user friendly revision ID of the `BackupPlanRevision`.
+     * Example: v0, v1, v2, etc.
+     *
+     * Generated from protobuf field <code>string revision_id = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getRevisionId()
+    {
+        return $this->revision_id;
+    }
+
+    /**
+     * Output only. The user friendly revision ID of the `BackupPlanRevision`.
+     * Example: v0, v1, v2, etc.
+     *
+     * Generated from protobuf field <code>string revision_id = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRevisionId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->revision_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The resource id of the `BackupPlanRevision`.
+     * Format:
+     * `projects/{project}/locations/{location}/backupPlans/{backup_plan}/revisions/{revision_id}`
+     *
+     * Generated from protobuf field <code>string revision_name = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getRevisionName()
+    {
+        return $this->revision_name;
+    }
+
+    /**
+     * Output only. The resource id of the `BackupPlanRevision`.
+     * Format:
+     * `projects/{project}/locations/{location}/backupPlans/{backup_plan}/revisions/{revision_id}`
+     *
+     * Generated from protobuf field <code>string revision_name = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRevisionName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->revision_name = $var;
 
         return $this;
     }

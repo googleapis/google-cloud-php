@@ -40,6 +40,11 @@
                     "retry_codes_name": "non_idempotent",
                     "retry_params_name": "default"
                 },
+                "CreateSchemaBundle": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "non_idempotent",
+                    "retry_params_name": "default"
+                },
                 "CreateTable": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "non_idempotent",
@@ -56,6 +61,11 @@
                     "retry_params_name": "default"
                 },
                 "DeleteBackup": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "non_idempotent",
+                    "retry_params_name": "default"
+                },
+                "DeleteSchemaBundle": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "non_idempotent",
                     "retry_params_name": "default"
@@ -95,6 +105,11 @@
                     "retry_codes_name": "non_idempotent",
                     "retry_params_name": "default"
                 },
+                "GetSchemaBundle": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "idempotent",
+                    "retry_params_name": "default"
+                },
                 "GetSnapshot": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "idempotent",
@@ -111,6 +126,11 @@
                     "retry_params_name": "default"
                 },
                 "ListBackups": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "idempotent",
+                    "retry_params_name": "default"
+                },
+                "ListSchemaBundles": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "idempotent",
                     "retry_params_name": "default"
@@ -161,6 +181,11 @@
                     "retry_params_name": "default"
                 },
                 "UpdateBackup": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "non_idempotent",
+                    "retry_params_name": "default"
+                },
+                "UpdateSchemaBundle": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "non_idempotent",
                     "retry_params_name": "default"

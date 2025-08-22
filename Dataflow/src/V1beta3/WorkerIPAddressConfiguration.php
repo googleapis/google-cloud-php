@@ -7,7 +7,10 @@ namespace Google\Cloud\Dataflow\V1beta3;
 use UnexpectedValueException;
 
 /**
- * Specifies how IP addresses should be allocated to the worker machines.
+ * Specifies how to allocate IP addresses to worker machines. You can also use
+ * [pipeline
+ * options](https://cloud.google.com/dataflow/docs/reference/pipeline-options#security_and_networking)
+ * to specify whether Dataflow workers use external IP addresses.
  *
  * Protobuf type <code>google.dataflow.v1beta3.WorkerIPAddressConfiguration</code>
  */

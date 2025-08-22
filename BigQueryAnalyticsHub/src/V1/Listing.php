@@ -20,7 +20,7 @@ class Listing extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. The resource name of the listing.
-     * e.g. `projects/myproject/locations/US/dataExchanges/123/listings/456`
+     * e.g. `projects/myproject/locations/us/dataExchanges/123/listings/456`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -119,12 +119,26 @@ class Listing extends \Google\Protobuf\Internal\Message
      */
     protected $resource_type = 0;
     /**
+     * Output only. Commercial info contains the information about the commercial
+     * data products associated with the listing.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo commercial_info = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $commercial_info = null;
+    /**
      * Optional. By default, false.
      * If true, the Listing has an email sharing mandate enabled.
      *
      * Generated from protobuf field <code>optional bool log_linked_dataset_query_user_email = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $log_linked_dataset_query_user_email = null;
+    /**
+     * Optional. If true, the listing is only available to get the resource
+     * metadata. Listing is non subscribable.
+     *
+     * Generated from protobuf field <code>optional bool allow_only_metadata_sharing = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $allow_only_metadata_sharing = null;
     protected $source;
 
     /**
@@ -139,7 +153,7 @@ class Listing extends \Google\Protobuf\Internal\Message
      *           Pub/Sub topic source.
      *     @type string $name
      *           Output only. The resource name of the listing.
-     *           e.g. `projects/myproject/locations/US/dataExchanges/123/listings/456`
+     *           e.g. `projects/myproject/locations/us/dataExchanges/123/listings/456`
      *     @type string $display_name
      *           Required. Human-readable display name of the listing. The display name must
      *           contain only Unicode letters, numbers (0-9), underscores (_), dashes (-),
@@ -181,9 +195,15 @@ class Listing extends \Google\Protobuf\Internal\Message
      *           Optional. Type of discovery of the listing on the discovery page.
      *     @type int $resource_type
      *           Output only. Listing shared asset type.
+     *     @type \Google\Cloud\BigQuery\AnalyticsHub\V1\Listing\CommercialInfo $commercial_info
+     *           Output only. Commercial info contains the information about the commercial
+     *           data products associated with the listing.
      *     @type bool $log_linked_dataset_query_user_email
      *           Optional. By default, false.
      *           If true, the Listing has an email sharing mandate enabled.
+     *     @type bool $allow_only_metadata_sharing
+     *           Optional. If true, the listing is only available to get the resource
+     *           metadata. Listing is non subscribable.
      * }
      */
     public function __construct($data = NULL) {
@@ -255,7 +275,7 @@ class Listing extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The resource name of the listing.
-     * e.g. `projects/myproject/locations/US/dataExchanges/123/listings/456`
+     * e.g. `projects/myproject/locations/us/dataExchanges/123/listings/456`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -267,7 +287,7 @@ class Listing extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The resource name of the listing.
-     * e.g. `projects/myproject/locations/US/dataExchanges/123/listings/456`
+     * e.g. `projects/myproject/locations/us/dataExchanges/123/listings/456`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -690,6 +710,44 @@ class Listing extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Output only. Commercial info contains the information about the commercial
+     * data products associated with the listing.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo commercial_info = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\BigQuery\AnalyticsHub\V1\Listing\CommercialInfo|null
+     */
+    public function getCommercialInfo()
+    {
+        return $this->commercial_info;
+    }
+
+    public function hasCommercialInfo()
+    {
+        return isset($this->commercial_info);
+    }
+
+    public function clearCommercialInfo()
+    {
+        unset($this->commercial_info);
+    }
+
+    /**
+     * Output only. Commercial info contains the information about the commercial
+     * data products associated with the listing.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.bigquery.analyticshub.v1.Listing.CommercialInfo commercial_info = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\BigQuery\AnalyticsHub\V1\Listing\CommercialInfo $var
+     * @return $this
+     */
+    public function setCommercialInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\AnalyticsHub\V1\Listing\CommercialInfo::class);
+        $this->commercial_info = $var;
+
+        return $this;
+    }
+
+    /**
      * Optional. By default, false.
      * If true, the Listing has an email sharing mandate enabled.
      *
@@ -723,6 +781,44 @@ class Listing extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->log_linked_dataset_query_user_email = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If true, the listing is only available to get the resource
+     * metadata. Listing is non subscribable.
+     *
+     * Generated from protobuf field <code>optional bool allow_only_metadata_sharing = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getAllowOnlyMetadataSharing()
+    {
+        return isset($this->allow_only_metadata_sharing) ? $this->allow_only_metadata_sharing : false;
+    }
+
+    public function hasAllowOnlyMetadataSharing()
+    {
+        return isset($this->allow_only_metadata_sharing);
+    }
+
+    public function clearAllowOnlyMetadataSharing()
+    {
+        unset($this->allow_only_metadata_sharing);
+    }
+
+    /**
+     * Optional. If true, the listing is only available to get the resource
+     * metadata. Listing is non subscribable.
+     *
+     * Generated from protobuf field <code>optional bool allow_only_metadata_sharing = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setAllowOnlyMetadataSharing($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->allow_only_metadata_sharing = $var;
 
         return $this;
     }

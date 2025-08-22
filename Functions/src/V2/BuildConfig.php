@@ -502,7 +502,9 @@ class BuildConfig extends \Google\Protobuf\Internal\Message
      */
     public function getDockerRegistry()
     {
-        @trigger_error('docker_registry is deprecated.', E_USER_DEPRECATED);
+        if ($this->docker_registry !== 0) {
+            @trigger_error('docker_registry is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->docker_registry;
     }
 

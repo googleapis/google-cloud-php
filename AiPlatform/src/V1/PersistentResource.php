@@ -100,6 +100,12 @@ class PersistentResource extends \Google\Protobuf\Internal\Message
      */
     protected $network = '';
     /**
+     * Optional. Configuration for PSC-I for PersistentResource.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PscInterfaceConfig psc_interface_config = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $psc_interface_config = null;
+    /**
      * Optional. Customer-managed encryption key spec for a PersistentResource.
      * If set, this PersistentResource and all sub-resources of this
      * PersistentResource will be secured by this key.
@@ -179,6 +185,8 @@ class PersistentResource extends \Google\Protobuf\Internal\Message
      *           AI](https://cloud.google.com/vertex-ai/docs/general/vpc-peering).
      *           If this field is left unspecified, the resources aren't peered with any
      *           network.
+     *     @type \Google\Cloud\AIPlatform\V1\PscInterfaceConfig $psc_interface_config
+     *           Optional. Configuration for PSC-I for PersistentResource.
      *     @type \Google\Cloud\AIPlatform\V1\EncryptionSpec $encryption_spec
      *           Optional. Customer-managed encryption key spec for a PersistentResource.
      *           If set, this PersistentResource and all sub-resources of this
@@ -540,6 +548,42 @@ class PersistentResource extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->network = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configuration for PSC-I for PersistentResource.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PscInterfaceConfig psc_interface_config = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AIPlatform\V1\PscInterfaceConfig|null
+     */
+    public function getPscInterfaceConfig()
+    {
+        return $this->psc_interface_config;
+    }
+
+    public function hasPscInterfaceConfig()
+    {
+        return isset($this->psc_interface_config);
+    }
+
+    public function clearPscInterfaceConfig()
+    {
+        unset($this->psc_interface_config);
+    }
+
+    /**
+     * Optional. Configuration for PSC-I for PersistentResource.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PscInterfaceConfig psc_interface_config = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AIPlatform\V1\PscInterfaceConfig $var
+     * @return $this
+     */
+    public function setPscInterfaceConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\PscInterfaceConfig::class);
+        $this->psc_interface_config = $var;
 
         return $this;
     }

@@ -147,7 +147,9 @@ class InsertCssProductInputRequest extends \Google\Protobuf\Internal\Message
      */
     public function getFeedId()
     {
-        @trigger_error('feed_id is deprecated.', E_USER_DEPRECATED);
+        if ($this->feed_id !== 0) {
+            @trigger_error('feed_id is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->feed_id;
     }
 

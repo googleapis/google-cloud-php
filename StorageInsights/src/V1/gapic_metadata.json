@@ -10,14 +10,29 @@
                 "grpc": {
                     "libraryClient": "StorageInsightsGapicClient",
                     "rpcs": {
+                        "CreateDatasetConfig": {
+                            "methods": [
+                                "createDatasetConfig"
+                            ]
+                        },
                         "CreateReportConfig": {
                             "methods": [
                                 "createReportConfig"
                             ]
                         },
+                        "DeleteDatasetConfig": {
+                            "methods": [
+                                "deleteDatasetConfig"
+                            ]
+                        },
                         "DeleteReportConfig": {
                             "methods": [
                                 "deleteReportConfig"
+                            ]
+                        },
+                        "GetDatasetConfig": {
+                            "methods": [
+                                "getDatasetConfig"
                             ]
                         },
                         "GetReportConfig": {
@@ -30,6 +45,16 @@
                                 "getReportDetail"
                             ]
                         },
+                        "LinkDataset": {
+                            "methods": [
+                                "linkDataset"
+                            ]
+                        },
+                        "ListDatasetConfigs": {
+                            "methods": [
+                                "listDatasetConfigs"
+                            ]
+                        },
                         "ListReportConfigs": {
                             "methods": [
                                 "listReportConfigs"
@@ -38,6 +63,16 @@
                         "ListReportDetails": {
                             "methods": [
                                 "listReportDetails"
+                            ]
+                        },
+                        "UnlinkDataset": {
+                            "methods": [
+                                "unlinkDataset"
+                            ]
+                        },
+                        "UpdateDatasetConfig": {
+                            "methods": [
+                                "updateDatasetConfig"
                             ]
                         },
                         "UpdateReportConfig": {

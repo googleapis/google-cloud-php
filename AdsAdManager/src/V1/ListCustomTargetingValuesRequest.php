@@ -18,7 +18,7 @@ class ListCustomTargetingValuesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The parent, which owns this collection of CustomTargetingValues.
      * Format:
-     * `networks/{network_code}/customTargetingKeys/{custom_targeting_key_id}`
+     * `networks/{network_code}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -69,8 +69,8 @@ class ListCustomTargetingValuesRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. The parent, which owns this collection of CustomTargetingValues.
      *                       Format:
-     *                       `networks/{network_code}/customTargetingKeys/{custom_targeting_key_id}`
-     *                       Please see {@see CustomTargetingValueServiceClient::customTargetingKeyName()} for help formatting this field.
+     *                       `networks/{network_code}`
+     *                       Please see {@see CustomTargetingValueServiceClient::networkName()} for help formatting this field.
      *
      * @return \Google\Ads\AdManager\V1\ListCustomTargetingValuesRequest
      *
@@ -91,7 +91,7 @@ class ListCustomTargetingValuesRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The parent, which owns this collection of CustomTargetingValues.
      *           Format:
-     *           `networks/{network_code}/customTargetingKeys/{custom_targeting_key_id}`
+     *           `networks/{network_code}`
      *     @type int $page_size
      *           Optional. The maximum number of `CustomTargetingValues` to return. The
      *           service may return fewer than this value. If unspecified, at most 50
@@ -124,7 +124,7 @@ class ListCustomTargetingValuesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The parent, which owns this collection of CustomTargetingValues.
      * Format:
-     * `networks/{network_code}/customTargetingKeys/{custom_targeting_key_id}`
+     * `networks/{network_code}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -137,7 +137,7 @@ class ListCustomTargetingValuesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The parent, which owns this collection of CustomTargetingValues.
      * Format:
-     * `networks/{network_code}/customTargetingKeys/{custom_targeting_key_id}`
+     * `networks/{network_code}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

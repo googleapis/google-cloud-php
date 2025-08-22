@@ -7,8 +7,8 @@ namespace Google\Cloud\Dataplex\V1\MetadataJob\ImportJobSpec;
 use UnexpectedValueException;
 
 /**
- * Specifies how the entries and aspects in a metadata job are updated. For
- * more information, see [Sync
+ * Specifies how the entries and aspects in a metadata import job are
+ * updated. For more information, see [Sync
  * mode](https://cloud.google.com/dataplex/docs/import-metadata#sync-mode).
  *
  * Protobuf type <code>google.cloud.dataplex.v1.MetadataJob.ImportJobSpec.SyncMode</code>

@@ -31,8 +31,6 @@ use Google\Cloud\SecureSourceManager\V1\Repository;
 /**
  * Gets metadata of a repository.
  *
- * **Host: Data Plane**
- *
  * @param string $formattedName Name of the repository to retrieve.
  *                              The format is
  *                              `projects/{project_number}/locations/{location_id}/repositories/{repository_id}`. Please see

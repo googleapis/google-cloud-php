@@ -33,6 +33,29 @@ class VertexAISearch extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string engine = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $engine = '';
+    /**
+     * Optional. Number of search results to return per query.
+     * The default value is 10.
+     * The maximumm allowed value is 10.
+     *
+     * Generated from protobuf field <code>int32 max_results = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $max_results = 0;
+    /**
+     * Optional. Filter strings to be passed to the search API.
+     *
+     * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $filter = '';
+    /**
+     * Specifications that define the specific DataStores to be searched, along
+     * with configurations for those data stores. This is only considered for
+     * Engines with multiple data stores.
+     * It should only be set if engine is used.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.VertexAISearch.DataStoreSpec data_store_specs = 5;</code>
+     */
+    private $data_store_specs;
 
     /**
      * Constructor.
@@ -48,6 +71,17 @@ class VertexAISearch extends \Google\Protobuf\Internal\Message
      *           Optional. Fully-qualified Vertex AI Search engine resource ID.
      *           Format:
      *           `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}`
+     *     @type int $max_results
+     *           Optional. Number of search results to return per query.
+     *           The default value is 10.
+     *           The maximumm allowed value is 10.
+     *     @type string $filter
+     *           Optional. Filter strings to be passed to the search API.
+     *     @type array<\Google\Cloud\AIPlatform\V1\VertexAISearch\DataStoreSpec>|\Google\Protobuf\Internal\RepeatedField $data_store_specs
+     *           Specifications that define the specific DataStores to be searched, along
+     *           with configurations for those data stores. This is only considered for
+     *           Engines with multiple data stores.
+     *           It should only be set if engine is used.
      * }
      */
     public function __construct($data = NULL) {
@@ -111,6 +145,94 @@ class VertexAISearch extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->engine = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Number of search results to return per query.
+     * The default value is 10.
+     * The maximumm allowed value is 10.
+     *
+     * Generated from protobuf field <code>int32 max_results = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getMaxResults()
+    {
+        return $this->max_results;
+    }
+
+    /**
+     * Optional. Number of search results to return per query.
+     * The default value is 10.
+     * The maximumm allowed value is 10.
+     *
+     * Generated from protobuf field <code>int32 max_results = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setMaxResults($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->max_results = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Filter strings to be passed to the search API.
+     *
+     * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getFilter()
+    {
+        return $this->filter;
+    }
+
+    /**
+     * Optional. Filter strings to be passed to the search API.
+     *
+     * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setFilter($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->filter = $var;
+
+        return $this;
+    }
+
+    /**
+     * Specifications that define the specific DataStores to be searched, along
+     * with configurations for those data stores. This is only considered for
+     * Engines with multiple data stores.
+     * It should only be set if engine is used.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.VertexAISearch.DataStoreSpec data_store_specs = 5;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getDataStoreSpecs()
+    {
+        return $this->data_store_specs;
+    }
+
+    /**
+     * Specifications that define the specific DataStores to be searched, along
+     * with configurations for those data stores. This is only considered for
+     * Engines with multiple data stores.
+     * It should only be set if engine is used.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.VertexAISearch.DataStoreSpec data_store_specs = 5;</code>
+     * @param array<\Google\Cloud\AIPlatform\V1\VertexAISearch\DataStoreSpec>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setDataStoreSpecs($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\VertexAISearch\DataStoreSpec::class);
+        $this->data_store_specs = $arr;
 
         return $this;
     }

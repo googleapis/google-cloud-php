@@ -31,26 +31,38 @@ use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\ListLocationsResponse;
 use Google\Cloud\Location\Location;
 use Google\Cloud\ManagedKafka\V1\AccessConfig;
+use Google\Cloud\ManagedKafka\V1\Acl;
+use Google\Cloud\ManagedKafka\V1\AclEntry;
+use Google\Cloud\ManagedKafka\V1\AddAclEntryRequest;
+use Google\Cloud\ManagedKafka\V1\AddAclEntryResponse;
 use Google\Cloud\ManagedKafka\V1\CapacityConfig;
 use Google\Cloud\ManagedKafka\V1\Client\ManagedKafkaClient;
 use Google\Cloud\ManagedKafka\V1\Cluster;
 use Google\Cloud\ManagedKafka\V1\ConsumerGroup;
+use Google\Cloud\ManagedKafka\V1\CreateAclRequest;
 use Google\Cloud\ManagedKafka\V1\CreateClusterRequest;
 use Google\Cloud\ManagedKafka\V1\CreateTopicRequest;
+use Google\Cloud\ManagedKafka\V1\DeleteAclRequest;
 use Google\Cloud\ManagedKafka\V1\DeleteClusterRequest;
 use Google\Cloud\ManagedKafka\V1\DeleteConsumerGroupRequest;
 use Google\Cloud\ManagedKafka\V1\DeleteTopicRequest;
 use Google\Cloud\ManagedKafka\V1\GcpConfig;
+use Google\Cloud\ManagedKafka\V1\GetAclRequest;
 use Google\Cloud\ManagedKafka\V1\GetClusterRequest;
 use Google\Cloud\ManagedKafka\V1\GetConsumerGroupRequest;
 use Google\Cloud\ManagedKafka\V1\GetTopicRequest;
+use Google\Cloud\ManagedKafka\V1\ListAclsRequest;
+use Google\Cloud\ManagedKafka\V1\ListAclsResponse;
 use Google\Cloud\ManagedKafka\V1\ListClustersRequest;
 use Google\Cloud\ManagedKafka\V1\ListClustersResponse;
 use Google\Cloud\ManagedKafka\V1\ListConsumerGroupsRequest;
 use Google\Cloud\ManagedKafka\V1\ListConsumerGroupsResponse;
 use Google\Cloud\ManagedKafka\V1\ListTopicsRequest;
 use Google\Cloud\ManagedKafka\V1\ListTopicsResponse;
+use Google\Cloud\ManagedKafka\V1\RemoveAclEntryRequest;
+use Google\Cloud\ManagedKafka\V1\RemoveAclEntryResponse;
 use Google\Cloud\ManagedKafka\V1\Topic;
+use Google\Cloud\ManagedKafka\V1\UpdateAclRequest;
 use Google\Cloud\ManagedKafka\V1\UpdateClusterRequest;
 use Google\Cloud\ManagedKafka\V1\UpdateConsumerGroupRequest;
 use Google\Cloud\ManagedKafka\V1\UpdateTopicRequest;
@@ -91,6 +103,182 @@ class ManagedKafkaClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ];
         return new ManagedKafkaClient($options);
+    }
+
+    /** @test */
+    public function addAclEntryTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $aclCreated = false;
+        $expectedResponse = new AddAclEntryResponse();
+        $expectedResponse->setAclCreated($aclCreated);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedAcl = $gapicClient->aclName('[PROJECT]', '[LOCATION]', '[CLUSTER]', '[ACL]');
+        $aclEntry = new AclEntry();
+        $aclEntryPrincipal = 'aclEntryPrincipal1575514886';
+        $aclEntry->setPrincipal($aclEntryPrincipal);
+        $aclEntryPermissionType = 'aclEntryPermissionType1558597073';
+        $aclEntry->setPermissionType($aclEntryPermissionType);
+        $aclEntryOperation = 'aclEntryOperation755292223';
+        $aclEntry->setOperation($aclEntryOperation);
+        $aclEntryHost = 'aclEntryHost-392786992';
+        $aclEntry->setHost($aclEntryHost);
+        $request = (new AddAclEntryRequest())->setAcl($formattedAcl)->setAclEntry($aclEntry);
+        $response = $gapicClient->addAclEntry($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.managedkafka.v1.ManagedKafka/AddAclEntry', $actualFuncCall);
+        $actualValue = $actualRequestObject->getAcl();
+        $this->assertProtobufEquals($formattedAcl, $actualValue);
+        $actualValue = $actualRequestObject->getAclEntry();
+        $this->assertProtobufEquals($aclEntry, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function addAclEntryExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedAcl = $gapicClient->aclName('[PROJECT]', '[LOCATION]', '[CLUSTER]', '[ACL]');
+        $aclEntry = new AclEntry();
+        $aclEntryPrincipal = 'aclEntryPrincipal1575514886';
+        $aclEntry->setPrincipal($aclEntryPrincipal);
+        $aclEntryPermissionType = 'aclEntryPermissionType1558597073';
+        $aclEntry->setPermissionType($aclEntryPermissionType);
+        $aclEntryOperation = 'aclEntryOperation755292223';
+        $aclEntry->setOperation($aclEntryOperation);
+        $aclEntryHost = 'aclEntryHost-392786992';
+        $aclEntry->setHost($aclEntryHost);
+        $request = (new AddAclEntryRequest())->setAcl($formattedAcl)->setAclEntry($aclEntry);
+        try {
+            $gapicClient->addAclEntry($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function createAclTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $etag = 'etag3123477';
+        $resourceType = 'resourceType979623115';
+        $resourceName = 'resourceName979421212';
+        $patternType = 'patternType-198371703';
+        $expectedResponse = new Acl();
+        $expectedResponse->setName($name);
+        $expectedResponse->setEtag($etag);
+        $expectedResponse->setResourceType($resourceType);
+        $expectedResponse->setResourceName($resourceName);
+        $expectedResponse->setPatternType($patternType);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
+        $aclId = 'aclId-1423198992';
+        $acl = new Acl();
+        $aclAclEntries = [];
+        $acl->setAclEntries($aclAclEntries);
+        $request = (new CreateAclRequest())
+            ->setParent($formattedParent)
+            ->setAclId($aclId)
+            ->setAcl($acl);
+        $response = $gapicClient->createAcl($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.managedkafka.v1.ManagedKafka/CreateAcl', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getAclId();
+        $this->assertProtobufEquals($aclId, $actualValue);
+        $actualValue = $actualRequestObject->getAcl();
+        $this->assertProtobufEquals($acl, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function createAclExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
+        $aclId = 'aclId-1423198992';
+        $acl = new Acl();
+        $aclAclEntries = [];
+        $acl->setAclEntries($aclAclEntries);
+        $request = (new CreateAclRequest())
+            ->setParent($formattedParent)
+            ->setAclId($aclId)
+            ->setAcl($acl);
+        try {
+            $gapicClient->createAcl($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
@@ -351,6 +539,68 @@ class ManagedKafkaClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function deleteAclTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new GPBEmpty();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->aclName('[PROJECT]', '[LOCATION]', '[CLUSTER]', '[ACL]');
+        $request = (new DeleteAclRequest())->setName($formattedName);
+        $gapicClient->deleteAcl($request);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.managedkafka.v1.ManagedKafka/DeleteAcl', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteAclExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->aclName('[PROJECT]', '[LOCATION]', '[CLUSTER]', '[ACL]');
+        $request = (new DeleteAclRequest())->setName($formattedName);
+        try {
+            $gapicClient->deleteAcl($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function deleteClusterTest()
     {
         $operationsTransport = $this->createTransport();
@@ -597,6 +847,79 @@ class ManagedKafkaClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function getAclTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $etag = 'etag3123477';
+        $resourceType = 'resourceType979623115';
+        $resourceName = 'resourceName979421212';
+        $patternType = 'patternType-198371703';
+        $expectedResponse = new Acl();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setEtag($etag);
+        $expectedResponse->setResourceType($resourceType);
+        $expectedResponse->setResourceName($resourceName);
+        $expectedResponse->setPatternType($patternType);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->aclName('[PROJECT]', '[LOCATION]', '[CLUSTER]', '[ACL]');
+        $request = (new GetAclRequest())->setName($formattedName);
+        $response = $gapicClient->getAcl($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.managedkafka.v1.ManagedKafka/GetAcl', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getAclExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->aclName('[PROJECT]', '[LOCATION]', '[CLUSTER]', '[ACL]');
+        $request = (new GetAclRequest())->setName($formattedName);
+        try {
+            $gapicClient->getAcl($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function getClusterTest()
     {
         $transport = $this->createTransport();
@@ -788,6 +1111,77 @@ class ManagedKafkaClientTest extends GeneratedTest
         $request = (new GetTopicRequest())->setName($formattedName);
         try {
             $gapicClient->getTopic($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listAclsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $aclsElement = new Acl();
+        $acls = [$aclsElement];
+        $expectedResponse = new ListAclsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setAcls($acls);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
+        $request = (new ListAclsRequest())->setParent($formattedParent);
+        $response = $gapicClient->listAcls($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getAcls()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.managedkafka.v1.ManagedKafka/ListAcls', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listAclsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
+        $request = (new ListAclsRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listAcls($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1001,6 +1395,168 @@ class ManagedKafkaClientTest extends GeneratedTest
         $request = (new ListTopicsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listTopics($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function removeAclEntryTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $aclDeleted = true;
+        $expectedResponse = new RemoveAclEntryResponse();
+        $expectedResponse->setAclDeleted($aclDeleted);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedAcl = $gapicClient->aclName('[PROJECT]', '[LOCATION]', '[CLUSTER]', '[ACL]');
+        $aclEntry = new AclEntry();
+        $aclEntryPrincipal = 'aclEntryPrincipal1575514886';
+        $aclEntry->setPrincipal($aclEntryPrincipal);
+        $aclEntryPermissionType = 'aclEntryPermissionType1558597073';
+        $aclEntry->setPermissionType($aclEntryPermissionType);
+        $aclEntryOperation = 'aclEntryOperation755292223';
+        $aclEntry->setOperation($aclEntryOperation);
+        $aclEntryHost = 'aclEntryHost-392786992';
+        $aclEntry->setHost($aclEntryHost);
+        $request = (new RemoveAclEntryRequest())->setAcl($formattedAcl)->setAclEntry($aclEntry);
+        $response = $gapicClient->removeAclEntry($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.managedkafka.v1.ManagedKafka/RemoveAclEntry', $actualFuncCall);
+        $actualValue = $actualRequestObject->getAcl();
+        $this->assertProtobufEquals($formattedAcl, $actualValue);
+        $actualValue = $actualRequestObject->getAclEntry();
+        $this->assertProtobufEquals($aclEntry, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function removeAclEntryExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedAcl = $gapicClient->aclName('[PROJECT]', '[LOCATION]', '[CLUSTER]', '[ACL]');
+        $aclEntry = new AclEntry();
+        $aclEntryPrincipal = 'aclEntryPrincipal1575514886';
+        $aclEntry->setPrincipal($aclEntryPrincipal);
+        $aclEntryPermissionType = 'aclEntryPermissionType1558597073';
+        $aclEntry->setPermissionType($aclEntryPermissionType);
+        $aclEntryOperation = 'aclEntryOperation755292223';
+        $aclEntry->setOperation($aclEntryOperation);
+        $aclEntryHost = 'aclEntryHost-392786992';
+        $aclEntry->setHost($aclEntryHost);
+        $request = (new RemoveAclEntryRequest())->setAcl($formattedAcl)->setAclEntry($aclEntry);
+        try {
+            $gapicClient->removeAclEntry($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateAclTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $etag = 'etag3123477';
+        $resourceType = 'resourceType979623115';
+        $resourceName = 'resourceName979421212';
+        $patternType = 'patternType-198371703';
+        $expectedResponse = new Acl();
+        $expectedResponse->setName($name);
+        $expectedResponse->setEtag($etag);
+        $expectedResponse->setResourceType($resourceType);
+        $expectedResponse->setResourceName($resourceName);
+        $expectedResponse->setPatternType($patternType);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $acl = new Acl();
+        $aclAclEntries = [];
+        $acl->setAclEntries($aclAclEntries);
+        $request = (new UpdateAclRequest())->setAcl($acl);
+        $response = $gapicClient->updateAcl($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.managedkafka.v1.ManagedKafka/UpdateAcl', $actualFuncCall);
+        $actualValue = $actualRequestObject->getAcl();
+        $this->assertProtobufEquals($acl, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateAclExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $acl = new Acl();
+        $aclAclEntries = [];
+        $acl->setAclEntries($aclAclEntries);
+        $request = (new UpdateAclRequest())->setAcl($acl);
+        try {
+            $gapicClient->updateAcl($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1447,92 +2003,41 @@ class ManagedKafkaClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function createClusterAsyncTest()
+    public function addAclEntryAsyncTest()
     {
-        $operationsTransport = $this->createTransport();
-        $operationsClient = new OperationsClient([
-            'apiEndpoint' => '',
-            'transport' => $operationsTransport,
-            'credentials' => $this->createCredentials(),
-        ]);
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
             'transport' => $transport,
-            'operationsClient' => $operationsClient,
         ]);
         $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
-        $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/createClusterTest');
-        $incompleteOperation->setDone(false);
-        $transport->addResponse($incompleteOperation);
-        $name = 'name3373707';
-        $satisfiesPzi = false;
-        $satisfiesPzs = false;
-        $expectedResponse = new Cluster();
-        $expectedResponse->setName($name);
-        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
-        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
-        $anyResponse = new Any();
-        $anyResponse->setValue($expectedResponse->serializeToString());
-        $completeOperation = new Operation();
-        $completeOperation->setName('operations/createClusterTest');
-        $completeOperation->setDone(true);
-        $completeOperation->setResponse($anyResponse);
-        $operationsTransport->addResponse($completeOperation);
+        $aclCreated = false;
+        $expectedResponse = new AddAclEntryResponse();
+        $expectedResponse->setAclCreated($aclCreated);
+        $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $clusterId = 'clusterId240280960';
-        $cluster = new Cluster();
-        $clusterCapacityConfig = new CapacityConfig();
-        $capacityConfigVcpuCount = 1944563327;
-        $clusterCapacityConfig->setVcpuCount($capacityConfigVcpuCount);
-        $capacityConfigMemoryBytes = 743041454;
-        $clusterCapacityConfig->setMemoryBytes($capacityConfigMemoryBytes);
-        $cluster->setCapacityConfig($clusterCapacityConfig);
-        $clusterGcpConfig = new GcpConfig();
-        $gcpConfigAccessConfig = new AccessConfig();
-        $accessConfigNetworkConfigs = [];
-        $gcpConfigAccessConfig->setNetworkConfigs($accessConfigNetworkConfigs);
-        $clusterGcpConfig->setAccessConfig($gcpConfigAccessConfig);
-        $cluster->setGcpConfig($clusterGcpConfig);
-        $request = (new CreateClusterRequest())
-            ->setParent($formattedParent)
-            ->setClusterId($clusterId)
-            ->setCluster($cluster);
-        $response = $gapicClient->createClusterAsync($request)->wait();
-        $this->assertFalse($response->isDone());
-        $this->assertNull($response->getResult());
-        $apiRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($apiRequests));
-        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
-        $this->assertSame(0, count($operationsRequestsEmpty));
-        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
-        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.managedkafka.v1.ManagedKafka/CreateCluster', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getClusterId();
-        $this->assertProtobufEquals($clusterId, $actualValue);
-        $actualValue = $actualApiRequestObject->getCluster();
-        $this->assertProtobufEquals($cluster, $actualValue);
-        $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/createClusterTest');
-        $response->pollUntilComplete([
-            'initialPollDelayMillis' => 1,
-        ]);
-        $this->assertTrue($response->isDone());
-        $this->assertEquals($expectedResponse, $response->getResult());
-        $apiRequestsEmpty = $transport->popReceivedCalls();
-        $this->assertSame(0, count($apiRequestsEmpty));
-        $operationsRequests = $operationsTransport->popReceivedCalls();
-        $this->assertSame(1, count($operationsRequests));
-        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
-        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
-        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
-        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $formattedAcl = $gapicClient->aclName('[PROJECT]', '[LOCATION]', '[CLUSTER]', '[ACL]');
+        $aclEntry = new AclEntry();
+        $aclEntryPrincipal = 'aclEntryPrincipal1575514886';
+        $aclEntry->setPrincipal($aclEntryPrincipal);
+        $aclEntryPermissionType = 'aclEntryPermissionType1558597073';
+        $aclEntry->setPermissionType($aclEntryPermissionType);
+        $aclEntryOperation = 'aclEntryOperation755292223';
+        $aclEntry->setOperation($aclEntryOperation);
+        $aclEntryHost = 'aclEntryHost-392786992';
+        $aclEntry->setHost($aclEntryHost);
+        $request = (new AddAclEntryRequest())->setAcl($formattedAcl)->setAclEntry($aclEntry);
+        $response = $gapicClient->addAclEntryAsync($request)->wait();
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.managedkafka.v1.ManagedKafka/AddAclEntry', $actualFuncCall);
+        $actualValue = $actualRequestObject->getAcl();
+        $this->assertProtobufEquals($formattedAcl, $actualValue);
+        $actualValue = $actualRequestObject->getAclEntry();
+        $this->assertProtobufEquals($aclEntry, $actualValue);
         $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
     }
 }

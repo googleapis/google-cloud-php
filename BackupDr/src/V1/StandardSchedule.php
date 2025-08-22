@@ -29,7 +29,7 @@ class StandardSchedule extends \Google\Protobuf\Internal\Message
      * This is required for `recurrence_type`, `HOURLY` and is not applicable
      * otherwise. A validation error will occur if a value is supplied and
      * `recurrence_type` is not `HOURLY`.
-     * Value of hourly frequency should be between 6 and 23.
+     * Value of hourly frequency should be between 4 and 23.
      * Reason for limit : We found that there is bandwidth limitation of 3GB/S for
      * GMI while taking a backup and 5GB/S while doing a restore. Given the amount
      * of parallel backups and restore we are targeting, this will potentially
@@ -110,7 +110,7 @@ class StandardSchedule extends \Google\Protobuf\Internal\Message
      *           This is required for `recurrence_type`, `HOURLY` and is not applicable
      *           otherwise. A validation error will occur if a value is supplied and
      *           `recurrence_type` is not `HOURLY`.
-     *           Value of hourly frequency should be between 6 and 23.
+     *           Value of hourly frequency should be between 4 and 23.
      *           Reason for limit : We found that there is bandwidth limitation of 3GB/S for
      *           GMI while taking a backup and 5GB/S while doing a restore. Given the amount
      *           of parallel backups and restore we are targeting, this will potentially
@@ -187,7 +187,7 @@ class StandardSchedule extends \Google\Protobuf\Internal\Message
      * This is required for `recurrence_type`, `HOURLY` and is not applicable
      * otherwise. A validation error will occur if a value is supplied and
      * `recurrence_type` is not `HOURLY`.
-     * Value of hourly frequency should be between 6 and 23.
+     * Value of hourly frequency should be between 4 and 23.
      * Reason for limit : We found that there is bandwidth limitation of 3GB/S for
      * GMI while taking a backup and 5GB/S while doing a restore. Given the amount
      * of parallel backups and restore we are targeting, this will potentially
@@ -207,7 +207,7 @@ class StandardSchedule extends \Google\Protobuf\Internal\Message
      * This is required for `recurrence_type`, `HOURLY` and is not applicable
      * otherwise. A validation error will occur if a value is supplied and
      * `recurrence_type` is not `HOURLY`.
-     * Value of hourly frequency should be between 6 and 23.
+     * Value of hourly frequency should be between 4 and 23.
      * Reason for limit : We found that there is bandwidth limitation of 3GB/S for
      * GMI while taking a backup and 5GB/S while doing a restore. Given the amount
      * of parallel backups and restore we are targeting, this will potentially

@@ -304,13 +304,17 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
      */
     public function getClientNetwork()
     {
-        @trigger_error('client_network is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->client_network)) {
+            @trigger_error('client_network is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->client_network;
     }
 
     public function hasClientNetwork()
     {
-        @trigger_error('client_network is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->client_network)) {
+            @trigger_error('client_network is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->client_network);
     }
 
@@ -347,13 +351,17 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
      */
     public function getPrivateNetwork()
     {
-        @trigger_error('private_network is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->private_network)) {
+            @trigger_error('private_network is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->private_network;
     }
 
     public function hasPrivateNetwork()
     {
-        @trigger_error('private_network is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->private_network)) {
+            @trigger_error('private_network is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->private_network);
     }
 

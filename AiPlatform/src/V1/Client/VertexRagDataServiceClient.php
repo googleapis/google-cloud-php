@@ -38,13 +38,16 @@ use Google\Cloud\AIPlatform\V1\CreateRagCorpusRequest;
 use Google\Cloud\AIPlatform\V1\DeleteRagCorpusRequest;
 use Google\Cloud\AIPlatform\V1\DeleteRagFileRequest;
 use Google\Cloud\AIPlatform\V1\GetRagCorpusRequest;
+use Google\Cloud\AIPlatform\V1\GetRagEngineConfigRequest;
 use Google\Cloud\AIPlatform\V1\GetRagFileRequest;
 use Google\Cloud\AIPlatform\V1\ImportRagFilesRequest;
 use Google\Cloud\AIPlatform\V1\ListRagCorporaRequest;
 use Google\Cloud\AIPlatform\V1\ListRagFilesRequest;
 use Google\Cloud\AIPlatform\V1\RagCorpus;
+use Google\Cloud\AIPlatform\V1\RagEngineConfig;
 use Google\Cloud\AIPlatform\V1\RagFile;
 use Google\Cloud\AIPlatform\V1\UpdateRagCorpusRequest;
+use Google\Cloud\AIPlatform\V1\UpdateRagEngineConfigRequest;
 use Google\Cloud\AIPlatform\V1\UploadRagFileRequest;
 use Google\Cloud\AIPlatform\V1\UploadRagFileResponse;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
@@ -75,11 +78,13 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<OperationResponse> deleteRagCorpusAsync(DeleteRagCorpusRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteRagFileAsync(DeleteRagFileRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<RagCorpus> getRagCorpusAsync(GetRagCorpusRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RagEngineConfig> getRagEngineConfigAsync(GetRagEngineConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<RagFile> getRagFileAsync(GetRagFileRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> importRagFilesAsync(ImportRagFilesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listRagCorporaAsync(ListRagCorporaRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listRagFilesAsync(ListRagFilesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateRagCorpusAsync(UpdateRagCorpusRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateRagEngineConfigAsync(UpdateRagEngineConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<UploadRagFileResponse> uploadRagFileAsync(UploadRagFileRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
@@ -304,6 +309,23 @@ final class VertexRagDataServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * rag_engine_config resource.
+     *
+     * @param string $project
+     * @param string $location
+     *
+     * @return string The formatted rag_engine_config resource.
+     */
+    public static function ragEngineConfigName(string $project, string $location): string
+    {
+        return self::getPathTemplate('ragEngineConfig')->render([
+            'project' => $project,
+            'location' => $location,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a rag_file
      * resource.
      *
@@ -353,6 +375,7 @@ final class VertexRagDataServiceClient
      * - projectLocationEndpoint: projects/{project}/locations/{location}/endpoints/{endpoint}
      * - projectLocationPublisherModel: projects/{project}/locations/{location}/publishers/{publisher}/models/{model}
      * - ragCorpus: projects/{project}/locations/{location}/ragCorpora/{rag_corpus}
+     * - ragEngineConfig: projects/{project}/locations/{location}/ragEngineConfig
      * - ragFile: projects/{project}/locations/{location}/ragCorpora/{rag_corpus}/ragFiles/{rag_file}
      * - secretVersion: projects/{project}/secrets/{secret}/versions/{secret_version}
      *
@@ -560,6 +583,33 @@ final class VertexRagDataServiceClient
     }
 
     /**
+     * Gets a RagEngineConfig.
+     *
+     * The async variant is
+     * {@see VertexRagDataServiceClient::getRagEngineConfigAsync()} .
+     *
+     * @example samples/V1/VertexRagDataServiceClient/get_rag_engine_config.php
+     *
+     * @param GetRagEngineConfigRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return RagEngineConfig
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getRagEngineConfig(GetRagEngineConfigRequest $request, array $callOptions = []): RagEngineConfig
+    {
+        return $this->startApiCall('GetRagEngineConfig', $request, $callOptions)->wait();
+    }
+
+    /**
      * Gets a RagFile.
      *
      * The async variant is {@see VertexRagDataServiceClient::getRagFileAsync()} .
@@ -687,6 +737,35 @@ final class VertexRagDataServiceClient
     public function updateRagCorpus(UpdateRagCorpusRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('UpdateRagCorpus', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates a RagEngineConfig.
+     *
+     * The async variant is
+     * {@see VertexRagDataServiceClient::updateRagEngineConfigAsync()} .
+     *
+     * @example samples/V1/VertexRagDataServiceClient/update_rag_engine_config.php
+     *
+     * @param UpdateRagEngineConfigRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateRagEngineConfig(
+        UpdateRagEngineConfigRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('UpdateRagEngineConfig', $request, $callOptions)->wait();
     }
 
     /**

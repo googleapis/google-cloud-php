@@ -21,7 +21,7 @@ class RoleService
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-À
+ì
 *google/ads/admanager/v1/role_service.protogoogle.ads.admanager.v1google/api/annotations.protogoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto"E
 GetRoleRequest3
 name (	B%àAúA
@@ -39,10 +39,10 @@ page_token (	BàA
 roles (2.google.ads.admanager.v1.Role
 next_page_token (	
 
-total_size (2À
+total_size (2ì
 RoleService
 GetRole\'.google.ads.admanager.v1.GetRoleRequest.google.ads.admanager.v1.Role",ÚAname‚Óä“/v1/{name=networks/*/roles/*}’
-	ListRoles).google.ads.admanager.v1.ListRolesRequest*.google.ads.admanager.v1.ListRolesResponse".ÚAparent‚Óä“/v1/{parent=networks/*}/rolesÊAadmanager.googleapis.comBÄ
+	ListRoles).google.ads.admanager.v1.ListRolesRequest*.google.ads.admanager.v1.ListRolesResponse".ÚAparent‚Óä“/v1/{parent=networks/*}/rolesGÊAadmanager.googleapis.comÒA)https://www.googleapis.com/auth/admanagerBÄ
 com.google.ads.admanager.v1BRoleServiceProtoPZ@google.golang.org/genproto/googleapis/ads/admanager/v1;admanagerªGoogle.Ads.AdManager.V1ÊGoogle\\Ads\\AdManager\\V1êGoogle::Ads::AdManager::V1bproto3'
         , true);
 

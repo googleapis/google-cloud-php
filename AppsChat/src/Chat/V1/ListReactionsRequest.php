@@ -74,8 +74,7 @@ class ListReactionsRequest extends \Google\Protobuf\Internal\Message
      * emoji.unicode = "🙂" OR emoji.custom_emoji.uid = "{uid}"
      * AND user.name = "users/{user}"
      * ```
-     * Invalid queries are rejected by the server with an `INVALID_ARGUMENT`
-     * error.
+     * Invalid queries are rejected with an `INVALID_ARGUMENT` error.
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -150,8 +149,7 @@ class ListReactionsRequest extends \Google\Protobuf\Internal\Message
      *           emoji.unicode = "🙂" OR emoji.custom_emoji.uid = "{uid}"
      *           AND user.name = "users/{user}"
      *           ```
-     *           Invalid queries are rejected by the server with an `INVALID_ARGUMENT`
-     *           error.
+     *           Invalid queries are rejected with an `INVALID_ARGUMENT` error.
      * }
      */
     public function __construct($data = NULL) {
@@ -285,8 +283,7 @@ class ListReactionsRequest extends \Google\Protobuf\Internal\Message
      * emoji.unicode = "🙂" OR emoji.custom_emoji.uid = "{uid}"
      * AND user.name = "users/{user}"
      * ```
-     * Invalid queries are rejected by the server with an `INVALID_ARGUMENT`
-     * error.
+     * Invalid queries are rejected with an `INVALID_ARGUMENT` error.
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -330,8 +327,7 @@ class ListReactionsRequest extends \Google\Protobuf\Internal\Message
      * emoji.unicode = "🙂" OR emoji.custom_emoji.uid = "{uid}"
      * AND user.name = "users/{user}"
      * ```
-     * Invalid queries are rejected by the server with an `INVALID_ARGUMENT`
-     * error.
+     * Invalid queries are rejected with an `INVALID_ARGUMENT` error.
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

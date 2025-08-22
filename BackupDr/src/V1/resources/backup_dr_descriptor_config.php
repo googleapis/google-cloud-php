@@ -271,6 +271,46 @@ return [
                     ],
                 ],
             ],
+            'UpdateBackupPlan' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\BackupDR\V1\BackupPlan',
+                    'metadataReturnType' => '\Google\Cloud\BackupDR\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'backup_plan.name',
+                        'fieldAccessors' => [
+                            'getBackupPlan',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateBackupPlanAssociation' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\BackupDR\V1\BackupPlanAssociation',
+                    'metadataReturnType' => '\Google\Cloud\BackupDR\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'backup_plan_association.name',
+                        'fieldAccessors' => [
+                            'getBackupPlanAssociation',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateBackupVault' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\BackupDR\V1\BackupVault',
@@ -307,6 +347,46 @@ return [
                         'fieldAccessors' => [
                             'getDataSource',
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'FetchBackupPlanAssociationsForResourceType' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getBackupPlanAssociations',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\BackupDR\V1\FetchBackupPlanAssociationsForResourceTypeResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'FetchDataSourceReferencesForResourceType' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getDataSourceReferences',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\BackupDR\V1\FetchDataSourceReferencesForResourceTypeResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
                         ],
                     ],
                 ],
@@ -367,6 +447,18 @@ return [
                     ],
                 ],
             ],
+            'GetBackupPlanRevision' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\BackupDR\V1\BackupPlanRevision',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetBackupVault' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\BackupDR\V1\BackupVault',
@@ -382,6 +474,18 @@ return [
             'GetDataSource' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\BackupDR\V1\DataSource',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetDataSourceReference' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\BackupDR\V1\DataSourceReference',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -414,6 +518,26 @@ return [
                 ],
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
                 'responseType' => 'Google\Cloud\BackupDR\V1\ListBackupPlanAssociationsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListBackupPlanRevisions' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getBackupPlanRevisions',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\BackupDR\V1\ListBackupPlanRevisionsResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'parent',
@@ -600,10 +724,14 @@ return [
                 'backup' => 'projects/{project}/locations/{location}/backupVaults/{backupvault}/dataSources/{datasource}/backups/{backup}',
                 'backupPlan' => 'projects/{project}/locations/{location}/backupPlans/{backup_plan}',
                 'backupPlanAssociation' => 'projects/{project}/locations/{location}/backupPlanAssociations/{backup_plan_association}',
+                'backupPlanRevision' => 'projects/{project}/locations/{location}/backupPlans/{backup_plan}/revisions/{revision}',
                 'backupVault' => 'projects/{project}/locations/{location}/backupVaults/{backupvault}',
                 'dataSource' => 'projects/{project}/locations/{location}/backupVaults/{backupvault}/dataSources/{datasource}',
+                'dataSourceReference' => 'projects/{project}/locations/{location}/dataSourceReferences/{data_source_reference}',
+                'instance' => 'projects/{project}/instances/{instance}',
                 'location' => 'projects/{project}/locations/{location}',
                 'managementServer' => 'projects/{project}/locations/{location}/managementServers/{managementserver}',
+                'storagePool' => 'projects/{project}/zones/{zone}/storagePools/{storage_pool}',
             ],
         ],
     ],

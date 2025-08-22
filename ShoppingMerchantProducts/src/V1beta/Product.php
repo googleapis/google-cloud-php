@@ -65,7 +65,11 @@ class Product extends \Google\Protobuf\Internal\Message
      */
     protected $content_language = '';
     /**
-     * Output only. The feed label for the product.
+     * Output only. The feed label lets you categorize and identify your products.
+     * The maximum allowed characters is 20 and the supported characters are`A-Z`,
+     * `0-9`, hyphen and underscore. The feed label must not include any spaces.
+     * For more information, see [Using feed
+     * labels](//support.google.com/merchants/answer/14994087)
      *
      * Generated from protobuf field <code>string feed_label = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -151,7 +155,11 @@ class Product extends \Google\Protobuf\Internal\Message
      *           639-1](http://en.wikipedia.org/wiki/ISO_639-1) language code for the
      *           product.
      *     @type string $feed_label
-     *           Output only. The feed label for the product.
+     *           Output only. The feed label lets you categorize and identify your products.
+     *           The maximum allowed characters is 20 and the supported characters are`A-Z`,
+     *           `0-9`, hyphen and underscore. The feed label must not include any spaces.
+     *           For more information, see [Using feed
+     *           labels](//support.google.com/merchants/answer/14994087)
      *     @type string $data_source
      *           Output only. The primary data source of the product.
      *     @type int|string $version_number
@@ -319,7 +327,11 @@ class Product extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The feed label for the product.
+     * Output only. The feed label lets you categorize and identify your products.
+     * The maximum allowed characters is 20 and the supported characters are`A-Z`,
+     * `0-9`, hyphen and underscore. The feed label must not include any spaces.
+     * For more information, see [Using feed
+     * labels](//support.google.com/merchants/answer/14994087)
      *
      * Generated from protobuf field <code>string feed_label = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -330,7 +342,11 @@ class Product extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The feed label for the product.
+     * Output only. The feed label lets you categorize and identify your products.
+     * The maximum allowed characters is 20 and the supported characters are`A-Z`,
+     * `0-9`, hyphen and underscore. The feed label must not include any spaces.
+     * For more information, see [Using feed
+     * labels](//support.google.com/merchants/answer/14994087)
      *
      * Generated from protobuf field <code>string feed_label = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

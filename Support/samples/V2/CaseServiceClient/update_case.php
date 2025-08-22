@@ -29,7 +29,7 @@ use Google\Cloud\Support\V2\PBCase;
 use Google\Cloud\Support\V2\UpdateCaseRequest;
 
 /**
- * Update the specified case. Only a subset of fields can be updated.
+ * Update a case. Only some fields can be updated.
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:

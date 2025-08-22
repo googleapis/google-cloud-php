@@ -32,7 +32,7 @@ class LoggableAction
      */
     const DELETE = 2;
     /**
-     * Copying objects to Google Cloud Storage.
+     * Copying objects to the destination.
      *
      * Generated from protobuf enum <code>COPY = 3;</code>
      */

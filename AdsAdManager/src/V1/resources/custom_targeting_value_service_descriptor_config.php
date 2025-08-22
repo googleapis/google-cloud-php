@@ -56,8 +56,8 @@ return [
                 ],
             ],
             'templateMap' => [
-                'customTargetingKey' => 'networks/{network_code}/customTargetingKeys/{custom_targeting_key}',
-                'customTargetingValue' => 'networks/{network_code}/customTargetingKeys/{custom_targeting_key}/customTargetingValues/{custom_targeting_value}',
+                'customTargetingValue' => 'networks/{network_code}/customTargetingValues/{custom_targeting_value}',
+                'network' => 'networks/{network_code}',
             ],
         ],
     ],

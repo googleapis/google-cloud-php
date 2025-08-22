@@ -37,9 +37,15 @@ use Google\Apps\Chat\V1\DeleteMessageRequest;
  *
  * - [App
  * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
+ * with the authorization scope:
+ * - `https://www.googleapis.com/auth/chat.bot`
  *
  * - [User
  * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+ * with one of the following authorization scopes:
+ * - `https://www.googleapis.com/auth/chat.messages`
+ * - `https://www.googleapis.com/auth/chat.import` (import mode spaces
+ * only)
  *
  * When using app authentication, requests can only delete messages
  * created by the calling Chat app.

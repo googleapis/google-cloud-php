@@ -37,6 +37,14 @@ class ListEndpointPoliciesRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
     protected $page_token = '';
+    /**
+     * Optional. If true, allow partial responses for multi-regional Aggregated
+     * List requests. Otherwise if one of the locations is down or unreachable,
+     * the Aggregated List request will fail.
+     *
+     * Generated from protobuf field <code>bool return_partial_success = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $return_partial_success = false;
 
     /**
      * @param string $parent Required. The project and location from which the EndpointPolicies should
@@ -69,6 +77,10 @@ class ListEndpointPoliciesRequest extends \Google\Protobuf\Internal\Message
      *           Indicates that this is a continuation of a prior
      *           `ListEndpointPolicies` call, and that the system should return the
      *           next page of data.
+     *     @type bool $return_partial_success
+     *           Optional. If true, allow partial responses for multi-regional Aggregated
+     *           List requests. Otherwise if one of the locations is down or unreachable,
+     *           the Aggregated List request will fail.
      * }
      */
     public function __construct($data = NULL) {
@@ -158,6 +170,36 @@ class ListEndpointPoliciesRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->page_token = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If true, allow partial responses for multi-regional Aggregated
+     * List requests. Otherwise if one of the locations is down or unreachable,
+     * the Aggregated List request will fail.
+     *
+     * Generated from protobuf field <code>bool return_partial_success = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getReturnPartialSuccess()
+    {
+        return $this->return_partial_success;
+    }
+
+    /**
+     * Optional. If true, allow partial responses for multi-regional Aggregated
+     * List requests. Otherwise if one of the locations is down or unreachable,
+     * the Aggregated List request will fail.
+     *
+     * Generated from protobuf field <code>bool return_partial_success = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setReturnPartialSuccess($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->return_partial_success = $var;
 
         return $this;
     }

@@ -47,6 +47,21 @@ return [
             ],
         ],
         'google.cloud.networkservices.v1.DepService' => [
+            'CreateAuthzExtension' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/authzExtensions',
+                'body' => 'authz_extension',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'authz_extension_id',
+                ],
+            ],
             'CreateLbRouteExtension' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/lbRouteExtensions',
@@ -77,6 +92,17 @@ return [
                     'lb_traffic_extension_id',
                 ],
             ],
+            'DeleteAuthzExtension' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/authzExtensions/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteLbRouteExtension' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/lbRouteExtensions/*}',
@@ -91,6 +117,17 @@ return [
             'DeleteLbTrafficExtension' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/lbTrafficExtensions/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetAuthzExtension' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/authzExtensions/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -121,6 +158,17 @@ return [
                     ],
                 ],
             ],
+            'ListAuthzExtensions' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/authzExtensions',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListLbRouteExtensions' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/lbRouteExtensions',
@@ -141,6 +189,22 @@ return [
                             'getParent',
                         ],
                     ],
+                ],
+            ],
+            'UpdateAuthzExtension' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{authz_extension.name=projects/*/locations/*/authzExtensions/*}',
+                'body' => 'authz_extension',
+                'placeholders' => [
+                    'authz_extension.name' => [
+                        'getters' => [
+                            'getAuthzExtension',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
             'UpdateLbRouteExtension' => [

@@ -17,7 +17,7 @@
         }
     },
     "require": {
-        "php": "^8.0",
+        "php": "^8.1",
         "google/protobuf": "^4.26.1",
         "google/common-protos": "^4.6"
     },

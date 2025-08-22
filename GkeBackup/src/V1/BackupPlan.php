@@ -147,6 +147,15 @@ class BackupPlan extends \Google\Protobuf\Internal\Message
      */
     protected $rpo_risk_reason = '';
     /**
+     * Output only. The fully qualified name of the BackupChannel to be used to
+     * create a backup. This field is set only if the cluster being backed up is
+     * in a different project.
+     * `projects/&#42;&#47;locations/&#42;&#47;backupChannels/&#42;`
+     *
+     * Generated from protobuf field <code>string backup_channel = 18 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     */
+    protected $backup_channel = '';
+    /**
      * Output only. Completion time of the last successful Backup. This is sourced
      * from a successful Backup's complete_time field. This field is added to
      * maintain consistency with BackupPlanBinding to display last successful
@@ -225,6 +234,11 @@ class BackupPlan extends \Google\Protobuf\Internal\Message
      *     @type string $rpo_risk_reason
      *           Output only. Human-readable description of why the BackupPlan is in the
      *           current rpo_risk_level and action items if any.
+     *     @type string $backup_channel
+     *           Output only. The fully qualified name of the BackupChannel to be used to
+     *           create a backup. This field is set only if the cluster being backed up is
+     *           in a different project.
+     *           `projects/&#42;&#47;locations/&#42;&#47;backupChannels/&#42;`
      *     @type \Google\Protobuf\Timestamp $last_successful_backup_time
      *           Output only. Completion time of the last successful Backup. This is sourced
      *           from a successful Backup's complete_time field. This field is added to
@@ -783,6 +797,38 @@ class BackupPlan extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->rpo_risk_reason = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The fully qualified name of the BackupChannel to be used to
+     * create a backup. This field is set only if the cluster being backed up is
+     * in a different project.
+     * `projects/&#42;&#47;locations/&#42;&#47;backupChannels/&#42;`
+     *
+     * Generated from protobuf field <code>string backup_channel = 18 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getBackupChannel()
+    {
+        return $this->backup_channel;
+    }
+
+    /**
+     * Output only. The fully qualified name of the BackupChannel to be used to
+     * create a backup. This field is set only if the cluster being backed up is
+     * in a different project.
+     * `projects/&#42;&#47;locations/&#42;&#47;backupChannels/&#42;`
+     *
+     * Generated from protobuf field <code>string backup_channel = 18 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setBackupChannel($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->backup_channel = $var;
 
         return $this;
     }

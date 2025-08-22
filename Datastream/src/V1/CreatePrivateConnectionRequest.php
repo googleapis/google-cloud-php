@@ -55,6 +55,14 @@ class CreatePrivateConnectionRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool force = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $force = false;
+    /**
+     * Optional. When supplied with PSC Interface config, will get/create the
+     * tenant project required for the customer to allow list and won't actually
+     * create the private connection.
+     *
+     * Generated from protobuf field <code>bool validate_only = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $validate_only = false;
 
     /**
      * @param string                                        $parent              Required. The parent that owns the collection of PrivateConnections. Please see
@@ -100,6 +108,10 @@ class CreatePrivateConnectionRequest extends \Google\Protobuf\Internal\Message
      *           not supported (00000000-0000-0000-0000-000000000000).
      *     @type bool $force
      *           Optional. If set to true, will skip validations.
+     *     @type bool $validate_only
+     *           Optional. When supplied with PSC Interface config, will get/create the
+     *           tenant project required for the customer to allow list and won't actually
+     *           create the private connection.
      * }
      */
     public function __construct($data = NULL) {
@@ -263,6 +275,36 @@ class CreatePrivateConnectionRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->force = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. When supplied with PSC Interface config, will get/create the
+     * tenant project required for the customer to allow list and won't actually
+     * create the private connection.
+     *
+     * Generated from protobuf field <code>bool validate_only = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getValidateOnly()
+    {
+        return $this->validate_only;
+    }
+
+    /**
+     * Optional. When supplied with PSC Interface config, will get/create the
+     * tenant project required for the customer to allow list and won't actually
+     * create the private connection.
+     *
+     * Generated from protobuf field <code>bool validate_only = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setValidateOnly($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->validate_only = $var;
 
         return $this;
     }

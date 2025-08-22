@@ -43,6 +43,12 @@ class State
      * Generated from protobuf enum <code>ERROR = 4;</code>
      */
     const ERROR = 4;
+    /**
+     * The backup is being uploaded.
+     *
+     * Generated from protobuf enum <code>UPLOADING = 5;</code>
+     */
+    const UPLOADING = 5;
 
     private static $valueToName = [
         self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
@@ -50,6 +56,7 @@ class State
         self::ACTIVE => 'ACTIVE',
         self::DELETING => 'DELETING',
         self::ERROR => 'ERROR',
+        self::UPLOADING => 'UPLOADING',
     ];
 
     public static function name($value)

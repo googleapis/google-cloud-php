@@ -96,10 +96,16 @@ class DataStoreServiceClientTest extends GeneratedTest
         $name = 'name3373707';
         $displayName = 'displayName1615086568';
         $defaultSchemaId = 'defaultSchemaId972292091';
+        $kmsKeyName = 'kmsKeyName2094986649';
+        $aclEnabled = true;
+        $identityMappingStore = 'identityMappingStore1659912303';
         $expectedResponse = new DataStore();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDefaultSchemaId($defaultSchemaId);
+        $expectedResponse->setKmsKeyName($kmsKeyName);
+        $expectedResponse->setAclEnabled($aclEnabled);
+        $expectedResponse->setIdentityMappingStore($identityMappingStore);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -352,10 +358,16 @@ class DataStoreServiceClientTest extends GeneratedTest
         $name2 = 'name2-1052831874';
         $displayName = 'displayName1615086568';
         $defaultSchemaId = 'defaultSchemaId972292091';
+        $kmsKeyName = 'kmsKeyName2094986649';
+        $aclEnabled = true;
+        $identityMappingStore = 'identityMappingStore1659912303';
         $expectedResponse = new DataStore();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDefaultSchemaId($defaultSchemaId);
+        $expectedResponse->setKmsKeyName($kmsKeyName);
+        $expectedResponse->setAclEnabled($aclEnabled);
+        $expectedResponse->setIdentityMappingStore($identityMappingStore);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->dataStoreName('[PROJECT]', '[LOCATION]', '[DATA_STORE]');
@@ -492,10 +504,16 @@ class DataStoreServiceClientTest extends GeneratedTest
         $name = 'name3373707';
         $displayName = 'displayName1615086568';
         $defaultSchemaId = 'defaultSchemaId972292091';
+        $kmsKeyName = 'kmsKeyName2094986649';
+        $aclEnabled = true;
+        $identityMappingStore = 'identityMappingStore1659912303';
         $expectedResponse = new DataStore();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDefaultSchemaId($defaultSchemaId);
+        $expectedResponse->setKmsKeyName($kmsKeyName);
+        $expectedResponse->setAclEnabled($aclEnabled);
+        $expectedResponse->setIdentityMappingStore($identityMappingStore);
         $transport->addResponse($expectedResponse);
         // Mock request
         $dataStore = new DataStore();
@@ -577,10 +595,16 @@ class DataStoreServiceClientTest extends GeneratedTest
         $name = 'name3373707';
         $displayName = 'displayName1615086568';
         $defaultSchemaId = 'defaultSchemaId972292091';
+        $kmsKeyName = 'kmsKeyName2094986649';
+        $aclEnabled = true;
+        $identityMappingStore = 'identityMappingStore1659912303';
         $expectedResponse = new DataStore();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDefaultSchemaId($defaultSchemaId);
+        $expectedResponse->setKmsKeyName($kmsKeyName);
+        $expectedResponse->setAclEnabled($aclEnabled);
+        $expectedResponse->setIdentityMappingStore($identityMappingStore);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();

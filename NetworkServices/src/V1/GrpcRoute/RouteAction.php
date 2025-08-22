@@ -24,12 +24,12 @@ class RouteAction extends \Google\Protobuf\Internal\Message
      */
     private $destinations;
     /**
-     * Optional. The specification for fault injection introduced into traffic to test the
-     * resiliency of clients to destination service failure. As part of fault
-     * injection, when clients send requests to a destination, delays can be
-     * introduced on a percentage of requests before sending those requests to
-     * the destination service. Similarly requests from clients can be aborted
-     * by for a percentage of requests.
+     * Optional. The specification for fault injection introduced into traffic
+     * to test the resiliency of clients to destination service failure. As part
+     * of fault injection, when clients send requests to a destination, delays
+     * can be introduced on a percentage of requests before sending those
+     * requests to the destination service. Similarly requests from clients can
+     * be aborted by for a percentage of requests.
      * timeout and retry_policy will be ignored by clients that are configured
      * with a fault_injection_policy
      *
@@ -51,6 +51,22 @@ class RouteAction extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.networkservices.v1.GrpcRoute.RetryPolicy retry_policy = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $retry_policy = null;
+    /**
+     * Optional. Specifies cookie-based stateful session affinity.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkservices.v1.GrpcRoute.StatefulSessionAffinityPolicy stateful_session_affinity = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $stateful_session_affinity = null;
+    /**
+     * Optional. Specifies the idle timeout for the selected route. The idle
+     * timeout is defined as the period in which there are no bytes sent or
+     * received on either the upstream or downstream connection. If not set, the
+     * default idle timeout is 1 hour. If set to 0s, the timeout will be
+     * disabled.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration idle_timeout = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $idle_timeout = null;
 
     /**
      * Constructor.
@@ -63,12 +79,12 @@ class RouteAction extends \Google\Protobuf\Internal\Message
      *           If multiple destinations are specified, traffic will be split between
      *           Backend Service(s) according to the weight field of these destinations.
      *     @type \Google\Cloud\NetworkServices\V1\GrpcRoute\FaultInjectionPolicy $fault_injection_policy
-     *           Optional. The specification for fault injection introduced into traffic to test the
-     *           resiliency of clients to destination service failure. As part of fault
-     *           injection, when clients send requests to a destination, delays can be
-     *           introduced on a percentage of requests before sending those requests to
-     *           the destination service. Similarly requests from clients can be aborted
-     *           by for a percentage of requests.
+     *           Optional. The specification for fault injection introduced into traffic
+     *           to test the resiliency of clients to destination service failure. As part
+     *           of fault injection, when clients send requests to a destination, delays
+     *           can be introduced on a percentage of requests before sending those
+     *           requests to the destination service. Similarly requests from clients can
+     *           be aborted by for a percentage of requests.
      *           timeout and retry_policy will be ignored by clients that are configured
      *           with a fault_injection_policy
      *     @type \Google\Protobuf\Duration $timeout
@@ -78,6 +94,14 @@ class RouteAction extends \Google\Protobuf\Internal\Message
      *           retries.
      *     @type \Google\Cloud\NetworkServices\V1\GrpcRoute\RetryPolicy $retry_policy
      *           Optional. Specifies the retry policy associated with this route.
+     *     @type \Google\Cloud\NetworkServices\V1\GrpcRoute\StatefulSessionAffinityPolicy $stateful_session_affinity
+     *           Optional. Specifies cookie-based stateful session affinity.
+     *     @type \Google\Protobuf\Duration $idle_timeout
+     *           Optional. Specifies the idle timeout for the selected route. The idle
+     *           timeout is defined as the period in which there are no bytes sent or
+     *           received on either the upstream or downstream connection. If not set, the
+     *           default idle timeout is 1 hour. If set to 0s, the timeout will be
+     *           disabled.
      * }
      */
     public function __construct($data = NULL) {
@@ -116,12 +140,12 @@ class RouteAction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The specification for fault injection introduced into traffic to test the
-     * resiliency of clients to destination service failure. As part of fault
-     * injection, when clients send requests to a destination, delays can be
-     * introduced on a percentage of requests before sending those requests to
-     * the destination service. Similarly requests from clients can be aborted
-     * by for a percentage of requests.
+     * Optional. The specification for fault injection introduced into traffic
+     * to test the resiliency of clients to destination service failure. As part
+     * of fault injection, when clients send requests to a destination, delays
+     * can be introduced on a percentage of requests before sending those
+     * requests to the destination service. Similarly requests from clients can
+     * be aborted by for a percentage of requests.
      * timeout and retry_policy will be ignored by clients that are configured
      * with a fault_injection_policy
      *
@@ -144,12 +168,12 @@ class RouteAction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The specification for fault injection introduced into traffic to test the
-     * resiliency of clients to destination service failure. As part of fault
-     * injection, when clients send requests to a destination, delays can be
-     * introduced on a percentage of requests before sending those requests to
-     * the destination service. Similarly requests from clients can be aborted
-     * by for a percentage of requests.
+     * Optional. The specification for fault injection introduced into traffic
+     * to test the resiliency of clients to destination service failure. As part
+     * of fault injection, when clients send requests to a destination, delays
+     * can be introduced on a percentage of requests before sending those
+     * requests to the destination service. Similarly requests from clients can
+     * be aborted by for a percentage of requests.
      * timeout and retry_policy will be ignored by clients that are configured
      * with a fault_injection_policy
      *
@@ -239,6 +263,86 @@ class RouteAction extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\NetworkServices\V1\GrpcRoute\RetryPolicy::class);
         $this->retry_policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies cookie-based stateful session affinity.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkservices.v1.GrpcRoute.StatefulSessionAffinityPolicy stateful_session_affinity = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\NetworkServices\V1\GrpcRoute\StatefulSessionAffinityPolicy|null
+     */
+    public function getStatefulSessionAffinity()
+    {
+        return $this->stateful_session_affinity;
+    }
+
+    public function hasStatefulSessionAffinity()
+    {
+        return isset($this->stateful_session_affinity);
+    }
+
+    public function clearStatefulSessionAffinity()
+    {
+        unset($this->stateful_session_affinity);
+    }
+
+    /**
+     * Optional. Specifies cookie-based stateful session affinity.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkservices.v1.GrpcRoute.StatefulSessionAffinityPolicy stateful_session_affinity = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\NetworkServices\V1\GrpcRoute\StatefulSessionAffinityPolicy $var
+     * @return $this
+     */
+    public function setStatefulSessionAffinity($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\NetworkServices\V1\GrpcRoute\StatefulSessionAffinityPolicy::class);
+        $this->stateful_session_affinity = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies the idle timeout for the selected route. The idle
+     * timeout is defined as the period in which there are no bytes sent or
+     * received on either the upstream or downstream connection. If not set, the
+     * default idle timeout is 1 hour. If set to 0s, the timeout will be
+     * disabled.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration idle_timeout = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Duration|null
+     */
+    public function getIdleTimeout()
+    {
+        return $this->idle_timeout;
+    }
+
+    public function hasIdleTimeout()
+    {
+        return isset($this->idle_timeout);
+    }
+
+    public function clearIdleTimeout()
+    {
+        unset($this->idle_timeout);
+    }
+
+    /**
+     * Optional. Specifies the idle timeout for the selected route. The idle
+     * timeout is defined as the period in which there are no bytes sent or
+     * received on either the upstream or downstream connection. If not set, the
+     * default idle timeout is 1 hour. If set to 0s, the timeout will be
+     * disabled.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration idle_timeout = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\Duration $var
+     * @return $this
+     */
+    public function setIdleTimeout($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
+        $this->idle_timeout = $var;
 
         return $this;
     }

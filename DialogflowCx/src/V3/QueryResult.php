@@ -871,13 +871,17 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      */
     public function getIntent()
     {
-        @trigger_error('intent is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->intent)) {
+            @trigger_error('intent is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->intent;
     }
 
     public function hasIntent()
     {
-        @trigger_error('intent is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->intent)) {
+            @trigger_error('intent is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->intent);
     }
 
@@ -926,7 +930,9 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      */
     public function getIntentDetectionConfidence()
     {
-        @trigger_error('intent_detection_confidence is deprecated.', E_USER_DEPRECATED);
+        if ($this->intent_detection_confidence !== 0.0) {
+            @trigger_error('intent_detection_confidence is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->intent_detection_confidence;
     }
 

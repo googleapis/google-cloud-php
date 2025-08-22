@@ -170,6 +170,31 @@ class DeliveryVehicleLocation extends \Google\Protobuf\Internal\Message
      */
     protected $raw_location_accuracy = null;
     /**
+     * The location from Android's Fused Location Provider.
+     *
+     * Generated from protobuf field <code>.google.type.LatLng flp_location = 29;</code>
+     */
+    protected $flp_location = null;
+    /**
+     * Update timestamp of the `flp_location`
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp flp_update_time = 30;</code>
+     */
+    protected $flp_update_time = null;
+    /**
+     * Accuracy of `flp_location` in meters as a radius.
+     *
+     * Generated from protobuf field <code>.google.protobuf.DoubleValue flp_latlng_accuracy_meters = 31;</code>
+     */
+    protected $flp_latlng_accuracy_meters = null;
+    /**
+     * Direction the vehicle is moving in degrees, as determined by the Fused
+     * Location Provider. 0 represents North. The valid range is [0,360).
+     *
+     * Generated from protobuf field <code>.google.protobuf.Int32Value flp_heading_degrees = 32;</code>
+     */
+    protected $flp_heading_degrees = null;
+    /**
      * Supplemental location provided by the integrating app.
      *
      * Generated from protobuf field <code>.google.type.LatLng supplemental_location = 18;</code>
@@ -265,6 +290,15 @@ class DeliveryVehicleLocation extends \Google\Protobuf\Internal\Message
      *           Source of the raw location. Defaults to `GPS`.
      *     @type \Google\Protobuf\DoubleValue $raw_location_accuracy
      *           Accuracy of `raw_location` as a radius, in meters.
+     *     @type \Google\Type\LatLng $flp_location
+     *           The location from Android's Fused Location Provider.
+     *     @type \Google\Protobuf\Timestamp $flp_update_time
+     *           Update timestamp of the `flp_location`
+     *     @type \Google\Protobuf\DoubleValue $flp_latlng_accuracy_meters
+     *           Accuracy of `flp_location` in meters as a radius.
+     *     @type \Google\Protobuf\Int32Value $flp_heading_degrees
+     *           Direction the vehicle is moving in degrees, as determined by the Fused
+     *           Location Provider. 0 represents North. The valid range is [0,360).
      *     @type \Google\Type\LatLng $supplemental_location
      *           Supplemental location provided by the integrating app.
      *     @type \Google\Protobuf\Timestamp $supplemental_location_time
@@ -336,13 +370,17 @@ class DeliveryVehicleLocation extends \Google\Protobuf\Internal\Message
      */
     public function getHorizontalAccuracy()
     {
-        @trigger_error('horizontal_accuracy is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->horizontal_accuracy)) {
+            @trigger_error('horizontal_accuracy is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->horizontal_accuracy;
     }
 
     public function hasHorizontalAccuracy()
     {
-        @trigger_error('horizontal_accuracy is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->horizontal_accuracy)) {
+            @trigger_error('horizontal_accuracy is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->horizontal_accuracy);
     }
 
@@ -362,7 +400,9 @@ class DeliveryVehicleLocation extends \Google\Protobuf\Internal\Message
      */
     public function getHorizontalAccuracyUnwrapped()
     {
-        @trigger_error('horizontal_accuracy is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->horizontal_accuracy)) {
+            @trigger_error('horizontal_accuracy is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->readWrapperValue("horizontal_accuracy");
     }
 
@@ -536,13 +576,17 @@ class DeliveryVehicleLocation extends \Google\Protobuf\Internal\Message
      */
     public function getBearingAccuracy()
     {
-        @trigger_error('bearing_accuracy is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->bearing_accuracy)) {
+            @trigger_error('bearing_accuracy is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->bearing_accuracy;
     }
 
     public function hasBearingAccuracy()
     {
-        @trigger_error('bearing_accuracy is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->bearing_accuracy)) {
+            @trigger_error('bearing_accuracy is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->bearing_accuracy);
     }
 
@@ -562,7 +606,9 @@ class DeliveryVehicleLocation extends \Google\Protobuf\Internal\Message
      */
     public function getBearingAccuracyUnwrapped()
     {
-        @trigger_error('bearing_accuracy is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->bearing_accuracy)) {
+            @trigger_error('bearing_accuracy is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->readWrapperValue("bearing_accuracy");
     }
 
@@ -732,13 +778,17 @@ class DeliveryVehicleLocation extends \Google\Protobuf\Internal\Message
      */
     public function getVerticalAccuracy()
     {
-        @trigger_error('vertical_accuracy is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->vertical_accuracy)) {
+            @trigger_error('vertical_accuracy is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->vertical_accuracy;
     }
 
     public function hasVerticalAccuracy()
     {
-        @trigger_error('vertical_accuracy is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->vertical_accuracy)) {
+            @trigger_error('vertical_accuracy is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->vertical_accuracy);
     }
 
@@ -758,7 +808,9 @@ class DeliveryVehicleLocation extends \Google\Protobuf\Internal\Message
      */
     public function getVerticalAccuracyUnwrapped()
     {
-        @trigger_error('vertical_accuracy is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->vertical_accuracy)) {
+            @trigger_error('vertical_accuracy is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->readWrapperValue("vertical_accuracy");
     }
 
@@ -866,13 +918,17 @@ class DeliveryVehicleLocation extends \Google\Protobuf\Internal\Message
      */
     public function getSpeedKmph()
     {
-        @trigger_error('speed_kmph is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->speed_kmph)) {
+            @trigger_error('speed_kmph is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->speed_kmph;
     }
 
     public function hasSpeedKmph()
     {
-        @trigger_error('speed_kmph is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->speed_kmph)) {
+            @trigger_error('speed_kmph is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->speed_kmph);
     }
 
@@ -893,7 +949,9 @@ class DeliveryVehicleLocation extends \Google\Protobuf\Internal\Message
      */
     public function getSpeedKmphUnwrapped()
     {
-        @trigger_error('speed_kmph is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->speed_kmph)) {
+            @trigger_error('speed_kmph is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->readWrapperValue("speed_kmph");
     }
 
@@ -1367,13 +1425,17 @@ class DeliveryVehicleLocation extends \Google\Protobuf\Internal\Message
      */
     public function getNumStaleUpdates()
     {
-        @trigger_error('num_stale_updates is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->num_stale_updates)) {
+            @trigger_error('num_stale_updates is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->num_stale_updates;
     }
 
     public function hasNumStaleUpdates()
     {
-        @trigger_error('num_stale_updates is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->num_stale_updates)) {
+            @trigger_error('num_stale_updates is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->num_stale_updates);
     }
 
@@ -1394,7 +1456,9 @@ class DeliveryVehicleLocation extends \Google\Protobuf\Internal\Message
      */
     public function getNumStaleUpdatesUnwrapped()
     {
-        @trigger_error('num_stale_updates is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->num_stale_updates)) {
+            @trigger_error('num_stale_updates is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->readWrapperValue("num_stale_updates");
     }
 
@@ -1593,6 +1657,208 @@ class DeliveryVehicleLocation extends \Google\Protobuf\Internal\Message
         return $this;}
 
     /**
+     * The location from Android's Fused Location Provider.
+     *
+     * Generated from protobuf field <code>.google.type.LatLng flp_location = 29;</code>
+     * @return \Google\Type\LatLng|null
+     */
+    public function getFlpLocation()
+    {
+        return $this->flp_location;
+    }
+
+    public function hasFlpLocation()
+    {
+        return isset($this->flp_location);
+    }
+
+    public function clearFlpLocation()
+    {
+        unset($this->flp_location);
+    }
+
+    /**
+     * The location from Android's Fused Location Provider.
+     *
+     * Generated from protobuf field <code>.google.type.LatLng flp_location = 29;</code>
+     * @param \Google\Type\LatLng $var
+     * @return $this
+     */
+    public function setFlpLocation($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Type\LatLng::class);
+        $this->flp_location = $var;
+
+        return $this;
+    }
+
+    /**
+     * Update timestamp of the `flp_location`
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp flp_update_time = 30;</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getFlpUpdateTime()
+    {
+        return $this->flp_update_time;
+    }
+
+    public function hasFlpUpdateTime()
+    {
+        return isset($this->flp_update_time);
+    }
+
+    public function clearFlpUpdateTime()
+    {
+        unset($this->flp_update_time);
+    }
+
+    /**
+     * Update timestamp of the `flp_location`
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp flp_update_time = 30;</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setFlpUpdateTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->flp_update_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Accuracy of `flp_location` in meters as a radius.
+     *
+     * Generated from protobuf field <code>.google.protobuf.DoubleValue flp_latlng_accuracy_meters = 31;</code>
+     * @return \Google\Protobuf\DoubleValue|null
+     */
+    public function getFlpLatlngAccuracyMeters()
+    {
+        return $this->flp_latlng_accuracy_meters;
+    }
+
+    public function hasFlpLatlngAccuracyMeters()
+    {
+        return isset($this->flp_latlng_accuracy_meters);
+    }
+
+    public function clearFlpLatlngAccuracyMeters()
+    {
+        unset($this->flp_latlng_accuracy_meters);
+    }
+
+    /**
+     * Returns the unboxed value from <code>getFlpLatlngAccuracyMeters()</code>
+
+     * Accuracy of `flp_location` in meters as a radius.
+     *
+     * Generated from protobuf field <code>.google.protobuf.DoubleValue flp_latlng_accuracy_meters = 31;</code>
+     * @return float|null
+     */
+    public function getFlpLatlngAccuracyMetersUnwrapped()
+    {
+        return $this->readWrapperValue("flp_latlng_accuracy_meters");
+    }
+
+    /**
+     * Accuracy of `flp_location` in meters as a radius.
+     *
+     * Generated from protobuf field <code>.google.protobuf.DoubleValue flp_latlng_accuracy_meters = 31;</code>
+     * @param \Google\Protobuf\DoubleValue $var
+     * @return $this
+     */
+    public function setFlpLatlngAccuracyMeters($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\DoubleValue::class);
+        $this->flp_latlng_accuracy_meters = $var;
+
+        return $this;
+    }
+
+    /**
+     * Sets the field by wrapping a primitive type in a Google\Protobuf\DoubleValue object.
+
+     * Accuracy of `flp_location` in meters as a radius.
+     *
+     * Generated from protobuf field <code>.google.protobuf.DoubleValue flp_latlng_accuracy_meters = 31;</code>
+     * @param float|null $var
+     * @return $this
+     */
+    public function setFlpLatlngAccuracyMetersUnwrapped($var)
+    {
+        $this->writeWrapperValue("flp_latlng_accuracy_meters", $var);
+        return $this;}
+
+    /**
+     * Direction the vehicle is moving in degrees, as determined by the Fused
+     * Location Provider. 0 represents North. The valid range is [0,360).
+     *
+     * Generated from protobuf field <code>.google.protobuf.Int32Value flp_heading_degrees = 32;</code>
+     * @return \Google\Protobuf\Int32Value|null
+     */
+    public function getFlpHeadingDegrees()
+    {
+        return $this->flp_heading_degrees;
+    }
+
+    public function hasFlpHeadingDegrees()
+    {
+        return isset($this->flp_heading_degrees);
+    }
+
+    public function clearFlpHeadingDegrees()
+    {
+        unset($this->flp_heading_degrees);
+    }
+
+    /**
+     * Returns the unboxed value from <code>getFlpHeadingDegrees()</code>
+
+     * Direction the vehicle is moving in degrees, as determined by the Fused
+     * Location Provider. 0 represents North. The valid range is [0,360).
+     *
+     * Generated from protobuf field <code>.google.protobuf.Int32Value flp_heading_degrees = 32;</code>
+     * @return int|null
+     */
+    public function getFlpHeadingDegreesUnwrapped()
+    {
+        return $this->readWrapperValue("flp_heading_degrees");
+    }
+
+    /**
+     * Direction the vehicle is moving in degrees, as determined by the Fused
+     * Location Provider. 0 represents North. The valid range is [0,360).
+     *
+     * Generated from protobuf field <code>.google.protobuf.Int32Value flp_heading_degrees = 32;</code>
+     * @param \Google\Protobuf\Int32Value $var
+     * @return $this
+     */
+    public function setFlpHeadingDegrees($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Int32Value::class);
+        $this->flp_heading_degrees = $var;
+
+        return $this;
+    }
+
+    /**
+     * Sets the field by wrapping a primitive type in a Google\Protobuf\Int32Value object.
+
+     * Direction the vehicle is moving in degrees, as determined by the Fused
+     * Location Provider. 0 represents North. The valid range is [0,360).
+     *
+     * Generated from protobuf field <code>.google.protobuf.Int32Value flp_heading_degrees = 32;</code>
+     * @param int|null $var
+     * @return $this
+     */
+    public function setFlpHeadingDegreesUnwrapped($var)
+    {
+        $this->writeWrapperValue("flp_heading_degrees", $var);
+        return $this;}
+
+    /**
      * Supplemental location provided by the integrating app.
      *
      * Generated from protobuf field <code>.google.type.LatLng supplemental_location = 18;</code>
@@ -1764,7 +2030,9 @@ class DeliveryVehicleLocation extends \Google\Protobuf\Internal\Message
      */
     public function getRoadSnapped()
     {
-        @trigger_error('road_snapped is deprecated.', E_USER_DEPRECATED);
+        if ($this->road_snapped !== false) {
+            @trigger_error('road_snapped is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->road_snapped;
     }
 

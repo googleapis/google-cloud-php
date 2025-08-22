@@ -37,16 +37,12 @@ use Google\Cloud\AlloyDb\V1\ExecuteSqlResponse;
  * @param string $database          Name of the database where the query will be executed.
  *                                  Note - Value provided should be the same as expected from `SELECT
  *                                  current_database();` and NOT as a resource reference.
- * @param string $user              Database user to be used for executing the SQL.
- *                                  Note - Value provided should be the same as expected from
- *                                  `SELECT current_user;` and NOT as a resource reference.
  * @param string $sqlStatement      SQL statement to execute on database. Any valid statement is
  *                                  permitted, including DDL, DML, DQL statements.
  */
 function execute_sql_sample(
     string $formattedInstance,
     string $database,
-    string $user,
     string $sqlStatement
 ): void {
     // Create a client.
@@ -56,7 +52,6 @@ function execute_sql_sample(
     $request = (new ExecuteSqlRequest())
         ->setInstance($formattedInstance)
         ->setDatabase($database)
-        ->setUser($user)
         ->setSqlStatement($sqlStatement);
 
     // Call the API and handle any network failures.
@@ -87,9 +82,8 @@ function callSample(): void
         '[INSTANCE]'
     );
     $database = '[DATABASE]';
-    $user = '[USER]';
     $sqlStatement = '[SQL_STATEMENT]';
 
-    execute_sql_sample($formattedInstance, $database, $user, $sqlStatement);
+    execute_sql_sample($formattedInstance, $database, $sqlStatement);
 }
 // [END alloydb_v1_generated_AlloyDBAdmin_ExecuteSql_sync]

@@ -46,9 +46,6 @@ use Google\Rpc\Status;
  * @param string $lbTrafficExtensionName                                       Identifier. Name of the `LbTrafficExtension` resource in the
  *                                                                             following format:
  *                                                                             `projects/{project}/locations/{location}/lbTrafficExtensions/{lb_traffic_extension}`.
- * @param string $lbTrafficExtensionForwardingRulesElement                     A list of references to the forwarding rules to which this
- *                                                                             service extension is attached to. At least one forwarding rule is required.
- *                                                                             There can be only one `LBTrafficExtension` resource per forwarding rule.
  * @param string $lbTrafficExtensionExtensionChainsName                        The name for this extension chain.
  *                                                                             The name is logged as part of the HTTP request logs.
  *                                                                             The name must conform with RFC-1034, is restricted to lower-cased letters,
@@ -68,8 +65,6 @@ use Google\Rpc\Status;
  *                                                                             last a letter or a number.
  * @param string $lbTrafficExtensionExtensionChainsExtensionsService           The reference to the service that runs the extension.
  *
- *                                                                             Currently only callout extensions are supported here.
- *
  *                                                                             To configure a callout extension, `service` must be a fully-qualified
  *                                                                             reference
  *                                                                             to a [backend
@@ -78,17 +73,28 @@ use Google\Rpc\Status;
  *                                                                             `https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/backendServices/{backendService}`
  *                                                                             or
  *                                                                             `https://www.googleapis.com/compute/v1/projects/{project}/global/backendServices/{backendService}`.
+ *
+ *                                                                             To configure a plugin extension, `service` must be a reference
+ *                                                                             to a [`WasmPlugin`
+ *                                                                             resource](https://cloud.google.com/service-extensions/docs/reference/rest/v1beta1/projects.locations.wasmPlugins)
+ *                                                                             in the format:
+ *                                                                             `projects/{project}/locations/{location}/wasmPlugins/{plugin}`
+ *                                                                             or
+ *                                                                             `//networkservices.googleapis.com/projects/{project}/locations/{location}/wasmPlugins/{wasmPlugin}`.
+ *
+ *                                                                             Plugin extensions are currently supported for the
+ *                                                                             `LbTrafficExtension`, the `LbRouteExtension`, and the `LbEdgeExtension`
+ *                                                                             resources.
  * @param int    $lbTrafficExtensionLoadBalancingScheme                        All backend services and forwarding rules referenced by this
  *                                                                             extension must share the same load balancing scheme. Supported values:
- *                                                                             `INTERNAL_MANAGED`, `EXTERNAL_MANAGED`. For more information, refer to
- *                                                                             [Choosing a load
- *                                                                             balancer](https://cloud.google.com/load-balancing/docs/backend-service).
+ *                                                                             `INTERNAL_MANAGED` and `EXTERNAL_MANAGED`. For more information, refer to
+ *                                                                             [Backend services
+ *                                                                             overview](https://cloud.google.com/load-balancing/docs/backend-service).
  */
 function create_lb_traffic_extension_sample(
     string $formattedParent,
     string $lbTrafficExtensionId,
     string $lbTrafficExtensionName,
-    string $lbTrafficExtensionForwardingRulesElement,
     string $lbTrafficExtensionExtensionChainsName,
     string $lbTrafficExtensionExtensionChainsMatchConditionCelExpression,
     string $lbTrafficExtensionExtensionChainsExtensionsName,
@@ -99,7 +105,6 @@ function create_lb_traffic_extension_sample(
     $depServiceClient = new DepServiceClient();
 
     // Prepare the request message.
-    $lbTrafficExtensionForwardingRules = [$lbTrafficExtensionForwardingRulesElement,];
     $lbTrafficExtensionExtensionChainsMatchCondition = (new MatchCondition())
         ->setCelExpression($lbTrafficExtensionExtensionChainsMatchConditionCelExpression);
     $extension = (new Extension())
@@ -113,7 +118,6 @@ function create_lb_traffic_extension_sample(
     $lbTrafficExtensionExtensionChains = [$extensionChain,];
     $lbTrafficExtension = (new LbTrafficExtension())
         ->setName($lbTrafficExtensionName)
-        ->setForwardingRules($lbTrafficExtensionForwardingRules)
         ->setExtensionChains($lbTrafficExtensionExtensionChains)
         ->setLoadBalancingScheme($lbTrafficExtensionLoadBalancingScheme);
     $request = (new CreateLbTrafficExtensionRequest())
@@ -155,7 +159,6 @@ function callSample(): void
     $formattedParent = DepServiceClient::locationName('[PROJECT]', '[LOCATION]');
     $lbTrafficExtensionId = '[LB_TRAFFIC_EXTENSION_ID]';
     $lbTrafficExtensionName = '[NAME]';
-    $lbTrafficExtensionForwardingRulesElement = '[FORWARDING_RULES]';
     $lbTrafficExtensionExtensionChainsName = '[NAME]';
     $lbTrafficExtensionExtensionChainsMatchConditionCelExpression = '[CEL_EXPRESSION]';
     $lbTrafficExtensionExtensionChainsExtensionsName = '[NAME]';
@@ -166,7 +169,6 @@ function callSample(): void
         $formattedParent,
         $lbTrafficExtensionId,
         $lbTrafficExtensionName,
-        $lbTrafficExtensionForwardingRulesElement,
         $lbTrafficExtensionExtensionChainsName,
         $lbTrafficExtensionExtensionChainsMatchConditionCelExpression,
         $lbTrafficExtensionExtensionChainsExtensionsName,

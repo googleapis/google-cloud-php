@@ -5,6 +5,40 @@
     "protoPackage": "google.ads.admanager.v1",
     "libraryPackage": "Google\\Ads\\AdManager\\V1",
     "services": {
+        "AdBreakService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "AdBreakServiceGapicClient",
+                    "rpcs": {
+                        "CreateAdBreak": {
+                            "methods": [
+                                "createAdBreak"
+                            ]
+                        },
+                        "DeleteAdBreak": {
+                            "methods": [
+                                "deleteAdBreak"
+                            ]
+                        },
+                        "GetAdBreak": {
+                            "methods": [
+                                "getAdBreak"
+                            ]
+                        },
+                        "ListAdBreaks": {
+                            "methods": [
+                                "listAdBreaks"
+                            ]
+                        },
+                        "UpdateAdBreak": {
+                            "methods": [
+                                "updateAdBreak"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "AdUnitService": {
             "clients": {
                 "grpc": {
@@ -23,6 +57,25 @@
                         "ListAdUnits": {
                             "methods": [
                                 "listAdUnits"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "BandwidthGroupService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "BandwidthGroupServiceGapicClient",
+                    "rpcs": {
+                        "GetBandwidthGroup": {
+                            "methods": [
+                                "getBandwidthGroup"
+                            ]
+                        },
+                        "ListBandwidthGroups": {
+                            "methods": [
+                                "listBandwidthGroups"
                             ]
                         }
                     }
@@ -105,6 +158,25 @@
                 }
             }
         },
+        "DeviceCategoryService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "DeviceCategoryServiceGapicClient",
+                    "rpcs": {
+                        "GetDeviceCategory": {
+                            "methods": [
+                                "getDeviceCategory"
+                            ]
+                        },
+                        "ListDeviceCategories": {
+                            "methods": [
+                                "listDeviceCategories"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "EntitySignalsMappingService": {
             "clients": {
                 "grpc": {
@@ -144,6 +216,25 @@
                 }
             }
         },
+        "GeoTargetService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "GeoTargetServiceGapicClient",
+                    "rpcs": {
+                        "GetGeoTarget": {
+                            "methods": [
+                                "getGeoTarget"
+                            ]
+                        },
+                        "ListGeoTargets": {
+                            "methods": [
+                                "listGeoTargets"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "NetworkService": {
             "clients": {
                 "grpc": {
@@ -157,6 +248,44 @@
                         "ListNetworks": {
                             "methods": [
                                 "listNetworks"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "OperatingSystemService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "OperatingSystemServiceGapicClient",
+                    "rpcs": {
+                        "GetOperatingSystem": {
+                            "methods": [
+                                "getOperatingSystem"
+                            ]
+                        },
+                        "ListOperatingSystems": {
+                            "methods": [
+                                "listOperatingSystems"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "OperatingSystemVersionService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "OperatingSystemVersionServiceGapicClient",
+                    "rpcs": {
+                        "GetOperatingSystemVersion": {
+                            "methods": [
+                                "getOperatingSystemVersion"
+                            ]
+                        },
+                        "ListOperatingSystemVersions": {
+                            "methods": [
+                                "listOperatingSystemVersions"
                             ]
                         }
                     }
@@ -195,6 +324,83 @@
                         "ListPlacements": {
                             "methods": [
                                 "listPlacements"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "PrivateAuctionDealService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "PrivateAuctionDealServiceGapicClient",
+                    "rpcs": {
+                        "CreatePrivateAuctionDeal": {
+                            "methods": [
+                                "createPrivateAuctionDeal"
+                            ]
+                        },
+                        "GetPrivateAuctionDeal": {
+                            "methods": [
+                                "getPrivateAuctionDeal"
+                            ]
+                        },
+                        "ListPrivateAuctionDeals": {
+                            "methods": [
+                                "listPrivateAuctionDeals"
+                            ]
+                        },
+                        "UpdatePrivateAuctionDeal": {
+                            "methods": [
+                                "updatePrivateAuctionDeal"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "PrivateAuctionService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "PrivateAuctionServiceGapicClient",
+                    "rpcs": {
+                        "CreatePrivateAuction": {
+                            "methods": [
+                                "createPrivateAuction"
+                            ]
+                        },
+                        "GetPrivateAuction": {
+                            "methods": [
+                                "getPrivateAuction"
+                            ]
+                        },
+                        "ListPrivateAuctions": {
+                            "methods": [
+                                "listPrivateAuctions"
+                            ]
+                        },
+                        "UpdatePrivateAuction": {
+                            "methods": [
+                                "updatePrivateAuction"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "ProgrammaticBuyerService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ProgrammaticBuyerServiceGapicClient",
+                    "rpcs": {
+                        "GetProgrammaticBuyer": {
+                            "methods": [
+                                "getProgrammaticBuyer"
+                            ]
+                        },
+                        "ListProgrammaticBuyers": {
+                            "methods": [
+                                "listProgrammaticBuyers"
                             ]
                         }
                     }

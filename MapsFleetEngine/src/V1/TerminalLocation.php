@@ -118,13 +118,17 @@ class TerminalLocation extends \Google\Protobuf\Internal\Message
      */
     public function getTerminalPointId()
     {
-        @trigger_error('terminal_point_id is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->terminal_point_id)) {
+            @trigger_error('terminal_point_id is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->terminal_point_id;
     }
 
     public function hasTerminalPointId()
     {
-        @trigger_error('terminal_point_id is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->terminal_point_id)) {
+            @trigger_error('terminal_point_id is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->terminal_point_id);
     }
 
@@ -160,7 +164,9 @@ class TerminalLocation extends \Google\Protobuf\Internal\Message
      */
     public function getAccessPointId()
     {
-        @trigger_error('access_point_id is deprecated.', E_USER_DEPRECATED);
+        if ($this->access_point_id !== '') {
+            @trigger_error('access_point_id is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->access_point_id;
     }
 
@@ -190,7 +196,9 @@ class TerminalLocation extends \Google\Protobuf\Internal\Message
      */
     public function getTripId()
     {
-        @trigger_error('trip_id is deprecated.', E_USER_DEPRECATED);
+        if ($this->trip_id !== '') {
+            @trigger_error('trip_id is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->trip_id;
     }
 
@@ -220,7 +228,9 @@ class TerminalLocation extends \Google\Protobuf\Internal\Message
      */
     public function getTerminalLocationType()
     {
-        @trigger_error('terminal_location_type is deprecated.', E_USER_DEPRECATED);
+        if ($this->terminal_location_type !== 0) {
+            @trigger_error('terminal_location_type is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->terminal_location_type;
     }
 

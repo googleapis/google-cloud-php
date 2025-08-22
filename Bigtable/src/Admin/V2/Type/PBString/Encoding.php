@@ -43,13 +43,17 @@ class Encoding extends \Google\Protobuf\Internal\Message
      */
     public function getUtf8Raw()
     {
-        @trigger_error('utf8_raw is deprecated.', E_USER_DEPRECATED);
+        if ($this->hasOneof(1)) {
+            @trigger_error('utf8_raw is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->readOneof(1);
     }
 
     public function hasUtf8Raw()
     {
-        @trigger_error('utf8_raw is deprecated.', E_USER_DEPRECATED);
+        if ($this->hasOneof(1)) {
+            @trigger_error('utf8_raw is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->hasOneof(1);
     }
 

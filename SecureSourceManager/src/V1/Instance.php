@@ -79,6 +79,13 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.securesourcemanager.v1.Instance.HostConfig host_config = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $host_config = null;
+    /**
+     * Optional. Configuration for Workforce Identity Federation to support
+     * third party identity provider. If unset, defaults to the Google OIDC IdP.
+     *
+     * Generated from protobuf field <code>.google.cloud.securesourcemanager.v1.Instance.WorkforceIdentityFederationConfig workforce_identity_federation_config = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $workforce_identity_federation_config = null;
 
     /**
      * Constructor.
@@ -114,6 +121,9 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;.
      *     @type \Google\Cloud\SecureSourceManager\V1\Instance\HostConfig $host_config
      *           Output only. A list of hostnames for this instance.
+     *     @type \Google\Cloud\SecureSourceManager\V1\Instance\WorkforceIdentityFederationConfig $workforce_identity_federation_config
+     *           Optional. Configuration for Workforce Identity Federation to support
+     *           third party identity provider. If unset, defaults to the Google OIDC IdP.
      * }
      */
     public function __construct($data = NULL) {
@@ -411,6 +421,44 @@ class Instance extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\SecureSourceManager\V1\Instance\HostConfig::class);
         $this->host_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configuration for Workforce Identity Federation to support
+     * third party identity provider. If unset, defaults to the Google OIDC IdP.
+     *
+     * Generated from protobuf field <code>.google.cloud.securesourcemanager.v1.Instance.WorkforceIdentityFederationConfig workforce_identity_federation_config = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\SecureSourceManager\V1\Instance\WorkforceIdentityFederationConfig|null
+     */
+    public function getWorkforceIdentityFederationConfig()
+    {
+        return $this->workforce_identity_federation_config;
+    }
+
+    public function hasWorkforceIdentityFederationConfig()
+    {
+        return isset($this->workforce_identity_federation_config);
+    }
+
+    public function clearWorkforceIdentityFederationConfig()
+    {
+        unset($this->workforce_identity_federation_config);
+    }
+
+    /**
+     * Optional. Configuration for Workforce Identity Federation to support
+     * third party identity provider. If unset, defaults to the Google OIDC IdP.
+     *
+     * Generated from protobuf field <code>.google.cloud.securesourcemanager.v1.Instance.WorkforceIdentityFederationConfig workforce_identity_federation_config = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\SecureSourceManager\V1\Instance\WorkforceIdentityFederationConfig $var
+     * @return $this
+     */
+    public function setWorkforceIdentityFederationConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\SecureSourceManager\V1\Instance\WorkforceIdentityFederationConfig::class);
+        $this->workforce_identity_federation_config = $var;
 
         return $this;
     }

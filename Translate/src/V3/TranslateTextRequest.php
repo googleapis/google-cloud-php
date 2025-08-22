@@ -33,16 +33,18 @@ class TranslateTextRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The ISO-639 language code of the input text if
      * known, for example, "en-US" or "sr-Latn". Supported language codes are
-     * listed in Language Support. If the source language isn't specified, the API
-     * attempts to identify the source language automatically and returns the
-     * source language within the response.
+     * listed in [Language
+     * Support](https://cloud.google.com/translate/docs/languages). If the source
+     * language isn't specified, the API attempts to identify the source language
+     * automatically and returns the source language within the response.
      *
      * Generated from protobuf field <code>string source_language_code = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $source_language_code = '';
     /**
      * Required. The ISO-639 language code to use for translation of the input
-     * text, set to one of the language codes listed in Language Support.
+     * text, set to one of the language codes listed in [Language
+     * Support](https://cloud.google.com/translate/docs/languages).
      *
      * Generated from protobuf field <code>string target_language_code = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -123,7 +125,8 @@ class TranslateTextRequest extends \Google\Protobuf\Internal\Message
      *                                     location-id), otherwise an INVALID_ARGUMENT (400) error is returned. Please see
      *                                     {@see TranslationServiceClient::locationName()} for help formatting this field.
      * @param string   $targetLanguageCode Required. The ISO-639 language code to use for translation of the input
-     *                                     text, set to one of the language codes listed in Language Support.
+     *                                     text, set to one of the language codes listed in [Language
+     *                                     Support](https://cloud.google.com/translate/docs/languages).
      * @param string[] $contents           Required. The content of the input in string format.
      *                                     We recommend the total content be less than 30,000 codepoints. The max
      *                                     length of this field is 1024. Use BatchTranslateText for larger text.
@@ -178,11 +181,13 @@ class TranslateTextRequest extends \Google\Protobuf\Internal\Message
      *                                     "text/plain". If left blank, the MIME type defaults to "text/html".
      * @param string   $sourceLanguageCode Optional. The ISO-639 language code of the input text if
      *                                     known, for example, "en-US" or "sr-Latn". Supported language codes are
-     *                                     listed in Language Support. If the source language isn't specified, the API
-     *                                     attempts to identify the source language automatically and returns the
-     *                                     source language within the response.
+     *                                     listed in [Language
+     *                                     Support](https://cloud.google.com/translate/docs/languages). If the source
+     *                                     language isn't specified, the API attempts to identify the source language
+     *                                     automatically and returns the source language within the response.
      * @param string   $targetLanguageCode Required. The ISO-639 language code to use for translation of the input
-     *                                     text, set to one of the language codes listed in Language Support.
+     *                                     text, set to one of the language codes listed in [Language
+     *                                     Support](https://cloud.google.com/translate/docs/languages).
      * @param string[] $contents           Required. The content of the input in string format.
      *                                     We recommend the total content be less than 30,000 codepoints. The max
      *                                     length of this field is 1024. Use BatchTranslateText for larger text.
@@ -218,12 +223,14 @@ class TranslateTextRequest extends \Google\Protobuf\Internal\Message
      *     @type string $source_language_code
      *           Optional. The ISO-639 language code of the input text if
      *           known, for example, "en-US" or "sr-Latn". Supported language codes are
-     *           listed in Language Support. If the source language isn't specified, the API
-     *           attempts to identify the source language automatically and returns the
-     *           source language within the response.
+     *           listed in [Language
+     *           Support](https://cloud.google.com/translate/docs/languages). If the source
+     *           language isn't specified, the API attempts to identify the source language
+     *           automatically and returns the source language within the response.
      *     @type string $target_language_code
      *           Required. The ISO-639 language code to use for translation of the input
-     *           text, set to one of the language codes listed in Language Support.
+     *           text, set to one of the language codes listed in [Language
+     *           Support](https://cloud.google.com/translate/docs/languages).
      *     @type string $parent
      *           Required. Project or location to make a call. Must refer to a caller's
      *           project.
@@ -330,9 +337,10 @@ class TranslateTextRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The ISO-639 language code of the input text if
      * known, for example, "en-US" or "sr-Latn". Supported language codes are
-     * listed in Language Support. If the source language isn't specified, the API
-     * attempts to identify the source language automatically and returns the
-     * source language within the response.
+     * listed in [Language
+     * Support](https://cloud.google.com/translate/docs/languages). If the source
+     * language isn't specified, the API attempts to identify the source language
+     * automatically and returns the source language within the response.
      *
      * Generated from protobuf field <code>string source_language_code = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -345,9 +353,10 @@ class TranslateTextRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The ISO-639 language code of the input text if
      * known, for example, "en-US" or "sr-Latn". Supported language codes are
-     * listed in Language Support. If the source language isn't specified, the API
-     * attempts to identify the source language automatically and returns the
-     * source language within the response.
+     * listed in [Language
+     * Support](https://cloud.google.com/translate/docs/languages). If the source
+     * language isn't specified, the API attempts to identify the source language
+     * automatically and returns the source language within the response.
      *
      * Generated from protobuf field <code>string source_language_code = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -363,7 +372,8 @@ class TranslateTextRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The ISO-639 language code to use for translation of the input
-     * text, set to one of the language codes listed in Language Support.
+     * text, set to one of the language codes listed in [Language
+     * Support](https://cloud.google.com/translate/docs/languages).
      *
      * Generated from protobuf field <code>string target_language_code = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -375,7 +385,8 @@ class TranslateTextRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The ISO-639 language code to use for translation of the input
-     * text, set to one of the language codes listed in Language Support.
+     * text, set to one of the language codes listed in [Language
+     * Support](https://cloud.google.com/translate/docs/languages).
      *
      * Generated from protobuf field <code>string target_language_code = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

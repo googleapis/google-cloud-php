@@ -21,8 +21,11 @@ use Exception;
 use Google\Cloud\Core\Exception\BadRequestException;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Firestore\Aggregate;
+use Google\Cloud\Firestore\CollectionReference;
 use Google\Cloud\Firestore\Filter;
 use Google\Cloud\Firestore\Query;
+use Google\Cloud\Firestore\V1\ExplainOptions;
+use InvalidArgumentException;
 
 /**
  * @group firestore
@@ -30,7 +33,7 @@ use Google\Cloud\Firestore\Query;
  */
 class AggregateQueryTest extends FirestoreTestCase
 {
-    private $query;
+    private CollectionReference $query;
 
     public function setUp(): void
     {
@@ -185,6 +188,57 @@ class AggregateQueryTest extends FirestoreTestCase
             $actualTimestamp->get()->getTimestamp(),
             100
         );
+    }
+
+    public function testAggregationExplainOptionsWithAnalyzeFalseReturnsPlanSummaryOnly()
+    {
+        $docsToAdd = [['foo' => 'bar', 'hello' => 'world', 'good' => 'night']];
+
+        $this->insertDocs($docsToAdd);
+        $query = $this->query->where('foo', '=', 'bar');
+        $aggregationQuery = $query->addAggregation(Aggregate::count()->alias('total'));
+
+        $explainOptions = new ExplainOptions();
+        $explainOptions->setAnalyze(false);
+
+        $result = $aggregationQuery->getSnapshot([
+            'explainOptions' => $explainOptions
+        ]);
+
+        $explainMetrics = $result->getExplainMetrics();
+
+        $this->assertNotNull($explainMetrics);
+        $this->assertNotNull($explainMetrics->getPlanSummary());
+        $this->assertNull($explainMetrics->getExecutionStats());
+
+        // When setting the ExplainOptions::analyze to false, the 'total' alias
+        // should be empty. The AggregateQuerySnapshot::get() method
+        // throws an error when the alias is not found
+        $this->expectException(InvalidArgumentException::class);
+        $result->get('total');
+    }
+
+    public function testAggregationExplainOptionsWithAnalyzeTrueReturnsAll()
+    {
+        $docsToAdd = [['foo' => 'bar', 'hello' => 'world', 'good' => 'night']];
+
+        $this->insertDocs($docsToAdd);
+        $query = $this->query->where('foo', '=', 'bar');
+        $aggregationQuery = $query->addAggregation(Aggregate::count()->alias('total'));
+
+        $explainOptions = new ExplainOptions();
+        $explainOptions->setAnalyze(true);
+
+        $result = $aggregationQuery->getSnapshot([
+            'explainOptions' => $explainOptions
+        ]);
+
+        $explainMetrics = $result->getExplainMetrics();
+
+        $this->assertNotNull($explainMetrics);
+        $this->assertNotNull($explainMetrics->getPlanSummary());
+        $this->assertNotNull($explainMetrics->getExecutionStats());
+        $this->assertEquals($result->get('total'), 1);
     }
 
     /**

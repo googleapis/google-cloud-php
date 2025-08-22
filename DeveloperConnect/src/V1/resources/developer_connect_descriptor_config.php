@@ -23,6 +23,25 @@
 return [
     'interfaces' => [
         'google.cloud.developerconnect.v1.DeveloperConnect' => [
+            'CreateAccountConnector' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\DeveloperConnect\V1\AccountConnector',
+                    'metadataReturnType' => '\Google\Cloud\DeveloperConnect\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateConnection' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\DeveloperConnect\V1\Connection',
@@ -57,6 +76,25 @@ return [
                         'keyName' => 'parent',
                         'fieldAccessors' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteAccountConnector' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\DeveloperConnect\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
                         ],
                     ],
                 ],
@@ -99,6 +137,64 @@ return [
                     ],
                 ],
             ],
+            'DeleteSelf' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\DeveloperConnect\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteUser' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\DeveloperConnect\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateAccountConnector' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\DeveloperConnect\V1\AccountConnector',
+                    'metadataReturnType' => '\Google\Cloud\DeveloperConnect\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'account_connector.name',
+                        'fieldAccessors' => [
+                            'getAccountConnector',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateConnection' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\DeveloperConnect\V1\Connection',
@@ -115,6 +211,18 @@ return [
                         'fieldAccessors' => [
                             'getConnection',
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'FetchAccessToken' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\DeveloperConnect\V1\FetchAccessTokenResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'account_connector',
+                        'fieldAccessors' => [
+                            'getAccountConnector',
                         ],
                     ],
                 ],
@@ -195,6 +303,30 @@ return [
                     ],
                 ],
             ],
+            'FetchSelf' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\DeveloperConnect\V1\User',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetAccountConnector' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\DeveloperConnect\V1\AccountConnector',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetConnection' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\DeveloperConnect\V1\Connection',
@@ -215,6 +347,26 @@ return [
                         'keyName' => 'name',
                         'fieldAccessors' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListAccountConnectors' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getAccountConnectors',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\DeveloperConnect\V1\ListAccountConnectorsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
                         ],
                     ],
                 ],
@@ -259,6 +411,26 @@ return [
                     ],
                 ],
             ],
+            'ListUsers' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getUsers',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\DeveloperConnect\V1\ListUsersResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'GetLocation' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Location\Location',
@@ -294,12 +466,14 @@ return [
                 'interfaceOverride' => 'google.cloud.location.Locations',
             ],
             'templateMap' => [
+                'accountConnector' => 'projects/{project}/locations/{location}/accountConnectors/{account_connector}',
                 'connection' => 'projects/{project}/locations/{location}/connections/{connection}',
                 'cryptoKey' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}',
                 'gitRepositoryLink' => 'projects/{project}/locations/{location}/connections/{connection}/gitRepositoryLinks/{git_repository_link}',
                 'location' => 'projects/{project}/locations/{location}',
                 'secretVersion' => 'projects/{project}/secrets/{secret}/versions/{secret_version}',
                 'service' => 'projects/{project}/locations/{location}/namespaces/{namespace}/services/{service}',
+                'user' => 'projects/{project}/locations/{location}/accountConnectors/{account_connector}/users/{user}',
             ],
         ],
     ],

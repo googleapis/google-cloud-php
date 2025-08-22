@@ -26,12 +26,22 @@
                 }
             },
             "methods": {
+                "CreateAuthzExtension": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
                 "CreateLbRouteExtension": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_1_codes",
                     "retry_params_name": "no_retry_1_params"
                 },
                 "CreateLbTrafficExtension": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
+                "DeleteAuthzExtension": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_1_codes",
                     "retry_params_name": "no_retry_1_params"
@@ -46,6 +56,11 @@
                     "retry_codes_name": "no_retry_1_codes",
                     "retry_params_name": "no_retry_1_params"
                 },
+                "GetAuthzExtension": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
                 "GetLbRouteExtension": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_1_codes",
@@ -56,12 +71,22 @@
                     "retry_codes_name": "no_retry_1_codes",
                     "retry_params_name": "no_retry_1_params"
                 },
+                "ListAuthzExtensions": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
                 "ListLbRouteExtensions": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_1_codes",
                     "retry_params_name": "no_retry_1_params"
                 },
                 "ListLbTrafficExtensions": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
+                "UpdateAuthzExtension": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_1_codes",
                     "retry_params_name": "no_retry_1_params"

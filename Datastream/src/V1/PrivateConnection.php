@@ -77,6 +77,12 @@ class PrivateConnection extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.datastream.v1.VpcPeeringConfig vpc_peering_config = 100;</code>
      */
     protected $vpc_peering_config = null;
+    /**
+     * PSC Interface Config.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.PscInterfaceConfig psc_interface_config = 101;</code>
+     */
+    protected $psc_interface_config = null;
 
     /**
      * Constructor.
@@ -105,6 +111,8 @@ class PrivateConnection extends \Google\Protobuf\Internal\Message
      *           Output only. Reserved for future use.
      *     @type \Google\Cloud\Datastream\V1\VpcPeeringConfig $vpc_peering_config
      *           VPC Peering Config.
+     *     @type \Google\Cloud\Datastream\V1\PscInterfaceConfig $psc_interface_config
+     *           PSC Interface Config.
      * }
      */
     public function __construct($data = NULL) {
@@ -430,6 +438,42 @@ class PrivateConnection extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\VpcPeeringConfig::class);
         $this->vpc_peering_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * PSC Interface Config.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.PscInterfaceConfig psc_interface_config = 101;</code>
+     * @return \Google\Cloud\Datastream\V1\PscInterfaceConfig|null
+     */
+    public function getPscInterfaceConfig()
+    {
+        return $this->psc_interface_config;
+    }
+
+    public function hasPscInterfaceConfig()
+    {
+        return isset($this->psc_interface_config);
+    }
+
+    public function clearPscInterfaceConfig()
+    {
+        unset($this->psc_interface_config);
+    }
+
+    /**
+     * PSC Interface Config.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.PscInterfaceConfig psc_interface_config = 101;</code>
+     * @param \Google\Cloud\Datastream\V1\PscInterfaceConfig $var
+     * @return $this
+     */
+    public function setPscInterfaceConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\PscInterfaceConfig::class);
+        $this->psc_interface_config = $var;
 
         return $this;
     }

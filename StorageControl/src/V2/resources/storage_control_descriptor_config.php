@@ -23,6 +23,28 @@
 return [
     'interfaces' => [
         'google.storage.control.v2.StorageControl' => [
+            'CreateAnywhereCache' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Storage\Control\V2\AnywhereCache',
+                    'metadataReturnType' => '\Google\Cloud\Storage\Control\V2\CreateAnywhereCacheMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'bucket',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'autoPopulatedFields' => [
+                    'requestId' => \Google\Api\FieldInfo\Format::UUID4,
+                ],
+            ],
             'RenameFolder' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Storage\Control\V2\Folder',
@@ -37,6 +59,32 @@ return [
                     [
                         'keyName' => 'bucket',
                         'fieldAccessors' => [
+                            'getName',
+                        ],
+                        'matchers' => [
+                            '/^(?<bucket>projects\/[^\/]+\/buckets\/[^\/]+)(?:\/.*)?$/',
+                        ],
+                    ],
+                ],
+                'autoPopulatedFields' => [
+                    'requestId' => \Google\Api\FieldInfo\Format::UUID4,
+                ],
+            ],
+            'UpdateAnywhereCache' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Storage\Control\V2\AnywhereCache',
+                    'metadataReturnType' => '\Google\Cloud\Storage\Control\V2\UpdateAnywhereCacheMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'bucket',
+                        'fieldAccessors' => [
+                            'getAnywhereCache',
                             'getName',
                         ],
                         'matchers' => [
@@ -114,6 +162,42 @@ return [
                     'requestId' => \Google\Api\FieldInfo\Format::UUID4,
                 ],
             ],
+            'DisableAnywhereCache' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Storage\Control\V2\AnywhereCache',
+                'headerParams' => [
+                    [
+                        'keyName' => 'bucket',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                        'matchers' => [
+                            '/^(?<bucket>projects\/[^\/]+\/buckets\/[^\/]+)(?:\/.*)?$/',
+                        ],
+                    ],
+                ],
+                'autoPopulatedFields' => [
+                    'requestId' => \Google\Api\FieldInfo\Format::UUID4,
+                ],
+            ],
+            'GetAnywhereCache' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Storage\Control\V2\AnywhereCache',
+                'headerParams' => [
+                    [
+                        'keyName' => 'bucket',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                        'matchers' => [
+                            '/^(?<bucket>projects\/[^\/]+\/buckets\/[^\/]+)(?:\/.*)?$/',
+                        ],
+                    ],
+                ],
+                'autoPopulatedFields' => [
+                    'requestId' => \Google\Api\FieldInfo\Format::UUID4,
+                ],
+            ],
             'GetFolder' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Storage\Control\V2\Folder',
@@ -130,6 +214,18 @@ return [
                 ],
                 'autoPopulatedFields' => [
                     'requestId' => \Google\Api\FieldInfo\Format::UUID4,
+                ],
+            ],
+            'GetFolderIntelligenceConfig' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Storage\Control\V2\IntelligenceConfig',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
                 ],
             ],
             'GetManagedFolder' => [
@@ -150,6 +246,30 @@ return [
                     'requestId' => \Google\Api\FieldInfo\Format::UUID4,
                 ],
             ],
+            'GetOrganizationIntelligenceConfig' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Storage\Control\V2\IntelligenceConfig',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetProjectIntelligenceConfig' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Storage\Control\V2\IntelligenceConfig',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetStorageLayout' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Storage\Control\V2\StorageLayout',
@@ -161,6 +281,29 @@ return [
                         ],
                         'matchers' => [
                             '/^(?<bucket>projects\/[^\/]+\/buckets\/[^\/]+)(?:\/.*)?$/',
+                        ],
+                    ],
+                ],
+                'autoPopulatedFields' => [
+                    'requestId' => \Google\Api\FieldInfo\Format::UUID4,
+                ],
+            ],
+            'ListAnywhereCaches' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getAnywhereCaches',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Storage\Control\V2\ListAnywhereCachesResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'bucket',
+                        'fieldAccessors' => [
+                            'getParent',
                         ],
                     ],
                 ],
@@ -211,10 +354,90 @@ return [
                     'requestId' => \Google\Api\FieldInfo\Format::UUID4,
                 ],
             ],
+            'PauseAnywhereCache' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Storage\Control\V2\AnywhereCache',
+                'headerParams' => [
+                    [
+                        'keyName' => 'bucket',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                        'matchers' => [
+                            '/^(?<bucket>projects\/[^\/]+\/buckets\/[^\/]+)(?:\/.*)?$/',
+                        ],
+                    ],
+                ],
+                'autoPopulatedFields' => [
+                    'requestId' => \Google\Api\FieldInfo\Format::UUID4,
+                ],
+            ],
+            'ResumeAnywhereCache' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Storage\Control\V2\AnywhereCache',
+                'headerParams' => [
+                    [
+                        'keyName' => 'bucket',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                        'matchers' => [
+                            '/^(?<bucket>projects\/[^\/]+\/buckets\/[^\/]+)(?:\/.*)?$/',
+                        ],
+                    ],
+                ],
+                'autoPopulatedFields' => [
+                    'requestId' => \Google\Api\FieldInfo\Format::UUID4,
+                ],
+            ],
+            'UpdateFolderIntelligenceConfig' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Storage\Control\V2\IntelligenceConfig',
+                'headerParams' => [
+                    [
+                        'keyName' => 'intelligence_config.name',
+                        'fieldAccessors' => [
+                            'getIntelligenceConfig',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateOrganizationIntelligenceConfig' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Storage\Control\V2\IntelligenceConfig',
+                'headerParams' => [
+                    [
+                        'keyName' => 'intelligence_config.name',
+                        'fieldAccessors' => [
+                            'getIntelligenceConfig',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateProjectIntelligenceConfig' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Storage\Control\V2\IntelligenceConfig',
+                'headerParams' => [
+                    [
+                        'keyName' => 'intelligence_config.name',
+                        'fieldAccessors' => [
+                            'getIntelligenceConfig',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'templateMap' => [
+                'anywhereCache' => 'projects/{project}/buckets/{bucket}/anywhereCaches/{anywhere_cache}',
                 'bucket' => 'projects/{project}/buckets/{bucket}',
                 'folder' => 'projects/{project}/buckets/{bucket}/folders/{folder=**}',
+                'folderLocationIntelligenceConfig' => 'folders/{folder}/locations/{location}/intelligenceConfig',
+                'intelligenceConfig' => 'folders/{folder}/locations/{location}/intelligenceConfig',
                 'managedFolder' => 'projects/{project}/buckets/{bucket}/managedFolders/{managed_folder=**}',
+                'orgLocationIntelligenceConfig' => 'organizations/{org}/locations/{location}/intelligenceConfig',
+                'projectLocationIntelligenceConfig' => 'projects/{project}/locations/{location}/intelligenceConfig',
                 'storageLayout' => 'projects/{project}/buckets/{bucket}/storageLayout',
             ],
         ],

@@ -19,7 +19,7 @@ class AllocationAffinity extends \Google\Protobuf\Internal\Message
      * Optional. Specifies the type of reservation from which this instance can
      * consume
      *
-     * Generated from protobuf field <code>optional .google.cloud.backupdr.v1.AllocationAffinity.Type consume_allocation_type = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional .google.cloud.backupdr.v1.AllocationAffinity.Type consume_allocation_type = 1 [json_name = "consumeReservationType", (.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $consume_allocation_type = null;
     /**
@@ -59,7 +59,7 @@ class AllocationAffinity extends \Google\Protobuf\Internal\Message
      * Optional. Specifies the type of reservation from which this instance can
      * consume
      *
-     * Generated from protobuf field <code>optional .google.cloud.backupdr.v1.AllocationAffinity.Type consume_allocation_type = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional .google.cloud.backupdr.v1.AllocationAffinity.Type consume_allocation_type = 1 [json_name = "consumeReservationType", (.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getConsumeAllocationType()
@@ -81,7 +81,7 @@ class AllocationAffinity extends \Google\Protobuf\Internal\Message
      * Optional. Specifies the type of reservation from which this instance can
      * consume
      *
-     * Generated from protobuf field <code>optional .google.cloud.backupdr.v1.AllocationAffinity.Type consume_allocation_type = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional .google.cloud.backupdr.v1.AllocationAffinity.Type consume_allocation_type = 1 [json_name = "consumeReservationType", (.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */

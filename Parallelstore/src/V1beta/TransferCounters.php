@@ -58,13 +58,13 @@ class TransferCounters extends \Google\Protobuf\Internal\Message
      */
     protected $bytes_copied = 0;
     /**
-     * Objects that are failed to write to the data destination.
+     * Objects that failed to be written to the data destination.
      *
      * Generated from protobuf field <code>int64 objects_failed = 7;</code>
      */
     protected $objects_failed = 0;
     /**
-     * Bytes that are failed to write to the data destination.
+     * Bytes that failed to be written to the data destination.
      *
      * Generated from protobuf field <code>int64 bytes_failed = 8;</code>
      */
@@ -95,9 +95,9 @@ class TransferCounters extends \Google\Protobuf\Internal\Message
      *     @type int|string $bytes_copied
      *           Bytes that are copied to the data destination.
      *     @type int|string $objects_failed
-     *           Objects that are failed to write to the data destination.
+     *           Objects that failed to be written to the data destination.
      *     @type int|string $bytes_failed
-     *           Bytes that are failed to write to the data destination.
+     *           Bytes that failed to be written to the data destination.
      * }
      */
     public function __construct($data = NULL) {
@@ -274,7 +274,7 @@ class TransferCounters extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Objects that are failed to write to the data destination.
+     * Objects that failed to be written to the data destination.
      *
      * Generated from protobuf field <code>int64 objects_failed = 7;</code>
      * @return int|string
@@ -285,7 +285,7 @@ class TransferCounters extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Objects that are failed to write to the data destination.
+     * Objects that failed to be written to the data destination.
      *
      * Generated from protobuf field <code>int64 objects_failed = 7;</code>
      * @param int|string $var
@@ -300,7 +300,7 @@ class TransferCounters extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Bytes that are failed to write to the data destination.
+     * Bytes that failed to be written to the data destination.
      *
      * Generated from protobuf field <code>int64 bytes_failed = 8;</code>
      * @return int|string
@@ -311,7 +311,7 @@ class TransferCounters extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Bytes that are failed to write to the data destination.
+     * Bytes that failed to be written to the data destination.
      *
      * Generated from protobuf field <code>int64 bytes_failed = 8;</code>
      * @param int|string $var

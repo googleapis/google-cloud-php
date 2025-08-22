@@ -22,6 +22,12 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
      */
     private $auto_create_routes = null;
     /**
+     * [Output Only] The effective state of the peering connection as a whole.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkPeeringConnectionStatus connection_status = 525629555;</code>
+     */
+    private $connection_status = null;
+    /**
      * Indicates whether full mesh connectivity is created and managed automatically between peered networks. Currently this field should always be true since Google Compute Engine will automatically create and manage subnetwork routes between two networks when peering state is ACTIVE.
      *
      * Generated from protobuf field <code>optional bool exchange_subnet_routes = 26322256;</code>
@@ -89,6 +95,13 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string state_details = 95566996;</code>
      */
     private $state_details = null;
+    /**
+     * The update strategy determines the semantics for updates and deletes to the peering connection configuration.
+     * Check the UpdateStrategy enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string update_strategy = 6123049;</code>
+     */
+    private $update_strategy = null;
 
     /**
      * Constructor.
@@ -98,6 +111,8 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
      *
      *     @type bool $auto_create_routes
      *           This field will be deprecated soon. Use the exchange_subnet_routes field instead. Indicates whether full mesh connectivity is created and managed automatically between peered networks. Currently this field should always be true since Google Compute Engine will automatically create and manage subnetwork routes between two networks when peering state is ACTIVE.
+     *     @type \Google\Cloud\Compute\V1\NetworkPeeringConnectionStatus $connection_status
+     *           [Output Only] The effective state of the peering connection as a whole.
      *     @type bool $exchange_subnet_routes
      *           Indicates whether full mesh connectivity is created and managed automatically between peered networks. Currently this field should always be true since Google Compute Engine will automatically create and manage subnetwork routes between two networks when peering state is ACTIVE.
      *     @type bool $export_custom_routes
@@ -122,6 +137,9 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
      *           Check the State enum for the list of possible values.
      *     @type string $state_details
      *           [Output Only] Details about the current state of the peering.
+     *     @type string $update_strategy
+     *           The update strategy determines the semantics for updates and deletes to the peering connection configuration.
+     *           Check the UpdateStrategy enum for the list of possible values.
      * }
      */
     public function __construct($data = NULL) {
@@ -161,6 +179,42 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->auto_create_routes = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] The effective state of the peering connection as a whole.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkPeeringConnectionStatus connection_status = 525629555;</code>
+     * @return \Google\Cloud\Compute\V1\NetworkPeeringConnectionStatus|null
+     */
+    public function getConnectionStatus()
+    {
+        return $this->connection_status;
+    }
+
+    public function hasConnectionStatus()
+    {
+        return isset($this->connection_status);
+    }
+
+    public function clearConnectionStatus()
+    {
+        unset($this->connection_status);
+    }
+
+    /**
+     * [Output Only] The effective state of the peering connection as a whole.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkPeeringConnectionStatus connection_status = 525629555;</code>
+     * @param \Google\Cloud\Compute\V1\NetworkPeeringConnectionStatus $var
+     * @return $this
+     */
+    public function setConnectionStatus($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\NetworkPeeringConnectionStatus::class);
+        $this->connection_status = $var;
 
         return $this;
     }
@@ -561,6 +615,44 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->state_details = $var;
+
+        return $this;
+    }
+
+    /**
+     * The update strategy determines the semantics for updates and deletes to the peering connection configuration.
+     * Check the UpdateStrategy enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string update_strategy = 6123049;</code>
+     * @return string
+     */
+    public function getUpdateStrategy()
+    {
+        return isset($this->update_strategy) ? $this->update_strategy : '';
+    }
+
+    public function hasUpdateStrategy()
+    {
+        return isset($this->update_strategy);
+    }
+
+    public function clearUpdateStrategy()
+    {
+        unset($this->update_strategy);
+    }
+
+    /**
+     * The update strategy determines the semantics for updates and deletes to the peering connection configuration.
+     * Check the UpdateStrategy enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string update_strategy = 6123049;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setUpdateStrategy($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->update_strategy = $var;
 
         return $this;
     }

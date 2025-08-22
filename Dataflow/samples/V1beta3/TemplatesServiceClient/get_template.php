@@ -31,6 +31,12 @@ use Google\Cloud\Dataflow\V1beta3\GetTemplateResponse;
 /**
  * Get the template associated with a template.
  *
+ * To get the template, we recommend using `projects.locations.templates.get`
+ * with a [regional endpoint]
+ * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using
+ * `projects.templates.get` is not recommended, because only
+ * templates that are running in `us-central1` are retrieved.
+ *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
  *  - It may require correct/in-range values for request initialization.

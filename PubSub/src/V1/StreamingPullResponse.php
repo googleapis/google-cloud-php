@@ -24,14 +24,14 @@ class StreamingPullResponse extends \Google\Protobuf\Internal\Message
     private $received_messages;
     /**
      * Optional. This field will only be set if `enable_exactly_once_delivery` is
-     * set to `true`.
+     * set to `true` and is not guaranteed to be populated.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.StreamingPullResponse.AcknowledgeConfirmation acknowledge_confirmation = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $acknowledge_confirmation = null;
     /**
      * Optional. This field will only be set if `enable_exactly_once_delivery` is
-     * set to `true`.
+     * set to `true` and is not guaranteed to be populated.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.StreamingPullResponse.ModifyAckDeadlineConfirmation modify_ack_deadline_confirmation = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -53,10 +53,10 @@ class StreamingPullResponse extends \Google\Protobuf\Internal\Message
      *           Optional. Received Pub/Sub messages. This will not be empty.
      *     @type \Google\Cloud\PubSub\V1\StreamingPullResponse\AcknowledgeConfirmation $acknowledge_confirmation
      *           Optional. This field will only be set if `enable_exactly_once_delivery` is
-     *           set to `true`.
+     *           set to `true` and is not guaranteed to be populated.
      *     @type \Google\Cloud\PubSub\V1\StreamingPullResponse\ModifyAckDeadlineConfirmation $modify_ack_deadline_confirmation
      *           Optional. This field will only be set if `enable_exactly_once_delivery` is
-     *           set to `true`.
+     *           set to `true` and is not guaranteed to be populated.
      *     @type \Google\Cloud\PubSub\V1\StreamingPullResponse\SubscriptionProperties $subscription_properties
      *           Optional. Properties associated with this subscription.
      * }
@@ -94,7 +94,7 @@ class StreamingPullResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. This field will only be set if `enable_exactly_once_delivery` is
-     * set to `true`.
+     * set to `true` and is not guaranteed to be populated.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.StreamingPullResponse.AcknowledgeConfirmation acknowledge_confirmation = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\PubSub\V1\StreamingPullResponse\AcknowledgeConfirmation|null
@@ -116,7 +116,7 @@ class StreamingPullResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. This field will only be set if `enable_exactly_once_delivery` is
-     * set to `true`.
+     * set to `true` and is not guaranteed to be populated.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.StreamingPullResponse.AcknowledgeConfirmation acknowledge_confirmation = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\PubSub\V1\StreamingPullResponse\AcknowledgeConfirmation $var
@@ -132,7 +132,7 @@ class StreamingPullResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. This field will only be set if `enable_exactly_once_delivery` is
-     * set to `true`.
+     * set to `true` and is not guaranteed to be populated.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.StreamingPullResponse.ModifyAckDeadlineConfirmation modify_ack_deadline_confirmation = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\PubSub\V1\StreamingPullResponse\ModifyAckDeadlineConfirmation|null
@@ -154,7 +154,7 @@ class StreamingPullResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. This field will only be set if `enable_exactly_once_delivery` is
-     * set to `true`.
+     * set to `true` and is not guaranteed to be populated.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.StreamingPullResponse.ModifyAckDeadlineConfirmation modify_ack_deadline_confirmation = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\PubSub\V1\StreamingPullResponse\ModifyAckDeadlineConfirmation $var

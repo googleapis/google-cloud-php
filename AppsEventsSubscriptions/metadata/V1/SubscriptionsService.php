@@ -24,7 +24,7 @@ class SubscriptionsService
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-
+æ
 ?google/apps/events/subscriptions/v1/subscriptions_service.proto#google.apps.events.subscriptions.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto?google/apps/events/subscriptions/v1/subscription_resource.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"…
 CreateSubscriptionRequestL
 subscription (21.google.apps.events.subscriptions.v1.SubscriptionBàA
@@ -56,7 +56,7 @@ page_token (	BàA
 UpdateSubscriptionMetadata"
 CreateSubscriptionMetadata"
 DeleteSubscriptionMetadata" 
-ReactivateSubscriptionMetadata2ÿ
+ReactivateSubscriptionMetadata2Ö
 SubscriptionsServiceØ
 CreateSubscription>.google.apps.events.subscriptions.v1.CreateSubscriptionRequest.google.longrunning.Operation"cÊA*
 SubscriptionCreateSubscriptionMetadataÚAsubscription‚Óä“!"/v1/subscriptions:subscriptionÔ
@@ -67,7 +67,7 @@ page_token (	BàA
 UpdateSubscription>.google.apps.events.subscriptions.v1.UpdateSubscriptionRequest.google.longrunning.Operation"…ÊA*
 SubscriptionUpdateSubscriptionMetadataÚAsubscription,update_mask‚Óä“72\'/v1/{subscription.name=subscriptions/*}:subscriptionå
 ReactivateSubscriptionB.google.apps.events.subscriptions.v1.ReactivateSubscriptionRequest.google.longrunning.Operation"hÊA.
-SubscriptionReactivateSubscriptionMetadataÚAname‚Óä“*"%/v1/{name=subscriptions/*}:reactivate:*æÊAworkspaceevents.googleapis.comÒAÁhttps://www.googleapis.com/auth/chat.bot,https://www.googleapis.com/auth/chat.memberships,https://www.googleapis.com/auth/chat.memberships.readonly,https://www.googleapis.com/auth/chat.messages,https://www.googleapis.com/auth/chat.messages.reactions,https://www.googleapis.com/auth/chat.messages.reactions.readonly,https://www.googleapis.com/auth/chat.messages.readonly,https://www.googleapis.com/auth/chat.spaces,https://www.googleapis.com/auth/chat.spaces.readonly,https://www.googleapis.com/auth/meetings.space.created,https://www.googleapis.com/auth/meetings.space.readonlyB‘
+SubscriptionReactivateSubscriptionMetadataÚAname‚Óä“*"%/v1/{name=subscriptions/*}:reactivate:*½ÊAworkspaceevents.googleapis.comÒA˜https://www.googleapis.com/auth/chat.memberships,https://www.googleapis.com/auth/chat.memberships.readonly,https://www.googleapis.com/auth/chat.messages,https://www.googleapis.com/auth/chat.messages.reactions,https://www.googleapis.com/auth/chat.messages.reactions.readonly,https://www.googleapis.com/auth/chat.messages.readonly,https://www.googleapis.com/auth/chat.spaces,https://www.googleapis.com/auth/chat.spaces.readonly,https://www.googleapis.com/auth/meetings.space.created,https://www.googleapis.com/auth/meetings.space.readonlyB‘
 \'com.google.apps.events.subscriptions.v1BSubscriptionsServiceProtoPZScloud.google.com/go/apps/events/subscriptions/apiv1/subscriptionspb;subscriptionspbª#Google.Apps.Events.Subscriptions.V1Ê#Google\\Apps\\Events\\Subscriptions\\V1ê\'Google::Apps::Events::Subscriptions::V1bproto3'
         , true);
 

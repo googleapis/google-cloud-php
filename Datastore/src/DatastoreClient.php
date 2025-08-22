@@ -91,7 +91,7 @@ class DatastoreClient
     use ClientTrait;
     use DatastoreTrait;
 
-    const VERSION = '1.32.3';
+    const VERSION = '1.33.1';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/datastore';
 
@@ -1222,6 +1222,8 @@ class DatastoreClient
      *     @type string $readConsistency See
      *           [ReadConsistency](https://cloud.google.com/datastore/reference/rest/v1/ReadOptions#ReadConsistency).
      *     @type Timestamp $readTime Reads entities as they were at the given timestamp.
+     *     @type ExplainOptions $explainOptions An ExplainOptions instance.
+     *           {@see \Google\Cloud\Datastore\V1\ExplainOptions}
      * }
      * @return AggregationQueryResult
      */

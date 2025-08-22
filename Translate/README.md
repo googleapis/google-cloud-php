@@ -53,72 +53,9 @@ try {
 } catch (ApiException $ex) {
     printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
 }
-``` Using the Handwritten Client (Interacts with the V2 API)
+``` 
 
-```php
-require 'vendor/autoload.php';
-
-use Google\Cloud\Translate\V2\TranslateClient;
-
-$translate = new TranslateClient([
-    'key' => 'your_key'
-]);
-
-// Translate text from english to french.
-$result = $translate->translate('Hello world!', [
-    'target' => 'fr'
-]);
-
-echo $result['text'] . "\n";
-
-// Detect the language of a string.
-$result = $translate->detectLanguage('Greetings from Michigan!');
-
-echo $result['languageCode'] . "\n";
-
-// Get the languages supported for translation specifically for your target language.
-$languages = $translate->localizedLanguages([
-    'target' => 'en'
-]);
-
-foreach ($languages as $language) {
-    echo $language['name'] . "\n";
-    echo $language['code'] . "\n";
-}
-
-// Get all languages supported for translation.
-$languages = $translate->languages();
-
-foreach ($languages as $language) {
-    echo $language . "\n";
-}
-```
-
-### Sample
-
-```php
-Google\ApiCore\ApiException;
-Google\Cloud\Translate\V3\AdaptiveMtDataset;
-Google\Cloud\Translate\V3\Client\TranslationServiceClient;
-Google\Cloud\Translate\V3\GetAdaptiveMtDatasetRequest;
-
-// Create a client.
-$translationServiceClient = new TranslationServiceClient();
-
-// Prepare the request message.
-$request = (new GetAdaptiveMtDatasetRequest())
-    ->setName($formattedName);
-
-// Call the API and handle any network failures.
-try {
-    /** @var AdaptiveMtDataset $response */
-    $response = $translationServiceClient->getAdaptiveMtDataset($request);
-    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
-} catch (ApiException $ex) {
-    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
-}
-``` Using the Generated Client (Interacts with the V3 API)
-
+### Using the Generated Client (Interacts with the V3 API)
 ```php
 require 'vendor/autoload.php';
 

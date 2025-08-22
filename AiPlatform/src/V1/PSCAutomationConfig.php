@@ -9,8 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * PSC config that is used to automatically create forwarding rule via
- * ServiceConnectionMap.
+ * PSC config that is used to automatically create PSC endpoints in the user
+ * projects.
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.PSCAutomationConfig</code>
  */
@@ -25,14 +25,36 @@ class PSCAutomationConfig extends \Google\Protobuf\Internal\Message
     /**
      * Required. The full name of the Google Compute Engine
      * [network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks).
-     * [Format](https://cloud.google.com/compute/docs/reference/rest/v1/networks/insert):
+     * [Format](https://cloud.google.com/compute/docs/reference/rest/v1/networks/get):
      * `projects/{project}/global/networks/{network}`.
-     * Where {project} is a project number, as in '12345', and {network} is
-     * network name.
      *
      * Generated from protobuf field <code>string network = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $network = '';
+    /**
+     * Output only. IP address rule created by the PSC service automation.
+     *
+     * Generated from protobuf field <code>string ip_address = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $ip_address = '';
+    /**
+     * Output only. Forwarding rule created by the PSC service automation.
+     *
+     * Generated from protobuf field <code>string forwarding_rule = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $forwarding_rule = '';
+    /**
+     * Output only. The state of the PSC service automation.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PSCAutomationState state = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $state = 0;
+    /**
+     * Output only. Error message if the PSC service automation failed.
+     *
+     * Generated from protobuf field <code>string error_message = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $error_message = '';
 
     /**
      * Constructor.
@@ -45,10 +67,16 @@ class PSCAutomationConfig extends \Google\Protobuf\Internal\Message
      *     @type string $network
      *           Required. The full name of the Google Compute Engine
      *           [network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks).
-     *           [Format](https://cloud.google.com/compute/docs/reference/rest/v1/networks/insert):
+     *           [Format](https://cloud.google.com/compute/docs/reference/rest/v1/networks/get):
      *           `projects/{project}/global/networks/{network}`.
-     *           Where {project} is a project number, as in '12345', and {network} is
-     *           network name.
+     *     @type string $ip_address
+     *           Output only. IP address rule created by the PSC service automation.
+     *     @type string $forwarding_rule
+     *           Output only. Forwarding rule created by the PSC service automation.
+     *     @type int $state
+     *           Output only. The state of the PSC service automation.
+     *     @type string $error_message
+     *           Output only. Error message if the PSC service automation failed.
      * }
      */
     public function __construct($data = NULL) {
@@ -85,10 +113,8 @@ class PSCAutomationConfig extends \Google\Protobuf\Internal\Message
     /**
      * Required. The full name of the Google Compute Engine
      * [network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks).
-     * [Format](https://cloud.google.com/compute/docs/reference/rest/v1/networks/insert):
+     * [Format](https://cloud.google.com/compute/docs/reference/rest/v1/networks/get):
      * `projects/{project}/global/networks/{network}`.
-     * Where {project} is a project number, as in '12345', and {network} is
-     * network name.
      *
      * Generated from protobuf field <code>string network = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -101,10 +127,8 @@ class PSCAutomationConfig extends \Google\Protobuf\Internal\Message
     /**
      * Required. The full name of the Google Compute Engine
      * [network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks).
-     * [Format](https://cloud.google.com/compute/docs/reference/rest/v1/networks/insert):
+     * [Format](https://cloud.google.com/compute/docs/reference/rest/v1/networks/get):
      * `projects/{project}/global/networks/{network}`.
-     * Where {project} is a project number, as in '12345', and {network} is
-     * network name.
      *
      * Generated from protobuf field <code>string network = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -114,6 +138,110 @@ class PSCAutomationConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->network = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. IP address rule created by the PSC service automation.
+     *
+     * Generated from protobuf field <code>string ip_address = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getIpAddress()
+    {
+        return $this->ip_address;
+    }
+
+    /**
+     * Output only. IP address rule created by the PSC service automation.
+     *
+     * Generated from protobuf field <code>string ip_address = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setIpAddress($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->ip_address = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Forwarding rule created by the PSC service automation.
+     *
+     * Generated from protobuf field <code>string forwarding_rule = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getForwardingRule()
+    {
+        return $this->forwarding_rule;
+    }
+
+    /**
+     * Output only. Forwarding rule created by the PSC service automation.
+     *
+     * Generated from protobuf field <code>string forwarding_rule = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setForwardingRule($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->forwarding_rule = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The state of the PSC service automation.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PSCAutomationState state = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getState()
+    {
+        return $this->state;
+    }
+
+    /**
+     * Output only. The state of the PSC service automation.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PSCAutomationState state = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setState($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\AIPlatform\V1\PSCAutomationState::class);
+        $this->state = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Error message if the PSC service automation failed.
+     *
+     * Generated from protobuf field <code>string error_message = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getErrorMessage()
+    {
+        return $this->error_message;
+    }
+
+    /**
+     * Output only. Error message if the PSC service automation failed.
+     *
+     * Generated from protobuf field <code>string error_message = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setErrorMessage($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->error_message = $var;
 
         return $this;
     }

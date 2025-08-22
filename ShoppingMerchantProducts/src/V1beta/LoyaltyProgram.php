@@ -17,10 +17,10 @@ class LoyaltyProgram extends \Google\Protobuf\Internal\Message
 {
     /**
      * The label of the loyalty program. This is an internal label that uniquely
-     * identifies the relationship between a merchant entity and a loyalty
+     * identifies the relationship between a business entity and a loyalty
      * program entity. The label must be provided so that the system can associate
-     * the assets below (for example, price and points) with a merchant. The
-     * corresponding program must be linked to the merchant account.
+     * the assets below (for example, price and points) with a business. The
+     * corresponding program must be linked to the Merchant Center account.
      *
      * Generated from protobuf field <code>optional string program_label = 1;</code>
      */
@@ -77,10 +77,10 @@ class LoyaltyProgram extends \Google\Protobuf\Internal\Message
      *
      *     @type string $program_label
      *           The label of the loyalty program. This is an internal label that uniquely
-     *           identifies the relationship between a merchant entity and a loyalty
+     *           identifies the relationship between a business entity and a loyalty
      *           program entity. The label must be provided so that the system can associate
-     *           the assets below (for example, price and points) with a merchant. The
-     *           corresponding program must be linked to the merchant account.
+     *           the assets below (for example, price and points) with a business. The
+     *           corresponding program must be linked to the Merchant Center account.
      *     @type string $tier_label
      *           The label of the tier within the loyalty program.
      *           Must match one of the labels within the program.
@@ -109,10 +109,10 @@ class LoyaltyProgram extends \Google\Protobuf\Internal\Message
 
     /**
      * The label of the loyalty program. This is an internal label that uniquely
-     * identifies the relationship between a merchant entity and a loyalty
+     * identifies the relationship between a business entity and a loyalty
      * program entity. The label must be provided so that the system can associate
-     * the assets below (for example, price and points) with a merchant. The
-     * corresponding program must be linked to the merchant account.
+     * the assets below (for example, price and points) with a business. The
+     * corresponding program must be linked to the Merchant Center account.
      *
      * Generated from protobuf field <code>optional string program_label = 1;</code>
      * @return string
@@ -134,10 +134,10 @@ class LoyaltyProgram extends \Google\Protobuf\Internal\Message
 
     /**
      * The label of the loyalty program. This is an internal label that uniquely
-     * identifies the relationship between a merchant entity and a loyalty
+     * identifies the relationship between a business entity and a loyalty
      * program entity. The label must be provided so that the system can associate
-     * the assets below (for example, price and points) with a merchant. The
-     * corresponding program must be linked to the merchant account.
+     * the assets below (for example, price and points) with a business. The
+     * corresponding program must be linked to the Merchant Center account.
      *
      * Generated from protobuf field <code>optional string program_label = 1;</code>
      * @param string $var

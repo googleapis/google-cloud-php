@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Firestore;
 
+use Google\Cloud\Firestore\V1\ExplainMetrics;
+
 /**
  * Represents the result set of a Cloud Firestore Query.
  *
@@ -51,15 +53,22 @@ class QuerySnapshot implements \IteratorAggregate
     private $rows;
 
     /**
+     * @var null|ExplainMetrics
+     */
+    private null|ExplainMetrics $explainMetrics;
+
+    /**
      * @param Query $query The Query which generated this snapshot.
      * @param DocumentSnapshot[] $rows The query result rows.
      */
     public function __construct(
         Query $query,
-        array $rows
+        array $rows,
+        null|ExplainMetrics $explainMetrics = null
     ) {
         $this->query = $query;
         $this->rows = $rows;
+        $this->explainMetrics = $explainMetrics;
     }
 
     /**
@@ -106,6 +115,19 @@ class QuerySnapshot implements \IteratorAggregate
     public function rows()
     {
         return $this->rows;
+    }
+
+    /**
+     * Gets `ExplainMetrics` when the `explainOptions` option is supplied.
+     * If `ExplainOptions::setAnalyze` is set to `false`, the query is
+     * planned and not executed, returning only the {@see V1\PlanSummary}
+     * instead of the {@see V1\ExecutionStats} and result.
+     *
+     * @return null|ExplainMetrics
+     */
+    public function getExplainMetrics()
+    {
+        return $this->explainMetrics;
     }
 
     /**

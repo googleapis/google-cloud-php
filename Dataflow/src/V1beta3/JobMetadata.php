@@ -58,6 +58,12 @@ class JobMetadata extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.DatastoreIODetails datastore_details = 7;</code>
      */
     private $datastore_details;
+    /**
+     * List of display properties to help UI filter jobs.
+     *
+     * Generated from protobuf field <code>map<string, string> user_display_properties = 8;</code>
+     */
+    private $user_display_properties;
 
     /**
      * Constructor.
@@ -79,6 +85,8 @@ class JobMetadata extends \Google\Protobuf\Internal\Message
      *           Identification of a File source used in the Dataflow job.
      *     @type array<\Google\Cloud\Dataflow\V1beta3\DatastoreIODetails>|\Google\Protobuf\Internal\RepeatedField $datastore_details
      *           Identification of a Datastore source used in the Dataflow job.
+     *     @type array|\Google\Protobuf\Internal\MapField $user_display_properties
+     *           List of display properties to help UI filter jobs.
      * }
      */
     public function __construct($data = NULL) {
@@ -274,6 +282,32 @@ class JobMetadata extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dataflow\V1beta3\DatastoreIODetails::class);
         $this->datastore_details = $arr;
+
+        return $this;
+    }
+
+    /**
+     * List of display properties to help UI filter jobs.
+     *
+     * Generated from protobuf field <code>map<string, string> user_display_properties = 8;</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getUserDisplayProperties()
+    {
+        return $this->user_display_properties;
+    }
+
+    /**
+     * List of display properties to help UI filter jobs.
+     *
+     * Generated from protobuf field <code>map<string, string> user_display_properties = 8;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setUserDisplayProperties($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->user_display_properties = $arr;
 
         return $this;
     }

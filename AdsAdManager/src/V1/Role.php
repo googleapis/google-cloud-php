@@ -25,33 +25,33 @@ class Role extends \Google\Protobuf\Internal\Message
     /**
      * Output only. `Role` ID.
      *
-     * Generated from protobuf field <code>int64 role_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional int64 role_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $role_id = 0;
+    protected $role_id = null;
     /**
      * Required. The display name of the `Role`.
      *
-     * Generated from protobuf field <code>string display_name = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>optional string display_name = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $display_name = '';
+    protected $display_name = null;
     /**
      * Optional. The description of the `Role`.
      *
-     * Generated from protobuf field <code>string description = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string description = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $description = '';
+    protected $description = null;
     /**
      * Output only. Whether the `Role` is a built-in or custom user role.
      *
-     * Generated from protobuf field <code>bool built_in = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional bool built_in = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $built_in = false;
+    protected $built_in = null;
     /**
      * Output only. The status of the `Role`.
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.RoleStatusEnum.RoleStatus status = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.RoleStatusEnum.RoleStatus status = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $status = 0;
+    protected $status = null;
 
     /**
      * Constructor.
@@ -110,18 +110,28 @@ class Role extends \Google\Protobuf\Internal\Message
     /**
      * Output only. `Role` ID.
      *
-     * Generated from protobuf field <code>int64 role_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional int64 role_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int|string
      */
     public function getRoleId()
     {
-        return $this->role_id;
+        return isset($this->role_id) ? $this->role_id : 0;
+    }
+
+    public function hasRoleId()
+    {
+        return isset($this->role_id);
+    }
+
+    public function clearRoleId()
+    {
+        unset($this->role_id);
     }
 
     /**
      * Output only. `Role` ID.
      *
-     * Generated from protobuf field <code>int64 role_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional int64 role_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int|string $var
      * @return $this
      */
@@ -136,18 +146,28 @@ class Role extends \Google\Protobuf\Internal\Message
     /**
      * Required. The display name of the `Role`.
      *
-     * Generated from protobuf field <code>string display_name = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>optional string display_name = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getDisplayName()
     {
-        return $this->display_name;
+        return isset($this->display_name) ? $this->display_name : '';
+    }
+
+    public function hasDisplayName()
+    {
+        return isset($this->display_name);
+    }
+
+    public function clearDisplayName()
+    {
+        unset($this->display_name);
     }
 
     /**
      * Required. The display name of the `Role`.
      *
-     * Generated from protobuf field <code>string display_name = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>optional string display_name = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -162,18 +182,28 @@ class Role extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The description of the `Role`.
      *
-     * Generated from protobuf field <code>string description = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string description = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getDescription()
     {
-        return $this->description;
+        return isset($this->description) ? $this->description : '';
+    }
+
+    public function hasDescription()
+    {
+        return isset($this->description);
+    }
+
+    public function clearDescription()
+    {
+        unset($this->description);
     }
 
     /**
      * Optional. The description of the `Role`.
      *
-     * Generated from protobuf field <code>string description = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string description = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -188,18 +218,28 @@ class Role extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Whether the `Role` is a built-in or custom user role.
      *
-     * Generated from protobuf field <code>bool built_in = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional bool built_in = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return bool
      */
     public function getBuiltIn()
     {
-        return $this->built_in;
+        return isset($this->built_in) ? $this->built_in : false;
+    }
+
+    public function hasBuiltIn()
+    {
+        return isset($this->built_in);
+    }
+
+    public function clearBuiltIn()
+    {
+        unset($this->built_in);
     }
 
     /**
      * Output only. Whether the `Role` is a built-in or custom user role.
      *
-     * Generated from protobuf field <code>bool built_in = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional bool built_in = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param bool $var
      * @return $this
      */
@@ -214,18 +254,28 @@ class Role extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The status of the `Role`.
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.RoleStatusEnum.RoleStatus status = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.RoleStatusEnum.RoleStatus status = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
      */
     public function getStatus()
     {
-        return $this->status;
+        return isset($this->status) ? $this->status : 0;
+    }
+
+    public function hasStatus()
+    {
+        return isset($this->status);
+    }
+
+    public function clearStatus()
+    {
+        unset($this->status);
     }
 
     /**
      * Output only. The status of the `Role`.
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.RoleStatusEnum.RoleStatus status = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.RoleStatusEnum.RoleStatus status = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
      * @return $this
      */

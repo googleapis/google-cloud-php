@@ -47,6 +47,21 @@ return [
             ],
         ],
         'google.cloud.storageinsights.v1.StorageInsights' => [
+            'CreateDatasetConfig' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/datasetConfigs',
+                'body' => 'dataset_config',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'dataset_config_id',
+                ],
+            ],
             'CreateReportConfig' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/reportConfigs',
@@ -59,9 +74,31 @@ return [
                     ],
                 ],
             ],
+            'DeleteDatasetConfig' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/datasetConfigs/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteReportConfig' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/reportConfigs/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetDatasetConfig' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/datasetConfigs/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -92,6 +129,29 @@ return [
                     ],
                 ],
             ],
+            'LinkDataset' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/datasetConfigs/*}:linkDataset',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListDatasetConfigs' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/datasetConfigs',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListReportConfigs' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/reportConfigs',
@@ -112,6 +172,34 @@ return [
                             'getParent',
                         ],
                     ],
+                ],
+            ],
+            'UnlinkDataset' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/datasetConfigs/*}:unlinkDataset',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateDatasetConfig' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{dataset_config.name=projects/*/locations/*/datasetConfigs/*}',
+                'body' => 'dataset_config',
+                'placeholders' => [
+                    'dataset_config.name' => [
+                        'getters' => [
+                            'getDatasetConfig',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
             'UpdateReportConfig' => [

@@ -35,7 +35,11 @@ use Google\Protobuf\FieldMask;
  * state](https://developers.google.com/workspace/chat/update-space-read-state).
  *
  * Requires [user
- * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+ * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+ * with the [authorization
+ * scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes):
+ *
+ * - `https://www.googleapis.com/auth/chat.users.readstate`
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:

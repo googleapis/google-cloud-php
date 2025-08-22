@@ -33,6 +33,12 @@ class SdkVersion extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.dataflow.v1beta3.SdkVersion.SdkSupportStatus sdk_support_status = 3;</code>
      */
     protected $sdk_support_status = 0;
+    /**
+     * Output only. Known bugs found in this SDK version.
+     *
+     * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.SdkBug bugs = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $bugs;
 
     /**
      * Constructor.
@@ -46,6 +52,8 @@ class SdkVersion extends \Google\Protobuf\Internal\Message
      *           A readable string describing the version of the SDK.
      *     @type int $sdk_support_status
      *           The support status for this SDK version.
+     *     @type array<\Google\Cloud\Dataflow\V1beta3\SdkBug>|\Google\Protobuf\Internal\RepeatedField $bugs
+     *           Output only. Known bugs found in this SDK version.
      * }
      */
     public function __construct($data = NULL) {
@@ -127,6 +135,32 @@ class SdkVersion extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Dataflow\V1beta3\SdkVersion\SdkSupportStatus::class);
         $this->sdk_support_status = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Known bugs found in this SDK version.
+     *
+     * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.SdkBug bugs = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getBugs()
+    {
+        return $this->bugs;
+    }
+
+    /**
+     * Output only. Known bugs found in this SDK version.
+     *
+     * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.SdkBug bugs = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<\Google\Cloud\Dataflow\V1beta3\SdkBug>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setBugs($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dataflow\V1beta3\SdkBug::class);
+        $this->bugs = $arr;
 
         return $this;
     }

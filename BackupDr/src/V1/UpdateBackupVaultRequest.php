@@ -61,6 +61,13 @@ class UpdateBackupVaultRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool force = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $force = false;
+    /**
+     * Optional. If set to true, we will force update access restriction even if
+     * some non compliant data sources are present. The default is 'false'.
+     *
+     * Generated from protobuf field <code>bool force_update_access_restriction = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $force_update_access_restriction = false;
 
     /**
      * @param \Google\Cloud\BackupDR\V1\BackupVault $backupVault Required. The resource being updated
@@ -113,6 +120,9 @@ class UpdateBackupVaultRequest extends \Google\Protobuf\Internal\Message
      *     @type bool $force
      *           Optional. If set to true, will not check plan duration against backup vault
      *           enforcement duration.
+     *     @type bool $force_update_access_restriction
+     *           Optional. If set to true, we will force update access restriction even if
+     *           some non compliant data sources are present. The default is 'false'.
      * }
      */
     public function __construct($data = NULL) {
@@ -298,6 +308,34 @@ class UpdateBackupVaultRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->force = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If set to true, we will force update access restriction even if
+     * some non compliant data sources are present. The default is 'false'.
+     *
+     * Generated from protobuf field <code>bool force_update_access_restriction = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getForceUpdateAccessRestriction()
+    {
+        return $this->force_update_access_restriction;
+    }
+
+    /**
+     * Optional. If set to true, we will force update access restriction even if
+     * some non compliant data sources are present. The default is 'false'.
+     *
+     * Generated from protobuf field <code>bool force_update_access_restriction = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setForceUpdateAccessRestriction($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->force_update_access_restriction = $var;
 
         return $this;
     }

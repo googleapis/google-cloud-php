@@ -277,12 +277,15 @@ class ReservationsClientTest extends GeneratedTest
         // Mock response
         $commitment = 'commitment1019005717';
         $creationTimestamp = 'creationTimestamp567396278';
+        $deleteAtTime = 'deleteAtTime-453576507';
         $deploymentType = 'deploymentType2007335028';
         $description = 'description-1724546052';
+        $enableEmergentMaintenance = false;
         $id = 3355;
         $kind = 'kind3292052';
         $name = 'name3373707';
         $satisfiesPzs = false;
+        $schedulingType = 'schedulingType199835397';
         $selfLink = 'selfLink-1691268851';
         $specificReservationRequired = false;
         $status = 'status-892481550';
@@ -290,12 +293,15 @@ class ReservationsClientTest extends GeneratedTest
         $expectedResponse = new Reservation();
         $expectedResponse->setCommitment($commitment);
         $expectedResponse->setCreationTimestamp($creationTimestamp);
+        $expectedResponse->setDeleteAtTime($deleteAtTime);
         $expectedResponse->setDeploymentType($deploymentType);
         $expectedResponse->setDescription($description);
+        $expectedResponse->setEnableEmergentMaintenance($enableEmergentMaintenance);
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSchedulingType($schedulingType);
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setSpecificReservationRequired($specificReservationRequired);
         $expectedResponse->setStatus($status);

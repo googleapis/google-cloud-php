@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Message for restoring a Cluster from a backup or another cluster at a given
  * point in time.
+ * NEXT_ID: 11
  *
  * Generated from protobuf message <code>google.cloud.alloydb.v1.RestoreClusterRequest</code>
  */

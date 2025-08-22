@@ -10,7 +10,8 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * GCPSecretManagerCertificateConfig configures a secret from
- * [Google Secret Manager](https://cloud.google.com/secret-manager).
+ * [Google Secret
+ * Manager](https://cloud.google.com/secret-manager).
  *
  * Generated from protobuf message <code>google.container.v1.ContainerdConfig.PrivateRegistryAccessConfig.CertificateAuthorityDomainConfig.GCPSecretManagerCertificateConfig</code>
  */

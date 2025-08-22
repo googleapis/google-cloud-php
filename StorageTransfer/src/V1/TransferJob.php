@@ -54,6 +54,23 @@ class TransferJob extends \Google\Protobuf\Internal\Message
      */
     protected $project_id = '';
     /**
+     * Optional. The user-managed service account to which to delegate service
+     * agent permissions. You can grant Cloud Storage bucket permissions to this
+     * service account instead of to the Transfer Service service agent.
+     * Format is
+     * `projects/-/serviceAccounts/ACCOUNT_EMAIL_OR_UNIQUEID`
+     * Either the service account email
+     * (`SERVICE_ACCOUNT_NAME&#64;PROJECT_ID.iam.gserviceaccount.com`) or the unique
+     * ID (`123456789012345678901`) are accepted in the string. The `-`
+     * wildcard character is required; replacing it with a project ID is invalid.
+     * See
+     * https://cloud.google.com//storage-transfer/docs/delegate-service-agent-permissions
+     * for required permissions.
+     *
+     * Generated from protobuf field <code>string service_account = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $service_account = '';
+    /**
      * Transfer specification.
      *
      * Generated from protobuf field <code>.google.storagetransfer.v1.TransferSpec transfer_spec = 4;</code>
@@ -163,6 +180,19 @@ class TransferJob extends \Google\Protobuf\Internal\Message
      *           bytes when Unicode-encoded.
      *     @type string $project_id
      *           The ID of the Google Cloud project that owns the job.
+     *     @type string $service_account
+     *           Optional. The user-managed service account to which to delegate service
+     *           agent permissions. You can grant Cloud Storage bucket permissions to this
+     *           service account instead of to the Transfer Service service agent.
+     *           Format is
+     *           `projects/-/serviceAccounts/ACCOUNT_EMAIL_OR_UNIQUEID`
+     *           Either the service account email
+     *           (`SERVICE_ACCOUNT_NAME&#64;PROJECT_ID.iam.gserviceaccount.com`) or the unique
+     *           ID (`123456789012345678901`) are accepted in the string. The `-`
+     *           wildcard character is required; replacing it with a project ID is invalid.
+     *           See
+     *           https://cloud.google.com//storage-transfer/docs/delegate-service-agent-permissions
+     *           for required permissions.
      *     @type \Google\Cloud\StorageTransfer\V1\TransferSpec $transfer_spec
      *           Transfer specification.
      *     @type \Google\Cloud\StorageTransfer\V1\ReplicationSpec $replication_spec
@@ -316,6 +346,54 @@ class TransferJob extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->project_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The user-managed service account to which to delegate service
+     * agent permissions. You can grant Cloud Storage bucket permissions to this
+     * service account instead of to the Transfer Service service agent.
+     * Format is
+     * `projects/-/serviceAccounts/ACCOUNT_EMAIL_OR_UNIQUEID`
+     * Either the service account email
+     * (`SERVICE_ACCOUNT_NAME&#64;PROJECT_ID.iam.gserviceaccount.com`) or the unique
+     * ID (`123456789012345678901`) are accepted in the string. The `-`
+     * wildcard character is required; replacing it with a project ID is invalid.
+     * See
+     * https://cloud.google.com//storage-transfer/docs/delegate-service-agent-permissions
+     * for required permissions.
+     *
+     * Generated from protobuf field <code>string service_account = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getServiceAccount()
+    {
+        return $this->service_account;
+    }
+
+    /**
+     * Optional. The user-managed service account to which to delegate service
+     * agent permissions. You can grant Cloud Storage bucket permissions to this
+     * service account instead of to the Transfer Service service agent.
+     * Format is
+     * `projects/-/serviceAccounts/ACCOUNT_EMAIL_OR_UNIQUEID`
+     * Either the service account email
+     * (`SERVICE_ACCOUNT_NAME&#64;PROJECT_ID.iam.gserviceaccount.com`) or the unique
+     * ID (`123456789012345678901`) are accepted in the string. The `-`
+     * wildcard character is required; replacing it with a project ID is invalid.
+     * See
+     * https://cloud.google.com//storage-transfer/docs/delegate-service-agent-permissions
+     * for required permissions.
+     *
+     * Generated from protobuf field <code>string service_account = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setServiceAccount($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->service_account = $var;
 
         return $this;
     }

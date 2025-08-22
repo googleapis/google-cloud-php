@@ -31,6 +31,16 @@ class RouteAction extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool original_destination = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $original_destination = false;
+    /**
+     * Optional. Specifies the idle timeout for the selected route. The idle
+     * timeout is defined as the period in which there are no bytes sent or
+     * received on either the upstream or downstream connection. If not set, the
+     * default idle timeout is 30 seconds. If set to 0s, the timeout will be
+     * disabled.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration idle_timeout = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $idle_timeout = null;
 
     /**
      * Constructor.
@@ -46,6 +56,12 @@ class RouteAction extends \Google\Protobuf\Internal\Message
      *           Optional. If true, Router will use the destination IP and port of the
      *           original connection as the destination of the request. Default is false.
      *           Only one of route destinations or original destination can be set.
+     *     @type \Google\Protobuf\Duration $idle_timeout
+     *           Optional. Specifies the idle timeout for the selected route. The idle
+     *           timeout is defined as the period in which there are no bytes sent or
+     *           received on either the upstream or downstream connection. If not set, the
+     *           default idle timeout is 30 seconds. If set to 0s, the timeout will be
+     *           disabled.
      * }
      */
     public function __construct($data = NULL) {
@@ -109,6 +125,50 @@ class RouteAction extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->original_destination = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies the idle timeout for the selected route. The idle
+     * timeout is defined as the period in which there are no bytes sent or
+     * received on either the upstream or downstream connection. If not set, the
+     * default idle timeout is 30 seconds. If set to 0s, the timeout will be
+     * disabled.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration idle_timeout = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Duration|null
+     */
+    public function getIdleTimeout()
+    {
+        return $this->idle_timeout;
+    }
+
+    public function hasIdleTimeout()
+    {
+        return isset($this->idle_timeout);
+    }
+
+    public function clearIdleTimeout()
+    {
+        unset($this->idle_timeout);
+    }
+
+    /**
+     * Optional. Specifies the idle timeout for the selected route. The idle
+     * timeout is defined as the period in which there are no bytes sent or
+     * received on either the upstream or downstream connection. If not set, the
+     * default idle timeout is 30 seconds. If set to 0s, the timeout will be
+     * disabled.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration idle_timeout = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\Duration $var
+     * @return $this
+     */
+    public function setIdleTimeout($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
+        $this->idle_timeout = $var;
 
         return $this;
     }

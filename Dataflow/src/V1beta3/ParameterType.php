@@ -73,6 +73,88 @@ class ParameterType
      * Generated from protobuf enum <code>PUBSUB_SUBSCRIPTION = 9;</code>
      */
     const PUBSUB_SUBSCRIPTION = 9;
+    /**
+     * The parameter specifies a BigQuery table.
+     *
+     * Generated from protobuf enum <code>BIGQUERY_TABLE = 10;</code>
+     */
+    const BIGQUERY_TABLE = 10;
+    /**
+     * The parameter specifies a JavaScript UDF in Cloud Storage.
+     *
+     * Generated from protobuf enum <code>JAVASCRIPT_UDF_FILE = 11;</code>
+     */
+    const JAVASCRIPT_UDF_FILE = 11;
+    /**
+     * The parameter specifies a Service Account email.
+     *
+     * Generated from protobuf enum <code>SERVICE_ACCOUNT = 12;</code>
+     */
+    const SERVICE_ACCOUNT = 12;
+    /**
+     * The parameter specifies a Machine Type.
+     *
+     * Generated from protobuf enum <code>MACHINE_TYPE = 13;</code>
+     */
+    const MACHINE_TYPE = 13;
+    /**
+     * The parameter specifies a KMS Key name.
+     *
+     * Generated from protobuf enum <code>KMS_KEY_NAME = 14;</code>
+     */
+    const KMS_KEY_NAME = 14;
+    /**
+     * The parameter specifies a Worker Region.
+     *
+     * Generated from protobuf enum <code>WORKER_REGION = 15;</code>
+     */
+    const WORKER_REGION = 15;
+    /**
+     * The parameter specifies a Worker Zone.
+     *
+     * Generated from protobuf enum <code>WORKER_ZONE = 16;</code>
+     */
+    const WORKER_ZONE = 16;
+    /**
+     * The parameter specifies a boolean input.
+     *
+     * Generated from protobuf enum <code>BOOLEAN = 17;</code>
+     */
+    const BOOLEAN = 17;
+    /**
+     * The parameter specifies an enum input.
+     *
+     * Generated from protobuf enum <code>ENUM = 18;</code>
+     */
+    const ENUM = 18;
+    /**
+     * The parameter specifies a number input.
+     *
+     * Generated from protobuf enum <code>NUMBER = 19;</code>
+     */
+    const NUMBER = 19;
+    /**
+     * Deprecated. Please use KAFKA_READ_TOPIC instead.
+     *
+     * Generated from protobuf enum <code>KAFKA_TOPIC = 20 [deprecated = true];</code>
+     */
+    const KAFKA_TOPIC = 20;
+    /**
+     * The parameter specifies the fully-qualified name of an Apache Kafka topic.
+     * This can be either a Google Managed Kafka topic or a non-managed Kafka
+     * topic.
+     *
+     * Generated from protobuf enum <code>KAFKA_READ_TOPIC = 21;</code>
+     */
+    const KAFKA_READ_TOPIC = 21;
+    /**
+     * The parameter specifies the fully-qualified name of an Apache Kafka topic.
+     * This can be an existing Google Managed Kafka topic, the name for a new
+     * Google Managed Kafka topic, or an existing non-managed Kafka topic.
+     *
+     * Generated from protobuf enum <code>KAFKA_WRITE_TOPIC = 22;</code>
+     */
+    const KAFKA_WRITE_TOPIC = 22;
 
     private static $valueToName = [
         self::PBDEFAULT => 'DEFAULT',
@@ -85,6 +167,19 @@ class ParameterType
         self::GCS_WRITE_FOLDER => 'GCS_WRITE_FOLDER',
         self::PUBSUB_TOPIC => 'PUBSUB_TOPIC',
         self::PUBSUB_SUBSCRIPTION => 'PUBSUB_SUBSCRIPTION',
+        self::BIGQUERY_TABLE => 'BIGQUERY_TABLE',
+        self::JAVASCRIPT_UDF_FILE => 'JAVASCRIPT_UDF_FILE',
+        self::SERVICE_ACCOUNT => 'SERVICE_ACCOUNT',
+        self::MACHINE_TYPE => 'MACHINE_TYPE',
+        self::KMS_KEY_NAME => 'KMS_KEY_NAME',
+        self::WORKER_REGION => 'WORKER_REGION',
+        self::WORKER_ZONE => 'WORKER_ZONE',
+        self::BOOLEAN => 'BOOLEAN',
+        self::ENUM => 'ENUM',
+        self::NUMBER => 'NUMBER',
+        self::KAFKA_TOPIC => 'KAFKA_TOPIC',
+        self::KAFKA_READ_TOPIC => 'KAFKA_READ_TOPIC',
+        self::KAFKA_WRITE_TOPIC => 'KAFKA_WRITE_TOPIC',
     ];
 
     public static function name($value)

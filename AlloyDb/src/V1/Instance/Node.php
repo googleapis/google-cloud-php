@@ -10,7 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Details of a single node in the instance.
- * Nodes in an AlloyDB instance are ephemereal, they can change during
+ * Nodes in an AlloyDB instance are ephemeral, they can change during
  * update, failover, autohealing and resize operations.
  *
  * Generated from protobuf message <code>google.cloud.alloydb.v1.Instance.Node</code>
@@ -18,30 +18,31 @@ use Google\Protobuf\Internal\GPBUtil;
 class Node extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The Compute Engine zone of the VM e.g. "us-central1-b".
+     * Output only. The Compute Engine zone of the VM e.g. "us-central1-b".
      *
-     * Generated from protobuf field <code>string zone_id = 1;</code>
+     * Generated from protobuf field <code>string zone_id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $zone_id = '';
     /**
-     * The identifier of the VM e.g. "test-read-0601-407e52be-ms3l".
+     * Output only. The identifier of the VM e.g.
+     * "test-read-0601-407e52be-ms3l".
      *
-     * Generated from protobuf field <code>string id = 2;</code>
+     * Generated from protobuf field <code>string id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $id = '';
     /**
-     * The private IP address of the VM e.g. "10.57.0.34".
+     * Output only. The private IP address of the VM e.g. "10.57.0.34".
      *
-     * Generated from protobuf field <code>string ip = 3;</code>
+     * Generated from protobuf field <code>string ip = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $ip = '';
     /**
-     * Determined by state of the compute VM and postgres-service health.
-     * Compute VM state can have values listed in
+     * Output only. Determined by state of the compute VM and postgres-service
+     * health. Compute VM state can have values listed in
      * https://cloud.google.com/compute/docs/instances/instance-life-cycle and
      * postgres-service health can have values: HEALTHY and UNHEALTHY.
      *
-     * Generated from protobuf field <code>string state = 4;</code>
+     * Generated from protobuf field <code>string state = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $state = '';
 
@@ -52,14 +53,15 @@ class Node extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $zone_id
-     *           The Compute Engine zone of the VM e.g. "us-central1-b".
+     *           Output only. The Compute Engine zone of the VM e.g. "us-central1-b".
      *     @type string $id
-     *           The identifier of the VM e.g. "test-read-0601-407e52be-ms3l".
+     *           Output only. The identifier of the VM e.g.
+     *           "test-read-0601-407e52be-ms3l".
      *     @type string $ip
-     *           The private IP address of the VM e.g. "10.57.0.34".
+     *           Output only. The private IP address of the VM e.g. "10.57.0.34".
      *     @type string $state
-     *           Determined by state of the compute VM and postgres-service health.
-     *           Compute VM state can have values listed in
+     *           Output only. Determined by state of the compute VM and postgres-service
+     *           health. Compute VM state can have values listed in
      *           https://cloud.google.com/compute/docs/instances/instance-life-cycle and
      *           postgres-service health can have values: HEALTHY and UNHEALTHY.
      * }
@@ -70,9 +72,9 @@ class Node extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Compute Engine zone of the VM e.g. "us-central1-b".
+     * Output only. The Compute Engine zone of the VM e.g. "us-central1-b".
      *
-     * Generated from protobuf field <code>string zone_id = 1;</code>
+     * Generated from protobuf field <code>string zone_id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getZoneId()
@@ -81,9 +83,9 @@ class Node extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Compute Engine zone of the VM e.g. "us-central1-b".
+     * Output only. The Compute Engine zone of the VM e.g. "us-central1-b".
      *
-     * Generated from protobuf field <code>string zone_id = 1;</code>
+     * Generated from protobuf field <code>string zone_id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -96,9 +98,10 @@ class Node extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The identifier of the VM e.g. "test-read-0601-407e52be-ms3l".
+     * Output only. The identifier of the VM e.g.
+     * "test-read-0601-407e52be-ms3l".
      *
-     * Generated from protobuf field <code>string id = 2;</code>
+     * Generated from protobuf field <code>string id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getId()
@@ -107,9 +110,10 @@ class Node extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The identifier of the VM e.g. "test-read-0601-407e52be-ms3l".
+     * Output only. The identifier of the VM e.g.
+     * "test-read-0601-407e52be-ms3l".
      *
-     * Generated from protobuf field <code>string id = 2;</code>
+     * Generated from protobuf field <code>string id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -122,9 +126,9 @@ class Node extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The private IP address of the VM e.g. "10.57.0.34".
+     * Output only. The private IP address of the VM e.g. "10.57.0.34".
      *
-     * Generated from protobuf field <code>string ip = 3;</code>
+     * Generated from protobuf field <code>string ip = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getIp()
@@ -133,9 +137,9 @@ class Node extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The private IP address of the VM e.g. "10.57.0.34".
+     * Output only. The private IP address of the VM e.g. "10.57.0.34".
      *
-     * Generated from protobuf field <code>string ip = 3;</code>
+     * Generated from protobuf field <code>string ip = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -148,12 +152,12 @@ class Node extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Determined by state of the compute VM and postgres-service health.
-     * Compute VM state can have values listed in
+     * Output only. Determined by state of the compute VM and postgres-service
+     * health. Compute VM state can have values listed in
      * https://cloud.google.com/compute/docs/instances/instance-life-cycle and
      * postgres-service health can have values: HEALTHY and UNHEALTHY.
      *
-     * Generated from protobuf field <code>string state = 4;</code>
+     * Generated from protobuf field <code>string state = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getState()
@@ -162,12 +166,12 @@ class Node extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Determined by state of the compute VM and postgres-service health.
-     * Compute VM state can have values listed in
+     * Output only. Determined by state of the compute VM and postgres-service
+     * health. Compute VM state can have values listed in
      * https://cloud.google.com/compute/docs/instances/instance-life-cycle and
      * postgres-service health can have values: HEALTHY and UNHEALTHY.
      *
-     * Generated from protobuf field <code>string state = 4;</code>
+     * Generated from protobuf field <code>string state = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */

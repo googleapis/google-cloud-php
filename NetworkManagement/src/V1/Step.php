@@ -711,13 +711,17 @@ class Step extends \Google\Protobuf\Internal\Message
      */
     public function getLoadBalancer()
     {
-        @trigger_error('load_balancer is deprecated.', E_USER_DEPRECATED);
+        if ($this->hasOneof(16)) {
+            @trigger_error('load_balancer is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->readOneof(16);
     }
 
     public function hasLoadBalancer()
     {
-        @trigger_error('load_balancer is deprecated.', E_USER_DEPRECATED);
+        if ($this->hasOneof(16)) {
+            @trigger_error('load_balancer is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->hasOneof(16);
     }
 

@@ -26,9 +26,9 @@ class SetAddonsConfigRequest extends \Google\Protobuf\Internal\Message
     protected $project_id = '';
     /**
      * Deprecated. The name of the Google Compute Engine
-     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the
-     * cluster resides. This field has been deprecated and replaced by the name
-     * field.
+     * [zone](https://cloud.google.com/compute/docs/zones#available)
+     * in which the cluster resides. This field has been deprecated and replaced
+     * by the name field.
      *
      * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
      * @deprecated
@@ -62,9 +62,9 @@ class SetAddonsConfigRequest extends \Google\Protobuf\Internal\Message
      *                                                              number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
      *                                                              This field has been deprecated and replaced by the name field.
      * @param string                                  $zone         Deprecated. The name of the Google Compute Engine
-     *                                                              [zone](https://cloud.google.com/compute/docs/zones#available) in which the
-     *                                                              cluster resides. This field has been deprecated and replaced by the name
-     *                                                              field.
+     *                                                              [zone](https://cloud.google.com/compute/docs/zones#available)
+     *                                                              in which the cluster resides. This field has been deprecated and replaced
+     *                                                              by the name field.
      * @param string                                  $clusterId    Deprecated. The name of the cluster to upgrade.
      *                                                              This field has been deprecated and replaced by the name field.
      * @param \Google\Cloud\Container\V1\AddonsConfig $addonsConfig Required. The desired configurations for the various addons available to
@@ -112,9 +112,9 @@ class SetAddonsConfigRequest extends \Google\Protobuf\Internal\Message
      *           This field has been deprecated and replaced by the name field.
      *     @type string $zone
      *           Deprecated. The name of the Google Compute Engine
-     *           [zone](https://cloud.google.com/compute/docs/zones#available) in which the
-     *           cluster resides. This field has been deprecated and replaced by the name
-     *           field.
+     *           [zone](https://cloud.google.com/compute/docs/zones#available)
+     *           in which the cluster resides. This field has been deprecated and replaced
+     *           by the name field.
      *     @type string $cluster_id
      *           Deprecated. The name of the cluster to upgrade.
      *           This field has been deprecated and replaced by the name field.
@@ -142,7 +142,9 @@ class SetAddonsConfigRequest extends \Google\Protobuf\Internal\Message
      */
     public function getProjectId()
     {
-        @trigger_error('project_id is deprecated.', E_USER_DEPRECATED);
+        if ($this->project_id !== '') {
+            @trigger_error('project_id is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->project_id;
     }
 
@@ -167,9 +169,9 @@ class SetAddonsConfigRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Deprecated. The name of the Google Compute Engine
-     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the
-     * cluster resides. This field has been deprecated and replaced by the name
-     * field.
+     * [zone](https://cloud.google.com/compute/docs/zones#available)
+     * in which the cluster resides. This field has been deprecated and replaced
+     * by the name field.
      *
      * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
      * @return string
@@ -177,15 +179,17 @@ class SetAddonsConfigRequest extends \Google\Protobuf\Internal\Message
      */
     public function getZone()
     {
-        @trigger_error('zone is deprecated.', E_USER_DEPRECATED);
+        if ($this->zone !== '') {
+            @trigger_error('zone is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->zone;
     }
 
     /**
      * Deprecated. The name of the Google Compute Engine
-     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the
-     * cluster resides. This field has been deprecated and replaced by the name
-     * field.
+     * [zone](https://cloud.google.com/compute/docs/zones#available)
+     * in which the cluster resides. This field has been deprecated and replaced
+     * by the name field.
      *
      * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
      * @param string $var
@@ -211,7 +215,9 @@ class SetAddonsConfigRequest extends \Google\Protobuf\Internal\Message
      */
     public function getClusterId()
     {
-        @trigger_error('cluster_id is deprecated.', E_USER_DEPRECATED);
+        if ($this->cluster_id !== '') {
+            @trigger_error('cluster_id is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->cluster_id;
     }
 

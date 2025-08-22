@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2016 Google Inc.
  *
@@ -163,6 +164,36 @@ class ValueMapperTest extends TestCase
                 ['v' => '9.4668480015015E8'],
                 ['type' => 'TIMESTAMP'],
                 new Timestamp(new \DateTime('2000-01-01 00:00:00.150150Z'))
+            ],
+            [
+                ['v' => '40969200000001'],
+                ['type' => 'TIMESTAMP'],
+                new Timestamp(new \DateTime('1971-04-20T04:20:00.000001Z'))
+            ],
+            [
+                ['v' => '-842745600000425'],
+                ['type' => 'TIMESTAMP'],
+                new Timestamp(new \DateTime('1943-04-18T23:59:59.999575'))
+            ],
+            [
+                ['v' => '327456000000013'],
+                ['type' => 'TIMESTAMP'],
+                new Timestamp(new \DateTime('1980-05-18T00:00:00.000013Z'))
+            ],
+            [
+                ['v' => '-769392000999999'],
+                ['type' => 'TIMESTAMP'],
+                new Timestamp(new \DateTime('1945-08-14T23:59:59.000001Z'))
+            ],
+            [
+                ['v' => 0],
+                ['type' => 'TIMESTAMP'],
+                new Timestamp(new \DateTime('1970-01-01T00:00:00.000000Z'))
+            ],
+            [
+                ['v' => ''],
+                ['type' => 'TIMESTAMP'],
+                null
             ],
             [
                 [

@@ -103,6 +103,12 @@ class CommonReason
      * Generated from protobuf enum <code>INTERNAL = 16;</code>
      */
     const INTERNAL = 16;
+    /**
+     * User-provided VPC network was not found.
+     *
+     * Generated from protobuf enum <code>VPC_NETWORK_NOT_FOUND = 17;</code>
+     */
+    const VPC_NETWORK_NOT_FOUND = 17;
 
     private static $valueToName = [
         self::COMMON_REASON_UNDEFINED => 'COMMON_REASON_UNDEFINED',
@@ -120,6 +126,7 @@ class CommonReason
         self::IMMEDIATE_RETRY => 'IMMEDIATE_RETRY',
         self::POSTPONED_RETRY => 'POSTPONED_RETRY',
         self::INTERNAL => 'INTERNAL',
+        self::VPC_NETWORK_NOT_FOUND => 'VPC_NETWORK_NOT_FOUND',
     ];
 
     public static function name($value)

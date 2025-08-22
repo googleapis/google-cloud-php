@@ -32,7 +32,7 @@ use Google\Cloud\NetworkServices\V1\ServiceBinding;
  * Gets details of a single ServiceBinding.
  *
  * @param string $formattedName A name of the ServiceBinding to get. Must be in the format
- *                              `projects/&#42;/locations/global/serviceBindings/*`. Please see
+ *                              `projects/&#42;/locations/&#42;/serviceBindings/*`. Please see
  *                              {@see NetworkServicesClient::serviceBindingName()} for help formatting this field.
  */
 function get_service_binding_sample(string $formattedName): void

@@ -37,7 +37,10 @@ class TextStream extends \Google\Protobuf\Internal\Message
      */
     protected $language_code = '';
     /**
-     * The mapping for the `Job.edit_list` atoms with text `EditAtom.inputs`.
+     * The mapping for the
+     * [JobConfig.edit_list][google.cloud.video.transcoder.v1.JobConfig.edit_list]
+     * atoms with text
+     * [EditAtom.inputs][google.cloud.video.transcoder.v1.EditAtom.inputs].
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.transcoder.v1.TextStream.TextMapping mapping = 3;</code>
      */
@@ -70,7 +73,10 @@ class TextStream extends \Google\Protobuf\Internal\Message
      *           https://www.unicode.org/reports/tr35/#Unicode_locale_identifier. Not
      *           supported in MP4 files.
      *     @type array<\Google\Cloud\Video\Transcoder\V1\TextStream\TextMapping>|\Google\Protobuf\Internal\RepeatedField $mapping
-     *           The mapping for the `Job.edit_list` atoms with text `EditAtom.inputs`.
+     *           The mapping for the
+     *           [JobConfig.edit_list][google.cloud.video.transcoder.v1.JobConfig.edit_list]
+     *           atoms with text
+     *           [EditAtom.inputs][google.cloud.video.transcoder.v1.EditAtom.inputs].
      *     @type string $display_name
      *           The name for this particular text stream that
      *           will be added to the HLS/DASH manifest. Not supported in MP4 files.
@@ -152,7 +158,10 @@ class TextStream extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The mapping for the `Job.edit_list` atoms with text `EditAtom.inputs`.
+     * The mapping for the
+     * [JobConfig.edit_list][google.cloud.video.transcoder.v1.JobConfig.edit_list]
+     * atoms with text
+     * [EditAtom.inputs][google.cloud.video.transcoder.v1.EditAtom.inputs].
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.transcoder.v1.TextStream.TextMapping mapping = 3;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -163,7 +172,10 @@ class TextStream extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The mapping for the `Job.edit_list` atoms with text `EditAtom.inputs`.
+     * The mapping for the
+     * [JobConfig.edit_list][google.cloud.video.transcoder.v1.JobConfig.edit_list]
+     * atoms with text
+     * [EditAtom.inputs][google.cloud.video.transcoder.v1.EditAtom.inputs].
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.transcoder.v1.TextStream.TextMapping mapping = 3;</code>
      * @param array<\Google\Cloud\Video\Transcoder\V1\TextStream\TextMapping>|\Google\Protobuf\Internal\RepeatedField $var

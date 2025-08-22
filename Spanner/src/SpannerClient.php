@@ -111,7 +111,7 @@ class SpannerClient
     use EmulatorTrait;
     use RequestTrait;
 
-    const VERSION = '1.98.0';
+    const VERSION = '1.104.0';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/spanner.data';
     const ADMIN_SCOPE = 'https://www.googleapis.com/auth/spanner.admin';

@@ -223,13 +223,17 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
      */
     public function getSearchable()
     {
-        @trigger_error('searchable is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->searchable)) {
+            @trigger_error('searchable is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->searchable) ? $this->searchable : false;
     }
 
     public function hasSearchable()
     {
-        @trigger_error('searchable is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->searchable)) {
+            @trigger_error('searchable is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->searchable);
     }
 
@@ -289,13 +293,17 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
      */
     public function getIndexable()
     {
-        @trigger_error('indexable is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->indexable)) {
+            @trigger_error('indexable is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->indexable) ? $this->indexable : false;
     }
 
     public function hasIndexable()
     {
-        @trigger_error('indexable is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->indexable)) {
+            @trigger_error('indexable is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->indexable);
     }
 

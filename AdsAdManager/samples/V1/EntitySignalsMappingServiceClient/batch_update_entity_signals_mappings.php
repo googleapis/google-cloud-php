@@ -34,26 +34,18 @@ use Google\Protobuf\FieldMask;
 /**
  * API to batch update `EntitySignalsMapping` objects.
  *
- * @param string $formattedParent                                        The parent resource where `EntitySignalsMappings` will be
- *                                                                       updated. Format: `networks/{network_code}` The parent field in the
- *                                                                       UpdateEntitySignalsMappingRequest must match this field. Please see
- *                                                                       {@see EntitySignalsMappingServiceClient::networkName()} for help formatting this field.
- * @param int    $requestsEntitySignalsMappingTaxonomyCategoryIdsElement The IDs of the categories that are associated with the
- *                                                                       referencing entity.
+ * @param string $formattedParent The parent resource where `EntitySignalsMappings` will be
+ *                                updated. Format: `networks/{network_code}` The parent field in the
+ *                                UpdateEntitySignalsMappingRequest must match this field. Please see
+ *                                {@see EntitySignalsMappingServiceClient::networkName()} for help formatting this field.
  */
-function batch_update_entity_signals_mappings_sample(
-    string $formattedParent,
-    int $requestsEntitySignalsMappingTaxonomyCategoryIdsElement
-): void {
+function batch_update_entity_signals_mappings_sample(string $formattedParent): void
+{
     // Create a client.
     $entitySignalsMappingServiceClient = new EntitySignalsMappingServiceClient();
 
     // Prepare the request message.
-    $requestsEntitySignalsMappingTaxonomyCategoryIds = [
-        $requestsEntitySignalsMappingTaxonomyCategoryIdsElement,
-    ];
-    $requestsEntitySignalsMapping = (new EntitySignalsMapping())
-        ->setTaxonomyCategoryIds($requestsEntitySignalsMappingTaxonomyCategoryIds);
+    $requestsEntitySignalsMapping = new EntitySignalsMapping();
     $requestsUpdateMask = new FieldMask();
     $updateEntitySignalsMappingRequest = (new UpdateEntitySignalsMappingRequest())
         ->setEntitySignalsMapping($requestsEntitySignalsMapping)
@@ -85,11 +77,7 @@ function batch_update_entity_signals_mappings_sample(
 function callSample(): void
 {
     $formattedParent = EntitySignalsMappingServiceClient::networkName('[NETWORK_CODE]');
-    $requestsEntitySignalsMappingTaxonomyCategoryIdsElement = 0;
 
-    batch_update_entity_signals_mappings_sample(
-        $formattedParent,
-        $requestsEntitySignalsMappingTaxonomyCategoryIdsElement
-    );
+    batch_update_entity_signals_mappings_sample($formattedParent);
 }
 // [END admanager_v1_generated_EntitySignalsMappingService_BatchUpdateEntitySignalsMappings_sync]

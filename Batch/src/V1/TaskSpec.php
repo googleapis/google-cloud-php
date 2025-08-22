@@ -353,7 +353,9 @@ class TaskSpec extends \Google\Protobuf\Internal\Message
      */
     public function getEnvironments()
     {
-        @trigger_error('environments is deprecated.', E_USER_DEPRECATED);
+        if ($this->environments->count() !== 0) {
+            @trigger_error('environments is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->environments;
     }
 
@@ -367,8 +369,10 @@ class TaskSpec extends \Google\Protobuf\Internal\Message
      */
     public function setEnvironments($var)
     {
-        @trigger_error('environments is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        if (count($arr) !== 0) {
+            @trigger_error('environments is deprecated.', E_USER_DEPRECATED);
+        }
         $this->environments = $arr;
 
         return $this;

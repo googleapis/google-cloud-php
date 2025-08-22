@@ -420,7 +420,9 @@ class Agent extends \Google\Protobuf\Internal\Message
      */
     public function getMatchMode()
     {
-        @trigger_error('match_mode is deprecated.', E_USER_DEPRECATED);
+        if ($this->match_mode !== 0) {
+            @trigger_error('match_mode is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->match_mode;
     }
 

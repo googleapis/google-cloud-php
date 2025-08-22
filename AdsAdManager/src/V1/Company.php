@@ -112,18 +112,18 @@ class Company extends \Google\Protobuf\Internal\Message
      */
     private $applied_teams;
     /**
-     * Output only. The time the `Company` was last modified.
-     *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     */
-    protected $update_time = null;
-    /**
      * Optional. The ID of the Google-recognized canonicalized form of the
      * `Company`.
      *
      * Generated from protobuf field <code>int64 third_party_company_id = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $third_party_company_id = 0;
+    /**
+     * Output only. The time the `Company` was last modified.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $update_time = null;
 
     /**
      * Constructor.
@@ -171,11 +171,11 @@ class Company extends \Google\Protobuf\Internal\Message
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $applied_teams
      *           Optional. The resource names of Teams that are directly associated with the
      *           `Company`. Format: "networks/{network_code}/teams/{team_id}"
-     *     @type \Google\Protobuf\Timestamp $update_time
-     *           Output only. The time the `Company` was last modified.
      *     @type int|string $third_party_company_id
      *           Optional. The ID of the Google-recognized canonicalized form of the
      *           `Company`.
+     *     @type \Google\Protobuf\Timestamp $update_time
+     *           Output only. The time the `Company` was last modified.
      * }
      */
     public function __construct($data = NULL) {
@@ -582,6 +582,34 @@ class Company extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. The ID of the Google-recognized canonicalized form of the
+     * `Company`.
+     *
+     * Generated from protobuf field <code>int64 third_party_company_id = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int|string
+     */
+    public function getThirdPartyCompanyId()
+    {
+        return $this->third_party_company_id;
+    }
+
+    /**
+     * Optional. The ID of the Google-recognized canonicalized form of the
+     * `Company`.
+     *
+     * Generated from protobuf field <code>int64 third_party_company_id = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setThirdPartyCompanyId($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->third_party_company_id = $var;
+
+        return $this;
+    }
+
+    /**
      * Output only. The time the `Company` was last modified.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -613,34 +641,6 @@ class Company extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->update_time = $var;
-
-        return $this;
-    }
-
-    /**
-     * Optional. The ID of the Google-recognized canonicalized form of the
-     * `Company`.
-     *
-     * Generated from protobuf field <code>int64 third_party_company_id = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return int|string
-     */
-    public function getThirdPartyCompanyId()
-    {
-        return $this->third_party_company_id;
-    }
-
-    /**
-     * Optional. The ID of the Google-recognized canonicalized form of the
-     * `Company`.
-     *
-     * Generated from protobuf field <code>int64 third_party_company_id = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param int|string $var
-     * @return $this
-     */
-    public function setThirdPartyCompanyId($var)
-    {
-        GPBUtil::checkInt64($var);
-        $this->third_party_company_id = $var;
 
         return $this;
     }

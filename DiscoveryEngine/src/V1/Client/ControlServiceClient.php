@@ -149,6 +149,34 @@ final class ControlServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a document
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $dataStore
+     * @param string $branch
+     * @param string $document
+     *
+     * @return string The formatted document resource.
+     */
+    public static function documentName(
+        string $project,
+        string $location,
+        string $dataStore,
+        string $branch,
+        string $document
+    ): string {
+        return self::getPathTemplate('document')->render([
+            'project' => $project,
+            'location' => $location,
+            'data_store' => $dataStore,
+            'branch' => $branch,
+            'document' => $document,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a engine
      * resource.
      *
@@ -191,6 +219,37 @@ final class ControlServiceClient
             'location' => $location,
             'collection' => $collection,
             'data_store' => $dataStore,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_collection_data_store_branch_document resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $collection
+     * @param string $dataStore
+     * @param string $branch
+     * @param string $document
+     *
+     * @return string The formatted project_location_collection_data_store_branch_document resource.
+     */
+    public static function projectLocationCollectionDataStoreBranchDocumentName(
+        string $project,
+        string $location,
+        string $collection,
+        string $dataStore,
+        string $branch,
+        string $document
+    ): string {
+        return self::getPathTemplate('projectLocationCollectionDataStoreBranchDocument')->render([
+            'project' => $project,
+            'location' => $location,
+            'collection' => $collection,
+            'data_store' => $dataStore,
+            'branch' => $branch,
+            'document' => $document,
         ]);
     }
 
@@ -271,6 +330,34 @@ final class ControlServiceClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * project_location_data_store_branch_document resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $dataStore
+     * @param string $branch
+     * @param string $document
+     *
+     * @return string The formatted project_location_data_store_branch_document resource.
+     */
+    public static function projectLocationDataStoreBranchDocumentName(
+        string $project,
+        string $location,
+        string $dataStore,
+        string $branch,
+        string $document
+    ): string {
+        return self::getPathTemplate('projectLocationDataStoreBranchDocument')->render([
+            'project' => $project,
+            'location' => $location,
+            'data_store' => $dataStore,
+            'branch' => $branch,
+            'document' => $document,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * project_location_data_store_control resource.
      *
      * @param string $project
@@ -300,11 +387,14 @@ final class ControlServiceClient
      * Template: Pattern
      * - control: projects/{project}/locations/{location}/dataStores/{data_store}/controls/{control}
      * - dataStore: projects/{project}/locations/{location}/dataStores/{data_store}
+     * - document: projects/{project}/locations/{location}/dataStores/{data_store}/branches/{branch}/documents/{document}
      * - engine: projects/{project}/locations/{location}/collections/{collection}/engines/{engine}
      * - projectLocationCollectionDataStore: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}
+     * - projectLocationCollectionDataStoreBranchDocument: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/branches/{branch}/documents/{document}
      * - projectLocationCollectionDataStoreControl: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/controls/{control}
      * - projectLocationCollectionEngineControl: projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/controls/{control}
      * - projectLocationDataStore: projects/{project}/locations/{location}/dataStores/{data_store}
+     * - projectLocationDataStoreBranchDocument: projects/{project}/locations/{location}/dataStores/{data_store}/branches/{branch}/documents/{document}
      * - projectLocationDataStoreControl: projects/{project}/locations/{location}/dataStores/{data_store}/controls/{control}
      *
      * The optional $template argument can be supplied to specify a particular pattern,

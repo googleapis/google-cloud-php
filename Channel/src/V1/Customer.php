@@ -108,6 +108,13 @@ class Customer extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string correlation_id = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $correlation_id = '';
+    /**
+     * Optional. Indicate whether a customer is attesting about the correctness of
+     * provided information. Only required if creating a GCP Entitlement.
+     *
+     * Generated from protobuf field <code>.google.cloud.channel.v1.Customer.CustomerAttestationState customer_attestation_state = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $customer_attestation_state = 0;
 
     /**
      * Constructor.
@@ -156,6 +163,9 @@ class Customer extends \Google\Protobuf\Internal\Message
      *     @type string $correlation_id
      *           Optional. External CRM ID for the customer.
      *           Populated only if a CRM ID exists for this customer.
+     *     @type int $customer_attestation_state
+     *           Optional. Indicate whether a customer is attesting about the correctness of
+     *           provided information. Only required if creating a GCP Entitlement.
      * }
      */
     public function __construct($data = NULL) {
@@ -577,6 +587,34 @@ class Customer extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->correlation_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Indicate whether a customer is attesting about the correctness of
+     * provided information. Only required if creating a GCP Entitlement.
+     *
+     * Generated from protobuf field <code>.google.cloud.channel.v1.Customer.CustomerAttestationState customer_attestation_state = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getCustomerAttestationState()
+    {
+        return $this->customer_attestation_state;
+    }
+
+    /**
+     * Optional. Indicate whether a customer is attesting about the correctness of
+     * provided information. Only required if creating a GCP Entitlement.
+     *
+     * Generated from protobuf field <code>.google.cloud.channel.v1.Customer.CustomerAttestationState customer_attestation_state = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setCustomerAttestationState($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Channel\V1\Customer\CustomerAttestationState::class);
+        $this->customer_attestation_state = $var;
 
         return $this;
     }

@@ -29,9 +29,9 @@ use Google\Cloud\Support\V2\GetCaseRequest;
 use Google\Cloud\Support\V2\PBCase;
 
 /**
- * Retrieve the specified case.
+ * Retrieve a case.
  *
- * @param string $formattedName The fully qualified name of a case to be retrieved. Please see
+ * @param string $formattedName The full name of a case to be retrieved. Please see
  *                              {@see CaseServiceClient::caseName()} for help formatting this field.
  */
 function get_case_sample(string $formattedName): void

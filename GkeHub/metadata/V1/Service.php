@@ -21,13 +21,12 @@ class Service
         \GPBMetadata\Google\Cloud\Gkehub\V1\Feature::initOnce();
         \GPBMetadata\Google\Cloud\Gkehub\V1\Membership::initOnce();
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
-        \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-¥)
-$google/cloud/gkehub/v1/service.protogoogle.cloud.gkehub.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto$google/cloud/gkehub/v1/feature.proto\'google/cloud/gkehub/v1/membership.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"Ø
+ó)
+$google/cloud/gkehub/v1/service.protogoogle.cloud.gkehub.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto$google/cloud/gkehub/v1/feature.proto\'google/cloud/gkehub/v1/membership.proto#google/longrunning/operations.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"Ø
 ListMembershipsRequest8
 parent (	B(‡A˙A" gkehub.googleapis.com/Membership
 	page_size (B‡A

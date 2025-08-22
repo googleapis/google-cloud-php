@@ -75,7 +75,7 @@ final class UserServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/admanager'];
 
     private static function getClientDefaults()
     {

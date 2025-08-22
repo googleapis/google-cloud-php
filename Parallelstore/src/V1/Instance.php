@@ -430,7 +430,9 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     public function getDaosVersion()
     {
-        @trigger_error('daos_version is deprecated.', E_USER_DEPRECATED);
+        if ($this->daos_version !== '') {
+            @trigger_error('daos_version is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->daos_version;
     }
 

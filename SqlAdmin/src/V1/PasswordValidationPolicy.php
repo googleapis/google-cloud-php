@@ -416,13 +416,17 @@ class PasswordValidationPolicy extends \Google\Protobuf\Internal\Message
      */
     public function getDisallowCompromisedCredentials()
     {
-        @trigger_error('disallow_compromised_credentials is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->disallow_compromised_credentials)) {
+            @trigger_error('disallow_compromised_credentials is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->disallow_compromised_credentials;
     }
 
     public function hasDisallowCompromisedCredentials()
     {
-        @trigger_error('disallow_compromised_credentials is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->disallow_compromised_credentials)) {
+            @trigger_error('disallow_compromised_credentials is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->disallow_compromised_credentials);
     }
 
@@ -443,7 +447,9 @@ class PasswordValidationPolicy extends \Google\Protobuf\Internal\Message
      */
     public function getDisallowCompromisedCredentialsUnwrapped()
     {
-        @trigger_error('disallow_compromised_credentials is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->disallow_compromised_credentials)) {
+            @trigger_error('disallow_compromised_credentials is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->readWrapperValue("disallow_compromised_credentials");
     }
 

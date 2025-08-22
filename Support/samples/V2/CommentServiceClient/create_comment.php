@@ -29,10 +29,11 @@ use Google\Cloud\Support\V2\Comment;
 use Google\Cloud\Support\V2\CreateCommentRequest;
 
 /**
- * Add a new comment to the specified Case.
- * The comment object must have the following fields set: body.
+ * Add a new comment to a case.
  *
- * @param string $formattedParent The resource name of Case to which this comment should be added. Please see
+ * The comment must have the following fields set: `body`.
+ *
+ * @param string $formattedParent The name of the case to which the comment should be added. Please see
  *                                {@see CommentServiceClient::caseName()} for help formatting this field.
  */
 function create_comment_sample(string $formattedParent): void

@@ -22,7 +22,7 @@ class DataDiscoveryResult extends \Google\Protobuf\Internal\Message
      */
     protected $bigquery_publishing = null;
     /**
-     * Output only. Statistics of the DataDiscoveryScan.
+     * Output only. Describes result statistics of a data scan discovery job.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataDiscoveryResult.ScanStatistics scan_statistics = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -37,7 +37,7 @@ class DataDiscoveryResult extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dataplex\V1\DataDiscoveryResult\BigQueryPublishing $bigquery_publishing
      *           Output only. Configuration for metadata publishing.
      *     @type \Google\Cloud\Dataplex\V1\DataDiscoveryResult\ScanStatistics $scan_statistics
-     *           Output only. Statistics of the DataDiscoveryScan.
+     *           Output only. Describes result statistics of a data scan discovery job.
      * }
      */
     public function __construct($data = NULL) {
@@ -82,7 +82,7 @@ class DataDiscoveryResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Statistics of the DataDiscoveryScan.
+     * Output only. Describes result statistics of a data scan discovery job.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataDiscoveryResult.ScanStatistics scan_statistics = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\Dataplex\V1\DataDiscoveryResult\ScanStatistics|null
@@ -103,7 +103,7 @@ class DataDiscoveryResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Statistics of the DataDiscoveryScan.
+     * Output only. Describes result statistics of a data scan discovery job.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataDiscoveryResult.ScanStatistics scan_statistics = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Dataplex\V1\DataDiscoveryResult\ScanStatistics $var

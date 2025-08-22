@@ -37,9 +37,7 @@ use Google\Rpc\Status;
  *                                                 Format: `projects/&#42;/locations/*`
  *                                                 Please see {@see BackupForGKEClient::locationName()} for help formatting this field.
  * @param string $restoreChannelDestinationProject Immutable. The project into which the backups will be restored.
- *                                                 The format is `projects/{project}`.
- *                                                 Currently, {project} can only be the project number. Support for project
- *                                                 IDs will be added in the future.
+ *                                                 The format is `projects/{projectId}` or `projects/{projectNumber}`.
  */
 function create_restore_channel_sample(
     string $formattedParent,

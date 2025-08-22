@@ -31,23 +31,17 @@ use Google\ApiCore\ApiException;
 /**
  * API to create an `EntitySignalsMapping` object.
  *
- * @param string $formattedParent                                The parent resource where this EntitySignalsMapping will be
- *                                                               created. Format: `networks/{network_code}`
- *                                                               Please see {@see EntitySignalsMappingServiceClient::networkName()} for help formatting this field.
- * @param int    $entitySignalsMappingTaxonomyCategoryIdsElement The IDs of the categories that are associated with the
- *                                                               referencing entity.
+ * @param string $formattedParent The parent resource where this EntitySignalsMapping will be
+ *                                created. Format: `networks/{network_code}`
+ *                                Please see {@see EntitySignalsMappingServiceClient::networkName()} for help formatting this field.
  */
-function create_entity_signals_mapping_sample(
-    string $formattedParent,
-    int $entitySignalsMappingTaxonomyCategoryIdsElement
-): void {
+function create_entity_signals_mapping_sample(string $formattedParent): void
+{
     // Create a client.
     $entitySignalsMappingServiceClient = new EntitySignalsMappingServiceClient();
 
     // Prepare the request message.
-    $entitySignalsMappingTaxonomyCategoryIds = [$entitySignalsMappingTaxonomyCategoryIdsElement,];
-    $entitySignalsMapping = (new EntitySignalsMapping())
-        ->setTaxonomyCategoryIds($entitySignalsMappingTaxonomyCategoryIds);
+    $entitySignalsMapping = new EntitySignalsMapping();
     $request = (new CreateEntitySignalsMappingRequest())
         ->setParent($formattedParent)
         ->setEntitySignalsMapping($entitySignalsMapping);
@@ -74,11 +68,7 @@ function create_entity_signals_mapping_sample(
 function callSample(): void
 {
     $formattedParent = EntitySignalsMappingServiceClient::networkName('[NETWORK_CODE]');
-    $entitySignalsMappingTaxonomyCategoryIdsElement = 0;
 
-    create_entity_signals_mapping_sample(
-        $formattedParent,
-        $entitySignalsMappingTaxonomyCategoryIdsElement
-    );
+    create_entity_signals_mapping_sample($formattedParent);
 }
 // [END admanager_v1_generated_EntitySignalsMappingService_CreateEntitySignalsMapping_sync]

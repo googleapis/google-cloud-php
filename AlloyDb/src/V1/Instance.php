@@ -109,11 +109,13 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     protected $gce_zone = '';
     /**
-     * Database flags. Set at instance level.
-     *  * They are copied from primary instance on read instance creation.
-     *  * Read instances can set new or override existing flags that are relevant
-     *    for reads, e.g. for enabling columnar cache on a read instance. Flags
-     *    set on read instance may or may not be present on primary.
+     * Database flags. Set at the instance level.
+     * They are copied from the primary instance on secondary instance creation.
+     * Flags that have restrictions default to the value at primary
+     * instance on read instances during creation. Read instances can set new
+     * flags or override existing flags that are relevant for reads, for example,
+     * for enabling columnar cache on a read instance. Flags set on read instance
+     * might or might not be present on the primary instance.
      * This is a list of "key": "value" pairs.
      * "key": The name of the flag. These flags are passed at instance setup time,
      * so include both server options and system variables for Postgres. Flags are
@@ -145,6 +147,12 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.alloydb.v1.Instance.QueryInsightsInstanceConfig query_insights_config = 21;</code>
      */
     protected $query_insights_config = null;
+    /**
+     * Configuration for observability.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.Instance.ObservabilityInstanceConfig observability_config = 26;</code>
+     */
+    protected $observability_config = null;
     /**
      * Read pool instance configuration.
      * This is required if the value of instanceType is READ_POOL.
@@ -222,6 +230,18 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string outbound_public_ip_addresses = 34 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_info) = {</code>
      */
     private $outbound_public_ip_addresses;
+    /**
+     * Optional. Specifies whether an instance needs to spin up. Once the instance
+     * is active, the activation policy can be updated to the `NEVER` to stop the
+     * instance. Likewise, the activation policy can be updated to `ALWAYS` to
+     * start the instance.
+     * There are restrictions around when an instance can/cannot be activated (for
+     * example, a read pool instance should be stopped before stopping primary
+     * etc.). Please refer to the API documentation for more details.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.Instance.ActivationPolicy activation_policy = 35 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $activation_policy = 0;
 
     /**
      * Constructor.
@@ -274,11 +294,13 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           If this is absent for a ZONAL instance, instance is created in a random
      *           zone with available capacity.
      *     @type array|\Google\Protobuf\Internal\MapField $database_flags
-     *           Database flags. Set at instance level.
-     *            * They are copied from primary instance on read instance creation.
-     *            * Read instances can set new or override existing flags that are relevant
-     *              for reads, e.g. for enabling columnar cache on a read instance. Flags
-     *              set on read instance may or may not be present on primary.
+     *           Database flags. Set at the instance level.
+     *           They are copied from the primary instance on secondary instance creation.
+     *           Flags that have restrictions default to the value at primary
+     *           instance on read instances during creation. Read instances can set new
+     *           flags or override existing flags that are relevant for reads, for example,
+     *           for enabling columnar cache on a read instance. Flags set on read instance
+     *           might or might not be present on the primary instance.
      *           This is a list of "key": "value" pairs.
      *           "key": The name of the flag. These flags are passed at instance setup time,
      *           so include both server options and system variables for Postgres. Flags are
@@ -294,6 +316,8 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           the standby for a PRIMARY instance.
      *     @type \Google\Cloud\AlloyDb\V1\Instance\QueryInsightsInstanceConfig $query_insights_config
      *           Configuration for query insights.
+     *     @type \Google\Cloud\AlloyDb\V1\Instance\ObservabilityInstanceConfig $observability_config
+     *           Configuration for observability.
      *     @type \Google\Cloud\AlloyDb\V1\Instance\ReadPoolConfig $read_pool_config
      *           Read pool instance configuration.
      *           This is required if the value of instanceType is READ_POOL.
@@ -327,6 +351,14 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           Optional. Instance-level network configuration.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $outbound_public_ip_addresses
      *           Output only. All outbound public IP addresses configured for the instance.
+     *     @type int $activation_policy
+     *           Optional. Specifies whether an instance needs to spin up. Once the instance
+     *           is active, the activation policy can be updated to the `NEVER` to stop the
+     *           instance. Likewise, the activation policy can be updated to `ALWAYS` to
+     *           start the instance.
+     *           There are restrictions around when an instance can/cannot be activated (for
+     *           example, a read pool instance should be stopped before stopping primary
+     *           etc.). Please refer to the API documentation for more details.
      * }
      */
     public function __construct($data = NULL) {
@@ -727,11 +759,13 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Database flags. Set at instance level.
-     *  * They are copied from primary instance on read instance creation.
-     *  * Read instances can set new or override existing flags that are relevant
-     *    for reads, e.g. for enabling columnar cache on a read instance. Flags
-     *    set on read instance may or may not be present on primary.
+     * Database flags. Set at the instance level.
+     * They are copied from the primary instance on secondary instance creation.
+     * Flags that have restrictions default to the value at primary
+     * instance on read instances during creation. Read instances can set new
+     * flags or override existing flags that are relevant for reads, for example,
+     * for enabling columnar cache on a read instance. Flags set on read instance
+     * might or might not be present on the primary instance.
      * This is a list of "key": "value" pairs.
      * "key": The name of the flag. These flags are passed at instance setup time,
      * so include both server options and system variables for Postgres. Flags are
@@ -749,11 +783,13 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Database flags. Set at instance level.
-     *  * They are copied from primary instance on read instance creation.
-     *  * Read instances can set new or override existing flags that are relevant
-     *    for reads, e.g. for enabling columnar cache on a read instance. Flags
-     *    set on read instance may or may not be present on primary.
+     * Database flags. Set at the instance level.
+     * They are copied from the primary instance on secondary instance creation.
+     * Flags that have restrictions default to the value at primary
+     * instance on read instances during creation. Read instances can set new
+     * flags or override existing flags that are relevant for reads, for example,
+     * for enabling columnar cache on a read instance. Flags set on read instance
+     * might or might not be present on the primary instance.
      * This is a list of "key": "value" pairs.
      * "key": The name of the flag. These flags are passed at instance setup time,
      * so include both server options and system variables for Postgres. Flags are
@@ -872,6 +908,42 @@ class Instance extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AlloyDb\V1\Instance\QueryInsightsInstanceConfig::class);
         $this->query_insights_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Configuration for observability.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.Instance.ObservabilityInstanceConfig observability_config = 26;</code>
+     * @return \Google\Cloud\AlloyDb\V1\Instance\ObservabilityInstanceConfig|null
+     */
+    public function getObservabilityConfig()
+    {
+        return $this->observability_config;
+    }
+
+    public function hasObservabilityConfig()
+    {
+        return isset($this->observability_config);
+    }
+
+    public function clearObservabilityConfig()
+    {
+        unset($this->observability_config);
+    }
+
+    /**
+     * Configuration for observability.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.Instance.ObservabilityInstanceConfig observability_config = 26;</code>
+     * @param \Google\Cloud\AlloyDb\V1\Instance\ObservabilityInstanceConfig $var
+     * @return $this
+     */
+    public function setObservabilityConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AlloyDb\V1\Instance\ObservabilityInstanceConfig::class);
+        $this->observability_config = $var;
 
         return $this;
     }
@@ -1220,6 +1292,44 @@ class Instance extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->outbound_public_ip_addresses = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies whether an instance needs to spin up. Once the instance
+     * is active, the activation policy can be updated to the `NEVER` to stop the
+     * instance. Likewise, the activation policy can be updated to `ALWAYS` to
+     * start the instance.
+     * There are restrictions around when an instance can/cannot be activated (for
+     * example, a read pool instance should be stopped before stopping primary
+     * etc.). Please refer to the API documentation for more details.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.Instance.ActivationPolicy activation_policy = 35 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getActivationPolicy()
+    {
+        return $this->activation_policy;
+    }
+
+    /**
+     * Optional. Specifies whether an instance needs to spin up. Once the instance
+     * is active, the activation policy can be updated to the `NEVER` to stop the
+     * instance. Likewise, the activation policy can be updated to `ALWAYS` to
+     * start the instance.
+     * There are restrictions around when an instance can/cannot be activated (for
+     * example, a read pool instance should be stopped before stopping primary
+     * etc.). Please refer to the API documentation for more details.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.Instance.ActivationPolicy activation_policy = 35 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setActivationPolicy($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\AlloyDb\V1\Instance\ActivationPolicy::class);
+        $this->activation_policy = $var;
 
         return $this;
     }

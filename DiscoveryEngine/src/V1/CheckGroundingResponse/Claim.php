@@ -67,6 +67,14 @@ class Claim extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional bool grounding_check_required = 6;</code>
      */
     protected $grounding_check_required = null;
+    /**
+     * Confidence score for the claim in the answer candidate, in the range of
+     * [0, 1]. This is set only when
+     * `CheckGroundingRequest.grounding_spec.enable_claim_level_score` is true.
+     *
+     * Generated from protobuf field <code>optional double score = 7;</code>
+     */
+    protected $score = null;
 
     /**
      * Constructor.
@@ -106,6 +114,10 @@ class Claim extends \Google\Protobuf\Internal\Message
      *           the claim and therefore
      *           [citation_indices][google.cloud.discoveryengine.v1.CheckGroundingResponse.Claim.citation_indices]
      *           should not be returned.
+     *     @type float $score
+     *           Confidence score for the claim in the answer candidate, in the range of
+     *           [0, 1]. This is set only when
+     *           `CheckGroundingRequest.grounding_spec.enable_claim_level_score` is true.
      * }
      */
     public function __construct($data = NULL) {
@@ -313,6 +325,46 @@ class Claim extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->grounding_check_required = $var;
+
+        return $this;
+    }
+
+    /**
+     * Confidence score for the claim in the answer candidate, in the range of
+     * [0, 1]. This is set only when
+     * `CheckGroundingRequest.grounding_spec.enable_claim_level_score` is true.
+     *
+     * Generated from protobuf field <code>optional double score = 7;</code>
+     * @return float
+     */
+    public function getScore()
+    {
+        return isset($this->score) ? $this->score : 0.0;
+    }
+
+    public function hasScore()
+    {
+        return isset($this->score);
+    }
+
+    public function clearScore()
+    {
+        unset($this->score);
+    }
+
+    /**
+     * Confidence score for the claim in the answer candidate, in the range of
+     * [0, 1]. This is set only when
+     * `CheckGroundingRequest.grounding_spec.enable_claim_level_score` is true.
+     *
+     * Generated from protobuf field <code>optional double score = 7;</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setScore($var)
+    {
+        GPBUtil::checkDouble($var);
+        $this->score = $var;
 
         return $this;
     }

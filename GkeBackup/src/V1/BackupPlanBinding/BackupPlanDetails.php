@@ -58,6 +58,20 @@ class BackupPlanDetails extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string last_successful_backup = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $last_successful_backup = '';
+    /**
+     * Output only. Contains details about the BackupConfig of Backups created
+     * via this BackupPlan.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkebackup.v1.BackupPlanBinding.BackupPlanDetails.BackupConfigDetails backup_config_details = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $backup_config_details = null;
+    /**
+     * Output only. Contains details about the RetentionPolicy of Backups
+     * created via this BackupPlan.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkebackup.v1.BackupPlanBinding.BackupPlanDetails.RetentionPolicyDetails retention_policy_details = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $retention_policy_details = null;
 
     /**
      * Constructor.
@@ -84,6 +98,12 @@ class BackupPlanDetails extends \Google\Protobuf\Internal\Message
      *           Output only. The fully qualified name of the last successful Backup
      *           created under this BackupPlan.
      *           `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;`
+     *     @type \Google\Cloud\GkeBackup\V1\BackupPlanBinding\BackupPlanDetails\BackupConfigDetails $backup_config_details
+     *           Output only. Contains details about the BackupConfig of Backups created
+     *           via this BackupPlan.
+     *     @type \Google\Cloud\GkeBackup\V1\BackupPlanBinding\BackupPlanDetails\RetentionPolicyDetails $retention_policy_details
+     *           Output only. Contains details about the RetentionPolicy of Backups
+     *           created via this BackupPlan.
      * }
      */
     public function __construct($data = NULL) {
@@ -277,6 +297,82 @@ class BackupPlanDetails extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->last_successful_backup = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Contains details about the BackupConfig of Backups created
+     * via this BackupPlan.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkebackup.v1.BackupPlanBinding.BackupPlanDetails.BackupConfigDetails backup_config_details = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\GkeBackup\V1\BackupPlanBinding\BackupPlanDetails\BackupConfigDetails|null
+     */
+    public function getBackupConfigDetails()
+    {
+        return $this->backup_config_details;
+    }
+
+    public function hasBackupConfigDetails()
+    {
+        return isset($this->backup_config_details);
+    }
+
+    public function clearBackupConfigDetails()
+    {
+        unset($this->backup_config_details);
+    }
+
+    /**
+     * Output only. Contains details about the BackupConfig of Backups created
+     * via this BackupPlan.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkebackup.v1.BackupPlanBinding.BackupPlanDetails.BackupConfigDetails backup_config_details = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\GkeBackup\V1\BackupPlanBinding\BackupPlanDetails\BackupConfigDetails $var
+     * @return $this
+     */
+    public function setBackupConfigDetails($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\GkeBackup\V1\BackupPlanBinding\BackupPlanDetails\BackupConfigDetails::class);
+        $this->backup_config_details = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Contains details about the RetentionPolicy of Backups
+     * created via this BackupPlan.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkebackup.v1.BackupPlanBinding.BackupPlanDetails.RetentionPolicyDetails retention_policy_details = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\GkeBackup\V1\BackupPlanBinding\BackupPlanDetails\RetentionPolicyDetails|null
+     */
+    public function getRetentionPolicyDetails()
+    {
+        return $this->retention_policy_details;
+    }
+
+    public function hasRetentionPolicyDetails()
+    {
+        return isset($this->retention_policy_details);
+    }
+
+    public function clearRetentionPolicyDetails()
+    {
+        unset($this->retention_policy_details);
+    }
+
+    /**
+     * Output only. Contains details about the RetentionPolicy of Backups
+     * created via this BackupPlan.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkebackup.v1.BackupPlanBinding.BackupPlanDetails.RetentionPolicyDetails retention_policy_details = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\GkeBackup\V1\BackupPlanBinding\BackupPlanDetails\RetentionPolicyDetails $var
+     * @return $this
+     */
+    public function setRetentionPolicyDetails($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\GkeBackup\V1\BackupPlanBinding\BackupPlanDetails\RetentionPolicyDetails::class);
+        $this->retention_policy_details = $var;
 
         return $this;
     }

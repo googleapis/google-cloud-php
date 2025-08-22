@@ -370,6 +370,30 @@ final class DataformClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * notebook_runtime_template resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $notebookRuntimeTemplate
+     *
+     * @return string The formatted notebook_runtime_template resource.
+     *
+     * @experimental
+     */
+    public static function notebookRuntimeTemplateName(
+        string $project,
+        string $location,
+        string $notebookRuntimeTemplate
+    ): string {
+        return self::getPathTemplate('notebookRuntimeTemplate')->render([
+            'project' => $project,
+            'location' => $location,
+            'notebook_runtime_template' => $notebookRuntimeTemplate,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * release_config resource.
      *
      * @param string $project
@@ -527,6 +551,7 @@ final class DataformClient
      * - cryptoKey: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
      * - cryptoKeyVersion: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}
      * - location: projects/{project}/locations/{location}
+     * - notebookRuntimeTemplate: projects/{project}/locations/{location}/notebookRuntimeTemplates/{notebook_runtime_template}
      * - releaseConfig: projects/{project}/locations/{location}/repositories/{repository}/releaseConfigs/{release_config}
      * - repository: projects/{project}/locations/{location}/repositories/{repository}
      * - secretVersion: projects/{project}/secrets/{secret}/versions/{version}
@@ -1500,6 +1525,9 @@ final class DataformClient
     /**
      * Lists Repositories in a given project and location.
      *
+     * **Note:** *This method can return repositories not shown in the [Dataform
+     * UI](https://console.cloud.google.com/bigquery/dataform)*.
+     *
      * The async variant is {@see DataformClient::listRepositoriesAsync()} .
      *
      * @example samples/V1beta1/DataformClient/list_repositories.php
@@ -2052,11 +2080,10 @@ final class DataformClient
     /**
      * Update default config for a given project and location.
      *
-     * **Note:** This method does not fully implement
-     * [AIP-134](https://google.aip.dev/134); in particular:
-     * - The wildcard entry (**\***) is treated as a bad request
-     * - When the **field_mask** is omitted, instead of only updating the set
-     * fields, the request is treated as a full update on all modifiable fields
+     * **Note:** *This method does not fully implement
+     * [AIP/134](https://google.aip.dev/134). The wildcard entry (\*) is treated
+     * as a bad request, and when the `field_mask` is omitted, the request is
+     * treated as a full update on all modifiable fields.*
      *
      * The async variant is {@see DataformClient::updateConfigAsync()} .
      *
@@ -2086,11 +2113,10 @@ final class DataformClient
     /**
      * Updates a single ReleaseConfig.
      *
-     * **Note:** This method does not fully implement
-     * [AIP-134](https://google.aip.dev/134); in particular:
-     * - The wildcard entry (**\***) is treated as a bad request
-     * - When the **field_mask** is omitted, instead of only updating the set
-     * fields, the request is treated as a full update on all modifiable fields
+     * **Note:** *This method does not fully implement
+     * [AIP/134](https://google.aip.dev/134). The wildcard entry (\*) is treated
+     * as a bad request, and when the `field_mask` is omitted, the request is
+     * treated as a full update on all modifiable fields.*
      *
      * The async variant is {@see DataformClient::updateReleaseConfigAsync()} .
      *
@@ -2120,11 +2146,10 @@ final class DataformClient
     /**
      * Updates a single Repository.
      *
-     * **Note:** This method does not fully implement
-     * [AIP-134](https://google.aip.dev/134); in particular:
-     * - The wildcard entry (**\***) is treated as a bad request
-     * - When the **field_mask** is omitted, instead of only updating the set
-     * fields, the request is treated as a full update on all modifiable fields
+     * **Note:** *This method does not fully implement
+     * [AIP/134](https://google.aip.dev/134). The wildcard entry (\*) is treated
+     * as a bad request, and when the `field_mask` is omitted, the request is
+     * treated as a full update on all modifiable fields.*
      *
      * The async variant is {@see DataformClient::updateRepositoryAsync()} .
      *
@@ -2154,11 +2179,10 @@ final class DataformClient
     /**
      * Updates a single WorkflowConfig.
      *
-     * **Note:** This method does not fully implement
-     * [AIP-134](https://google.aip.dev/134); in particular:
-     * - The wildcard entry (**\***) is treated as a bad request
-     * - When the **field_mask** is omitted, instead of only updating the set
-     * fields, the request is treated as a full update on all modifiable fields
+     * **Note:** *This method does not fully implement
+     * [AIP/134](https://google.aip.dev/134). The wildcard entry (\*) is treated
+     * as a bad request, and when the `field_mask` is omitted, the request is
+     * treated as a full update on all modifiable fields.*
      *
      * The async variant is {@see DataformClient::updateWorkflowConfigAsync()} .
      *

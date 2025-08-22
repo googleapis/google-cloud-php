@@ -153,7 +153,9 @@ class BoostAction extends \Google\Protobuf\Internal\Message
      */
     public function getBoost()
     {
-        @trigger_error('boost is deprecated.', E_USER_DEPRECATED);
+        if ($this->boost !== 0.0) {
+            @trigger_error('boost is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->boost;
     }
 

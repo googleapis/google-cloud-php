@@ -396,8 +396,6 @@ class EndpointServiceClientTest extends GeneratedTest
         // Mock request
         $formattedEndpoint = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
         $deployedModel = new DeployedModel();
-        $deployedModelModel = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-        $deployedModel->setModel($deployedModelModel);
         $request = (new DeployModelRequest())->setEndpoint($formattedEndpoint)->setDeployedModel($deployedModel);
         $response = $gapicClient->deployModel($request);
         $this->assertFalse($response->isDone());
@@ -469,8 +467,6 @@ class EndpointServiceClientTest extends GeneratedTest
         // Mock request
         $formattedEndpoint = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
         $deployedModel = new DeployedModel();
-        $deployedModelModel = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-        $deployedModel->setModel($deployedModelModel);
         $request = (new DeployModelRequest())->setEndpoint($formattedEndpoint)->setDeployedModel($deployedModel);
         $response = $gapicClient->deployModel($request);
         $this->assertFalse($response->isDone());
@@ -682,8 +678,6 @@ class EndpointServiceClientTest extends GeneratedTest
         // Mock request
         $formattedEndpoint = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
         $deployedModel = new DeployedModel();
-        $deployedModelModel = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-        $deployedModel->setModel($deployedModelModel);
         $updateMask = new FieldMask();
         $request = (new MutateDeployedModelRequest())
             ->setEndpoint($formattedEndpoint)
@@ -761,8 +755,6 @@ class EndpointServiceClientTest extends GeneratedTest
         // Mock request
         $formattedEndpoint = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
         $deployedModel = new DeployedModel();
-        $deployedModelModel = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-        $deployedModel->setModel($deployedModelModel);
         $updateMask = new FieldMask();
         $request = (new MutateDeployedModelRequest())
             ->setEndpoint($formattedEndpoint)

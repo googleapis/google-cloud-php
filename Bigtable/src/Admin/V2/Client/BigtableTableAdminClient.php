@@ -43,10 +43,12 @@ use Google\Cloud\Bigtable\Admin\V2\CopyBackupRequest;
 use Google\Cloud\Bigtable\Admin\V2\CreateAuthorizedViewRequest;
 use Google\Cloud\Bigtable\Admin\V2\CreateBackupMetadata;
 use Google\Cloud\Bigtable\Admin\V2\CreateBackupRequest;
+use Google\Cloud\Bigtable\Admin\V2\CreateSchemaBundleRequest;
 use Google\Cloud\Bigtable\Admin\V2\CreateTableFromSnapshotRequest;
 use Google\Cloud\Bigtable\Admin\V2\CreateTableRequest;
 use Google\Cloud\Bigtable\Admin\V2\DeleteAuthorizedViewRequest;
 use Google\Cloud\Bigtable\Admin\V2\DeleteBackupRequest;
+use Google\Cloud\Bigtable\Admin\V2\DeleteSchemaBundleRequest;
 use Google\Cloud\Bigtable\Admin\V2\DeleteSnapshotRequest;
 use Google\Cloud\Bigtable\Admin\V2\DeleteTableRequest;
 use Google\Cloud\Bigtable\Admin\V2\DropRowRangeRequest;
@@ -54,21 +56,25 @@ use Google\Cloud\Bigtable\Admin\V2\GenerateConsistencyTokenRequest;
 use Google\Cloud\Bigtable\Admin\V2\GenerateConsistencyTokenResponse;
 use Google\Cloud\Bigtable\Admin\V2\GetAuthorizedViewRequest;
 use Google\Cloud\Bigtable\Admin\V2\GetBackupRequest;
+use Google\Cloud\Bigtable\Admin\V2\GetSchemaBundleRequest;
 use Google\Cloud\Bigtable\Admin\V2\GetSnapshotRequest;
 use Google\Cloud\Bigtable\Admin\V2\GetTableRequest;
 use Google\Cloud\Bigtable\Admin\V2\ListAuthorizedViewsRequest;
 use Google\Cloud\Bigtable\Admin\V2\ListBackupsRequest;
+use Google\Cloud\Bigtable\Admin\V2\ListSchemaBundlesRequest;
 use Google\Cloud\Bigtable\Admin\V2\ListSnapshotsRequest;
 use Google\Cloud\Bigtable\Admin\V2\ListTablesRequest;
 use Google\Cloud\Bigtable\Admin\V2\ModifyColumnFamiliesRequest;
 use Google\Cloud\Bigtable\Admin\V2\RestoreTableMetadata;
 use Google\Cloud\Bigtable\Admin\V2\RestoreTableRequest;
+use Google\Cloud\Bigtable\Admin\V2\SchemaBundle;
 use Google\Cloud\Bigtable\Admin\V2\Snapshot;
 use Google\Cloud\Bigtable\Admin\V2\SnapshotTableRequest;
 use Google\Cloud\Bigtable\Admin\V2\Table;
 use Google\Cloud\Bigtable\Admin\V2\UndeleteTableRequest;
 use Google\Cloud\Bigtable\Admin\V2\UpdateAuthorizedViewRequest;
 use Google\Cloud\Bigtable\Admin\V2\UpdateBackupRequest;
+use Google\Cloud\Bigtable\Admin\V2\UpdateSchemaBundleRequest;
 use Google\Cloud\Bigtable\Admin\V2\UpdateTableRequest;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\Policy;
@@ -100,10 +106,12 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<OperationResponse> copyBackupAsync(CopyBackupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createAuthorizedViewAsync(CreateAuthorizedViewRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createBackupAsync(CreateBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createSchemaBundleAsync(CreateSchemaBundleRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Table> createTableAsync(CreateTableRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createTableFromSnapshotAsync(CreateTableFromSnapshotRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteAuthorizedViewAsync(DeleteAuthorizedViewRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteBackupAsync(DeleteBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteSchemaBundleAsync(DeleteSchemaBundleRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteSnapshotAsync(DeleteSnapshotRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteTableAsync(DeleteTableRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> dropRowRangeAsync(DropRowRangeRequest $request, array $optionalArgs = [])
@@ -111,10 +119,12 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<AuthorizedView> getAuthorizedViewAsync(GetAuthorizedViewRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Backup> getBackupAsync(GetBackupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SchemaBundle> getSchemaBundleAsync(GetSchemaBundleRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Snapshot> getSnapshotAsync(GetSnapshotRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Table> getTableAsync(GetTableRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listAuthorizedViewsAsync(ListAuthorizedViewsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listBackupsAsync(ListBackupsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listSchemaBundlesAsync(ListSchemaBundlesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listSnapshotsAsync(ListSnapshotsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listTablesAsync(ListTablesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Table> modifyColumnFamiliesAsync(ModifyColumnFamiliesRequest $request, array $optionalArgs = [])
@@ -125,6 +135,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<OperationResponse> undeleteTableAsync(UndeleteTableRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateAuthorizedViewAsync(UpdateAuthorizedViewRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Backup> updateBackupAsync(UpdateBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateSchemaBundleAsync(UpdateSchemaBundleRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateTableAsync(UpdateTableRequest $request, array $optionalArgs = [])
  */
 final class BigtableTableAdminClient
@@ -332,6 +343,27 @@ final class BigtableTableAdminClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * schema_bundle resource.
+     *
+     * @param string $project
+     * @param string $instance
+     * @param string $table
+     * @param string $schemaBundle
+     *
+     * @return string The formatted schema_bundle resource.
+     */
+    public static function schemaBundleName(string $project, string $instance, string $table, string $schemaBundle): string
+    {
+        return self::getPathTemplate('schemaBundle')->render([
+            'project' => $project,
+            'instance' => $instance,
+            'table' => $table,
+            'schema_bundle' => $schemaBundle,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a snapshot
      * resource.
      *
@@ -380,6 +412,7 @@ final class BigtableTableAdminClient
      * - cluster: projects/{project}/instances/{instance}/clusters/{cluster}
      * - cryptoKeyVersion: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}
      * - instance: projects/{project}/instances/{instance}
+     * - schemaBundle: projects/{project}/instances/{instance}/tables/{table}/schemaBundles/{schema_bundle}
      * - snapshot: projects/{project}/instances/{instance}/clusters/{cluster}/snapshots/{snapshot}
      * - table: projects/{project}/instances/{instance}/tables/{table}
      *
@@ -603,6 +636,33 @@ final class BigtableTableAdminClient
     }
 
     /**
+     * Creates a new schema bundle in the specified table.
+     *
+     * The async variant is {@see BigtableTableAdminClient::createSchemaBundleAsync()}
+     * .
+     *
+     * @example samples/V2/BigtableTableAdminClient/create_schema_bundle.php
+     *
+     * @param CreateSchemaBundleRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createSchemaBundle(CreateSchemaBundleRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('CreateSchemaBundle', $request, $callOptions)->wait();
+    }
+
+    /**
      * Creates a new table in the specified instance.
      * The table can be created with a full set of initial column families,
      * specified in the request.
@@ -711,6 +771,31 @@ final class BigtableTableAdminClient
     public function deleteBackup(DeleteBackupRequest $request, array $callOptions = []): void
     {
         $this->startApiCall('DeleteBackup', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a schema bundle in the specified table.
+     *
+     * The async variant is {@see BigtableTableAdminClient::deleteSchemaBundleAsync()}
+     * .
+     *
+     * @example samples/V2/BigtableTableAdminClient/delete_schema_bundle.php
+     *
+     * @param DeleteSchemaBundleRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteSchemaBundle(DeleteSchemaBundleRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('DeleteSchemaBundle', $request, $callOptions)->wait();
     }
 
     /**
@@ -876,7 +961,7 @@ final class BigtableTableAdminClient
     }
 
     /**
-     * Gets the access control policy for a Table or Backup resource.
+     * Gets the access control policy for a Bigtable resource.
      * Returns an empty policy if the resource exists but does not have a policy
      * set.
      *
@@ -901,6 +986,32 @@ final class BigtableTableAdminClient
     public function getIamPolicy(GetIamPolicyRequest $request, array $callOptions = []): Policy
     {
         return $this->startApiCall('GetIamPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets metadata information about the specified schema bundle.
+     *
+     * The async variant is {@see BigtableTableAdminClient::getSchemaBundleAsync()} .
+     *
+     * @example samples/V2/BigtableTableAdminClient/get_schema_bundle.php
+     *
+     * @param GetSchemaBundleRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return SchemaBundle
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getSchemaBundle(GetSchemaBundleRequest $request, array $callOptions = []): SchemaBundle
+    {
+        return $this->startApiCall('GetSchemaBundle', $request, $callOptions)->wait();
     }
 
     /**
@@ -1013,6 +1124,32 @@ final class BigtableTableAdminClient
     public function listBackups(ListBackupsRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListBackups', $request, $callOptions);
+    }
+
+    /**
+     * Lists all schema bundles associated with the specified table.
+     *
+     * The async variant is {@see BigtableTableAdminClient::listSchemaBundlesAsync()} .
+     *
+     * @example samples/V2/BigtableTableAdminClient/list_schema_bundles.php
+     *
+     * @param ListSchemaBundlesRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listSchemaBundles(ListSchemaBundlesRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListSchemaBundles', $request, $callOptions);
     }
 
     /**
@@ -1136,7 +1273,7 @@ final class BigtableTableAdminClient
     }
 
     /**
-     * Sets the access control policy on a Table or Backup resource.
+     * Sets the access control policy on a Bigtable resource.
      * Replaces any existing policy.
      *
      * The async variant is {@see BigtableTableAdminClient::setIamPolicyAsync()} .
@@ -1196,7 +1333,7 @@ final class BigtableTableAdminClient
     }
 
     /**
-     * Returns permissions that the caller has on the specified Table or Backup
+     * Returns permissions that the caller has on the specified Bigtable
      * resource.
      *
      * The async variant is {@see BigtableTableAdminClient::testIamPermissionsAsync()}
@@ -1300,6 +1437,33 @@ final class BigtableTableAdminClient
     public function updateBackup(UpdateBackupRequest $request, array $callOptions = []): Backup
     {
         return $this->startApiCall('UpdateBackup', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates a schema bundle in the specified table.
+     *
+     * The async variant is {@see BigtableTableAdminClient::updateSchemaBundleAsync()}
+     * .
+     *
+     * @example samples/V2/BigtableTableAdminClient/update_schema_bundle.php
+     *
+     * @param UpdateSchemaBundleRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateSchemaBundle(UpdateSchemaBundleRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('UpdateSchemaBundle', $request, $callOptions)->wait();
     }
 
     /**

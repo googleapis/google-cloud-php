@@ -22,13 +22,6 @@ class Team extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
-    /**
-     * Output only. The unique ID of the Team. This value is assigned by Google.
-     * Teams that are created by Google will have negative IDs.
-     *
-     * Generated from protobuf field <code>int64 team_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     */
-    protected $team_id = 0;
 
     /**
      * Constructor.
@@ -39,9 +32,6 @@ class Team extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Identifier. The resource name of the `Team`.
      *           Format: `networks/{network_code}/teams/{team_id}`
-     *     @type int|string $team_id
-     *           Output only. The unique ID of the Team. This value is assigned by Google.
-     *           Teams that are created by Google will have negative IDs.
      * }
      */
     public function __construct($data = NULL) {
@@ -73,34 +63,6 @@ class Team extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
-
-        return $this;
-    }
-
-    /**
-     * Output only. The unique ID of the Team. This value is assigned by Google.
-     * Teams that are created by Google will have negative IDs.
-     *
-     * Generated from protobuf field <code>int64 team_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return int|string
-     */
-    public function getTeamId()
-    {
-        return $this->team_id;
-    }
-
-    /**
-     * Output only. The unique ID of the Team. This value is assigned by Google.
-     * Teams that are created by Google will have negative IDs.
-     *
-     * Generated from protobuf field <code>int64 team_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param int|string $var
-     * @return $this
-     */
-    public function setTeamId($var)
-    {
-        GPBUtil::checkInt64($var);
-        $this->team_id = $var;
 
         return $this;
     }

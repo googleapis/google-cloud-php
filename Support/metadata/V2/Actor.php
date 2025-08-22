@@ -17,12 +17,13 @@ class Actor
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         $pool->internalAddGeneratedFile(
             '
-«
-#google/cloud/support/v2/actor.protogoogle.cloud.support.v2"I
+‚
+#google/cloud/support/v2/actor.protogoogle.cloud.support.v2"d
 Actor
-display_name (	
-email (	
-google_support (B‡AB≥
+display_name (	
+email (	B
+google_support (B‡A
+username (	B‡AB≥
 com.google.cloud.support.v2B
 ActorProtoPZ5cloud.google.com/go/support/apiv2/supportpb;supportpb™Google.Cloud.Support.V2 Google\\Cloud\\Support\\V2ÍGoogle::Cloud::Support::V2bproto3'
         , true);

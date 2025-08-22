@@ -251,6 +251,25 @@ final class DatastreamClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * network_attachment resource.
+     *
+     * @param string $project
+     * @param string $region
+     * @param string $networkAttachment
+     *
+     * @return string The formatted network_attachment resource.
+     */
+    public static function networkAttachmentName(string $project, string $region, string $networkAttachment): string
+    {
+        return self::getPathTemplate('networkAttachment')->render([
+            'project' => $project,
+            'region' => $region,
+            'network_attachment' => $networkAttachment,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a networks
      * resource.
      *
@@ -357,6 +376,7 @@ final class DatastreamClient
      * Template: Pattern
      * - connectionProfile: projects/{project}/locations/{location}/connectionProfiles/{connection_profile}
      * - location: projects/{project}/locations/{location}
+     * - networkAttachment: projects/{project}/regions/{region}/networkAttachments/{network_attachment}
      * - networks: projects/{project}/global/networks/{network}
      * - privateConnection: projects/{project}/locations/{location}/privateConnections/{private_connection}
      * - route: projects/{project}/locations/{location}/privateConnections/{private_connection}/routes/{route}

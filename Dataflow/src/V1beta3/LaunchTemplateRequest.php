@@ -29,7 +29,7 @@ class LaunchTemplateRequest extends \Google\Protobuf\Internal\Message
      */
     protected $validate_only = false;
     /**
-     * The parameters of the template to launch. This should be part of the
+     * The parameters of the template to launch. Part of the
      * body of the POST request.
      *
      * Generated from protobuf field <code>.google.dataflow.v1beta3.LaunchTemplateParameters launch_parameters = 4;</code>
@@ -57,13 +57,13 @@ class LaunchTemplateRequest extends \Google\Protobuf\Internal\Message
      *           If true, the request is validated but not actually executed.
      *           Defaults to false.
      *     @type string $gcs_path
-     *           A Cloud Storage path to the template from which to create
+     *           A Cloud Storage path to the template to use to create
      *           the job.
-     *           Must be valid Cloud Storage URL, beginning with 'gs://'.
+     *           Must be valid Cloud Storage URL, beginning with `gs://`.
      *     @type \Google\Cloud\Dataflow\V1beta3\DynamicTemplateLaunchParams $dynamic_template
-     *           Params for launching a dynamic template.
+     *           Parameters for launching a dynamic template.
      *     @type \Google\Cloud\Dataflow\V1beta3\LaunchTemplateParameters $launch_parameters
-     *           The parameters of the template to launch. This should be part of the
+     *           The parameters of the template to launch. Part of the
      *           body of the POST request.
      *     @type string $location
      *           The [regional endpoint]
@@ -131,9 +131,9 @@ class LaunchTemplateRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A Cloud Storage path to the template from which to create
+     * A Cloud Storage path to the template to use to create
      * the job.
-     * Must be valid Cloud Storage URL, beginning with 'gs://'.
+     * Must be valid Cloud Storage URL, beginning with `gs://`.
      *
      * Generated from protobuf field <code>string gcs_path = 3;</code>
      * @return string
@@ -149,9 +149,9 @@ class LaunchTemplateRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A Cloud Storage path to the template from which to create
+     * A Cloud Storage path to the template to use to create
      * the job.
-     * Must be valid Cloud Storage URL, beginning with 'gs://'.
+     * Must be valid Cloud Storage URL, beginning with `gs://`.
      *
      * Generated from protobuf field <code>string gcs_path = 3;</code>
      * @param string $var
@@ -166,7 +166,7 @@ class LaunchTemplateRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Params for launching a dynamic template.
+     * Parameters for launching a dynamic template.
      *
      * Generated from protobuf field <code>.google.dataflow.v1beta3.DynamicTemplateLaunchParams dynamic_template = 6;</code>
      * @return \Google\Cloud\Dataflow\V1beta3\DynamicTemplateLaunchParams|null
@@ -182,7 +182,7 @@ class LaunchTemplateRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Params for launching a dynamic template.
+     * Parameters for launching a dynamic template.
      *
      * Generated from protobuf field <code>.google.dataflow.v1beta3.DynamicTemplateLaunchParams dynamic_template = 6;</code>
      * @param \Google\Cloud\Dataflow\V1beta3\DynamicTemplateLaunchParams $var
@@ -197,7 +197,7 @@ class LaunchTemplateRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The parameters of the template to launch. This should be part of the
+     * The parameters of the template to launch. Part of the
      * body of the POST request.
      *
      * Generated from protobuf field <code>.google.dataflow.v1beta3.LaunchTemplateParameters launch_parameters = 4;</code>
@@ -219,7 +219,7 @@ class LaunchTemplateRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The parameters of the template to launch. This should be part of the
+     * The parameters of the template to launch. Part of the
      * body of the POST request.
      *
      * Generated from protobuf field <code>.google.dataflow.v1beta3.LaunchTemplateParameters launch_parameters = 4;</code>

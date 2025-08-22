@@ -34,10 +34,12 @@ use Google\Cloud\Bigtable\Admin\V2\Client\BigtableTableAdminClient;
 use Google\Cloud\Bigtable\Admin\V2\CopyBackupRequest;
 use Google\Cloud\Bigtable\Admin\V2\CreateAuthorizedViewRequest;
 use Google\Cloud\Bigtable\Admin\V2\CreateBackupRequest;
+use Google\Cloud\Bigtable\Admin\V2\CreateSchemaBundleRequest;
 use Google\Cloud\Bigtable\Admin\V2\CreateTableFromSnapshotRequest;
 use Google\Cloud\Bigtable\Admin\V2\CreateTableRequest;
 use Google\Cloud\Bigtable\Admin\V2\DeleteAuthorizedViewRequest;
 use Google\Cloud\Bigtable\Admin\V2\DeleteBackupRequest;
+use Google\Cloud\Bigtable\Admin\V2\DeleteSchemaBundleRequest;
 use Google\Cloud\Bigtable\Admin\V2\DeleteSnapshotRequest;
 use Google\Cloud\Bigtable\Admin\V2\DeleteTableRequest;
 use Google\Cloud\Bigtable\Admin\V2\DropRowRangeRequest;
@@ -45,24 +47,29 @@ use Google\Cloud\Bigtable\Admin\V2\GenerateConsistencyTokenRequest;
 use Google\Cloud\Bigtable\Admin\V2\GenerateConsistencyTokenResponse;
 use Google\Cloud\Bigtable\Admin\V2\GetAuthorizedViewRequest;
 use Google\Cloud\Bigtable\Admin\V2\GetBackupRequest;
+use Google\Cloud\Bigtable\Admin\V2\GetSchemaBundleRequest;
 use Google\Cloud\Bigtable\Admin\V2\GetSnapshotRequest;
 use Google\Cloud\Bigtable\Admin\V2\GetTableRequest;
 use Google\Cloud\Bigtable\Admin\V2\ListAuthorizedViewsRequest;
 use Google\Cloud\Bigtable\Admin\V2\ListAuthorizedViewsResponse;
 use Google\Cloud\Bigtable\Admin\V2\ListBackupsRequest;
 use Google\Cloud\Bigtable\Admin\V2\ListBackupsResponse;
+use Google\Cloud\Bigtable\Admin\V2\ListSchemaBundlesRequest;
+use Google\Cloud\Bigtable\Admin\V2\ListSchemaBundlesResponse;
 use Google\Cloud\Bigtable\Admin\V2\ListSnapshotsRequest;
 use Google\Cloud\Bigtable\Admin\V2\ListSnapshotsResponse;
 use Google\Cloud\Bigtable\Admin\V2\ListTablesRequest;
 use Google\Cloud\Bigtable\Admin\V2\ListTablesResponse;
 use Google\Cloud\Bigtable\Admin\V2\ModifyColumnFamiliesRequest;
 use Google\Cloud\Bigtable\Admin\V2\RestoreTableRequest;
+use Google\Cloud\Bigtable\Admin\V2\SchemaBundle;
 use Google\Cloud\Bigtable\Admin\V2\Snapshot;
 use Google\Cloud\Bigtable\Admin\V2\SnapshotTableRequest;
 use Google\Cloud\Bigtable\Admin\V2\Table;
 use Google\Cloud\Bigtable\Admin\V2\UndeleteTableRequest;
 use Google\Cloud\Bigtable\Admin\V2\UpdateAuthorizedViewRequest;
 use Google\Cloud\Bigtable\Admin\V2\UpdateBackupRequest;
+use Google\Cloud\Bigtable\Admin\V2\UpdateSchemaBundleRequest;
 use Google\Cloud\Bigtable\Admin\V2\UpdateTableRequest;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\Policy;
@@ -613,6 +620,143 @@ class BigtableTableAdminClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function createSchemaBundleTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createSchemaBundleTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $etag = 'etag3123477';
+        $expectedResponse = new SchemaBundle();
+        $expectedResponse->setName($name);
+        $expectedResponse->setEtag($etag);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/createSchemaBundleTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedParent = $gapicClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
+        $schemaBundleId = 'schemaBundleId-259541798';
+        $schemaBundle = new SchemaBundle();
+        $request = (new CreateSchemaBundleRequest())
+            ->setParent($formattedParent)
+            ->setSchemaBundleId($schemaBundleId)
+            ->setSchemaBundle($schemaBundle);
+        $response = $gapicClient->createSchemaBundle($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.bigtable.admin.v2.BigtableTableAdmin/CreateSchemaBundle', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getSchemaBundleId();
+        $this->assertProtobufEquals($schemaBundleId, $actualValue);
+        $actualValue = $actualApiRequestObject->getSchemaBundle();
+        $this->assertProtobufEquals($schemaBundle, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createSchemaBundleTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function createSchemaBundleExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createSchemaBundleTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
+        $schemaBundleId = 'schemaBundleId-259541798';
+        $schemaBundle = new SchemaBundle();
+        $request = (new CreateSchemaBundleRequest())
+            ->setParent($formattedParent)
+            ->setSchemaBundleId($schemaBundleId)
+            ->setSchemaBundle($schemaBundle);
+        $response = $gapicClient->createSchemaBundle($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createSchemaBundleTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
     public function createTableTest()
     {
         $transport = $this->createTransport();
@@ -938,6 +1082,67 @@ class BigtableTableAdminClientTest extends GeneratedTest
             ->setName($formattedName);
         try {
             $gapicClient->deleteBackup($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteSchemaBundleTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new GPBEmpty();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->schemaBundleName('[PROJECT]', '[INSTANCE]', '[TABLE]', '[SCHEMA_BUNDLE]');
+        $request = (new DeleteSchemaBundleRequest())
+            ->setName($formattedName);
+        $gapicClient->deleteSchemaBundle($request);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.bigtable.admin.v2.BigtableTableAdmin/DeleteSchemaBundle', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteSchemaBundleExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->schemaBundleName('[PROJECT]', '[INSTANCE]', '[TABLE]', '[SCHEMA_BUNDLE]');
+        $request = (new DeleteSchemaBundleRequest())
+            ->setName($formattedName);
+        try {
+            $gapicClient->deleteSchemaBundle($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1401,6 +1606,72 @@ class BigtableTableAdminClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function getSchemaBundleTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $etag = 'etag3123477';
+        $expectedResponse = new SchemaBundle();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setEtag($etag);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->schemaBundleName('[PROJECT]', '[INSTANCE]', '[TABLE]', '[SCHEMA_BUNDLE]');
+        $request = (new GetSchemaBundleRequest())
+            ->setName($formattedName);
+        $response = $gapicClient->getSchemaBundle($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.bigtable.admin.v2.BigtableTableAdmin/GetSchemaBundle', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getSchemaBundleExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->schemaBundleName('[PROJECT]', '[INSTANCE]', '[TABLE]', '[SCHEMA_BUNDLE]');
+        $request = (new GetSchemaBundleRequest())
+            ->setName($formattedName);
+        try {
+            $gapicClient->getSchemaBundle($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function getSnapshotTest()
     {
         $transport = $this->createTransport();
@@ -1667,6 +1938,78 @@ class BigtableTableAdminClientTest extends GeneratedTest
             ->setParent($formattedParent);
         try {
             $gapicClient->listBackups($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listSchemaBundlesTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $schemaBundlesElement = new SchemaBundle();
+        $schemaBundles = [
+            $schemaBundlesElement,
+        ];
+        $expectedResponse = new ListSchemaBundlesResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setSchemaBundles($schemaBundles);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
+        $request = (new ListSchemaBundlesRequest())
+            ->setParent($formattedParent);
+        $response = $gapicClient->listSchemaBundles($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getSchemaBundles()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.bigtable.admin.v2.BigtableTableAdmin/ListSchemaBundles', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listSchemaBundlesExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
+        $request = (new ListSchemaBundlesRequest())
+            ->setParent($formattedParent);
+        try {
+            $gapicClient->listSchemaBundles($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2638,6 +2981,131 @@ class BigtableTableAdminClientTest extends GeneratedTest
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateSchemaBundleTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateSchemaBundleTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $etag = 'etag3123477';
+        $expectedResponse = new SchemaBundle();
+        $expectedResponse->setName($name);
+        $expectedResponse->setEtag($etag);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/updateSchemaBundleTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $schemaBundle = new SchemaBundle();
+        $request = (new UpdateSchemaBundleRequest())
+            ->setSchemaBundle($schemaBundle);
+        $response = $gapicClient->updateSchemaBundle($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.bigtable.admin.v2.BigtableTableAdmin/UpdateSchemaBundle', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getSchemaBundle();
+        $this->assertProtobufEquals($schemaBundle, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateSchemaBundleTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function updateSchemaBundleExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateSchemaBundleTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $schemaBundle = new SchemaBundle();
+        $request = (new UpdateSchemaBundleRequest())
+            ->setSchemaBundle($schemaBundle);
+        $response = $gapicClient->updateSchemaBundle($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateSchemaBundleTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /** @test */

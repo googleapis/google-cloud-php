@@ -61,7 +61,9 @@ class SearchEntriesResult extends \Google\Protobuf\Internal\Message
      */
     public function getLinkedResource()
     {
-        @trigger_error('linked_resource is deprecated.', E_USER_DEPRECATED);
+        if ($this->linked_resource !== '') {
+            @trigger_error('linked_resource is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->linked_resource;
     }
 
@@ -123,13 +125,17 @@ class SearchEntriesResult extends \Google\Protobuf\Internal\Message
      */
     public function getSnippets()
     {
-        @trigger_error('snippets is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->snippets)) {
+            @trigger_error('snippets is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->snippets;
     }
 
     public function hasSnippets()
     {
-        @trigger_error('snippets is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->snippets)) {
+            @trigger_error('snippets is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->snippets);
     }
 

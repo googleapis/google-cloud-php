@@ -234,7 +234,9 @@ class DataSharingSettings extends \Google\Protobuf\Internal\Message
      */
     public function getSharingWithGoogleAnySalesEnabled()
     {
-        @trigger_error('sharing_with_google_any_sales_enabled is deprecated.', E_USER_DEPRECATED);
+        if ($this->sharing_with_google_any_sales_enabled !== false) {
+            @trigger_error('sharing_with_google_any_sales_enabled is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->sharing_with_google_any_sales_enabled;
     }
 

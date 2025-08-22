@@ -63,7 +63,7 @@ class Network extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Top most [Ad Unit](google.ads.admanager.v1.AdUnit) to which
      * descendant Ad Units can be added.
-     * Format: networks/{network_code}/adUnit/{ad_unit_id}
+     * Format: networks/{network_code}/adUnits/{ad_unit}
      *
      * Generated from protobuf field <code>string effective_root_ad_unit = 8 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
@@ -107,7 +107,7 @@ class Network extends \Google\Protobuf\Internal\Message
      *     @type string $effective_root_ad_unit
      *           Output only. Top most [Ad Unit](google.ads.admanager.v1.AdUnit) to which
      *           descendant Ad Units can be added.
-     *           Format: networks/{network_code}/adUnit/{ad_unit_id}
+     *           Format: networks/{network_code}/adUnits/{ad_unit}
      *     @type bool $test_network
      *           Output only. Whether this is a test network.
      *     @type int|string $network_id
@@ -310,7 +310,7 @@ class Network extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Top most [Ad Unit](google.ads.admanager.v1.AdUnit) to which
      * descendant Ad Units can be added.
-     * Format: networks/{network_code}/adUnit/{ad_unit_id}
+     * Format: networks/{network_code}/adUnits/{ad_unit}
      *
      * Generated from protobuf field <code>string effective_root_ad_unit = 8 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @return string
@@ -323,7 +323,7 @@ class Network extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Top most [Ad Unit](google.ads.admanager.v1.AdUnit) to which
      * descendant Ad Units can be added.
-     * Format: networks/{network_code}/adUnit/{ad_unit_id}
+     * Format: networks/{network_code}/adUnits/{ad_unit}
      *
      * Generated from protobuf field <code>string effective_root_ad_unit = 8 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @param string $var

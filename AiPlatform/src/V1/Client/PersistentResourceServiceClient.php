@@ -212,6 +212,25 @@ final class PersistentResourceServiceClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * network_attachment resource.
+     *
+     * @param string $project
+     * @param string $region
+     * @param string $networkattachment
+     *
+     * @return string The formatted network_attachment resource.
+     */
+    public static function networkAttachmentName(string $project, string $region, string $networkattachment): string
+    {
+        return self::getPathTemplate('networkAttachment')->render([
+            'project' => $project,
+            'region' => $region,
+            'networkattachment' => $networkattachment,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * persistent_resource resource.
      *
      * @param string $project
@@ -254,6 +273,7 @@ final class PersistentResourceServiceClient
      * Template: Pattern
      * - location: projects/{project}/locations/{location}
      * - network: projects/{project}/global/networks/{network}
+     * - networkAttachment: projects/{project}/regions/{region}/networkAttachments/{networkattachment}
      * - persistentResource: projects/{project}/locations/{location}/persistentResources/{persistent_resource}
      * - reservation: projects/{project_id_or_number}/zones/{zone}/reservations/{reservation_name}
      *

@@ -37,6 +37,9 @@ use Google\Cloud\Dataflow\V1beta3\Job;
  * `projects.jobs.create` is not recommended, as your job will always start
  * in `us-central1`.
  *
+ * Do not enter confidential information when you supply string values using
+ * the API.
+ *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
  *  - It may require correct/in-range values for request initialization.

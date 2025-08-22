@@ -74,6 +74,31 @@ class RequestBuilderTest extends TestCase
         $this->assertEquals('{"referenceProp":"reference"}', (string) $request->getBody());
     }
 
+    public function testBuildsRequestWithObjectQuery()
+    {
+        // assert defining query parameters as arrays is flattened in querystring
+        $request = $this->builder->build('myResource', 'myMethod', [
+            'object' => ['queryParam' => 'object-query'],
+        ]);
+        $uri = $request->getUri();
+        $this->assertEquals('object.queryParam=object-query', $uri->getQuery());
+
+        // assert dot syntax works as well
+        $request = $this->builder->build('myResource', 'myMethod', [
+            'object.queryParam' => 'object-query-with-dot',
+        ]);
+        $uri = $request->getUri();
+        $this->assertEquals('object.queryParam=object-query-with-dot', $uri->getQuery());
+
+        // assert the object syntax takes precedence
+        $request = $this->builder->build('myResource', 'myMethod', [
+            'object' => ['queryParam' => 'object-query'],
+            'object.queryParam' => 'object-query-with-dot',
+        ]);
+        $uri = $request->getUri();
+        $this->assertEquals('object.queryParam=object-query', $uri->getQuery());
+    }
+
     public function testBuildsNestedRequestWithStringSplitting()
     {
         $builder = new RequestBuilder(

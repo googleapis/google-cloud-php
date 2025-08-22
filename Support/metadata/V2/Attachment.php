@@ -20,11 +20,11 @@ class Attachment
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Î
-(google/cloud/support/v2/attachment.protogoogle.cloud.support.v2google/api/resource.proto#google/cloud/support/v2/actor.protogoogle/protobuf/timestamp.proto"Å
+Ó
+(google/cloud/support/v2/attachment.protogoogle.cloud.support.v2google/api/resource.proto#google/cloud/support/v2/actor.protogoogle/protobuf/timestamp.proto"Ñ
 
-Attachment
-name (	B‡A4
+Attachment
+name (	B‡A‡A4
 create_time (2.google.protobuf.TimestampB‡A4
 creator (2.google.cloud.support.v2.ActorB‡A
 filename (	

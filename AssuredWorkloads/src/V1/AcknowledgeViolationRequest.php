@@ -142,7 +142,9 @@ class AcknowledgeViolationRequest extends \Google\Protobuf\Internal\Message
      */
     public function getNonCompliantOrgPolicy()
     {
-        @trigger_error('non_compliant_org_policy is deprecated.', E_USER_DEPRECATED);
+        if ($this->non_compliant_org_policy !== '') {
+            @trigger_error('non_compliant_org_policy is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->non_compliant_org_policy;
     }
 

@@ -17,17 +17,18 @@ use Google\Protobuf\Internal\GPBUtil;
 class QuotaAdjusterSettings extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Identifier. Name of the configuration, in the following format:
-     *   `projects/PROJECT_NUMBER/locations/global/quotaAdjusterSettings`.
-     * Replace PROJECT_NUMBER with the project number for your project.
+     * Identifier. Name of the config would be of the format:
+     *   projects/PROJECT_NUMBER/locations/global/quotaAdjusterSettings
+     *   folders/FOLDER_NUMBER/locations/global/quotaAdjusterSettings
+     *   organizations/ORGANIZATION_NUMBER/locations/global/quotaAdjusterSettings
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
-     * Required. The configured value of the enablement at the given resource.
+     * Optional. The configured value of the enablement at the given resource.
      *
-     * Generated from protobuf field <code>.google.api.cloudquotas.v1beta.QuotaAdjusterSettings.Enablement enablement = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.api.cloudquotas.v1beta.QuotaAdjusterSettings.Enablement enablement = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $enablement = 0;
     /**
@@ -46,6 +47,24 @@ class QuotaAdjusterSettings extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string etag = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $etag = '';
+    /**
+     * Optional. Indicates whether the setting is inherited or explicitly
+     * specified.
+     *
+     * Generated from protobuf field <code>bool inherited = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $inherited = false;
+    /**
+     * Output only. The resource container from which the setting is inherited.
+     * This refers to the  nearest ancestor with enablement set (either ENABLED or
+     * DISABLED). The value can be an organizations/{organization_id},
+     * folders/{folder_id}, or can be 'default' if no ancestor exists with
+     * enablement set. The value will be empty when enablement is directly set on
+     * this container.
+     *
+     * Generated from protobuf field <code>string inherited_from = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $inherited_from = '';
 
     /**
      * Constructor.
@@ -54,11 +73,12 @@ class QuotaAdjusterSettings extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Identifier. Name of the configuration, in the following format:
-     *             `projects/PROJECT_NUMBER/locations/global/quotaAdjusterSettings`.
-     *           Replace PROJECT_NUMBER with the project number for your project.
+     *           Identifier. Name of the config would be of the format:
+     *             projects/PROJECT_NUMBER/locations/global/quotaAdjusterSettings
+     *             folders/FOLDER_NUMBER/locations/global/quotaAdjusterSettings
+     *             organizations/ORGANIZATION_NUMBER/locations/global/quotaAdjusterSettings
      *     @type int $enablement
-     *           Required. The configured value of the enablement at the given resource.
+     *           Optional. The configured value of the enablement at the given resource.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The timestamp when the QuotaAdjusterSettings resource was last
      *           updated.
@@ -67,6 +87,16 @@ class QuotaAdjusterSettings extends \Google\Protobuf\Internal\Message
      *           provided on update and does not match the current server's ETag in the
      *           QuotaAdjusterSettings, the request is blocked and returns an ABORTED error.
      *           See https://google.aip.dev/134#etags for more details on ETags.
+     *     @type bool $inherited
+     *           Optional. Indicates whether the setting is inherited or explicitly
+     *           specified.
+     *     @type string $inherited_from
+     *           Output only. The resource container from which the setting is inherited.
+     *           This refers to the  nearest ancestor with enablement set (either ENABLED or
+     *           DISABLED). The value can be an organizations/{organization_id},
+     *           folders/{folder_id}, or can be 'default' if no ancestor exists with
+     *           enablement set. The value will be empty when enablement is directly set on
+     *           this container.
      * }
      */
     public function __construct($data = NULL) {
@@ -75,9 +105,10 @@ class QuotaAdjusterSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Identifier. Name of the configuration, in the following format:
-     *   `projects/PROJECT_NUMBER/locations/global/quotaAdjusterSettings`.
-     * Replace PROJECT_NUMBER with the project number for your project.
+     * Identifier. Name of the config would be of the format:
+     *   projects/PROJECT_NUMBER/locations/global/quotaAdjusterSettings
+     *   folders/FOLDER_NUMBER/locations/global/quotaAdjusterSettings
+     *   organizations/ORGANIZATION_NUMBER/locations/global/quotaAdjusterSettings
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -88,9 +119,10 @@ class QuotaAdjusterSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Identifier. Name of the configuration, in the following format:
-     *   `projects/PROJECT_NUMBER/locations/global/quotaAdjusterSettings`.
-     * Replace PROJECT_NUMBER with the project number for your project.
+     * Identifier. Name of the config would be of the format:
+     *   projects/PROJECT_NUMBER/locations/global/quotaAdjusterSettings
+     *   folders/FOLDER_NUMBER/locations/global/quotaAdjusterSettings
+     *   organizations/ORGANIZATION_NUMBER/locations/global/quotaAdjusterSettings
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
@@ -105,9 +137,9 @@ class QuotaAdjusterSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The configured value of the enablement at the given resource.
+     * Optional. The configured value of the enablement at the given resource.
      *
-     * Generated from protobuf field <code>.google.api.cloudquotas.v1beta.QuotaAdjusterSettings.Enablement enablement = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.api.cloudquotas.v1beta.QuotaAdjusterSettings.Enablement enablement = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getEnablement()
@@ -116,9 +148,9 @@ class QuotaAdjusterSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The configured value of the enablement at the given resource.
+     * Optional. The configured value of the enablement at the given resource.
      *
-     * Generated from protobuf field <code>.google.api.cloudquotas.v1beta.QuotaAdjusterSettings.Enablement enablement = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.api.cloudquotas.v1beta.QuotaAdjusterSettings.Enablement enablement = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -196,6 +228,70 @@ class QuotaAdjusterSettings extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->etag = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Indicates whether the setting is inherited or explicitly
+     * specified.
+     *
+     * Generated from protobuf field <code>bool inherited = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getInherited()
+    {
+        return $this->inherited;
+    }
+
+    /**
+     * Optional. Indicates whether the setting is inherited or explicitly
+     * specified.
+     *
+     * Generated from protobuf field <code>bool inherited = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setInherited($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->inherited = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The resource container from which the setting is inherited.
+     * This refers to the  nearest ancestor with enablement set (either ENABLED or
+     * DISABLED). The value can be an organizations/{organization_id},
+     * folders/{folder_id}, or can be 'default' if no ancestor exists with
+     * enablement set. The value will be empty when enablement is directly set on
+     * this container.
+     *
+     * Generated from protobuf field <code>string inherited_from = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getInheritedFrom()
+    {
+        return $this->inherited_from;
+    }
+
+    /**
+     * Output only. The resource container from which the setting is inherited.
+     * This refers to the  nearest ancestor with enablement set (either ENABLED or
+     * DISABLED). The value can be an organizations/{organization_id},
+     * folders/{folder_id}, or can be 'default' if no ancestor exists with
+     * enablement set. The value will be empty when enablement is directly set on
+     * this container.
+     *
+     * Generated from protobuf field <code>string inherited_from = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setInheritedFrom($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->inherited_from = $var;
 
         return $this;
     }

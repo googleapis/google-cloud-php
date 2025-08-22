@@ -36,6 +36,7 @@ class Packagist
         private Client $client,
         private string $username,
         private string $apiToken,
+        private ?string $safeApiToken = null,
         private ?OutputInterface $output = null
     ) {
     }
@@ -76,6 +77,11 @@ class Packagist
     public function getApiToken(): string
     {
         return $this->apiToken;
+    }
+
+    public function getSafeApiToken(): ?string
+    {
+        return $this->safeApiToken;
     }
 
     public function getDownloads(string $packageName): int

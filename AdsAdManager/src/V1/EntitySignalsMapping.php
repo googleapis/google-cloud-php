@@ -26,14 +26,14 @@ class EntitySignalsMapping extends \Google\Protobuf\Internal\Message
     /**
      * Output only. `EntitySignalsMapping` ID.
      *
-     * Generated from protobuf field <code>int64 entity_signals_mapping_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional int64 entity_signals_mapping_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $entity_signals_mapping_id = 0;
+    protected $entity_signals_mapping_id = null;
     /**
-     * Required. The IDs of the categories that are associated with the
+     * Optional. The IDs of the categories that are associated with the
      * referencing entity.
      *
-     * Generated from protobuf field <code>repeated int64 taxonomy_category_ids = 6 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>repeated int64 taxonomy_category_ids = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $taxonomy_category_ids;
     protected $entity;
@@ -57,7 +57,7 @@ class EntitySignalsMapping extends \Google\Protobuf\Internal\Message
      *     @type int|string $entity_signals_mapping_id
      *           Output only. `EntitySignalsMapping` ID.
      *     @type array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $taxonomy_category_ids
-     *           Required. The IDs of the categories that are associated with the
+     *           Optional. The IDs of the categories that are associated with the
      *           referencing entity.
      * }
      */
@@ -192,18 +192,28 @@ class EntitySignalsMapping extends \Google\Protobuf\Internal\Message
     /**
      * Output only. `EntitySignalsMapping` ID.
      *
-     * Generated from protobuf field <code>int64 entity_signals_mapping_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional int64 entity_signals_mapping_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int|string
      */
     public function getEntitySignalsMappingId()
     {
-        return $this->entity_signals_mapping_id;
+        return isset($this->entity_signals_mapping_id) ? $this->entity_signals_mapping_id : 0;
+    }
+
+    public function hasEntitySignalsMappingId()
+    {
+        return isset($this->entity_signals_mapping_id);
+    }
+
+    public function clearEntitySignalsMappingId()
+    {
+        unset($this->entity_signals_mapping_id);
     }
 
     /**
      * Output only. `EntitySignalsMapping` ID.
      *
-     * Generated from protobuf field <code>int64 entity_signals_mapping_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional int64 entity_signals_mapping_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int|string $var
      * @return $this
      */
@@ -216,10 +226,10 @@ class EntitySignalsMapping extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The IDs of the categories that are associated with the
+     * Optional. The IDs of the categories that are associated with the
      * referencing entity.
      *
-     * Generated from protobuf field <code>repeated int64 taxonomy_category_ids = 6 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>repeated int64 taxonomy_category_ids = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getTaxonomyCategoryIds()
@@ -228,10 +238,10 @@ class EntitySignalsMapping extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The IDs of the categories that are associated with the
+     * Optional. The IDs of the categories that are associated with the
      * referencing entity.
      *
-     * Generated from protobuf field <code>repeated int64 taxonomy_category_ids = 6 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>repeated int64 taxonomy_category_ids = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

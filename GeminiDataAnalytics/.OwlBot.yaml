@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/cloud/geminidataanalytics/(v1beta)/.*-php/(.*)
+      dest: /owl-bot-staging/GeminiDataAnalytics/$1/$2
+api-name: GeminiDataAnalytics

@@ -64,6 +64,12 @@ class Subject extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string postal_code = 8;</code>
      */
     protected $postal_code = '';
+    /**
+     * This field can be used in place of the named subject fields.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.security.privateca.v1.RelativeDistinguishedName rdn_sequence = 9;</code>
+     */
+    private $rdn_sequence;
 
     /**
      * Constructor.
@@ -87,6 +93,8 @@ class Subject extends \Google\Protobuf\Internal\Message
      *           The street address of the subject.
      *     @type string $postal_code
      *           The postal code of the subject.
+     *     @type array<\Google\Cloud\Security\PrivateCA\V1\RelativeDistinguishedName>|\Google\Protobuf\Internal\RepeatedField $rdn_sequence
+     *           This field can be used in place of the named subject fields.
      * }
      */
     public function __construct($data = NULL) {
@@ -298,6 +306,32 @@ class Subject extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->postal_code = $var;
+
+        return $this;
+    }
+
+    /**
+     * This field can be used in place of the named subject fields.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.security.privateca.v1.RelativeDistinguishedName rdn_sequence = 9;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getRdnSequence()
+    {
+        return $this->rdn_sequence;
+    }
+
+    /**
+     * This field can be used in place of the named subject fields.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.security.privateca.v1.RelativeDistinguishedName rdn_sequence = 9;</code>
+     * @param array<\Google\Cloud\Security\PrivateCA\V1\RelativeDistinguishedName>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setRdnSequence($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Security\PrivateCA\V1\RelativeDistinguishedName::class);
+        $this->rdn_sequence = $arr;
 
         return $this;
     }

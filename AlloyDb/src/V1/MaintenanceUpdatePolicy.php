@@ -21,6 +21,12 @@ class MaintenanceUpdatePolicy extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.alloydb.v1.MaintenanceUpdatePolicy.MaintenanceWindow maintenance_windows = 1;</code>
      */
     private $maintenance_windows;
+    /**
+     * Periods to deny maintenance. Currently limited to 1.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.alloydb.v1.MaintenanceUpdatePolicy.DenyMaintenancePeriod deny_maintenance_periods = 2;</code>
+     */
+    private $deny_maintenance_periods;
 
     /**
      * Constructor.
@@ -30,6 +36,8 @@ class MaintenanceUpdatePolicy extends \Google\Protobuf\Internal\Message
      *
      *     @type array<\Google\Cloud\AlloyDb\V1\MaintenanceUpdatePolicy\MaintenanceWindow>|\Google\Protobuf\Internal\RepeatedField $maintenance_windows
      *           Preferred windows to perform maintenance. Currently limited to 1.
+     *     @type array<\Google\Cloud\AlloyDb\V1\MaintenanceUpdatePolicy\DenyMaintenancePeriod>|\Google\Protobuf\Internal\RepeatedField $deny_maintenance_periods
+     *           Periods to deny maintenance. Currently limited to 1.
      * }
      */
     public function __construct($data = NULL) {
@@ -59,6 +67,32 @@ class MaintenanceUpdatePolicy extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AlloyDb\V1\MaintenanceUpdatePolicy\MaintenanceWindow::class);
         $this->maintenance_windows = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Periods to deny maintenance. Currently limited to 1.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.alloydb.v1.MaintenanceUpdatePolicy.DenyMaintenancePeriod deny_maintenance_periods = 2;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getDenyMaintenancePeriods()
+    {
+        return $this->deny_maintenance_periods;
+    }
+
+    /**
+     * Periods to deny maintenance. Currently limited to 1.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.alloydb.v1.MaintenanceUpdatePolicy.DenyMaintenancePeriod deny_maintenance_periods = 2;</code>
+     * @param array<\Google\Cloud\AlloyDb\V1\MaintenanceUpdatePolicy\DenyMaintenancePeriod>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setDenyMaintenancePeriods($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AlloyDb\V1\MaintenanceUpdatePolicy\DenyMaintenancePeriod::class);
+        $this->deny_maintenance_periods = $arr;
 
         return $this;
     }

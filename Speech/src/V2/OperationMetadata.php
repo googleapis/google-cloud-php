@@ -731,13 +731,17 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateConfigRequest()
     {
-        @trigger_error('update_config_request is deprecated.', E_USER_DEPRECATED);
+        if ($this->hasOneof(21)) {
+            @trigger_error('update_config_request is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->readOneof(21);
     }
 
     public function hasUpdateConfigRequest()
     {
-        @trigger_error('update_config_request is deprecated.', E_USER_DEPRECATED);
+        if ($this->hasOneof(21)) {
+            @trigger_error('update_config_request is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->hasOneof(21);
     }
 

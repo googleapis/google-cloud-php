@@ -20,8 +20,8 @@ class QuotaPreference extends \Google\Protobuf\Internal\Message
     /**
      * Required except in the CREATE requests.
      * The resource name of the quota preference.
-     * The ID component following "locations/" must be "global".
-     * Example:
+     * The path that follows `/locations` must be `/global`.
+     * For example:
      * `projects/123/locations/global/quotaPreferences/my-config-for-us-east1`
      *
      * Generated from protobuf field <code>string name = 1;</code>
@@ -29,16 +29,17 @@ class QuotaPreference extends \Google\Protobuf\Internal\Message
     protected $name = '';
     /**
      * Immutable. The dimensions that this quota preference applies to. The key of
-     * the map entry is the name of a dimension, such as "region", "zone",
-     * "network_id", and the value of the map entry is the dimension value.
+     * the map entry is the name of a dimension, such as `region`, `zone`,
+     * `network_id`, and the value of the map entry is the dimension value.
      * If a dimension is missing from the map of dimensions, the quota preference
      * applies to all the dimension values except for those that have other quota
      * preferences configured for the specific value.
-     * NOTE: QuotaPreferences can only be applied across all values of "user" and
-     * "resource" dimension. Do not set values for "user" or "resource" in the
+     * Note: QuotaPreferences can only be applied across all values of `user` and
+     * `resource` dimension. Do not set values for `user` or `resource` in the
      * dimension map.
-     * Example: {"provider", "Foo Inc"} where "provider" is a service specific
-     * dimension.
+     * For example: `{"provider" : "Example Organization"}` where `provider` is a
+     * service-specific quota dimension and `Example Organization` is the provider
+     * name.
      *
      * Generated from protobuf field <code>map<string, string> dimensions = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
@@ -78,7 +79,7 @@ class QuotaPreference extends \Google\Protobuf\Internal\Message
     protected $service = '';
     /**
      * Required. The id of the quota to which the quota preference is applied. A
-     * quota name is unique in the service. Example: `CpusPerProjectPerRegion`
+     * quota name is unique in the service. For example, `CpusPerProjectPerRegion`
      *
      * Generated from protobuf field <code>string quota_id = 8 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -97,9 +98,9 @@ class QuotaPreference extends \Google\Protobuf\Internal\Message
      */
     protected $justification = '';
     /**
-     * Input only. An email address that can be used to contact the the user, in
-     * case Google Cloud needs more information to make a decision before
-     * additional quota can be granted.
+     * Input only. An email address that can be used to contact the user, in case
+     * Google Cloud needs more information to make a decision before additional
+     * quota can be granted.
      * When requesting a quota increase, the email address is required.
      * When requesting a quota decrease, the email address is optional.
      * For example, the email address is optional when the
@@ -119,21 +120,22 @@ class QuotaPreference extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required except in the CREATE requests.
      *           The resource name of the quota preference.
-     *           The ID component following "locations/" must be "global".
-     *           Example:
+     *           The path that follows `/locations` must be `/global`.
+     *           For example:
      *           `projects/123/locations/global/quotaPreferences/my-config-for-us-east1`
      *     @type array|\Google\Protobuf\Internal\MapField $dimensions
      *           Immutable. The dimensions that this quota preference applies to. The key of
-     *           the map entry is the name of a dimension, such as "region", "zone",
-     *           "network_id", and the value of the map entry is the dimension value.
+     *           the map entry is the name of a dimension, such as `region`, `zone`,
+     *           `network_id`, and the value of the map entry is the dimension value.
      *           If a dimension is missing from the map of dimensions, the quota preference
      *           applies to all the dimension values except for those that have other quota
      *           preferences configured for the specific value.
-     *           NOTE: QuotaPreferences can only be applied across all values of "user" and
-     *           "resource" dimension. Do not set values for "user" or "resource" in the
+     *           Note: QuotaPreferences can only be applied across all values of `user` and
+     *           `resource` dimension. Do not set values for `user` or `resource` in the
      *           dimension map.
-     *           Example: {"provider", "Foo Inc"} where "provider" is a service specific
-     *           dimension.
+     *           For example: `{"provider" : "Example Organization"}` where `provider` is a
+     *           service-specific quota dimension and `Example Organization` is the provider
+     *           name.
      *     @type \Google\Cloud\CloudQuotas\V1beta\QuotaConfig $quota_config
      *           Required. Preferred quota configuration.
      *     @type string $etag
@@ -149,16 +151,16 @@ class QuotaPreference extends \Google\Protobuf\Internal\Message
      *           Required. The name of the service to which the quota preference is applied.
      *     @type string $quota_id
      *           Required. The id of the quota to which the quota preference is applied. A
-     *           quota name is unique in the service. Example: `CpusPerProjectPerRegion`
+     *           quota name is unique in the service. For example, `CpusPerProjectPerRegion`
      *     @type bool $reconciling
      *           Output only. Is the quota preference pending Google Cloud approval and
      *           fulfillment.
      *     @type string $justification
      *           The reason / justification for this quota preference.
      *     @type string $contact_email
-     *           Input only. An email address that can be used to contact the the user, in
-     *           case Google Cloud needs more information to make a decision before
-     *           additional quota can be granted.
+     *           Input only. An email address that can be used to contact the user, in case
+     *           Google Cloud needs more information to make a decision before additional
+     *           quota can be granted.
      *           When requesting a quota increase, the email address is required.
      *           When requesting a quota decrease, the email address is optional.
      *           For example, the email address is optional when the
@@ -174,8 +176,8 @@ class QuotaPreference extends \Google\Protobuf\Internal\Message
     /**
      * Required except in the CREATE requests.
      * The resource name of the quota preference.
-     * The ID component following "locations/" must be "global".
-     * Example:
+     * The path that follows `/locations` must be `/global`.
+     * For example:
      * `projects/123/locations/global/quotaPreferences/my-config-for-us-east1`
      *
      * Generated from protobuf field <code>string name = 1;</code>
@@ -189,8 +191,8 @@ class QuotaPreference extends \Google\Protobuf\Internal\Message
     /**
      * Required except in the CREATE requests.
      * The resource name of the quota preference.
-     * The ID component following "locations/" must be "global".
-     * Example:
+     * The path that follows `/locations` must be `/global`.
+     * For example:
      * `projects/123/locations/global/quotaPreferences/my-config-for-us-east1`
      *
      * Generated from protobuf field <code>string name = 1;</code>
@@ -207,16 +209,17 @@ class QuotaPreference extends \Google\Protobuf\Internal\Message
 
     /**
      * Immutable. The dimensions that this quota preference applies to. The key of
-     * the map entry is the name of a dimension, such as "region", "zone",
-     * "network_id", and the value of the map entry is the dimension value.
+     * the map entry is the name of a dimension, such as `region`, `zone`,
+     * `network_id`, and the value of the map entry is the dimension value.
      * If a dimension is missing from the map of dimensions, the quota preference
      * applies to all the dimension values except for those that have other quota
      * preferences configured for the specific value.
-     * NOTE: QuotaPreferences can only be applied across all values of "user" and
-     * "resource" dimension. Do not set values for "user" or "resource" in the
+     * Note: QuotaPreferences can only be applied across all values of `user` and
+     * `resource` dimension. Do not set values for `user` or `resource` in the
      * dimension map.
-     * Example: {"provider", "Foo Inc"} where "provider" is a service specific
-     * dimension.
+     * For example: `{"provider" : "Example Organization"}` where `provider` is a
+     * service-specific quota dimension and `Example Organization` is the provider
+     * name.
      *
      * Generated from protobuf field <code>map<string, string> dimensions = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -228,16 +231,17 @@ class QuotaPreference extends \Google\Protobuf\Internal\Message
 
     /**
      * Immutable. The dimensions that this quota preference applies to. The key of
-     * the map entry is the name of a dimension, such as "region", "zone",
-     * "network_id", and the value of the map entry is the dimension value.
+     * the map entry is the name of a dimension, such as `region`, `zone`,
+     * `network_id`, and the value of the map entry is the dimension value.
      * If a dimension is missing from the map of dimensions, the quota preference
      * applies to all the dimension values except for those that have other quota
      * preferences configured for the specific value.
-     * NOTE: QuotaPreferences can only be applied across all values of "user" and
-     * "resource" dimension. Do not set values for "user" or "resource" in the
+     * Note: QuotaPreferences can only be applied across all values of `user` and
+     * `resource` dimension. Do not set values for `user` or `resource` in the
      * dimension map.
-     * Example: {"provider", "Foo Inc"} where "provider" is a service specific
-     * dimension.
+     * For example: `{"provider" : "Example Organization"}` where `provider` is a
+     * service-specific quota dimension and `Example Organization` is the provider
+     * name.
      *
      * Generated from protobuf field <code>map<string, string> dimensions = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -419,7 +423,7 @@ class QuotaPreference extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The id of the quota to which the quota preference is applied. A
-     * quota name is unique in the service. Example: `CpusPerProjectPerRegion`
+     * quota name is unique in the service. For example, `CpusPerProjectPerRegion`
      *
      * Generated from protobuf field <code>string quota_id = 8 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -431,7 +435,7 @@ class QuotaPreference extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The id of the quota to which the quota preference is applied. A
-     * quota name is unique in the service. Example: `CpusPerProjectPerRegion`
+     * quota name is unique in the service. For example, `CpusPerProjectPerRegion`
      *
      * Generated from protobuf field <code>string quota_id = 8 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -500,9 +504,9 @@ class QuotaPreference extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input only. An email address that can be used to contact the the user, in
-     * case Google Cloud needs more information to make a decision before
-     * additional quota can be granted.
+     * Input only. An email address that can be used to contact the user, in case
+     * Google Cloud needs more information to make a decision before additional
+     * quota can be granted.
      * When requesting a quota increase, the email address is required.
      * When requesting a quota decrease, the email address is optional.
      * For example, the email address is optional when the
@@ -518,9 +522,9 @@ class QuotaPreference extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input only. An email address that can be used to contact the the user, in
-     * case Google Cloud needs more information to make a decision before
-     * additional quota can be granted.
+     * Input only. An email address that can be used to contact the user, in case
+     * Google Cloud needs more information to make a decision before additional
+     * quota can be granted.
      * When requesting a quota increase, the email address is required.
      * When requesting a quota decrease, the email address is optional.
      * For example, the email address is optional when the

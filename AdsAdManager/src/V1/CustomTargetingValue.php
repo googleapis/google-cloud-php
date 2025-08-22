@@ -18,11 +18,19 @@ class CustomTargetingValue extends \Google\Protobuf\Internal\Message
     /**
      * Identifier. The resource name of the `CustomTargetingValue`.
      * Format:
-     * `networks/{network_code}/customTargetingKeys/{custom_targeting_key_id}/customTargetingValues/{custom_targeting_value_id}`
+     * `networks/{network_code}/customTargetingValues/{custom_targeting_value_id}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
+    /**
+     * Required. Immutable. The resource name of the `CustomTargetingKey`.
+     * Format:
+     * `networks/{network_code}/customTargetingKeys/{custom_targeting_key_id}`
+     *
+     * Generated from protobuf field <code>string custom_targeting_key = 8 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
+     */
+    protected $custom_targeting_key = '';
     /**
      * Immutable. Name of the `CustomTargetingValue`. Values can contain up to 40
      * characters each. You can use alphanumeric characters and symbols other than
@@ -62,7 +70,11 @@ class CustomTargetingValue extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Identifier. The resource name of the `CustomTargetingValue`.
      *           Format:
-     *           `networks/{network_code}/customTargetingKeys/{custom_targeting_key_id}/customTargetingValues/{custom_targeting_value_id}`
+     *           `networks/{network_code}/customTargetingValues/{custom_targeting_value_id}`
+     *     @type string $custom_targeting_key
+     *           Required. Immutable. The resource name of the `CustomTargetingKey`.
+     *           Format:
+     *           `networks/{network_code}/customTargetingKeys/{custom_targeting_key_id}`
      *     @type string $ad_tag_name
      *           Immutable. Name of the `CustomTargetingValue`. Values can contain up to 40
      *           characters each. You can use alphanumeric characters and symbols other than
@@ -86,7 +98,7 @@ class CustomTargetingValue extends \Google\Protobuf\Internal\Message
     /**
      * Identifier. The resource name of the `CustomTargetingValue`.
      * Format:
-     * `networks/{network_code}/customTargetingKeys/{custom_targeting_key_id}/customTargetingValues/{custom_targeting_value_id}`
+     * `networks/{network_code}/customTargetingValues/{custom_targeting_value_id}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -99,7 +111,7 @@ class CustomTargetingValue extends \Google\Protobuf\Internal\Message
     /**
      * Identifier. The resource name of the `CustomTargetingValue`.
      * Format:
-     * `networks/{network_code}/customTargetingKeys/{custom_targeting_key_id}/customTargetingValues/{custom_targeting_value_id}`
+     * `networks/{network_code}/customTargetingValues/{custom_targeting_value_id}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
@@ -109,6 +121,36 @@ class CustomTargetingValue extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Required. Immutable. The resource name of the `CustomTargetingKey`.
+     * Format:
+     * `networks/{network_code}/customTargetingKeys/{custom_targeting_key_id}`
+     *
+     * Generated from protobuf field <code>string custom_targeting_key = 8 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getCustomTargetingKey()
+    {
+        return $this->custom_targeting_key;
+    }
+
+    /**
+     * Required. Immutable. The resource name of the `CustomTargetingKey`.
+     * Format:
+     * `networks/{network_code}/customTargetingKeys/{custom_targeting_key_id}`
+     *
+     * Generated from protobuf field <code>string custom_targeting_key = 8 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCustomTargetingKey($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->custom_targeting_key = $var;
 
         return $this;
     }

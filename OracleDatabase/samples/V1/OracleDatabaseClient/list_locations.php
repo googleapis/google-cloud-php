@@ -26,6 +26,7 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Location\ListLocationsRequest;
+use Google\Cloud\Location\Location;
 use Google\Cloud\OracleDatabase\V1\Client\OracleDatabaseClient;
 
 /**
@@ -50,6 +51,7 @@ function list_locations_sample(): void
         /** @var PagedListResponse $response */
         $response = $oracleDatabaseClient->listLocations($request);
 
+        /** @var Location $element */
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
         }

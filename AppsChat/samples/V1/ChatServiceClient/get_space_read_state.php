@@ -35,7 +35,12 @@ use Google\Apps\Chat\V1\SpaceReadState;
  * state](https://developers.google.com/workspace/chat/get-space-read-state).
  *
  * Requires [user
- * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+ * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+ * with one of the following [authorization
+ * scopes](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes):
+ *
+ * - `https://www.googleapis.com/auth/chat.users.readstate.readonly`
+ * - `https://www.googleapis.com/auth/chat.users.readstate`
  *
  * @param string $formattedName Resource name of the space read state to retrieve.
  *

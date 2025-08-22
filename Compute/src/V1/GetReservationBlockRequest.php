@@ -34,6 +34,13 @@ class GetReservationBlockRequest extends \Google\Protobuf\Internal\Message
      */
     private $reservation_block = '';
     /**
+     * View of the Block.
+     * Check the View enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string view = 3619493;</code>
+     */
+    private $view = null;
+    /**
      * Name of the zone for this request. Zone name should conform to RFC1035.
      *
      * Generated from protobuf field <code>string zone = 3744684 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -71,6 +78,9 @@ class GetReservationBlockRequest extends \Google\Protobuf\Internal\Message
      *           The name of the reservation. Name should conform to RFC1035 or be a resource ID.
      *     @type string $reservation_block
      *           The name of the reservation block. Name should conform to RFC1035 or be a resource ID.
+     *     @type string $view
+     *           View of the Block.
+     *           Check the View enum for the list of possible values.
      *     @type string $zone
      *           Name of the zone for this request. Zone name should conform to RFC1035.
      * }
@@ -154,6 +164,44 @@ class GetReservationBlockRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->reservation_block = $var;
+
+        return $this;
+    }
+
+    /**
+     * View of the Block.
+     * Check the View enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string view = 3619493;</code>
+     * @return string
+     */
+    public function getView()
+    {
+        return isset($this->view) ? $this->view : '';
+    }
+
+    public function hasView()
+    {
+        return isset($this->view);
+    }
+
+    public function clearView()
+    {
+        unset($this->view);
+    }
+
+    /**
+     * View of the Block.
+     * Check the View enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string view = 3619493;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setView($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->view = $var;
 
         return $this;
     }

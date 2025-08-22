@@ -10,6 +10,11 @@
                 "grpc": {
                     "libraryClient": "DeveloperConnectGapicClient",
                     "rpcs": {
+                        "CreateAccountConnector": {
+                            "methods": [
+                                "createAccountConnector"
+                            ]
+                        },
                         "CreateConnection": {
                             "methods": [
                                 "createConnection"
@@ -20,6 +25,11 @@
                                 "createGitRepositoryLink"
                             ]
                         },
+                        "DeleteAccountConnector": {
+                            "methods": [
+                                "deleteAccountConnector"
+                            ]
+                        },
                         "DeleteConnection": {
                             "methods": [
                                 "deleteConnection"
@@ -28,6 +38,21 @@
                         "DeleteGitRepositoryLink": {
                             "methods": [
                                 "deleteGitRepositoryLink"
+                            ]
+                        },
+                        "DeleteSelf": {
+                            "methods": [
+                                "deleteSelf"
+                            ]
+                        },
+                        "DeleteUser": {
+                            "methods": [
+                                "deleteUser"
+                            ]
+                        },
+                        "FetchAccessToken": {
+                            "methods": [
+                                "fetchAccessToken"
                             ]
                         },
                         "FetchGitHubInstallations": {
@@ -55,6 +80,16 @@
                                 "fetchReadWriteToken"
                             ]
                         },
+                        "FetchSelf": {
+                            "methods": [
+                                "fetchSelf"
+                            ]
+                        },
+                        "GetAccountConnector": {
+                            "methods": [
+                                "getAccountConnector"
+                            ]
+                        },
                         "GetConnection": {
                             "methods": [
                                 "getConnection"
@@ -63,6 +98,11 @@
                         "GetGitRepositoryLink": {
                             "methods": [
                                 "getGitRepositoryLink"
+                            ]
+                        },
+                        "ListAccountConnectors": {
+                            "methods": [
+                                "listAccountConnectors"
                             ]
                         },
                         "ListConnections": {
@@ -75,9 +115,63 @@
                                 "listGitRepositoryLinks"
                             ]
                         },
+                        "ListUsers": {
+                            "methods": [
+                                "listUsers"
+                            ]
+                        },
+                        "UpdateAccountConnector": {
+                            "methods": [
+                                "updateAccountConnector"
+                            ]
+                        },
                         "UpdateConnection": {
                             "methods": [
                                 "updateConnection"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "InsightsConfigService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "InsightsConfigServiceGapicClient",
+                    "rpcs": {
+                        "CreateInsightsConfig": {
+                            "methods": [
+                                "createInsightsConfig"
+                            ]
+                        },
+                        "DeleteInsightsConfig": {
+                            "methods": [
+                                "deleteInsightsConfig"
+                            ]
+                        },
+                        "GetInsightsConfig": {
+                            "methods": [
+                                "getInsightsConfig"
+                            ]
+                        },
+                        "ListInsightsConfigs": {
+                            "methods": [
+                                "listInsightsConfigs"
+                            ]
+                        },
+                        "UpdateInsightsConfig": {
+                            "methods": [
+                                "updateInsightsConfig"
                             ]
                         },
                         "GetLocation": {

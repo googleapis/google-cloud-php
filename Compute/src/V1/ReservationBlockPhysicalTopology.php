@@ -26,6 +26,12 @@ class ReservationBlockPhysicalTopology extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string cluster = 335221242;</code>
      */
     private $cluster = null;
+    /**
+     * The detailed instances information for a given Block
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ReservationBlockPhysicalTopologyInstance instances = 29097598;</code>
+     */
+    private $instances;
 
     /**
      * Constructor.
@@ -37,6 +43,8 @@ class ReservationBlockPhysicalTopology extends \Google\Protobuf\Internal\Message
      *           The hash of the capacity block within the cluster.
      *     @type string $cluster
      *           The cluster name of the reservation block.
+     *     @type array<\Google\Cloud\Compute\V1\ReservationBlockPhysicalTopologyInstance>|\Google\Protobuf\Internal\RepeatedField $instances
+     *           The detailed instances information for a given Block
      * }
      */
     public function __construct($data = NULL) {
@@ -112,6 +120,32 @@ class ReservationBlockPhysicalTopology extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->cluster = $var;
+
+        return $this;
+    }
+
+    /**
+     * The detailed instances information for a given Block
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ReservationBlockPhysicalTopologyInstance instances = 29097598;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getInstances()
+    {
+        return $this->instances;
+    }
+
+    /**
+     * The detailed instances information for a given Block
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ReservationBlockPhysicalTopologyInstance instances = 29097598;</code>
+     * @param array<\Google\Cloud\Compute\V1\ReservationBlockPhysicalTopologyInstance>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setInstances($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Compute\V1\ReservationBlockPhysicalTopologyInstance::class);
+        $this->instances = $arr;
 
         return $this;
     }

@@ -25,7 +25,8 @@ class Input extends \Google\Protobuf\Internal\Message
     /**
      * URI of the media. Input files must be at least 5 seconds in duration and
      * stored in Cloud Storage (for example, `gs://bucket/inputs/file.mp4`).
-     * If empty, the value is populated from `Job.input_uri`. See
+     * If empty, the value is populated from
+     * [Job.input_uri][google.cloud.video.transcoder.v1.Job.input_uri]. See
      * [Supported input and output
      * formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).
      *
@@ -51,7 +52,8 @@ class Input extends \Google\Protobuf\Internal\Message
      *     @type string $uri
      *           URI of the media. Input files must be at least 5 seconds in duration and
      *           stored in Cloud Storage (for example, `gs://bucket/inputs/file.mp4`).
-     *           If empty, the value is populated from `Job.input_uri`. See
+     *           If empty, the value is populated from
+     *           [Job.input_uri][google.cloud.video.transcoder.v1.Job.input_uri]. See
      *           [Supported input and output
      *           formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).
      *     @type \Google\Cloud\Video\Transcoder\V1\PreprocessingConfig $preprocessing_config
@@ -94,7 +96,8 @@ class Input extends \Google\Protobuf\Internal\Message
     /**
      * URI of the media. Input files must be at least 5 seconds in duration and
      * stored in Cloud Storage (for example, `gs://bucket/inputs/file.mp4`).
-     * If empty, the value is populated from `Job.input_uri`. See
+     * If empty, the value is populated from
+     * [Job.input_uri][google.cloud.video.transcoder.v1.Job.input_uri]. See
      * [Supported input and output
      * formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).
      *
@@ -109,7 +112,8 @@ class Input extends \Google\Protobuf\Internal\Message
     /**
      * URI of the media. Input files must be at least 5 seconds in duration and
      * stored in Cloud Storage (for example, `gs://bucket/inputs/file.mp4`).
-     * If empty, the value is populated from `Job.input_uri`. See
+     * If empty, the value is populated from
+     * [Job.input_uri][google.cloud.video.transcoder.v1.Job.input_uri]. See
      * [Supported input and output
      * formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).
      *

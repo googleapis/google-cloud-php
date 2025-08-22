@@ -15,6 +15,15 @@ use Google\Protobuf\Internal\GPBUtil;
  */
 class NotebookRuntimeOptions extends \Google\Protobuf\Internal\Message
 {
+    /**
+     * Optional. The resource name of the [Colab runtime template]
+     * (https://cloud.google.com/colab/docs/runtimes), from which a runtime is
+     * created for notebook executions. If not specified, a runtime is created
+     * with Colab's default specifications.
+     *
+     * Generated from protobuf field <code>string ai_platform_notebook_runtime_template = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    protected $ai_platform_notebook_runtime_template = '';
     protected $execution_sink;
 
     /**
@@ -26,6 +35,11 @@ class NotebookRuntimeOptions extends \Google\Protobuf\Internal\Message
      *     @type string $gcs_output_bucket
      *           Optional. The Google Cloud Storage location to upload the result to.
      *           Format: `gs://bucket-name`.
+     *     @type string $ai_platform_notebook_runtime_template
+     *           Optional. The resource name of the [Colab runtime template]
+     *           (https://cloud.google.com/colab/docs/runtimes), from which a runtime is
+     *           created for notebook executions. If not specified, a runtime is created
+     *           with Colab's default specifications.
      * }
      */
     public function __construct($data = NULL) {
@@ -62,6 +76,38 @@ class NotebookRuntimeOptions extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->writeOneof(1, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. The resource name of the [Colab runtime template]
+     * (https://cloud.google.com/colab/docs/runtimes), from which a runtime is
+     * created for notebook executions. If not specified, a runtime is created
+     * with Colab's default specifications.
+     *
+     * Generated from protobuf field <code>string ai_platform_notebook_runtime_template = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getAiPlatformNotebookRuntimeTemplate()
+    {
+        return $this->ai_platform_notebook_runtime_template;
+    }
+
+    /**
+     * Optional. The resource name of the [Colab runtime template]
+     * (https://cloud.google.com/colab/docs/runtimes), from which a runtime is
+     * created for notebook executions. If not specified, a runtime is created
+     * with Colab's default specifications.
+     *
+     * Generated from protobuf field <code>string ai_platform_notebook_runtime_template = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAiPlatformNotebookRuntimeTemplate($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->ai_platform_notebook_runtime_template = $var;
 
         return $this;
     }

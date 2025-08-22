@@ -231,8 +231,6 @@ class EntitySignalsMappingServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
         $entitySignalsMapping = new EntitySignalsMapping();
-        $entitySignalsMappingTaxonomyCategoryIds = [];
-        $entitySignalsMapping->setTaxonomyCategoryIds($entitySignalsMappingTaxonomyCategoryIds);
         $request = (new CreateEntitySignalsMappingRequest())
             ->setParent($formattedParent)
             ->setEntitySignalsMapping($entitySignalsMapping);
@@ -277,8 +275,6 @@ class EntitySignalsMappingServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
         $entitySignalsMapping = new EntitySignalsMapping();
-        $entitySignalsMappingTaxonomyCategoryIds = [];
-        $entitySignalsMapping->setTaxonomyCategoryIds($entitySignalsMappingTaxonomyCategoryIds);
         $request = (new CreateEntitySignalsMappingRequest())
             ->setParent($formattedParent)
             ->setEntitySignalsMapping($entitySignalsMapping);
@@ -462,8 +458,6 @@ class EntitySignalsMappingServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $entitySignalsMapping = new EntitySignalsMapping();
-        $entitySignalsMappingTaxonomyCategoryIds = [];
-        $entitySignalsMapping->setTaxonomyCategoryIds($entitySignalsMappingTaxonomyCategoryIds);
         $updateMask = new FieldMask();
         $request = (new UpdateEntitySignalsMappingRequest())
             ->setEntitySignalsMapping($entitySignalsMapping)
@@ -508,8 +502,6 @@ class EntitySignalsMappingServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $entitySignalsMapping = new EntitySignalsMapping();
-        $entitySignalsMappingTaxonomyCategoryIds = [];
-        $entitySignalsMapping->setTaxonomyCategoryIds($entitySignalsMappingTaxonomyCategoryIds);
         $updateMask = new FieldMask();
         $request = (new UpdateEntitySignalsMappingRequest())
             ->setEntitySignalsMapping($entitySignalsMapping)

@@ -10,6 +10,8 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * The specifications for retries.
+ * Specifies one or more conditions for which this retry rule applies. Valid
+ * values are:
  *
  * Generated from protobuf message <code>google.cloud.networkservices.v1.GrpcRoute.RetryPolicy</code>
  */

@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class TerraformVariable extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Input variable value.
+     * Optional. Input variable value.
      *
-     * Generated from protobuf field <code>.google.protobuf.Value input_value = 5;</code>
+     * Generated from protobuf field <code>.google.protobuf.Value input_value = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $input_value = null;
 
@@ -29,7 +29,7 @@ class TerraformVariable extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Protobuf\Value $input_value
-     *           Input variable value.
+     *           Optional. Input variable value.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,9 +38,9 @@ class TerraformVariable extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input variable value.
+     * Optional. Input variable value.
      *
-     * Generated from protobuf field <code>.google.protobuf.Value input_value = 5;</code>
+     * Generated from protobuf field <code>.google.protobuf.Value input_value = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Value|null
      */
     public function getInputValue()
@@ -59,9 +59,9 @@ class TerraformVariable extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input variable value.
+     * Optional. Input variable value.
      *
-     * Generated from protobuf field <code>.google.protobuf.Value input_value = 5;</code>
+     * Generated from protobuf field <code>.google.protobuf.Value input_value = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Value $var
      * @return $this
      */

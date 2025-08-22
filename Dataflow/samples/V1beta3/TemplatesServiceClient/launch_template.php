@@ -29,7 +29,13 @@ use Google\Cloud\Dataflow\V1beta3\LaunchTemplateRequest;
 use Google\Cloud\Dataflow\V1beta3\LaunchTemplateResponse;
 
 /**
- * Launch a template.
+ * Launches a template.
+ *
+ * To launch a template, we recommend using
+ * `projects.locations.templates.launch` with a [regional endpoint]
+ * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using
+ * `projects.templates.launch` is not recommended, because jobs launched
+ * from the template will always start in `us-central1`.
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:

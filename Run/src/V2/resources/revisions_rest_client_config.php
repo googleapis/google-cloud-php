@@ -26,6 +26,12 @@ return [
             'DeleteRevision' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v2/{name=projects/*/locations/*/services/*/revisions/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/workerPools/*/revisions/*}',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -37,6 +43,12 @@ return [
             'GetRevision' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{name=projects/*/locations/*/services/*/revisions/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/workerPools/*/revisions/*}',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -48,6 +60,12 @@ return [
             'ListRevisions' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{parent=projects/*/locations/*/services/*}/revisions',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=projects/*/locations/*/workerPools/*}/revisions',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [

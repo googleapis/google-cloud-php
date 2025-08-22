@@ -151,6 +151,7 @@ use Google\Analytics\Admin\V1alpha\GetRollupPropertySourceLinkRequest;
 use Google\Analytics\Admin\V1alpha\GetSKAdNetworkConversionValueSchemaRequest;
 use Google\Analytics\Admin\V1alpha\GetSearchAds360LinkRequest;
 use Google\Analytics\Admin\V1alpha\GetSubpropertyEventFilterRequest;
+use Google\Analytics\Admin\V1alpha\GetSubpropertySyncConfigRequest;
 use Google\Analytics\Admin\V1alpha\GlobalSiteTag;
 use Google\Analytics\Admin\V1alpha\GoogleAdsLink;
 use Google\Analytics\Admin\V1alpha\GoogleSignalsSettings;
@@ -184,6 +185,7 @@ use Google\Analytics\Admin\V1alpha\ListRollupPropertySourceLinksRequest;
 use Google\Analytics\Admin\V1alpha\ListSKAdNetworkConversionValueSchemasRequest;
 use Google\Analytics\Admin\V1alpha\ListSearchAds360LinksRequest;
 use Google\Analytics\Admin\V1alpha\ListSubpropertyEventFiltersRequest;
+use Google\Analytics\Admin\V1alpha\ListSubpropertySyncConfigsRequest;
 use Google\Analytics\Admin\V1alpha\MeasurementProtocolSecret;
 use Google\Analytics\Admin\V1alpha\Property;
 use Google\Analytics\Admin\V1alpha\ProvisionAccountTicketRequest;
@@ -203,6 +205,7 @@ use Google\Analytics\Admin\V1alpha\SetAutomatedGa4ConfigurationOptOutResponse;
 use Google\Analytics\Admin\V1alpha\SubmitUserDeletionRequest;
 use Google\Analytics\Admin\V1alpha\SubmitUserDeletionResponse;
 use Google\Analytics\Admin\V1alpha\SubpropertyEventFilter;
+use Google\Analytics\Admin\V1alpha\SubpropertySyncConfig;
 use Google\Analytics\Admin\V1alpha\UpdateAccessBindingRequest;
 use Google\Analytics\Admin\V1alpha\UpdateAccountRequest;
 use Google\Analytics\Admin\V1alpha\UpdateAttributionSettingsRequest;
@@ -230,6 +233,7 @@ use Google\Analytics\Admin\V1alpha\UpdateReportingDataAnnotationRequest;
 use Google\Analytics\Admin\V1alpha\UpdateSKAdNetworkConversionValueSchemaRequest;
 use Google\Analytics\Admin\V1alpha\UpdateSearchAds360LinkRequest;
 use Google\Analytics\Admin\V1alpha\UpdateSubpropertyEventFilterRequest;
+use Google\Analytics\Admin\V1alpha\UpdateSubpropertySyncConfigRequest;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
@@ -349,6 +353,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<SKAdNetworkConversionValueSchema> getSKAdNetworkConversionValueSchemaAsync(GetSKAdNetworkConversionValueSchemaRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<SearchAds360Link> getSearchAds360LinkAsync(GetSearchAds360LinkRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<SubpropertyEventFilter> getSubpropertyEventFilterAsync(GetSubpropertyEventFilterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SubpropertySyncConfig> getSubpropertySyncConfigAsync(GetSubpropertySyncConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listAccessBindingsAsync(ListAccessBindingsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listAccountSummariesAsync(ListAccountSummariesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listAccountsAsync(ListAccountsRequest $request, array $optionalArgs = [])
@@ -377,6 +382,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<PagedListResponse> listSKAdNetworkConversionValueSchemasAsync(ListSKAdNetworkConversionValueSchemasRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listSearchAds360LinksAsync(ListSearchAds360LinksRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listSubpropertyEventFiltersAsync(ListSubpropertyEventFiltersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listSubpropertySyncConfigsAsync(ListSubpropertySyncConfigsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ProvisionAccountTicketResponse> provisionAccountTicketAsync(ProvisionAccountTicketRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ProvisionSubpropertyResponse> provisionSubpropertyAsync(ProvisionSubpropertyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> reorderEventEditRulesAsync(ReorderEventEditRulesRequest $request, array $optionalArgs = [])
@@ -411,6 +417,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<SKAdNetworkConversionValueSchema> updateSKAdNetworkConversionValueSchemaAsync(UpdateSKAdNetworkConversionValueSchemaRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<SearchAds360Link> updateSearchAds360LinkAsync(UpdateSearchAds360LinkRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<SubpropertyEventFilter> updateSubpropertyEventFilterAsync(UpdateSubpropertyEventFilterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SubpropertySyncConfig> updateSubpropertySyncConfigAsync(UpdateSubpropertySyncConfigRequest $request, array $optionalArgs = [])
  */
 final class AnalyticsAdminServiceClient
 {
@@ -1152,6 +1159,25 @@ final class AnalyticsAdminServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * subproperty_sync_config resource.
+     *
+     * @param string $property
+     * @param string $subpropertySyncConfig
+     *
+     * @return string The formatted subproperty_sync_config resource.
+     *
+     * @experimental
+     */
+    public static function subpropertySyncConfigName(string $property, string $subpropertySyncConfig): string
+    {
+        return self::getPathTemplate('subpropertySyncConfig')->render([
+            'property' => $property,
+            'subproperty_sync_config' => $subpropertySyncConfig,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
@@ -1191,6 +1217,7 @@ final class AnalyticsAdminServiceClient
      * - sKAdNetworkConversionValueSchema: properties/{property}/dataStreams/{data_stream}/sKAdNetworkConversionValueSchema/{skadnetwork_conversion_value_schema}
      * - searchAds360Link: properties/{property}/searchAds360Links/{search_ads_360_link}
      * - subpropertyEventFilter: properties/{property}/subpropertyEventFilters/{sub_property_event_filter}
+     * - subpropertySyncConfig: properties/{property}/subpropertySyncConfigs/{subproperty_sync_config}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -4119,6 +4146,37 @@ final class AnalyticsAdminServiceClient
     }
 
     /**
+     * Lookup for a single Subproperty Sync Config.
+     *
+     * The async variant is
+     * {@see AnalyticsAdminServiceClient::getSubpropertySyncConfigAsync()} .
+     *
+     * @example samples/V1alpha/AnalyticsAdminServiceClient/get_subproperty_sync_config.php
+     *
+     * @param GetSubpropertySyncConfigRequest $request     A request to house fields associated with the call.
+     * @param array                           $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return SubpropertySyncConfig
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function getSubpropertySyncConfig(
+        GetSubpropertySyncConfigRequest $request,
+        array $callOptions = []
+    ): SubpropertySyncConfig {
+        return $this->startApiCall('GetSubpropertySyncConfig', $request, $callOptions)->wait();
+    }
+
+    /**
      * Lists all access bindings on an account or property.
      *
      * The async variant is
@@ -4979,6 +5037,37 @@ final class AnalyticsAdminServiceClient
         array $callOptions = []
     ): PagedListResponse {
         return $this->startApiCall('ListSubpropertyEventFilters', $request, $callOptions);
+    }
+
+    /**
+     * List all Subproperty Sync Configs on a property.
+     *
+     * The async variant is
+     * {@see AnalyticsAdminServiceClient::listSubpropertySyncConfigsAsync()} .
+     *
+     * @example samples/V1alpha/AnalyticsAdminServiceClient/list_subproperty_sync_configs.php
+     *
+     * @param ListSubpropertySyncConfigsRequest $request     A request to house fields associated with the call.
+     * @param array                             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function listSubpropertySyncConfigs(
+        ListSubpropertySyncConfigsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListSubpropertySyncConfigs', $request, $callOptions);
     }
 
     /**
@@ -6033,5 +6122,36 @@ final class AnalyticsAdminServiceClient
         array $callOptions = []
     ): SubpropertyEventFilter {
         return $this->startApiCall('UpdateSubpropertyEventFilter', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates a Subproperty Sync Config.
+     *
+     * The async variant is
+     * {@see AnalyticsAdminServiceClient::updateSubpropertySyncConfigAsync()} .
+     *
+     * @example samples/V1alpha/AnalyticsAdminServiceClient/update_subproperty_sync_config.php
+     *
+     * @param UpdateSubpropertySyncConfigRequest $request     A request to house fields associated with the call.
+     * @param array                              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return SubpropertySyncConfig
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function updateSubpropertySyncConfig(
+        UpdateSubpropertySyncConfigRequest $request,
+        array $callOptions = []
+    ): SubpropertySyncConfig {
+        return $this->startApiCall('UpdateSubpropertySyncConfig', $request, $callOptions)->wait();
     }
 }

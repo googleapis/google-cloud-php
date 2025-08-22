@@ -17,14 +17,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class DimensionsInfo extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The map of dimensions for this dimensions info. The key of a map entry
-     * is "region", "zone" or the name of a service specific dimension, and the
-     * value of a map entry is the value of the dimension.  If a dimension does
+     * The map of dimensions in key-value pairs. The key of a map entry
+     * is "region", "zone", or the name of a service-specific dimension, and the
+     * value of a map entry is the value of the dimension. If a dimension does
      * not appear in the map of dimensions, the dimensions info applies to all
-     * the dimension values except for those that have another DimenisonInfo
+     * the dimension values except for those that have another DimensionInfo
      * instance configured for the specific value.
-     * Example: {"provider" : "Foo Inc"} where "provider" is a service specific
-     * dimension of a quota.
+     * For example: `{"provider" : "Example Organization"}` where `provider` is a
+     * service-specific quota dimension and `Example Organization` is the provider
+     * name.
      *
      * Generated from protobuf field <code>map<string, string> dimensions = 1;</code>
      */
@@ -36,7 +37,7 @@ class DimensionsInfo extends \Google\Protobuf\Internal\Message
      */
     protected $details = null;
     /**
-     * The applicable regions or zones of this dimensions info. The field will be
+     * The applicable regions or zones of this dimension. The field is
      * set to ['global'] for quotas that are not per region or per zone.
      * Otherwise, it will be set to the list of locations this dimension info is
      * applicable to.
@@ -52,18 +53,19 @@ class DimensionsInfo extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array|\Google\Protobuf\Internal\MapField $dimensions
-     *           The map of dimensions for this dimensions info. The key of a map entry
-     *           is "region", "zone" or the name of a service specific dimension, and the
-     *           value of a map entry is the value of the dimension.  If a dimension does
+     *           The map of dimensions in key-value pairs. The key of a map entry
+     *           is "region", "zone", or the name of a service-specific dimension, and the
+     *           value of a map entry is the value of the dimension. If a dimension does
      *           not appear in the map of dimensions, the dimensions info applies to all
-     *           the dimension values except for those that have another DimenisonInfo
+     *           the dimension values except for those that have another DimensionInfo
      *           instance configured for the specific value.
-     *           Example: {"provider" : "Foo Inc"} where "provider" is a service specific
-     *           dimension of a quota.
+     *           For example: `{"provider" : "Example Organization"}` where `provider` is a
+     *           service-specific quota dimension and `Example Organization` is the provider
+     *           name.
      *     @type \Google\Cloud\CloudQuotas\V1beta\QuotaDetails $details
      *           Quota details for the specified dimensions.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $applicable_locations
-     *           The applicable regions or zones of this dimensions info. The field will be
+     *           The applicable regions or zones of this dimension. The field is
      *           set to ['global'] for quotas that are not per region or per zone.
      *           Otherwise, it will be set to the list of locations this dimension info is
      *           applicable to.
@@ -75,14 +77,15 @@ class DimensionsInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The map of dimensions for this dimensions info. The key of a map entry
-     * is "region", "zone" or the name of a service specific dimension, and the
-     * value of a map entry is the value of the dimension.  If a dimension does
+     * The map of dimensions in key-value pairs. The key of a map entry
+     * is "region", "zone", or the name of a service-specific dimension, and the
+     * value of a map entry is the value of the dimension. If a dimension does
      * not appear in the map of dimensions, the dimensions info applies to all
-     * the dimension values except for those that have another DimenisonInfo
+     * the dimension values except for those that have another DimensionInfo
      * instance configured for the specific value.
-     * Example: {"provider" : "Foo Inc"} where "provider" is a service specific
-     * dimension of a quota.
+     * For example: `{"provider" : "Example Organization"}` where `provider` is a
+     * service-specific quota dimension and `Example Organization` is the provider
+     * name.
      *
      * Generated from protobuf field <code>map<string, string> dimensions = 1;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -93,14 +96,15 @@ class DimensionsInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The map of dimensions for this dimensions info. The key of a map entry
-     * is "region", "zone" or the name of a service specific dimension, and the
-     * value of a map entry is the value of the dimension.  If a dimension does
+     * The map of dimensions in key-value pairs. The key of a map entry
+     * is "region", "zone", or the name of a service-specific dimension, and the
+     * value of a map entry is the value of the dimension. If a dimension does
      * not appear in the map of dimensions, the dimensions info applies to all
-     * the dimension values except for those that have another DimenisonInfo
+     * the dimension values except for those that have another DimensionInfo
      * instance configured for the specific value.
-     * Example: {"provider" : "Foo Inc"} where "provider" is a service specific
-     * dimension of a quota.
+     * For example: `{"provider" : "Example Organization"}` where `provider` is a
+     * service-specific quota dimension and `Example Organization` is the provider
+     * name.
      *
      * Generated from protobuf field <code>map<string, string> dimensions = 1;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -151,7 +155,7 @@ class DimensionsInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The applicable regions or zones of this dimensions info. The field will be
+     * The applicable regions or zones of this dimension. The field is
      * set to ['global'] for quotas that are not per region or per zone.
      * Otherwise, it will be set to the list of locations this dimension info is
      * applicable to.
@@ -165,7 +169,7 @@ class DimensionsInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The applicable regions or zones of this dimensions info. The field will be
+     * The applicable regions or zones of this dimension. The field is
      * set to ['global'] for quotas that are not per region or per zone.
      * Otherwise, it will be set to the list of locations this dimension info is
      * applicable to.

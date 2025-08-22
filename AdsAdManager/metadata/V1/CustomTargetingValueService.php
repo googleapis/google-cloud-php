@@ -21,14 +21,14 @@ class CustomTargetingValueService
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-
+’
 <google/ads/admanager/v1/custom_targeting_value_service.protogoogle.ads.admanager.v1google/api/annotations.protogoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto"e
 GetCustomTargetingValueRequestC
 name (	B5àAúA/
--admanager.googleapis.com/CustomTargetingValue"×
- ListCustomTargetingValuesRequestC
-parent (	B3àAúA-
-+admanager.googleapis.com/CustomTargetingKey
+-admanager.googleapis.com/CustomTargetingValue"Ì
+ ListCustomTargetingValuesRequest8
+parent (	B(àAúA"
+ admanager.googleapis.com/Network
 	page_size (BàA
 
 page_token (	BàA
@@ -39,10 +39,10 @@ page_token (	BàA
 custom_targeting_values (2-.google.ads.admanager.v1.CustomTargetingValue
 next_page_token (	
 
-total_size (2ı
-CustomTargetingValueServiceÕ
-GetCustomTargetingValue7.google.ads.admanager.v1.GetCustomTargetingValueRequest-.google.ads.admanager.v1.CustomTargetingValue"RÚAname‚Óä“EC/v1/{name=networks/*/customTargetingKeys/*/customTargetingValues/*}è
-ListCustomTargetingValues9.google.ads.admanager.v1.ListCustomTargetingValuesRequest:.google.ads.admanager.v1.ListCustomTargetingValuesResponse"TÚAparent‚Óä“EC/v1/{parent=networks/*/customTargetingKeys/*}/customTargetingValuesÊAadmanager.googleapis.comBÔ
+total_size (2
+CustomTargetingValueService‡
+GetCustomTargetingValue7.google.ads.admanager.v1.GetCustomTargetingValueRequest-.google.ads.admanager.v1.CustomTargetingValue"ƒÚAname‚Óä“v-/v1/{name=networks/*/customTargetingValues/*}ZEC/v1/{name=networks/*/customTargetingKeys/*/customTargetingValues/*}š
+ListCustomTargetingValues9.google.ads.admanager.v1.ListCustomTargetingValuesRequest:.google.ads.admanager.v1.ListCustomTargetingValuesResponse"…ÚAparent‚Óä“v-/v1/{parent=networks/*}/customTargetingValuesZEC/v1/{parent=networks/*/customTargetingKeys/*}/customTargetingValuesGÊAadmanager.googleapis.comÒA)https://www.googleapis.com/auth/admanagerBÔ
 com.google.ads.admanager.v1B CustomTargetingValueServiceProtoPZ@google.golang.org/genproto/googleapis/ads/admanager/v1;admanagerªGoogle.Ads.AdManager.V1ÊGoogle\\Ads\\AdManager\\V1êGoogle::Ads::AdManager::V1bproto3'
         , true);
 

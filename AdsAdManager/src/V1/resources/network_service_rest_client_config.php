@@ -43,12 +43,6 @@ return [
             'GetOperation' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=networks/*/operations/reports/runs/*}',
-                'additionalBindings' => [
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1/{name=networks/*/operations/reports/exports/*}',
-                    ],
-                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [

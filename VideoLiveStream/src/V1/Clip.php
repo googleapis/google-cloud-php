@@ -19,7 +19,7 @@ class Clip extends \Google\Protobuf\Internal\Message
 {
     /**
      * The resource name of the clip, in the following format:
-     * `projects/{project}/locations/{location}/channels/{c}/clips/{clipId}`.
+     * `projects/{project}/locations/{location}/channels/{channelId}/clips/{clipId}`.
      * `{clipId}` is a user-specified resource id that conforms to the following
      * criteria:
      * 1. 1 character minimum, 63 characters maximum
@@ -91,6 +91,13 @@ class Clip extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.video.livestream.v1.Clip.ClipManifest clip_manifests = 12 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $clip_manifests;
+    /**
+     * Optional. OutputType of the clip. If not specified, the default value is
+     * MANIFEST.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Clip.OutputType output_type = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $output_type = 0;
 
     /**
      * Constructor.
@@ -100,7 +107,7 @@ class Clip extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           The resource name of the clip, in the following format:
-     *           `projects/{project}/locations/{location}/channels/{c}/clips/{clipId}`.
+     *           `projects/{project}/locations/{location}/channels/{channelId}/clips/{clipId}`.
      *           `{clipId}` is a user-specified resource id that conforms to the following
      *           criteria:
      *           1. 1 character minimum, 63 characters maximum
@@ -132,6 +139,9 @@ class Clip extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\Video\LiveStream\V1\Clip\ClipManifest>|\Google\Protobuf\Internal\RepeatedField $clip_manifests
      *           Required. A list of clip manifests. Currently only one clip manifest is
      *           allowed.
+     *     @type int $output_type
+     *           Optional. OutputType of the clip. If not specified, the default value is
+     *           MANIFEST.
      * }
      */
     public function __construct($data = NULL) {
@@ -141,7 +151,7 @@ class Clip extends \Google\Protobuf\Internal\Message
 
     /**
      * The resource name of the clip, in the following format:
-     * `projects/{project}/locations/{location}/channels/{c}/clips/{clipId}`.
+     * `projects/{project}/locations/{location}/channels/{channelId}/clips/{clipId}`.
      * `{clipId}` is a user-specified resource id that conforms to the following
      * criteria:
      * 1. 1 character minimum, 63 characters maximum
@@ -157,7 +167,7 @@ class Clip extends \Google\Protobuf\Internal\Message
 
     /**
      * The resource name of the clip, in the following format:
-     * `projects/{project}/locations/{location}/channels/{c}/clips/{clipId}`.
+     * `projects/{project}/locations/{location}/channels/{channelId}/clips/{clipId}`.
      * `{clipId}` is a user-specified resource id that conforms to the following
      * criteria:
      * 1. 1 character minimum, 63 characters maximum
@@ -463,6 +473,34 @@ class Clip extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Video\LiveStream\V1\Clip\ClipManifest::class);
         $this->clip_manifests = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. OutputType of the clip. If not specified, the default value is
+     * MANIFEST.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Clip.OutputType output_type = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getOutputType()
+    {
+        return $this->output_type;
+    }
+
+    /**
+     * Optional. OutputType of the clip. If not specified, the default value is
+     * MANIFEST.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Clip.OutputType output_type = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setOutputType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Video\LiveStream\V1\Clip\OutputType::class);
+        $this->output_type = $var;
 
         return $this;
     }

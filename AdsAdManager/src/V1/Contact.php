@@ -26,12 +26,11 @@ class Contact extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * Output only. The unique ID of the contact. This value is readonly and is
-     * assigned by Google.
+     * Output only. The display name of the Company.
      *
-     * Generated from protobuf field <code>int64 contact_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional string company_display_name = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $contact_id = 0;
+    protected $company_display_name = null;
 
     /**
      * Constructor.
@@ -42,9 +41,8 @@ class Contact extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Identifier. The resource name of the `Contact`.
      *           Format: `networks/{network_code}/contacts/{contact_id}`
-     *     @type int|string $contact_id
-     *           Output only. The unique ID of the contact. This value is readonly and is
-     *           assigned by Google.
+     *     @type string $company_display_name
+     *           Output only. The display name of the Company.
      * }
      */
     public function __construct($data = NULL) {
@@ -81,29 +79,37 @@ class Contact extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The unique ID of the contact. This value is readonly and is
-     * assigned by Google.
+     * Output only. The display name of the Company.
      *
-     * Generated from protobuf field <code>int64 contact_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return int|string
+     * Generated from protobuf field <code>optional string company_display_name = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
      */
-    public function getContactId()
+    public function getCompanyDisplayName()
     {
-        return $this->contact_id;
+        return isset($this->company_display_name) ? $this->company_display_name : '';
+    }
+
+    public function hasCompanyDisplayName()
+    {
+        return isset($this->company_display_name);
+    }
+
+    public function clearCompanyDisplayName()
+    {
+        unset($this->company_display_name);
     }
 
     /**
-     * Output only. The unique ID of the contact. This value is readonly and is
-     * assigned by Google.
+     * Output only. The display name of the Company.
      *
-     * Generated from protobuf field <code>int64 contact_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param int|string $var
+     * Generated from protobuf field <code>optional string company_display_name = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
      * @return $this
      */
-    public function setContactId($var)
+    public function setCompanyDisplayName($var)
     {
-        GPBUtil::checkInt64($var);
-        $this->contact_id = $var;
+        GPBUtil::checkString($var, True);
+        $this->company_display_name = $var;
 
         return $this;
     }

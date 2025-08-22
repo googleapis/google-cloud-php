@@ -25,29 +25,29 @@ class Order extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Order ID.
      *
-     * Generated from protobuf field <code>int64 order_id = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional int64 order_id = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $order_id = 0;
+    protected $order_id = null;
     /**
      * Required. The display name of the Order.  This value has a maximum length
      * of 255 characters.
      *
-     * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>optional string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $display_name = '';
+    protected $display_name = null;
     /**
      * Optional. Specifies whether or not the Order is a programmatic order.
      *
-     * Generated from protobuf field <code>bool programmatic = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional bool programmatic = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $programmatic = false;
+    protected $programmatic = null;
     /**
      * Required. The resource name of the User responsible for trafficking the
      * Order. Format: "networks/{network_code}/users/{user_id}"
      *
-     * Generated from protobuf field <code>string trafficker = 23 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>optional string trafficker = 23 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    protected $trafficker = '';
+    protected $trafficker = null;
     /**
      * Optional. The resource names of Contacts from the advertiser of this Order.
      * Format: "networks/{network_code}/contacts/{contact_id}"
@@ -60,9 +60,9 @@ class Order extends \Google\Protobuf\Internal\Message
      * Company.Type.ADVERTISER, to which this order belongs. Format:
      * "networks/{network_code}/companies/{company_id}"
      *
-     * Generated from protobuf field <code>string advertiser = 6 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>optional string advertiser = 6 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    protected $advertiser = '';
+    protected $advertiser = null;
     /**
      * Optional. The resource names of Contacts from the advertising Agency of
      * this Order. Format: "networks/{network_code}/contacts/{contact_id}"
@@ -75,9 +75,9 @@ class Order extends \Google\Protobuf\Internal\Message
      * Company.Type.AGENCY, with which this order is associated. Format:
      * "networks/{network_code}/companies/{company_id}"
      *
-     * Generated from protobuf field <code>string agency = 8 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>optional string agency = 8 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
-    protected $agency = '';
+    protected $agency = null;
     /**
      * Optional. The resource names of Teams directly applied to this Order.
      * Format: "networks/{network_code}/teams/{team_id}"
@@ -97,22 +97,22 @@ class Order extends \Google\Protobuf\Internal\Message
      * of the advertiser. This value is assigned by Google. Format:
      * "networks/{network_code}/users/{user_id}"
      *
-     * Generated from protobuf field <code>string creator = 10 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>optional string creator = 10 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    protected $creator = '';
+    protected $creator = null;
     /**
      * Output only. The ISO 4217 3-letter currency code for the currency used by
      * the Order. This value is the network's currency code.
      *
-     * Generated from protobuf field <code>string currency_code = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional string currency_code = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $currency_code = '';
+    protected $currency_code = null;
     /**
      * Output only. The instant at which the Order and its associated line items
      * are eligible to begin serving. This attribute is derived from the line item
      * of the order that has the earliest LineItem.start_time.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional .google.protobuf.Timestamp start_time = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $start_time = null;
     /**
@@ -120,68 +120,68 @@ class Order extends \Google\Protobuf\Internal\Message
      * stop being served. This attribute is derived from the line item of the
      * order that has the latest LineItem.end_time.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional .google.protobuf.Timestamp end_time = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $end_time = null;
     /**
      * Output only. Indicates whether or not this Order has an end time.
      *
-     * Generated from protobuf field <code>bool unlimited_end_time = 45 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional bool unlimited_end_time = 45 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $unlimited_end_time = false;
+    protected $unlimited_end_time = null;
     /**
      * Optional. An arbitrary ID to associate to the Order, which can be used as a
      * key to an external system.
      *
-     * Generated from protobuf field <code>int64 external_order_id = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional int32 external_order_id = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $external_order_id = 0;
+    protected $external_order_id = null;
     /**
      * Output only. The archival status of the Order.
      *
-     * Generated from protobuf field <code>bool archived = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional bool archived = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $archived = false;
+    protected $archived = null;
     /**
      * Output only. The application which modified this order. This attribute is
      * assigned by Google.
      *
-     * Generated from protobuf field <code>string last_modified_by_app = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional string last_modified_by_app = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $last_modified_by_app = '';
+    protected $last_modified_by_app = null;
     /**
      * Output only. The instant this Order was last modified.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional .google.protobuf.Timestamp update_time = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $update_time = null;
     /**
      * Optional. Provides any additional notes that may annotate the Order. This
      * attribute has a maximum length of 65,535 characters.
      *
-     * Generated from protobuf field <code>string notes = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string notes = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $notes = '';
+    protected $notes = null;
     /**
      * Optional. The purchase order number for the Order. This value has a maximum
      * length of 63 characters.
      *
-     * Generated from protobuf field <code>string po_number = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string po_number = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $po_number = '';
+    protected $po_number = null;
     /**
      * Output only. The status of the Order.
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.OrderStatusEnum.OrderStatus status = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.OrderStatusEnum.OrderStatus status = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $status = 0;
+    protected $status = null;
     /**
      * Optional. The resource name of the User responsible for the sales of the
      * Order. Format: "networks/{network_code}/users/{user_id}"
      *
-     * Generated from protobuf field <code>string salesperson = 21 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>optional string salesperson = 21 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
-    protected $salesperson = '';
+    protected $salesperson = null;
     /**
      * Optional. Unordered list. The resource names of the secondary salespeople
      * associated with the order. Format:
@@ -276,7 +276,7 @@ class Order extends \Google\Protobuf\Internal\Message
      *           order that has the latest LineItem.end_time.
      *     @type bool $unlimited_end_time
      *           Output only. Indicates whether or not this Order has an end time.
-     *     @type int|string $external_order_id
+     *     @type int $external_order_id
      *           Optional. An arbitrary ID to associate to the Order, which can be used as a
      *           key to an external system.
      *     @type bool $archived
@@ -352,18 +352,28 @@ class Order extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Order ID.
      *
-     * Generated from protobuf field <code>int64 order_id = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional int64 order_id = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int|string
      */
     public function getOrderId()
     {
-        return $this->order_id;
+        return isset($this->order_id) ? $this->order_id : 0;
+    }
+
+    public function hasOrderId()
+    {
+        return isset($this->order_id);
+    }
+
+    public function clearOrderId()
+    {
+        unset($this->order_id);
     }
 
     /**
      * Output only. Order ID.
      *
-     * Generated from protobuf field <code>int64 order_id = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional int64 order_id = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int|string $var
      * @return $this
      */
@@ -379,19 +389,29 @@ class Order extends \Google\Protobuf\Internal\Message
      * Required. The display name of the Order.  This value has a maximum length
      * of 255 characters.
      *
-     * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>optional string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getDisplayName()
     {
-        return $this->display_name;
+        return isset($this->display_name) ? $this->display_name : '';
+    }
+
+    public function hasDisplayName()
+    {
+        return isset($this->display_name);
+    }
+
+    public function clearDisplayName()
+    {
+        unset($this->display_name);
     }
 
     /**
      * Required. The display name of the Order.  This value has a maximum length
      * of 255 characters.
      *
-     * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>optional string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -406,18 +426,28 @@ class Order extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Specifies whether or not the Order is a programmatic order.
      *
-     * Generated from protobuf field <code>bool programmatic = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional bool programmatic = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getProgrammatic()
     {
-        return $this->programmatic;
+        return isset($this->programmatic) ? $this->programmatic : false;
+    }
+
+    public function hasProgrammatic()
+    {
+        return isset($this->programmatic);
+    }
+
+    public function clearProgrammatic()
+    {
+        unset($this->programmatic);
     }
 
     /**
      * Optional. Specifies whether or not the Order is a programmatic order.
      *
-     * Generated from protobuf field <code>bool programmatic = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional bool programmatic = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
@@ -433,19 +463,29 @@ class Order extends \Google\Protobuf\Internal\Message
      * Required. The resource name of the User responsible for trafficking the
      * Order. Format: "networks/{network_code}/users/{user_id}"
      *
-     * Generated from protobuf field <code>string trafficker = 23 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>optional string trafficker = 23 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getTrafficker()
     {
-        return $this->trafficker;
+        return isset($this->trafficker) ? $this->trafficker : '';
+    }
+
+    public function hasTrafficker()
+    {
+        return isset($this->trafficker);
+    }
+
+    public function clearTrafficker()
+    {
+        unset($this->trafficker);
     }
 
     /**
      * Required. The resource name of the User responsible for trafficking the
      * Order. Format: "networks/{network_code}/users/{user_id}"
      *
-     * Generated from protobuf field <code>string trafficker = 23 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>optional string trafficker = 23 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -490,12 +530,22 @@ class Order extends \Google\Protobuf\Internal\Message
      * Company.Type.ADVERTISER, to which this order belongs. Format:
      * "networks/{network_code}/companies/{company_id}"
      *
-     * Generated from protobuf field <code>string advertiser = 6 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>optional string advertiser = 6 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getAdvertiser()
     {
-        return $this->advertiser;
+        return isset($this->advertiser) ? $this->advertiser : '';
+    }
+
+    public function hasAdvertiser()
+    {
+        return isset($this->advertiser);
+    }
+
+    public function clearAdvertiser()
+    {
+        unset($this->advertiser);
     }
 
     /**
@@ -503,7 +553,7 @@ class Order extends \Google\Protobuf\Internal\Message
      * Company.Type.ADVERTISER, to which this order belongs. Format:
      * "networks/{network_code}/companies/{company_id}"
      *
-     * Generated from protobuf field <code>string advertiser = 6 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>optional string advertiser = 6 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -548,12 +598,22 @@ class Order extends \Google\Protobuf\Internal\Message
      * Company.Type.AGENCY, with which this order is associated. Format:
      * "networks/{network_code}/companies/{company_id}"
      *
-     * Generated from protobuf field <code>string agency = 8 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>optional string agency = 8 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getAgency()
     {
-        return $this->agency;
+        return isset($this->agency) ? $this->agency : '';
+    }
+
+    public function hasAgency()
+    {
+        return isset($this->agency);
+    }
+
+    public function clearAgency()
+    {
+        unset($this->agency);
     }
 
     /**
@@ -561,7 +621,7 @@ class Order extends \Google\Protobuf\Internal\Message
      * Company.Type.AGENCY, with which this order is associated. Format:
      * "networks/{network_code}/companies/{company_id}"
      *
-     * Generated from protobuf field <code>string agency = 8 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>optional string agency = 8 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -634,12 +694,22 @@ class Order extends \Google\Protobuf\Internal\Message
      * of the advertiser. This value is assigned by Google. Format:
      * "networks/{network_code}/users/{user_id}"
      *
-     * Generated from protobuf field <code>string creator = 10 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>optional string creator = 10 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getCreator()
     {
-        return $this->creator;
+        return isset($this->creator) ? $this->creator : '';
+    }
+
+    public function hasCreator()
+    {
+        return isset($this->creator);
+    }
+
+    public function clearCreator()
+    {
+        unset($this->creator);
     }
 
     /**
@@ -647,7 +717,7 @@ class Order extends \Google\Protobuf\Internal\Message
      * of the advertiser. This value is assigned by Google. Format:
      * "networks/{network_code}/users/{user_id}"
      *
-     * Generated from protobuf field <code>string creator = 10 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>optional string creator = 10 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -663,19 +733,29 @@ class Order extends \Google\Protobuf\Internal\Message
      * Output only. The ISO 4217 3-letter currency code for the currency used by
      * the Order. This value is the network's currency code.
      *
-     * Generated from protobuf field <code>string currency_code = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional string currency_code = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getCurrencyCode()
     {
-        return $this->currency_code;
+        return isset($this->currency_code) ? $this->currency_code : '';
+    }
+
+    public function hasCurrencyCode()
+    {
+        return isset($this->currency_code);
+    }
+
+    public function clearCurrencyCode()
+    {
+        unset($this->currency_code);
     }
 
     /**
      * Output only. The ISO 4217 3-letter currency code for the currency used by
      * the Order. This value is the network's currency code.
      *
-     * Generated from protobuf field <code>string currency_code = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional string currency_code = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -692,7 +772,7 @@ class Order extends \Google\Protobuf\Internal\Message
      * are eligible to begin serving. This attribute is derived from the line item
      * of the order that has the earliest LineItem.start_time.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional .google.protobuf.Timestamp start_time = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
      */
     public function getStartTime()
@@ -715,7 +795,7 @@ class Order extends \Google\Protobuf\Internal\Message
      * are eligible to begin serving. This attribute is derived from the line item
      * of the order that has the earliest LineItem.start_time.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional .google.protobuf.Timestamp start_time = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -732,7 +812,7 @@ class Order extends \Google\Protobuf\Internal\Message
      * stop being served. This attribute is derived from the line item of the
      * order that has the latest LineItem.end_time.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional .google.protobuf.Timestamp end_time = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
      */
     public function getEndTime()
@@ -755,7 +835,7 @@ class Order extends \Google\Protobuf\Internal\Message
      * stop being served. This attribute is derived from the line item of the
      * order that has the latest LineItem.end_time.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional .google.protobuf.Timestamp end_time = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -770,18 +850,28 @@ class Order extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Indicates whether or not this Order has an end time.
      *
-     * Generated from protobuf field <code>bool unlimited_end_time = 45 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional bool unlimited_end_time = 45 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return bool
      */
     public function getUnlimitedEndTime()
     {
-        return $this->unlimited_end_time;
+        return isset($this->unlimited_end_time) ? $this->unlimited_end_time : false;
+    }
+
+    public function hasUnlimitedEndTime()
+    {
+        return isset($this->unlimited_end_time);
+    }
+
+    public function clearUnlimitedEndTime()
+    {
+        unset($this->unlimited_end_time);
     }
 
     /**
      * Output only. Indicates whether or not this Order has an end time.
      *
-     * Generated from protobuf field <code>bool unlimited_end_time = 45 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional bool unlimited_end_time = 45 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param bool $var
      * @return $this
      */
@@ -797,25 +887,35 @@ class Order extends \Google\Protobuf\Internal\Message
      * Optional. An arbitrary ID to associate to the Order, which can be used as a
      * key to an external system.
      *
-     * Generated from protobuf field <code>int64 external_order_id = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return int|string
+     * Generated from protobuf field <code>optional int32 external_order_id = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
      */
     public function getExternalOrderId()
     {
-        return $this->external_order_id;
+        return isset($this->external_order_id) ? $this->external_order_id : 0;
+    }
+
+    public function hasExternalOrderId()
+    {
+        return isset($this->external_order_id);
+    }
+
+    public function clearExternalOrderId()
+    {
+        unset($this->external_order_id);
     }
 
     /**
      * Optional. An arbitrary ID to associate to the Order, which can be used as a
      * key to an external system.
      *
-     * Generated from protobuf field <code>int64 external_order_id = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param int|string $var
+     * Generated from protobuf field <code>optional int32 external_order_id = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
      * @return $this
      */
     public function setExternalOrderId($var)
     {
-        GPBUtil::checkInt64($var);
+        GPBUtil::checkInt32($var);
         $this->external_order_id = $var;
 
         return $this;
@@ -824,18 +924,28 @@ class Order extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The archival status of the Order.
      *
-     * Generated from protobuf field <code>bool archived = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional bool archived = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return bool
      */
     public function getArchived()
     {
-        return $this->archived;
+        return isset($this->archived) ? $this->archived : false;
+    }
+
+    public function hasArchived()
+    {
+        return isset($this->archived);
+    }
+
+    public function clearArchived()
+    {
+        unset($this->archived);
     }
 
     /**
      * Output only. The archival status of the Order.
      *
-     * Generated from protobuf field <code>bool archived = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional bool archived = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param bool $var
      * @return $this
      */
@@ -851,19 +961,29 @@ class Order extends \Google\Protobuf\Internal\Message
      * Output only. The application which modified this order. This attribute is
      * assigned by Google.
      *
-     * Generated from protobuf field <code>string last_modified_by_app = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional string last_modified_by_app = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getLastModifiedByApp()
     {
-        return $this->last_modified_by_app;
+        return isset($this->last_modified_by_app) ? $this->last_modified_by_app : '';
+    }
+
+    public function hasLastModifiedByApp()
+    {
+        return isset($this->last_modified_by_app);
+    }
+
+    public function clearLastModifiedByApp()
+    {
+        unset($this->last_modified_by_app);
     }
 
     /**
      * Output only. The application which modified this order. This attribute is
      * assigned by Google.
      *
-     * Generated from protobuf field <code>string last_modified_by_app = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional string last_modified_by_app = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -878,7 +998,7 @@ class Order extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The instant this Order was last modified.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional .google.protobuf.Timestamp update_time = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
      */
     public function getUpdateTime()
@@ -899,7 +1019,7 @@ class Order extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The instant this Order was last modified.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional .google.protobuf.Timestamp update_time = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -915,19 +1035,29 @@ class Order extends \Google\Protobuf\Internal\Message
      * Optional. Provides any additional notes that may annotate the Order. This
      * attribute has a maximum length of 65,535 characters.
      *
-     * Generated from protobuf field <code>string notes = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string notes = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getNotes()
     {
-        return $this->notes;
+        return isset($this->notes) ? $this->notes : '';
+    }
+
+    public function hasNotes()
+    {
+        return isset($this->notes);
+    }
+
+    public function clearNotes()
+    {
+        unset($this->notes);
     }
 
     /**
      * Optional. Provides any additional notes that may annotate the Order. This
      * attribute has a maximum length of 65,535 characters.
      *
-     * Generated from protobuf field <code>string notes = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string notes = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -943,19 +1073,29 @@ class Order extends \Google\Protobuf\Internal\Message
      * Optional. The purchase order number for the Order. This value has a maximum
      * length of 63 characters.
      *
-     * Generated from protobuf field <code>string po_number = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string po_number = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getPoNumber()
     {
-        return $this->po_number;
+        return isset($this->po_number) ? $this->po_number : '';
+    }
+
+    public function hasPoNumber()
+    {
+        return isset($this->po_number);
+    }
+
+    public function clearPoNumber()
+    {
+        unset($this->po_number);
     }
 
     /**
      * Optional. The purchase order number for the Order. This value has a maximum
      * length of 63 characters.
      *
-     * Generated from protobuf field <code>string po_number = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string po_number = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -970,18 +1110,28 @@ class Order extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The status of the Order.
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.OrderStatusEnum.OrderStatus status = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.OrderStatusEnum.OrderStatus status = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
      */
     public function getStatus()
     {
-        return $this->status;
+        return isset($this->status) ? $this->status : 0;
+    }
+
+    public function hasStatus()
+    {
+        return isset($this->status);
+    }
+
+    public function clearStatus()
+    {
+        unset($this->status);
     }
 
     /**
      * Output only. The status of the Order.
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.OrderStatusEnum.OrderStatus status = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.OrderStatusEnum.OrderStatus status = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
      * @return $this
      */
@@ -997,19 +1147,29 @@ class Order extends \Google\Protobuf\Internal\Message
      * Optional. The resource name of the User responsible for the sales of the
      * Order. Format: "networks/{network_code}/users/{user_id}"
      *
-     * Generated from protobuf field <code>string salesperson = 21 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>optional string salesperson = 21 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getSalesperson()
     {
-        return $this->salesperson;
+        return isset($this->salesperson) ? $this->salesperson : '';
+    }
+
+    public function hasSalesperson()
+    {
+        return isset($this->salesperson);
+    }
+
+    public function clearSalesperson()
+    {
+        unset($this->salesperson);
     }
 
     /**
      * Optional. The resource name of the User responsible for the sales of the
      * Order. Format: "networks/{network_code}/users/{user_id}"
      *
-     * Generated from protobuf field <code>string salesperson = 21 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>optional string salesperson = 21 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

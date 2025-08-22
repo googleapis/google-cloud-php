@@ -235,6 +235,25 @@ final class PredictionServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a template
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $template
+     *
+     * @return string The formatted template resource.
+     */
+    public static function templateName(string $project, string $location, string $template): string
+    {
+        return self::getPathTemplate('template')->render([
+            'project' => $project,
+            'location' => $location,
+            'template' => $template,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
@@ -243,6 +262,7 @@ final class PredictionServiceClient
      * - projectLocationEndpoint: projects/{project}/locations/{location}/endpoints/{endpoint}
      * - projectLocationPublisherModel: projects/{project}/locations/{location}/publishers/{publisher}/models/{model}
      * - ragCorpus: projects/{project}/locations/{location}/ragCorpora/{rag_corpus}
+     * - template: projects/{project}/locations/{location}/templates/{template}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is

@@ -36,6 +36,9 @@ class DataProfileAction extends \Google\Protobuf\Internal\Message
      *           Publishes findings to Security Command Center for each data profile.
      *     @type \Google\Cloud\Dlp\V2\DataProfileAction\TagResources $tag_resources
      *           Tags the profiled resources with the specified tag values.
+     *     @type \Google\Cloud\Dlp\V2\DataProfileAction\PublishToDataplexCatalog $publish_to_dataplex_catalog
+     *           Publishes a portion of each profile to Dataplex Catalog with the aspect
+     *           type Sensitive Data Protection Profile.
      * }
      */
     public function __construct($data = NULL) {
@@ -200,6 +203,39 @@ class DataProfileAction extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\DataProfileAction\TagResources::class);
         $this->writeOneof(8, $var);
+
+        return $this;
+    }
+
+    /**
+     * Publishes a portion of each profile to Dataplex Catalog with the aspect
+     * type Sensitive Data Protection Profile.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.DataProfileAction.PublishToDataplexCatalog publish_to_dataplex_catalog = 9;</code>
+     * @return \Google\Cloud\Dlp\V2\DataProfileAction\PublishToDataplexCatalog|null
+     */
+    public function getPublishToDataplexCatalog()
+    {
+        return $this->readOneof(9);
+    }
+
+    public function hasPublishToDataplexCatalog()
+    {
+        return $this->hasOneof(9);
+    }
+
+    /**
+     * Publishes a portion of each profile to Dataplex Catalog with the aspect
+     * type Sensitive Data Protection Profile.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.DataProfileAction.PublishToDataplexCatalog publish_to_dataplex_catalog = 9;</code>
+     * @param \Google\Cloud\Dlp\V2\DataProfileAction\PublishToDataplexCatalog $var
+     * @return $this
+     */
+    public function setPublishToDataplexCatalog($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\DataProfileAction\PublishToDataplexCatalog::class);
+        $this->writeOneof(9, $var);
 
         return $this;
     }

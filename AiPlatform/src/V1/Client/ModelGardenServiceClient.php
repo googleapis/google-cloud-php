@@ -27,12 +27,14 @@ namespace Google\Cloud\AIPlatform\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\AIPlatform\V1\DeployRequest;
 use Google\Cloud\AIPlatform\V1\GetPublisherModelRequest;
 use Google\Cloud\AIPlatform\V1\PublisherModel;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
@@ -43,6 +45,8 @@ use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
+use Google\LongRunning\Client\OperationsClient;
+use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
@@ -57,6 +61,7 @@ use Psr\Log\LoggerInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
+ * @method PromiseInterface<OperationResponse> deployAsync(DeployRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PublisherModel> getPublisherModelAsync(GetPublisherModelRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
@@ -91,6 +96,8 @@ final class ModelGardenServiceClient
     /** The default scopes required by the service. */
     public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
+    private $operationsClient;
+
     private static function getClientDefaults()
     {
         return [
@@ -111,6 +118,73 @@ final class ModelGardenServiceClient
     }
 
     /**
+     * Return an OperationsClient object with the same endpoint as $this.
+     *
+     * @return OperationsClient
+     */
+    public function getOperationsClient()
+    {
+        return $this->operationsClient;
+    }
+
+    /**
+     * Resume an existing long running operation that was previously started by a long
+     * running API method. If $methodName is not provided, or does not match a long
+     * running API method, then the operation can still be resumed, but the
+     * OperationResponse object will not deserialize the final response.
+     *
+     * @param string $operationName The name of the long running operation
+     * @param string $methodName    The name of the method used to start the operation
+     *
+     * @return OperationResponse
+     */
+    public function resumeOperation($operationName, $methodName = null)
+    {
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
+        $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
+        $operation->reload();
+        return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a location
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     *
+     * @return string The formatted location resource.
+     */
+    public static function locationName(string $project, string $location): string
+    {
+        return self::getPathTemplate('location')->render([
+            'project' => $project,
+            'location' => $location,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a
      * publisher_model resource.
      *
@@ -128,10 +202,31 @@ final class ModelGardenServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a reservation
+     * resource.
+     *
+     * @param string $projectIdOrNumber
+     * @param string $zone
+     * @param string $reservationName
+     *
+     * @return string The formatted reservation resource.
+     */
+    public static function reservationName(string $projectIdOrNumber, string $zone, string $reservationName): string
+    {
+        return self::getPathTemplate('reservation')->render([
+            'project_id_or_number' => $projectIdOrNumber,
+            'zone' => $zone,
+            'reservation_name' => $reservationName,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - location: projects/{project}/locations/{location}
      * - publisherModel: publishers/{publisher}/models/{model}
+     * - reservation: projects/{project_id_or_number}/zones/{zone}/reservations/{reservation_name}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -218,6 +313,7 @@ final class ModelGardenServiceClient
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
+        $this->operationsClient = $this->createOperationsClient($clientOptions);
     }
 
     /** Handles execution of the async variants for each documented method. */
@@ -229,6 +325,32 @@ final class ModelGardenServiceClient
 
         array_unshift($args, substr($method, 0, -5));
         return call_user_func_array([$this, 'startAsyncCall'], $args);
+    }
+
+    /**
+     * Deploys a model to a new endpoint.
+     *
+     * The async variant is {@see ModelGardenServiceClient::deployAsync()} .
+     *
+     * @example samples/V1/ModelGardenServiceClient/deploy.php
+     *
+     * @param DeployRequest $request     A request to house fields associated with the call.
+     * @param array         $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deploy(DeployRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('Deploy', $request, $callOptions)->wait();
     }
 
     /**

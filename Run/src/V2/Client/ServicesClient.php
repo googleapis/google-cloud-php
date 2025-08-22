@@ -188,6 +188,25 @@ final class ServicesClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * build_worker_pool resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $workerPool
+     *
+     * @return string The formatted build_worker_pool resource.
+     */
+    public static function buildWorkerPoolName(string $project, string $location, string $workerPool): string
+    {
+        return self::getPathTemplate('buildWorkerPool')->render([
+            'project' => $project,
+            'location' => $location,
+            'worker_pool' => $workerPool,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a connector
      * resource.
      *
@@ -385,29 +404,11 @@ final class ServicesClient
     }
 
     /**
-     * Formats a string containing the fully-qualified path to represent a worker_pool
-     * resource.
-     *
-     * @param string $project
-     * @param string $location
-     * @param string $workerPool
-     *
-     * @return string The formatted worker_pool resource.
-     */
-    public static function workerPoolName(string $project, string $location, string $workerPool): string
-    {
-        return self::getPathTemplate('workerPool')->render([
-            'project' => $project,
-            'location' => $location,
-            'worker_pool' => $workerPool,
-        ]);
-    }
-
-    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - build: projects/{project}/locations/{location}/builds/{build}
+     * - buildWorkerPool: projects/{project}/locations/{location}/workerPools/{worker_pool}
      * - connector: projects/{project}/locations/{location}/connectors/{connector}
      * - cryptoKey: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
      * - location: projects/{project}/locations/{location}
@@ -419,7 +420,6 @@ final class ServicesClient
      * - secret: projects/{project}/secrets/{secret}
      * - secretVersion: projects/{project}/secrets/{secret}/versions/{version}
      * - service: projects/{project}/locations/{location}/services/{service}
-     * - workerPool: projects/{project}/locations/{location}/workerPools/{worker_pool}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is

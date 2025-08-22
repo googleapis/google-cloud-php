@@ -35,9 +35,9 @@ class ProductReview extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A list of product review attributes.
      *
-     * Generated from protobuf field <code>.google.shopping.merchant.reviews.v1beta.ProductReviewAttributes attributes = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.shopping.merchant.reviews.v1beta.ProductReviewAttributes product_review_attributes = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $attributes = null;
+    protected $product_review_attributes = null;
     /**
      * Optional. A list of custom (merchant-provided) attributes.
      *
@@ -71,7 +71,7 @@ class ProductReview extends \Google\Protobuf\Internal\Message
      *     @type string $product_review_id
      *           Required. The permanent, unique identifier for the product review in the
      *           publisher’s system.
-     *     @type \Google\Shopping\Merchant\Reviews\V1beta\ProductReviewAttributes $attributes
+     *     @type \Google\Shopping\Merchant\Reviews\V1beta\ProductReviewAttributes $product_review_attributes
      *           Optional. A list of product review attributes.
      *     @type array<\Google\Shopping\Type\CustomAttribute>|\Google\Protobuf\Internal\RepeatedField $custom_attributes
      *           Optional. A list of custom (merchant-provided) attributes.
@@ -148,35 +148,35 @@ class ProductReview extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A list of product review attributes.
      *
-     * Generated from protobuf field <code>.google.shopping.merchant.reviews.v1beta.ProductReviewAttributes attributes = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.shopping.merchant.reviews.v1beta.ProductReviewAttributes product_review_attributes = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Shopping\Merchant\Reviews\V1beta\ProductReviewAttributes|null
      */
-    public function getAttributes()
+    public function getProductReviewAttributes()
     {
-        return $this->attributes;
+        return $this->product_review_attributes;
     }
 
-    public function hasAttributes()
+    public function hasProductReviewAttributes()
     {
-        return isset($this->attributes);
+        return isset($this->product_review_attributes);
     }
 
-    public function clearAttributes()
+    public function clearProductReviewAttributes()
     {
-        unset($this->attributes);
+        unset($this->product_review_attributes);
     }
 
     /**
      * Optional. A list of product review attributes.
      *
-     * Generated from protobuf field <code>.google.shopping.merchant.reviews.v1beta.ProductReviewAttributes attributes = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.shopping.merchant.reviews.v1beta.ProductReviewAttributes product_review_attributes = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Shopping\Merchant\Reviews\V1beta\ProductReviewAttributes $var
      * @return $this
      */
-    public function setAttributes($var)
+    public function setProductReviewAttributes($var)
     {
         GPBUtil::checkMessage($var, \Google\Shopping\Merchant\Reviews\V1beta\ProductReviewAttributes::class);
-        $this->attributes = $var;
+        $this->product_review_attributes = $var;
 
         return $this;
     }

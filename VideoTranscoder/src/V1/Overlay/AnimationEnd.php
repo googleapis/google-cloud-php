@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * End previous overlay animation from the video. Without AnimationEnd, the
+ * End previous overlay animation from the video. Without `AnimationEnd`, the
  * overlay object will keep the state of previous animation until the end of
  * the video.
  *

@@ -79,6 +79,13 @@ class Process extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int64 parent_pid = 10;</code>
      */
     protected $parent_pid = 0;
+    /**
+     * The ID of the user that executed the process. E.g. If this is the root user
+     * this will always be 0.
+     *
+     * Generated from protobuf field <code>int64 user_id = 11;</code>
+     */
+    protected $user_id = 0;
 
     /**
      * Constructor.
@@ -110,6 +117,9 @@ class Process extends \Google\Protobuf\Internal\Message
      *           The process ID.
      *     @type int|string $parent_pid
      *           The parent process ID.
+     *     @type int|string $user_id
+     *           The ID of the user that executed the process. E.g. If this is the root user
+     *           this will always be 0.
      * }
      */
     public function __construct($data = NULL) {
@@ -401,6 +411,34 @@ class Process extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->parent_pid = $var;
+
+        return $this;
+    }
+
+    /**
+     * The ID of the user that executed the process. E.g. If this is the root user
+     * this will always be 0.
+     *
+     * Generated from protobuf field <code>int64 user_id = 11;</code>
+     * @return int|string
+     */
+    public function getUserId()
+    {
+        return $this->user_id;
+    }
+
+    /**
+     * The ID of the user that executed the process. E.g. If this is the root user
+     * this will always be 0.
+     *
+     * Generated from protobuf field <code>int64 user_id = 11;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setUserId($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->user_id = $var;
 
         return $this;
     }

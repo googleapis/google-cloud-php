@@ -41,6 +41,19 @@ class GcpBackupConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string backup_plan_rules = 4;</code>
      */
     private $backup_plan_rules;
+    /**
+     * The name of the backup plan revision.
+     *
+     * Generated from protobuf field <code>string backup_plan_revision_name = 5;</code>
+     */
+    protected $backup_plan_revision_name = '';
+    /**
+     * The user friendly id of the backup plan revision.
+     * E.g. v0, v1 etc.
+     *
+     * Generated from protobuf field <code>string backup_plan_revision_id = 6;</code>
+     */
+    protected $backup_plan_revision_id = '';
 
     /**
      * Constructor.
@@ -56,6 +69,11 @@ class GcpBackupConfig extends \Google\Protobuf\Internal\Message
      *           The name of the backup plan association.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $backup_plan_rules
      *           The names of the backup plan rules which point to this backupvault
+     *     @type string $backup_plan_revision_name
+     *           The name of the backup plan revision.
+     *     @type string $backup_plan_revision_id
+     *           The user friendly id of the backup plan revision.
+     *           E.g. v0, v1 etc.
      * }
      */
     public function __construct($data = NULL) {
@@ -163,6 +181,60 @@ class GcpBackupConfig extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->backup_plan_rules = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The name of the backup plan revision.
+     *
+     * Generated from protobuf field <code>string backup_plan_revision_name = 5;</code>
+     * @return string
+     */
+    public function getBackupPlanRevisionName()
+    {
+        return $this->backup_plan_revision_name;
+    }
+
+    /**
+     * The name of the backup plan revision.
+     *
+     * Generated from protobuf field <code>string backup_plan_revision_name = 5;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setBackupPlanRevisionName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->backup_plan_revision_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * The user friendly id of the backup plan revision.
+     * E.g. v0, v1 etc.
+     *
+     * Generated from protobuf field <code>string backup_plan_revision_id = 6;</code>
+     * @return string
+     */
+    public function getBackupPlanRevisionId()
+    {
+        return $this->backup_plan_revision_id;
+    }
+
+    /**
+     * The user friendly id of the backup plan revision.
+     * E.g. v0, v1 etc.
+     *
+     * Generated from protobuf field <code>string backup_plan_revision_id = 6;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setBackupPlanRevisionId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->backup_plan_revision_id = $var;
 
         return $this;
     }

@@ -35,7 +35,7 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      * Note - Value provided should be the same as expected from
      * `SELECT current_user;` and NOT as a resource reference.
      *
-     * Generated from protobuf field <code>string user = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string user = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $user = '';
     /**
@@ -198,7 +198,7 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      * Note - Value provided should be the same as expected from
      * `SELECT current_user;` and NOT as a resource reference.
      *
-     * Generated from protobuf field <code>string user = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string user = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getUser()
@@ -211,7 +211,7 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      * Note - Value provided should be the same as expected from
      * `SELECT current_user;` and NOT as a resource reference.
      *
-     * Generated from protobuf field <code>string user = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string user = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

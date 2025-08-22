@@ -85,6 +85,18 @@ class State
      * Generated from protobuf enum <code>ENDED = 11;</code>
      */
     const ENDED = 11;
+    /**
+     * Access is being withdrawn.
+     *
+     * Generated from protobuf enum <code>WITHDRAWING = 12;</code>
+     */
+    const WITHDRAWING = 12;
+    /**
+     * Grant was withdrawn by the grant owner. This is a terminal state.
+     *
+     * Generated from protobuf enum <code>WITHDRAWN = 13;</code>
+     */
+    const WITHDRAWN = 13;
 
     private static $valueToName = [
         self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
@@ -98,6 +110,8 @@ class State
         self::REVOKING => 'REVOKING',
         self::REVOKED => 'REVOKED',
         self::ENDED => 'ENDED',
+        self::WITHDRAWING => 'WITHDRAWING',
+        self::WITHDRAWN => 'WITHDRAWN',
     ];
 
     public static function name($value)

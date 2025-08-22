@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Match file stores (e.g. buckets) using regex filters.
+ * Match file stores (e.g. buckets) using filters.
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.FileStoreCollection</code>
  */

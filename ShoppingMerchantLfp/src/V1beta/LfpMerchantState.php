@@ -30,13 +30,15 @@ class LfpMerchantState extends \Google\Protobuf\Internal\Message
      */
     protected $linked_gbps = 0;
     /**
-     * Output only. The state per store from the specified merchant.
+     * Output only. The state per store from the specified merchant. The field
+     * will be absent if the merchant has no stores submitted through LFP.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.lfp.v1beta.LfpMerchantState.LfpStoreState store_states = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $store_states;
     /**
-     * The inventory statistics for the merchant.
+     * The inventory statistics for the merchant. The field will be absent if the
+     * merchant has no inventory submitted through LFP.
      *
      * Generated from protobuf field <code>.google.shopping.merchant.lfp.v1beta.LfpMerchantState.InventoryStats inventory_stats = 4;</code>
      */
@@ -61,9 +63,11 @@ class LfpMerchantState extends \Google\Protobuf\Internal\Message
      *           Number of [GBPs](https://www.google.com/business/) this merchant has access
      *           to.
      *     @type array<\Google\Shopping\Merchant\Lfp\V1beta\LfpMerchantState\LfpStoreState>|\Google\Protobuf\Internal\RepeatedField $store_states
-     *           Output only. The state per store from the specified merchant.
+     *           Output only. The state per store from the specified merchant. The field
+     *           will be absent if the merchant has no stores submitted through LFP.
      *     @type \Google\Shopping\Merchant\Lfp\V1beta\LfpMerchantState\InventoryStats $inventory_stats
-     *           The inventory statistics for the merchant.
+     *           The inventory statistics for the merchant. The field will be absent if the
+     *           merchant has no inventory submitted through LFP.
      *     @type array<\Google\Shopping\Merchant\Lfp\V1beta\LfpMerchantState\CountrySettings>|\Google\Protobuf\Internal\RepeatedField $country_settings
      *           Country-specific settings for the merchant.
      * }
@@ -130,7 +134,8 @@ class LfpMerchantState extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The state per store from the specified merchant.
+     * Output only. The state per store from the specified merchant. The field
+     * will be absent if the merchant has no stores submitted through LFP.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.lfp.v1beta.LfpMerchantState.LfpStoreState store_states = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -141,7 +146,8 @@ class LfpMerchantState extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The state per store from the specified merchant.
+     * Output only. The state per store from the specified merchant. The field
+     * will be absent if the merchant has no stores submitted through LFP.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.lfp.v1beta.LfpMerchantState.LfpStoreState store_states = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array<\Google\Shopping\Merchant\Lfp\V1beta\LfpMerchantState\LfpStoreState>|\Google\Protobuf\Internal\RepeatedField $var
@@ -156,7 +162,8 @@ class LfpMerchantState extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The inventory statistics for the merchant.
+     * The inventory statistics for the merchant. The field will be absent if the
+     * merchant has no inventory submitted through LFP.
      *
      * Generated from protobuf field <code>.google.shopping.merchant.lfp.v1beta.LfpMerchantState.InventoryStats inventory_stats = 4;</code>
      * @return \Google\Shopping\Merchant\Lfp\V1beta\LfpMerchantState\InventoryStats|null
@@ -177,7 +184,8 @@ class LfpMerchantState extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The inventory statistics for the merchant.
+     * The inventory statistics for the merchant. The field will be absent if the
+     * merchant has no inventory submitted through LFP.
      *
      * Generated from protobuf field <code>.google.shopping.merchant.lfp.v1beta.LfpMerchantState.InventoryStats inventory_stats = 4;</code>
      * @param \Google\Shopping\Merchant\Lfp\V1beta\LfpMerchantState\InventoryStats $var

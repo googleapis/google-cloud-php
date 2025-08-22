@@ -181,6 +181,12 @@ class ChangeHistoryResourceType
      * Generated from protobuf enum <code>REPORTING_DATA_ANNOTATION = 32;</code>
      */
     const REPORTING_DATA_ANNOTATION = 32;
+    /**
+     * SubpropertySyncConfig resource
+     *
+     * Generated from protobuf enum <code>SUBPROPERTY_SYNC_CONFIG = 33;</code>
+     */
+    const SUBPROPERTY_SYNC_CONFIG = 33;
 
     private static $valueToName = [
         self::CHANGE_HISTORY_RESOURCE_TYPE_UNSPECIFIED => 'CHANGE_HISTORY_RESOURCE_TYPE_UNSPECIFIED',
@@ -211,6 +217,7 @@ class ChangeHistoryResourceType
         self::KEY_EVENT => 'KEY_EVENT',
         self::CALCULATED_METRIC => 'CALCULATED_METRIC',
         self::REPORTING_DATA_ANNOTATION => 'REPORTING_DATA_ANNOTATION',
+        self::SUBPROPERTY_SYNC_CONFIG => 'SUBPROPERTY_SYNC_CONFIG',
     ];
 
     public static function name($value)

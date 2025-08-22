@@ -27,6 +27,13 @@ class ProvisionSubpropertyRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.SubpropertyEventFilter subproperty_event_filter = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $subproperty_event_filter = null;
+    /**
+     * Optional. The subproperty feature synchronization mode for Custom
+     * Dimensions and Metrics
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.SubpropertySyncConfig.SynchronizationMode custom_dimension_and_metric_synchronization_mode = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $custom_dimension_and_metric_synchronization_mode = 0;
 
     /**
      * Constructor.
@@ -38,6 +45,9 @@ class ProvisionSubpropertyRequest extends \Google\Protobuf\Internal\Message
      *           Required. The subproperty to create.
      *     @type \Google\Analytics\Admin\V1alpha\SubpropertyEventFilter $subproperty_event_filter
      *           Optional. The subproperty event filter to create on an ordinary property.
+     *     @type int $custom_dimension_and_metric_synchronization_mode
+     *           Optional. The subproperty feature synchronization mode for Custom
+     *           Dimensions and Metrics
      * }
      */
     public function __construct($data = NULL) {
@@ -113,6 +123,34 @@ class ProvisionSubpropertyRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Analytics\Admin\V1alpha\SubpropertyEventFilter::class);
         $this->subproperty_event_filter = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The subproperty feature synchronization mode for Custom
+     * Dimensions and Metrics
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.SubpropertySyncConfig.SynchronizationMode custom_dimension_and_metric_synchronization_mode = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getCustomDimensionAndMetricSynchronizationMode()
+    {
+        return $this->custom_dimension_and_metric_synchronization_mode;
+    }
+
+    /**
+     * Optional. The subproperty feature synchronization mode for Custom
+     * Dimensions and Metrics
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.SubpropertySyncConfig.SynchronizationMode custom_dimension_and_metric_synchronization_mode = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setCustomDimensionAndMetricSynchronizationMode($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Analytics\Admin\V1alpha\SubpropertySyncConfig\SynchronizationMode::class);
+        $this->custom_dimension_and_metric_synchronization_mode = $var;
 
         return $this;
     }

@@ -22,9 +22,9 @@ class SearchCaseClassificationsResponse extends \Google\Protobuf\Internal\Messag
      */
     private $case_classifications;
     /**
-     * A token to retrieve the next page of results. This should be set in the
-     * `page_token` field of subsequent `SearchCaseClassificationsRequest` message
-     * that is issued. If unspecified, there are no more results to retrieve.
+     * A token to retrieve the next page of results. Set this in the `page_token`
+     * field of subsequent `caseClassifications.list` requests. If unspecified,
+     * there are no more results to retrieve.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
@@ -39,9 +39,9 @@ class SearchCaseClassificationsResponse extends \Google\Protobuf\Internal\Messag
      *     @type array<\Google\Cloud\Support\V2\CaseClassification>|\Google\Protobuf\Internal\RepeatedField $case_classifications
      *           The classifications retrieved.
      *     @type string $next_page_token
-     *           A token to retrieve the next page of results. This should be set in the
-     *           `page_token` field of subsequent `SearchCaseClassificationsRequest` message
-     *           that is issued. If unspecified, there are no more results to retrieve.
+     *           A token to retrieve the next page of results. Set this in the `page_token`
+     *           field of subsequent `caseClassifications.list` requests. If unspecified,
+     *           there are no more results to retrieve.
      * }
      */
     public function __construct($data = NULL) {
@@ -76,9 +76,9 @@ class SearchCaseClassificationsResponse extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * A token to retrieve the next page of results. This should be set in the
-     * `page_token` field of subsequent `SearchCaseClassificationsRequest` message
-     * that is issued. If unspecified, there are no more results to retrieve.
+     * A token to retrieve the next page of results. Set this in the `page_token`
+     * field of subsequent `caseClassifications.list` requests. If unspecified,
+     * there are no more results to retrieve.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
@@ -89,9 +89,9 @@ class SearchCaseClassificationsResponse extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * A token to retrieve the next page of results. This should be set in the
-     * `page_token` field of subsequent `SearchCaseClassificationsRequest` message
-     * that is issued. If unspecified, there are no more results to retrieve.
+     * A token to retrieve the next page of results. Set this in the `page_token`
+     * field of subsequent `caseClassifications.list` requests. If unspecified,
+     * there are no more results to retrieve.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var

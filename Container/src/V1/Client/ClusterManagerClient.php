@@ -37,12 +37,15 @@ use Google\Cloud\Container\V1\CancelOperationRequest;
 use Google\Cloud\Container\V1\CheckAutopilotCompatibilityRequest;
 use Google\Cloud\Container\V1\CheckAutopilotCompatibilityResponse;
 use Google\Cloud\Container\V1\Cluster;
+use Google\Cloud\Container\V1\ClusterUpgradeInfo;
 use Google\Cloud\Container\V1\CompleteIPRotationRequest;
 use Google\Cloud\Container\V1\CompleteNodePoolUpgradeRequest;
 use Google\Cloud\Container\V1\CreateClusterRequest;
 use Google\Cloud\Container\V1\CreateNodePoolRequest;
 use Google\Cloud\Container\V1\DeleteClusterRequest;
 use Google\Cloud\Container\V1\DeleteNodePoolRequest;
+use Google\Cloud\Container\V1\FetchClusterUpgradeInfoRequest;
+use Google\Cloud\Container\V1\FetchNodePoolUpgradeInfoRequest;
 use Google\Cloud\Container\V1\GetClusterRequest;
 use Google\Cloud\Container\V1\GetJSONWebKeysRequest;
 use Google\Cloud\Container\V1\GetJSONWebKeysResponse;
@@ -57,6 +60,7 @@ use Google\Cloud\Container\V1\ListOperationsRequest;
 use Google\Cloud\Container\V1\ListOperationsResponse;
 use Google\Cloud\Container\V1\ListUsableSubnetworksRequest;
 use Google\Cloud\Container\V1\NodePool;
+use Google\Cloud\Container\V1\NodePoolUpgradeInfo;
 use Google\Cloud\Container\V1\Operation;
 use Google\Cloud\Container\V1\RollbackNodePoolUpgradeRequest;
 use Google\Cloud\Container\V1\ServerConfig;
@@ -98,6 +102,8 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<Operation> createNodePoolAsync(CreateNodePoolRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Operation> deleteClusterAsync(DeleteClusterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Operation> deleteNodePoolAsync(DeleteNodePoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ClusterUpgradeInfo> fetchClusterUpgradeInfoAsync(FetchClusterUpgradeInfoRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<NodePoolUpgradeInfo> fetchNodePoolUpgradeInfoAsync(FetchNodePoolUpgradeInfoRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Cluster> getClusterAsync(GetClusterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<GetJSONWebKeysResponse> getJSONWebKeysAsync(GetJSONWebKeysRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<NodePool> getNodePoolAsync(GetNodePoolRequest $request, array $optionalArgs = [])
@@ -570,6 +576,64 @@ final class ClusterManagerClient
     public function deleteNodePool(DeleteNodePoolRequest $request, array $callOptions = []): Operation
     {
         return $this->startApiCall('DeleteNodePool', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Fetch upgrade information of a specific cluster.
+     *
+     * The async variant is {@see ClusterManagerClient::fetchClusterUpgradeInfoAsync()}
+     * .
+     *
+     * @example samples/V1/ClusterManagerClient/fetch_cluster_upgrade_info.php
+     *
+     * @param FetchClusterUpgradeInfoRequest $request     A request to house fields associated with the call.
+     * @param array                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ClusterUpgradeInfo
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function fetchClusterUpgradeInfo(
+        FetchClusterUpgradeInfoRequest $request,
+        array $callOptions = []
+    ): ClusterUpgradeInfo {
+        return $this->startApiCall('FetchClusterUpgradeInfo', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Fetch upgrade information of a specific nodepool.
+     *
+     * The async variant is
+     * {@see ClusterManagerClient::fetchNodePoolUpgradeInfoAsync()} .
+     *
+     * @example samples/V1/ClusterManagerClient/fetch_node_pool_upgrade_info.php
+     *
+     * @param FetchNodePoolUpgradeInfoRequest $request     A request to house fields associated with the call.
+     * @param array                           $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return NodePoolUpgradeInfo
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function fetchNodePoolUpgradeInfo(
+        FetchNodePoolUpgradeInfoRequest $request,
+        array $callOptions = []
+    ): NodePoolUpgradeInfo {
+        return $this->startApiCall('FetchNodePoolUpgradeInfo', $request, $callOptions)->wait();
     }
 
     /**

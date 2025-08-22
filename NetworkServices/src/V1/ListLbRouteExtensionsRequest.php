@@ -17,7 +17,7 @@ class ListLbRouteExtensionsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The project and location from which the `LbRouteExtension`
-     * resources are listed, specified in the following format:
+     * resources are listed. These values are specified in the following format:
      * `projects/{project}/locations/{location}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -43,7 +43,7 @@ class ListLbRouteExtensionsRequest extends \Google\Protobuf\Internal\Message
      */
     protected $filter = '';
     /**
-     * Optional. Hint for how to order the results.
+     * Optional. Hint about how to order the results.
      *
      * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -51,7 +51,7 @@ class ListLbRouteExtensionsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The project and location from which the `LbRouteExtension`
-     *                       resources are listed, specified in the following format:
+     *                       resources are listed. These values are specified in the following format:
      *                       `projects/{project}/locations/{location}`. Please see
      *                       {@see DepServiceClient::locationName()} for help formatting this field.
      *
@@ -73,7 +73,7 @@ class ListLbRouteExtensionsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The project and location from which the `LbRouteExtension`
-     *           resources are listed, specified in the following format:
+     *           resources are listed. These values are specified in the following format:
      *           `projects/{project}/locations/{location}`.
      *     @type int $page_size
      *           Optional. Requested page size. The server might return fewer items than
@@ -83,7 +83,7 @@ class ListLbRouteExtensionsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $filter
      *           Optional. Filtering results.
      *     @type string $order_by
-     *           Optional. Hint for how to order the results.
+     *           Optional. Hint about how to order the results.
      * }
      */
     public function __construct($data = NULL) {
@@ -93,7 +93,7 @@ class ListLbRouteExtensionsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The project and location from which the `LbRouteExtension`
-     * resources are listed, specified in the following format:
+     * resources are listed. These values are specified in the following format:
      * `projects/{project}/locations/{location}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -106,7 +106,7 @@ class ListLbRouteExtensionsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The project and location from which the `LbRouteExtension`
-     * resources are listed, specified in the following format:
+     * resources are listed. These values are specified in the following format:
      * `projects/{project}/locations/{location}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -202,7 +202,7 @@ class ListLbRouteExtensionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Hint for how to order the results.
+     * Optional. Hint about how to order the results.
      *
      * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -213,7 +213,7 @@ class ListLbRouteExtensionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Hint for how to order the results.
+     * Optional. Hint about how to order the results.
      *
      * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

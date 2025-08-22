@@ -33,28 +33,18 @@ use Google\Rpc\Status;
 /**
  * Creates a new ServiceBinding in a given project and location.
  *
- * @param string $formattedParent       The parent resource of the ServiceBinding. Must be in the
- *                                      format `projects/&#42;/locations/global`. Please see
- *                                      {@see NetworkServicesClient::locationName()} for help formatting this field.
- * @param string $serviceBindingId      Short name of the ServiceBinding resource to be created.
- * @param string $serviceBindingName    Name of the ServiceBinding resource. It matches pattern
- *                                      `projects/&#42;/locations/global/serviceBindings/service_binding_name`.
- * @param string $serviceBindingService The full service directory service name of the format
- *                                      /projects/&#42;/locations/&#42;/namespaces/&#42;/services/*
+ * @param string $formattedParent  The parent resource of the ServiceBinding. Must be in the
+ *                                 format `projects/&#42;/locations/*`. Please see
+ *                                 {@see NetworkServicesClient::locationName()} for help formatting this field.
+ * @param string $serviceBindingId Short name of the ServiceBinding resource to be created.
  */
-function create_service_binding_sample(
-    string $formattedParent,
-    string $serviceBindingId,
-    string $serviceBindingName,
-    string $serviceBindingService
-): void {
+function create_service_binding_sample(string $formattedParent, string $serviceBindingId): void
+{
     // Create a client.
     $networkServicesClient = new NetworkServicesClient();
 
     // Prepare the request message.
-    $serviceBinding = (new ServiceBinding())
-        ->setName($serviceBindingName)
-        ->setService($serviceBindingService);
+    $serviceBinding = new ServiceBinding();
     $request = (new CreateServiceBindingRequest())
         ->setParent($formattedParent)
         ->setServiceBindingId($serviceBindingId)
@@ -93,14 +83,7 @@ function callSample(): void
 {
     $formattedParent = NetworkServicesClient::locationName('[PROJECT]', '[LOCATION]');
     $serviceBindingId = '[SERVICE_BINDING_ID]';
-    $serviceBindingName = '[NAME]';
-    $serviceBindingService = '[SERVICE]';
 
-    create_service_binding_sample(
-        $formattedParent,
-        $serviceBindingId,
-        $serviceBindingName,
-        $serviceBindingService
-    );
+    create_service_binding_sample($formattedParent, $serviceBindingId);
 }
 // [END networkservices_v1_generated_NetworkServices_CreateServiceBinding_sync]

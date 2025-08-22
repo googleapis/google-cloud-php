@@ -35,8 +35,6 @@ use Google\Rpc\Status;
 /**
  * Updates the parameters of a single GrpcRoute.
  *
- * @param string $grpcRouteName             Name of the GrpcRoute resource. It matches pattern
- *                                          `projects/&#42;/locations/global/grpcRoutes/<grpc_route_name>`
  * @param string $grpcRouteHostnamesElement Service hostnames with an optional port for which this route
  *                                          describes traffic.
  *
@@ -69,7 +67,7 @@ use Google\Rpc\Status;
  *                                          port to match this rule (i.e. "xds:///service:123"), otherwise they must
  *                                          supply the URI without a port (i.e. "xds:///service").
  */
-function update_grpc_route_sample(string $grpcRouteName, string $grpcRouteHostnamesElement): void
+function update_grpc_route_sample(string $grpcRouteHostnamesElement): void
 {
     // Create a client.
     $networkServicesClient = new NetworkServicesClient();
@@ -81,7 +79,6 @@ function update_grpc_route_sample(string $grpcRouteName, string $grpcRouteHostna
         ->setAction($grpcRouteRulesAction);
     $grpcRouteRules = [$routeRule,];
     $grpcRoute = (new GrpcRoute())
-        ->setName($grpcRouteName)
         ->setHostnames($grpcRouteHostnames)
         ->setRules($grpcRouteRules);
     $request = (new UpdateGrpcRouteRequest())
@@ -118,9 +115,8 @@ function update_grpc_route_sample(string $grpcRouteName, string $grpcRouteHostna
  */
 function callSample(): void
 {
-    $grpcRouteName = '[NAME]';
     $grpcRouteHostnamesElement = '[HOSTNAMES]';
 
-    update_grpc_route_sample($grpcRouteName, $grpcRouteHostnamesElement);
+    update_grpc_route_sample($grpcRouteHostnamesElement);
 }
 // [END networkservices_v1_generated_NetworkServices_UpdateGrpcRoute_sync]

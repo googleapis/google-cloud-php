@@ -33,6 +33,13 @@ class RetrievedContext extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string text = 3;</code>
      */
     protected $text = null;
+    /**
+     * Output only. The full document name for the referenced Vertex AI Search
+     * document.
+     *
+     * Generated from protobuf field <code>optional string document_name = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $document_name = null;
     protected $context_details;
 
     /**
@@ -50,6 +57,9 @@ class RetrievedContext extends \Google\Protobuf\Internal\Message
      *           Title of the attribution.
      *     @type string $text
      *           Text of the attribution.
+     *     @type string $document_name
+     *           Output only. The full document name for the referenced Vertex AI Search
+     *           document.
      * }
      */
     public function __construct($data = NULL) {
@@ -194,6 +204,44 @@ class RetrievedContext extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->text = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The full document name for the referenced Vertex AI Search
+     * document.
+     *
+     * Generated from protobuf field <code>optional string document_name = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getDocumentName()
+    {
+        return isset($this->document_name) ? $this->document_name : '';
+    }
+
+    public function hasDocumentName()
+    {
+        return isset($this->document_name);
+    }
+
+    public function clearDocumentName()
+    {
+        unset($this->document_name);
+    }
+
+    /**
+     * Output only. The full document name for the referenced Vertex AI Search
+     * document.
+     *
+     * Generated from protobuf field <code>optional string document_name = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDocumentName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->document_name = $var;
 
         return $this;
     }

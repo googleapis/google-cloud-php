@@ -38,8 +38,8 @@ class ProcessingState
      */
     const SUCCEEDED = 3;
     /**
-     * The job has failed. For additional information, see `failure_reason` and
-     * `failure_details`
+     * The job has failed. For additional information, see
+     * [Troubleshooting](https://cloud.google.com/transcoder/docs/troubleshooting).
      *
      * Generated from protobuf enum <code>FAILED = 4;</code>
      */

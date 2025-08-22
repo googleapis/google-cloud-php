@@ -1344,7 +1344,9 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getVisibility()
     {
-        @trigger_error('visibility is deprecated.', E_USER_DEPRECATED);
+        if ($this->visibility !== 0) {
+            @trigger_error('visibility is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->visibility;
     }
 

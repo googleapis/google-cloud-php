@@ -9,7 +9,10 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A rich link to a resource.
+ * A rich link to a resource. Rich links can be associated with the plain-text
+ * body of the message or represent chips that link to Google Workspace
+ * resources like Google Docs or Sheets with `start_index` and `length`
+ * of 0.
  *
  * Generated from protobuf message <code>google.chat.v1.RichLinkMetadata</code>
  */
@@ -43,6 +46,10 @@ class RichLinkMetadata extends \Google\Protobuf\Internal\Message
      *           Data for a drive link.
      *     @type \Google\Apps\Chat\V1\ChatSpaceLinkData $chat_space_link_data
      *           Data for a chat space link.
+     *     @type \Google\Apps\Chat\V1\MeetSpaceLinkData $meet_space_link_data
+     *           Data for a Meet space link.
+     *     @type \Google\Apps\Chat\V1\CalendarEventLinkData $calendar_event_link_data
+     *           Data for a Calendar event link.
      * }
      */
     public function __construct($data = NULL) {
@@ -160,6 +167,68 @@ class RichLinkMetadata extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Apps\Chat\V1\ChatSpaceLinkData::class);
         $this->writeOneof(4, $var);
+
+        return $this;
+    }
+
+    /**
+     * Data for a Meet space link.
+     *
+     * Generated from protobuf field <code>.google.chat.v1.MeetSpaceLinkData meet_space_link_data = 5;</code>
+     * @return \Google\Apps\Chat\V1\MeetSpaceLinkData|null
+     */
+    public function getMeetSpaceLinkData()
+    {
+        return $this->readOneof(5);
+    }
+
+    public function hasMeetSpaceLinkData()
+    {
+        return $this->hasOneof(5);
+    }
+
+    /**
+     * Data for a Meet space link.
+     *
+     * Generated from protobuf field <code>.google.chat.v1.MeetSpaceLinkData meet_space_link_data = 5;</code>
+     * @param \Google\Apps\Chat\V1\MeetSpaceLinkData $var
+     * @return $this
+     */
+    public function setMeetSpaceLinkData($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Apps\Chat\V1\MeetSpaceLinkData::class);
+        $this->writeOneof(5, $var);
+
+        return $this;
+    }
+
+    /**
+     * Data for a Calendar event link.
+     *
+     * Generated from protobuf field <code>.google.chat.v1.CalendarEventLinkData calendar_event_link_data = 6;</code>
+     * @return \Google\Apps\Chat\V1\CalendarEventLinkData|null
+     */
+    public function getCalendarEventLinkData()
+    {
+        return $this->readOneof(6);
+    }
+
+    public function hasCalendarEventLinkData()
+    {
+        return $this->hasOneof(6);
+    }
+
+    /**
+     * Data for a Calendar event link.
+     *
+     * Generated from protobuf field <code>.google.chat.v1.CalendarEventLinkData calendar_event_link_data = 6;</code>
+     * @param \Google\Apps\Chat\V1\CalendarEventLinkData $var
+     * @return $this
+     */
+    public function setCalendarEventLinkData($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Apps\Chat\V1\CalendarEventLinkData::class);
+        $this->writeOneof(6, $var);
 
         return $this;
     }

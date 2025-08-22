@@ -141,8 +141,11 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
      * notation (e.g. `10.96.0.0/14`) from the RFC-1918 private networks (e.g.
      * `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`) to pick a specific range
      * to use.
+     * This field is deprecated due to the deprecation of 2VM TPU. The end of life
+     * date for 2VM TPU is 2025-04-25.
      *
-     * Generated from protobuf field <code>string tpu_ipv4_cidr_block = 13;</code>
+     * Generated from protobuf field <code>string tpu_ipv4_cidr_block = 13 [deprecated = true];</code>
+     * @deprecated
      */
     protected $tpu_ipv4_cidr_block = '';
     /**
@@ -210,6 +213,22 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>double default_pod_ipv4_range_utilization = 25 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $default_pod_ipv4_range_utilization = 0.0;
+    /**
+     * Output only. The additional IP ranges that are added to the cluster.
+     * These IP ranges can be used by new node pools to allocate node and pod IPs
+     * automatically.
+     * Each AdditionalIPRangesConfig corresponds to a single subnetwork.
+     * Once a range is removed it will not show up in IPAllocationPolicy.
+     *
+     * Generated from protobuf field <code>repeated .google.container.v1.AdditionalIPRangesConfig additional_ip_ranges_configs = 29 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $additional_ip_ranges_configs;
+    /**
+     * Optional. AutoIpamConfig contains all information related to Auto IPAM
+     *
+     * Generated from protobuf field <code>.google.container.v1.AutoIpamConfig auto_ipam_config = 30 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $auto_ipam_config = null;
 
     /**
      * Constructor.
@@ -296,6 +315,8 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
      *           notation (e.g. `10.96.0.0/14`) from the RFC-1918 private networks (e.g.
      *           `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`) to pick a specific range
      *           to use.
+     *           This field is deprecated due to the deprecation of 2VM TPU. The end of life
+     *           date for 2VM TPU is 2025-04-25.
      *     @type bool $use_routes
      *           Whether routes will be used for pod IPs in the cluster.
      *           This is used in conjunction with use_ip_aliases. It cannot be true if
@@ -329,6 +350,14 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
      *           Output only. The utilization of the cluster default IPv4 range for the
      *           pod. The ratio is Usage/[Total number of IPs in the secondary range],
      *           Usage=numNodes*numZones*podIPsPerNode.
+     *     @type array<\Google\Cloud\Container\V1\AdditionalIPRangesConfig>|\Google\Protobuf\Internal\RepeatedField $additional_ip_ranges_configs
+     *           Output only. The additional IP ranges that are added to the cluster.
+     *           These IP ranges can be used by new node pools to allocate node and pod IPs
+     *           automatically.
+     *           Each AdditionalIPRangesConfig corresponds to a single subnetwork.
+     *           Once a range is removed it will not show up in IPAllocationPolicy.
+     *     @type \Google\Cloud\Container\V1\AutoIpamConfig $auto_ipam_config
+     *           Optional. AutoIpamConfig contains all information related to Auto IPAM
      * }
      */
     public function __construct($data = NULL) {
@@ -435,7 +464,9 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
      */
     public function getClusterIpv4Cidr()
     {
-        @trigger_error('cluster_ipv4_cidr is deprecated.', E_USER_DEPRECATED);
+        if ($this->cluster_ipv4_cidr !== '') {
+            @trigger_error('cluster_ipv4_cidr is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->cluster_ipv4_cidr;
     }
 
@@ -465,7 +496,9 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
      */
     public function getNodeIpv4Cidr()
     {
-        @trigger_error('node_ipv4_cidr is deprecated.', E_USER_DEPRECATED);
+        if ($this->node_ipv4_cidr !== '') {
+            @trigger_error('node_ipv4_cidr is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->node_ipv4_cidr;
     }
 
@@ -495,7 +528,9 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
      */
     public function getServicesIpv4Cidr()
     {
-        @trigger_error('services_ipv4_cidr is deprecated.', E_USER_DEPRECATED);
+        if ($this->services_ipv4_cidr !== '') {
+            @trigger_error('services_ipv4_cidr is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->services_ipv4_cidr;
     }
 
@@ -736,12 +771,18 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
      * notation (e.g. `10.96.0.0/14`) from the RFC-1918 private networks (e.g.
      * `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`) to pick a specific range
      * to use.
+     * This field is deprecated due to the deprecation of 2VM TPU. The end of life
+     * date for 2VM TPU is 2025-04-25.
      *
-     * Generated from protobuf field <code>string tpu_ipv4_cidr_block = 13;</code>
+     * Generated from protobuf field <code>string tpu_ipv4_cidr_block = 13 [deprecated = true];</code>
      * @return string
+     * @deprecated
      */
     public function getTpuIpv4CidrBlock()
     {
+        if ($this->tpu_ipv4_cidr_block !== '') {
+            @trigger_error('tpu_ipv4_cidr_block is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->tpu_ipv4_cidr_block;
     }
 
@@ -757,13 +798,17 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
      * notation (e.g. `10.96.0.0/14`) from the RFC-1918 private networks (e.g.
      * `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`) to pick a specific range
      * to use.
+     * This field is deprecated due to the deprecation of 2VM TPU. The end of life
+     * date for 2VM TPU is 2025-04-25.
      *
-     * Generated from protobuf field <code>string tpu_ipv4_cidr_block = 13;</code>
+     * Generated from protobuf field <code>string tpu_ipv4_cidr_block = 13 [deprecated = true];</code>
      * @param string $var
      * @return $this
+     * @deprecated
      */
     public function setTpuIpv4CidrBlock($var)
     {
+        @trigger_error('tpu_ipv4_cidr_block is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkString($var, True);
         $this->tpu_ipv4_cidr_block = $var;
 
@@ -1028,6 +1073,76 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkDouble($var);
         $this->default_pod_ipv4_range_utilization = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The additional IP ranges that are added to the cluster.
+     * These IP ranges can be used by new node pools to allocate node and pod IPs
+     * automatically.
+     * Each AdditionalIPRangesConfig corresponds to a single subnetwork.
+     * Once a range is removed it will not show up in IPAllocationPolicy.
+     *
+     * Generated from protobuf field <code>repeated .google.container.v1.AdditionalIPRangesConfig additional_ip_ranges_configs = 29 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getAdditionalIpRangesConfigs()
+    {
+        return $this->additional_ip_ranges_configs;
+    }
+
+    /**
+     * Output only. The additional IP ranges that are added to the cluster.
+     * These IP ranges can be used by new node pools to allocate node and pod IPs
+     * automatically.
+     * Each AdditionalIPRangesConfig corresponds to a single subnetwork.
+     * Once a range is removed it will not show up in IPAllocationPolicy.
+     *
+     * Generated from protobuf field <code>repeated .google.container.v1.AdditionalIPRangesConfig additional_ip_ranges_configs = 29 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<\Google\Cloud\Container\V1\AdditionalIPRangesConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setAdditionalIpRangesConfigs($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Container\V1\AdditionalIPRangesConfig::class);
+        $this->additional_ip_ranges_configs = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. AutoIpamConfig contains all information related to Auto IPAM
+     *
+     * Generated from protobuf field <code>.google.container.v1.AutoIpamConfig auto_ipam_config = 30 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Container\V1\AutoIpamConfig|null
+     */
+    public function getAutoIpamConfig()
+    {
+        return $this->auto_ipam_config;
+    }
+
+    public function hasAutoIpamConfig()
+    {
+        return isset($this->auto_ipam_config);
+    }
+
+    public function clearAutoIpamConfig()
+    {
+        unset($this->auto_ipam_config);
+    }
+
+    /**
+     * Optional. AutoIpamConfig contains all information related to Auto IPAM
+     *
+     * Generated from protobuf field <code>.google.container.v1.AutoIpamConfig auto_ipam_config = 30 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Container\V1\AutoIpamConfig $var
+     * @return $this
+     */
+    public function setAutoIpamConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\AutoIpamConfig::class);
+        $this->auto_ipam_config = $var;
 
         return $this;
     }

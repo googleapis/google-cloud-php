@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class Engine extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Immutable. The fully qualified resource name of the engine.
+     * Immutable. Identifier. The fully qualified resource name of the engine.
      * This field must be a UTF-8 encoded string with a length limit of 1024
      * characters.
      * Format:
@@ -25,7 +25,7 @@ class Engine extends \Google\Protobuf\Internal\Message
      * engine should be 1-63 characters, and valid characters are
      * /[a-z0-9][a-z0-9-_]*&#47;. Otherwise, an INVALID_ARGUMENT error is returned.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
@@ -48,7 +48,7 @@ class Engine extends \Google\Protobuf\Internal\Message
      */
     protected $update_time = null;
     /**
-     * The data stores associated with this engine.
+     * Optional. The data stores associated with this engine.
      * For
      * [SOLUTION_TYPE_SEARCH][google.cloud.discoveryengine.v1.SolutionType.SOLUTION_TYPE_SEARCH]
      * and
@@ -64,7 +64,7 @@ class Engine extends \Google\Protobuf\Internal\Message
      * one DataStore id must be provided as the system will use it for necessary
      * initializations.
      *
-     * Generated from protobuf field <code>repeated string data_store_ids = 5;</code>
+     * Generated from protobuf field <code>repeated string data_store_ids = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $data_store_ids;
     /**
@@ -74,12 +74,12 @@ class Engine extends \Google\Protobuf\Internal\Message
      */
     protected $solution_type = 0;
     /**
-     * The industry vertical that the engine registers.
+     * Optional. The industry vertical that the engine registers.
      * The restriction of the Engine industry vertical is based on
      * [DataStore][google.cloud.discoveryengine.v1.DataStore]: Vertical on Engine
      * has to match vertical of the DataStore linked to the engine.
      *
-     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.IndustryVertical industry_vertical = 16;</code>
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.IndustryVertical industry_vertical = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $industry_vertical = 0;
     /**
@@ -112,13 +112,21 @@ class Engine extends \Google\Protobuf\Internal\Message
      *           Configurations for the Search Engine. Only applicable if
      *           [solution_type][google.cloud.discoveryengine.v1.Engine.solution_type] is
      *           [SOLUTION_TYPE_SEARCH][google.cloud.discoveryengine.v1.SolutionType.SOLUTION_TYPE_SEARCH].
+     *     @type \Google\Cloud\DiscoveryEngine\V1\Engine\MediaRecommendationEngineConfig $media_recommendation_engine_config
+     *           Configurations for the Media Engine. Only applicable on the data
+     *           stores with
+     *           [solution_type][google.cloud.discoveryengine.v1.Engine.solution_type]
+     *           [SOLUTION_TYPE_RECOMMENDATION][google.cloud.discoveryengine.v1.SolutionType.SOLUTION_TYPE_RECOMMENDATION]
+     *           and
+     *           [IndustryVertical.MEDIA][google.cloud.discoveryengine.v1.IndustryVertical.MEDIA]
+     *           vertical.
      *     @type \Google\Cloud\DiscoveryEngine\V1\Engine\ChatEngineMetadata $chat_engine_metadata
      *           Output only. Additional information of the Chat Engine. Only applicable
      *           if [solution_type][google.cloud.discoveryengine.v1.Engine.solution_type]
      *           is
      *           [SOLUTION_TYPE_CHAT][google.cloud.discoveryengine.v1.SolutionType.SOLUTION_TYPE_CHAT].
      *     @type string $name
-     *           Immutable. The fully qualified resource name of the engine.
+     *           Immutable. Identifier. The fully qualified resource name of the engine.
      *           This field must be a UTF-8 encoded string with a length limit of 1024
      *           characters.
      *           Format:
@@ -133,7 +141,7 @@ class Engine extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. Timestamp the Recommendation Engine was last updated.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $data_store_ids
-     *           The data stores associated with this engine.
+     *           Optional. The data stores associated with this engine.
      *           For
      *           [SOLUTION_TYPE_SEARCH][google.cloud.discoveryengine.v1.SolutionType.SOLUTION_TYPE_SEARCH]
      *           and
@@ -151,7 +159,7 @@ class Engine extends \Google\Protobuf\Internal\Message
      *     @type int $solution_type
      *           Required. The solutions of the engine.
      *     @type int $industry_vertical
-     *           The industry vertical that the engine registers.
+     *           Optional. The industry vertical that the engine registers.
      *           The restriction of the Engine industry vertical is based on
      *           [DataStore][google.cloud.discoveryengine.v1.DataStore]: Vertical on Engine
      *           has to match vertical of the DataStore linked to the engine.
@@ -238,6 +246,49 @@ class Engine extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Configurations for the Media Engine. Only applicable on the data
+     * stores with
+     * [solution_type][google.cloud.discoveryengine.v1.Engine.solution_type]
+     * [SOLUTION_TYPE_RECOMMENDATION][google.cloud.discoveryengine.v1.SolutionType.SOLUTION_TYPE_RECOMMENDATION]
+     * and
+     * [IndustryVertical.MEDIA][google.cloud.discoveryengine.v1.IndustryVertical.MEDIA]
+     * vertical.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Engine.MediaRecommendationEngineConfig media_recommendation_engine_config = 14;</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\Engine\MediaRecommendationEngineConfig|null
+     */
+    public function getMediaRecommendationEngineConfig()
+    {
+        return $this->readOneof(14);
+    }
+
+    public function hasMediaRecommendationEngineConfig()
+    {
+        return $this->hasOneof(14);
+    }
+
+    /**
+     * Configurations for the Media Engine. Only applicable on the data
+     * stores with
+     * [solution_type][google.cloud.discoveryengine.v1.Engine.solution_type]
+     * [SOLUTION_TYPE_RECOMMENDATION][google.cloud.discoveryengine.v1.SolutionType.SOLUTION_TYPE_RECOMMENDATION]
+     * and
+     * [IndustryVertical.MEDIA][google.cloud.discoveryengine.v1.IndustryVertical.MEDIA]
+     * vertical.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Engine.MediaRecommendationEngineConfig media_recommendation_engine_config = 14;</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\Engine\MediaRecommendationEngineConfig $var
+     * @return $this
+     */
+    public function setMediaRecommendationEngineConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\Engine\MediaRecommendationEngineConfig::class);
+        $this->writeOneof(14, $var);
+
+        return $this;
+    }
+
+    /**
      * Output only. Additional information of the Chat Engine. Only applicable
      * if [solution_type][google.cloud.discoveryengine.v1.Engine.solution_type]
      * is
@@ -275,7 +326,7 @@ class Engine extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The fully qualified resource name of the engine.
+     * Immutable. Identifier. The fully qualified resource name of the engine.
      * This field must be a UTF-8 encoded string with a length limit of 1024
      * characters.
      * Format:
@@ -283,7 +334,7 @@ class Engine extends \Google\Protobuf\Internal\Message
      * engine should be 1-63 characters, and valid characters are
      * /[a-z0-9][a-z0-9-_]*&#47;. Otherwise, an INVALID_ARGUMENT error is returned.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -292,7 +343,7 @@ class Engine extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The fully qualified resource name of the engine.
+     * Immutable. Identifier. The fully qualified resource name of the engine.
      * This field must be a UTF-8 encoded string with a length limit of 1024
      * characters.
      * Format:
@@ -300,7 +351,7 @@ class Engine extends \Google\Protobuf\Internal\Message
      * engine should be 1-63 characters, and valid characters are
      * /[a-z0-9][a-z0-9-_]*&#47;. Otherwise, an INVALID_ARGUMENT error is returned.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */
@@ -413,7 +464,7 @@ class Engine extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The data stores associated with this engine.
+     * Optional. The data stores associated with this engine.
      * For
      * [SOLUTION_TYPE_SEARCH][google.cloud.discoveryengine.v1.SolutionType.SOLUTION_TYPE_SEARCH]
      * and
@@ -429,7 +480,7 @@ class Engine extends \Google\Protobuf\Internal\Message
      * one DataStore id must be provided as the system will use it for necessary
      * initializations.
      *
-     * Generated from protobuf field <code>repeated string data_store_ids = 5;</code>
+     * Generated from protobuf field <code>repeated string data_store_ids = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getDataStoreIds()
@@ -438,7 +489,7 @@ class Engine extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The data stores associated with this engine.
+     * Optional. The data stores associated with this engine.
      * For
      * [SOLUTION_TYPE_SEARCH][google.cloud.discoveryengine.v1.SolutionType.SOLUTION_TYPE_SEARCH]
      * and
@@ -454,7 +505,7 @@ class Engine extends \Google\Protobuf\Internal\Message
      * one DataStore id must be provided as the system will use it for necessary
      * initializations.
      *
-     * Generated from protobuf field <code>repeated string data_store_ids = 5;</code>
+     * Generated from protobuf field <code>repeated string data_store_ids = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -493,12 +544,12 @@ class Engine extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The industry vertical that the engine registers.
+     * Optional. The industry vertical that the engine registers.
      * The restriction of the Engine industry vertical is based on
      * [DataStore][google.cloud.discoveryengine.v1.DataStore]: Vertical on Engine
      * has to match vertical of the DataStore linked to the engine.
      *
-     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.IndustryVertical industry_vertical = 16;</code>
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.IndustryVertical industry_vertical = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getIndustryVertical()
@@ -507,12 +558,12 @@ class Engine extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The industry vertical that the engine registers.
+     * Optional. The industry vertical that the engine registers.
      * The restriction of the Engine industry vertical is based on
      * [DataStore][google.cloud.discoveryengine.v1.DataStore]: Vertical on Engine
      * has to match vertical of the DataStore linked to the engine.
      *
-     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.IndustryVertical industry_vertical = 16;</code>
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.IndustryVertical industry_vertical = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */

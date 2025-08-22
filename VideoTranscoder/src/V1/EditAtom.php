@@ -23,8 +23,9 @@ class EditAtom extends \Google\Protobuf\Internal\Message
      */
     protected $key = '';
     /**
-     * List of `Input.key`s identifying files that should be used in this atom.
-     * The listed `inputs` must have the same timeline.
+     * List of [Input.key][google.cloud.video.transcoder.v1.Input.key] values
+     * identifying files that should be used in this atom. The listed `inputs`
+     * must have the same timeline.
      *
      * Generated from protobuf field <code>repeated string inputs = 2;</code>
      */
@@ -55,8 +56,9 @@ class EditAtom extends \Google\Protobuf\Internal\Message
      *           A unique key for this atom. Must be specified when using advanced
      *           mapping.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $inputs
-     *           List of `Input.key`s identifying files that should be used in this atom.
-     *           The listed `inputs` must have the same timeline.
+     *           List of [Input.key][google.cloud.video.transcoder.v1.Input.key] values
+     *           identifying files that should be used in this atom. The listed `inputs`
+     *           must have the same timeline.
      *     @type \Google\Protobuf\Duration $end_time_offset
      *           End time in seconds for the atom, relative to the input file timeline.
      *           When `end_time_offset` is not specified, the `inputs` are used until
@@ -100,8 +102,9 @@ class EditAtom extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of `Input.key`s identifying files that should be used in this atom.
-     * The listed `inputs` must have the same timeline.
+     * List of [Input.key][google.cloud.video.transcoder.v1.Input.key] values
+     * identifying files that should be used in this atom. The listed `inputs`
+     * must have the same timeline.
      *
      * Generated from protobuf field <code>repeated string inputs = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -112,8 +115,9 @@ class EditAtom extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of `Input.key`s identifying files that should be used in this atom.
-     * The listed `inputs` must have the same timeline.
+     * List of [Input.key][google.cloud.video.transcoder.v1.Input.key] values
+     * identifying files that should be used in this atom. The listed `inputs`
+     * must have the same timeline.
      *
      * Generated from protobuf field <code>repeated string inputs = 2;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

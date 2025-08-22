@@ -111,6 +111,15 @@ class RestorePlan extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string state_reason = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $state_reason = '';
+    /**
+     * Output only. The fully qualified name of the RestoreChannel to be used to
+     * create a RestorePlan. This field is set only if the `backup_plan` is in a
+     * different project than the RestorePlan. Format:
+     * `projects/&#42;&#47;locations/&#42;&#47;restoreChannels/&#42;`
+     *
+     * Generated from protobuf field <code>string restore_channel = 13 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     */
+    protected $restore_channel = '';
 
     /**
      * Constructor.
@@ -165,6 +174,11 @@ class RestorePlan extends \Google\Protobuf\Internal\Message
      *           current `state`. This field is only meant for human readability and should
      *           not be used programmatically as this field is not guaranteed to be
      *           consistent.
+     *     @type string $restore_channel
+     *           Output only. The fully qualified name of the RestoreChannel to be used to
+     *           create a RestorePlan. This field is set only if the `backup_plan` is in a
+     *           different project than the RestorePlan. Format:
+     *           `projects/&#42;&#47;locations/&#42;&#47;restoreChannels/&#42;`
      * }
      */
     public function __construct($data = NULL) {
@@ -556,6 +570,38 @@ class RestorePlan extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->state_reason = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The fully qualified name of the RestoreChannel to be used to
+     * create a RestorePlan. This field is set only if the `backup_plan` is in a
+     * different project than the RestorePlan. Format:
+     * `projects/&#42;&#47;locations/&#42;&#47;restoreChannels/&#42;`
+     *
+     * Generated from protobuf field <code>string restore_channel = 13 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getRestoreChannel()
+    {
+        return $this->restore_channel;
+    }
+
+    /**
+     * Output only. The fully qualified name of the RestoreChannel to be used to
+     * create a RestorePlan. This field is set only if the `backup_plan` is in a
+     * different project than the RestorePlan. Format:
+     * `projects/&#42;&#47;locations/&#42;&#47;restoreChannels/&#42;`
+     *
+     * Generated from protobuf field <code>string restore_channel = 13 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRestoreChannel($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->restore_channel = $var;
 
         return $this;
     }

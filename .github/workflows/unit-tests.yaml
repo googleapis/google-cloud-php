@@ -12,19 +12,19 @@ jobs:
     strategy:
       matrix:
         platform: [ubuntu-latest, windows-latest]
-        php: [ "8.0", "8.1", "8.2", "8.3", "8.4" ]
+        php: [ "8.1", "8.2", "8.3", "8.4" ]
         extensions: ["grpc-1.54.0"]
         type: ["Unit Test"]
         include:
           - platform: "ubuntu-latest"
-            php: "8.0"
+            php: "8.1"
             extensions: "protobuf,grpc-1.54.0"
             type: "Unit Test + protobuf extension"
     name: PHP ${{ matrix.php }} ${{ matrix.type }} (${{ matrix.platform }})
     runs-on: ${{ matrix.platform }}
     continue-on-error: true
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
     - name: Setup cache environment
       id: extcache
       uses: shivammathur/cache-extensions@v1
@@ -71,7 +71,7 @@ jobs:
     name: Package Tests
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
     - name: Setup PHP
       uses: shivammathur/setup-php@verbose
       with:
@@ -84,7 +84,7 @@ jobs:
     name: Package Tests (Lowest Dependencies)
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
     - name: Setup PHP
       uses: shivammathur/setup-php@verbose
       with:
@@ -99,7 +99,7 @@ jobs:
     name: Dev Commands Unit Tests
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
     - name: Setup PHP
       uses: shivammathur/setup-php@verbose
       with:

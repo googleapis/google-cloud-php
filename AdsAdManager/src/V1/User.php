@@ -25,50 +25,50 @@ class User extends \Google\Protobuf\Internal\Message
     /**
      * Output only. `User` ID.
      *
-     * Generated from protobuf field <code>int64 user_id = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional int64 user_id = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $user_id = 0;
+    protected $user_id = null;
     /**
      * Required. The name of the User. It has a maximum length of 128 characters.
      *
-     * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>optional string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $display_name = '';
+    protected $display_name = null;
     /**
      * Required. The email or login of the User. In order to create a new user,
      * you must already have a Google Account.
      *
-     * Generated from protobuf field <code>string email = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>optional string email = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $email = '';
+    protected $email = null;
     /**
      * Required. The unique Role ID of the User. Roles that are created by Google
      * will have negative IDs.
      *
-     * Generated from protobuf field <code>string role = 4 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>optional string role = 4 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    protected $role = '';
+    protected $role = null;
     /**
      * Output only. Specifies whether or not the User is active. An inactive user
      * cannot log in to the system or perform any operations.
      *
-     * Generated from protobuf field <code>bool active = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional bool active = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $active = false;
+    protected $active = null;
     /**
      * Optional. An identifier for the User that is meaningful to the publisher.
      * This attribute has a maximum length of 255 characters.
      *
-     * Generated from protobuf field <code>string external_id = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string external_id = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $external_id = '';
+    protected $external_id = null;
     /**
      * Output only. Whether the user is an OAuth2 service account user.
      * Service account users can only be added through the UI.
      *
-     * Generated from protobuf field <code>bool service_account = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional bool service_account = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $service_account = false;
+    protected $service_account = null;
     /**
      * Optional. The IANA Time Zone Database time zone, e.g. "America/New_York",
      * used in the orders and line items UI for this User. If not provided, the UI
@@ -76,9 +76,9 @@ class User extends \Google\Protobuf\Internal\Message
      * the UI for this user and does not affect the timezone of any dates and
      * times returned in API responses.
      *
-     * Generated from protobuf field <code>string orders_ui_local_time_zone = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string orders_ui_local_time_zone = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $orders_ui_local_time_zone = '';
+    protected $orders_ui_local_time_zone = null;
 
     /**
      * Constructor.
@@ -152,18 +152,28 @@ class User extends \Google\Protobuf\Internal\Message
     /**
      * Output only. `User` ID.
      *
-     * Generated from protobuf field <code>int64 user_id = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional int64 user_id = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int|string
      */
     public function getUserId()
     {
-        return $this->user_id;
+        return isset($this->user_id) ? $this->user_id : 0;
+    }
+
+    public function hasUserId()
+    {
+        return isset($this->user_id);
+    }
+
+    public function clearUserId()
+    {
+        unset($this->user_id);
     }
 
     /**
      * Output only. `User` ID.
      *
-     * Generated from protobuf field <code>int64 user_id = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional int64 user_id = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int|string $var
      * @return $this
      */
@@ -178,18 +188,28 @@ class User extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the User. It has a maximum length of 128 characters.
      *
-     * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>optional string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getDisplayName()
     {
-        return $this->display_name;
+        return isset($this->display_name) ? $this->display_name : '';
+    }
+
+    public function hasDisplayName()
+    {
+        return isset($this->display_name);
+    }
+
+    public function clearDisplayName()
+    {
+        unset($this->display_name);
     }
 
     /**
      * Required. The name of the User. It has a maximum length of 128 characters.
      *
-     * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>optional string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -205,19 +225,29 @@ class User extends \Google\Protobuf\Internal\Message
      * Required. The email or login of the User. In order to create a new user,
      * you must already have a Google Account.
      *
-     * Generated from protobuf field <code>string email = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>optional string email = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getEmail()
     {
-        return $this->email;
+        return isset($this->email) ? $this->email : '';
+    }
+
+    public function hasEmail()
+    {
+        return isset($this->email);
+    }
+
+    public function clearEmail()
+    {
+        unset($this->email);
     }
 
     /**
      * Required. The email or login of the User. In order to create a new user,
      * you must already have a Google Account.
      *
-     * Generated from protobuf field <code>string email = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>optional string email = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -233,19 +263,29 @@ class User extends \Google\Protobuf\Internal\Message
      * Required. The unique Role ID of the User. Roles that are created by Google
      * will have negative IDs.
      *
-     * Generated from protobuf field <code>string role = 4 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>optional string role = 4 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getRole()
     {
-        return $this->role;
+        return isset($this->role) ? $this->role : '';
+    }
+
+    public function hasRole()
+    {
+        return isset($this->role);
+    }
+
+    public function clearRole()
+    {
+        unset($this->role);
     }
 
     /**
      * Required. The unique Role ID of the User. Roles that are created by Google
      * will have negative IDs.
      *
-     * Generated from protobuf field <code>string role = 4 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>optional string role = 4 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -261,19 +301,29 @@ class User extends \Google\Protobuf\Internal\Message
      * Output only. Specifies whether or not the User is active. An inactive user
      * cannot log in to the system or perform any operations.
      *
-     * Generated from protobuf field <code>bool active = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional bool active = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return bool
      */
     public function getActive()
     {
-        return $this->active;
+        return isset($this->active) ? $this->active : false;
+    }
+
+    public function hasActive()
+    {
+        return isset($this->active);
+    }
+
+    public function clearActive()
+    {
+        unset($this->active);
     }
 
     /**
      * Output only. Specifies whether or not the User is active. An inactive user
      * cannot log in to the system or perform any operations.
      *
-     * Generated from protobuf field <code>bool active = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional bool active = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param bool $var
      * @return $this
      */
@@ -289,19 +339,29 @@ class User extends \Google\Protobuf\Internal\Message
      * Optional. An identifier for the User that is meaningful to the publisher.
      * This attribute has a maximum length of 255 characters.
      *
-     * Generated from protobuf field <code>string external_id = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string external_id = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getExternalId()
     {
-        return $this->external_id;
+        return isset($this->external_id) ? $this->external_id : '';
+    }
+
+    public function hasExternalId()
+    {
+        return isset($this->external_id);
+    }
+
+    public function clearExternalId()
+    {
+        unset($this->external_id);
     }
 
     /**
      * Optional. An identifier for the User that is meaningful to the publisher.
      * This attribute has a maximum length of 255 characters.
      *
-     * Generated from protobuf field <code>string external_id = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string external_id = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -317,19 +377,29 @@ class User extends \Google\Protobuf\Internal\Message
      * Output only. Whether the user is an OAuth2 service account user.
      * Service account users can only be added through the UI.
      *
-     * Generated from protobuf field <code>bool service_account = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional bool service_account = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return bool
      */
     public function getServiceAccount()
     {
-        return $this->service_account;
+        return isset($this->service_account) ? $this->service_account : false;
+    }
+
+    public function hasServiceAccount()
+    {
+        return isset($this->service_account);
+    }
+
+    public function clearServiceAccount()
+    {
+        unset($this->service_account);
     }
 
     /**
      * Output only. Whether the user is an OAuth2 service account user.
      * Service account users can only be added through the UI.
      *
-     * Generated from protobuf field <code>bool service_account = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional bool service_account = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param bool $var
      * @return $this
      */
@@ -348,12 +418,22 @@ class User extends \Google\Protobuf\Internal\Message
      * the UI for this user and does not affect the timezone of any dates and
      * times returned in API responses.
      *
-     * Generated from protobuf field <code>string orders_ui_local_time_zone = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string orders_ui_local_time_zone = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getOrdersUiLocalTimeZone()
     {
-        return $this->orders_ui_local_time_zone;
+        return isset($this->orders_ui_local_time_zone) ? $this->orders_ui_local_time_zone : '';
+    }
+
+    public function hasOrdersUiLocalTimeZone()
+    {
+        return isset($this->orders_ui_local_time_zone);
+    }
+
+    public function clearOrdersUiLocalTimeZone()
+    {
+        unset($this->orders_ui_local_time_zone);
     }
 
     /**
@@ -363,7 +443,7 @@ class User extends \Google\Protobuf\Internal\Message
      * the UI for this user and does not affect the timezone of any dates and
      * times returned in API responses.
      *
-     * Generated from protobuf field <code>string orders_ui_local_time_zone = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string orders_ui_local_time_zone = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

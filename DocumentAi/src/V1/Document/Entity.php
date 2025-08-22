@@ -92,6 +92,12 @@ class Entity extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool redacted = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $redacted = false;
+    /**
+     * Optional. Specifies how the entity's value is obtained.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Entity.Method method = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $method = 0;
 
     /**
      * Constructor.
@@ -130,6 +136,8 @@ class Entity extends \Google\Protobuf\Internal\Message
      *     @type bool $redacted
      *           Optional. Whether the entity will be redacted for de-identification
      *           purposes.
+     *     @type int $method
+     *           Optional. Specifies how the entity's value is obtained.
      * }
      */
     public function __construct($data = NULL) {
@@ -477,6 +485,32 @@ class Entity extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->redacted = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies how the entity's value is obtained.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Entity.Method method = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getMethod()
+    {
+        return $this->method;
+    }
+
+    /**
+     * Optional. Specifies how the entity's value is obtained.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Entity.Method method = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setMethod($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\DocumentAI\V1\Document\Entity\Method::class);
+        $this->method = $var;
 
         return $this;
     }

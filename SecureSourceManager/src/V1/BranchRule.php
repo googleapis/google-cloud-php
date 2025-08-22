@@ -10,7 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Metadata of a BranchRule. BranchRule is the protection rule to enforce
- * pre-defined rules on desginated branches within a repository.
+ * pre-defined rules on designated branches within a repository.
  *
  * Generated from protobuf message <code>google.cloud.securesourcemanager.v1.BranchRule</code>
  */

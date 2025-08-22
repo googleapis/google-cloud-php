@@ -17,10 +17,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class GrpcRoute extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Name of the GrpcRoute resource. It matches pattern
+     * Identifier. Name of the GrpcRoute resource. It matches pattern
      * `projects/&#42;&#47;locations/global/grpcRoutes/<grpc_route_name>`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
@@ -119,7 +119,7 @@ class GrpcRoute extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. Name of the GrpcRoute resource. It matches pattern
+     *           Identifier. Name of the GrpcRoute resource. It matches pattern
      *           `projects/&#42;&#47;locations/global/grpcRoutes/<grpc_route_name>`
      *     @type string $self_link
      *           Output only. Server-defined URL of this resource
@@ -181,10 +181,10 @@ class GrpcRoute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Name of the GrpcRoute resource. It matches pattern
+     * Identifier. Name of the GrpcRoute resource. It matches pattern
      * `projects/&#42;&#47;locations/global/grpcRoutes/<grpc_route_name>`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -193,10 +193,10 @@ class GrpcRoute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Name of the GrpcRoute resource. It matches pattern
+     * Identifier. Name of the GrpcRoute resource. It matches pattern
      * `projects/&#42;&#47;locations/global/grpcRoutes/<grpc_route_name>`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */

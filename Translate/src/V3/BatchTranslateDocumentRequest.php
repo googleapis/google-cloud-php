@@ -36,7 +36,9 @@ class BatchTranslateDocumentRequest extends \Google\Protobuf\Internal\Message
     protected $source_language_code = '';
     /**
      * Required. The ISO-639 language code to use for translation of the input
-     * document. Specify up to 10 language codes here.
+     * document. Specify up to 10 language codes here. Supported language codes
+     * are listed in [Language
+     * Support](https://cloud.google.com/translate/docs/languages).
      *
      * Generated from protobuf field <code>repeated string target_language_codes = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -132,7 +134,9 @@ class BatchTranslateDocumentRequest extends \Google\Protobuf\Internal\Message
      *                                                                                   example, "en-US" or "sr-Latn". Supported language codes are listed in
      *                                                                                   [Language Support](https://cloud.google.com/translate/docs/languages).
      * @param string[]                                              $targetLanguageCodes Required. The ISO-639 language code to use for translation of the input
-     *                                                                                   document. Specify up to 10 language codes here.
+     *                                                                                   document. Specify up to 10 language codes here. Supported language codes
+     *                                                                                   are listed in [Language
+     *                                                                                   Support](https://cloud.google.com/translate/docs/languages).
      * @param \Google\Cloud\Translate\V3\BatchDocumentInputConfig[] $inputConfigs        Required. Input configurations.
      *                                                                                   The total number of files matched should be <= 100.
      *                                                                                   The total content size to translate should be <= 100M Unicode codepoints.
@@ -174,7 +178,9 @@ class BatchTranslateDocumentRequest extends \Google\Protobuf\Internal\Message
      *           [Language Support](https://cloud.google.com/translate/docs/languages).
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $target_language_codes
      *           Required. The ISO-639 language code to use for translation of the input
-     *           document. Specify up to 10 language codes here.
+     *           document. Specify up to 10 language codes here. Supported language codes
+     *           are listed in [Language
+     *           Support](https://cloud.google.com/translate/docs/languages).
      *     @type array<\Google\Cloud\Translate\V3\BatchDocumentInputConfig>|\Google\Protobuf\Internal\RepeatedField $input_configs
      *           Required. Input configurations.
      *           The total number of files matched should be <= 100.
@@ -293,7 +299,9 @@ class BatchTranslateDocumentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The ISO-639 language code to use for translation of the input
-     * document. Specify up to 10 language codes here.
+     * document. Specify up to 10 language codes here. Supported language codes
+     * are listed in [Language
+     * Support](https://cloud.google.com/translate/docs/languages).
      *
      * Generated from protobuf field <code>repeated string target_language_codes = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -305,7 +313,9 @@ class BatchTranslateDocumentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The ISO-639 language code to use for translation of the input
-     * document. Specify up to 10 language codes here.
+     * document. Specify up to 10 language codes here. Supported language codes
+     * are listed in [Language
+     * Support](https://cloud.google.com/translate/docs/languages).
      *
      * Generated from protobuf field <code>repeated string target_language_codes = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

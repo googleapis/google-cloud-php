@@ -26,9 +26,9 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
     protected $project_id = '';
     /**
      * Deprecated. The name of the Google Compute Engine
-     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the
-     * cluster resides. This field has been deprecated and replaced by the name
-     * field.
+     * [zone](https://cloud.google.com/compute/docs/zones#available)
+     * in which the cluster resides. This field has been deprecated and replaced
+     * by the name field.
      *
      * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
      * @deprecated
@@ -66,8 +66,8 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
     protected $node_version = '';
     /**
      * Required. The desired image type for the node pool. Please see
-     * https://cloud.google.com/kubernetes-engine/docs/concepts/node-images for
-     * available image types.
+     * https://cloud.google.com/kubernetes-engine/docs/concepts/node-images
+     * for available image types.
      *
      * Generated from protobuf field <code>string image_type = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -82,10 +82,10 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
     /**
      * The desired list of Google Compute Engine
-     * [zones](https://cloud.google.com/compute/docs/zones#available) in which the
-     * node pool's nodes should be located. Changing the locations for a node pool
-     * will result in nodes being either created or removed from the node pool,
-     * depending on whether locations are being added or removed.
+     * [zones](https://cloud.google.com/compute/docs/zones#available)
+     * in which the node pool's nodes should be located. Changing the locations
+     * for a node pool will result in nodes being either created or removed from
+     * the node pool, depending on whether locations are being added or removed.
      *
      * Generated from protobuf field <code>repeated string locations = 13;</code>
      */
@@ -198,17 +198,18 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
     protected $windows_node_config = null;
     /**
      * A list of hardware accelerators to be attached to each node.
-     * See https://cloud.google.com/compute/docs/gpus for more information about
-     * support for GPUs.
+     * See
+     * https://cloud.google.com/compute/docs/gpus
+     * for more information about support for GPUs.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.AcceleratorConfig accelerators = 35;</code>
      */
     private $accelerators;
     /**
      * Optional. The desired [Google Compute Engine machine
-     * type](https://cloud.google.com/compute/docs/machine-types) for nodes in the
-     * node pool. Initiates an upgrade operation that migrates the nodes in the
-     * node pool to the specified machine type.
+     * type](https://cloud.google.com/compute/docs/machine-types)
+     * for nodes in the node pool. Initiates an upgrade operation that migrates
+     * the nodes in the node pool to the specified machine type.
      *
      * Generated from protobuf field <code>string machine_type = 36 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -260,6 +261,27 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string storage_pools = 43;</code>
      */
     private $storage_pools;
+    /**
+     * The maximum duration for the nodes to exist.
+     * If unspecified, the nodes can exist indefinitely.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration max_run_duration = 45;</code>
+     */
+    protected $max_run_duration = null;
+    /**
+     * Flex Start flag for enabling Flex Start VM.
+     *
+     * Generated from protobuf field <code>optional bool flex_start = 46;</code>
+     */
+    protected $flex_start = null;
+    /**
+     * The desired boot disk config for nodes in the node pool.
+     * Initiates an upgrade operation that migrates the nodes in the
+     * node pool to the specified boot disk config.
+     *
+     * Generated from protobuf field <code>.google.container.v1.BootDisk boot_disk = 47;</code>
+     */
+    protected $boot_disk = null;
 
     /**
      * Constructor.
@@ -273,9 +295,9 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      *           This field has been deprecated and replaced by the name field.
      *     @type string $zone
      *           Deprecated. The name of the Google Compute Engine
-     *           [zone](https://cloud.google.com/compute/docs/zones#available) in which the
-     *           cluster resides. This field has been deprecated and replaced by the name
-     *           field.
+     *           [zone](https://cloud.google.com/compute/docs/zones#available)
+     *           in which the cluster resides. This field has been deprecated and replaced
+     *           by the name field.
      *     @type string $cluster_id
      *           Deprecated. The name of the cluster to upgrade.
      *           This field has been deprecated and replaced by the name field.
@@ -294,18 +316,18 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      *           - "-": picks the Kubernetes master version
      *     @type string $image_type
      *           Required. The desired image type for the node pool. Please see
-     *           https://cloud.google.com/kubernetes-engine/docs/concepts/node-images for
-     *           available image types.
+     *           https://cloud.google.com/kubernetes-engine/docs/concepts/node-images
+     *           for available image types.
      *     @type string $name
      *           The name (project, location, cluster, node pool) of the node pool to
      *           update. Specified in the format
      *           `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;&#47;nodePools/&#42;`.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $locations
      *           The desired list of Google Compute Engine
-     *           [zones](https://cloud.google.com/compute/docs/zones#available) in which the
-     *           node pool's nodes should be located. Changing the locations for a node pool
-     *           will result in nodes being either created or removed from the node pool,
-     *           depending on whether locations are being added or removed.
+     *           [zones](https://cloud.google.com/compute/docs/zones#available)
+     *           in which the node pool's nodes should be located. Changing the locations
+     *           for a node pool will result in nodes being either created or removed from
+     *           the node pool, depending on whether locations are being added or removed.
      *     @type \Google\Cloud\Container\V1\WorkloadMetadataConfig $workload_metadata_config
      *           The desired workload metadata config for the node pool.
      *     @type \Google\Cloud\Container\V1\NodePool\UpgradeSettings $upgrade_settings
@@ -350,13 +372,14 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      *           Parameters that can be configured on Windows nodes.
      *     @type array<\Google\Cloud\Container\V1\AcceleratorConfig>|\Google\Protobuf\Internal\RepeatedField $accelerators
      *           A list of hardware accelerators to be attached to each node.
-     *           See https://cloud.google.com/compute/docs/gpus for more information about
-     *           support for GPUs.
+     *           See
+     *           https://cloud.google.com/compute/docs/gpus
+     *           for more information about support for GPUs.
      *     @type string $machine_type
      *           Optional. The desired [Google Compute Engine machine
-     *           type](https://cloud.google.com/compute/docs/machine-types) for nodes in the
-     *           node pool. Initiates an upgrade operation that migrates the nodes in the
-     *           node pool to the specified machine type.
+     *           type](https://cloud.google.com/compute/docs/machine-types)
+     *           for nodes in the node pool. Initiates an upgrade operation that migrates
+     *           the nodes in the node pool to the specified machine type.
      *     @type string $disk_type
      *           Optional. The desired disk type (e.g. 'pd-standard', 'pd-ssd' or
      *           'pd-balanced') for nodes in the node pool.
@@ -380,6 +403,15 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $storage_pools
      *           List of Storage Pools where boot disks are provisioned.
      *           Existing Storage Pools will be replaced with storage-pools.
+     *     @type \Google\Protobuf\Duration $max_run_duration
+     *           The maximum duration for the nodes to exist.
+     *           If unspecified, the nodes can exist indefinitely.
+     *     @type bool $flex_start
+     *           Flex Start flag for enabling Flex Start VM.
+     *     @type \Google\Cloud\Container\V1\BootDisk $boot_disk
+     *           The desired boot disk config for nodes in the node pool.
+     *           Initiates an upgrade operation that migrates the nodes in the
+     *           node pool to the specified boot disk config.
      * }
      */
     public function __construct($data = NULL) {
@@ -398,7 +430,9 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      */
     public function getProjectId()
     {
-        @trigger_error('project_id is deprecated.', E_USER_DEPRECATED);
+        if ($this->project_id !== '') {
+            @trigger_error('project_id is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->project_id;
     }
 
@@ -423,9 +457,9 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Deprecated. The name of the Google Compute Engine
-     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the
-     * cluster resides. This field has been deprecated and replaced by the name
-     * field.
+     * [zone](https://cloud.google.com/compute/docs/zones#available)
+     * in which the cluster resides. This field has been deprecated and replaced
+     * by the name field.
      *
      * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
      * @return string
@@ -433,15 +467,17 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      */
     public function getZone()
     {
-        @trigger_error('zone is deprecated.', E_USER_DEPRECATED);
+        if ($this->zone !== '') {
+            @trigger_error('zone is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->zone;
     }
 
     /**
      * Deprecated. The name of the Google Compute Engine
-     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the
-     * cluster resides. This field has been deprecated and replaced by the name
-     * field.
+     * [zone](https://cloud.google.com/compute/docs/zones#available)
+     * in which the cluster resides. This field has been deprecated and replaced
+     * by the name field.
      *
      * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
      * @param string $var
@@ -467,7 +503,9 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      */
     public function getClusterId()
     {
-        @trigger_error('cluster_id is deprecated.', E_USER_DEPRECATED);
+        if ($this->cluster_id !== '') {
+            @trigger_error('cluster_id is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->cluster_id;
     }
 
@@ -499,7 +537,9 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      */
     public function getNodePoolId()
     {
-        @trigger_error('node_pool_id is deprecated.', E_USER_DEPRECATED);
+        if ($this->node_pool_id !== '') {
+            @trigger_error('node_pool_id is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->node_pool_id;
     }
 
@@ -565,8 +605,8 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The desired image type for the node pool. Please see
-     * https://cloud.google.com/kubernetes-engine/docs/concepts/node-images for
-     * available image types.
+     * https://cloud.google.com/kubernetes-engine/docs/concepts/node-images
+     * for available image types.
      *
      * Generated from protobuf field <code>string image_type = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -578,8 +618,8 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The desired image type for the node pool. Please see
-     * https://cloud.google.com/kubernetes-engine/docs/concepts/node-images for
-     * available image types.
+     * https://cloud.google.com/kubernetes-engine/docs/concepts/node-images
+     * for available image types.
      *
      * Generated from protobuf field <code>string image_type = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -625,10 +665,10 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The desired list of Google Compute Engine
-     * [zones](https://cloud.google.com/compute/docs/zones#available) in which the
-     * node pool's nodes should be located. Changing the locations for a node pool
-     * will result in nodes being either created or removed from the node pool,
-     * depending on whether locations are being added or removed.
+     * [zones](https://cloud.google.com/compute/docs/zones#available)
+     * in which the node pool's nodes should be located. Changing the locations
+     * for a node pool will result in nodes being either created or removed from
+     * the node pool, depending on whether locations are being added or removed.
      *
      * Generated from protobuf field <code>repeated string locations = 13;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -640,10 +680,10 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The desired list of Google Compute Engine
-     * [zones](https://cloud.google.com/compute/docs/zones#available) in which the
-     * node pool's nodes should be located. Changing the locations for a node pool
-     * will result in nodes being either created or removed from the node pool,
-     * depending on whether locations are being added or removed.
+     * [zones](https://cloud.google.com/compute/docs/zones#available)
+     * in which the node pool's nodes should be located. Changing the locations
+     * for a node pool will result in nodes being either created or removed from
+     * the node pool, depending on whether locations are being added or removed.
      *
      * Generated from protobuf field <code>repeated string locations = 13;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -1245,8 +1285,9 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * A list of hardware accelerators to be attached to each node.
-     * See https://cloud.google.com/compute/docs/gpus for more information about
-     * support for GPUs.
+     * See
+     * https://cloud.google.com/compute/docs/gpus
+     * for more information about support for GPUs.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.AcceleratorConfig accelerators = 35;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -1258,8 +1299,9 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * A list of hardware accelerators to be attached to each node.
-     * See https://cloud.google.com/compute/docs/gpus for more information about
-     * support for GPUs.
+     * See
+     * https://cloud.google.com/compute/docs/gpus
+     * for more information about support for GPUs.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.AcceleratorConfig accelerators = 35;</code>
      * @param array<\Google\Cloud\Container\V1\AcceleratorConfig>|\Google\Protobuf\Internal\RepeatedField $var
@@ -1275,9 +1317,9 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The desired [Google Compute Engine machine
-     * type](https://cloud.google.com/compute/docs/machine-types) for nodes in the
-     * node pool. Initiates an upgrade operation that migrates the nodes in the
-     * node pool to the specified machine type.
+     * type](https://cloud.google.com/compute/docs/machine-types)
+     * for nodes in the node pool. Initiates an upgrade operation that migrates
+     * the nodes in the node pool to the specified machine type.
      *
      * Generated from protobuf field <code>string machine_type = 36 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -1289,9 +1331,9 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The desired [Google Compute Engine machine
-     * type](https://cloud.google.com/compute/docs/machine-types) for nodes in the
-     * node pool. Initiates an upgrade operation that migrates the nodes in the
-     * node pool to the specified machine type.
+     * type](https://cloud.google.com/compute/docs/machine-types)
+     * for nodes in the node pool. Initiates an upgrade operation that migrates
+     * the nodes in the node pool to the specified machine type.
      *
      * Generated from protobuf field <code>string machine_type = 36 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -1509,6 +1551,120 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->storage_pools = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The maximum duration for the nodes to exist.
+     * If unspecified, the nodes can exist indefinitely.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration max_run_duration = 45;</code>
+     * @return \Google\Protobuf\Duration|null
+     */
+    public function getMaxRunDuration()
+    {
+        return $this->max_run_duration;
+    }
+
+    public function hasMaxRunDuration()
+    {
+        return isset($this->max_run_duration);
+    }
+
+    public function clearMaxRunDuration()
+    {
+        unset($this->max_run_duration);
+    }
+
+    /**
+     * The maximum duration for the nodes to exist.
+     * If unspecified, the nodes can exist indefinitely.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration max_run_duration = 45;</code>
+     * @param \Google\Protobuf\Duration $var
+     * @return $this
+     */
+    public function setMaxRunDuration($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
+        $this->max_run_duration = $var;
+
+        return $this;
+    }
+
+    /**
+     * Flex Start flag for enabling Flex Start VM.
+     *
+     * Generated from protobuf field <code>optional bool flex_start = 46;</code>
+     * @return bool
+     */
+    public function getFlexStart()
+    {
+        return isset($this->flex_start) ? $this->flex_start : false;
+    }
+
+    public function hasFlexStart()
+    {
+        return isset($this->flex_start);
+    }
+
+    public function clearFlexStart()
+    {
+        unset($this->flex_start);
+    }
+
+    /**
+     * Flex Start flag for enabling Flex Start VM.
+     *
+     * Generated from protobuf field <code>optional bool flex_start = 46;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setFlexStart($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->flex_start = $var;
+
+        return $this;
+    }
+
+    /**
+     * The desired boot disk config for nodes in the node pool.
+     * Initiates an upgrade operation that migrates the nodes in the
+     * node pool to the specified boot disk config.
+     *
+     * Generated from protobuf field <code>.google.container.v1.BootDisk boot_disk = 47;</code>
+     * @return \Google\Cloud\Container\V1\BootDisk|null
+     */
+    public function getBootDisk()
+    {
+        return $this->boot_disk;
+    }
+
+    public function hasBootDisk()
+    {
+        return isset($this->boot_disk);
+    }
+
+    public function clearBootDisk()
+    {
+        unset($this->boot_disk);
+    }
+
+    /**
+     * The desired boot disk config for nodes in the node pool.
+     * Initiates an upgrade operation that migrates the nodes in the
+     * node pool to the specified boot disk config.
+     *
+     * Generated from protobuf field <code>.google.container.v1.BootDisk boot_disk = 47;</code>
+     * @param \Google\Cloud\Container\V1\BootDisk $var
+     * @return $this
+     */
+    public function setBootDisk($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\BootDisk::class);
+        $this->boot_disk = $var;
 
         return $this;
     }

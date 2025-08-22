@@ -25,6 +25,8 @@ class RagFileParsingConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\AIPlatform\V1\RagFileParsingConfig\LayoutParser $layout_parser
      *           The Layout Parser to use for RagFiles.
+     *     @type \Google\Cloud\AIPlatform\V1\RagFileParsingConfig\LlmParser $llm_parser
+     *           The LLM Parser to use for RagFiles.
      * }
      */
     public function __construct($data = NULL) {
@@ -59,6 +61,37 @@ class RagFileParsingConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\RagFileParsingConfig\LayoutParser::class);
         $this->writeOneof(4, $var);
+
+        return $this;
+    }
+
+    /**
+     * The LLM Parser to use for RagFiles.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.RagFileParsingConfig.LlmParser llm_parser = 5;</code>
+     * @return \Google\Cloud\AIPlatform\V1\RagFileParsingConfig\LlmParser|null
+     */
+    public function getLlmParser()
+    {
+        return $this->readOneof(5);
+    }
+
+    public function hasLlmParser()
+    {
+        return $this->hasOneof(5);
+    }
+
+    /**
+     * The LLM Parser to use for RagFiles.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.RagFileParsingConfig.LlmParser llm_parser = 5;</code>
+     * @param \Google\Cloud\AIPlatform\V1\RagFileParsingConfig\LlmParser $var
+     * @return $this
+     */
+    public function setLlmParser($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\RagFileParsingConfig\LlmParser::class);
+        $this->writeOneof(5, $var);
 
         return $this;
     }

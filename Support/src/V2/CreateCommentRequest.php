@@ -9,29 +9,29 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request message for CreateComment endpoint.
+ * The request message for the CreateComment endpoint.
  *
  * Generated from protobuf message <code>google.cloud.support.v2.CreateCommentRequest</code>
  */
 class CreateCommentRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of Case to which this comment should be added.
+     * Required. The name of the case to which the comment should be added.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $parent = '';
     /**
-     * Required. The Comment object to be added to this Case.
+     * Required. The comment to be added.
      *
      * Generated from protobuf field <code>.google.cloud.support.v2.Comment comment = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $comment = null;
 
     /**
-     * @param string                           $parent  Required. The resource name of Case to which this comment should be added. Please see
+     * @param string                           $parent  Required. The name of the case to which the comment should be added. Please see
      *                                                  {@see CommentServiceClient::caseName()} for help formatting this field.
-     * @param \Google\Cloud\Support\V2\Comment $comment Required. The Comment object to be added to this Case.
+     * @param \Google\Cloud\Support\V2\Comment $comment Required. The comment to be added.
      *
      * @return \Google\Cloud\Support\V2\CreateCommentRequest
      *
@@ -51,9 +51,9 @@ class CreateCommentRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The resource name of Case to which this comment should be added.
+     *           Required. The name of the case to which the comment should be added.
      *     @type \Google\Cloud\Support\V2\Comment $comment
-     *           Required. The Comment object to be added to this Case.
+     *           Required. The comment to be added.
      * }
      */
     public function __construct($data = NULL) {
@@ -62,7 +62,7 @@ class CreateCommentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of Case to which this comment should be added.
+     * Required. The name of the case to which the comment should be added.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -73,7 +73,7 @@ class CreateCommentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of Case to which this comment should be added.
+     * Required. The name of the case to which the comment should be added.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -88,7 +88,7 @@ class CreateCommentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The Comment object to be added to this Case.
+     * Required. The comment to be added.
      *
      * Generated from protobuf field <code>.google.cloud.support.v2.Comment comment = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Support\V2\Comment|null
@@ -109,7 +109,7 @@ class CreateCommentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The Comment object to be added to this Case.
+     * Required. The comment to be added.
      *
      * Generated from protobuf field <code>.google.cloud.support.v2.Comment comment = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Support\V2\Comment $var

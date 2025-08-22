@@ -17,15 +17,23 @@ class RevokeSubscriptionRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Resource name of the subscription to revoke.
-     * e.g. projects/123/locations/US/subscriptions/456
+     * e.g. projects/123/locations/us/subscriptions/456
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $name = '';
+    /**
+     * Optional. If the subscription is commercial then this field must be set to
+     * true, otherwise a failure is thrown. This acts as a safety guard to avoid
+     * revoking commercial subscriptions accidentally.
+     *
+     * Generated from protobuf field <code>bool revoke_commercial = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $revoke_commercial = false;
 
     /**
      * @param string $name Required. Resource name of the subscription to revoke.
-     *                     e.g. projects/123/locations/US/subscriptions/456
+     *                     e.g. projects/123/locations/us/subscriptions/456
      *                     Please see {@see AnalyticsHubServiceClient::subscriptionName()} for help formatting this field.
      *
      * @return \Google\Cloud\BigQuery\AnalyticsHub\V1\RevokeSubscriptionRequest
@@ -46,7 +54,11 @@ class RevokeSubscriptionRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. Resource name of the subscription to revoke.
-     *           e.g. projects/123/locations/US/subscriptions/456
+     *           e.g. projects/123/locations/us/subscriptions/456
+     *     @type bool $revoke_commercial
+     *           Optional. If the subscription is commercial then this field must be set to
+     *           true, otherwise a failure is thrown. This acts as a safety guard to avoid
+     *           revoking commercial subscriptions accidentally.
      * }
      */
     public function __construct($data = NULL) {
@@ -56,7 +68,7 @@ class RevokeSubscriptionRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Resource name of the subscription to revoke.
-     * e.g. projects/123/locations/US/subscriptions/456
+     * e.g. projects/123/locations/us/subscriptions/456
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -68,7 +80,7 @@ class RevokeSubscriptionRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Resource name of the subscription to revoke.
-     * e.g. projects/123/locations/US/subscriptions/456
+     * e.g. projects/123/locations/us/subscriptions/456
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -78,6 +90,36 @@ class RevokeSubscriptionRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If the subscription is commercial then this field must be set to
+     * true, otherwise a failure is thrown. This acts as a safety guard to avoid
+     * revoking commercial subscriptions accidentally.
+     *
+     * Generated from protobuf field <code>bool revoke_commercial = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getRevokeCommercial()
+    {
+        return $this->revoke_commercial;
+    }
+
+    /**
+     * Optional. If the subscription is commercial then this field must be set to
+     * true, otherwise a failure is thrown. This acts as a safety guard to avoid
+     * revoking commercial subscriptions accidentally.
+     *
+     * Generated from protobuf field <code>bool revoke_commercial = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setRevokeCommercial($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->revoke_commercial = $var;
 
         return $this;
     }

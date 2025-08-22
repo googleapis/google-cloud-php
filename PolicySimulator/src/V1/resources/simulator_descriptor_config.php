@@ -27,10 +27,10 @@ return [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\PolicySimulator\V1\Replay',
                     'metadataReturnType' => '\Google\Cloud\PolicySimulator\V1\ReplayOperationMetadata',
-                    'initialPollDelayMillis' => '1000',
-                    'pollDelayMultiplier' => '2.0',
-                    'maxPollDelayMillis' => '10000',
-                    'totalPollTimeoutMillis' => '18000000',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
                 ],
                 'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
                 'headerParams' => [

@@ -40,8 +40,8 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      * used for protocol forwarding, Private Service Connect and other network
      * services to provide forwarding information in the control plane. Applicable
      * only to destination endpoint. Format:
-     *  projects/{project}/global/forwardingRules/{id} or
-     *  projects/{project}/regions/{region}/forwardingRules/{id}
+     *  `projects/{project}/global/forwardingRules/{id}` or
+     *  `projects/{project}/regions/{region}/forwardingRules/{id}`
      *
      * Generated from protobuf field <code>string forwarding_rule = 13;</code>
      */
@@ -172,8 +172,8 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      *           used for protocol forwarding, Private Service Connect and other network
      *           services to provide forwarding information in the control plane. Applicable
      *           only to destination endpoint. Format:
-     *            projects/{project}/global/forwardingRules/{id} or
-     *            projects/{project}/regions/{region}/forwardingRules/{id}
+     *            `projects/{project}/global/forwardingRules/{id}` or
+     *            `projects/{project}/regions/{region}/forwardingRules/{id}`
      *     @type int $forwarding_rule_target
      *           Output only. Specifies the type of the target of the forwarding rule.
      *     @type string $load_balancer_id
@@ -317,8 +317,8 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      * used for protocol forwarding, Private Service Connect and other network
      * services to provide forwarding information in the control plane. Applicable
      * only to destination endpoint. Format:
-     *  projects/{project}/global/forwardingRules/{id} or
-     *  projects/{project}/regions/{region}/forwardingRules/{id}
+     *  `projects/{project}/global/forwardingRules/{id}` or
+     *  `projects/{project}/regions/{region}/forwardingRules/{id}`
      *
      * Generated from protobuf field <code>string forwarding_rule = 13;</code>
      * @return string
@@ -334,8 +334,8 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      * used for protocol forwarding, Private Service Connect and other network
      * services to provide forwarding information in the control plane. Applicable
      * only to destination endpoint. Format:
-     *  projects/{project}/global/forwardingRules/{id} or
-     *  projects/{project}/regions/{region}/forwardingRules/{id}
+     *  `projects/{project}/global/forwardingRules/{id}` or
+     *  `projects/{project}/regions/{region}/forwardingRules/{id}`
      *
      * Generated from protobuf field <code>string forwarding_rule = 13;</code>
      * @param string $var

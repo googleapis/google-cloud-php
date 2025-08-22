@@ -61,6 +61,8 @@ class CompilationResultAction extends \Google\Protobuf\Internal\Message
      *           The declaration declared by this action.
      *     @type \Google\Cloud\Dataform\V1beta1\CompilationResultAction\Notebook $notebook
      *           The notebook executed by this action.
+     *     @type \Google\Cloud\Dataform\V1beta1\CompilationResultAction\DataPreparation $data_preparation
+     *           The data preparation executed by this action.
      *     @type \Google\Cloud\Dataform\V1beta1\Target $target
      *           This action's identifier. Unique within the compilation result.
      *     @type \Google\Cloud\Dataform\V1beta1\Target $canonical_target
@@ -231,6 +233,37 @@ class CompilationResultAction extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dataform\V1beta1\CompilationResultAction\Notebook::class);
         $this->writeOneof(8, $var);
+
+        return $this;
+    }
+
+    /**
+     * The data preparation executed by this action.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.CompilationResultAction.DataPreparation data_preparation = 9;</code>
+     * @return \Google\Cloud\Dataform\V1beta1\CompilationResultAction\DataPreparation|null
+     */
+    public function getDataPreparation()
+    {
+        return $this->readOneof(9);
+    }
+
+    public function hasDataPreparation()
+    {
+        return $this->hasOneof(9);
+    }
+
+    /**
+     * The data preparation executed by this action.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.CompilationResultAction.DataPreparation data_preparation = 9;</code>
+     * @param \Google\Cloud\Dataform\V1beta1\CompilationResultAction\DataPreparation $var
+     * @return $this
+     */
+    public function setDataPreparation($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataform\V1beta1\CompilationResultAction\DataPreparation::class);
+        $this->writeOneof(9, $var);
 
         return $this;
     }

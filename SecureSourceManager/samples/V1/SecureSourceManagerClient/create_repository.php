@@ -33,7 +33,8 @@ use Google\Rpc\Status;
 /**
  * Creates a new repository in a given project and location.
  *
- * **Host: Data Plane**
+ * The Repository.Instance field is required in the request body for requests
+ * using the securesourcemanager.googleapis.com endpoint.
  *
  * @param string $formattedParent The project in which to create the repository. Values are of the
  *                                form `projects/{project_number}/locations/{location_id}`

@@ -29,7 +29,14 @@ use Google\Cloud\Dataflow\V1beta3\CreateJobFromTemplateRequest;
 use Google\Cloud\Dataflow\V1beta3\Job;
 
 /**
- * Creates a Cloud Dataflow job from a template.
+ * Creates a Cloud Dataflow job from a template. Do not enter confidential
+ * information when you supply string values using the API.
+ *
+ * To create a job, we recommend using `projects.locations.templates.create`
+ * with a [regional endpoint]
+ * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using
+ * `projects.templates.create` is not recommended, because your job will
+ * always start in `us-central1`.
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:

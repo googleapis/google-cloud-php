@@ -21,6 +21,14 @@ class MachineConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 cpu_count = 1;</code>
      */
     protected $cpu_count = 0;
+    /**
+     * Machine type of the VM instance. E.g. "n2-highmem-4",
+     * "n2-highmem-8", "c4a-highmem-4-lssd".
+     * cpu_count must match the number of vCPUs in the machine type.
+     *
+     * Generated from protobuf field <code>string machine_type = 4;</code>
+     */
+    protected $machine_type = '';
 
     /**
      * Constructor.
@@ -30,6 +38,10 @@ class MachineConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type int $cpu_count
      *           The number of CPU's in the VM instance.
+     *     @type string $machine_type
+     *           Machine type of the VM instance. E.g. "n2-highmem-4",
+     *           "n2-highmem-8", "c4a-highmem-4-lssd".
+     *           cpu_count must match the number of vCPUs in the machine type.
      * }
      */
     public function __construct($data = NULL) {
@@ -59,6 +71,36 @@ class MachineConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->cpu_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * Machine type of the VM instance. E.g. "n2-highmem-4",
+     * "n2-highmem-8", "c4a-highmem-4-lssd".
+     * cpu_count must match the number of vCPUs in the machine type.
+     *
+     * Generated from protobuf field <code>string machine_type = 4;</code>
+     * @return string
+     */
+    public function getMachineType()
+    {
+        return $this->machine_type;
+    }
+
+    /**
+     * Machine type of the VM instance. E.g. "n2-highmem-4",
+     * "n2-highmem-8", "c4a-highmem-4-lssd".
+     * cpu_count must match the number of vCPUs in the machine type.
+     *
+     * Generated from protobuf field <code>string machine_type = 4;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setMachineType($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->machine_type = $var;
 
         return $this;
     }

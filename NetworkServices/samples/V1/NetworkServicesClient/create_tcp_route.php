@@ -39,14 +39,9 @@ use Google\Rpc\Status;
  *                                format `projects/&#42;/locations/global`. Please see
  *                                {@see NetworkServicesClient::locationName()} for help formatting this field.
  * @param string $tcpRouteId      Short name of the TcpRoute resource to be created.
- * @param string $tcpRouteName    Name of the TcpRoute resource. It matches pattern
- *                                `projects/&#42;/locations/global/tcpRoutes/tcp_route_name>`.
  */
-function create_tcp_route_sample(
-    string $formattedParent,
-    string $tcpRouteId,
-    string $tcpRouteName
-): void {
+function create_tcp_route_sample(string $formattedParent, string $tcpRouteId): void
+{
     // Create a client.
     $networkServicesClient = new NetworkServicesClient();
 
@@ -56,7 +51,6 @@ function create_tcp_route_sample(
         ->setAction($tcpRouteRulesAction);
     $tcpRouteRules = [$routeRule,];
     $tcpRoute = (new TcpRoute())
-        ->setName($tcpRouteName)
         ->setRules($tcpRouteRules);
     $request = (new CreateTcpRouteRequest())
         ->setParent($formattedParent)
@@ -96,8 +90,7 @@ function callSample(): void
 {
     $formattedParent = NetworkServicesClient::locationName('[PROJECT]', '[LOCATION]');
     $tcpRouteId = '[TCP_ROUTE_ID]';
-    $tcpRouteName = '[NAME]';
 
-    create_tcp_route_sample($formattedParent, $tcpRouteId, $tcpRouteName);
+    create_tcp_route_sample($formattedParent, $tcpRouteId);
 }
 // [END networkservices_v1_generated_NetworkServices_CreateTcpRoute_sync]

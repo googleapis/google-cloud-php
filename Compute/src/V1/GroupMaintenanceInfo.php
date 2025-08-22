@@ -16,6 +16,18 @@ use Google\Protobuf\Internal\GPBUtil;
 class GroupMaintenanceInfo extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Describes number of instances that have ongoing maintenance.
+     *
+     * Generated from protobuf field <code>optional int32 instance_maintenance_ongoing_count = 137611253;</code>
+     */
+    private $instance_maintenance_ongoing_count = null;
+    /**
+     * Describes number of instances that have pending maintenance.
+     *
+     * Generated from protobuf field <code>optional int32 instance_maintenance_pending_count = 76612881;</code>
+     */
+    private $instance_maintenance_pending_count = null;
+    /**
      * Progress for ongoing maintenance for this group of VMs/hosts. Describes number of hosts in the block that have ongoing maintenance.
      *
      * Generated from protobuf field <code>optional int32 maintenance_ongoing_count = 219781919;</code>
@@ -35,6 +47,18 @@ class GroupMaintenanceInfo extends \Google\Protobuf\Internal\Message
      */
     private $scheduling_type = null;
     /**
+     * Describes number of subblock Infrastructure that has ongoing maintenance. Here, Subblock Infrastructure Maintenance pertains to upstream hardware contained in the Subblock that is necessary for a VM Family(e.g. NVLink Domains). Not all VM Families will support this field.
+     *
+     * Generated from protobuf field <code>optional int32 subblock_infra_maintenance_ongoing_count = 366161790;</code>
+     */
+    private $subblock_infra_maintenance_ongoing_count = null;
+    /**
+     * Describes number of subblock Infrastructure that has pending maintenance. Here, Subblock Infrastructure Maintenance pertains to upstream hardware contained in the Subblock that is necessary for a VM Family (e.g. NVLink Domains). Not all VM Families will support this field.
+     *
+     * Generated from protobuf field <code>optional int32 subblock_infra_maintenance_pending_count = 305163418;</code>
+     */
+    private $subblock_infra_maintenance_pending_count = null;
+    /**
      * Maintenance information on this group of VMs.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.UpcomingMaintenance upcoming_group_maintenance = 393438448;</code>
@@ -47,6 +71,10 @@ class GroupMaintenanceInfo extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type int $instance_maintenance_ongoing_count
+     *           Describes number of instances that have ongoing maintenance.
+     *     @type int $instance_maintenance_pending_count
+     *           Describes number of instances that have pending maintenance.
      *     @type int $maintenance_ongoing_count
      *           Progress for ongoing maintenance for this group of VMs/hosts. Describes number of hosts in the block that have ongoing maintenance.
      *     @type int $maintenance_pending_count
@@ -54,6 +82,10 @@ class GroupMaintenanceInfo extends \Google\Protobuf\Internal\Message
      *     @type string $scheduling_type
      *           The type of maintenance for the reservation.
      *           Check the SchedulingType enum for the list of possible values.
+     *     @type int $subblock_infra_maintenance_ongoing_count
+     *           Describes number of subblock Infrastructure that has ongoing maintenance. Here, Subblock Infrastructure Maintenance pertains to upstream hardware contained in the Subblock that is necessary for a VM Family(e.g. NVLink Domains). Not all VM Families will support this field.
+     *     @type int $subblock_infra_maintenance_pending_count
+     *           Describes number of subblock Infrastructure that has pending maintenance. Here, Subblock Infrastructure Maintenance pertains to upstream hardware contained in the Subblock that is necessary for a VM Family (e.g. NVLink Domains). Not all VM Families will support this field.
      *     @type \Google\Cloud\Compute\V1\UpcomingMaintenance $upcoming_group_maintenance
      *           Maintenance information on this group of VMs.
      * }
@@ -61,6 +93,78 @@ class GroupMaintenanceInfo extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Compute\V1\Compute::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Describes number of instances that have ongoing maintenance.
+     *
+     * Generated from protobuf field <code>optional int32 instance_maintenance_ongoing_count = 137611253;</code>
+     * @return int
+     */
+    public function getInstanceMaintenanceOngoingCount()
+    {
+        return isset($this->instance_maintenance_ongoing_count) ? $this->instance_maintenance_ongoing_count : 0;
+    }
+
+    public function hasInstanceMaintenanceOngoingCount()
+    {
+        return isset($this->instance_maintenance_ongoing_count);
+    }
+
+    public function clearInstanceMaintenanceOngoingCount()
+    {
+        unset($this->instance_maintenance_ongoing_count);
+    }
+
+    /**
+     * Describes number of instances that have ongoing maintenance.
+     *
+     * Generated from protobuf field <code>optional int32 instance_maintenance_ongoing_count = 137611253;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setInstanceMaintenanceOngoingCount($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->instance_maintenance_ongoing_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * Describes number of instances that have pending maintenance.
+     *
+     * Generated from protobuf field <code>optional int32 instance_maintenance_pending_count = 76612881;</code>
+     * @return int
+     */
+    public function getInstanceMaintenancePendingCount()
+    {
+        return isset($this->instance_maintenance_pending_count) ? $this->instance_maintenance_pending_count : 0;
+    }
+
+    public function hasInstanceMaintenancePendingCount()
+    {
+        return isset($this->instance_maintenance_pending_count);
+    }
+
+    public function clearInstanceMaintenancePendingCount()
+    {
+        unset($this->instance_maintenance_pending_count);
+    }
+
+    /**
+     * Describes number of instances that have pending maintenance.
+     *
+     * Generated from protobuf field <code>optional int32 instance_maintenance_pending_count = 76612881;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setInstanceMaintenancePendingCount($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->instance_maintenance_pending_count = $var;
+
+        return $this;
     }
 
     /**
@@ -169,6 +273,78 @@ class GroupMaintenanceInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->scheduling_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Describes number of subblock Infrastructure that has ongoing maintenance. Here, Subblock Infrastructure Maintenance pertains to upstream hardware contained in the Subblock that is necessary for a VM Family(e.g. NVLink Domains). Not all VM Families will support this field.
+     *
+     * Generated from protobuf field <code>optional int32 subblock_infra_maintenance_ongoing_count = 366161790;</code>
+     * @return int
+     */
+    public function getSubblockInfraMaintenanceOngoingCount()
+    {
+        return isset($this->subblock_infra_maintenance_ongoing_count) ? $this->subblock_infra_maintenance_ongoing_count : 0;
+    }
+
+    public function hasSubblockInfraMaintenanceOngoingCount()
+    {
+        return isset($this->subblock_infra_maintenance_ongoing_count);
+    }
+
+    public function clearSubblockInfraMaintenanceOngoingCount()
+    {
+        unset($this->subblock_infra_maintenance_ongoing_count);
+    }
+
+    /**
+     * Describes number of subblock Infrastructure that has ongoing maintenance. Here, Subblock Infrastructure Maintenance pertains to upstream hardware contained in the Subblock that is necessary for a VM Family(e.g. NVLink Domains). Not all VM Families will support this field.
+     *
+     * Generated from protobuf field <code>optional int32 subblock_infra_maintenance_ongoing_count = 366161790;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setSubblockInfraMaintenanceOngoingCount($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->subblock_infra_maintenance_ongoing_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * Describes number of subblock Infrastructure that has pending maintenance. Here, Subblock Infrastructure Maintenance pertains to upstream hardware contained in the Subblock that is necessary for a VM Family (e.g. NVLink Domains). Not all VM Families will support this field.
+     *
+     * Generated from protobuf field <code>optional int32 subblock_infra_maintenance_pending_count = 305163418;</code>
+     * @return int
+     */
+    public function getSubblockInfraMaintenancePendingCount()
+    {
+        return isset($this->subblock_infra_maintenance_pending_count) ? $this->subblock_infra_maintenance_pending_count : 0;
+    }
+
+    public function hasSubblockInfraMaintenancePendingCount()
+    {
+        return isset($this->subblock_infra_maintenance_pending_count);
+    }
+
+    public function clearSubblockInfraMaintenancePendingCount()
+    {
+        unset($this->subblock_infra_maintenance_pending_count);
+    }
+
+    /**
+     * Describes number of subblock Infrastructure that has pending maintenance. Here, Subblock Infrastructure Maintenance pertains to upstream hardware contained in the Subblock that is necessary for a VM Family (e.g. NVLink Domains). Not all VM Families will support this field.
+     *
+     * Generated from protobuf field <code>optional int32 subblock_infra_maintenance_pending_count = 305163418;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setSubblockInfraMaintenancePendingCount($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->subblock_infra_maintenance_pending_count = $var;
 
         return $this;
     }

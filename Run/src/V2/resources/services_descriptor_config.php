@@ -156,6 +156,7 @@ return [
             ],
             'templateMap' => [
                 'build' => 'projects/{project}/locations/{location}/builds/{build}',
+                'buildWorkerPool' => 'projects/{project}/locations/{location}/workerPools/{worker_pool}',
                 'connector' => 'projects/{project}/locations/{location}/connectors/{connector}',
                 'cryptoKey' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}',
                 'location' => 'projects/{project}/locations/{location}',
@@ -167,7 +168,6 @@ return [
                 'secret' => 'projects/{project}/secrets/{secret}',
                 'secretVersion' => 'projects/{project}/secrets/{secret}/versions/{version}',
                 'service' => 'projects/{project}/locations/{location}/services/{service}',
-                'workerPool' => 'projects/{project}/locations/{location}/workerPools/{worker_pool}',
             ],
         ],
     ],

@@ -41,7 +41,8 @@ class PhaseConfig extends \Google\Protobuf\Internal\Message
      */
     private $profiles;
     /**
-     * Optional. Whether to run verify tests after the deployment.
+     * Optional. Whether to run verify tests after the deployment via `skaffold
+     * verify`.
      *
      * Generated from protobuf field <code>bool verify = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -80,7 +81,8 @@ class PhaseConfig extends \Google\Protobuf\Internal\Message
      *           phase. These are in addition to the profiles list specified in the
      *           `DeliveryPipeline` stage.
      *     @type bool $verify
-     *           Optional. Whether to run verify tests after the deployment.
+     *           Optional. Whether to run verify tests after the deployment via `skaffold
+     *           verify`.
      *     @type \Google\Cloud\Deploy\V1\Predeploy $predeploy
      *           Optional. Configuration for the predeploy job of this phase. If this is
      *           not configured, there will be no predeploy job for this phase.
@@ -185,7 +187,8 @@ class PhaseConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Whether to run verify tests after the deployment.
+     * Optional. Whether to run verify tests after the deployment via `skaffold
+     * verify`.
      *
      * Generated from protobuf field <code>bool verify = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -196,7 +199,8 @@ class PhaseConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Whether to run verify tests after the deployment.
+     * Optional. Whether to run verify tests after the deployment via `skaffold
+     * verify`.
      *
      * Generated from protobuf field <code>bool verify = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var

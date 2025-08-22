@@ -54,11 +54,12 @@ class LbTrafficExtension extends \Google\Protobuf\Internal\Message
      */
     private $labels;
     /**
-     * Required. A list of references to the forwarding rules to which this
-     * service extension is attached to. At least one forwarding rule is required.
-     * There can be only one `LBTrafficExtension` resource per forwarding rule.
+     * Optional. A list of references to the forwarding rules to which this
+     * service extension is attached. At least one forwarding rule is required.
+     * Only one `LbTrafficExtension` resource can be associated with a forwarding
+     * rule.
      *
-     * Generated from protobuf field <code>repeated string forwarding_rules = 5 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>repeated string forwarding_rules = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $forwarding_rules;
     /**
@@ -75,21 +76,29 @@ class LbTrafficExtension extends \Google\Protobuf\Internal\Message
     /**
      * Required. All backend services and forwarding rules referenced by this
      * extension must share the same load balancing scheme. Supported values:
-     * `INTERNAL_MANAGED`, `EXTERNAL_MANAGED`. For more information, refer to
-     * [Choosing a load
-     * balancer](https://cloud.google.com/load-balancing/docs/backend-service).
+     * `INTERNAL_MANAGED` and `EXTERNAL_MANAGED`. For more information, refer to
+     * [Backend services
+     * overview](https://cloud.google.com/load-balancing/docs/backend-service).
      *
      * Generated from protobuf field <code>.google.cloud.networkservices.v1.LoadBalancingScheme load_balancing_scheme = 8 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $load_balancing_scheme = 0;
     /**
-     * Optional. The metadata provided here is included in the
-     * `ProcessingRequest.metadata_context.filter_metadata` map field. The
-     * metadata is available under the key
+     * Optional. The metadata provided here is included as part of the
+     * `metadata_context` (of type `google.protobuf.Struct`) in the
+     * `ProcessingRequest` message sent to the extension server.
+     * The metadata applies to all extensions in all extensions chains in this
+     * resource.
+     * The metadata is available under the key
      * `com.google.lb_traffic_extension.<resource_name>`.
      * The following variables are supported in the metadata:
      * `{forwarding_rule_id}` - substituted with the forwarding rule's fully
      *   qualified resource name.
+     * This field must not be set if at least one of the extension chains
+     * contains plugin extensions. Setting it results in a validation error.
+     * You can set metadata at either the resource level or the extension level.
+     * The extension level metadata is recommended because you can pass a
+     * different set of metadata through each extension to the backend.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct metadata = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -117,9 +126,10 @@ class LbTrafficExtension extends \Google\Protobuf\Internal\Message
      *           labels](https://cloud.google.com/compute/docs/labeling-resources#requirements)
      *           for Google Cloud resources.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $forwarding_rules
-     *           Required. A list of references to the forwarding rules to which this
-     *           service extension is attached to. At least one forwarding rule is required.
-     *           There can be only one `LBTrafficExtension` resource per forwarding rule.
+     *           Optional. A list of references to the forwarding rules to which this
+     *           service extension is attached. At least one forwarding rule is required.
+     *           Only one `LbTrafficExtension` resource can be associated with a forwarding
+     *           rule.
      *     @type array<\Google\Cloud\NetworkServices\V1\ExtensionChain>|\Google\Protobuf\Internal\RepeatedField $extension_chains
      *           Required. A set of ordered extension chains that contain the match
      *           conditions and extensions to execute. Match conditions for each extension
@@ -130,17 +140,25 @@ class LbTrafficExtension extends \Google\Protobuf\Internal\Message
      *     @type int $load_balancing_scheme
      *           Required. All backend services and forwarding rules referenced by this
      *           extension must share the same load balancing scheme. Supported values:
-     *           `INTERNAL_MANAGED`, `EXTERNAL_MANAGED`. For more information, refer to
-     *           [Choosing a load
-     *           balancer](https://cloud.google.com/load-balancing/docs/backend-service).
+     *           `INTERNAL_MANAGED` and `EXTERNAL_MANAGED`. For more information, refer to
+     *           [Backend services
+     *           overview](https://cloud.google.com/load-balancing/docs/backend-service).
      *     @type \Google\Protobuf\Struct $metadata
-     *           Optional. The metadata provided here is included in the
-     *           `ProcessingRequest.metadata_context.filter_metadata` map field. The
-     *           metadata is available under the key
+     *           Optional. The metadata provided here is included as part of the
+     *           `metadata_context` (of type `google.protobuf.Struct`) in the
+     *           `ProcessingRequest` message sent to the extension server.
+     *           The metadata applies to all extensions in all extensions chains in this
+     *           resource.
+     *           The metadata is available under the key
      *           `com.google.lb_traffic_extension.<resource_name>`.
      *           The following variables are supported in the metadata:
      *           `{forwarding_rule_id}` - substituted with the forwarding rule's fully
      *             qualified resource name.
+     *           This field must not be set if at least one of the extension chains
+     *           contains plugin extensions. Setting it results in a validation error.
+     *           You can set metadata at either the resource level or the extension level.
+     *           The extension level metadata is recommended because you can pass a
+     *           different set of metadata through each extension to the backend.
      * }
      */
     public function __construct($data = NULL) {
@@ -309,11 +327,12 @@ class LbTrafficExtension extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A list of references to the forwarding rules to which this
-     * service extension is attached to. At least one forwarding rule is required.
-     * There can be only one `LBTrafficExtension` resource per forwarding rule.
+     * Optional. A list of references to the forwarding rules to which this
+     * service extension is attached. At least one forwarding rule is required.
+     * Only one `LbTrafficExtension` resource can be associated with a forwarding
+     * rule.
      *
-     * Generated from protobuf field <code>repeated string forwarding_rules = 5 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>repeated string forwarding_rules = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getForwardingRules()
@@ -322,11 +341,12 @@ class LbTrafficExtension extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A list of references to the forwarding rules to which this
-     * service extension is attached to. At least one forwarding rule is required.
-     * There can be only one `LBTrafficExtension` resource per forwarding rule.
+     * Optional. A list of references to the forwarding rules to which this
+     * service extension is attached. At least one forwarding rule is required.
+     * Only one `LbTrafficExtension` resource can be associated with a forwarding
+     * rule.
      *
-     * Generated from protobuf field <code>repeated string forwarding_rules = 5 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>repeated string forwarding_rules = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -377,9 +397,9 @@ class LbTrafficExtension extends \Google\Protobuf\Internal\Message
     /**
      * Required. All backend services and forwarding rules referenced by this
      * extension must share the same load balancing scheme. Supported values:
-     * `INTERNAL_MANAGED`, `EXTERNAL_MANAGED`. For more information, refer to
-     * [Choosing a load
-     * balancer](https://cloud.google.com/load-balancing/docs/backend-service).
+     * `INTERNAL_MANAGED` and `EXTERNAL_MANAGED`. For more information, refer to
+     * [Backend services
+     * overview](https://cloud.google.com/load-balancing/docs/backend-service).
      *
      * Generated from protobuf field <code>.google.cloud.networkservices.v1.LoadBalancingScheme load_balancing_scheme = 8 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
@@ -392,9 +412,9 @@ class LbTrafficExtension extends \Google\Protobuf\Internal\Message
     /**
      * Required. All backend services and forwarding rules referenced by this
      * extension must share the same load balancing scheme. Supported values:
-     * `INTERNAL_MANAGED`, `EXTERNAL_MANAGED`. For more information, refer to
-     * [Choosing a load
-     * balancer](https://cloud.google.com/load-balancing/docs/backend-service).
+     * `INTERNAL_MANAGED` and `EXTERNAL_MANAGED`. For more information, refer to
+     * [Backend services
+     * overview](https://cloud.google.com/load-balancing/docs/backend-service).
      *
      * Generated from protobuf field <code>.google.cloud.networkservices.v1.LoadBalancingScheme load_balancing_scheme = 8 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
@@ -409,13 +429,21 @@ class LbTrafficExtension extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The metadata provided here is included in the
-     * `ProcessingRequest.metadata_context.filter_metadata` map field. The
-     * metadata is available under the key
+     * Optional. The metadata provided here is included as part of the
+     * `metadata_context` (of type `google.protobuf.Struct`) in the
+     * `ProcessingRequest` message sent to the extension server.
+     * The metadata applies to all extensions in all extensions chains in this
+     * resource.
+     * The metadata is available under the key
      * `com.google.lb_traffic_extension.<resource_name>`.
      * The following variables are supported in the metadata:
      * `{forwarding_rule_id}` - substituted with the forwarding rule's fully
      *   qualified resource name.
+     * This field must not be set if at least one of the extension chains
+     * contains plugin extensions. Setting it results in a validation error.
+     * You can set metadata at either the resource level or the extension level.
+     * The extension level metadata is recommended because you can pass a
+     * different set of metadata through each extension to the backend.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct metadata = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Struct|null
@@ -436,13 +464,21 @@ class LbTrafficExtension extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The metadata provided here is included in the
-     * `ProcessingRequest.metadata_context.filter_metadata` map field. The
-     * metadata is available under the key
+     * Optional. The metadata provided here is included as part of the
+     * `metadata_context` (of type `google.protobuf.Struct`) in the
+     * `ProcessingRequest` message sent to the extension server.
+     * The metadata applies to all extensions in all extensions chains in this
+     * resource.
+     * The metadata is available under the key
      * `com.google.lb_traffic_extension.<resource_name>`.
      * The following variables are supported in the metadata:
      * `{forwarding_rule_id}` - substituted with the forwarding rule's fully
      *   qualified resource name.
+     * This field must not be set if at least one of the extension chains
+     * contains plugin extensions. Setting it results in a validation error.
+     * You can set metadata at either the resource level or the extension level.
+     * The extension level metadata is recommended because you can pass a
+     * different set of metadata through each extension to the backend.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct metadata = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Struct $var

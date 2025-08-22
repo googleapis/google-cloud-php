@@ -32,19 +32,19 @@ use Google\Protobuf\FieldMask;
 /**
  * API to update an `EntitySignalsMapping` object.
  *
- * @param int $entitySignalsMappingTaxonomyCategoryIdsElement The IDs of the categories that are associated with the
- *                                                            referencing entity.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_entity_signals_mapping_sample(
-    int $entitySignalsMappingTaxonomyCategoryIdsElement
-): void {
+function update_entity_signals_mapping_sample(): void
+{
     // Create a client.
     $entitySignalsMappingServiceClient = new EntitySignalsMappingServiceClient();
 
     // Prepare the request message.
-    $entitySignalsMappingTaxonomyCategoryIds = [$entitySignalsMappingTaxonomyCategoryIdsElement,];
-    $entitySignalsMapping = (new EntitySignalsMapping())
-        ->setTaxonomyCategoryIds($entitySignalsMappingTaxonomyCategoryIds);
+    $entitySignalsMapping = new EntitySignalsMapping();
     $updateMask = new FieldMask();
     $request = (new UpdateEntitySignalsMappingRequest())
         ->setEntitySignalsMapping($entitySignalsMapping)
@@ -58,21 +58,5 @@ function update_entity_signals_mapping_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $entitySignalsMappingTaxonomyCategoryIdsElement = 0;
-
-    update_entity_signals_mapping_sample($entitySignalsMappingTaxonomyCategoryIdsElement);
 }
 // [END admanager_v1_generated_EntitySignalsMappingService_UpdateEntitySignalsMapping_sync]

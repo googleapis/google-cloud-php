@@ -53,13 +53,17 @@ class BigEndianBytes extends \Google\Protobuf\Internal\Message
      */
     public function getBytesType()
     {
-        @trigger_error('bytes_type is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->bytes_type)) {
+            @trigger_error('bytes_type is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->bytes_type;
     }
 
     public function hasBytesType()
     {
-        @trigger_error('bytes_type is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->bytes_type)) {
+            @trigger_error('bytes_type is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->bytes_type);
     }
 

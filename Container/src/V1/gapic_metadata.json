@@ -50,6 +50,16 @@
                                 "deleteNodePool"
                             ]
                         },
+                        "FetchClusterUpgradeInfo": {
+                            "methods": [
+                                "fetchClusterUpgradeInfo"
+                            ]
+                        },
+                        "FetchNodePoolUpgradeInfo": {
+                            "methods": [
+                                "fetchNodePoolUpgradeInfo"
+                            ]
+                        },
                         "GetCluster": {
                             "methods": [
                                 "getCluster"

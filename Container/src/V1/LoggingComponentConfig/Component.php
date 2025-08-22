@@ -61,6 +61,12 @@ class Component
      * Generated from protobuf enum <code>KCP_CONNECTION = 8;</code>
      */
     const KCP_CONNECTION = 8;
+    /**
+     * horizontal pod autoscaler decision logs
+     *
+     * Generated from protobuf enum <code>KCP_HPA = 9;</code>
+     */
+    const KCP_HPA = 9;
 
     private static $valueToName = [
         self::COMPONENT_UNSPECIFIED => 'COMPONENT_UNSPECIFIED',
@@ -71,6 +77,7 @@ class Component
         self::CONTROLLER_MANAGER => 'CONTROLLER_MANAGER',
         self::KCP_SSHD => 'KCP_SSHD',
         self::KCP_CONNECTION => 'KCP_CONNECTION',
+        self::KCP_HPA => 'KCP_HPA',
     ];
 
     public static function name($value)

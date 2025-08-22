@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/cloud/licensemanager/(v1)/.*-php/(.*)
+      dest: /owl-bot-staging/LicenseManager/$1/$2
+api-name: LicenseManager

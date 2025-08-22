@@ -105,6 +105,16 @@ class NodeNetworkConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>double pod_ipv4_range_utilization = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $pod_ipv4_range_utilization = 0.0;
+    /**
+     * Output only. The subnetwork path for the node pool.
+     * Format: projects/{project}/regions/{region}/subnetworks/{subnetwork}
+     * If the cluster is associated with multiple subnetworks, the subnetwork for
+     * the node pool is picked based on the IP utilization during node pool
+     * creation and is immutable.
+     *
+     * Generated from protobuf field <code>string subnetwork = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $subnetwork = '';
 
     /**
      * Constructor.
@@ -166,6 +176,12 @@ class NodeNetworkConfig extends \Google\Protobuf\Internal\Message
      *           Output only. The utilization of the IPv4 range for the pod.
      *           The ratio is Usage/[Total number of IPs in the secondary range],
      *           Usage=numNodes*numZones*podIPsPerNode.
+     *     @type string $subnetwork
+     *           Output only. The subnetwork path for the node pool.
+     *           Format: projects/{project}/regions/{region}/subnetworks/{subnetwork}
+     *           If the cluster is associated with multiple subnetworks, the subnetwork for
+     *           the node pool is picked based on the IP utilization during node pool
+     *           creation and is immutable.
      * }
      */
     public function __construct($data = NULL) {
@@ -505,6 +521,40 @@ class NodeNetworkConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkDouble($var);
         $this->pod_ipv4_range_utilization = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The subnetwork path for the node pool.
+     * Format: projects/{project}/regions/{region}/subnetworks/{subnetwork}
+     * If the cluster is associated with multiple subnetworks, the subnetwork for
+     * the node pool is picked based on the IP utilization during node pool
+     * creation and is immutable.
+     *
+     * Generated from protobuf field <code>string subnetwork = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getSubnetwork()
+    {
+        return $this->subnetwork;
+    }
+
+    /**
+     * Output only. The subnetwork path for the node pool.
+     * Format: projects/{project}/regions/{region}/subnetworks/{subnetwork}
+     * If the cluster is associated with multiple subnetworks, the subnetwork for
+     * the node pool is picked based on the IP utilization during node pool
+     * creation and is immutable.
+     *
+     * Generated from protobuf field <code>string subnetwork = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSubnetwork($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->subnetwork = $var;
 
         return $this;
     }

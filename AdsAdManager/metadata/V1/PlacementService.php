@@ -21,7 +21,7 @@ class PlacementService
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-–	
+Â	
 /google/ads/admanager/v1/placement_service.protogoogle.ads.admanager.v1google/api/annotations.protogoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto"O
 GetPlacementRequest8
 name (	B*àAúA$
@@ -40,10 +40,10 @@ page_token (	BàA
 placements (2".google.ads.admanager.v1.Placement
 next_page_token (	
 
-total_size (2î
+total_size (2š
 PlacementService“
 GetPlacement,.google.ads.admanager.v1.GetPlacementRequest".google.ads.admanager.v1.Placement"1ÚAname‚Óä“$"/v1/{name=networks/*/placements/*}¦
-ListPlacements..google.ads.admanager.v1.ListPlacementsRequest/.google.ads.admanager.v1.ListPlacementsResponse"3ÚAparent‚Óä“$"/v1/{parent=networks/*}/placementsÊAadmanager.googleapis.comBÉ
+ListPlacements..google.ads.admanager.v1.ListPlacementsRequest/.google.ads.admanager.v1.ListPlacementsResponse"3ÚAparent‚Óä“$"/v1/{parent=networks/*}/placementsGÊAadmanager.googleapis.comÒA)https://www.googleapis.com/auth/admanagerBÉ
 com.google.ads.admanager.v1BPlacementServiceProtoPZ@google.golang.org/genproto/googleapis/ads/admanager/v1;admanagerªGoogle.Ads.AdManager.V1ÊGoogle\\Ads\\AdManager\\V1êGoogle::Ads::AdManager::V1bproto3'
         , true);
 

@@ -30,13 +30,14 @@ class Extension extends \Google\Protobuf\Internal\Message
      * Optional. The `:authority` header in the gRPC request sent from Envoy
      * to the extension service.
      * Required for Callout extensions.
+     * This field is not supported for plugin extensions. Setting it results in
+     * a validation error.
      *
      * Generated from protobuf field <code>string authority = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $authority = '';
     /**
      * Required. The reference to the service that runs the extension.
-     * Currently only callout extensions are supported here.
      * To configure a callout extension, `service` must be a fully-qualified
      * reference
      * to a [backend
@@ -45,23 +46,38 @@ class Extension extends \Google\Protobuf\Internal\Message
      * `https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/backendServices/{backendService}`
      * or
      * `https://www.googleapis.com/compute/v1/projects/{project}/global/backendServices/{backendService}`.
+     * To configure a plugin extension, `service` must be a reference
+     * to a [`WasmPlugin`
+     * resource](https://cloud.google.com/service-extensions/docs/reference/rest/v1beta1/projects.locations.wasmPlugins)
+     * in the format:
+     * `projects/{project}/locations/{location}/wasmPlugins/{plugin}`
+     * or
+     * `//networkservices.googleapis.com/projects/{project}/locations/{location}/wasmPlugins/{wasmPlugin}`.
+     * Plugin extensions are currently supported for the
+     * `LbTrafficExtension`, the `LbRouteExtension`, and the `LbEdgeExtension`
+     * resources.
      *
      * Generated from protobuf field <code>string service = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $service = '';
     /**
      * Optional. A set of events during request or response processing for which
-     * this extension is called. This field is required for the
-     * `LbTrafficExtension` resource. It must not be set for the
-     * `LbRouteExtension` resource.
+     * this extension is called.
+     * For the `LbTrafficExtension` resource, this field is required.
+     * For the `LbRouteExtension` resource, this field is optional. If
+     * unspecified, `REQUEST_HEADERS` event is assumed as supported.
+     * For the `LbEdgeExtension` resource, this field is required and must only
+     * contain `REQUEST_HEADERS` event.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkservices.v1.EventType supported_events = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $supported_events;
     /**
      * Optional. Specifies the timeout for each individual message on the
-     * stream. The timeout must be between 10-1000 milliseconds. Required for
-     * Callout extensions.
+     * stream. The timeout must be between `10`-`10000` milliseconds. Required
+     * for callout extensions.
+     * This field is not supported for plugin extensions. Setting it results in
+     * a validation error.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration timeout = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -90,6 +106,32 @@ class Extension extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string forward_headers = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $forward_headers;
+    /**
+     * Optional. The metadata provided here is included as part of the
+     * `metadata_context` (of type `google.protobuf.Struct`) in the
+     * `ProcessingRequest` message sent to the extension server.
+     * The metadata is available under the namespace
+     * `com.google.<extension_type>.<resource_name>.<extension_chain_name>.<extension_name>`.
+     * For example:
+     * `com.google.lb_traffic_extension.lbtrafficextension1.chain1.ext1`.
+     * The following variables are supported in the metadata:
+     * `{forwarding_rule_id}` - substituted with the forwarding rule's fully
+     *   qualified resource name.
+     * This field must not be set for plugin extensions. Setting it results in
+     * a validation error.
+     * You can set metadata at either the resource level or the extension level.
+     * The extension level metadata is recommended because you can pass a
+     * different set of metadata through each extension to the backend.
+     * This field is subject to following limitations:
+     * * The total size of the metadata must be less than 1KiB.
+     * * The total number of keys in the metadata must be less than 16.
+     * * The length of each key must be less than 64 characters.
+     * * The length of each value must be less than 1024 characters.
+     * * All values must be strings.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct metadata = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $metadata = null;
 
     /**
      * Constructor.
@@ -108,9 +150,10 @@ class Extension extends \Google\Protobuf\Internal\Message
      *           Optional. The `:authority` header in the gRPC request sent from Envoy
      *           to the extension service.
      *           Required for Callout extensions.
+     *           This field is not supported for plugin extensions. Setting it results in
+     *           a validation error.
      *     @type string $service
      *           Required. The reference to the service that runs the extension.
-     *           Currently only callout extensions are supported here.
      *           To configure a callout extension, `service` must be a fully-qualified
      *           reference
      *           to a [backend
@@ -119,15 +162,30 @@ class Extension extends \Google\Protobuf\Internal\Message
      *           `https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/backendServices/{backendService}`
      *           or
      *           `https://www.googleapis.com/compute/v1/projects/{project}/global/backendServices/{backendService}`.
+     *           To configure a plugin extension, `service` must be a reference
+     *           to a [`WasmPlugin`
+     *           resource](https://cloud.google.com/service-extensions/docs/reference/rest/v1beta1/projects.locations.wasmPlugins)
+     *           in the format:
+     *           `projects/{project}/locations/{location}/wasmPlugins/{plugin}`
+     *           or
+     *           `//networkservices.googleapis.com/projects/{project}/locations/{location}/wasmPlugins/{wasmPlugin}`.
+     *           Plugin extensions are currently supported for the
+     *           `LbTrafficExtension`, the `LbRouteExtension`, and the `LbEdgeExtension`
+     *           resources.
      *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $supported_events
      *           Optional. A set of events during request or response processing for which
-     *           this extension is called. This field is required for the
-     *           `LbTrafficExtension` resource. It must not be set for the
-     *           `LbRouteExtension` resource.
+     *           this extension is called.
+     *           For the `LbTrafficExtension` resource, this field is required.
+     *           For the `LbRouteExtension` resource, this field is optional. If
+     *           unspecified, `REQUEST_HEADERS` event is assumed as supported.
+     *           For the `LbEdgeExtension` resource, this field is required and must only
+     *           contain `REQUEST_HEADERS` event.
      *     @type \Google\Protobuf\Duration $timeout
      *           Optional. Specifies the timeout for each individual message on the
-     *           stream. The timeout must be between 10-1000 milliseconds. Required for
-     *           Callout extensions.
+     *           stream. The timeout must be between `10`-`10000` milliseconds. Required
+     *           for callout extensions.
+     *           This field is not supported for plugin extensions. Setting it results in
+     *           a validation error.
      *     @type bool $fail_open
      *           Optional. Determines how the proxy behaves if the call to the extension
      *           fails or times out.
@@ -144,6 +202,28 @@ class Extension extends \Google\Protobuf\Internal\Message
      *           Optional. List of the HTTP headers to forward to the extension
      *           (from the client or backend). If omitted, all headers are sent.
      *           Each element is a string indicating the header name.
+     *     @type \Google\Protobuf\Struct $metadata
+     *           Optional. The metadata provided here is included as part of the
+     *           `metadata_context` (of type `google.protobuf.Struct`) in the
+     *           `ProcessingRequest` message sent to the extension server.
+     *           The metadata is available under the namespace
+     *           `com.google.<extension_type>.<resource_name>.<extension_chain_name>.<extension_name>`.
+     *           For example:
+     *           `com.google.lb_traffic_extension.lbtrafficextension1.chain1.ext1`.
+     *           The following variables are supported in the metadata:
+     *           `{forwarding_rule_id}` - substituted with the forwarding rule's fully
+     *             qualified resource name.
+     *           This field must not be set for plugin extensions. Setting it results in
+     *           a validation error.
+     *           You can set metadata at either the resource level or the extension level.
+     *           The extension level metadata is recommended because you can pass a
+     *           different set of metadata through each extension to the backend.
+     *           This field is subject to following limitations:
+     *           * The total size of the metadata must be less than 1KiB.
+     *           * The total number of keys in the metadata must be less than 16.
+     *           * The length of each key must be less than 64 characters.
+     *           * The length of each value must be less than 1024 characters.
+     *           * All values must be strings.
      * }
      */
     public function __construct($data = NULL) {
@@ -191,6 +271,8 @@ class Extension extends \Google\Protobuf\Internal\Message
      * Optional. The `:authority` header in the gRPC request sent from Envoy
      * to the extension service.
      * Required for Callout extensions.
+     * This field is not supported for plugin extensions. Setting it results in
+     * a validation error.
      *
      * Generated from protobuf field <code>string authority = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -204,6 +286,8 @@ class Extension extends \Google\Protobuf\Internal\Message
      * Optional. The `:authority` header in the gRPC request sent from Envoy
      * to the extension service.
      * Required for Callout extensions.
+     * This field is not supported for plugin extensions. Setting it results in
+     * a validation error.
      *
      * Generated from protobuf field <code>string authority = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -219,7 +303,6 @@ class Extension extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The reference to the service that runs the extension.
-     * Currently only callout extensions are supported here.
      * To configure a callout extension, `service` must be a fully-qualified
      * reference
      * to a [backend
@@ -228,6 +311,16 @@ class Extension extends \Google\Protobuf\Internal\Message
      * `https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/backendServices/{backendService}`
      * or
      * `https://www.googleapis.com/compute/v1/projects/{project}/global/backendServices/{backendService}`.
+     * To configure a plugin extension, `service` must be a reference
+     * to a [`WasmPlugin`
+     * resource](https://cloud.google.com/service-extensions/docs/reference/rest/v1beta1/projects.locations.wasmPlugins)
+     * in the format:
+     * `projects/{project}/locations/{location}/wasmPlugins/{plugin}`
+     * or
+     * `//networkservices.googleapis.com/projects/{project}/locations/{location}/wasmPlugins/{wasmPlugin}`.
+     * Plugin extensions are currently supported for the
+     * `LbTrafficExtension`, the `LbRouteExtension`, and the `LbEdgeExtension`
+     * resources.
      *
      * Generated from protobuf field <code>string service = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -239,7 +332,6 @@ class Extension extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The reference to the service that runs the extension.
-     * Currently only callout extensions are supported here.
      * To configure a callout extension, `service` must be a fully-qualified
      * reference
      * to a [backend
@@ -248,6 +340,16 @@ class Extension extends \Google\Protobuf\Internal\Message
      * `https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/backendServices/{backendService}`
      * or
      * `https://www.googleapis.com/compute/v1/projects/{project}/global/backendServices/{backendService}`.
+     * To configure a plugin extension, `service` must be a reference
+     * to a [`WasmPlugin`
+     * resource](https://cloud.google.com/service-extensions/docs/reference/rest/v1beta1/projects.locations.wasmPlugins)
+     * in the format:
+     * `projects/{project}/locations/{location}/wasmPlugins/{plugin}`
+     * or
+     * `//networkservices.googleapis.com/projects/{project}/locations/{location}/wasmPlugins/{wasmPlugin}`.
+     * Plugin extensions are currently supported for the
+     * `LbTrafficExtension`, the `LbRouteExtension`, and the `LbEdgeExtension`
+     * resources.
      *
      * Generated from protobuf field <code>string service = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -263,9 +365,12 @@ class Extension extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A set of events during request or response processing for which
-     * this extension is called. This field is required for the
-     * `LbTrafficExtension` resource. It must not be set for the
-     * `LbRouteExtension` resource.
+     * this extension is called.
+     * For the `LbTrafficExtension` resource, this field is required.
+     * For the `LbRouteExtension` resource, this field is optional. If
+     * unspecified, `REQUEST_HEADERS` event is assumed as supported.
+     * For the `LbEdgeExtension` resource, this field is required and must only
+     * contain `REQUEST_HEADERS` event.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkservices.v1.EventType supported_events = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -277,9 +382,12 @@ class Extension extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A set of events during request or response processing for which
-     * this extension is called. This field is required for the
-     * `LbTrafficExtension` resource. It must not be set for the
-     * `LbRouteExtension` resource.
+     * this extension is called.
+     * For the `LbTrafficExtension` resource, this field is required.
+     * For the `LbRouteExtension` resource, this field is optional. If
+     * unspecified, `REQUEST_HEADERS` event is assumed as supported.
+     * For the `LbEdgeExtension` resource, this field is required and must only
+     * contain `REQUEST_HEADERS` event.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkservices.v1.EventType supported_events = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
@@ -295,8 +403,10 @@ class Extension extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Specifies the timeout for each individual message on the
-     * stream. The timeout must be between 10-1000 milliseconds. Required for
-     * Callout extensions.
+     * stream. The timeout must be between `10`-`10000` milliseconds. Required
+     * for callout extensions.
+     * This field is not supported for plugin extensions. Setting it results in
+     * a validation error.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration timeout = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Duration|null
@@ -318,8 +428,10 @@ class Extension extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Specifies the timeout for each individual message on the
-     * stream. The timeout must be between 10-1000 milliseconds. Required for
-     * Callout extensions.
+     * stream. The timeout must be between `10`-`10000` milliseconds. Required
+     * for callout extensions.
+     * This field is not supported for plugin extensions. Setting it results in
+     * a validation error.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration timeout = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Duration $var
@@ -405,6 +517,82 @@ class Extension extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->forward_headers = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The metadata provided here is included as part of the
+     * `metadata_context` (of type `google.protobuf.Struct`) in the
+     * `ProcessingRequest` message sent to the extension server.
+     * The metadata is available under the namespace
+     * `com.google.<extension_type>.<resource_name>.<extension_chain_name>.<extension_name>`.
+     * For example:
+     * `com.google.lb_traffic_extension.lbtrafficextension1.chain1.ext1`.
+     * The following variables are supported in the metadata:
+     * `{forwarding_rule_id}` - substituted with the forwarding rule's fully
+     *   qualified resource name.
+     * This field must not be set for plugin extensions. Setting it results in
+     * a validation error.
+     * You can set metadata at either the resource level or the extension level.
+     * The extension level metadata is recommended because you can pass a
+     * different set of metadata through each extension to the backend.
+     * This field is subject to following limitations:
+     * * The total size of the metadata must be less than 1KiB.
+     * * The total number of keys in the metadata must be less than 16.
+     * * The length of each key must be less than 64 characters.
+     * * The length of each value must be less than 1024 characters.
+     * * All values must be strings.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct metadata = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Struct|null
+     */
+    public function getMetadata()
+    {
+        return $this->metadata;
+    }
+
+    public function hasMetadata()
+    {
+        return isset($this->metadata);
+    }
+
+    public function clearMetadata()
+    {
+        unset($this->metadata);
+    }
+
+    /**
+     * Optional. The metadata provided here is included as part of the
+     * `metadata_context` (of type `google.protobuf.Struct`) in the
+     * `ProcessingRequest` message sent to the extension server.
+     * The metadata is available under the namespace
+     * `com.google.<extension_type>.<resource_name>.<extension_chain_name>.<extension_name>`.
+     * For example:
+     * `com.google.lb_traffic_extension.lbtrafficextension1.chain1.ext1`.
+     * The following variables are supported in the metadata:
+     * `{forwarding_rule_id}` - substituted with the forwarding rule's fully
+     *   qualified resource name.
+     * This field must not be set for plugin extensions. Setting it results in
+     * a validation error.
+     * You can set metadata at either the resource level or the extension level.
+     * The extension level metadata is recommended because you can pass a
+     * different set of metadata through each extension to the backend.
+     * This field is subject to following limitations:
+     * * The total size of the metadata must be less than 1KiB.
+     * * The total number of keys in the metadata must be less than 16.
+     * * The length of each key must be less than 64 characters.
+     * * The length of each value must be less than 1024 characters.
+     * * All values must be strings.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct metadata = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\Struct $var
+     * @return $this
+     */
+    public function setMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Struct::class);
+        $this->metadata = $var;
 
         return $this;
     }

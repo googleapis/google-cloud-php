@@ -45,8 +45,9 @@ class HttpData extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The URL that points to the file that stores the object list
-     * entries. This file must allow public access.  Currently, only URLs with
-     * HTTP and HTTPS schemes are supported.
+     * entries. This file must allow public access. The URL is either an
+     * HTTP/HTTPS address (e.g. `https://example.com/urllist.tsv`) or a Cloud
+     * Storage path (e.g. `gs://my-bucket/urllist.tsv`).
      *
      * Generated from protobuf field <code>string list_url = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -60,8 +61,9 @@ class HttpData extends \Google\Protobuf\Internal\Message
      *
      *     @type string $list_url
      *           Required. The URL that points to the file that stores the object list
-     *           entries. This file must allow public access.  Currently, only URLs with
-     *           HTTP and HTTPS schemes are supported.
+     *           entries. This file must allow public access. The URL is either an
+     *           HTTP/HTTPS address (e.g. `https://example.com/urllist.tsv`) or a Cloud
+     *           Storage path (e.g. `gs://my-bucket/urllist.tsv`).
      * }
      */
     public function __construct($data = NULL) {
@@ -71,8 +73,9 @@ class HttpData extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The URL that points to the file that stores the object list
-     * entries. This file must allow public access.  Currently, only URLs with
-     * HTTP and HTTPS schemes are supported.
+     * entries. This file must allow public access. The URL is either an
+     * HTTP/HTTPS address (e.g. `https://example.com/urllist.tsv`) or a Cloud
+     * Storage path (e.g. `gs://my-bucket/urllist.tsv`).
      *
      * Generated from protobuf field <code>string list_url = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -84,8 +87,9 @@ class HttpData extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The URL that points to the file that stores the object list
-     * entries. This file must allow public access.  Currently, only URLs with
-     * HTTP and HTTPS schemes are supported.
+     * entries. This file must allow public access. The URL is either an
+     * HTTP/HTTPS address (e.g. `https://example.com/urllist.tsv`) or a Cloud
+     * Storage path (e.g. `gs://my-bucket/urllist.tsv`).
      *
      * Generated from protobuf field <code>string list_url = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

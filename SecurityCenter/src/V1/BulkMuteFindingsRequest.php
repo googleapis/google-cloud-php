@@ -213,7 +213,9 @@ class BulkMuteFindingsRequest extends \Google\Protobuf\Internal\Message
      */
     public function getMuteAnnotation()
     {
-        @trigger_error('mute_annotation is deprecated.', E_USER_DEPRECATED);
+        if ($this->mute_annotation !== '') {
+            @trigger_error('mute_annotation is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->mute_annotation;
     }
 

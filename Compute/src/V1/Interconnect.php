@@ -16,11 +16,23 @@ use Google\Protobuf\Internal\GPBUtil;
 class Interconnect extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Enable or disable the application awareness feature on this Cloud Interconnect.
+     *
+     * Generated from protobuf field <code>optional bool aai_enabled = 388780363;</code>
+     */
+    private $aai_enabled = null;
+    /**
      * Administrative status of the interconnect. When this is set to true, the Interconnect is functional and can carry traffic. When set to false, no packets can be carried over the interconnect and no BGP routes are exchanged over it. By default, the status is set to true.
      *
      * Generated from protobuf field <code>optional bool admin_enabled = 445675089;</code>
      */
     private $admin_enabled = null;
+    /**
+     * Configuration information for application awareness on this Cloud Interconnect.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectApplicationAwareInterconnect application_aware_interconnect = 429095966;</code>
+     */
+    private $application_aware_interconnect = null;
     /**
      * [Output only] List of features available for this Interconnect connection, which can take one of the following values: - IF_MACSEC If present then the Interconnect connection is provisioned on MACsec capable hardware ports. If not present then the Interconnect connection is provisioned on non-MACsec capable ports and MACsec isn't supported and enabling MACsec fails.
      * Check the AvailableFeatures enum for the list of possible values.
@@ -82,6 +94,12 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string interconnect_attachments = 425388415;</code>
      */
     private $interconnect_attachments;
+    /**
+     * [Output Only] URLs of InterconnectGroups that include this Interconnect. Order is arbitrary and items are unique.
+     *
+     * Generated from protobuf field <code>repeated string interconnect_groups = 237049509;</code>
+     */
+    private $interconnect_groups;
     /**
      * Type of interconnect, which can take one of the following values: - PARTNER: A partner-managed interconnection shared between customers though a partner. - DEDICATED: A dedicated physical interconnection with the customer. Note that a value IT_PRIVATE has been deprecated in favor of DEDICATED.
      * Check the InterconnectType enum for the list of possible values.
@@ -208,8 +226,12 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type bool $aai_enabled
+     *           Enable or disable the application awareness feature on this Cloud Interconnect.
      *     @type bool $admin_enabled
      *           Administrative status of the interconnect. When this is set to true, the Interconnect is functional and can carry traffic. When set to false, no packets can be carried over the interconnect and no BGP routes are exchanged over it. By default, the status is set to true.
+     *     @type \Google\Cloud\Compute\V1\InterconnectApplicationAwareInterconnect $application_aware_interconnect
+     *           Configuration information for application awareness on this Cloud Interconnect.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $available_features
      *           [Output only] List of features available for this Interconnect connection, which can take one of the following values: - IF_MACSEC If present then the Interconnect connection is provisioned on MACsec capable hardware ports. If not present then the Interconnect connection is provisioned on non-MACsec capable ports and MACsec isn't supported and enabling MACsec fails.
      *           Check the AvailableFeatures enum for the list of possible values.
@@ -231,6 +253,8 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $interconnect_attachments
      *           [Output Only] A list of the URLs of all InterconnectAttachments configured to use this Interconnect.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $interconnect_groups
+     *           [Output Only] URLs of InterconnectGroups that include this Interconnect. Order is arbitrary and items are unique.
      *     @type string $interconnect_type
      *           Type of interconnect, which can take one of the following values: - PARTNER: A partner-managed interconnection shared between customers though a partner. - DEDICATED: A dedicated physical interconnection with the customer. Note that a value IT_PRIVATE has been deprecated in favor of DEDICATED.
      *           Check the InterconnectType enum for the list of possible values.
@@ -282,6 +306,42 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Enable or disable the application awareness feature on this Cloud Interconnect.
+     *
+     * Generated from protobuf field <code>optional bool aai_enabled = 388780363;</code>
+     * @return bool
+     */
+    public function getAaiEnabled()
+    {
+        return isset($this->aai_enabled) ? $this->aai_enabled : false;
+    }
+
+    public function hasAaiEnabled()
+    {
+        return isset($this->aai_enabled);
+    }
+
+    public function clearAaiEnabled()
+    {
+        unset($this->aai_enabled);
+    }
+
+    /**
+     * Enable or disable the application awareness feature on this Cloud Interconnect.
+     *
+     * Generated from protobuf field <code>optional bool aai_enabled = 388780363;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setAaiEnabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->aai_enabled = $var;
+
+        return $this;
+    }
+
+    /**
      * Administrative status of the interconnect. When this is set to true, the Interconnect is functional and can carry traffic. When set to false, no packets can be carried over the interconnect and no BGP routes are exchanged over it. By default, the status is set to true.
      *
      * Generated from protobuf field <code>optional bool admin_enabled = 445675089;</code>
@@ -313,6 +373,42 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->admin_enabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Configuration information for application awareness on this Cloud Interconnect.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectApplicationAwareInterconnect application_aware_interconnect = 429095966;</code>
+     * @return \Google\Cloud\Compute\V1\InterconnectApplicationAwareInterconnect|null
+     */
+    public function getApplicationAwareInterconnect()
+    {
+        return $this->application_aware_interconnect;
+    }
+
+    public function hasApplicationAwareInterconnect()
+    {
+        return isset($this->application_aware_interconnect);
+    }
+
+    public function clearApplicationAwareInterconnect()
+    {
+        unset($this->application_aware_interconnect);
+    }
+
+    /**
+     * Configuration information for application awareness on this Cloud Interconnect.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectApplicationAwareInterconnect application_aware_interconnect = 429095966;</code>
+     * @param \Google\Cloud\Compute\V1\InterconnectApplicationAwareInterconnect $var
+     * @return $this
+     */
+    public function setApplicationAwareInterconnect($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\InterconnectApplicationAwareInterconnect::class);
+        $this->application_aware_interconnect = $var;
 
         return $this;
     }
@@ -635,6 +731,32 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->interconnect_attachments = $arr;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] URLs of InterconnectGroups that include this Interconnect. Order is arbitrary and items are unique.
+     *
+     * Generated from protobuf field <code>repeated string interconnect_groups = 237049509;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getInterconnectGroups()
+    {
+        return $this->interconnect_groups;
+    }
+
+    /**
+     * [Output Only] URLs of InterconnectGroups that include this Interconnect. Order is arbitrary and items are unique.
+     *
+     * Generated from protobuf field <code>repeated string interconnect_groups = 237049509;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setInterconnectGroups($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->interconnect_groups = $arr;
 
         return $this;
     }

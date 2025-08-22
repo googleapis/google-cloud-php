@@ -36,9 +36,9 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 
 ```php
 Google\ApiCore\ApiException;
-Google\Shopping\Merchant\Accounts\V1beta\AccountTax;
-Google\Shopping\Merchant\Accounts\V1beta\Client\AccountTaxServiceClient;
-Google\Shopping\Merchant\Accounts\V1beta\GetAccountTaxRequest;
+Google\Shopping\Merchant\Accounts\V1\AccountTax;
+Google\Shopping\Merchant\Accounts\V1\Client\AccountTaxServiceClient;
+Google\Shopping\Merchant\Accounts\V1\GetAccountTaxRequest;
 
 // Create a client.
 $accountTaxServiceClient = new AccountTaxServiceClient();
@@ -66,7 +66,8 @@ for more information about the debugging tools.
 
 ### Version
 
-This component is considered alpha. As such, it is still a work-in-progress and is more likely to get backwards-incompatible updates.
+This component is considered GA (generally available). As such, it will not introduce backwards-incompatible changes in
+any minor or patch releases. We will address issues and requests with the highest priority.
 
 ### Next Steps
 

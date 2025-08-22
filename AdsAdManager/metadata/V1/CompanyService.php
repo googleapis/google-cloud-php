@@ -21,7 +21,7 @@ class CompanyService
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ü
+¨	
 -google/ads/admanager/v1/company_service.protogoogle.ads.admanager.v1google/api/annotations.protogoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto"K
 GetCompanyRequest6
 name (	B(àAúA"
@@ -39,11 +39,11 @@ page_token (	BàA
 	companies (2 .google.ads.admanager.v1.Company
 next_page_token (	
 
-total_size (2á
+total_size (2
 CompanyServiceŒ
 
 GetCompany*.google.ads.admanager.v1.GetCompanyRequest .google.ads.admanager.v1.Company"0ÚAname‚Óä“#!/v1/{name=networks/*/companies/*}¢
-ListCompanies-.google.ads.admanager.v1.ListCompaniesRequest..google.ads.admanager.v1.ListCompaniesResponse"2ÚAparent‚Óä“#!/v1/{parent=networks/*}/companiesÊAadmanager.googleapis.comBÇ
+ListCompanies-.google.ads.admanager.v1.ListCompaniesRequest..google.ads.admanager.v1.ListCompaniesResponse"2ÚAparent‚Óä“#!/v1/{parent=networks/*}/companiesGÊAadmanager.googleapis.comÒA)https://www.googleapis.com/auth/admanagerBÇ
 com.google.ads.admanager.v1BCompanyServiceProtoPZ@google.golang.org/genproto/googleapis/ads/admanager/v1;admanagerªGoogle.Ads.AdManager.V1ÊGoogle\\Ads\\AdManager\\V1êGoogle::Ads::AdManager::V1bproto3'
         , true);
 

@@ -10,6 +10,16 @@
                 "grpc": {
                     "libraryClient": "ManagedKafkaGapicClient",
                     "rpcs": {
+                        "AddAclEntry": {
+                            "methods": [
+                                "addAclEntry"
+                            ]
+                        },
+                        "CreateAcl": {
+                            "methods": [
+                                "createAcl"
+                            ]
+                        },
                         "CreateCluster": {
                             "methods": [
                                 "createCluster"
@@ -18,6 +28,11 @@
                         "CreateTopic": {
                             "methods": [
                                 "createTopic"
+                            ]
+                        },
+                        "DeleteAcl": {
+                            "methods": [
+                                "deleteAcl"
                             ]
                         },
                         "DeleteCluster": {
@@ -35,6 +50,11 @@
                                 "deleteTopic"
                             ]
                         },
+                        "GetAcl": {
+                            "methods": [
+                                "getAcl"
+                            ]
+                        },
                         "GetCluster": {
                             "methods": [
                                 "getCluster"
@@ -50,6 +70,11 @@
                                 "getTopic"
                             ]
                         },
+                        "ListAcls": {
+                            "methods": [
+                                "listAcls"
+                            ]
+                        },
                         "ListClusters": {
                             "methods": [
                                 "listClusters"
@@ -63,6 +88,16 @@
                         "ListTopics": {
                             "methods": [
                                 "listTopics"
+                            ]
+                        },
+                        "RemoveAclEntry": {
+                            "methods": [
+                                "removeAclEntry"
+                            ]
+                        },
+                        "UpdateAcl": {
+                            "methods": [
+                                "updateAcl"
                             ]
                         },
                         "UpdateCluster": {

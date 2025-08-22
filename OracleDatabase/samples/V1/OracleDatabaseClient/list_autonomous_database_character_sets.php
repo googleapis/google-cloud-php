@@ -25,6 +25,7 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START oracledatabase_v1_generated_OracleDatabase_ListAutonomousDatabaseCharacterSets_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\OracleDatabase\V1\AutonomousDatabaseCharacterSet;
 use Google\Cloud\OracleDatabase\V1\Client\OracleDatabaseClient;
 use Google\Cloud\OracleDatabase\V1\ListAutonomousDatabaseCharacterSetsRequest;
 
@@ -49,6 +50,7 @@ function list_autonomous_database_character_sets_sample(string $formattedParent)
         /** @var PagedListResponse $response */
         $response = $oracleDatabaseClient->listAutonomousDatabaseCharacterSets($request);
 
+        /** @var AutonomousDatabaseCharacterSet $element */
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
         }

@@ -49,7 +49,7 @@ class LoadDataAndQueryTest extends BigQueryTestCase
             'Spells' => [
                 [
                     'Name' => 'Summon Dragon',
-                    'LastUsed' => self::$client->timestamp(new \DateTime('2000-01-01 23:59:56 UTC')),
+                    'LastUsed' => self::$client->timestamp(new \DateTime('2000-01-01 23:59:56.000001 UTC')),
                     'DiscoveredBy' => 'Bobby',
                     'Properties' => [
                         [
@@ -171,6 +171,54 @@ class LoadDataAndQueryTest extends BigQueryTestCase
             $this->assertEquals((string) $expectedBytes, (string) $actualBytes);
             $this->assertMatchesRegularExpression($this->geographyPattern, (string) $actualGeography);
         }
+    }
+
+    /**
+     * @depends testInsertRowToTable
+     */
+    public function testRunQueryUseInt64Timestamp()
+    {
+        $queryString = sprintf(
+            'SELECT Spells FROM `%s.%s`',
+            self::$dataset->id(),
+            self::$table->id()
+        );
+        $floatTimestampResults = self::$client->runQuery(
+            self::$client->query($queryString),
+            ['formatOptions.useInt64Timestamp' => false, 'returnRawResults' => true]
+        );
+        $int64TimestampResults = self::$client->runQuery(
+            self::$client->query($queryString),
+            ['formatOptions.useInt64Timestamp' => true, 'returnRawResults' => true]
+        );
+        $int64TimestampResultsArrayParam = self::$client->runQuery(
+            self::$client->query($queryString),
+            ['formatOptions' => ['useInt64Timestamp' => true], 'returnRawResults' => true]
+        );
+        $floatTimestampResults->waitUntilComplete();
+        $int64TimestampResults->waitUntilComplete();
+        $int64TimestampResultsArrayParam->waitUntilComplete();
+
+        $int64TimestampRow = iterator_to_array($int64TimestampResults->rows())[0];
+        $floatTimestampRow = iterator_to_array($floatTimestampResults->rows())[0];
+        $int64TimestampRowArrayParam = iterator_to_array($int64TimestampResultsArrayParam->rows())[0];
+
+        $this->assertEquals(946771196.000001, (float) $floatTimestampRow['Spells'][0]['v']['f'][1]['v']);
+        $this->assertEquals(946771196000001, (int) $int64TimestampRow['Spells'][0]['v']['f'][1]['v']);
+        $this->assertEquals(946771196000001, (int) $int64TimestampRowArrayParam['Spells'][0]['v']['f'][1]['v']);
+    }
+
+    /**
+     * @depends testInsertRowToTable
+     */
+    public function testListTableDataUseInt64Timestamp()
+    {
+        $int64TimestampRow = iterator_to_array(self::$table->rows(['formatOptions.useInt64Timestamp' => true]))[0];
+        $floatTimestampRow = iterator_to_array(self::$table->rows(['formatOptions.useInt64Timestamp' => false]))[0];
+
+        $spells = $this->row['Spells'][0];
+        $this->assertEquals($spells['LastUsed'], $int64TimestampRow['Spells'][0]['LastUsed']);
+        $this->assertEquals($spells['LastUsed'], $floatTimestampRow['Spells'][0]['LastUsed']);
     }
 
     public function testInsertRowToTableWithDefaultValueExpression()

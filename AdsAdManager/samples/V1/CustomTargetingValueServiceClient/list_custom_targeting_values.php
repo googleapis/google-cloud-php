@@ -33,8 +33,8 @@ use Google\ApiCore\PagedListResponse;
  *
  * @param string $formattedParent The parent, which owns this collection of CustomTargetingValues.
  *                                Format:
- *                                `networks/{network_code}/customTargetingKeys/{custom_targeting_key_id}`
- *                                Please see {@see CustomTargetingValueServiceClient::customTargetingKeyName()} for help formatting this field.
+ *                                `networks/{network_code}`
+ *                                Please see {@see CustomTargetingValueServiceClient::networkName()} for help formatting this field.
  */
 function list_custom_targeting_values_sample(string $formattedParent): void
 {
@@ -69,10 +69,7 @@ function list_custom_targeting_values_sample(string $formattedParent): void
  */
 function callSample(): void
 {
-    $formattedParent = CustomTargetingValueServiceClient::customTargetingKeyName(
-        '[NETWORK_CODE]',
-        '[CUSTOM_TARGETING_KEY]'
-    );
+    $formattedParent = CustomTargetingValueServiceClient::networkName('[NETWORK_CODE]');
 
     list_custom_targeting_values_sample($formattedParent);
 }

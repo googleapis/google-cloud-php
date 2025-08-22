@@ -32,6 +32,8 @@ class Type
 {
     const UNDEFINED_TYPE = 'UNDEFINED_TYPE';
 
+    const MULTIPLE = 'MULTIPLE';
+
     const SCHEDULED = 'SCHEDULED';
 
     const UNKNOWN_TYPE = 'UNKNOWN_TYPE';

@@ -49,6 +49,9 @@ return [
                 ],
             ],
             'templateMap' => [
+                'folderLocationQuotaAdjusterSettings' => 'folders/{folder}/locations/{location}/quotaAdjusterSettings',
+                'organizationLocationQuotaAdjusterSettings' => 'organizations/{organization}/locations/{location}/quotaAdjusterSettings',
+                'projectLocationQuotaAdjusterSettings' => 'projects/{project}/locations/{location}/quotaAdjusterSettings',
                 'quotaAdjusterSettings' => 'projects/{project}/locations/{location}/quotaAdjusterSettings',
             ],
         ],

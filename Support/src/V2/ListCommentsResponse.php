@@ -16,15 +16,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListCommentsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The list of Comments associated with the given Case.
+     * List of the comments associated with the case.
      *
      * Generated from protobuf field <code>repeated .google.cloud.support.v2.Comment comments = 1;</code>
      */
     private $comments;
     /**
-     * A token to retrieve the next page of results. This should be set in the
-     * `page_token` field of subsequent `ListCommentsRequest` message that is
-     * issued. If unspecified, there are no more results to retrieve.
+     * A token to retrieve the next page of results. Set this in the `page_token`
+     * field of subsequent `cases.comments.list` requests. If unspecified, there
+     * are no more results to retrieve.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
@@ -37,11 +37,11 @@ class ListCommentsResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\Support\V2\Comment>|\Google\Protobuf\Internal\RepeatedField $comments
-     *           The list of Comments associated with the given Case.
+     *           List of the comments associated with the case.
      *     @type string $next_page_token
-     *           A token to retrieve the next page of results. This should be set in the
-     *           `page_token` field of subsequent `ListCommentsRequest` message that is
-     *           issued. If unspecified, there are no more results to retrieve.
+     *           A token to retrieve the next page of results. Set this in the `page_token`
+     *           field of subsequent `cases.comments.list` requests. If unspecified, there
+     *           are no more results to retrieve.
      * }
      */
     public function __construct($data = NULL) {
@@ -50,7 +50,7 @@ class ListCommentsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The list of Comments associated with the given Case.
+     * List of the comments associated with the case.
      *
      * Generated from protobuf field <code>repeated .google.cloud.support.v2.Comment comments = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -61,7 +61,7 @@ class ListCommentsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The list of Comments associated with the given Case.
+     * List of the comments associated with the case.
      *
      * Generated from protobuf field <code>repeated .google.cloud.support.v2.Comment comments = 1;</code>
      * @param array<\Google\Cloud\Support\V2\Comment>|\Google\Protobuf\Internal\RepeatedField $var
@@ -76,9 +76,9 @@ class ListCommentsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A token to retrieve the next page of results. This should be set in the
-     * `page_token` field of subsequent `ListCommentsRequest` message that is
-     * issued. If unspecified, there are no more results to retrieve.
+     * A token to retrieve the next page of results. Set this in the `page_token`
+     * field of subsequent `cases.comments.list` requests. If unspecified, there
+     * are no more results to retrieve.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
@@ -89,9 +89,9 @@ class ListCommentsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A token to retrieve the next page of results. This should be set in the
-     * `page_token` field of subsequent `ListCommentsRequest` message that is
-     * issued. If unspecified, there are no more results to retrieve.
+     * A token to retrieve the next page of results. Set this in the `page_token`
+     * field of subsequent `cases.comments.list` requests. If unspecified, there
+     * are no more results to retrieve.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var

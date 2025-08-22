@@ -43,8 +43,8 @@ class ListAuthorizedViewsRequest extends \Google\Protobuf\Internal\Message
      */
     protected $page_token = '';
     /**
-     * Optional. The resource_view to be applied to the returned views' fields.
-     * Default to NAME_ONLY.
+     * Optional. The resource_view to be applied to the returned AuthorizedViews'
+     * fields. Default to NAME_ONLY.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.AuthorizedView.ResponseView view = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -87,8 +87,8 @@ class ListAuthorizedViewsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $page_token
      *           Optional. The value of `next_page_token` returned by a previous call.
      *     @type int $view
-     *           Optional. The resource_view to be applied to the returned views' fields.
-     *           Default to NAME_ONLY.
+     *           Optional. The resource_view to be applied to the returned AuthorizedViews'
+     *           fields. Default to NAME_ONLY.
      * }
      */
     public function __construct($data = NULL) {
@@ -191,8 +191,8 @@ class ListAuthorizedViewsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The resource_view to be applied to the returned views' fields.
-     * Default to NAME_ONLY.
+     * Optional. The resource_view to be applied to the returned AuthorizedViews'
+     * fields. Default to NAME_ONLY.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.AuthorizedView.ResponseView view = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -203,8 +203,8 @@ class ListAuthorizedViewsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The resource_view to be applied to the returned views' fields.
-     * Default to NAME_ONLY.
+     * Optional. The resource_view to be applied to the returned AuthorizedViews'
+     * fields. Default to NAME_ONLY.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.AuthorizedView.ResponseView view = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var

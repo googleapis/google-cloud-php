@@ -10,7 +10,8 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Contains information about how a particular
- * [google.dataflow.v1beta3.Step][google.dataflow.v1beta3.Step] will be executed.
+ * [google.dataflow.v1beta3.Step][google.dataflow.v1beta3.Step] will be
+ * executed.
  *
  * Generated from protobuf message <code>google.dataflow.v1beta3.JobExecutionStageInfo</code>
  */

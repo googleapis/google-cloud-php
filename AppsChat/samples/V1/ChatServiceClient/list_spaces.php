@@ -40,9 +40,14 @@ use Google\Apps\Chat\V1\Space;
  *
  * - [App
  * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
+ * with the authorization scope:
+ * - `https://www.googleapis.com/auth/chat.bot`
  *
  * - [User
  * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+ * with one of the following authorization scopes:
+ * - `https://www.googleapis.com/auth/chat.spaces.readonly`
+ * - `https://www.googleapis.com/auth/chat.spaces`
  *
  * To list all named spaces by Google Workspace organization, use the
  * [`spaces.search()`](https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces/search)

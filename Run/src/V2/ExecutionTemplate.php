@@ -47,15 +47,14 @@ class ExecutionTemplate extends \Google\Protobuf\Internal\Message
      */
     private $annotations;
     /**
-     * Specifies the maximum desired number of tasks the execution should run at
-     * given time. Must be <= task_count.
-     * When the job is run, if this field is 0 or unset, the maximum possible
-     * value will be used for that execution.
-     * The actual number of tasks running in steady state will be less than this
-     * number when there are fewer tasks waiting to be completed remaining,
-     * i.e. when the work left to do is less than max parallelism.
+     * Optional. Specifies the maximum desired number of tasks the execution
+     * should run at given time. When the job is run, if this field is 0 or unset,
+     * the maximum possible value will be used for that execution. The actual
+     * number of tasks running in steady state will be less than this number when
+     * there are fewer tasks waiting to be completed remaining, i.e. when the work
+     * left to do is less than max parallelism.
      *
-     * Generated from protobuf field <code>int32 parallelism = 3;</code>
+     * Generated from protobuf field <code>int32 parallelism = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $parallelism = 0;
     /**
@@ -103,13 +102,12 @@ class ExecutionTemplate extends \Google\Protobuf\Internal\Message
      *           <p>This field follows Kubernetes annotations' namespacing, limits, and
      *           rules.
      *     @type int $parallelism
-     *           Specifies the maximum desired number of tasks the execution should run at
-     *           given time. Must be <= task_count.
-     *           When the job is run, if this field is 0 or unset, the maximum possible
-     *           value will be used for that execution.
-     *           The actual number of tasks running in steady state will be less than this
-     *           number when there are fewer tasks waiting to be completed remaining,
-     *           i.e. when the work left to do is less than max parallelism.
+     *           Optional. Specifies the maximum desired number of tasks the execution
+     *           should run at given time. When the job is run, if this field is 0 or unset,
+     *           the maximum possible value will be used for that execution. The actual
+     *           number of tasks running in steady state will be less than this number when
+     *           there are fewer tasks waiting to be completed remaining, i.e. when the work
+     *           left to do is less than max parallelism.
      *     @type int $task_count
      *           Specifies the desired number of tasks the execution should run.
      *           Setting to 1 means that parallelism is limited to 1 and the success of
@@ -213,15 +211,14 @@ class ExecutionTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the maximum desired number of tasks the execution should run at
-     * given time. Must be <= task_count.
-     * When the job is run, if this field is 0 or unset, the maximum possible
-     * value will be used for that execution.
-     * The actual number of tasks running in steady state will be less than this
-     * number when there are fewer tasks waiting to be completed remaining,
-     * i.e. when the work left to do is less than max parallelism.
+     * Optional. Specifies the maximum desired number of tasks the execution
+     * should run at given time. When the job is run, if this field is 0 or unset,
+     * the maximum possible value will be used for that execution. The actual
+     * number of tasks running in steady state will be less than this number when
+     * there are fewer tasks waiting to be completed remaining, i.e. when the work
+     * left to do is less than max parallelism.
      *
-     * Generated from protobuf field <code>int32 parallelism = 3;</code>
+     * Generated from protobuf field <code>int32 parallelism = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getParallelism()
@@ -230,15 +227,14 @@ class ExecutionTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the maximum desired number of tasks the execution should run at
-     * given time. Must be <= task_count.
-     * When the job is run, if this field is 0 or unset, the maximum possible
-     * value will be used for that execution.
-     * The actual number of tasks running in steady state will be less than this
-     * number when there are fewer tasks waiting to be completed remaining,
-     * i.e. when the work left to do is less than max parallelism.
+     * Optional. Specifies the maximum desired number of tasks the execution
+     * should run at given time. When the job is run, if this field is 0 or unset,
+     * the maximum possible value will be used for that execution. The actual
+     * number of tasks running in steady state will be less than this number when
+     * there are fewer tasks waiting to be completed remaining, i.e. when the work
+     * left to do is less than max parallelism.
      *
-     * Generated from protobuf field <code>int32 parallelism = 3;</code>
+     * Generated from protobuf field <code>int32 parallelism = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */

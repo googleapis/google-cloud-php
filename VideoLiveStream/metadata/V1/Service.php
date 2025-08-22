@@ -26,7 +26,7 @@ class Service
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-êO
+¥`
 .google/cloud/video/livestream/v1/service.proto google.cloud.video.livestream.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/field_info.protogoogle/api/resource.proto0google/cloud/video/livestream/v1/resources.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"µ
 CreateAssetRequest7
 parent (	B\'àAúA!livestream.googleapis.com/Asset;
@@ -175,7 +175,37 @@ request_id (	BàA"j
 name (	B&àAúA 
 livestream.googleapis.com/Clip
 
-request_id (	BàAâŒÏ×"ã
+request_id (	BàAâŒÏ×"³
+ListDvrSessionsRequest<
+parent (	B,àAúA&$livestream.googleapis.com/DvrSession
+	page_size (BàA
+
+page_token (	BàA
+filter (	BàA
+order_by (	BàA"‹
+ListDvrSessionsResponseB
+dvr_sessions (2,.google.cloud.video.livestream.v1.DvrSession
+next_page_token (	
+unreachable (	"R
+GetDvrSessionRequest:
+name (	B,àAúA&
+$livestream.googleapis.com/DvrSession"Ý
+CreateDvrSessionRequest<
+parent (	B,àAúA&$livestream.googleapis.com/DvrSession
+dvr_session_id (	BàAF
+dvr_session (2,.google.cloud.video.livestream.v1.DvrSessionBàA
+
+request_id (	BàAâŒÏ×"v
+DeleteDvrSessionRequest:
+name (	B,àAúA&
+$livestream.googleapis.com/DvrSession
+
+request_id (	BàAâŒÏ×"¸
+UpdateDvrSessionRequest4
+update_mask (2.google.protobuf.FieldMaskBàAF
+dvr_session (2,.google.cloud.video.livestream.v1.DvrSessionBàA
+
+request_id (	BàAâŒÏ×"ã
 OperationMetadata4
 create_time (2.google.protobuf.TimestampBàA1
 end_time (2.google.protobuf.TimestampBàA
@@ -190,7 +220,7 @@ request_id (	BàAâŒÏ×"ã
 update_mask (2.google.protobuf.FieldMask9
 pool (2&.google.cloud.video.livestream.v1.PoolBàA
 
-request_id (	2Ù(
+request_id (	2é1
 LivestreamServiceà
 CreateChannel6.google.cloud.video.livestream.v1.CreateChannelRequest.google.longrunning.Operation"xÊA
 ChannelOperationMetadataÚAparent,channel,channel_id‚Óä“7",/v1/{parent=projects/*/locations/*}/channels:channel¼
@@ -226,7 +256,17 @@ CreateClip3.google.cloud.video.livestream.v1.CreateClipRequest.google.longrun
 ClipOperationMetadataÚAparent,clip,clip_id‚Óä“<"4/v1/{parent=projects/*/locations/*/channels/*}/clips:clipÒ
 
 DeleteClip3.google.cloud.video.livestream.v1.DeleteClipRequest.google.longrunning.Operation"pÊA*
-google.protobuf.EmptyOperationMetadataÚAname‚Óä“6*4/v1/{name=projects/*/locations/*/channels/*/clips/*}Ò
+google.protobuf.EmptyOperationMetadataÚAname‚Óä“6*4/v1/{name=projects/*/locations/*/channels/*/clips/*}„
+CreateDvrSession9.google.cloud.video.livestream.v1.CreateDvrSessionRequest.google.longrunning.Operation"•ÊA
+
+DvrSessionOperationMetadataÚA!parent,dvr_session,dvr_session_id‚Óä“I":/v1/{parent=projects/*/locations/*/channels/*}/dvrSessions:dvr_sessionÓ
+ListDvrSessions8.google.cloud.video.livestream.v1.ListDvrSessionsRequest9.google.cloud.video.livestream.v1.ListDvrSessionsResponse"KÚAparent‚Óä“<:/v1/{parent=projects/*/locations/*/channels/*}/dvrSessionsÀ
+GetDvrSession6.google.cloud.video.livestream.v1.GetDvrSessionRequest,.google.cloud.video.livestream.v1.DvrSession"IÚAname‚Óä“<:/v1/{name=projects/*/locations/*/channels/*/dvrSessions/*}ä
+DeleteDvrSession9.google.cloud.video.livestream.v1.DeleteDvrSessionRequest.google.longrunning.Operation"vÊA*
+google.protobuf.EmptyOperationMetadataÚAname‚Óä“<*:/v1/{name=projects/*/locations/*/channels/*/dvrSessions/*}†
+UpdateDvrSession9.google.cloud.video.livestream.v1.UpdateDvrSessionRequest.google.longrunning.Operation"—ÊA
+
+DvrSessionOperationMetadataÚAdvr_session,update_mask‚Óä“U2F/v1/{dvr_session.name=projects/*/locations/*/channels/*/dvrSessions/*}:dvr_sessionÒ
 CreateAsset4.google.cloud.video.livestream.v1.CreateAssetRequest.google.longrunning.Operation"nÊA
 AssetOperationMetadataÚAparent,asset,asset_id‚Óä“3"*/v1/{parent=projects/*/locations/*}/assets:assetÊ
 DeleteAsset4.google.cloud.video.livestream.v1.DeleteAssetRequest.google.longrunning.Operation"fÊA*

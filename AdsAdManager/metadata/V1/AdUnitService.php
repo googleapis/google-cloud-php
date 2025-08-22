@@ -21,7 +21,7 @@ class AdUnitService
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ü
+ˆ
 -google/ads/admanager/v1/ad_unit_service.protogoogle.ads.admanager.v1google/api/annotations.protogoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto"I
 GetAdUnitRequest5
 name (	B\'àAúA!
@@ -53,11 +53,11 @@ page_token (	BàA
 ad_unit_sizes (2#.google.ads.admanager.v1.AdUnitSize
 next_page_token (	
 
-total_size (2€
+total_size (2¬
 AdUnitService‡
 	GetAdUnit).google.ads.admanager.v1.GetAdUnitRequest.google.ads.admanager.v1.AdUnit".ÚAname‚Óä“!/v1/{name=networks/*/adUnits/*}š
 ListAdUnits+.google.ads.admanager.v1.ListAdUnitsRequest,.google.ads.admanager.v1.ListAdUnitsResponse"0ÚAparent‚Óä“!/v1/{parent=networks/*}/adUnitsª
-ListAdUnitSizes/.google.ads.admanager.v1.ListAdUnitSizesRequest0.google.ads.admanager.v1.ListAdUnitSizesResponse"4ÚAparent‚Óä“%#/v1/{parent=networks/*}/adUnitSizesÊAadmanager.googleapis.comBÆ
+ListAdUnitSizes/.google.ads.admanager.v1.ListAdUnitSizesRequest0.google.ads.admanager.v1.ListAdUnitSizesResponse"4ÚAparent‚Óä“%#/v1/{parent=networks/*}/adUnitSizesGÊAadmanager.googleapis.comÒA)https://www.googleapis.com/auth/admanagerBÆ
 com.google.ads.admanager.v1BAdUnitServiceProtoPZ@google.golang.org/genproto/googleapis/ads/admanager/v1;admanagerªGoogle.Ads.AdManager.V1ÊGoogle\\Ads\\AdManager\\V1êGoogle::Ads::AdManager::V1bproto3'
         , true);
 

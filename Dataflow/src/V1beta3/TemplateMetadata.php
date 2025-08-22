@@ -33,6 +33,32 @@ class TemplateMetadata extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.ParameterMetadata parameters = 3;</code>
      */
     private $parameters;
+    /**
+     * Optional. Indicates if the template is streaming or not.
+     *
+     * Generated from protobuf field <code>bool streaming = 5;</code>
+     */
+    protected $streaming = false;
+    /**
+     * Optional. Indicates if the streaming template supports at least once mode.
+     *
+     * Generated from protobuf field <code>bool supports_at_least_once = 6;</code>
+     */
+    protected $supports_at_least_once = false;
+    /**
+     * Optional. Indicates if the streaming template supports exactly once mode.
+     *
+     * Generated from protobuf field <code>bool supports_exactly_once = 7;</code>
+     */
+    protected $supports_exactly_once = false;
+    /**
+     * Optional. Indicates the default streaming mode for a streaming template.
+     * Only valid if both supports_at_least_once and supports_exactly_once are
+     * true. Possible values: UNSPECIFIED, EXACTLY_ONCE and AT_LEAST_ONCE
+     *
+     * Generated from protobuf field <code>string default_streaming_mode = 8;</code>
+     */
+    protected $default_streaming_mode = '';
 
     /**
      * Constructor.
@@ -46,6 +72,16 @@ class TemplateMetadata extends \Google\Protobuf\Internal\Message
      *           Optional. A description of the template.
      *     @type array<\Google\Cloud\Dataflow\V1beta3\ParameterMetadata>|\Google\Protobuf\Internal\RepeatedField $parameters
      *           The parameters for the template.
+     *     @type bool $streaming
+     *           Optional. Indicates if the template is streaming or not.
+     *     @type bool $supports_at_least_once
+     *           Optional. Indicates if the streaming template supports at least once mode.
+     *     @type bool $supports_exactly_once
+     *           Optional. Indicates if the streaming template supports exactly once mode.
+     *     @type string $default_streaming_mode
+     *           Optional. Indicates the default streaming mode for a streaming template.
+     *           Only valid if both supports_at_least_once and supports_exactly_once are
+     *           true. Possible values: UNSPECIFIED, EXACTLY_ONCE and AT_LEAST_ONCE
      * }
      */
     public function __construct($data = NULL) {
@@ -127,6 +163,114 @@ class TemplateMetadata extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dataflow\V1beta3\ParameterMetadata::class);
         $this->parameters = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Indicates if the template is streaming or not.
+     *
+     * Generated from protobuf field <code>bool streaming = 5;</code>
+     * @return bool
+     */
+    public function getStreaming()
+    {
+        return $this->streaming;
+    }
+
+    /**
+     * Optional. Indicates if the template is streaming or not.
+     *
+     * Generated from protobuf field <code>bool streaming = 5;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setStreaming($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->streaming = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Indicates if the streaming template supports at least once mode.
+     *
+     * Generated from protobuf field <code>bool supports_at_least_once = 6;</code>
+     * @return bool
+     */
+    public function getSupportsAtLeastOnce()
+    {
+        return $this->supports_at_least_once;
+    }
+
+    /**
+     * Optional. Indicates if the streaming template supports at least once mode.
+     *
+     * Generated from protobuf field <code>bool supports_at_least_once = 6;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSupportsAtLeastOnce($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->supports_at_least_once = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Indicates if the streaming template supports exactly once mode.
+     *
+     * Generated from protobuf field <code>bool supports_exactly_once = 7;</code>
+     * @return bool
+     */
+    public function getSupportsExactlyOnce()
+    {
+        return $this->supports_exactly_once;
+    }
+
+    /**
+     * Optional. Indicates if the streaming template supports exactly once mode.
+     *
+     * Generated from protobuf field <code>bool supports_exactly_once = 7;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSupportsExactlyOnce($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->supports_exactly_once = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Indicates the default streaming mode for a streaming template.
+     * Only valid if both supports_at_least_once and supports_exactly_once are
+     * true. Possible values: UNSPECIFIED, EXACTLY_ONCE and AT_LEAST_ONCE
+     *
+     * Generated from protobuf field <code>string default_streaming_mode = 8;</code>
+     * @return string
+     */
+    public function getDefaultStreamingMode()
+    {
+        return $this->default_streaming_mode;
+    }
+
+    /**
+     * Optional. Indicates the default streaming mode for a streaming template.
+     * Only valid if both supports_at_least_once and supports_exactly_once are
+     * true. Possible values: UNSPECIFIED, EXACTLY_ONCE and AT_LEAST_ONCE
+     *
+     * Generated from protobuf field <code>string default_streaming_mode = 8;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDefaultStreamingMode($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->default_streaming_mode = $var;
 
         return $this;
     }

@@ -37,14 +37,26 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
+use Google\Cloud\Memorystore\V1\Backup;
+use Google\Cloud\Memorystore\V1\BackupCollection;
+use Google\Cloud\Memorystore\V1\BackupInstanceRequest;
 use Google\Cloud\Memorystore\V1\CertificateAuthority;
 use Google\Cloud\Memorystore\V1\CreateInstanceRequest;
+use Google\Cloud\Memorystore\V1\DeleteBackupRequest;
 use Google\Cloud\Memorystore\V1\DeleteInstanceRequest;
+use Google\Cloud\Memorystore\V1\ExportBackupRequest;
+use Google\Cloud\Memorystore\V1\GetBackupCollectionRequest;
+use Google\Cloud\Memorystore\V1\GetBackupRequest;
 use Google\Cloud\Memorystore\V1\GetCertificateAuthorityRequest;
 use Google\Cloud\Memorystore\V1\GetInstanceRequest;
 use Google\Cloud\Memorystore\V1\Instance;
+use Google\Cloud\Memorystore\V1\ListBackupCollectionsRequest;
+use Google\Cloud\Memorystore\V1\ListBackupCollectionsResponse;
+use Google\Cloud\Memorystore\V1\ListBackupsRequest;
+use Google\Cloud\Memorystore\V1\ListBackupsResponse;
 use Google\Cloud\Memorystore\V1\ListInstancesRequest;
 use Google\Cloud\Memorystore\V1\ListInstancesResponse;
+use Google\Cloud\Memorystore\V1\RescheduleMaintenanceRequest;
 use Google\Cloud\Memorystore\V1\UpdateInstanceRequest;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
@@ -62,11 +74,19 @@ use Psr\Log\LoggerInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
+ * @method PromiseInterface<OperationResponse> backupInstanceAsync(BackupInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createInstanceAsync(CreateInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteBackupAsync(DeleteBackupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteInstanceAsync(DeleteInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> exportBackupAsync(ExportBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Backup> getBackupAsync(GetBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BackupCollection> getBackupCollectionAsync(GetBackupCollectionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<CertificateAuthority> getCertificateAuthorityAsync(GetCertificateAuthorityRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Instance> getInstanceAsync(GetInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ListBackupCollectionsResponse> listBackupCollectionsAsync(ListBackupCollectionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ListBackupsResponse> listBackupsAsync(ListBackupsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ListInstancesResponse> listInstancesAsync(ListInstancesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> rescheduleMaintenanceAsync(RescheduleMaintenanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateInstanceAsync(UpdateInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
@@ -182,6 +202,50 @@ final class MemorystoreClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a backup
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $backupCollection
+     * @param string $backup
+     *
+     * @return string The formatted backup resource.
+     */
+    public static function backupName(
+        string $project,
+        string $location,
+        string $backupCollection,
+        string $backup
+    ): string {
+        return self::getPathTemplate('backup')->render([
+            'project' => $project,
+            'location' => $location,
+            'backup_collection' => $backupCollection,
+            'backup' => $backup,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * backup_collection resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $backupCollection
+     *
+     * @return string The formatted backup_collection resource.
+     */
+    public static function backupCollectionName(string $project, string $location, string $backupCollection): string
+    {
+        return self::getPathTemplate('backupCollection')->render([
+            'project' => $project,
+            'location' => $location,
+            'backup_collection' => $backupCollection,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a
      * forwarding_rule resource.
      *
@@ -276,6 +340,8 @@ final class MemorystoreClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - backup: projects/{project}/locations/{location}/backupCollections/{backup_collection}/backups/{backup}
+     * - backupCollection: projects/{project}/locations/{location}/backupCollections/{backup_collection}
      * - forwardingRule: projects/{project}/regions/{region}/forwardingRules/{forwarding_rule}
      * - instance: projects/{project}/locations/{location}/instances/{instance}
      * - location: projects/{project}/locations/{location}
@@ -379,6 +445,43 @@ final class MemorystoreClient
     }
 
     /**
+     * Backup Instance.
+     * If this is the first time a backup is being created, a backup collection
+     * will be created at the backend, and this backup belongs to this collection.
+     * Both collection and backup will have a resource name. Backup will be
+     * executed for each shard. A replica (primary if nonHA) will be selected to
+     * perform the execution. Backup call will be rejected if there is an ongoing
+     * backup or update operation. Be aware that during preview, if the instance's
+     * internal software version is too old, critical update will be performed
+     * before actual backup. Once the internal software version is updated to the
+     * minimum version required by the backup feature, subsequent backups will not
+     * require critical update. After preview, there will be no critical update
+     * needed for backup.
+     *
+     * The async variant is {@see MemorystoreClient::backupInstanceAsync()} .
+     *
+     * @example samples/V1/MemorystoreClient/backup_instance.php
+     *
+     * @param BackupInstanceRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function backupInstance(BackupInstanceRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('BackupInstance', $request, $callOptions)->wait();
+    }
+
+    /**
      * Creates a new Instance in a given project and location.
      *
      * The async variant is {@see MemorystoreClient::createInstanceAsync()} .
@@ -405,6 +508,32 @@ final class MemorystoreClient
     }
 
     /**
+     * Deletes a specific backup.
+     *
+     * The async variant is {@see MemorystoreClient::deleteBackupAsync()} .
+     *
+     * @example samples/V1/MemorystoreClient/delete_backup.php
+     *
+     * @param DeleteBackupRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteBackup(DeleteBackupRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeleteBackup', $request, $callOptions)->wait();
+    }
+
+    /**
      * Deletes a single Instance.
      *
      * The async variant is {@see MemorystoreClient::deleteInstanceAsync()} .
@@ -428,6 +557,84 @@ final class MemorystoreClient
     public function deleteInstance(DeleteInstanceRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('DeleteInstance', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Exports a specific backup to a customer target Cloud Storage URI.
+     *
+     * The async variant is {@see MemorystoreClient::exportBackupAsync()} .
+     *
+     * @example samples/V1/MemorystoreClient/export_backup.php
+     *
+     * @param ExportBackupRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function exportBackup(ExportBackupRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('ExportBackup', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets the details of a specific backup.
+     *
+     * The async variant is {@see MemorystoreClient::getBackupAsync()} .
+     *
+     * @example samples/V1/MemorystoreClient/get_backup.php
+     *
+     * @param GetBackupRequest $request     A request to house fields associated with the call.
+     * @param array            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Backup
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getBackup(GetBackupRequest $request, array $callOptions = []): Backup
+    {
+        return $this->startApiCall('GetBackup', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Get a backup collection.
+     *
+     * The async variant is {@see MemorystoreClient::getBackupCollectionAsync()} .
+     *
+     * @example samples/V1/MemorystoreClient/get_backup_collection.php
+     *
+     * @param GetBackupCollectionRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BackupCollection
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getBackupCollection(GetBackupCollectionRequest $request, array $callOptions = []): BackupCollection
+    {
+        return $this->startApiCall('GetBackupCollection', $request, $callOptions)->wait();
     }
 
     /**
@@ -485,6 +692,64 @@ final class MemorystoreClient
     }
 
     /**
+     * Lists all backup collections owned by a consumer project in either the
+     * specified location (region) or all locations.
+     *
+     * If `location_id` is specified as `-` (wildcard), then all regions
+     * available to the project are queried, and the results are aggregated.
+     *
+     * The async variant is {@see MemorystoreClient::listBackupCollectionsAsync()} .
+     *
+     * @example samples/V1/MemorystoreClient/list_backup_collections.php
+     *
+     * @param ListBackupCollectionsRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ListBackupCollectionsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listBackupCollections(
+        ListBackupCollectionsRequest $request,
+        array $callOptions = []
+    ): ListBackupCollectionsResponse {
+        return $this->startApiCall('ListBackupCollections', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Lists all backups owned by a backup collection.
+     *
+     * The async variant is {@see MemorystoreClient::listBackupsAsync()} .
+     *
+     * @example samples/V1/MemorystoreClient/list_backups.php
+     *
+     * @param ListBackupsRequest $request     A request to house fields associated with the call.
+     * @param array              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ListBackupsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listBackups(ListBackupsRequest $request, array $callOptions = []): ListBackupsResponse
+    {
+        return $this->startApiCall('ListBackups', $request, $callOptions)->wait();
+    }
+
+    /**
      * Lists Instances in a given project and location.
      *
      * The async variant is {@see MemorystoreClient::listInstancesAsync()} .
@@ -508,6 +773,34 @@ final class MemorystoreClient
     public function listInstances(ListInstancesRequest $request, array $callOptions = []): ListInstancesResponse
     {
         return $this->startApiCall('ListInstances', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Reschedules upcoming maintenance event.
+     *
+     * The async variant is {@see MemorystoreClient::rescheduleMaintenanceAsync()} .
+     *
+     * @example samples/V1/MemorystoreClient/reschedule_maintenance.php
+     *
+     * @param RescheduleMaintenanceRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function rescheduleMaintenance(
+        RescheduleMaintenanceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('RescheduleMaintenance', $request, $callOptions)->wait();
     }
 
     /**

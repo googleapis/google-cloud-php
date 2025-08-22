@@ -18,8 +18,8 @@ class ListSharedResourceSubscriptionsRequest extends \Google\Protobuf\Internal\M
     /**
      * Required. Resource name of the requested target. This resource may be
      * either a Listing or a DataExchange. e.g.
-     * projects/123/locations/US/dataExchanges/456 OR e.g.
-     * projects/123/locations/US/dataExchanges/456/listings/789
+     * projects/123/locations/us/dataExchanges/456 OR e.g.
+     * projects/123/locations/us/dataExchanges/456/listings/789
      *
      * Generated from protobuf field <code>string resource = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -47,8 +47,8 @@ class ListSharedResourceSubscriptionsRequest extends \Google\Protobuf\Internal\M
     /**
      * @param string $resource Required. Resource name of the requested target. This resource may be
      *                         either a Listing or a DataExchange. e.g.
-     *                         projects/123/locations/US/dataExchanges/456 OR e.g.
-     *                         projects/123/locations/US/dataExchanges/456/listings/789
+     *                         projects/123/locations/us/dataExchanges/456 OR e.g.
+     *                         projects/123/locations/us/dataExchanges/456/listings/789
      *
      * @return \Google\Cloud\BigQuery\AnalyticsHub\V1\ListSharedResourceSubscriptionsRequest
      *
@@ -69,8 +69,8 @@ class ListSharedResourceSubscriptionsRequest extends \Google\Protobuf\Internal\M
      *     @type string $resource
      *           Required. Resource name of the requested target. This resource may be
      *           either a Listing or a DataExchange. e.g.
-     *           projects/123/locations/US/dataExchanges/456 OR e.g.
-     *           projects/123/locations/US/dataExchanges/456/listings/789
+     *           projects/123/locations/us/dataExchanges/456 OR e.g.
+     *           projects/123/locations/us/dataExchanges/456/listings/789
      *     @type bool $include_deleted_subscriptions
      *           If selected, includes deleted subscriptions in the response
      *           (up to 63 days after deletion).
@@ -88,8 +88,8 @@ class ListSharedResourceSubscriptionsRequest extends \Google\Protobuf\Internal\M
     /**
      * Required. Resource name of the requested target. This resource may be
      * either a Listing or a DataExchange. e.g.
-     * projects/123/locations/US/dataExchanges/456 OR e.g.
-     * projects/123/locations/US/dataExchanges/456/listings/789
+     * projects/123/locations/us/dataExchanges/456 OR e.g.
+     * projects/123/locations/us/dataExchanges/456/listings/789
      *
      * Generated from protobuf field <code>string resource = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -102,8 +102,8 @@ class ListSharedResourceSubscriptionsRequest extends \Google\Protobuf\Internal\M
     /**
      * Required. Resource name of the requested target. This resource may be
      * either a Listing or a DataExchange. e.g.
-     * projects/123/locations/US/dataExchanges/456 OR e.g.
-     * projects/123/locations/US/dataExchanges/456/listings/789
+     * projects/123/locations/us/dataExchanges/456 OR e.g.
+     * projects/123/locations/us/dataExchanges/456/listings/789
      *
      * Generated from protobuf field <code>string resource = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

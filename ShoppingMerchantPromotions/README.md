@@ -36,9 +36,9 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 
 ```php
 Google\ApiCore\ApiException;
-Google\Shopping\Merchant\Promotions\V1beta\Client\PromotionsServiceClient;
-Google\Shopping\Merchant\Promotions\V1beta\GetPromotionRequest;
-Google\Shopping\Merchant\Promotions\V1beta\Promotion;
+Google\Shopping\Merchant\Promotions\V1\Client\PromotionsServiceClient;
+Google\Shopping\Merchant\Promotions\V1\GetPromotionRequest;
+Google\Shopping\Merchant\Promotions\V1\Promotion;
 
 // Create a client.
 $promotionsServiceClient = new PromotionsServiceClient();
@@ -66,7 +66,8 @@ for more information about the debugging tools.
 
 ### Version
 
-This component is considered alpha. As such, it is still a work-in-progress and is more likely to get backwards-incompatible updates.
+This component is considered GA (generally available). As such, it will not introduce backwards-incompatible changes in
+any minor or patch releases. We will address issues and requests with the highest priority.
 
 ### Next Steps
 

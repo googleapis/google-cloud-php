@@ -70,6 +70,12 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional bool satisfies_pzs = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $satisfies_pzs = null;
+    /**
+     * Optional. TLS configuration for the Kafka cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.managedkafka.v1.TlsConfig tls_config = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $tls_config = null;
     protected $platform_config;
 
     /**
@@ -100,6 +106,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           Output only. Reserved for future use.
      *     @type bool $satisfies_pzs
      *           Output only. Reserved for future use.
+     *     @type \Google\Cloud\ManagedKafka\V1\TlsConfig $tls_config
+     *           Optional. TLS configuration for the Kafka cluster.
      * }
      */
     public function __construct($data = NULL) {
@@ -432,6 +440,42 @@ class Cluster extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->satisfies_pzs = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. TLS configuration for the Kafka cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.managedkafka.v1.TlsConfig tls_config = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\ManagedKafka\V1\TlsConfig|null
+     */
+    public function getTlsConfig()
+    {
+        return $this->tls_config;
+    }
+
+    public function hasTlsConfig()
+    {
+        return isset($this->tls_config);
+    }
+
+    public function clearTlsConfig()
+    {
+        unset($this->tls_config);
+    }
+
+    /**
+     * Optional. TLS configuration for the Kafka cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.managedkafka.v1.TlsConfig tls_config = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\ManagedKafka\V1\TlsConfig $var
+     * @return $this
+     */
+    public function setTlsConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\ManagedKafka\V1\TlsConfig::class);
+        $this->tls_config = $var;
 
         return $this;
     }

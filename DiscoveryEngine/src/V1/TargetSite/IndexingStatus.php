@@ -47,6 +47,18 @@ class IndexingStatus
      * Generated from protobuf enum <code>DELETING = 4;</code>
      */
     const DELETING = 4;
+    /**
+     * The target site change is pending but cancellable.
+     *
+     * Generated from protobuf enum <code>CANCELLABLE = 5;</code>
+     */
+    const CANCELLABLE = 5;
+    /**
+     * The target site change is cancelled.
+     *
+     * Generated from protobuf enum <code>CANCELLED = 6;</code>
+     */
+    const CANCELLED = 6;
 
     private static $valueToName = [
         self::INDEXING_STATUS_UNSPECIFIED => 'INDEXING_STATUS_UNSPECIFIED',
@@ -54,6 +66,8 @@ class IndexingStatus
         self::FAILED => 'FAILED',
         self::SUCCEEDED => 'SUCCEEDED',
         self::DELETING => 'DELETING',
+        self::CANCELLABLE => 'CANCELLABLE',
+        self::CANCELLED => 'CANCELLED',
     ];
 
     public static function name($value)

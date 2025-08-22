@@ -19,9 +19,21 @@ class Content extends \Google\Protobuf\Internal\Message
      * The MIME type of the content. Supported types:
      * * `application/pdf` (PDF, only native PDFs are supported for now)
      * * `text/html` (HTML)
+     * * `text/plain` (TXT)
+     * * `application/xml` or `text/xml` (XML)
+     * * `application/json` (JSON)
      * * `application/vnd.openxmlformats-officedocument.wordprocessingml.document` (DOCX)
      * * `application/vnd.openxmlformats-officedocument.presentationml.presentation` (PPTX)
-     * * `text/plain` (TXT)
+     * * `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet`
+     * (XLSX)
+     * * `application/vnd.ms-excel.sheet.macroenabled.12` (XLSM)
+     * The following types are supported only if layout parser is enabled in the
+     * data store:
+     * * `image/bmp` (BMP)
+     * * `image/gif` (GIF)
+     * * `image/jpeg` (JPEG)
+     * * `image/png` (PNG)
+     * * `image/tiff` (TIFF)
      * See https://www.iana.org/assignments/media-types/media-types.xhtml.
      *
      * Generated from protobuf field <code>string mime_type = 1;</code>
@@ -51,9 +63,21 @@ class Content extends \Google\Protobuf\Internal\Message
      *           The MIME type of the content. Supported types:
      *           * `application/pdf` (PDF, only native PDFs are supported for now)
      *           * `text/html` (HTML)
+     *           * `text/plain` (TXT)
+     *           * `application/xml` or `text/xml` (XML)
+     *           * `application/json` (JSON)
      *           * `application/vnd.openxmlformats-officedocument.wordprocessingml.document` (DOCX)
      *           * `application/vnd.openxmlformats-officedocument.presentationml.presentation` (PPTX)
-     *           * `text/plain` (TXT)
+     *           * `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet`
+     *           (XLSX)
+     *           * `application/vnd.ms-excel.sheet.macroenabled.12` (XLSM)
+     *           The following types are supported only if layout parser is enabled in the
+     *           data store:
+     *           * `image/bmp` (BMP)
+     *           * `image/gif` (GIF)
+     *           * `image/jpeg` (JPEG)
+     *           * `image/png` (PNG)
+     *           * `image/tiff` (TIFF)
      *           See https://www.iana.org/assignments/media-types/media-types.xhtml.
      * }
      */
@@ -144,9 +168,21 @@ class Content extends \Google\Protobuf\Internal\Message
      * The MIME type of the content. Supported types:
      * * `application/pdf` (PDF, only native PDFs are supported for now)
      * * `text/html` (HTML)
+     * * `text/plain` (TXT)
+     * * `application/xml` or `text/xml` (XML)
+     * * `application/json` (JSON)
      * * `application/vnd.openxmlformats-officedocument.wordprocessingml.document` (DOCX)
      * * `application/vnd.openxmlformats-officedocument.presentationml.presentation` (PPTX)
-     * * `text/plain` (TXT)
+     * * `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet`
+     * (XLSX)
+     * * `application/vnd.ms-excel.sheet.macroenabled.12` (XLSM)
+     * The following types are supported only if layout parser is enabled in the
+     * data store:
+     * * `image/bmp` (BMP)
+     * * `image/gif` (GIF)
+     * * `image/jpeg` (JPEG)
+     * * `image/png` (PNG)
+     * * `image/tiff` (TIFF)
      * See https://www.iana.org/assignments/media-types/media-types.xhtml.
      *
      * Generated from protobuf field <code>string mime_type = 1;</code>
@@ -161,9 +197,21 @@ class Content extends \Google\Protobuf\Internal\Message
      * The MIME type of the content. Supported types:
      * * `application/pdf` (PDF, only native PDFs are supported for now)
      * * `text/html` (HTML)
+     * * `text/plain` (TXT)
+     * * `application/xml` or `text/xml` (XML)
+     * * `application/json` (JSON)
      * * `application/vnd.openxmlformats-officedocument.wordprocessingml.document` (DOCX)
      * * `application/vnd.openxmlformats-officedocument.presentationml.presentation` (PPTX)
-     * * `text/plain` (TXT)
+     * * `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet`
+     * (XLSX)
+     * * `application/vnd.ms-excel.sheet.macroenabled.12` (XLSM)
+     * The following types are supported only if layout parser is enabled in the
+     * data store:
+     * * `image/bmp` (BMP)
+     * * `image/gif` (GIF)
+     * * `image/jpeg` (JPEG)
+     * * `image/png` (PNG)
+     * * `image/tiff` (TIFF)
      * See https://www.iana.org/assignments/media-types/media-types.xhtml.
      *
      * Generated from protobuf field <code>string mime_type = 1;</code>

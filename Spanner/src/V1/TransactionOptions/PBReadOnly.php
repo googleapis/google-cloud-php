@@ -58,7 +58,7 @@ class PBReadOnly extends \Google\Protobuf\Internal\Message
      *           Executes all reads at the given timestamp. Unlike other modes,
      *           reads at a specific timestamp are repeatable; the same read at
      *           the same timestamp always returns the same data. If the
-     *           timestamp is in the future, the read will block until the
+     *           timestamp is in the future, the read is blocked until the
      *           specified timestamp, modulo the read's deadline.
      *           Useful for large scale consistent reads such as mapreduces, or
      *           for coordinating many reads against a consistent snapshot of the
@@ -217,7 +217,7 @@ class PBReadOnly extends \Google\Protobuf\Internal\Message
      * Executes all reads at the given timestamp. Unlike other modes,
      * reads at a specific timestamp are repeatable; the same read at
      * the same timestamp always returns the same data. If the
-     * timestamp is in the future, the read will block until the
+     * timestamp is in the future, the read is blocked until the
      * specified timestamp, modulo the read's deadline.
      * Useful for large scale consistent reads such as mapreduces, or
      * for coordinating many reads against a consistent snapshot of the
@@ -242,7 +242,7 @@ class PBReadOnly extends \Google\Protobuf\Internal\Message
      * Executes all reads at the given timestamp. Unlike other modes,
      * reads at a specific timestamp are repeatable; the same read at
      * the same timestamp always returns the same data. If the
-     * timestamp is in the future, the read will block until the
+     * timestamp is in the future, the read is blocked until the
      * specified timestamp, modulo the read's deadline.
      * Useful for large scale consistent reads such as mapreduces, or
      * for coordinating many reads against a consistent snapshot of the

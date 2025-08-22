@@ -22,10 +22,10 @@ class PrivateConfig extends \Google\Protobuf\Internal\Message
      */
     protected $is_private = false;
     /**
-     * Required. Immutable. CA pool resource, resource must in the format of
+     * Optional. Immutable. CA pool resource, resource must in the format of
      * `projects/{project}/locations/{location}/caPools/{ca_pool}`.
      *
-     * Generated from protobuf field <code>string ca_pool = 2 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string ca_pool = 2 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     protected $ca_pool = '';
     /**
@@ -60,7 +60,7 @@ class PrivateConfig extends \Google\Protobuf\Internal\Message
      *     @type bool $is_private
      *           Required. Immutable. Indicate if it's private instance.
      *     @type string $ca_pool
-     *           Required. Immutable. CA pool resource, resource must in the format of
+     *           Optional. Immutable. CA pool resource, resource must in the format of
      *           `projects/{project}/locations/{location}/caPools/{ca_pool}`.
      *     @type string $http_service_attachment
      *           Output only. Service Attachment for HTTP, resource is in the format of
@@ -106,10 +106,10 @@ class PrivateConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. CA pool resource, resource must in the format of
+     * Optional. Immutable. CA pool resource, resource must in the format of
      * `projects/{project}/locations/{location}/caPools/{ca_pool}`.
      *
-     * Generated from protobuf field <code>string ca_pool = 2 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string ca_pool = 2 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getCaPool()
@@ -118,10 +118,10 @@ class PrivateConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. CA pool resource, resource must in the format of
+     * Optional. Immutable. CA pool resource, resource must in the format of
      * `projects/{project}/locations/{location}/caPools/{ca_pool}`.
      *
-     * Generated from protobuf field <code>string ca_pool = 2 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string ca_pool = 2 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
