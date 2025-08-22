@@ -47,9 +47,9 @@ class Component
         $this->validateComponentFiles();
     }
 
-    private static function getComponentNames(string $rootDir): array
+    private static function getComponentNames(?string $rootDir): array
     {
-        $components = scandir($rootDir);
+        $components = scandir($rootDir ?? self::ROOT_DIR);
         foreach ($components as $i => $name) {
             if (!is_dir(self::ROOT_DIR . $name) || !preg_match('/^[A-Z]/', $name)) {
                 unset($components[$i]);
@@ -61,12 +61,9 @@ class Component
 
     public static function getComponents(array $componentNames = [], ?string $rootDir = null): array
     {
-        if (is_null($rootDir)) {
-            $rootDir = realpath(self::ROOT_DIR);
-        }
         $components = [];
         foreach ($componentNames ?: self::getComponentNames($rootDir) as $name) {
-            $components[] = new Component($name, $rootDir . '/' . $name);
+            $components[] = new Component($name, $rootDir ? $rootDir . '/' . $name : null);
         }
 
         return $components;
