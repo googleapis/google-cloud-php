@@ -31,13 +31,13 @@ use Google\Cloud\Dev\Component;
  * Add a Component
  * @internal
  */
-class NewVersionCommand extends Command
+class AddVersionCommand extends Command
 {
     private const OWL_BOT_REGEX='/.*\/\(([\w|]+)\).*/';
 
     protected function configure()
     {
-        $this->setName('new-version')
+        $this->setName('add-version')
             ->setDescription('Add a new version to an existing Component')
             ->addArgument('component', InputArgument::REQUIRED, 'Component to add the version to.')
             ->addArgument('version', InputArgument::REQUIRED, 'The new version to add.')
@@ -95,17 +95,7 @@ class NewVersionCommand extends Command
             file_put_contents($owlbotFile, Yaml::dump($yaml, 3, 2, Yaml::DUMP_MULTI_LINE_LITERAL_BLOCK));
         }
 
-        // Run "add-sample-to-readme" command to ensure our README contains the latest version's sample.
-        $addSamplesArgs = ['--component' => [$componentName]];
-        if (!$addSampleCommand = $this->getApplication()->find('add-sample-to-readme')) {
-            throw new \RuntimeException('Application does not have an add-samples-to-readme command.');
-        }
-        $returnCode = $addSampleCommand->run(new ArrayInput($addSamplesArgs), $output);
-        if ($returnCode !== Command::SUCCESS) {
-            return $returnCode;
-        }
-
-        // Run "update-component" command to generate the new version
+        // Run "update-component" command to generate the new version and add its sample to the README
         if ($input->getOption('no-update-component')) {
             // nothing left to do
             $output->writeln('Skipping component update: "--no-update-component" flag set');
@@ -123,6 +113,15 @@ class NewVersionCommand extends Command
             );
         }
         $updateCommand = $this->getApplication()->find('update-component');
-        return $updateCommand->run(new ArrayInput($args), $output);
+        $returnCode = $updateCommand->run(new ArrayInput($args), $output);
+        if ($returnCode !== Command::SUCCESS) {
+            return $returnCode;
+        }
+        // Run "add-sample-to-readme" command to ensure our README contains the latest version's sample.
+        $addSamplesArgs = ['--component' => [$componentName], '--update' => true];
+        if (!$addSampleCommand = $this->getApplication()->find('add-sample-to-readme')) {
+            throw new \RuntimeException('Application does not have an add-samples-to-readme command.');
+        }
+        return $addSampleCommand->run(new ArrayInput($addSamplesArgs), $output);
     }
 }
