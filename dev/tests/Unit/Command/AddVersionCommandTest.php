@@ -82,7 +82,7 @@ class AddVersionCommandTest extends TestCase
     private function mockApplication(bool $shouldCallUpdate = true): Application
     {
         $updateCommand = $this->createMock(Command::class);
-        $updateCommand->expects($shouldCallUpdate ? $this->exactly(2) : $this->once())
+        $updateCommand->expects($shouldCallUpdate ? $this->exactly(2) : $this->never())
             ->method('run')
             ->willReturn(0);
 
