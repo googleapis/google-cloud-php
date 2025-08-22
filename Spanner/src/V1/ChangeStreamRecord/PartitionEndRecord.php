@@ -29,7 +29,7 @@ class PartitionEndRecord extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_timestamp = 1;</code>
      */
-    private $end_timestamp = null;
+    protected $end_timestamp = null;
     /**
      * Record sequence numbers are unique and monotonically increasing (but not
      * necessarily contiguous) for a specific timestamp across record
@@ -39,7 +39,7 @@ class PartitionEndRecord extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string record_sequence = 2;</code>
      */
-    private $record_sequence = '';
+    protected $record_sequence = '';
     /**
      * Unique partition identifier describing the terminated change stream
      * partition.
@@ -49,7 +49,7 @@ class PartitionEndRecord extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string partition_token = 3;</code>
      */
-    private $partition_token = '';
+    protected $partition_token = '';
 
     /**
      * Constructor.
@@ -205,6 +205,4 @@ class PartitionEndRecord extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(PartitionEndRecord::class, \Google\Cloud\Spanner\V1\ChangeStreamRecord_PartitionEndRecord::class);
 
