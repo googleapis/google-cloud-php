@@ -73,6 +73,12 @@ class MaintenanceReasons
      */
     const FAILURE_NVLINK = 484426295;
     /**
+     * Maintenance due to redundant hardware fault.
+     *
+     * Generated from protobuf enum <code>FAILURE_REDUNDANT_HARDWARE_FAULT = 31000530;</code>
+     */
+    const FAILURE_REDUNDANT_HARDWARE_FAULT = 31000530;
+    /**
      * Maintenance due to infrastructure relocation.
      *
      * Generated from protobuf enum <code>INFRASTRUCTURE_RELOCATION = 359845636;</code>
@@ -108,6 +114,7 @@ class MaintenanceReasons
         self::FAILURE_MEMORY => 'FAILURE_MEMORY',
         self::FAILURE_NETWORK => 'FAILURE_NETWORK',
         self::FAILURE_NVLINK => 'FAILURE_NVLINK',
+        self::FAILURE_REDUNDANT_HARDWARE_FAULT => 'FAILURE_REDUNDANT_HARDWARE_FAULT',
         self::INFRASTRUCTURE_RELOCATION => 'INFRASTRUCTURE_RELOCATION',
         self::MAINTENANCE_REASON_UNKNOWN => 'MAINTENANCE_REASON_UNKNOWN',
         self::PLANNED_NETWORK_UPDATE => 'PLANNED_NETWORK_UPDATE',
