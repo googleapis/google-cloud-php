@@ -479,7 +479,7 @@ class Rest implements ConnectionInterface
         $args += [
             'bucket' => null,
             'name' => null,
-            'validate' => true,
+            'validate' => 'crc32',
             'resumable' => null,
             'streamable' => null,
             'predefinedAcl' => null,
