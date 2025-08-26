@@ -125,7 +125,7 @@ jobs:
   next-release-label-check:
     name: Check for "next release" labels
     runs-on: ubuntu-latest
-    # if: github.event.pull_request.user.login == 'release-please[bot]'
+    if: github.event.pull_request.user.login == 'release-please[bot]'
     steps:
       - name: Check for "next release" label
         uses: actions/github-script@v6
