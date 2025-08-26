@@ -22,34 +22,34 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START analyticsadmin_v1alpha_generated_AnalyticsAdminService_GetSubpropertySyncConfig_sync]
+// [START analyticsadmin_v1alpha_generated_AnalyticsAdminService_GetReportingIdentitySettings_sync]
 use Google\Analytics\Admin\V1alpha\Client\AnalyticsAdminServiceClient;
-use Google\Analytics\Admin\V1alpha\GetSubpropertySyncConfigRequest;
-use Google\Analytics\Admin\V1alpha\SubpropertySyncConfig;
+use Google\Analytics\Admin\V1alpha\GetReportingIdentitySettingsRequest;
+use Google\Analytics\Admin\V1alpha\ReportingIdentitySettings;
 use Google\ApiCore\ApiException;
 
 /**
- * Lookup for a single `SubpropertySyncConfig`.
+ * Returns the singleton data retention settings for this property.
  *
- * @param string $formattedName Resource name of the SubpropertySyncConfig to lookup.
+ * @param string $formattedName The name of the settings to lookup.
  *                              Format:
- *                              properties/{ordinary_property_id}/subpropertySyncConfigs/{subproperty_id}
- *                              Example: properties/1234/subpropertySyncConfigs/5678
- *                              Please see {@see AnalyticsAdminServiceClient::subpropertySyncConfigName()} for help formatting this field.
+ *                              properties/{property}/reportingIdentitySettings
+ *                              Example: "properties/1000/reportingIdentitySettings"
+ *                              Please see {@see AnalyticsAdminServiceClient::reportingIdentitySettingsName()} for help formatting this field.
  */
-function get_subproperty_sync_config_sample(string $formattedName): void
+function get_reporting_identity_settings_sample(string $formattedName): void
 {
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
     // Prepare the request message.
-    $request = (new GetSubpropertySyncConfigRequest())
+    $request = (new GetReportingIdentitySettingsRequest())
         ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
-        /** @var SubpropertySyncConfig $response */
-        $response = $analyticsAdminServiceClient->getSubpropertySyncConfig($request);
+        /** @var ReportingIdentitySettings $response */
+        $response = $analyticsAdminServiceClient->getReportingIdentitySettings($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
@@ -67,11 +67,8 @@ function get_subproperty_sync_config_sample(string $formattedName): void
  */
 function callSample(): void
 {
-    $formattedName = AnalyticsAdminServiceClient::subpropertySyncConfigName(
-        '[PROPERTY]',
-        '[SUBPROPERTY_SYNC_CONFIG]'
-    );
+    $formattedName = AnalyticsAdminServiceClient::reportingIdentitySettingsName('[PROPERTY]');
 
-    get_subproperty_sync_config_sample($formattedName);
+    get_reporting_identity_settings_sample($formattedName);
 }
-// [END analyticsadmin_v1alpha_generated_AnalyticsAdminService_GetSubpropertySyncConfig_sync]
+// [END analyticsadmin_v1alpha_generated_AnalyticsAdminService_GetReportingIdentitySettings_sync]
