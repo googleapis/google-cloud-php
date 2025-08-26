@@ -224,7 +224,9 @@ class ImportMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getRequestId()
     {
-        @trigger_error('request_id is deprecated.', E_USER_DEPRECATED);
+        if ($this->request_id !== '') {
+            @trigger_error('request_id is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->request_id;
     }
 

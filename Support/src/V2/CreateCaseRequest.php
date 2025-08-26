@@ -16,8 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateCaseRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the Google Cloud Resource under which the case should
-     * be created.
+     * Required. The name of the parent under which the case should be created.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -30,8 +29,7 @@ class CreateCaseRequest extends \Google\Protobuf\Internal\Message
     protected $case = null;
 
     /**
-     * @param string                          $parent Required. The name of the Google Cloud Resource under which the case should
-     *                                                be created. Please see
+     * @param string                          $parent Required. The name of the parent under which the case should be created. Please see
      *                                                {@see CaseServiceClient::projectName()} for help formatting this field.
      * @param \Google\Cloud\Support\V2\PBCase $case   Required. The case to be created.
      *
@@ -53,8 +51,7 @@ class CreateCaseRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The name of the Google Cloud Resource under which the case should
-     *           be created.
+     *           Required. The name of the parent under which the case should be created.
      *     @type \Google\Cloud\Support\V2\PBCase $case
      *           Required. The case to be created.
      * }
@@ -65,8 +62,7 @@ class CreateCaseRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the Google Cloud Resource under which the case should
-     * be created.
+     * Required. The name of the parent under which the case should be created.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -77,8 +73,7 @@ class CreateCaseRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the Google Cloud Resource under which the case should
-     * be created.
+     * Required. The name of the parent under which the case should be created.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

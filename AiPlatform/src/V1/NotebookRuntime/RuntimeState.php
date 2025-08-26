@@ -27,7 +27,8 @@ class RuntimeState
      */
     const RUNNING = 1;
     /**
-     * NotebookRuntime is in starting state.
+     * NotebookRuntime is in starting state. This is when the runtime is being
+     * started from a stopped state.
      *
      * Generated from protobuf enum <code>BEING_STARTED = 2;</code>
      */

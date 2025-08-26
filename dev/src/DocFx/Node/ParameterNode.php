@@ -94,7 +94,7 @@ class ParameterNode
 
         foreach ($nestedParameters as $param) {
             // Parse "@type string $key" syntax
-            if (!preg_match('/^([^ ]+) +([\$\w]+)(.*)?/sm', trim($param), $matches)) {
+            if (!preg_match('/^([^ ]+) +([\$\w\.]+)(.*)?/sm', trim($param), $matches)) {
                 throw new \LogicException('unable to parse nested parameter "' . $param . '"');
             }
             list($_, $type, $name, $description) = $matches + [3 => ''];

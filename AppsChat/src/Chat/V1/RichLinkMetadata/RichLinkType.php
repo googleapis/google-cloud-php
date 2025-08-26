@@ -31,11 +31,25 @@ class RichLinkType
      * Generated from protobuf enum <code>CHAT_SPACE = 2;</code>
      */
     const CHAT_SPACE = 2;
+    /**
+     * A Meet message rich link type. For example, a Meet chip.
+     *
+     * Generated from protobuf enum <code>MEET_SPACE = 4;</code>
+     */
+    const MEET_SPACE = 4;
+    /**
+     * A Calendar message rich link type. For example, a Calendar chip.
+     *
+     * Generated from protobuf enum <code>CALENDAR_EVENT = 5;</code>
+     */
+    const CALENDAR_EVENT = 5;
 
     private static $valueToName = [
         self::RICH_LINK_TYPE_UNSPECIFIED => 'RICH_LINK_TYPE_UNSPECIFIED',
         self::DRIVE_FILE => 'DRIVE_FILE',
         self::CHAT_SPACE => 'CHAT_SPACE',
+        self::MEET_SPACE => 'MEET_SPACE',
+        self::CALENDAR_EVENT => 'CALENDAR_EVENT',
     ];
 
     public static function name($value)

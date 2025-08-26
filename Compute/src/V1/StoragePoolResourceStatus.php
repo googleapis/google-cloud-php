@@ -28,7 +28,7 @@ class StoragePoolResourceStatus extends \Google\Protobuf\Internal\Message
      */
     private $last_resize_timestamp = null;
     /**
-     * [Output Only] Maximum allowed aggregate disk size in gigabytes.
+     * [Output Only] Maximum allowed aggregate disk size in GiB.
      *
      * Generated from protobuf field <code>optional int64 max_total_provisioned_disk_capacity_gb = 165818207;</code>
      */
@@ -46,7 +46,7 @@ class StoragePoolResourceStatus extends \Google\Protobuf\Internal\Message
      */
     private $pool_used_iops = null;
     /**
-     * [Output Only] Sum of all the disks' provisioned throughput in MB/s.
+     * [Output Only] Sum of all the disks' provisioned throughput in MiB/s.
      *
      * Generated from protobuf field <code>optional int64 pool_used_throughput = 206130633;</code>
      */
@@ -58,7 +58,7 @@ class StoragePoolResourceStatus extends \Google\Protobuf\Internal\Message
      */
     private $pool_user_written_bytes = null;
     /**
-     * [Output Only] Sum of all the capacity provisioned in disks in this storage pool. A disk's provisioned capacity is the same as its total capacity.
+     * [Output Only] Sum of all the disks' provisioned capacity (in GiB) in this storage pool. A disk's provisioned capacity is the same as its total capacity.
      *
      * Generated from protobuf field <code>optional int64 total_provisioned_disk_capacity_gb = 520930980;</code>
      */
@@ -70,7 +70,7 @@ class StoragePoolResourceStatus extends \Google\Protobuf\Internal\Message
      */
     private $total_provisioned_disk_iops = null;
     /**
-     * [Output Only] Sum of all the disks' provisioned throughput in MB/s, minus some amount that is allowed per disk that is not counted towards pool's throughput capacity.
+     * [Output Only] Sum of all the disks' provisioned throughput in MiB/s, minus some amount that is allowed per disk that is not counted towards pool's throughput capacity.
      *
      * Generated from protobuf field <code>optional int64 total_provisioned_disk_throughput = 447677830;</code>
      */
@@ -87,21 +87,21 @@ class StoragePoolResourceStatus extends \Google\Protobuf\Internal\Message
      *     @type string $last_resize_timestamp
      *           [Output Only] Timestamp of the last successful resize in RFC3339 text format.
      *     @type int|string $max_total_provisioned_disk_capacity_gb
-     *           [Output Only] Maximum allowed aggregate disk size in gigabytes.
+     *           [Output Only] Maximum allowed aggregate disk size in GiB.
      *     @type int|string $pool_used_capacity_bytes
      *           [Output Only] Space used by data stored in disks within the storage pool (in bytes). This will reflect the total number of bytes written to the disks in the pool, in contrast to the capacity of those disks.
      *     @type int|string $pool_used_iops
      *           [Output Only] Sum of all the disks' provisioned IOPS, minus some amount that is allowed per disk that is not counted towards pool's IOPS capacity. For more information, see https://cloud.google.com/compute/docs/disks/storage-pools.
      *     @type int|string $pool_used_throughput
-     *           [Output Only] Sum of all the disks' provisioned throughput in MB/s.
+     *           [Output Only] Sum of all the disks' provisioned throughput in MiB/s.
      *     @type int|string $pool_user_written_bytes
      *           [Output Only] Amount of data written into the pool, before it is compacted.
      *     @type int|string $total_provisioned_disk_capacity_gb
-     *           [Output Only] Sum of all the capacity provisioned in disks in this storage pool. A disk's provisioned capacity is the same as its total capacity.
+     *           [Output Only] Sum of all the disks' provisioned capacity (in GiB) in this storage pool. A disk's provisioned capacity is the same as its total capacity.
      *     @type int|string $total_provisioned_disk_iops
      *           [Output Only] Sum of all the disks' provisioned IOPS.
      *     @type int|string $total_provisioned_disk_throughput
-     *           [Output Only] Sum of all the disks' provisioned throughput in MB/s, minus some amount that is allowed per disk that is not counted towards pool's throughput capacity.
+     *           [Output Only] Sum of all the disks' provisioned throughput in MiB/s, minus some amount that is allowed per disk that is not counted towards pool's throughput capacity.
      * }
      */
     public function __construct($data = NULL) {
@@ -182,7 +182,7 @@ class StoragePoolResourceStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Maximum allowed aggregate disk size in gigabytes.
+     * [Output Only] Maximum allowed aggregate disk size in GiB.
      *
      * Generated from protobuf field <code>optional int64 max_total_provisioned_disk_capacity_gb = 165818207;</code>
      * @return int|string
@@ -203,7 +203,7 @@ class StoragePoolResourceStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Maximum allowed aggregate disk size in gigabytes.
+     * [Output Only] Maximum allowed aggregate disk size in GiB.
      *
      * Generated from protobuf field <code>optional int64 max_total_provisioned_disk_capacity_gb = 165818207;</code>
      * @param int|string $var
@@ -290,7 +290,7 @@ class StoragePoolResourceStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Sum of all the disks' provisioned throughput in MB/s.
+     * [Output Only] Sum of all the disks' provisioned throughput in MiB/s.
      *
      * Generated from protobuf field <code>optional int64 pool_used_throughput = 206130633;</code>
      * @return int|string
@@ -311,7 +311,7 @@ class StoragePoolResourceStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Sum of all the disks' provisioned throughput in MB/s.
+     * [Output Only] Sum of all the disks' provisioned throughput in MiB/s.
      *
      * Generated from protobuf field <code>optional int64 pool_used_throughput = 206130633;</code>
      * @param int|string $var
@@ -362,7 +362,7 @@ class StoragePoolResourceStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Sum of all the capacity provisioned in disks in this storage pool. A disk's provisioned capacity is the same as its total capacity.
+     * [Output Only] Sum of all the disks' provisioned capacity (in GiB) in this storage pool. A disk's provisioned capacity is the same as its total capacity.
      *
      * Generated from protobuf field <code>optional int64 total_provisioned_disk_capacity_gb = 520930980;</code>
      * @return int|string
@@ -383,7 +383,7 @@ class StoragePoolResourceStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Sum of all the capacity provisioned in disks in this storage pool. A disk's provisioned capacity is the same as its total capacity.
+     * [Output Only] Sum of all the disks' provisioned capacity (in GiB) in this storage pool. A disk's provisioned capacity is the same as its total capacity.
      *
      * Generated from protobuf field <code>optional int64 total_provisioned_disk_capacity_gb = 520930980;</code>
      * @param int|string $var
@@ -434,7 +434,7 @@ class StoragePoolResourceStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Sum of all the disks' provisioned throughput in MB/s, minus some amount that is allowed per disk that is not counted towards pool's throughput capacity.
+     * [Output Only] Sum of all the disks' provisioned throughput in MiB/s, minus some amount that is allowed per disk that is not counted towards pool's throughput capacity.
      *
      * Generated from protobuf field <code>optional int64 total_provisioned_disk_throughput = 447677830;</code>
      * @return int|string
@@ -455,7 +455,7 @@ class StoragePoolResourceStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Sum of all the disks' provisioned throughput in MB/s, minus some amount that is allowed per disk that is not counted towards pool's throughput capacity.
+     * [Output Only] Sum of all the disks' provisioned throughput in MiB/s, minus some amount that is allowed per disk that is not counted towards pool's throughput capacity.
      *
      * Generated from protobuf field <code>optional int64 total_provisioned_disk_throughput = 447677830;</code>
      * @param int|string $var

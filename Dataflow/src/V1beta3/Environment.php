@@ -49,20 +49,21 @@ class Environment extends \Google\Protobuf\Internal\Message
      */
     private $experiments;
     /**
-     * The list of service options to enable. This field should be used for
-     * service related experiments only. These experiments, when graduating to GA,
-     * should be replaced by dedicated fields or become default (i.e. always on).
+     * Optional. The list of service options to enable. This field should be used
+     * for service related experiments only. These experiments, when graduating to
+     * GA, should be replaced by dedicated fields or become default (i.e. always
+     * on).
      *
-     * Generated from protobuf field <code>repeated string service_options = 16;</code>
+     * Generated from protobuf field <code>repeated string service_options = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $service_options;
     /**
-     * If set, contains the Cloud KMS key identifier used to encrypt data
-     * at rest, AKA a Customer Managed Encryption Key (CMEK).
+     * Optional. If set, contains the Cloud KMS key identifier used to encrypt
+     * data at rest, AKA a Customer Managed Encryption Key (CMEK).
      * Format:
      *   projects/PROJECT_ID/locations/LOCATION/keyRings/KEY_RING/cryptoKeys/KEY
      *
-     * Generated from protobuf field <code>string service_kms_key_name = 12;</code>
+     * Generated from protobuf field <code>string service_kms_key_name = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $service_kms_key_name = '';
     /**
@@ -86,13 +87,13 @@ class Environment extends \Google\Protobuf\Internal\Message
      */
     protected $version = null;
     /**
-     * The dataset for the current project where various workflow
+     * Optional. The dataset for the current project where various workflow
      * related tables are stored.
      * The supported resource type is:
      * Google BigQuery:
      *   bigquery.googleapis.com/{dataset}
      *
-     * Generated from protobuf field <code>string dataset = 7;</code>
+     * Generated from protobuf field <code>string dataset = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $dataset = '';
     /**
@@ -111,35 +112,36 @@ class Environment extends \Google\Protobuf\Internal\Message
      */
     protected $internal_experiments = null;
     /**
-     * Identity to run virtual machines as. Defaults to the default account.
+     * Optional. Identity to run virtual machines as. Defaults to the default
+     * account.
      *
-     * Generated from protobuf field <code>string service_account_email = 10;</code>
+     * Generated from protobuf field <code>string service_account_email = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $service_account_email = '';
     /**
-     * Which Flexible Resource Scheduling mode to run in.
+     * Optional. Which Flexible Resource Scheduling mode to run in.
      *
-     * Generated from protobuf field <code>.google.dataflow.v1beta3.FlexResourceSchedulingGoal flex_resource_scheduling_goal = 11;</code>
+     * Generated from protobuf field <code>.google.dataflow.v1beta3.FlexResourceSchedulingGoal flex_resource_scheduling_goal = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $flex_resource_scheduling_goal = 0;
     /**
-     * The Compute Engine region
+     * Optional. The Compute Engine region
      * (https://cloud.google.com/compute/docs/regions-zones/regions-zones) in
      * which worker processing should occur, e.g. "us-west1". Mutually exclusive
      * with worker_zone. If neither worker_region nor worker_zone is specified,
      * default to the control plane's region.
      *
-     * Generated from protobuf field <code>string worker_region = 13;</code>
+     * Generated from protobuf field <code>string worker_region = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $worker_region = '';
     /**
-     * The Compute Engine zone
+     * Optional. The Compute Engine zone
      * (https://cloud.google.com/compute/docs/regions-zones/regions-zones) in
      * which worker processing should occur, e.g. "us-west1-a". Mutually exclusive
      * with worker_region. If neither worker_region nor worker_zone is specified,
      * a zone in the control plane's region is chosen based on available capacity.
      *
-     * Generated from protobuf field <code>string worker_zone = 14;</code>
+     * Generated from protobuf field <code>string worker_zone = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $worker_zone = '';
     /**
@@ -149,11 +151,30 @@ class Environment extends \Google\Protobuf\Internal\Message
      */
     protected $shuffle_mode = 0;
     /**
-     * Any debugging options to be supplied to the job.
+     * Optional. Any debugging options to be supplied to the job.
      *
-     * Generated from protobuf field <code>.google.dataflow.v1beta3.DebugOptions debug_options = 17;</code>
+     * Generated from protobuf field <code>.google.dataflow.v1beta3.DebugOptions debug_options = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $debug_options = null;
+    /**
+     * Output only. Whether the job uses the Streaming Engine resource-based
+     * billing model.
+     *
+     * Generated from protobuf field <code>bool use_streaming_engine_resource_based_billing = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $use_streaming_engine_resource_based_billing = false;
+    /**
+     * Optional. Specifies the Streaming Engine message processing guarantees.
+     * Reduces cost and latency but might result in duplicate messages committed
+     * to storage. Designed to run simple mapping streaming ETL jobs at the lowest
+     * cost. For example, Change Data Capture (CDC) to BigQuery is a canonical use
+     * case. For more information, see
+     * [Set the pipeline streaming
+     * mode](https://cloud.google.com/dataflow/docs/guides/streaming-modes).
+     *
+     * Generated from protobuf field <code>.google.dataflow.v1beta3.StreamingMode streaming_mode = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $streaming_mode = 0;
 
     /**
      * Constructor.
@@ -183,12 +204,13 @@ class Environment extends \Google\Protobuf\Internal\Message
      *           related experiments and not for service related experiments. The proper
      *           field for service related experiments is service_options.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $service_options
-     *           The list of service options to enable. This field should be used for
-     *           service related experiments only. These experiments, when graduating to GA,
-     *           should be replaced by dedicated fields or become default (i.e. always on).
+     *           Optional. The list of service options to enable. This field should be used
+     *           for service related experiments only. These experiments, when graduating to
+     *           GA, should be replaced by dedicated fields or become default (i.e. always
+     *           on).
      *     @type string $service_kms_key_name
-     *           If set, contains the Cloud KMS key identifier used to encrypt data
-     *           at rest, AKA a Customer Managed Encryption Key (CMEK).
+     *           Optional. If set, contains the Cloud KMS key identifier used to encrypt
+     *           data at rest, AKA a Customer Managed Encryption Key (CMEK).
      *           Format:
      *             projects/PROJECT_ID/locations/LOCATION/keyRings/KEY_RING/cryptoKeys/KEY
      *     @type array<\Google\Cloud\Dataflow\V1beta3\WorkerPool>|\Google\Protobuf\Internal\RepeatedField $worker_pools
@@ -200,7 +222,7 @@ class Environment extends \Google\Protobuf\Internal\Message
      *           A structure describing which components and their versions of the service
      *           are required in order to run the job.
      *     @type string $dataset
-     *           The dataset for the current project where various workflow
+     *           Optional. The dataset for the current project where various workflow
      *           related tables are stored.
      *           The supported resource type is:
      *           Google BigQuery:
@@ -213,17 +235,18 @@ class Environment extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Any $internal_experiments
      *           Experimental settings.
      *     @type string $service_account_email
-     *           Identity to run virtual machines as. Defaults to the default account.
+     *           Optional. Identity to run virtual machines as. Defaults to the default
+     *           account.
      *     @type int $flex_resource_scheduling_goal
-     *           Which Flexible Resource Scheduling mode to run in.
+     *           Optional. Which Flexible Resource Scheduling mode to run in.
      *     @type string $worker_region
-     *           The Compute Engine region
+     *           Optional. The Compute Engine region
      *           (https://cloud.google.com/compute/docs/regions-zones/regions-zones) in
      *           which worker processing should occur, e.g. "us-west1". Mutually exclusive
      *           with worker_zone. If neither worker_region nor worker_zone is specified,
      *           default to the control plane's region.
      *     @type string $worker_zone
-     *           The Compute Engine zone
+     *           Optional. The Compute Engine zone
      *           (https://cloud.google.com/compute/docs/regions-zones/regions-zones) in
      *           which worker processing should occur, e.g. "us-west1-a". Mutually exclusive
      *           with worker_region. If neither worker_region nor worker_zone is specified,
@@ -231,7 +254,18 @@ class Environment extends \Google\Protobuf\Internal\Message
      *     @type int $shuffle_mode
      *           Output only. The shuffle mode used for the job.
      *     @type \Google\Cloud\Dataflow\V1beta3\DebugOptions $debug_options
-     *           Any debugging options to be supplied to the job.
+     *           Optional. Any debugging options to be supplied to the job.
+     *     @type bool $use_streaming_engine_resource_based_billing
+     *           Output only. Whether the job uses the Streaming Engine resource-based
+     *           billing model.
+     *     @type int $streaming_mode
+     *           Optional. Specifies the Streaming Engine message processing guarantees.
+     *           Reduces cost and latency but might result in duplicate messages committed
+     *           to storage. Designed to run simple mapping streaming ETL jobs at the lowest
+     *           cost. For example, Change Data Capture (CDC) to BigQuery is a canonical use
+     *           case. For more information, see
+     *           [Set the pipeline streaming
+     *           mode](https://cloud.google.com/dataflow/docs/guides/streaming-modes).
      * }
      */
     public function __construct($data = NULL) {
@@ -348,11 +382,12 @@ class Environment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The list of service options to enable. This field should be used for
-     * service related experiments only. These experiments, when graduating to GA,
-     * should be replaced by dedicated fields or become default (i.e. always on).
+     * Optional. The list of service options to enable. This field should be used
+     * for service related experiments only. These experiments, when graduating to
+     * GA, should be replaced by dedicated fields or become default (i.e. always
+     * on).
      *
-     * Generated from protobuf field <code>repeated string service_options = 16;</code>
+     * Generated from protobuf field <code>repeated string service_options = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getServiceOptions()
@@ -361,11 +396,12 @@ class Environment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The list of service options to enable. This field should be used for
-     * service related experiments only. These experiments, when graduating to GA,
-     * should be replaced by dedicated fields or become default (i.e. always on).
+     * Optional. The list of service options to enable. This field should be used
+     * for service related experiments only. These experiments, when graduating to
+     * GA, should be replaced by dedicated fields or become default (i.e. always
+     * on).
      *
-     * Generated from protobuf field <code>repeated string service_options = 16;</code>
+     * Generated from protobuf field <code>repeated string service_options = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -378,12 +414,12 @@ class Environment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If set, contains the Cloud KMS key identifier used to encrypt data
-     * at rest, AKA a Customer Managed Encryption Key (CMEK).
+     * Optional. If set, contains the Cloud KMS key identifier used to encrypt
+     * data at rest, AKA a Customer Managed Encryption Key (CMEK).
      * Format:
      *   projects/PROJECT_ID/locations/LOCATION/keyRings/KEY_RING/cryptoKeys/KEY
      *
-     * Generated from protobuf field <code>string service_kms_key_name = 12;</code>
+     * Generated from protobuf field <code>string service_kms_key_name = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getServiceKmsKeyName()
@@ -392,12 +428,12 @@ class Environment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If set, contains the Cloud KMS key identifier used to encrypt data
-     * at rest, AKA a Customer Managed Encryption Key (CMEK).
+     * Optional. If set, contains the Cloud KMS key identifier used to encrypt
+     * data at rest, AKA a Customer Managed Encryption Key (CMEK).
      * Format:
      *   projects/PROJECT_ID/locations/LOCATION/keyRings/KEY_RING/cryptoKeys/KEY
      *
-     * Generated from protobuf field <code>string service_kms_key_name = 12;</code>
+     * Generated from protobuf field <code>string service_kms_key_name = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -512,13 +548,13 @@ class Environment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The dataset for the current project where various workflow
+     * Optional. The dataset for the current project where various workflow
      * related tables are stored.
      * The supported resource type is:
      * Google BigQuery:
      *   bigquery.googleapis.com/{dataset}
      *
-     * Generated from protobuf field <code>string dataset = 7;</code>
+     * Generated from protobuf field <code>string dataset = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getDataset()
@@ -527,13 +563,13 @@ class Environment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The dataset for the current project where various workflow
+     * Optional. The dataset for the current project where various workflow
      * related tables are stored.
      * The supported resource type is:
      * Google BigQuery:
      *   bigquery.googleapis.com/{dataset}
      *
-     * Generated from protobuf field <code>string dataset = 7;</code>
+     * Generated from protobuf field <code>string dataset = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -624,9 +660,10 @@ class Environment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Identity to run virtual machines as. Defaults to the default account.
+     * Optional. Identity to run virtual machines as. Defaults to the default
+     * account.
      *
-     * Generated from protobuf field <code>string service_account_email = 10;</code>
+     * Generated from protobuf field <code>string service_account_email = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getServiceAccountEmail()
@@ -635,9 +672,10 @@ class Environment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Identity to run virtual machines as. Defaults to the default account.
+     * Optional. Identity to run virtual machines as. Defaults to the default
+     * account.
      *
-     * Generated from protobuf field <code>string service_account_email = 10;</code>
+     * Generated from protobuf field <code>string service_account_email = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -650,9 +688,9 @@ class Environment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Which Flexible Resource Scheduling mode to run in.
+     * Optional. Which Flexible Resource Scheduling mode to run in.
      *
-     * Generated from protobuf field <code>.google.dataflow.v1beta3.FlexResourceSchedulingGoal flex_resource_scheduling_goal = 11;</code>
+     * Generated from protobuf field <code>.google.dataflow.v1beta3.FlexResourceSchedulingGoal flex_resource_scheduling_goal = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getFlexResourceSchedulingGoal()
@@ -661,9 +699,9 @@ class Environment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Which Flexible Resource Scheduling mode to run in.
+     * Optional. Which Flexible Resource Scheduling mode to run in.
      *
-     * Generated from protobuf field <code>.google.dataflow.v1beta3.FlexResourceSchedulingGoal flex_resource_scheduling_goal = 11;</code>
+     * Generated from protobuf field <code>.google.dataflow.v1beta3.FlexResourceSchedulingGoal flex_resource_scheduling_goal = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -676,13 +714,13 @@ class Environment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Compute Engine region
+     * Optional. The Compute Engine region
      * (https://cloud.google.com/compute/docs/regions-zones/regions-zones) in
      * which worker processing should occur, e.g. "us-west1". Mutually exclusive
      * with worker_zone. If neither worker_region nor worker_zone is specified,
      * default to the control plane's region.
      *
-     * Generated from protobuf field <code>string worker_region = 13;</code>
+     * Generated from protobuf field <code>string worker_region = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getWorkerRegion()
@@ -691,13 +729,13 @@ class Environment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Compute Engine region
+     * Optional. The Compute Engine region
      * (https://cloud.google.com/compute/docs/regions-zones/regions-zones) in
      * which worker processing should occur, e.g. "us-west1". Mutually exclusive
      * with worker_zone. If neither worker_region nor worker_zone is specified,
      * default to the control plane's region.
      *
-     * Generated from protobuf field <code>string worker_region = 13;</code>
+     * Generated from protobuf field <code>string worker_region = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -710,13 +748,13 @@ class Environment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Compute Engine zone
+     * Optional. The Compute Engine zone
      * (https://cloud.google.com/compute/docs/regions-zones/regions-zones) in
      * which worker processing should occur, e.g. "us-west1-a". Mutually exclusive
      * with worker_region. If neither worker_region nor worker_zone is specified,
      * a zone in the control plane's region is chosen based on available capacity.
      *
-     * Generated from protobuf field <code>string worker_zone = 14;</code>
+     * Generated from protobuf field <code>string worker_zone = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getWorkerZone()
@@ -725,13 +763,13 @@ class Environment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Compute Engine zone
+     * Optional. The Compute Engine zone
      * (https://cloud.google.com/compute/docs/regions-zones/regions-zones) in
      * which worker processing should occur, e.g. "us-west1-a". Mutually exclusive
      * with worker_region. If neither worker_region nor worker_zone is specified,
      * a zone in the control plane's region is chosen based on available capacity.
      *
-     * Generated from protobuf field <code>string worker_zone = 14;</code>
+     * Generated from protobuf field <code>string worker_zone = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -770,9 +808,9 @@ class Environment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Any debugging options to be supplied to the job.
+     * Optional. Any debugging options to be supplied to the job.
      *
-     * Generated from protobuf field <code>.google.dataflow.v1beta3.DebugOptions debug_options = 17;</code>
+     * Generated from protobuf field <code>.google.dataflow.v1beta3.DebugOptions debug_options = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Dataflow\V1beta3\DebugOptions|null
      */
     public function getDebugOptions()
@@ -791,9 +829,9 @@ class Environment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Any debugging options to be supplied to the job.
+     * Optional. Any debugging options to be supplied to the job.
      *
-     * Generated from protobuf field <code>.google.dataflow.v1beta3.DebugOptions debug_options = 17;</code>
+     * Generated from protobuf field <code>.google.dataflow.v1beta3.DebugOptions debug_options = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dataflow\V1beta3\DebugOptions $var
      * @return $this
      */
@@ -801,6 +839,72 @@ class Environment extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dataflow\V1beta3\DebugOptions::class);
         $this->debug_options = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Whether the job uses the Streaming Engine resource-based
+     * billing model.
+     *
+     * Generated from protobuf field <code>bool use_streaming_engine_resource_based_billing = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getUseStreamingEngineResourceBasedBilling()
+    {
+        return $this->use_streaming_engine_resource_based_billing;
+    }
+
+    /**
+     * Output only. Whether the job uses the Streaming Engine resource-based
+     * billing model.
+     *
+     * Generated from protobuf field <code>bool use_streaming_engine_resource_based_billing = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setUseStreamingEngineResourceBasedBilling($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->use_streaming_engine_resource_based_billing = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies the Streaming Engine message processing guarantees.
+     * Reduces cost and latency but might result in duplicate messages committed
+     * to storage. Designed to run simple mapping streaming ETL jobs at the lowest
+     * cost. For example, Change Data Capture (CDC) to BigQuery is a canonical use
+     * case. For more information, see
+     * [Set the pipeline streaming
+     * mode](https://cloud.google.com/dataflow/docs/guides/streaming-modes).
+     *
+     * Generated from protobuf field <code>.google.dataflow.v1beta3.StreamingMode streaming_mode = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getStreamingMode()
+    {
+        return $this->streaming_mode;
+    }
+
+    /**
+     * Optional. Specifies the Streaming Engine message processing guarantees.
+     * Reduces cost and latency but might result in duplicate messages committed
+     * to storage. Designed to run simple mapping streaming ETL jobs at the lowest
+     * cost. For example, Change Data Capture (CDC) to BigQuery is a canonical use
+     * case. For more information, see
+     * [Set the pipeline streaming
+     * mode](https://cloud.google.com/dataflow/docs/guides/streaming-modes).
+     *
+     * Generated from protobuf field <code>.google.dataflow.v1beta3.StreamingMode streaming_mode = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setStreamingMode($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Dataflow\V1beta3\StreamingMode::class);
+        $this->streaming_mode = $var;
 
         return $this;
     }

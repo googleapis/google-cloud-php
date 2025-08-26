@@ -86,9 +86,11 @@ class AutokeyAdminClientTest extends GeneratedTest
         // Mock response
         $name2 = 'name2-1052831874';
         $keyProject = 'keyProject721994041';
+        $etag = 'etag3123477';
         $expectedResponse = new AutokeyConfig();
         $expectedResponse->setName($name2);
         $expectedResponse->setKeyProject($keyProject);
+        $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->autokeyConfigName('[FOLDER]');
@@ -218,9 +220,11 @@ class AutokeyAdminClientTest extends GeneratedTest
         // Mock response
         $name = 'name3373707';
         $keyProject = 'keyProject721994041';
+        $etag = 'etag3123477';
         $expectedResponse = new AutokeyConfig();
         $expectedResponse->setName($name);
         $expectedResponse->setKeyProject($keyProject);
+        $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
         // Mock request
         $autokeyConfig = new AutokeyConfig();
@@ -622,9 +626,11 @@ class AutokeyAdminClientTest extends GeneratedTest
         // Mock response
         $name2 = 'name2-1052831874';
         $keyProject = 'keyProject721994041';
+        $etag = 'etag3123477';
         $expectedResponse = new AutokeyConfig();
         $expectedResponse->setName($name2);
         $expectedResponse->setKeyProject($keyProject);
+        $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->autokeyConfigName('[FOLDER]');

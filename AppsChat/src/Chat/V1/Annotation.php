@@ -9,9 +9,10 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Output only. Annotations associated with the plain-text body of the message.
- * To add basic formatting to a text message, see
- * [Format text
+ * Output only. Annotations can be associated with the plain-text body of the
+ * message or with chips that link to Google Workspace resources like Google
+ * Docs or Sheets with `start_index` and `length` of 0. To add basic formatting
+ * to a text message, see [Format text
  * messages](https://developers.google.com/workspace/chat/format-messages).
  * Example plain-text message body:
  * ```
@@ -54,7 +55,7 @@ class Annotation extends \Google\Protobuf\Internal\Message
     protected $start_index = null;
     /**
      * Length of the substring in the plain-text message body this annotation
-     * corresponds to.
+     * corresponds to. If not present, indicates a length of 0.
      *
      * Generated from protobuf field <code>int32 length = 3;</code>
      */
@@ -74,7 +75,7 @@ class Annotation extends \Google\Protobuf\Internal\Message
      *           annotation corresponds to.
      *     @type int $length
      *           Length of the substring in the plain-text message body this annotation
-     *           corresponds to.
+     *           corresponds to. If not present, indicates a length of 0.
      *     @type \Google\Apps\Chat\V1\UserMentionMetadata $user_mention
      *           The metadata of user mention.
      *     @type \Google\Apps\Chat\V1\SlashCommandMetadata $slash_command
@@ -156,7 +157,7 @@ class Annotation extends \Google\Protobuf\Internal\Message
 
     /**
      * Length of the substring in the plain-text message body this annotation
-     * corresponds to.
+     * corresponds to. If not present, indicates a length of 0.
      *
      * Generated from protobuf field <code>int32 length = 3;</code>
      * @return int
@@ -168,7 +169,7 @@ class Annotation extends \Google\Protobuf\Internal\Message
 
     /**
      * Length of the substring in the plain-text message body this annotation
-     * corresponds to.
+     * corresponds to. If not present, indicates a length of 0.
      *
      * Generated from protobuf field <code>int32 length = 3;</code>
      * @param int $var

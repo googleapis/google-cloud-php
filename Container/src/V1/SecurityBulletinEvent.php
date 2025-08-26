@@ -84,6 +84,12 @@ class SecurityBulletinEvent extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool manual_steps_required = 10;</code>
      */
     protected $manual_steps_required = false;
+    /**
+     * The GKE versions where this vulnerability is mitigated.
+     *
+     * Generated from protobuf field <code>repeated string mitigated_versions = 11;</code>
+     */
+    private $mitigated_versions;
 
     /**
      * Constructor.
@@ -119,6 +125,8 @@ class SecurityBulletinEvent extends \Google\Protobuf\Internal\Message
      *     @type bool $manual_steps_required
      *           If this field is specified, it means there are manual steps that the user
      *           must take to make their clusters safe.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $mitigated_versions
+     *           The GKE versions where this vulnerability is mitigated.
      * }
      */
     public function __construct($data = NULL) {
@@ -398,6 +406,32 @@ class SecurityBulletinEvent extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->manual_steps_required = $var;
+
+        return $this;
+    }
+
+    /**
+     * The GKE versions where this vulnerability is mitigated.
+     *
+     * Generated from protobuf field <code>repeated string mitigated_versions = 11;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getMitigatedVersions()
+    {
+        return $this->mitigated_versions;
+    }
+
+    /**
+     * The GKE versions where this vulnerability is mitigated.
+     *
+     * Generated from protobuf field <code>repeated string mitigated_versions = 11;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setMitigatedVersions($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->mitigated_versions = $arr;
 
         return $this;
     }

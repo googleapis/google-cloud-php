@@ -82,8 +82,7 @@ class Connection extends \Google\Protobuf\Internal\Message
      */
     protected $etag = '';
     /**
-     * Output only. A system-assigned unique identifier for a the
-     * GitRepositoryLink.
+     * Output only. A system-assigned unique identifier for the Connection.
      *
      * Generated from protobuf field <code>string uid = 12 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_info) = {</code>
      */
@@ -95,6 +94,14 @@ class Connection extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.developerconnect.v1.CryptoKeyConfig crypto_key_config = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $crypto_key_config = null;
+    /**
+     * Optional. Configuration for the git proxy feature. Enabling the git proxy
+     * allows clients to perform git operations on the repositories linked in the
+     * connection.
+     *
+     * Generated from protobuf field <code>.google.cloud.developerconnect.v1.GitProxyConfig git_proxy_config = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $git_proxy_config = null;
     protected $connection_config;
 
     /**
@@ -111,6 +118,10 @@ class Connection extends \Google\Protobuf\Internal\Message
      *           Configuration for connections to gitlab.com.
      *     @type \Google\Cloud\DeveloperConnect\V1\GitLabEnterpriseConfig $gitlab_enterprise_config
      *           Configuration for connections to an instance of GitLab Enterprise.
+     *     @type \Google\Cloud\DeveloperConnect\V1\BitbucketDataCenterConfig $bitbucket_data_center_config
+     *           Configuration for connections to an instance of Bitbucket Data Center.
+     *     @type \Google\Cloud\DeveloperConnect\V1\BitbucketCloudConfig $bitbucket_cloud_config
+     *           Configuration for connections to an instance of Bitbucket Clouds.
      *     @type string $name
      *           Identifier. The resource name of the connection, in the format
      *           `projects/{project}/locations/{location}/connections/{connection_id}`.
@@ -138,11 +149,14 @@ class Connection extends \Google\Protobuf\Internal\Message
      *           other fields, and may be sent on update and delete requests to ensure the
      *           client has an up-to-date value before proceeding.
      *     @type string $uid
-     *           Output only. A system-assigned unique identifier for a the
-     *           GitRepositoryLink.
+     *           Output only. A system-assigned unique identifier for the Connection.
      *     @type \Google\Cloud\DeveloperConnect\V1\CryptoKeyConfig $crypto_key_config
      *           Optional. The crypto key configuration. This field is used by the
      *           Customer-Managed Encryption Keys (CMEK) feature.
+     *     @type \Google\Cloud\DeveloperConnect\V1\GitProxyConfig $git_proxy_config
+     *           Optional. Configuration for the git proxy feature. Enabling the git proxy
+     *           allows clients to perform git operations on the repositories linked in the
+     *           connection.
      * }
      */
     public function __construct($data = NULL) {
@@ -270,6 +284,68 @@ class Connection extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DeveloperConnect\V1\GitLabEnterpriseConfig::class);
         $this->writeOneof(16, $var);
+
+        return $this;
+    }
+
+    /**
+     * Configuration for connections to an instance of Bitbucket Data Center.
+     *
+     * Generated from protobuf field <code>.google.cloud.developerconnect.v1.BitbucketDataCenterConfig bitbucket_data_center_config = 17;</code>
+     * @return \Google\Cloud\DeveloperConnect\V1\BitbucketDataCenterConfig|null
+     */
+    public function getBitbucketDataCenterConfig()
+    {
+        return $this->readOneof(17);
+    }
+
+    public function hasBitbucketDataCenterConfig()
+    {
+        return $this->hasOneof(17);
+    }
+
+    /**
+     * Configuration for connections to an instance of Bitbucket Data Center.
+     *
+     * Generated from protobuf field <code>.google.cloud.developerconnect.v1.BitbucketDataCenterConfig bitbucket_data_center_config = 17;</code>
+     * @param \Google\Cloud\DeveloperConnect\V1\BitbucketDataCenterConfig $var
+     * @return $this
+     */
+    public function setBitbucketDataCenterConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DeveloperConnect\V1\BitbucketDataCenterConfig::class);
+        $this->writeOneof(17, $var);
+
+        return $this;
+    }
+
+    /**
+     * Configuration for connections to an instance of Bitbucket Clouds.
+     *
+     * Generated from protobuf field <code>.google.cloud.developerconnect.v1.BitbucketCloudConfig bitbucket_cloud_config = 18;</code>
+     * @return \Google\Cloud\DeveloperConnect\V1\BitbucketCloudConfig|null
+     */
+    public function getBitbucketCloudConfig()
+    {
+        return $this->readOneof(18);
+    }
+
+    public function hasBitbucketCloudConfig()
+    {
+        return $this->hasOneof(18);
+    }
+
+    /**
+     * Configuration for connections to an instance of Bitbucket Clouds.
+     *
+     * Generated from protobuf field <code>.google.cloud.developerconnect.v1.BitbucketCloudConfig bitbucket_cloud_config = 18;</code>
+     * @param \Google\Cloud\DeveloperConnect\V1\BitbucketCloudConfig $var
+     * @return $this
+     */
+    public function setBitbucketCloudConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DeveloperConnect\V1\BitbucketCloudConfig::class);
+        $this->writeOneof(18, $var);
 
         return $this;
     }
@@ -587,8 +663,7 @@ class Connection extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A system-assigned unique identifier for a the
-     * GitRepositoryLink.
+     * Output only. A system-assigned unique identifier for the Connection.
      *
      * Generated from protobuf field <code>string uid = 12 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_info) = {</code>
      * @return string
@@ -599,8 +674,7 @@ class Connection extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A system-assigned unique identifier for a the
-     * GitRepositoryLink.
+     * Output only. A system-assigned unique identifier for the Connection.
      *
      * Generated from protobuf field <code>string uid = 12 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_info) = {</code>
      * @param string $var
@@ -648,6 +722,46 @@ class Connection extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DeveloperConnect\V1\CryptoKeyConfig::class);
         $this->crypto_key_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configuration for the git proxy feature. Enabling the git proxy
+     * allows clients to perform git operations on the repositories linked in the
+     * connection.
+     *
+     * Generated from protobuf field <code>.google.cloud.developerconnect.v1.GitProxyConfig git_proxy_config = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\DeveloperConnect\V1\GitProxyConfig|null
+     */
+    public function getGitProxyConfig()
+    {
+        return $this->git_proxy_config;
+    }
+
+    public function hasGitProxyConfig()
+    {
+        return isset($this->git_proxy_config);
+    }
+
+    public function clearGitProxyConfig()
+    {
+        unset($this->git_proxy_config);
+    }
+
+    /**
+     * Optional. Configuration for the git proxy feature. Enabling the git proxy
+     * allows clients to perform git operations on the repositories linked in the
+     * connection.
+     *
+     * Generated from protobuf field <code>.google.cloud.developerconnect.v1.GitProxyConfig git_proxy_config = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\DeveloperConnect\V1\GitProxyConfig $var
+     * @return $this
+     */
+    public function setGitProxyConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DeveloperConnect\V1\GitProxyConfig::class);
+        $this->git_proxy_config = $var;
 
         return $this;
     }

@@ -119,11 +119,6 @@
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
                 },
-                "CreateConnectedSiteTag": {
-                    "timeout_millis": 60000,
-                    "retry_codes_name": "retry_policy_1_codes",
-                    "retry_params_name": "retry_policy_1_params"
-                },
                 "CreateConversionEvent": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "retry_policy_1_codes",
@@ -254,11 +249,6 @@
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
                 },
-                "DeleteConnectedSiteTag": {
-                    "timeout_millis": 60000,
-                    "retry_codes_name": "retry_policy_1_codes",
-                    "retry_params_name": "retry_policy_1_params"
-                },
                 "DeleteConversionEvent": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "retry_policy_1_codes",
@@ -340,16 +330,6 @@
                     "retry_params_name": "retry_policy_1_params"
                 },
                 "DeleteSubpropertyEventFilter": {
-                    "timeout_millis": 60000,
-                    "retry_codes_name": "retry_policy_1_codes",
-                    "retry_params_name": "retry_policy_1_params"
-                },
-                "FetchAutomatedGa4ConfigurationOptOut": {
-                    "timeout_millis": 60000,
-                    "retry_codes_name": "retry_policy_1_codes",
-                    "retry_params_name": "retry_policy_1_params"
-                },
-                "FetchConnectedGa4Property": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
@@ -489,6 +469,11 @@
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
                 },
+                "GetReportingIdentitySettings": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
                 "GetRollupPropertySourceLink": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "retry_policy_1_codes",
@@ -505,6 +490,11 @@
                     "retry_params_name": "retry_policy_1_params"
                 },
                 "GetSubpropertyEventFilter": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "GetSubpropertySyncConfig": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
@@ -545,11 +535,6 @@
                     "retry_params_name": "retry_policy_1_params"
                 },
                 "ListChannelGroups": {
-                    "timeout_millis": 60000,
-                    "retry_codes_name": "retry_policy_1_codes",
-                    "retry_params_name": "retry_policy_1_params"
-                },
-                "ListConnectedSiteTags": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
@@ -649,6 +634,11 @@
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
                 },
+                "ListSubpropertySyncConfigs": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
                 "ProvisionAccountTicket": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_1_codes",
@@ -670,11 +660,6 @@
                     "retry_params_name": "retry_policy_1_params"
                 },
                 "SearchChangeHistoryEvents": {
-                    "timeout_millis": 60000,
-                    "retry_codes_name": "retry_policy_1_codes",
-                    "retry_params_name": "retry_policy_1_params"
-                },
-                "SetAutomatedGa4ConfigurationOptOut": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
@@ -815,6 +800,11 @@
                     "retry_params_name": "retry_policy_1_params"
                 },
                 "UpdateSubpropertyEventFilter": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "UpdateSubpropertySyncConfig": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"

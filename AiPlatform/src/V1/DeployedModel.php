@@ -24,9 +24,8 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
      */
     protected $id = '';
     /**
-     * Required. The resource name of the Model that this is the deployment of.
-     * Note that the Model may be in a different location than the DeployedModel's
-     * Endpoint.
+     * The resource name of the Model that this is the deployment of. Note that
+     * the Model may be in a different location than the DeployedModel's Endpoint.
      * The resource name may contain version id or version alias to specify the
      * version.
      *  Example: `projects/{project}/locations/{location}/models/{model}&#64;2`
@@ -34,7 +33,7 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
      *            `projects/{project}/locations/{location}/models/{model}&#64;golden`
      * if no version is specified, the default version will be deployed.
      *
-     * Generated from protobuf field <code>string model = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string model = 2 [(.google.api.resource_reference) = {</code>
      */
     protected $model = '';
     /**
@@ -150,6 +149,12 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
      */
     private $system_labels;
     /**
+     * The checkpoint id of the model.
+     *
+     * Generated from protobuf field <code>string checkpoint_id = 29;</code>
+     */
+    protected $checkpoint_id = '';
+    /**
      * Optional. Spec for configuring speculative decoding.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.SpeculativeDecodingSpec speculative_decoding_spec = 30 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -178,9 +183,8 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
      *           Vertex AI will generate a value for this ID.
      *           This value should be 1-10 characters, and valid characters are `/[0-9]/`.
      *     @type string $model
-     *           Required. The resource name of the Model that this is the deployment of.
-     *           Note that the Model may be in a different location than the DeployedModel's
-     *           Endpoint.
+     *           The resource name of the Model that this is the deployment of. Note that
+     *           the Model may be in a different location than the DeployedModel's Endpoint.
      *           The resource name may contain version id or version alias to specify the
      *           version.
      *            Example: `projects/{project}/locations/{location}/models/{model}&#64;2`
@@ -251,6 +255,8 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $system_labels
      *           System labels to apply to Model Garden deployments.
      *           System labels are managed by Google for internal use only.
+     *     @type string $checkpoint_id
+     *           The checkpoint id of the model.
      *     @type \Google\Cloud\AIPlatform\V1\SpeculativeDecodingSpec $speculative_decoding_spec
      *           Optional. Spec for configuring speculative decoding.
      * }
@@ -392,9 +398,8 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the Model that this is the deployment of.
-     * Note that the Model may be in a different location than the DeployedModel's
-     * Endpoint.
+     * The resource name of the Model that this is the deployment of. Note that
+     * the Model may be in a different location than the DeployedModel's Endpoint.
      * The resource name may contain version id or version alias to specify the
      * version.
      *  Example: `projects/{project}/locations/{location}/models/{model}&#64;2`
@@ -402,7 +407,7 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
      *            `projects/{project}/locations/{location}/models/{model}&#64;golden`
      * if no version is specified, the default version will be deployed.
      *
-     * Generated from protobuf field <code>string model = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string model = 2 [(.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getModel()
@@ -411,9 +416,8 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the Model that this is the deployment of.
-     * Note that the Model may be in a different location than the DeployedModel's
-     * Endpoint.
+     * The resource name of the Model that this is the deployment of. Note that
+     * the Model may be in a different location than the DeployedModel's Endpoint.
      * The resource name may contain version id or version alias to specify the
      * version.
      *  Example: `projects/{project}/locations/{location}/models/{model}&#64;2`
@@ -421,7 +425,7 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
      *            `projects/{project}/locations/{location}/models/{model}&#64;golden`
      * if no version is specified, the default version will be deployed.
      *
-     * Generated from protobuf field <code>string model = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string model = 2 [(.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -871,6 +875,32 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->system_labels = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The checkpoint id of the model.
+     *
+     * Generated from protobuf field <code>string checkpoint_id = 29;</code>
+     * @return string
+     */
+    public function getCheckpointId()
+    {
+        return $this->checkpoint_id;
+    }
+
+    /**
+     * The checkpoint id of the model.
+     *
+     * Generated from protobuf field <code>string checkpoint_id = 29;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCheckpointId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->checkpoint_id = $var;
 
         return $this;
     }

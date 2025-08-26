@@ -19,6 +19,7 @@ namespace Google\Cloud\Firestore;
 
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\TimeTrait;
+use Google\Cloud\Firestore\V1\ExplainMetrics;
 
 /**
  * Represents the result set of an AggregateQuery.
@@ -54,6 +55,11 @@ class AggregateQuerySnapshot
     private $transaction;
 
     /**
+     * @var null|ExplainMetrics
+     */
+    private null|ExplainMetrics $explainMetrics;
+
+    /**
      * An immutable snapshot of aggregate query results.
      *
      * @param array $snapshot Result of an AggregateQuery.
@@ -69,6 +75,9 @@ class AggregateQuerySnapshot
         }
         if (isset($snapshot['result']['aggregateFields'])) {
             $this->aggregateFields = $snapshot['result']['aggregateFields'];
+        }
+        if (isset($snapshot['explainMetrics'])) {
+            $this->explainMetrics = $this->parseMetrics($snapshot['explainMetrics']);
         }
     }
 
@@ -90,6 +99,19 @@ class AggregateQuerySnapshot
     public function getReadTime()
     {
         return $this->readTime;
+    }
+
+    /**
+     * Gets `ExplainMetrics` when the `explainOptions` option is supplied.
+     * If `ExplainOptions::setAnalyze` is set to `false`, the query is
+     * planned and not executed, returning only the {@see V1\PlanSummary}
+     * instead of the {@see V1\ExecutionStats} and result.
+     *
+     * @return null|ExplainMetrics
+     */
+    public function getExplainMetrics()
+    {
+        return $this->explainMetrics;
     }
 
     /**
@@ -115,5 +137,14 @@ class AggregateQuerySnapshot
             return $result[$key];
         }
         return $result;
+    }
+
+    private function parseMetrics(array $metrics): ExplainMetrics
+    {
+        $explainMetrics = new ExplainMetrics();
+        $json = json_encode($metrics, true);
+        $explainMetrics->mergeFromJsonString($json);
+
+        return $explainMetrics;
     }
 }

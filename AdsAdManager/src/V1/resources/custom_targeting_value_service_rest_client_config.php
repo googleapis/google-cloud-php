@@ -25,7 +25,13 @@ return [
         'google.ads.admanager.v1.CustomTargetingValueService' => [
             'GetCustomTargetingValue' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1/{name=networks/*/customTargetingKeys/*/customTargetingValues/*}',
+                'uriTemplate' => '/v1/{name=networks/*/customTargetingValues/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=networks/*/customTargetingKeys/*/customTargetingValues/*}',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -36,7 +42,13 @@ return [
             ],
             'ListCustomTargetingValues' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1/{parent=networks/*/customTargetingKeys/*}/customTargetingValues',
+                'uriTemplate' => '/v1/{parent=networks/*}/customTargetingValues',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=networks/*/customTargetingKeys/*}/customTargetingValues',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -50,12 +62,6 @@ return [
             'GetOperation' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=networks/*/operations/reports/runs/*}',
-                'additionalBindings' => [
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1/{name=networks/*/operations/reports/exports/*}',
-                    ],
-                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [

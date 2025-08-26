@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Configuration for Custom Dual Regions.  It should specify precisely two
  * eligible regions within the same Multiregion. More information on regions
- * may be found [https://cloud.google.com/storage/docs/locations][here].
+ * may be found [here](https://cloud.google.com/storage/docs/locations).
  *
  * Generated from protobuf message <code>google.storage.control.v2.StorageLayout.CustomPlacementConfig</code>
  */

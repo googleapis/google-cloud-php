@@ -30,7 +30,7 @@ class Name
      */
     const LEAST_REQUEST = 46604921;
     /**
-     * This algorithm implements consistent hashing to backends. Maglev can be used as a drop in replacement for the ring hash load balancer. Maglev is not as stable as ring hash but has faster table lookup build times and host selection times. For more information about Maglev, see https://ai.google/research/pubs/pub44824
+     * This algorithm implements consistent hashing to backends. Maglev can be used as a drop in replacement for the ring hash load balancer. Maglev is not as stable as ring hash but has faster table lookup build times and host selection times. For more information about Maglev, see Maglev: A Fast and Reliable Software Network Load Balancer.
      *
      * Generated from protobuf enum <code>MAGLEV = 119180266;</code>
      */
@@ -66,7 +66,7 @@ class Name
      */
     const WEIGHTED_MAGLEV = 254930962;
     /**
-     * Per-endpoint weighted round-robin Load Balancing using weights computed from Backend reported Custom Metrics. If set, the Backend Service responses are expected to contain non-standard HTTP response header field X-Endpoint-Load-Metrics. The reported metrics to use for computing the weights are specified via the backends[].customMetrics fields.
+     * Per-endpoint weighted round-robin Load Balancing using weights computed from Backend reported Custom Metrics. If set, the Backend Service responses are expected to contain non-standard HTTP response header field Endpoint-Load-Metrics. The reported metrics to use for computing the weights are specified via the customMetrics fields.
      *
      * Generated from protobuf enum <code>WEIGHTED_ROUND_ROBIN = 5584977;</code>
      */

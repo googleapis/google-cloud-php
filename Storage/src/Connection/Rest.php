@@ -101,6 +101,26 @@ class Rest implements ConnectionInterface
     private $restRetryFunction;
 
     /**
+     * @var string|null
+     */
+    private ?string $retryStrategy;
+
+    /**
+     * @var callable|null
+     */
+    private $restDelayFunction;
+
+    /**
+     * @var callable|null
+     */
+    private $restCalcDelayFunction;
+
+    /**
+     * @var callable|null
+     */
+    private $restRetryListener;
+
+    /**
      * @param array $config
      */
     public function __construct(array $config = [])
@@ -128,6 +148,10 @@ class Rest implements ConnectionInterface
 
         $this->projectId = $this->pluck('projectId', $config, false);
         $this->restRetryFunction = (isset($config['restRetryFunction'])) ? $config['restRetryFunction'] : null;
+        $this->retryStrategy = $config['retryStrategy'] ?? null;
+        $this->restDelayFunction = $config['restDelayFunction'] ?? null;
+        $this->restCalcDelayFunction = $config['restCalcDelayFunction'] ?? null;
+        $this->restRetryListener = $config['restRetryListener'] ?? null;
     }
 
     /**
@@ -308,11 +332,13 @@ class Rest implements ConnectionInterface
         $resultStream = Utils::streamFor(null);
         $transcodedObj = false;
 
+        $args['retryStrategy'] ??= $this->retryStrategy;
+
         list($request, $requestOptions) = $this->buildDownloadObjectParams($args);
 
         $invocationId = Uuid::uuid4()->toString();
         $requestOptions['retryHeaders'] = self::getRetryHeaders($invocationId, 1);
-        $requestOptions['restRetryFunction'] = $this->getRestRetryFunction('objects', 'get', $requestOptions);
+        $requestOptions['restRetryFunction'] = $this->getRestRetryFunction('objects', 'get', $args);
         // We try to deduce if the object is a transcoded object when we receive the headers.
         $requestOptions['restOptions']['on_headers'] = function ($response) use (&$transcodedObj) {
             $header = $response->getHeader(self::TRANSCODED_OBJ_HEADER_KEY);
@@ -461,6 +487,8 @@ class Rest implements ConnectionInterface
             'userProject' => null,
         ];
 
+        $args['retryStrategy'] ??= $this->retryStrategy;
+
         $args['data'] = Utils::streamFor($args['data']);
 
         if ($args['resumable'] === null) {
@@ -520,7 +548,7 @@ class Rest implements ConnectionInterface
     }
 
     /**
-     * @param  array $args
+     * @param array $args
      */
     public function getBucketIamPolicy(array $args)
     {
@@ -528,7 +556,7 @@ class Rest implements ConnectionInterface
     }
 
     /**
-     * @param  array $args
+     * @param array $args
      */
     public function setBucketIamPolicy(array $args)
     {
@@ -536,7 +564,7 @@ class Rest implements ConnectionInterface
     }
 
     /**
-     * @param  array $args
+     * @param array $args
      */
     public function testBucketIamPermissions(array $args)
     {
@@ -677,7 +705,7 @@ class Rest implements ConnectionInterface
     }
 
     /**
-     * Choose a upload validation method based on user input and platform
+     * Choose an upload validation method based on user input and platform
      * requirements.
      *
      * @param array $args
@@ -748,8 +776,8 @@ class Rest implements ConnectionInterface
     /**
      * Check if hash() supports crc32c.
      *
-     * @deprecated
      * @return bool
+     * @deprecated
      */
     protected function supportsBuiltinCrc32c()
     {
@@ -774,11 +802,19 @@ class Rest implements ConnectionInterface
             'objectAccessControls' => 'object_acl'
         ];
         $retryResource = isset($retryMap[$resource]) ? $retryMap[$resource] : $resource;
+
         $options['restRetryFunction'] = $this->restRetryFunction ?? $this->getRestRetryFunction(
             $retryResource,
             $method,
             $options
         );
+
+        $options += array_filter([
+            'retryStrategy' => $this->retryStrategy,
+            'restDelayFunction' => $this->restDelayFunction,
+            'restCalcDelayFunction' => $this->restCalcDelayFunction,
+            'restRetryListener' => $this->restRetryListener,
+        ]);
 
         $options = $this->addRetryHeaderLogic($options);
 
@@ -796,19 +832,26 @@ class Rest implements ConnectionInterface
         $invocationId = Uuid::uuid4()->toString();
         $args['retryHeaders'] = self::getRetryHeaders($invocationId, 1);
 
+        $userListener = $args['restRetryListener'] ?? null;
+
         // Adding callback logic to update headers while retrying
         $args['restRetryListener'] = function (
             \Exception $e,
             $retryAttempt,
             &$arguments
         ) use (
-            $invocationId
+            $invocationId,
+            $userListener
         ) {
             $arguments[0] = $this->modifyRequestForRetry(
                 $arguments[0],
                 $retryAttempt,
                 $invocationId
             );
+
+            if ($userListener) {
+                $userListener($e, $retryAttempt, $arguments);
+            }
         };
 
         return $args;

@@ -9,18 +9,23 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * ServiceBinding is the resource that defines a Service Directory Service to
- * be used in a BackendService resource.
+ * ServiceBinding can be used to:
+ * - Bind a Service Directory Service to be used in a BackendService resource.
+ *   This feature will be deprecated soon.
+ * - Bind a Private Service Connect producer service to be used in consumer
+ *   Cloud Service Mesh or Application Load Balancers.
+ * - Bind a Cloud Run service to be used in consumer Cloud Service Mesh or
+ *   Application Load Balancers.
  *
  * Generated from protobuf message <code>google.cloud.networkservices.v1.ServiceBinding</code>
  */
 class ServiceBinding extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Name of the ServiceBinding resource. It matches pattern
-     * `projects/&#42;&#47;locations/global/serviceBindings/service_binding_name`.
+     * Identifier. Name of the ServiceBinding resource. It matches pattern
+     * `projects/&#42;&#47;locations/&#42;&#47;serviceBindings/<service_binding_name>`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
@@ -43,12 +48,26 @@ class ServiceBinding extends \Google\Protobuf\Internal\Message
      */
     protected $update_time = null;
     /**
-     * Required. The full service directory service name of the format
-     * /projects/&#42;&#47;locations/&#42;&#47;namespaces/&#42;&#47;services/&#42;
+     * Optional. The full Service Directory Service name of the format
+     * `projects/&#42;&#47;locations/&#42;&#47;namespaces/&#42;&#47;services/&#42;`.
+     * This field is for Service Directory integration which will be deprecated
+     * soon.
      *
-     * Generated from protobuf field <code>string service = 5 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string service = 5 [deprecated = true, (.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @deprecated
      */
     protected $service = '';
+    /**
+     * Output only. The unique identifier of the Service Directory Service against
+     * which the ServiceBinding resource is validated. This is populated when the
+     * Service Binding resource is used in another resource (like Backend
+     * Service). This is of the UUID4 format. This field is for Service Directory
+     * integration which will be deprecated soon.
+     *
+     * Generated from protobuf field <code>string service_id = 8 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @deprecated
+     */
+    protected $service_id = '';
     /**
      * Optional. Set of label tags associated with the ServiceBinding resource.
      *
@@ -63,8 +82,8 @@ class ServiceBinding extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. Name of the ServiceBinding resource. It matches pattern
-     *           `projects/&#42;&#47;locations/global/serviceBindings/service_binding_name`.
+     *           Identifier. Name of the ServiceBinding resource. It matches pattern
+     *           `projects/&#42;&#47;locations/&#42;&#47;serviceBindings/<service_binding_name>`.
      *     @type string $description
      *           Optional. A free-text description of the resource. Max length 1024
      *           characters.
@@ -73,8 +92,16 @@ class ServiceBinding extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The timestamp when the resource was updated.
      *     @type string $service
-     *           Required. The full service directory service name of the format
-     *           /projects/&#42;&#47;locations/&#42;&#47;namespaces/&#42;&#47;services/&#42;
+     *           Optional. The full Service Directory Service name of the format
+     *           `projects/&#42;&#47;locations/&#42;&#47;namespaces/&#42;&#47;services/&#42;`.
+     *           This field is for Service Directory integration which will be deprecated
+     *           soon.
+     *     @type string $service_id
+     *           Output only. The unique identifier of the Service Directory Service against
+     *           which the ServiceBinding resource is validated. This is populated when the
+     *           Service Binding resource is used in another resource (like Backend
+     *           Service). This is of the UUID4 format. This field is for Service Directory
+     *           integration which will be deprecated soon.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional. Set of label tags associated with the ServiceBinding resource.
      * }
@@ -85,10 +112,10 @@ class ServiceBinding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Name of the ServiceBinding resource. It matches pattern
-     * `projects/&#42;&#47;locations/global/serviceBindings/service_binding_name`.
+     * Identifier. Name of the ServiceBinding resource. It matches pattern
+     * `projects/&#42;&#47;locations/&#42;&#47;serviceBindings/<service_binding_name>`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -97,10 +124,10 @@ class ServiceBinding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Name of the ServiceBinding resource. It matches pattern
-     * `projects/&#42;&#47;locations/global/serviceBindings/service_binding_name`.
+     * Identifier. Name of the ServiceBinding resource. It matches pattern
+     * `projects/&#42;&#47;locations/&#42;&#47;serviceBindings/<service_binding_name>`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */
@@ -213,29 +240,79 @@ class ServiceBinding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The full service directory service name of the format
-     * /projects/&#42;&#47;locations/&#42;&#47;namespaces/&#42;&#47;services/&#42;
+     * Optional. The full Service Directory Service name of the format
+     * `projects/&#42;&#47;locations/&#42;&#47;namespaces/&#42;&#47;services/&#42;`.
+     * This field is for Service Directory integration which will be deprecated
+     * soon.
      *
-     * Generated from protobuf field <code>string service = 5 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string service = 5 [deprecated = true, (.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
+     * @deprecated
      */
     public function getService()
     {
+        if ($this->service !== '') {
+            @trigger_error('service is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->service;
     }
 
     /**
-     * Required. The full service directory service name of the format
-     * /projects/&#42;&#47;locations/&#42;&#47;namespaces/&#42;&#47;services/&#42;
+     * Optional. The full Service Directory Service name of the format
+     * `projects/&#42;&#47;locations/&#42;&#47;namespaces/&#42;&#47;services/&#42;`.
+     * This field is for Service Directory integration which will be deprecated
+     * soon.
      *
-     * Generated from protobuf field <code>string service = 5 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string service = 5 [deprecated = true, (.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
+     * @deprecated
      */
     public function setService($var)
     {
+        @trigger_error('service is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkString($var, True);
         $this->service = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The unique identifier of the Service Directory Service against
+     * which the ServiceBinding resource is validated. This is populated when the
+     * Service Binding resource is used in another resource (like Backend
+     * Service). This is of the UUID4 format. This field is for Service Directory
+     * integration which will be deprecated soon.
+     *
+     * Generated from protobuf field <code>string service_id = 8 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     * @deprecated
+     */
+    public function getServiceId()
+    {
+        if ($this->service_id !== '') {
+            @trigger_error('service_id is deprecated.', E_USER_DEPRECATED);
+        }
+        return $this->service_id;
+    }
+
+    /**
+     * Output only. The unique identifier of the Service Directory Service against
+     * which the ServiceBinding resource is validated. This is populated when the
+     * Service Binding resource is used in another resource (like Backend
+     * Service). This is of the UUID4 format. This field is for Service Directory
+     * integration which will be deprecated soon.
+     *
+     * Generated from protobuf field <code>string service_id = 8 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     * @deprecated
+     */
+    public function setServiceId($var)
+    {
+        @trigger_error('service_id is deprecated.', E_USER_DEPRECATED);
+        GPBUtil::checkString($var, True);
+        $this->service_id = $var;
 
         return $this;
     }

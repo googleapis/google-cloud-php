@@ -192,6 +192,25 @@ final class ReasoningEngineServiceClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * network_attachment resource.
+     *
+     * @param string $project
+     * @param string $region
+     * @param string $networkattachment
+     *
+     * @return string The formatted network_attachment resource.
+     */
+    public static function networkAttachmentName(string $project, string $region, string $networkattachment): string
+    {
+        return self::getPathTemplate('networkAttachment')->render([
+            'project' => $project,
+            'region' => $region,
+            'networkattachment' => $networkattachment,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * reasoning_engine resource.
      *
      * @param string $project
@@ -214,6 +233,7 @@ final class ReasoningEngineServiceClient
      * The following name formats are supported:
      * Template: Pattern
      * - location: projects/{project}/locations/{location}
+     * - networkAttachment: projects/{project}/regions/{region}/networkAttachments/{networkattachment}
      * - reasoningEngine: projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}
      *
      * The optional $template argument can be supplied to specify a particular pattern,

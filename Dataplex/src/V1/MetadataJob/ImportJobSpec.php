@@ -27,8 +27,9 @@ class ImportJobSpec extends \Google\Protobuf\Internal\Message
      * `gs://` and ending with `/`) that contains the metadata import files for
      * this job.
      * A metadata import file defines the values to set for each of the entries
-     * and aspects in a metadata job. For more information about how to create a
-     * metadata import file and the file requirements, see [Metadata import
+     * and aspects in a metadata import job. For more information about how to
+     * create a metadata import file and the file requirements, see [Metadata
+     * import
      * file](https://cloud.google.com/dataplex/docs/import-metadata#metadata-import-file).
      * You can provide multiple metadata import files in the same metadata job.
      * The bucket or folder must contain at least one metadata import file, in
@@ -90,8 +91,9 @@ class ImportJobSpec extends \Google\Protobuf\Internal\Message
      *           `gs://` and ending with `/`) that contains the metadata import files for
      *           this job.
      *           A metadata import file defines the values to set for each of the entries
-     *           and aspects in a metadata job. For more information about how to create a
-     *           metadata import file and the file requirements, see [Metadata import
+     *           and aspects in a metadata import job. For more information about how to
+     *           create a metadata import file and the file requirements, see [Metadata
+     *           import
      *           file](https://cloud.google.com/dataplex/docs/import-metadata#metadata-import-file).
      *           You can provide multiple metadata import files in the same metadata job.
      *           The bucket or folder must contain at least one metadata import file, in
@@ -129,8 +131,9 @@ class ImportJobSpec extends \Google\Protobuf\Internal\Message
      * `gs://` and ending with `/`) that contains the metadata import files for
      * this job.
      * A metadata import file defines the values to set for each of the entries
-     * and aspects in a metadata job. For more information about how to create a
-     * metadata import file and the file requirements, see [Metadata import
+     * and aspects in a metadata import job. For more information about how to
+     * create a metadata import file and the file requirements, see [Metadata
+     * import
      * file](https://cloud.google.com/dataplex/docs/import-metadata#metadata-import-file).
      * You can provide multiple metadata import files in the same metadata job.
      * The bucket or folder must contain at least one metadata import file, in
@@ -153,8 +156,9 @@ class ImportJobSpec extends \Google\Protobuf\Internal\Message
      * `gs://` and ending with `/`) that contains the metadata import files for
      * this job.
      * A metadata import file defines the values to set for each of the entries
-     * and aspects in a metadata job. For more information about how to create a
-     * metadata import file and the file requirements, see [Metadata import
+     * and aspects in a metadata import job. For more information about how to
+     * create a metadata import file and the file requirements, see [Metadata
+     * import
      * file](https://cloud.google.com/dataplex/docs/import-metadata#metadata-import-file).
      * You can provide multiple metadata import files in the same metadata job.
      * The bucket or folder must contain at least one metadata import file, in

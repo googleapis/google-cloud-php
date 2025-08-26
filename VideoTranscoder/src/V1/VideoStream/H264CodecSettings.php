@@ -41,16 +41,18 @@ class H264CodecSettings extends \Google\Protobuf\Internal\Message
     protected $height_pixels = 0;
     /**
      * Required. The target video frame rate in frames per second (FPS). Must be
-     * less than or equal to 120. Will default to the input frame rate if larger
-     * than the input frame rate. The API will generate an output FPS that is
-     * divisible by the input FPS, and smaller or equal to the target FPS. See
-     * [Calculating frame
-     * rate](https://cloud.google.com/transcoder/docs/concepts/frame-rate) for
-     * more information.
+     * less than or equal to 120.
      *
      * Generated from protobuf field <code>double frame_rate = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $frame_rate = 0.0;
+    /**
+     * Optional. Frame rate conversion strategy for desired frame rate. The
+     * default is `DOWNSAMPLE`.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.VideoStream.FrameRateConversionStrategy frame_rate_conversion_strategy = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $frame_rate_conversion_strategy = 0;
     /**
      * Required. The video bitrate in bits per second. The minimum value is
      * 1,000. The maximum value is 800,000,000.
@@ -75,7 +77,7 @@ class H264CodecSettings extends \Google\Protobuf\Internal\Message
      */
     protected $pixel_format = '';
     /**
-     * Specify the `rate_control_mode`. The default is `vbr`.
+     * Specify the mode. The default is `vbr`.
      * Supported rate control modes:
      * - `vbr` - variable bitrate
      * - `crf` - constant rate factor
@@ -99,14 +101,16 @@ class H264CodecSettings extends \Google\Protobuf\Internal\Message
     protected $allow_open_gop = false;
     /**
      * Use two-pass encoding strategy to achieve better video quality.
-     * `VideoStream.rate_control_mode` must be `vbr`. The default is `false`.
+     * [H264CodecSettings.rate_control_mode][google.cloud.video.transcoder.v1.VideoStream.H264CodecSettings.rate_control_mode]
+     * must be `vbr`. The default is `false`.
      *
      * Generated from protobuf field <code>bool enable_two_pass = 11;</code>
      */
     protected $enable_two_pass = false;
     /**
      * Size of the Video Buffering Verifier (VBV) buffer in bits. Must be
-     * greater than zero. The default is equal to `VideoStream.bitrate_bps`.
+     * greater than zero. The default is equal to
+     * [H264CodecSettings.bitrate_bps][google.cloud.video.transcoder.v1.VideoStream.H264CodecSettings.bitrate_bps].
      *
      * Generated from protobuf field <code>int32 vbv_size_bits = 12;</code>
      */
@@ -114,7 +118,7 @@ class H264CodecSettings extends \Google\Protobuf\Internal\Message
     /**
      * Initial fullness of the Video Buffering Verifier (VBV) buffer in bits.
      * Must be greater than zero. The default is equal to 90% of
-     * `VideoStream.vbv_size_bits`.
+     * [H264CodecSettings.vbv_size_bits][google.cloud.video.transcoder.v1.VideoStream.H264CodecSettings.vbv_size_bits].
      *
      * Generated from protobuf field <code>int32 vbv_fullness_bits = 13;</code>
      */
@@ -137,8 +141,9 @@ class H264CodecSettings extends \Google\Protobuf\Internal\Message
     protected $b_pyramid = false;
     /**
      * The number of consecutive B-frames. Must be greater than or equal to
-     * zero. Must be less than `VideoStream.gop_frame_count` if set. The default
-     * is 0.
+     * zero. Must be less than
+     * [H264CodecSettings.gop_frame_count][google.cloud.video.transcoder.v1.VideoStream.H264CodecSettings.gop_frame_count]
+     * if set. The default is 0.
      *
      * Generated from protobuf field <code>int32 b_frame_count = 16;</code>
      */
@@ -188,6 +193,7 @@ class H264CodecSettings extends \Google\Protobuf\Internal\Message
      */
     protected $preset = '';
     protected $gop_mode;
+    protected $color_format;
 
     /**
      * Constructor.
@@ -213,12 +219,10 @@ class H264CodecSettings extends \Google\Protobuf\Internal\Message
      *           and swaps the requested height and width for the output.
      *     @type float $frame_rate
      *           Required. The target video frame rate in frames per second (FPS). Must be
-     *           less than or equal to 120. Will default to the input frame rate if larger
-     *           than the input frame rate. The API will generate an output FPS that is
-     *           divisible by the input FPS, and smaller or equal to the target FPS. See
-     *           [Calculating frame
-     *           rate](https://cloud.google.com/transcoder/docs/concepts/frame-rate) for
-     *           more information.
+     *           less than or equal to 120.
+     *     @type int $frame_rate_conversion_strategy
+     *           Optional. Frame rate conversion strategy for desired frame rate. The
+     *           default is `DOWNSAMPLE`.
      *     @type int $bitrate_bps
      *           Required. The video bitrate in bits per second. The minimum value is
      *           1,000. The maximum value is 800,000,000.
@@ -235,7 +239,7 @@ class H264CodecSettings extends \Google\Protobuf\Internal\Message
      *           - `yuv422p12` 12-bit HDR pixel format
      *           - `yuv444p12` 12-bit HDR pixel format
      *     @type string $rate_control_mode
-     *           Specify the `rate_control_mode`. The default is `vbr`.
+     *           Specify the mode. The default is `vbr`.
      *           Supported rate control modes:
      *           - `vbr` - variable bitrate
      *           - `crf` - constant rate factor
@@ -256,14 +260,16 @@ class H264CodecSettings extends \Google\Protobuf\Internal\Message
      *           `gopDuration`.
      *     @type bool $enable_two_pass
      *           Use two-pass encoding strategy to achieve better video quality.
-     *           `VideoStream.rate_control_mode` must be `vbr`. The default is `false`.
+     *           [H264CodecSettings.rate_control_mode][google.cloud.video.transcoder.v1.VideoStream.H264CodecSettings.rate_control_mode]
+     *           must be `vbr`. The default is `false`.
      *     @type int $vbv_size_bits
      *           Size of the Video Buffering Verifier (VBV) buffer in bits. Must be
-     *           greater than zero. The default is equal to `VideoStream.bitrate_bps`.
+     *           greater than zero. The default is equal to
+     *           [H264CodecSettings.bitrate_bps][google.cloud.video.transcoder.v1.VideoStream.H264CodecSettings.bitrate_bps].
      *     @type int $vbv_fullness_bits
      *           Initial fullness of the Video Buffering Verifier (VBV) buffer in bits.
      *           Must be greater than zero. The default is equal to 90% of
-     *           `VideoStream.vbv_size_bits`.
+     *           [H264CodecSettings.vbv_size_bits][google.cloud.video.transcoder.v1.VideoStream.H264CodecSettings.vbv_size_bits].
      *     @type string $entropy_coder
      *           The entropy coder to use. The default is `cabac`.
      *           Supported entropy coders:
@@ -274,8 +280,9 @@ class H264CodecSettings extends \Google\Protobuf\Internal\Message
      *           on all decoders. The default is `false`.
      *     @type int $b_frame_count
      *           The number of consecutive B-frames. Must be greater than or equal to
-     *           zero. Must be less than `VideoStream.gop_frame_count` if set. The default
-     *           is 0.
+     *           zero. Must be less than
+     *           [H264CodecSettings.gop_frame_count][google.cloud.video.transcoder.v1.VideoStream.H264CodecSettings.gop_frame_count]
+     *           if set. The default is 0.
      *     @type float $aq_strength
      *           Specify the intensity of the adaptive quantizer (AQ). Must be between 0
      *           and 1, where 0 disables the quantizer and 1 maximizes the quantizer. A
@@ -304,6 +311,10 @@ class H264CodecSettings extends \Google\Protobuf\Internal\Message
      *           Note that certain values for this field may cause the
      *           transcoder to override other fields you set in the `H264CodecSettings`
      *           message.
+     *     @type \Google\Cloud\Video\Transcoder\V1\VideoStream\H264ColorFormatSDR $sdr
+     *           Optional. SDR color format setting for H264.
+     *     @type \Google\Cloud\Video\Transcoder\V1\VideoStream\H264ColorFormatHLG $hlg
+     *           Optional. HLG color format setting for H264.
      * }
      */
     public function __construct($data = NULL) {
@@ -389,12 +400,7 @@ class H264CodecSettings extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The target video frame rate in frames per second (FPS). Must be
-     * less than or equal to 120. Will default to the input frame rate if larger
-     * than the input frame rate. The API will generate an output FPS that is
-     * divisible by the input FPS, and smaller or equal to the target FPS. See
-     * [Calculating frame
-     * rate](https://cloud.google.com/transcoder/docs/concepts/frame-rate) for
-     * more information.
+     * less than or equal to 120.
      *
      * Generated from protobuf field <code>double frame_rate = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return float
@@ -406,12 +412,7 @@ class H264CodecSettings extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The target video frame rate in frames per second (FPS). Must be
-     * less than or equal to 120. Will default to the input frame rate if larger
-     * than the input frame rate. The API will generate an output FPS that is
-     * divisible by the input FPS, and smaller or equal to the target FPS. See
-     * [Calculating frame
-     * rate](https://cloud.google.com/transcoder/docs/concepts/frame-rate) for
-     * more information.
+     * less than or equal to 120.
      *
      * Generated from protobuf field <code>double frame_rate = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param float $var
@@ -421,6 +422,34 @@ class H264CodecSettings extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkDouble($var);
         $this->frame_rate = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Frame rate conversion strategy for desired frame rate. The
+     * default is `DOWNSAMPLE`.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.VideoStream.FrameRateConversionStrategy frame_rate_conversion_strategy = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getFrameRateConversionStrategy()
+    {
+        return $this->frame_rate_conversion_strategy;
+    }
+
+    /**
+     * Optional. Frame rate conversion strategy for desired frame rate. The
+     * default is `DOWNSAMPLE`.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.VideoStream.FrameRateConversionStrategy frame_rate_conversion_strategy = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setFrameRateConversionStrategy($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Video\Transcoder\V1\VideoStream\FrameRateConversionStrategy::class);
+        $this->frame_rate_conversion_strategy = $var;
 
         return $this;
     }
@@ -500,7 +529,7 @@ class H264CodecSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specify the `rate_control_mode`. The default is `vbr`.
+     * Specify the mode. The default is `vbr`.
      * Supported rate control modes:
      * - `vbr` - variable bitrate
      * - `crf` - constant rate factor
@@ -514,7 +543,7 @@ class H264CodecSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specify the `rate_control_mode`. The default is `vbr`.
+     * Specify the mode. The default is `vbr`.
      * Supported rate control modes:
      * - `vbr` - variable bitrate
      * - `crf` - constant rate factor
@@ -661,7 +690,8 @@ class H264CodecSettings extends \Google\Protobuf\Internal\Message
 
     /**
      * Use two-pass encoding strategy to achieve better video quality.
-     * `VideoStream.rate_control_mode` must be `vbr`. The default is `false`.
+     * [H264CodecSettings.rate_control_mode][google.cloud.video.transcoder.v1.VideoStream.H264CodecSettings.rate_control_mode]
+     * must be `vbr`. The default is `false`.
      *
      * Generated from protobuf field <code>bool enable_two_pass = 11;</code>
      * @return bool
@@ -673,7 +703,8 @@ class H264CodecSettings extends \Google\Protobuf\Internal\Message
 
     /**
      * Use two-pass encoding strategy to achieve better video quality.
-     * `VideoStream.rate_control_mode` must be `vbr`. The default is `false`.
+     * [H264CodecSettings.rate_control_mode][google.cloud.video.transcoder.v1.VideoStream.H264CodecSettings.rate_control_mode]
+     * must be `vbr`. The default is `false`.
      *
      * Generated from protobuf field <code>bool enable_two_pass = 11;</code>
      * @param bool $var
@@ -689,7 +720,8 @@ class H264CodecSettings extends \Google\Protobuf\Internal\Message
 
     /**
      * Size of the Video Buffering Verifier (VBV) buffer in bits. Must be
-     * greater than zero. The default is equal to `VideoStream.bitrate_bps`.
+     * greater than zero. The default is equal to
+     * [H264CodecSettings.bitrate_bps][google.cloud.video.transcoder.v1.VideoStream.H264CodecSettings.bitrate_bps].
      *
      * Generated from protobuf field <code>int32 vbv_size_bits = 12;</code>
      * @return int
@@ -701,7 +733,8 @@ class H264CodecSettings extends \Google\Protobuf\Internal\Message
 
     /**
      * Size of the Video Buffering Verifier (VBV) buffer in bits. Must be
-     * greater than zero. The default is equal to `VideoStream.bitrate_bps`.
+     * greater than zero. The default is equal to
+     * [H264CodecSettings.bitrate_bps][google.cloud.video.transcoder.v1.VideoStream.H264CodecSettings.bitrate_bps].
      *
      * Generated from protobuf field <code>int32 vbv_size_bits = 12;</code>
      * @param int $var
@@ -718,7 +751,7 @@ class H264CodecSettings extends \Google\Protobuf\Internal\Message
     /**
      * Initial fullness of the Video Buffering Verifier (VBV) buffer in bits.
      * Must be greater than zero. The default is equal to 90% of
-     * `VideoStream.vbv_size_bits`.
+     * [H264CodecSettings.vbv_size_bits][google.cloud.video.transcoder.v1.VideoStream.H264CodecSettings.vbv_size_bits].
      *
      * Generated from protobuf field <code>int32 vbv_fullness_bits = 13;</code>
      * @return int
@@ -731,7 +764,7 @@ class H264CodecSettings extends \Google\Protobuf\Internal\Message
     /**
      * Initial fullness of the Video Buffering Verifier (VBV) buffer in bits.
      * Must be greater than zero. The default is equal to 90% of
-     * `VideoStream.vbv_size_bits`.
+     * [H264CodecSettings.vbv_size_bits][google.cloud.video.transcoder.v1.VideoStream.H264CodecSettings.vbv_size_bits].
      *
      * Generated from protobuf field <code>int32 vbv_fullness_bits = 13;</code>
      * @param int $var
@@ -807,8 +840,9 @@ class H264CodecSettings extends \Google\Protobuf\Internal\Message
 
     /**
      * The number of consecutive B-frames. Must be greater than or equal to
-     * zero. Must be less than `VideoStream.gop_frame_count` if set. The default
-     * is 0.
+     * zero. Must be less than
+     * [H264CodecSettings.gop_frame_count][google.cloud.video.transcoder.v1.VideoStream.H264CodecSettings.gop_frame_count]
+     * if set. The default is 0.
      *
      * Generated from protobuf field <code>int32 b_frame_count = 16;</code>
      * @return int
@@ -820,8 +854,9 @@ class H264CodecSettings extends \Google\Protobuf\Internal\Message
 
     /**
      * The number of consecutive B-frames. Must be greater than or equal to
-     * zero. Must be less than `VideoStream.gop_frame_count` if set. The default
-     * is 0.
+     * zero. Must be less than
+     * [H264CodecSettings.gop_frame_count][google.cloud.video.transcoder.v1.VideoStream.H264CodecSettings.gop_frame_count]
+     * if set. The default is 0.
      *
      * Generated from protobuf field <code>int32 b_frame_count = 16;</code>
      * @param int $var
@@ -980,11 +1015,81 @@ class H264CodecSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. SDR color format setting for H264.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.VideoStream.H264ColorFormatSDR sdr = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Video\Transcoder\V1\VideoStream\H264ColorFormatSDR|null
+     */
+    public function getSdr()
+    {
+        return $this->readOneof(21);
+    }
+
+    public function hasSdr()
+    {
+        return $this->hasOneof(21);
+    }
+
+    /**
+     * Optional. SDR color format setting for H264.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.VideoStream.H264ColorFormatSDR sdr = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Video\Transcoder\V1\VideoStream\H264ColorFormatSDR $var
+     * @return $this
+     */
+    public function setSdr($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Video\Transcoder\V1\VideoStream\H264ColorFormatSDR::class);
+        $this->writeOneof(21, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. HLG color format setting for H264.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.VideoStream.H264ColorFormatHLG hlg = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Video\Transcoder\V1\VideoStream\H264ColorFormatHLG|null
+     */
+    public function getHlg()
+    {
+        return $this->readOneof(22);
+    }
+
+    public function hasHlg()
+    {
+        return $this->hasOneof(22);
+    }
+
+    /**
+     * Optional. HLG color format setting for H264.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.VideoStream.H264ColorFormatHLG hlg = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Video\Transcoder\V1\VideoStream\H264ColorFormatHLG $var
+     * @return $this
+     */
+    public function setHlg($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Video\Transcoder\V1\VideoStream\H264ColorFormatHLG::class);
+        $this->writeOneof(22, $var);
+
+        return $this;
+    }
+
+    /**
      * @return string
      */
     public function getGopMode()
     {
         return $this->whichOneof("gop_mode");
+    }
+
+    /**
+     * @return string
+     */
+    public function getColorFormat()
+    {
+        return $this->whichOneof("color_format");
     }
 
 }

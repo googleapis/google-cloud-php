@@ -17,7 +17,7 @@ class ListSubscriptionsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The parent resource path of the subscription.
-     * e.g. projects/myproject/locations/US
+     * e.g. projects/myproject/locations/us
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -25,15 +25,15 @@ class ListSubscriptionsRequest extends \Google\Protobuf\Internal\Message
     /**
      * An expression for filtering the results of the request. Eligible
      * fields for filtering are:
-     *  * `listing`
-     *  * `data_exchange`
+     *  + `listing`
+     *  + `data_exchange`
      * Alternatively, a literal wrapped in double quotes may be provided.
      * This will be checked for an exact match against both fields above.
      * In all cases, the full Data Exchange or Listing resource name must
      * be provided. Some example of using filters:
-     *  * data_exchange="projects/myproject/locations/us/dataExchanges/123"
-     *  * listing="projects/123/locations/us/dataExchanges/456/listings/789"
-     *  * "projects/myproject/locations/us/dataExchanges/123"
+     *  + data_exchange="projects/myproject/locations/us/dataExchanges/123"
+     *  + listing="projects/123/locations/us/dataExchanges/456/listings/789"
+     *  + "projects/myproject/locations/us/dataExchanges/123"
      *
      * Generated from protobuf field <code>string filter = 2;</code>
      */
@@ -53,7 +53,7 @@ class ListSubscriptionsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The parent resource path of the subscription.
-     *                       e.g. projects/myproject/locations/US
+     *                       e.g. projects/myproject/locations/us
      *                       Please see {@see AnalyticsHubServiceClient::locationName()} for help formatting this field.
      *
      * @return \Google\Cloud\BigQuery\AnalyticsHub\V1\ListSubscriptionsRequest
@@ -74,19 +74,19 @@ class ListSubscriptionsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The parent resource path of the subscription.
-     *           e.g. projects/myproject/locations/US
+     *           e.g. projects/myproject/locations/us
      *     @type string $filter
      *           An expression for filtering the results of the request. Eligible
      *           fields for filtering are:
-     *            * `listing`
-     *            * `data_exchange`
+     *            + `listing`
+     *            + `data_exchange`
      *           Alternatively, a literal wrapped in double quotes may be provided.
      *           This will be checked for an exact match against both fields above.
      *           In all cases, the full Data Exchange or Listing resource name must
      *           be provided. Some example of using filters:
-     *            * data_exchange="projects/myproject/locations/us/dataExchanges/123"
-     *            * listing="projects/123/locations/us/dataExchanges/456/listings/789"
-     *            * "projects/myproject/locations/us/dataExchanges/123"
+     *            + data_exchange="projects/myproject/locations/us/dataExchanges/123"
+     *            + listing="projects/123/locations/us/dataExchanges/456/listings/789"
+     *            + "projects/myproject/locations/us/dataExchanges/123"
      *     @type int $page_size
      *           The maximum number of results to return in a single response page.
      *     @type string $page_token
@@ -100,7 +100,7 @@ class ListSubscriptionsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent resource path of the subscription.
-     * e.g. projects/myproject/locations/US
+     * e.g. projects/myproject/locations/us
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -112,7 +112,7 @@ class ListSubscriptionsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent resource path of the subscription.
-     * e.g. projects/myproject/locations/US
+     * e.g. projects/myproject/locations/us
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -129,15 +129,15 @@ class ListSubscriptionsRequest extends \Google\Protobuf\Internal\Message
     /**
      * An expression for filtering the results of the request. Eligible
      * fields for filtering are:
-     *  * `listing`
-     *  * `data_exchange`
+     *  + `listing`
+     *  + `data_exchange`
      * Alternatively, a literal wrapped in double quotes may be provided.
      * This will be checked for an exact match against both fields above.
      * In all cases, the full Data Exchange or Listing resource name must
      * be provided. Some example of using filters:
-     *  * data_exchange="projects/myproject/locations/us/dataExchanges/123"
-     *  * listing="projects/123/locations/us/dataExchanges/456/listings/789"
-     *  * "projects/myproject/locations/us/dataExchanges/123"
+     *  + data_exchange="projects/myproject/locations/us/dataExchanges/123"
+     *  + listing="projects/123/locations/us/dataExchanges/456/listings/789"
+     *  + "projects/myproject/locations/us/dataExchanges/123"
      *
      * Generated from protobuf field <code>string filter = 2;</code>
      * @return string
@@ -150,15 +150,15 @@ class ListSubscriptionsRequest extends \Google\Protobuf\Internal\Message
     /**
      * An expression for filtering the results of the request. Eligible
      * fields for filtering are:
-     *  * `listing`
-     *  * `data_exchange`
+     *  + `listing`
+     *  + `data_exchange`
      * Alternatively, a literal wrapped in double quotes may be provided.
      * This will be checked for an exact match against both fields above.
      * In all cases, the full Data Exchange or Listing resource name must
      * be provided. Some example of using filters:
-     *  * data_exchange="projects/myproject/locations/us/dataExchanges/123"
-     *  * listing="projects/123/locations/us/dataExchanges/456/listings/789"
-     *  * "projects/myproject/locations/us/dataExchanges/123"
+     *  + data_exchange="projects/myproject/locations/us/dataExchanges/123"
+     *  + listing="projects/123/locations/us/dataExchanges/456/listings/789"
+     *  + "projects/myproject/locations/us/dataExchanges/123"
      *
      * Generated from protobuf field <code>string filter = 2;</code>
      * @param string $var

@@ -90,11 +90,6 @@
                                 "createChannelGroup"
                             ]
                         },
-                        "CreateConnectedSiteTag": {
-                            "methods": [
-                                "createConnectedSiteTag"
-                            ]
-                        },
                         "CreateConversionEvent": {
                             "methods": [
                                 "createConversionEvent"
@@ -225,11 +220,6 @@
                                 "deleteChannelGroup"
                             ]
                         },
-                        "DeleteConnectedSiteTag": {
-                            "methods": [
-                                "deleteConnectedSiteTag"
-                            ]
-                        },
                         "DeleteConversionEvent": {
                             "methods": [
                                 "deleteConversionEvent"
@@ -313,16 +303,6 @@
                         "DeleteSubpropertyEventFilter": {
                             "methods": [
                                 "deleteSubpropertyEventFilter"
-                            ]
-                        },
-                        "FetchAutomatedGa4ConfigurationOptOut": {
-                            "methods": [
-                                "fetchAutomatedGa4ConfigurationOptOut"
-                            ]
-                        },
-                        "FetchConnectedGa4Property": {
-                            "methods": [
-                                "fetchConnectedGa4Property"
                             ]
                         },
                         "GetAccessBinding": {
@@ -460,6 +440,11 @@
                                 "getReportingDataAnnotation"
                             ]
                         },
+                        "GetReportingIdentitySettings": {
+                            "methods": [
+                                "getReportingIdentitySettings"
+                            ]
+                        },
                         "GetRollupPropertySourceLink": {
                             "methods": [
                                 "getRollupPropertySourceLink"
@@ -478,6 +463,11 @@
                         "GetSubpropertyEventFilter": {
                             "methods": [
                                 "getSubpropertyEventFilter"
+                            ]
+                        },
+                        "GetSubpropertySyncConfig": {
+                            "methods": [
+                                "getSubpropertySyncConfig"
                             ]
                         },
                         "ListAccessBindings": {
@@ -518,11 +508,6 @@
                         "ListChannelGroups": {
                             "methods": [
                                 "listChannelGroups"
-                            ]
-                        },
-                        "ListConnectedSiteTags": {
-                            "methods": [
-                                "listConnectedSiteTags"
                             ]
                         },
                         "ListConversionEvents": {
@@ -620,6 +605,11 @@
                                 "listSubpropertyEventFilters"
                             ]
                         },
+                        "ListSubpropertySyncConfigs": {
+                            "methods": [
+                                "listSubpropertySyncConfigs"
+                            ]
+                        },
                         "ProvisionAccountTicket": {
                             "methods": [
                                 "provisionAccountTicket"
@@ -643,11 +633,6 @@
                         "SearchChangeHistoryEvents": {
                             "methods": [
                                 "searchChangeHistoryEvents"
-                            ]
-                        },
-                        "SetAutomatedGa4ConfigurationOptOut": {
-                            "methods": [
-                                "setAutomatedGa4ConfigurationOptOut"
                             ]
                         },
                         "SubmitUserDeletion": {
@@ -788,6 +773,11 @@
                         "UpdateSubpropertyEventFilter": {
                             "methods": [
                                 "updateSubpropertyEventFilter"
+                            ]
+                        },
+                        "UpdateSubpropertySyncConfig": {
+                            "methods": [
+                                "updateSubpropertySyncConfig"
                             ]
                         }
                     }

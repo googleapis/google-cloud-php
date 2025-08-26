@@ -179,7 +179,8 @@ class FileStoreDataProfile extends \Google\Protobuf\Internal\Message
      */
     protected $sample_findings_table = null;
     /**
-     * The file store does not have any files.
+     * The file store does not have any files. If the profiling operation failed,
+     * this is false.
      *
      * Generated from protobuf field <code>bool file_store_is_empty = 23;</code>
      */
@@ -274,7 +275,8 @@ class FileStoreDataProfile extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dlp\V2\BigQueryTable $sample_findings_table
      *           The BigQuery table to which the sample findings are written.
      *     @type bool $file_store_is_empty
-     *           The file store does not have any files.
+     *           The file store does not have any files. If the profiling operation failed,
+     *           this is false.
      *     @type array<\Google\Cloud\Dlp\V2\Tag>|\Google\Protobuf\Internal\RepeatedField $tags
      *           The tags attached to the resource, including any tags attached during
      *           profiling.
@@ -1022,7 +1024,8 @@ class FileStoreDataProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The file store does not have any files.
+     * The file store does not have any files. If the profiling operation failed,
+     * this is false.
      *
      * Generated from protobuf field <code>bool file_store_is_empty = 23;</code>
      * @return bool
@@ -1033,7 +1036,8 @@ class FileStoreDataProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The file store does not have any files.
+     * The file store does not have any files. If the profiling operation failed,
+     * this is false.
      *
      * Generated from protobuf field <code>bool file_store_is_empty = 23;</code>
      * @param bool $var

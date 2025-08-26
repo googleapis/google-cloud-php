@@ -53,7 +53,6 @@ use Google\Analytics\Admin\V1alpha\CancelDisplayVideo360AdvertiserLinkProposalRe
 use Google\Analytics\Admin\V1alpha\ChangeHistoryEvent;
 use Google\Analytics\Admin\V1alpha\ChannelGroup;
 use Google\Analytics\Admin\V1alpha\Client\AnalyticsAdminServiceClient;
-use Google\Analytics\Admin\V1alpha\ConnectedSiteTag;
 use Google\Analytics\Admin\V1alpha\ConversionEvent;
 use Google\Analytics\Admin\V1alpha\CreateAccessBindingRequest;
 use Google\Analytics\Admin\V1alpha\CreateAdSenseLinkRequest;
@@ -61,8 +60,6 @@ use Google\Analytics\Admin\V1alpha\CreateAudienceRequest;
 use Google\Analytics\Admin\V1alpha\CreateBigQueryLinkRequest;
 use Google\Analytics\Admin\V1alpha\CreateCalculatedMetricRequest;
 use Google\Analytics\Admin\V1alpha\CreateChannelGroupRequest;
-use Google\Analytics\Admin\V1alpha\CreateConnectedSiteTagRequest;
-use Google\Analytics\Admin\V1alpha\CreateConnectedSiteTagResponse;
 use Google\Analytics\Admin\V1alpha\CreateConversionEventRequest;
 use Google\Analytics\Admin\V1alpha\CreateCustomDimensionRequest;
 use Google\Analytics\Admin\V1alpha\CreateCustomMetricRequest;
@@ -101,7 +98,6 @@ use Google\Analytics\Admin\V1alpha\DeleteAdSenseLinkRequest;
 use Google\Analytics\Admin\V1alpha\DeleteBigQueryLinkRequest;
 use Google\Analytics\Admin\V1alpha\DeleteCalculatedMetricRequest;
 use Google\Analytics\Admin\V1alpha\DeleteChannelGroupRequest;
-use Google\Analytics\Admin\V1alpha\DeleteConnectedSiteTagRequest;
 use Google\Analytics\Admin\V1alpha\DeleteConversionEventRequest;
 use Google\Analytics\Admin\V1alpha\DeleteDataStreamRequest;
 use Google\Analytics\Admin\V1alpha\DeleteDisplayVideo360AdvertiserLinkProposalRequest;
@@ -125,10 +121,6 @@ use Google\Analytics\Admin\V1alpha\EnhancedMeasurementSettings;
 use Google\Analytics\Admin\V1alpha\EventCreateRule;
 use Google\Analytics\Admin\V1alpha\EventEditRule;
 use Google\Analytics\Admin\V1alpha\ExpandedDataSet;
-use Google\Analytics\Admin\V1alpha\FetchAutomatedGa4ConfigurationOptOutRequest;
-use Google\Analytics\Admin\V1alpha\FetchAutomatedGa4ConfigurationOptOutResponse;
-use Google\Analytics\Admin\V1alpha\FetchConnectedGa4PropertyRequest;
-use Google\Analytics\Admin\V1alpha\FetchConnectedGa4PropertyResponse;
 use Google\Analytics\Admin\V1alpha\FirebaseLink;
 use Google\Analytics\Admin\V1alpha\GetAccessBindingRequest;
 use Google\Analytics\Admin\V1alpha\GetAccountRequest;
@@ -157,10 +149,12 @@ use Google\Analytics\Admin\V1alpha\GetKeyEventRequest;
 use Google\Analytics\Admin\V1alpha\GetMeasurementProtocolSecretRequest;
 use Google\Analytics\Admin\V1alpha\GetPropertyRequest;
 use Google\Analytics\Admin\V1alpha\GetReportingDataAnnotationRequest;
+use Google\Analytics\Admin\V1alpha\GetReportingIdentitySettingsRequest;
 use Google\Analytics\Admin\V1alpha\GetRollupPropertySourceLinkRequest;
 use Google\Analytics\Admin\V1alpha\GetSKAdNetworkConversionValueSchemaRequest;
 use Google\Analytics\Admin\V1alpha\GetSearchAds360LinkRequest;
 use Google\Analytics\Admin\V1alpha\GetSubpropertyEventFilterRequest;
+use Google\Analytics\Admin\V1alpha\GetSubpropertySyncConfigRequest;
 use Google\Analytics\Admin\V1alpha\GlobalSiteTag;
 use Google\Analytics\Admin\V1alpha\GoogleAdsLink;
 use Google\Analytics\Admin\V1alpha\GoogleSignalsSettings;
@@ -182,8 +176,6 @@ use Google\Analytics\Admin\V1alpha\ListCalculatedMetricsRequest;
 use Google\Analytics\Admin\V1alpha\ListCalculatedMetricsResponse;
 use Google\Analytics\Admin\V1alpha\ListChannelGroupsRequest;
 use Google\Analytics\Admin\V1alpha\ListChannelGroupsResponse;
-use Google\Analytics\Admin\V1alpha\ListConnectedSiteTagsRequest;
-use Google\Analytics\Admin\V1alpha\ListConnectedSiteTagsResponse;
 use Google\Analytics\Admin\V1alpha\ListConversionEventsRequest;
 use Google\Analytics\Admin\V1alpha\ListConversionEventsResponse;
 use Google\Analytics\Admin\V1alpha\ListCustomDimensionsRequest;
@@ -222,6 +214,8 @@ use Google\Analytics\Admin\V1alpha\ListSearchAds360LinksRequest;
 use Google\Analytics\Admin\V1alpha\ListSearchAds360LinksResponse;
 use Google\Analytics\Admin\V1alpha\ListSubpropertyEventFiltersRequest;
 use Google\Analytics\Admin\V1alpha\ListSubpropertyEventFiltersResponse;
+use Google\Analytics\Admin\V1alpha\ListSubpropertySyncConfigsRequest;
+use Google\Analytics\Admin\V1alpha\ListSubpropertySyncConfigsResponse;
 use Google\Analytics\Admin\V1alpha\MeasurementProtocolSecret;
 use Google\Analytics\Admin\V1alpha\PostbackWindow;
 use Google\Analytics\Admin\V1alpha\Property;
@@ -232,6 +226,7 @@ use Google\Analytics\Admin\V1alpha\ProvisionSubpropertyResponse;
 use Google\Analytics\Admin\V1alpha\ReorderEventEditRulesRequest;
 use Google\Analytics\Admin\V1alpha\ReportingDataAnnotation;
 use Google\Analytics\Admin\V1alpha\ReportingDataAnnotation\Color;
+use Google\Analytics\Admin\V1alpha\ReportingIdentitySettings;
 use Google\Analytics\Admin\V1alpha\RollupPropertySourceLink;
 use Google\Analytics\Admin\V1alpha\RunAccessReportRequest;
 use Google\Analytics\Admin\V1alpha\RunAccessReportResponse;
@@ -239,11 +234,11 @@ use Google\Analytics\Admin\V1alpha\SKAdNetworkConversionValueSchema;
 use Google\Analytics\Admin\V1alpha\SearchAds360Link;
 use Google\Analytics\Admin\V1alpha\SearchChangeHistoryEventsRequest;
 use Google\Analytics\Admin\V1alpha\SearchChangeHistoryEventsResponse;
-use Google\Analytics\Admin\V1alpha\SetAutomatedGa4ConfigurationOptOutRequest;
-use Google\Analytics\Admin\V1alpha\SetAutomatedGa4ConfigurationOptOutResponse;
 use Google\Analytics\Admin\V1alpha\SubmitUserDeletionRequest;
 use Google\Analytics\Admin\V1alpha\SubmitUserDeletionResponse;
 use Google\Analytics\Admin\V1alpha\SubpropertyEventFilter;
+use Google\Analytics\Admin\V1alpha\SubpropertySyncConfig;
+use Google\Analytics\Admin\V1alpha\SubpropertySyncConfig\SynchronizationMode;
 use Google\Analytics\Admin\V1alpha\UpdateAccessBindingRequest;
 use Google\Analytics\Admin\V1alpha\UpdateAccountRequest;
 use Google\Analytics\Admin\V1alpha\UpdateAttributionSettingsRequest;
@@ -271,6 +266,7 @@ use Google\Analytics\Admin\V1alpha\UpdateReportingDataAnnotationRequest;
 use Google\Analytics\Admin\V1alpha\UpdateSKAdNetworkConversionValueSchemaRequest;
 use Google\Analytics\Admin\V1alpha\UpdateSearchAds360LinkRequest;
 use Google\Analytics\Admin\V1alpha\UpdateSubpropertyEventFilterRequest;
+use Google\Analytics\Admin\V1alpha\UpdateSubpropertySyncConfigRequest;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
@@ -1502,80 +1498,6 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $request = (new CreateChannelGroupRequest())->setParent($formattedParent)->setChannelGroup($channelGroup);
         try {
             $gapicClient->createChannelGroup($request);
-            // If the $gapicClient method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /** @test */
-    public function createConnectedSiteTagTest()
-    {
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        // Mock response
-        $expectedResponse = new CreateConnectedSiteTagResponse();
-        $transport->addResponse($expectedResponse);
-        // Mock request
-        $connectedSiteTag = new ConnectedSiteTag();
-        $connectedSiteTagDisplayName = 'connectedSiteTagDisplayName-1608704893';
-        $connectedSiteTag->setDisplayName($connectedSiteTagDisplayName);
-        $connectedSiteTagTagId = 'connectedSiteTagTagId-937600789';
-        $connectedSiteTag->setTagId($connectedSiteTagTagId);
-        $request = (new CreateConnectedSiteTagRequest())->setConnectedSiteTag($connectedSiteTag);
-        $response = $gapicClient->createConnectedSiteTag($request);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame(
-            '/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateConnectedSiteTag',
-            $actualFuncCall
-        );
-        $actualValue = $actualRequestObject->getConnectedSiteTag();
-        $this->assertProtobufEquals($connectedSiteTag, $actualValue);
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /** @test */
-    public function createConnectedSiteTagExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode(
-            [
-                'message' => 'internal error',
-                'code' => Code::DATA_LOSS,
-                'status' => 'DATA_LOSS',
-                'details' => [],
-            ],
-            JSON_PRETTY_PRINT
-        );
-        $transport->addResponse(null, $status);
-        // Mock request
-        $connectedSiteTag = new ConnectedSiteTag();
-        $connectedSiteTagDisplayName = 'connectedSiteTagDisplayName-1608704893';
-        $connectedSiteTag->setDisplayName($connectedSiteTagDisplayName);
-        $connectedSiteTagTagId = 'connectedSiteTagTagId-937600789';
-        $connectedSiteTag->setTagId($connectedSiteTagTagId);
-        $request = (new CreateConnectedSiteTagRequest())->setConnectedSiteTag($connectedSiteTag);
-        try {
-            $gapicClient->createConnectedSiteTag($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -3608,65 +3530,6 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function deleteConnectedSiteTagTest()
-    {
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        // Mock response
-        $expectedResponse = new GPBEmpty();
-        $transport->addResponse($expectedResponse);
-        $request = new DeleteConnectedSiteTagRequest();
-        $gapicClient->deleteConnectedSiteTag($request);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame(
-            '/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteConnectedSiteTag',
-            $actualFuncCall
-        );
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /** @test */
-    public function deleteConnectedSiteTagExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode(
-            [
-                'message' => 'internal error',
-                'code' => Code::DATA_LOSS,
-                'status' => 'DATA_LOSS',
-                'details' => [],
-            ],
-            JSON_PRETTY_PRINT
-        );
-        $transport->addResponse(null, $status);
-        $request = new DeleteConnectedSiteTagRequest();
-        try {
-            $gapicClient->deleteConnectedSiteTag($request);
-            // If the $gapicClient method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /** @test */
     public function deleteConversionEventTest()
     {
         $transport = $this->createTransport();
@@ -4783,142 +4646,6 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $request = (new DeleteSubpropertyEventFilterRequest())->setName($formattedName);
         try {
             $gapicClient->deleteSubpropertyEventFilter($request);
-            // If the $gapicClient method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /** @test */
-    public function fetchAutomatedGa4ConfigurationOptOutTest()
-    {
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        // Mock response
-        $optOut = true;
-        $expectedResponse = new FetchAutomatedGa4ConfigurationOptOutResponse();
-        $expectedResponse->setOptOut($optOut);
-        $transport->addResponse($expectedResponse);
-        // Mock request
-        $property = 'property-993141291';
-        $request = (new FetchAutomatedGa4ConfigurationOptOutRequest())->setProperty($property);
-        $response = $gapicClient->fetchAutomatedGa4ConfigurationOptOut($request);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame(
-            '/google.analytics.admin.v1alpha.AnalyticsAdminService/FetchAutomatedGa4ConfigurationOptOut',
-            $actualFuncCall
-        );
-        $actualValue = $actualRequestObject->getProperty();
-        $this->assertProtobufEquals($property, $actualValue);
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /** @test */
-    public function fetchAutomatedGa4ConfigurationOptOutExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode(
-            [
-                'message' => 'internal error',
-                'code' => Code::DATA_LOSS,
-                'status' => 'DATA_LOSS',
-                'details' => [],
-            ],
-            JSON_PRETTY_PRINT
-        );
-        $transport->addResponse(null, $status);
-        // Mock request
-        $property = 'property-993141291';
-        $request = (new FetchAutomatedGa4ConfigurationOptOutRequest())->setProperty($property);
-        try {
-            $gapicClient->fetchAutomatedGa4ConfigurationOptOut($request);
-            // If the $gapicClient method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /** @test */
-    public function fetchConnectedGa4PropertyTest()
-    {
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        // Mock response
-        $property2 = 'property2-926037944';
-        $expectedResponse = new FetchConnectedGa4PropertyResponse();
-        $expectedResponse->setProperty($property2);
-        $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedProperty = $gapicClient->propertyName('[PROPERTY]');
-        $request = (new FetchConnectedGa4PropertyRequest())->setProperty($formattedProperty);
-        $response = $gapicClient->fetchConnectedGa4Property($request);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame(
-            '/google.analytics.admin.v1alpha.AnalyticsAdminService/FetchConnectedGa4Property',
-            $actualFuncCall
-        );
-        $actualValue = $actualRequestObject->getProperty();
-        $this->assertProtobufEquals($formattedProperty, $actualValue);
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /** @test */
-    public function fetchConnectedGa4PropertyExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode(
-            [
-                'message' => 'internal error',
-                'code' => Code::DATA_LOSS,
-                'status' => 'DATA_LOSS',
-                'details' => [],
-            ],
-            JSON_PRETTY_PRINT
-        );
-        $transport->addResponse(null, $status);
-        // Mock request
-        $formattedProperty = $gapicClient->propertyName('[PROPERTY]');
-        $request = (new FetchConnectedGa4PropertyRequest())->setProperty($formattedProperty);
-        try {
-            $gapicClient->fetchConnectedGa4Property($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -6894,6 +6621,74 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function getReportingIdentitySettingsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $expectedResponse = new ReportingIdentitySettings();
+        $expectedResponse->setName($name2);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->reportingIdentitySettingsName('[PROPERTY]');
+        $request = (new GetReportingIdentitySettingsRequest())->setName($formattedName);
+        $response = $gapicClient->getReportingIdentitySettings($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.analytics.admin.v1alpha.AnalyticsAdminService/GetReportingIdentitySettings',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getReportingIdentitySettingsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->reportingIdentitySettingsName('[PROPERTY]');
+        $request = (new GetReportingIdentitySettingsRequest())->setName($formattedName);
+        try {
+            $gapicClient->getReportingIdentitySettings($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function getRollupPropertySourceLinkTest()
     {
         $transport = $this->createTransport();
@@ -7169,6 +6964,76 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $request = (new GetSubpropertyEventFilterRequest())->setName($formattedName);
         try {
             $gapicClient->getSubpropertyEventFilter($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getSubpropertySyncConfigTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $applyToProperty = 'applyToProperty-1639692344';
+        $expectedResponse = new SubpropertySyncConfig();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setApplyToProperty($applyToProperty);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->subpropertySyncConfigName('[PROPERTY]', '[SUBPROPERTY_SYNC_CONFIG]');
+        $request = (new GetSubpropertySyncConfigRequest())->setName($formattedName);
+        $response = $gapicClient->getSubpropertySyncConfig($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.analytics.admin.v1alpha.AnalyticsAdminService/GetSubpropertySyncConfig',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getSubpropertySyncConfigExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->subpropertySyncConfigName('[PROPERTY]', '[SUBPROPERTY_SYNC_CONFIG]');
+        $request = (new GetSubpropertySyncConfigRequest())->setName($formattedName);
+        try {
+            $gapicClient->getSubpropertySyncConfig($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -7731,66 +7596,6 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $request = (new ListChannelGroupsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listChannelGroups($request);
-            // If the $gapicClient method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /** @test */
-    public function listConnectedSiteTagsTest()
-    {
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        // Mock response
-        $expectedResponse = new ListConnectedSiteTagsResponse();
-        $transport->addResponse($expectedResponse);
-        $request = new ListConnectedSiteTagsRequest();
-        $response = $gapicClient->listConnectedSiteTags($request);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame(
-            '/google.analytics.admin.v1alpha.AnalyticsAdminService/ListConnectedSiteTags',
-            $actualFuncCall
-        );
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /** @test */
-    public function listConnectedSiteTagsExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode(
-            [
-                'message' => 'internal error',
-                'code' => Code::DATA_LOSS,
-                'status' => 'DATA_LOSS',
-                'details' => [],
-            ],
-            JSON_PRETTY_PRINT
-        );
-        $transport->addResponse(null, $status);
-        $request = new ListConnectedSiteTagsRequest();
-        try {
-            $gapicClient->listConnectedSiteTags($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -9188,6 +8993,80 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function listSubpropertySyncConfigsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $subpropertySyncConfigsElement = new SubpropertySyncConfig();
+        $subpropertySyncConfigs = [$subpropertySyncConfigsElement];
+        $expectedResponse = new ListSubpropertySyncConfigsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setSubpropertySyncConfigs($subpropertySyncConfigs);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
+        $request = (new ListSubpropertySyncConfigsRequest())->setParent($formattedParent);
+        $response = $gapicClient->listSubpropertySyncConfigs($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getSubpropertySyncConfigs()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.analytics.admin.v1alpha.AnalyticsAdminService/ListSubpropertySyncConfigs',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listSubpropertySyncConfigsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
+        $request = (new ListSubpropertySyncConfigsRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listSubpropertySyncConfigs($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function provisionAccountTicketTest()
     {
         $transport = $this->createTransport();
@@ -9518,72 +9397,6 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $request = (new SearchChangeHistoryEventsRequest())->setAccount($formattedAccount);
         try {
             $gapicClient->searchChangeHistoryEvents($request);
-            // If the $gapicClient method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /** @test */
-    public function setAutomatedGa4ConfigurationOptOutTest()
-    {
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        // Mock response
-        $expectedResponse = new SetAutomatedGa4ConfigurationOptOutResponse();
-        $transport->addResponse($expectedResponse);
-        // Mock request
-        $property = 'property-993141291';
-        $request = (new SetAutomatedGa4ConfigurationOptOutRequest())->setProperty($property);
-        $response = $gapicClient->setAutomatedGa4ConfigurationOptOut($request);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame(
-            '/google.analytics.admin.v1alpha.AnalyticsAdminService/SetAutomatedGa4ConfigurationOptOut',
-            $actualFuncCall
-        );
-        $actualValue = $actualRequestObject->getProperty();
-        $this->assertProtobufEquals($property, $actualValue);
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /** @test */
-    public function setAutomatedGa4ConfigurationOptOutExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode(
-            [
-                'message' => 'internal error',
-                'code' => Code::DATA_LOSS,
-                'status' => 'DATA_LOSS',
-                'details' => [],
-            ],
-            JSON_PRETTY_PRINT
-        );
-        $transport->addResponse(null, $status);
-        // Mock request
-        $property = 'property-993141291';
-        $request = (new SetAutomatedGa4ConfigurationOptOutRequest())->setProperty($property);
-        try {
-            $gapicClient->setAutomatedGa4ConfigurationOptOut($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -11874,6 +11687,84 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             ->setUpdateMask($updateMask);
         try {
             $gapicClient->updateSubpropertyEventFilter($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateSubpropertySyncConfigTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $applyToProperty = 'applyToProperty-1639692344';
+        $expectedResponse = new SubpropertySyncConfig();
+        $expectedResponse->setName($name);
+        $expectedResponse->setApplyToProperty($applyToProperty);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $subpropertySyncConfig = new SubpropertySyncConfig();
+        $subpropertySyncConfigCustomDimensionAndMetricSyncMode = SynchronizationMode::SYNCHRONIZATION_MODE_UNSPECIFIED;
+        $subpropertySyncConfig->setCustomDimensionAndMetricSyncMode(
+            $subpropertySyncConfigCustomDimensionAndMetricSyncMode
+        );
+        $request = (new UpdateSubpropertySyncConfigRequest())->setSubpropertySyncConfig($subpropertySyncConfig);
+        $response = $gapicClient->updateSubpropertySyncConfig($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateSubpropertySyncConfig',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getSubpropertySyncConfig();
+        $this->assertProtobufEquals($subpropertySyncConfig, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateSubpropertySyncConfigExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $subpropertySyncConfig = new SubpropertySyncConfig();
+        $subpropertySyncConfigCustomDimensionAndMetricSyncMode = SynchronizationMode::SYNCHRONIZATION_MODE_UNSPECIFIED;
+        $subpropertySyncConfig->setCustomDimensionAndMetricSyncMode(
+            $subpropertySyncConfigCustomDimensionAndMetricSyncMode
+        );
+        $request = (new UpdateSubpropertySyncConfigRequest())->setSubpropertySyncConfig($subpropertySyncConfig);
+        try {
+            $gapicClient->updateSubpropertySyncConfig($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

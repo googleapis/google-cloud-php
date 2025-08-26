@@ -20,7 +20,7 @@ class Instance
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-”
+◊
 (google/cloud/chronicle/v1/instance.protogoogle.cloud.chronicle.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto"ò
 Instance
 name (	B‡A:yÍAv
@@ -29,8 +29,8 @@ class Instance
 name (	B)‡A˙A#
 !chronicle.googleapis.com/Instance2Å
 InstanceServiceü
-GetInstance-.google.cloud.chronicle.v1.GetInstanceRequest#.google.cloud.chronicle.v1.Instance"<⁄AnameÇ”‰ì/-/v1/{name=projects/*/locations/*/instances/*}L Achronicle.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformB¿
-google.cloud.chronicle.v1BInstanceProtoPZ;cloud.google.com/go/chronicle/apiv1/chroniclepb;chroniclepb™Google.Cloud.Chronicle.V1 Google\\Cloud\\Chronicle\\V1ÍGoogle::Cloud::Chronicle::V1bproto3'
+GetInstance-.google.cloud.chronicle.v1.GetInstanceRequest#.google.cloud.chronicle.v1.Instance"<⁄AnameÇ”‰ì/-/v1/{name=projects/*/locations/*/instances/*}L Achronicle.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBƒ
+com.google.cloud.chronicle.v1BInstanceProtoPZ;cloud.google.com/go/chronicle/apiv1/chroniclepb;chroniclepb™Google.Cloud.Chronicle.V1 Google\\Cloud\\Chronicle\\V1ÍGoogle::Cloud::Chronicle::V1bproto3'
         , true);
 
         static::$is_initialized = true;

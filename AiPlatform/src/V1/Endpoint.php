@@ -163,9 +163,10 @@ class Endpoint extends \Google\Protobuf\Internal\Message
     protected $dedicated_endpoint_enabled = false;
     /**
      * Output only. DNS of the dedicated endpoint. Will only be populated if
-     * dedicated_endpoint_enabled is true.
-     * Format:
-     * `https://{endpoint_id}.{region}-{project_number}.prediction.vertexai.goog`.
+     * dedicated_endpoint_enabled is true. Depending on the features enabled, uid
+     * might be a random number or a string. For example, if fast_tryout is
+     * enabled, uid will be fasttryout. Format:
+     * `https://{endpoint_id}.{region}-{uid}.prediction.vertexai.goog`.
      *
      * Generated from protobuf field <code>string dedicated_endpoint_dns = 25 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -188,6 +189,14 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool satisfies_pzi = 28 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $satisfies_pzi = false;
+    /**
+     * Optional. Configuration for GenAiAdvancedFeatures. If the endpoint is
+     * serving GenAI models, advanced features like native RAG integration can be
+     * configured. Currently, only Model Garden models are supported.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.GenAiAdvancedFeaturesConfig gen_ai_advanced_features_config = 29 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $gen_ai_advanced_features_config = null;
 
     /**
      * Constructor.
@@ -277,15 +286,20 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      *           limitation will be removed soon.
      *     @type string $dedicated_endpoint_dns
      *           Output only. DNS of the dedicated endpoint. Will only be populated if
-     *           dedicated_endpoint_enabled is true.
-     *           Format:
-     *           `https://{endpoint_id}.{region}-{project_number}.prediction.vertexai.goog`.
+     *           dedicated_endpoint_enabled is true. Depending on the features enabled, uid
+     *           might be a random number or a string. For example, if fast_tryout is
+     *           enabled, uid will be fasttryout. Format:
+     *           `https://{endpoint_id}.{region}-{uid}.prediction.vertexai.goog`.
      *     @type \Google\Cloud\AIPlatform\V1\ClientConnectionConfig $client_connection_config
      *           Configurations that are applied to the endpoint for online prediction.
      *     @type bool $satisfies_pzs
      *           Output only. Reserved for future use.
      *     @type bool $satisfies_pzi
      *           Output only. Reserved for future use.
+     *     @type \Google\Cloud\AIPlatform\V1\GenAiAdvancedFeaturesConfig $gen_ai_advanced_features_config
+     *           Optional. Configuration for GenAiAdvancedFeatures. If the endpoint is
+     *           serving GenAI models, advanced features like native RAG integration can be
+     *           configured. Currently, only Model Garden models are supported.
      * }
      */
     public function __construct($data = NULL) {
@@ -684,7 +698,9 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      */
     public function getEnablePrivateServiceConnect()
     {
-        @trigger_error('enable_private_service_connect is deprecated.', E_USER_DEPRECATED);
+        if ($this->enable_private_service_connect !== false) {
+            @trigger_error('enable_private_service_connect is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->enable_private_service_connect;
     }
 
@@ -861,9 +877,10 @@ class Endpoint extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. DNS of the dedicated endpoint. Will only be populated if
-     * dedicated_endpoint_enabled is true.
-     * Format:
-     * `https://{endpoint_id}.{region}-{project_number}.prediction.vertexai.goog`.
+     * dedicated_endpoint_enabled is true. Depending on the features enabled, uid
+     * might be a random number or a string. For example, if fast_tryout is
+     * enabled, uid will be fasttryout. Format:
+     * `https://{endpoint_id}.{region}-{uid}.prediction.vertexai.goog`.
      *
      * Generated from protobuf field <code>string dedicated_endpoint_dns = 25 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -875,9 +892,10 @@ class Endpoint extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. DNS of the dedicated endpoint. Will only be populated if
-     * dedicated_endpoint_enabled is true.
-     * Format:
-     * `https://{endpoint_id}.{region}-{project_number}.prediction.vertexai.goog`.
+     * dedicated_endpoint_enabled is true. Depending on the features enabled, uid
+     * might be a random number or a string. For example, if fast_tryout is
+     * enabled, uid will be fasttryout. Format:
+     * `https://{endpoint_id}.{region}-{uid}.prediction.vertexai.goog`.
      *
      * Generated from protobuf field <code>string dedicated_endpoint_dns = 25 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -975,6 +993,46 @@ class Endpoint extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->satisfies_pzi = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configuration for GenAiAdvancedFeatures. If the endpoint is
+     * serving GenAI models, advanced features like native RAG integration can be
+     * configured. Currently, only Model Garden models are supported.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.GenAiAdvancedFeaturesConfig gen_ai_advanced_features_config = 29 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AIPlatform\V1\GenAiAdvancedFeaturesConfig|null
+     */
+    public function getGenAiAdvancedFeaturesConfig()
+    {
+        return $this->gen_ai_advanced_features_config;
+    }
+
+    public function hasGenAiAdvancedFeaturesConfig()
+    {
+        return isset($this->gen_ai_advanced_features_config);
+    }
+
+    public function clearGenAiAdvancedFeaturesConfig()
+    {
+        unset($this->gen_ai_advanced_features_config);
+    }
+
+    /**
+     * Optional. Configuration for GenAiAdvancedFeatures. If the endpoint is
+     * serving GenAI models, advanced features like native RAG integration can be
+     * configured. Currently, only Model Garden models are supported.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.GenAiAdvancedFeaturesConfig gen_ai_advanced_features_config = 29 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AIPlatform\V1\GenAiAdvancedFeaturesConfig $var
+     * @return $this
+     */
+    public function setGenAiAdvancedFeaturesConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\GenAiAdvancedFeaturesConfig::class);
+        $this->gen_ai_advanced_features_config = $var;
 
         return $this;
     }

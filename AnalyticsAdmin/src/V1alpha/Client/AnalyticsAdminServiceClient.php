@@ -56,8 +56,6 @@ use Google\Analytics\Admin\V1alpha\CreateAudienceRequest;
 use Google\Analytics\Admin\V1alpha\CreateBigQueryLinkRequest;
 use Google\Analytics\Admin\V1alpha\CreateCalculatedMetricRequest;
 use Google\Analytics\Admin\V1alpha\CreateChannelGroupRequest;
-use Google\Analytics\Admin\V1alpha\CreateConnectedSiteTagRequest;
-use Google\Analytics\Admin\V1alpha\CreateConnectedSiteTagResponse;
 use Google\Analytics\Admin\V1alpha\CreateConversionEventRequest;
 use Google\Analytics\Admin\V1alpha\CreateCustomDimensionRequest;
 use Google\Analytics\Admin\V1alpha\CreateCustomMetricRequest;
@@ -91,7 +89,6 @@ use Google\Analytics\Admin\V1alpha\DeleteAdSenseLinkRequest;
 use Google\Analytics\Admin\V1alpha\DeleteBigQueryLinkRequest;
 use Google\Analytics\Admin\V1alpha\DeleteCalculatedMetricRequest;
 use Google\Analytics\Admin\V1alpha\DeleteChannelGroupRequest;
-use Google\Analytics\Admin\V1alpha\DeleteConnectedSiteTagRequest;
 use Google\Analytics\Admin\V1alpha\DeleteConversionEventRequest;
 use Google\Analytics\Admin\V1alpha\DeleteDataStreamRequest;
 use Google\Analytics\Admin\V1alpha\DeleteDisplayVideo360AdvertiserLinkProposalRequest;
@@ -115,10 +112,6 @@ use Google\Analytics\Admin\V1alpha\EnhancedMeasurementSettings;
 use Google\Analytics\Admin\V1alpha\EventCreateRule;
 use Google\Analytics\Admin\V1alpha\EventEditRule;
 use Google\Analytics\Admin\V1alpha\ExpandedDataSet;
-use Google\Analytics\Admin\V1alpha\FetchAutomatedGa4ConfigurationOptOutRequest;
-use Google\Analytics\Admin\V1alpha\FetchAutomatedGa4ConfigurationOptOutResponse;
-use Google\Analytics\Admin\V1alpha\FetchConnectedGa4PropertyRequest;
-use Google\Analytics\Admin\V1alpha\FetchConnectedGa4PropertyResponse;
 use Google\Analytics\Admin\V1alpha\FirebaseLink;
 use Google\Analytics\Admin\V1alpha\GetAccessBindingRequest;
 use Google\Analytics\Admin\V1alpha\GetAccountRequest;
@@ -147,10 +140,12 @@ use Google\Analytics\Admin\V1alpha\GetKeyEventRequest;
 use Google\Analytics\Admin\V1alpha\GetMeasurementProtocolSecretRequest;
 use Google\Analytics\Admin\V1alpha\GetPropertyRequest;
 use Google\Analytics\Admin\V1alpha\GetReportingDataAnnotationRequest;
+use Google\Analytics\Admin\V1alpha\GetReportingIdentitySettingsRequest;
 use Google\Analytics\Admin\V1alpha\GetRollupPropertySourceLinkRequest;
 use Google\Analytics\Admin\V1alpha\GetSKAdNetworkConversionValueSchemaRequest;
 use Google\Analytics\Admin\V1alpha\GetSearchAds360LinkRequest;
 use Google\Analytics\Admin\V1alpha\GetSubpropertyEventFilterRequest;
+use Google\Analytics\Admin\V1alpha\GetSubpropertySyncConfigRequest;
 use Google\Analytics\Admin\V1alpha\GlobalSiteTag;
 use Google\Analytics\Admin\V1alpha\GoogleAdsLink;
 use Google\Analytics\Admin\V1alpha\GoogleSignalsSettings;
@@ -163,8 +158,6 @@ use Google\Analytics\Admin\V1alpha\ListAudiencesRequest;
 use Google\Analytics\Admin\V1alpha\ListBigQueryLinksRequest;
 use Google\Analytics\Admin\V1alpha\ListCalculatedMetricsRequest;
 use Google\Analytics\Admin\V1alpha\ListChannelGroupsRequest;
-use Google\Analytics\Admin\V1alpha\ListConnectedSiteTagsRequest;
-use Google\Analytics\Admin\V1alpha\ListConnectedSiteTagsResponse;
 use Google\Analytics\Admin\V1alpha\ListConversionEventsRequest;
 use Google\Analytics\Admin\V1alpha\ListCustomDimensionsRequest;
 use Google\Analytics\Admin\V1alpha\ListCustomMetricsRequest;
@@ -184,6 +177,7 @@ use Google\Analytics\Admin\V1alpha\ListRollupPropertySourceLinksRequest;
 use Google\Analytics\Admin\V1alpha\ListSKAdNetworkConversionValueSchemasRequest;
 use Google\Analytics\Admin\V1alpha\ListSearchAds360LinksRequest;
 use Google\Analytics\Admin\V1alpha\ListSubpropertyEventFiltersRequest;
+use Google\Analytics\Admin\V1alpha\ListSubpropertySyncConfigsRequest;
 use Google\Analytics\Admin\V1alpha\MeasurementProtocolSecret;
 use Google\Analytics\Admin\V1alpha\Property;
 use Google\Analytics\Admin\V1alpha\ProvisionAccountTicketRequest;
@@ -192,17 +186,17 @@ use Google\Analytics\Admin\V1alpha\ProvisionSubpropertyRequest;
 use Google\Analytics\Admin\V1alpha\ProvisionSubpropertyResponse;
 use Google\Analytics\Admin\V1alpha\ReorderEventEditRulesRequest;
 use Google\Analytics\Admin\V1alpha\ReportingDataAnnotation;
+use Google\Analytics\Admin\V1alpha\ReportingIdentitySettings;
 use Google\Analytics\Admin\V1alpha\RollupPropertySourceLink;
 use Google\Analytics\Admin\V1alpha\RunAccessReportRequest;
 use Google\Analytics\Admin\V1alpha\RunAccessReportResponse;
 use Google\Analytics\Admin\V1alpha\SKAdNetworkConversionValueSchema;
 use Google\Analytics\Admin\V1alpha\SearchAds360Link;
 use Google\Analytics\Admin\V1alpha\SearchChangeHistoryEventsRequest;
-use Google\Analytics\Admin\V1alpha\SetAutomatedGa4ConfigurationOptOutRequest;
-use Google\Analytics\Admin\V1alpha\SetAutomatedGa4ConfigurationOptOutResponse;
 use Google\Analytics\Admin\V1alpha\SubmitUserDeletionRequest;
 use Google\Analytics\Admin\V1alpha\SubmitUserDeletionResponse;
 use Google\Analytics\Admin\V1alpha\SubpropertyEventFilter;
+use Google\Analytics\Admin\V1alpha\SubpropertySyncConfig;
 use Google\Analytics\Admin\V1alpha\UpdateAccessBindingRequest;
 use Google\Analytics\Admin\V1alpha\UpdateAccountRequest;
 use Google\Analytics\Admin\V1alpha\UpdateAttributionSettingsRequest;
@@ -230,6 +224,7 @@ use Google\Analytics\Admin\V1alpha\UpdateReportingDataAnnotationRequest;
 use Google\Analytics\Admin\V1alpha\UpdateSKAdNetworkConversionValueSchemaRequest;
 use Google\Analytics\Admin\V1alpha\UpdateSearchAds360LinkRequest;
 use Google\Analytics\Admin\V1alpha\UpdateSubpropertyEventFilterRequest;
+use Google\Analytics\Admin\V1alpha\UpdateSubpropertySyncConfigRequest;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
@@ -271,7 +266,6 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<BigQueryLink> createBigQueryLinkAsync(CreateBigQueryLinkRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<CalculatedMetric> createCalculatedMetricAsync(CreateCalculatedMetricRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ChannelGroup> createChannelGroupAsync(CreateChannelGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<CreateConnectedSiteTagResponse> createConnectedSiteTagAsync(CreateConnectedSiteTagRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ConversionEvent> createConversionEventAsync(CreateConversionEventRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<CustomDimension> createCustomDimensionAsync(CreateCustomDimensionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<CustomMetric> createCustomMetricAsync(CreateCustomMetricRequest $request, array $optionalArgs = [])
@@ -298,7 +292,6 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<void> deleteBigQueryLinkAsync(DeleteBigQueryLinkRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteCalculatedMetricAsync(DeleteCalculatedMetricRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteChannelGroupAsync(DeleteChannelGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<void> deleteConnectedSiteTagAsync(DeleteConnectedSiteTagRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteConversionEventAsync(DeleteConversionEventRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteDataStreamAsync(DeleteDataStreamRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteDisplayVideo360AdvertiserLinkAsync(DeleteDisplayVideo360AdvertiserLinkRequest $request, array $optionalArgs = [])
@@ -316,8 +309,6 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<void> deleteSKAdNetworkConversionValueSchemaAsync(DeleteSKAdNetworkConversionValueSchemaRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteSearchAds360LinkAsync(DeleteSearchAds360LinkRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteSubpropertyEventFilterAsync(DeleteSubpropertyEventFilterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<FetchAutomatedGa4ConfigurationOptOutResponse> fetchAutomatedGa4ConfigurationOptOutAsync(FetchAutomatedGa4ConfigurationOptOutRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<FetchConnectedGa4PropertyResponse> fetchConnectedGa4PropertyAsync(FetchConnectedGa4PropertyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<AccessBinding> getAccessBindingAsync(GetAccessBindingRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Account> getAccountAsync(GetAccountRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<AdSenseLink> getAdSenseLinkAsync(GetAdSenseLinkRequest $request, array $optionalArgs = [])
@@ -345,10 +336,12 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<MeasurementProtocolSecret> getMeasurementProtocolSecretAsync(GetMeasurementProtocolSecretRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Property> getPropertyAsync(GetPropertyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ReportingDataAnnotation> getReportingDataAnnotationAsync(GetReportingDataAnnotationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ReportingIdentitySettings> getReportingIdentitySettingsAsync(GetReportingIdentitySettingsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<RollupPropertySourceLink> getRollupPropertySourceLinkAsync(GetRollupPropertySourceLinkRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<SKAdNetworkConversionValueSchema> getSKAdNetworkConversionValueSchemaAsync(GetSKAdNetworkConversionValueSchemaRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<SearchAds360Link> getSearchAds360LinkAsync(GetSearchAds360LinkRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<SubpropertyEventFilter> getSubpropertyEventFilterAsync(GetSubpropertyEventFilterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SubpropertySyncConfig> getSubpropertySyncConfigAsync(GetSubpropertySyncConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listAccessBindingsAsync(ListAccessBindingsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listAccountSummariesAsync(ListAccountSummariesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listAccountsAsync(ListAccountsRequest $request, array $optionalArgs = [])
@@ -357,7 +350,6 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<PagedListResponse> listBigQueryLinksAsync(ListBigQueryLinksRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listCalculatedMetricsAsync(ListCalculatedMetricsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listChannelGroupsAsync(ListChannelGroupsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<ListConnectedSiteTagsResponse> listConnectedSiteTagsAsync(ListConnectedSiteTagsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listConversionEventsAsync(ListConversionEventsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listCustomDimensionsAsync(ListCustomDimensionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listCustomMetricsAsync(ListCustomMetricsRequest $request, array $optionalArgs = [])
@@ -377,12 +369,12 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<PagedListResponse> listSKAdNetworkConversionValueSchemasAsync(ListSKAdNetworkConversionValueSchemasRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listSearchAds360LinksAsync(ListSearchAds360LinksRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listSubpropertyEventFiltersAsync(ListSubpropertyEventFiltersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listSubpropertySyncConfigsAsync(ListSubpropertySyncConfigsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ProvisionAccountTicketResponse> provisionAccountTicketAsync(ProvisionAccountTicketRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ProvisionSubpropertyResponse> provisionSubpropertyAsync(ProvisionSubpropertyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> reorderEventEditRulesAsync(ReorderEventEditRulesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<RunAccessReportResponse> runAccessReportAsync(RunAccessReportRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> searchChangeHistoryEventsAsync(SearchChangeHistoryEventsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<SetAutomatedGa4ConfigurationOptOutResponse> setAutomatedGa4ConfigurationOptOutAsync(SetAutomatedGa4ConfigurationOptOutRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<SubmitUserDeletionResponse> submitUserDeletionAsync(SubmitUserDeletionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<AccessBinding> updateAccessBindingAsync(UpdateAccessBindingRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Account> updateAccountAsync(UpdateAccountRequest $request, array $optionalArgs = [])
@@ -411,6 +403,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<SKAdNetworkConversionValueSchema> updateSKAdNetworkConversionValueSchemaAsync(UpdateSKAdNetworkConversionValueSchemaRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<SearchAds360Link> updateSearchAds360LinkAsync(UpdateSearchAds360LinkRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<SubpropertyEventFilter> updateSubpropertyEventFilterAsync(UpdateSubpropertyEventFilterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SubpropertySyncConfig> updateSubpropertySyncConfigAsync(UpdateSubpropertySyncConfigRequest $request, array $optionalArgs = [])
  */
 final class AnalyticsAdminServiceClient
 {
@@ -1072,6 +1065,23 @@ final class AnalyticsAdminServiceClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * reporting_identity_settings resource.
+     *
+     * @param string $property
+     *
+     * @return string The formatted reporting_identity_settings resource.
+     *
+     * @experimental
+     */
+    public static function reportingIdentitySettingsName(string $property): string
+    {
+        return self::getPathTemplate('reportingIdentitySettings')->render([
+            'property' => $property,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * rollup_property_source_link resource.
      *
      * @param string $property
@@ -1152,6 +1162,25 @@ final class AnalyticsAdminServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * subproperty_sync_config resource.
+     *
+     * @param string $property
+     * @param string $subpropertySyncConfig
+     *
+     * @return string The formatted subproperty_sync_config resource.
+     *
+     * @experimental
+     */
+    public static function subpropertySyncConfigName(string $property, string $subpropertySyncConfig): string
+    {
+        return self::getPathTemplate('subpropertySyncConfig')->render([
+            'property' => $property,
+            'subproperty_sync_config' => $subpropertySyncConfig,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
@@ -1187,10 +1216,12 @@ final class AnalyticsAdminServiceClient
      * - property: properties/{property}
      * - propertyAccessBinding: properties/{property}/accessBindings/{access_binding}
      * - reportingDataAnnotation: properties/{property}/reportingDataAnnotations/{reporting_data_annotation}
+     * - reportingIdentitySettings: properties/{property}/reportingIdentitySettings
      * - rollupPropertySourceLink: properties/{property}/rollupPropertySourceLinks/{rollup_property_source_link}
      * - sKAdNetworkConversionValueSchema: properties/{property}/dataStreams/{data_stream}/sKAdNetworkConversionValueSchema/{skadnetwork_conversion_value_schema}
      * - searchAds360Link: properties/{property}/searchAds360Links/{search_ads_360_link}
      * - subpropertyEventFilter: properties/{property}/subpropertyEventFilters/{sub_property_event_filter}
+     * - subpropertySyncConfig: properties/{property}/subpropertySyncConfigs/{subproperty_sync_config}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -1778,39 +1809,6 @@ final class AnalyticsAdminServiceClient
     public function createChannelGroup(CreateChannelGroupRequest $request, array $callOptions = []): ChannelGroup
     {
         return $this->startApiCall('CreateChannelGroup', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Creates a connected site tag for a Universal Analytics property. You can
-     * create a maximum of 20 connected site tags per property.
-     * Note: This API cannot be used on GA4 properties.
-     *
-     * The async variant is
-     * {@see AnalyticsAdminServiceClient::createConnectedSiteTagAsync()} .
-     *
-     * @example samples/V1alpha/AnalyticsAdminServiceClient/create_connected_site_tag.php
-     *
-     * @param CreateConnectedSiteTagRequest $request     A request to house fields associated with the call.
-     * @param array                         $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return CreateConnectedSiteTagResponse
-     *
-     * @throws ApiException Thrown if the API call fails.
-     *
-     * @experimental
-     */
-    public function createConnectedSiteTag(
-        CreateConnectedSiteTagRequest $request,
-        array $callOptions = []
-    ): CreateConnectedSiteTagResponse {
-        return $this->startApiCall('CreateConnectedSiteTag', $request, $callOptions)->wait();
     }
 
     /**
@@ -2603,34 +2601,6 @@ final class AnalyticsAdminServiceClient
     }
 
     /**
-     * Deletes a connected site tag for a Universal Analytics property.
-     * Note: this has no effect on GA4 properties.
-     *
-     * The async variant is
-     * {@see AnalyticsAdminServiceClient::deleteConnectedSiteTagAsync()} .
-     *
-     * @example samples/V1alpha/AnalyticsAdminServiceClient/delete_connected_site_tag.php
-     *
-     * @param DeleteConnectedSiteTagRequest $request     A request to house fields associated with the call.
-     * @param array                         $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @throws ApiException Thrown if the API call fails.
-     *
-     * @experimental
-     */
-    public function deleteConnectedSiteTag(DeleteConnectedSiteTagRequest $request, array $callOptions = []): void
-    {
-        $this->startApiCall('DeleteConnectedSiteTag', $request, $callOptions)->wait();
-    }
-
-    /**
      * Deprecated: Use `DeleteKeyEvent` instead.
      * Deletes a conversion event in a property.
      *
@@ -3119,72 +3089,6 @@ final class AnalyticsAdminServiceClient
         array $callOptions = []
     ): void {
         $this->startApiCall('DeleteSubpropertyEventFilter', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Fetches the opt out status for the automated GA4 setup process for a UA
-     * property.
-     * Note: this has no effect on GA4 property.
-     *
-     * The async variant is
-     * {@see AnalyticsAdminServiceClient::fetchAutomatedGa4ConfigurationOptOutAsync()}
-     * .
-     *
-     * @example samples/V1alpha/AnalyticsAdminServiceClient/fetch_automated_ga4_configuration_opt_out.php
-     *
-     * @param FetchAutomatedGa4ConfigurationOptOutRequest $request     A request to house fields associated with the call.
-     * @param array                                       $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return FetchAutomatedGa4ConfigurationOptOutResponse
-     *
-     * @throws ApiException Thrown if the API call fails.
-     *
-     * @experimental
-     */
-    public function fetchAutomatedGa4ConfigurationOptOut(
-        FetchAutomatedGa4ConfigurationOptOutRequest $request,
-        array $callOptions = []
-    ): FetchAutomatedGa4ConfigurationOptOutResponse {
-        return $this->startApiCall('FetchAutomatedGa4ConfigurationOptOut', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Given a specified UA property, looks up the GA4 property connected to it.
-     * Note: this cannot be used with GA4 properties.
-     *
-     * The async variant is
-     * {@see AnalyticsAdminServiceClient::fetchConnectedGa4PropertyAsync()} .
-     *
-     * @example samples/V1alpha/AnalyticsAdminServiceClient/fetch_connected_ga4_property.php
-     *
-     * @param FetchConnectedGa4PropertyRequest $request     A request to house fields associated with the call.
-     * @param array                            $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return FetchConnectedGa4PropertyResponse
-     *
-     * @throws ApiException Thrown if the API call fails.
-     *
-     * @experimental
-     */
-    public function fetchConnectedGa4Property(
-        FetchConnectedGa4PropertyRequest $request,
-        array $callOptions = []
-    ): FetchConnectedGa4PropertyResponse {
-        return $this->startApiCall('FetchConnectedGa4Property', $request, $callOptions)->wait();
     }
 
     /**
@@ -3995,6 +3899,37 @@ final class AnalyticsAdminServiceClient
     }
 
     /**
+     * Returns the singleton data retention settings for this property.
+     *
+     * The async variant is
+     * {@see AnalyticsAdminServiceClient::getReportingIdentitySettingsAsync()} .
+     *
+     * @example samples/V1alpha/AnalyticsAdminServiceClient/get_reporting_identity_settings.php
+     *
+     * @param GetReportingIdentitySettingsRequest $request     A request to house fields associated with the call.
+     * @param array                               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ReportingIdentitySettings
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function getReportingIdentitySettings(
+        GetReportingIdentitySettingsRequest $request,
+        array $callOptions = []
+    ): ReportingIdentitySettings {
+        return $this->startApiCall('GetReportingIdentitySettings', $request, $callOptions)->wait();
+    }
+
+    /**
      * Lookup for a single roll-up property source Link.
      * Only roll-up properties can have source links, so this method will throw an
      * error if used on other types of properties.
@@ -4116,6 +4051,37 @@ final class AnalyticsAdminServiceClient
         array $callOptions = []
     ): SubpropertyEventFilter {
         return $this->startApiCall('GetSubpropertyEventFilter', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Lookup for a single `SubpropertySyncConfig`.
+     *
+     * The async variant is
+     * {@see AnalyticsAdminServiceClient::getSubpropertySyncConfigAsync()} .
+     *
+     * @example samples/V1alpha/AnalyticsAdminServiceClient/get_subproperty_sync_config.php
+     *
+     * @param GetSubpropertySyncConfigRequest $request     A request to house fields associated with the call.
+     * @param array                           $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return SubpropertySyncConfig
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function getSubpropertySyncConfig(
+        GetSubpropertySyncConfigRequest $request,
+        array $callOptions = []
+    ): SubpropertySyncConfig {
+        return $this->startApiCall('GetSubpropertySyncConfig', $request, $callOptions)->wait();
     }
 
     /**
@@ -4356,39 +4322,6 @@ final class AnalyticsAdminServiceClient
     public function listChannelGroups(ListChannelGroupsRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListChannelGroups', $request, $callOptions);
-    }
-
-    /**
-     * Lists the connected site tags for a Universal Analytics property. A maximum
-     * of 20 connected site tags will be returned. Note: this has no effect on GA4
-     * property.
-     *
-     * The async variant is
-     * {@see AnalyticsAdminServiceClient::listConnectedSiteTagsAsync()} .
-     *
-     * @example samples/V1alpha/AnalyticsAdminServiceClient/list_connected_site_tags.php
-     *
-     * @param ListConnectedSiteTagsRequest $request     A request to house fields associated with the call.
-     * @param array                        $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return ListConnectedSiteTagsResponse
-     *
-     * @throws ApiException Thrown if the API call fails.
-     *
-     * @experimental
-     */
-    public function listConnectedSiteTags(
-        ListConnectedSiteTagsRequest $request,
-        array $callOptions = []
-    ): ListConnectedSiteTagsResponse {
-        return $this->startApiCall('ListConnectedSiteTags', $request, $callOptions)->wait();
     }
 
     /**
@@ -4982,6 +4915,37 @@ final class AnalyticsAdminServiceClient
     }
 
     /**
+     * List all `SubpropertySyncConfig` resources for a property.
+     *
+     * The async variant is
+     * {@see AnalyticsAdminServiceClient::listSubpropertySyncConfigsAsync()} .
+     *
+     * @example samples/V1alpha/AnalyticsAdminServiceClient/list_subproperty_sync_configs.php
+     *
+     * @param ListSubpropertySyncConfigsRequest $request     A request to house fields associated with the call.
+     * @param array                             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function listSubpropertySyncConfigs(
+        ListSubpropertySyncConfigsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListSubpropertySyncConfigs', $request, $callOptions);
+    }
+
+    /**
      * Requests a ticket for creating an account.
      *
      * The async variant is
@@ -5152,39 +5116,6 @@ final class AnalyticsAdminServiceClient
         array $callOptions = []
     ): PagedListResponse {
         return $this->startApiCall('SearchChangeHistoryEvents', $request, $callOptions);
-    }
-
-    /**
-     * Sets the opt out status for the automated GA4 setup process for a UA
-     * property.
-     * Note: this has no effect on GA4 property.
-     *
-     * The async variant is
-     * {@see AnalyticsAdminServiceClient::setAutomatedGa4ConfigurationOptOutAsync()} .
-     *
-     * @example samples/V1alpha/AnalyticsAdminServiceClient/set_automated_ga4_configuration_opt_out.php
-     *
-     * @param SetAutomatedGa4ConfigurationOptOutRequest $request     A request to house fields associated with the call.
-     * @param array                                     $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return SetAutomatedGa4ConfigurationOptOutResponse
-     *
-     * @throws ApiException Thrown if the API call fails.
-     *
-     * @experimental
-     */
-    public function setAutomatedGa4ConfigurationOptOut(
-        SetAutomatedGa4ConfigurationOptOutRequest $request,
-        array $callOptions = []
-    ): SetAutomatedGa4ConfigurationOptOutResponse {
-        return $this->startApiCall('SetAutomatedGa4ConfigurationOptOut', $request, $callOptions)->wait();
     }
 
     /**
@@ -6033,5 +5964,36 @@ final class AnalyticsAdminServiceClient
         array $callOptions = []
     ): SubpropertyEventFilter {
         return $this->startApiCall('UpdateSubpropertyEventFilter', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates a `SubpropertySyncConfig`.
+     *
+     * The async variant is
+     * {@see AnalyticsAdminServiceClient::updateSubpropertySyncConfigAsync()} .
+     *
+     * @example samples/V1alpha/AnalyticsAdminServiceClient/update_subproperty_sync_config.php
+     *
+     * @param UpdateSubpropertySyncConfigRequest $request     A request to house fields associated with the call.
+     * @param array                              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return SubpropertySyncConfig
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function updateSubpropertySyncConfig(
+        UpdateSubpropertySyncConfigRequest $request,
+        array $callOptions = []
+    ): SubpropertySyncConfig {
+        return $this->startApiCall('UpdateSubpropertySyncConfig', $request, $callOptions)->wait();
     }
 }

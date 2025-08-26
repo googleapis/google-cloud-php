@@ -44,12 +44,26 @@ use Google\Protobuf\FieldMask;
  * - [App
  * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
  * with [administrator approval](https://support.google.com/a?p=chat-app-auth)
- * in [Developer Preview](https://developers.google.com/workspace/preview)
+ * and one of the following authorization scopes:
+ * - `https://www.googleapis.com/auth/chat.app.spaces`
  *
  * - [User
  * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
- * You can authenticate and authorize this method with administrator
- * privileges by setting the `use_admin_access` field in the request.
+ * with one of the following authorization scopes:
+ * - `https://www.googleapis.com/auth/chat.spaces`
+ * - `https://www.googleapis.com/auth/chat.import` (import mode spaces
+ * only)
+ * - User authentication grants administrator privileges when an
+ * administrator account authenticates, `use_admin_access` is `true`, and
+ * the following authorization scopes is used:
+ * - `https://www.googleapis.com/auth/chat.admin.spaces`
+ *
+ * App authentication has the following limitations:
+ *
+ * - To update either `space.predefined_permission_settings` or
+ * `space.permission_settings`, the app must be the space creator.
+ * - Updating the `space.access_settings.audience` is not supported for app
+ * authentication.
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:

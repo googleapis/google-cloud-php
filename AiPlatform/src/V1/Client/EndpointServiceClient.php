@@ -605,9 +605,9 @@ final class EndpointServiceClient
 
     /**
      * Updates an existing deployed model. Updatable fields include
-     * `min_replica_count`, `max_replica_count`, `autoscaling_metric_specs`,
-     * `disable_container_logging` (v1 only), and `enable_container_logging`
-     * (v1beta1 only).
+     * `min_replica_count`, `max_replica_count`, `required_replica_count`,
+     * `autoscaling_metric_specs`, `disable_container_logging` (v1 only), and
+     * `enable_container_logging` (v1beta1 only).
      *
      * The async variant is {@see EndpointServiceClient::mutateDeployedModelAsync()} .
      *

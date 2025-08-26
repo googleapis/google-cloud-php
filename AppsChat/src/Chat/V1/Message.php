@@ -128,7 +128,9 @@ class Message extends \Google\Protobuf\Internal\Message
      */
     private $cards_v2;
     /**
-     * Output only. Annotations associated with the `text` in this message.
+     * Output only. Annotations can be associated with the plain-text body of the
+     * message or with chips that link to Google Workspace resources like Google
+     * Docs or Sheets with `start_index` and `length` of 0.
      *
      * Generated from protobuf field <code>repeated .google.chat.v1.Annotation annotations = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -243,10 +245,16 @@ class Message extends \Google\Protobuf\Internal\Message
      */
     protected $deletion_metadata = null;
     /**
-     * Output only. Information about a message that's quoted by a Google Chat
-     * user in a space. Google Chat users can quote a message to reply to it.
+     * Optional. Information about a message that another message quotes.
+     * When you create a message, you can quote messages within the same
+     * thread, or quote a root message to create a new root message.
+     * However, you can't quote a message reply from a different thread.
+     * When you update a message, you can't add or replace the
+     * `quotedMessageMetadata` field, but you can remove it.
+     * For example usage, see [Quote another
+     * message](https://developers.google.com/workspace/chat/create-messages#quote-a-message).
      *
-     * Generated from protobuf field <code>.google.chat.v1.QuotedMessageMetadata quoted_message_metadata = 39 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>.google.chat.v1.QuotedMessageMetadata quoted_message_metadata = 39 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $quoted_message_metadata = null;
     /**
@@ -351,7 +359,9 @@ class Message extends \Google\Protobuf\Internal\Message
      *           message](https://developers.google.com/workspace/chat/create-messages).
      *           [Card builder](https://addons.gsuite.google.com/uikit/builder)
      *     @type array<\Google\Apps\Chat\V1\Annotation>|\Google\Protobuf\Internal\RepeatedField $annotations
-     *           Output only. Annotations associated with the `text` in this message.
+     *           Output only. Annotations can be associated with the plain-text body of the
+     *           message or with chips that link to Google Workspace resources like Google
+     *           Docs or Sheets with `start_index` and `length` of 0.
      *     @type \Google\Apps\Chat\V1\Thread $thread
      *           The thread the message belongs to. For example usage, see
      *           [Start or reply to a message
@@ -410,8 +420,14 @@ class Message extends \Google\Protobuf\Internal\Message
      *           Output only. Information about a deleted message. A message is deleted when
      *           `delete_time` is set.
      *     @type \Google\Apps\Chat\V1\QuotedMessageMetadata $quoted_message_metadata
-     *           Output only. Information about a message that's quoted by a Google Chat
-     *           user in a space. Google Chat users can quote a message to reply to it.
+     *           Optional. Information about a message that another message quotes.
+     *           When you create a message, you can quote messages within the same
+     *           thread, or quote a root message to create a new root message.
+     *           However, you can't quote a message reply from a different thread.
+     *           When you update a message, you can't add or replace the
+     *           `quotedMessageMetadata` field, but you can remove it.
+     *           For example usage, see [Quote another
+     *           message](https://developers.google.com/workspace/chat/create-messages#quote-a-message).
      *     @type array<\Google\Apps\Chat\V1\AttachedGif>|\Google\Protobuf\Internal\RepeatedField $attached_gifs
      *           Output only. GIF images that are attached to the message.
      *     @type array<\Google\Apps\Chat\V1\AccessoryWidget>|\Google\Protobuf\Internal\RepeatedField $accessory_widgets
@@ -757,7 +773,9 @@ class Message extends \Google\Protobuf\Internal\Message
      */
     public function getCards()
     {
-        @trigger_error('cards is deprecated.', E_USER_DEPRECATED);
+        if ($this->cards->count() !== 0) {
+            @trigger_error('cards is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->cards;
     }
 
@@ -775,8 +793,10 @@ class Message extends \Google\Protobuf\Internal\Message
      */
     public function setCards($var)
     {
-        @trigger_error('cards is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Apps\Chat\V1\ContextualAddOnMarkup\Card::class);
+        if (count($arr) !== 0) {
+            @trigger_error('cards is deprecated.', E_USER_DEPRECATED);
+        }
         $this->cards = $arr;
 
         return $this;
@@ -823,7 +843,9 @@ class Message extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Annotations associated with the `text` in this message.
+     * Output only. Annotations can be associated with the plain-text body of the
+     * message or with chips that link to Google Workspace resources like Google
+     * Docs or Sheets with `start_index` and `length` of 0.
      *
      * Generated from protobuf field <code>repeated .google.chat.v1.Annotation annotations = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -834,7 +856,9 @@ class Message extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Annotations associated with the `text` in this message.
+     * Output only. Annotations can be associated with the plain-text body of the
+     * message or with chips that link to Google Workspace resources like Google
+     * Docs or Sheets with `start_index` and `length` of 0.
      *
      * Generated from protobuf field <code>repeated .google.chat.v1.Annotation annotations = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array<\Google\Apps\Chat\V1\Annotation>|\Google\Protobuf\Internal\RepeatedField $var
@@ -1319,10 +1343,16 @@ class Message extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Information about a message that's quoted by a Google Chat
-     * user in a space. Google Chat users can quote a message to reply to it.
+     * Optional. Information about a message that another message quotes.
+     * When you create a message, you can quote messages within the same
+     * thread, or quote a root message to create a new root message.
+     * However, you can't quote a message reply from a different thread.
+     * When you update a message, you can't add or replace the
+     * `quotedMessageMetadata` field, but you can remove it.
+     * For example usage, see [Quote another
+     * message](https://developers.google.com/workspace/chat/create-messages#quote-a-message).
      *
-     * Generated from protobuf field <code>.google.chat.v1.QuotedMessageMetadata quoted_message_metadata = 39 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>.google.chat.v1.QuotedMessageMetadata quoted_message_metadata = 39 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Apps\Chat\V1\QuotedMessageMetadata|null
      */
     public function getQuotedMessageMetadata()
@@ -1341,10 +1371,16 @@ class Message extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Information about a message that's quoted by a Google Chat
-     * user in a space. Google Chat users can quote a message to reply to it.
+     * Optional. Information about a message that another message quotes.
+     * When you create a message, you can quote messages within the same
+     * thread, or quote a root message to create a new root message.
+     * However, you can't quote a message reply from a different thread.
+     * When you update a message, you can't add or replace the
+     * `quotedMessageMetadata` field, but you can remove it.
+     * For example usage, see [Quote another
+     * message](https://developers.google.com/workspace/chat/create-messages#quote-a-message).
      *
-     * Generated from protobuf field <code>.google.chat.v1.QuotedMessageMetadata quoted_message_metadata = 39 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>.google.chat.v1.QuotedMessageMetadata quoted_message_metadata = 39 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Apps\Chat\V1\QuotedMessageMetadata $var
      * @return $this
      */

@@ -84,7 +84,9 @@ class Job extends \Google\Protobuf\Internal\Message
     private $labels;
     /**
      * Output only. An error object that describes the reason for the failure.
-     * This property is always present when `state` is `FAILED`.
+     * This property is always present when
+     * [ProcessingState][google.cloud.video.transcoder.v1.Job.ProcessingState] is
+     * `FAILED`.
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -112,6 +114,13 @@ class Job extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.Job.OptimizationStrategy optimization = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $optimization = 0;
+    /**
+     * Optional. Insert silence and duplicate frames when timestamp gaps are
+     * detected in a given stream.
+     *
+     * Generated from protobuf field <code>bool fill_content_gaps = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $fill_content_gaps = false;
     protected $job_config;
 
     /**
@@ -159,7 +168,9 @@ class Job extends \Google\Protobuf\Internal\Message
      *           group your jobs.
      *     @type \Google\Rpc\Status $error
      *           Output only. An error object that describes the reason for the failure.
-     *           This property is always present when `state` is `FAILED`.
+     *           This property is always present when
+     *           [ProcessingState][google.cloud.video.transcoder.v1.Job.ProcessingState] is
+     *           `FAILED`.
      *     @type int $mode
      *           The processing mode of the job.
      *           The default is `PROCESSING_MODE_INTERACTIVE`.
@@ -171,6 +182,9 @@ class Job extends \Google\Protobuf\Internal\Message
      *     @type int $optimization
      *           Optional. The optimization strategy of the job. The default is
      *           `AUTODETECT`.
+     *     @type bool $fill_content_gaps
+     *           Optional. Insert silence and duplicate frames when timestamp gaps are
+     *           detected in a given stream.
      * }
      */
     public function __construct($data = NULL) {
@@ -536,7 +550,9 @@ class Job extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. An error object that describes the reason for the failure.
-     * This property is always present when `state` is `FAILED`.
+     * This property is always present when
+     * [ProcessingState][google.cloud.video.transcoder.v1.Job.ProcessingState] is
+     * `FAILED`.
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Rpc\Status|null
@@ -558,7 +574,9 @@ class Job extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. An error object that describes the reason for the failure.
-     * This property is always present when `state` is `FAILED`.
+     * This property is always present when
+     * [ProcessingState][google.cloud.video.transcoder.v1.Job.ProcessingState] is
+     * `FAILED`.
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Rpc\Status $var
@@ -656,6 +674,34 @@ class Job extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Video\Transcoder\V1\Job\OptimizationStrategy::class);
         $this->optimization = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Insert silence and duplicate frames when timestamp gaps are
+     * detected in a given stream.
+     *
+     * Generated from protobuf field <code>bool fill_content_gaps = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getFillContentGaps()
+    {
+        return $this->fill_content_gaps;
+    }
+
+    /**
+     * Optional. Insert silence and duplicate frames when timestamp gaps are
+     * detected in a given stream.
+     *
+     * Generated from protobuf field <code>bool fill_content_gaps = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setFillContentGaps($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->fill_content_gaps = $var;
 
         return $this;
     }

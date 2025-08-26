@@ -10,8 +10,8 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * RollbackNodePoolUpgradeRequest rollbacks the previously Aborted or Failed
- * NodePool upgrade. This will be an no-op if the last upgrade successfully
- * completed.
+ *  NodePool upgrade. This will be an no-op if the last upgrade successfully
+ *  completed.
  *
  * Generated from protobuf message <code>google.container.v1.RollbackNodePoolUpgradeRequest</code>
  */
@@ -28,9 +28,9 @@ class RollbackNodePoolUpgradeRequest extends \Google\Protobuf\Internal\Message
     protected $project_id = '';
     /**
      * Deprecated. The name of the Google Compute Engine
-     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the
-     * cluster resides. This field has been deprecated and replaced by the name
-     * field.
+     * [zone](https://cloud.google.com/compute/docs/zones#available)
+     * in which the cluster resides. This field has been deprecated and replaced
+     * by the name field.
      *
      * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
      * @deprecated
@@ -73,9 +73,9 @@ class RollbackNodePoolUpgradeRequest extends \Google\Protobuf\Internal\Message
      *                           number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
      *                           This field has been deprecated and replaced by the name field.
      * @param string $zone       Deprecated. The name of the Google Compute Engine
-     *                           [zone](https://cloud.google.com/compute/docs/zones#available) in which the
-     *                           cluster resides. This field has been deprecated and replaced by the name
-     *                           field.
+     *                           [zone](https://cloud.google.com/compute/docs/zones#available)
+     *                           in which the cluster resides. This field has been deprecated and replaced
+     *                           by the name field.
      * @param string $clusterId  Deprecated. The name of the cluster to rollback.
      *                           This field has been deprecated and replaced by the name field.
      * @param string $nodePoolId Deprecated. The name of the node pool to rollback.
@@ -121,9 +121,9 @@ class RollbackNodePoolUpgradeRequest extends \Google\Protobuf\Internal\Message
      *           This field has been deprecated and replaced by the name field.
      *     @type string $zone
      *           Deprecated. The name of the Google Compute Engine
-     *           [zone](https://cloud.google.com/compute/docs/zones#available) in which the
-     *           cluster resides. This field has been deprecated and replaced by the name
-     *           field.
+     *           [zone](https://cloud.google.com/compute/docs/zones#available)
+     *           in which the cluster resides. This field has been deprecated and replaced
+     *           by the name field.
      *     @type string $cluster_id
      *           Deprecated. The name of the cluster to rollback.
      *           This field has been deprecated and replaced by the name field.
@@ -155,7 +155,9 @@ class RollbackNodePoolUpgradeRequest extends \Google\Protobuf\Internal\Message
      */
     public function getProjectId()
     {
-        @trigger_error('project_id is deprecated.', E_USER_DEPRECATED);
+        if ($this->project_id !== '') {
+            @trigger_error('project_id is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->project_id;
     }
 
@@ -180,9 +182,9 @@ class RollbackNodePoolUpgradeRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Deprecated. The name of the Google Compute Engine
-     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the
-     * cluster resides. This field has been deprecated and replaced by the name
-     * field.
+     * [zone](https://cloud.google.com/compute/docs/zones#available)
+     * in which the cluster resides. This field has been deprecated and replaced
+     * by the name field.
      *
      * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
      * @return string
@@ -190,15 +192,17 @@ class RollbackNodePoolUpgradeRequest extends \Google\Protobuf\Internal\Message
      */
     public function getZone()
     {
-        @trigger_error('zone is deprecated.', E_USER_DEPRECATED);
+        if ($this->zone !== '') {
+            @trigger_error('zone is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->zone;
     }
 
     /**
      * Deprecated. The name of the Google Compute Engine
-     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the
-     * cluster resides. This field has been deprecated and replaced by the name
-     * field.
+     * [zone](https://cloud.google.com/compute/docs/zones#available)
+     * in which the cluster resides. This field has been deprecated and replaced
+     * by the name field.
      *
      * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
      * @param string $var
@@ -224,7 +228,9 @@ class RollbackNodePoolUpgradeRequest extends \Google\Protobuf\Internal\Message
      */
     public function getClusterId()
     {
-        @trigger_error('cluster_id is deprecated.', E_USER_DEPRECATED);
+        if ($this->cluster_id !== '') {
+            @trigger_error('cluster_id is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->cluster_id;
     }
 
@@ -256,7 +262,9 @@ class RollbackNodePoolUpgradeRequest extends \Google\Protobuf\Internal\Message
      */
     public function getNodePoolId()
     {
-        @trigger_error('node_pool_id is deprecated.', E_USER_DEPRECATED);
+        if ($this->node_pool_id !== '') {
+            @trigger_error('node_pool_id is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->node_pool_id;
     }
 

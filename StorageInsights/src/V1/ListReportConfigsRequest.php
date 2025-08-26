@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Message for requesting list of ReportConfigs
+ * Request message for
+ * [`ListReportConfigs`][google.cloud.storageinsights.v1.StorageInsights.ListReportConfigs]
  *
  * Generated from protobuf message <code>google.cloud.storageinsights.v1.ListReportConfigsRequest</code>
  */

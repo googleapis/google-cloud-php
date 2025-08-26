@@ -54,6 +54,12 @@ class StageSummary extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.MetricUpdate metrics = 6;</code>
      */
     private $metrics;
+    /**
+     * Straggler summary for this stage.
+     *
+     * Generated from protobuf field <code>.google.dataflow.v1beta3.StragglerSummary straggler_summary = 7;</code>
+     */
+    protected $straggler_summary = null;
 
     /**
      * Constructor.
@@ -76,6 +82,8 @@ class StageSummary extends \Google\Protobuf\Internal\Message
      *           Only applicable to Batch jobs.
      *     @type array<\Google\Cloud\Dataflow\V1beta3\MetricUpdate>|\Google\Protobuf\Internal\RepeatedField $metrics
      *           Metrics for this stage.
+     *     @type \Google\Cloud\Dataflow\V1beta3\StragglerSummary $straggler_summary
+     *           Straggler summary for this stage.
      * }
      */
     public function __construct($data = NULL) {
@@ -271,6 +279,42 @@ class StageSummary extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dataflow\V1beta3\MetricUpdate::class);
         $this->metrics = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Straggler summary for this stage.
+     *
+     * Generated from protobuf field <code>.google.dataflow.v1beta3.StragglerSummary straggler_summary = 7;</code>
+     * @return \Google\Cloud\Dataflow\V1beta3\StragglerSummary|null
+     */
+    public function getStragglerSummary()
+    {
+        return $this->straggler_summary;
+    }
+
+    public function hasStragglerSummary()
+    {
+        return isset($this->straggler_summary);
+    }
+
+    public function clearStragglerSummary()
+    {
+        unset($this->straggler_summary);
+    }
+
+    /**
+     * Straggler summary for this stage.
+     *
+     * Generated from protobuf field <code>.google.dataflow.v1beta3.StragglerSummary straggler_summary = 7;</code>
+     * @param \Google\Cloud\Dataflow\V1beta3\StragglerSummary $var
+     * @return $this
+     */
+    public function setStragglerSummary($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataflow\V1beta3\StragglerSummary::class);
+        $this->straggler_summary = $var;
 
         return $this;
     }

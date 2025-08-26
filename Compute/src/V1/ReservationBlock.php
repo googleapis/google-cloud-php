@@ -28,6 +28,12 @@ class ReservationBlock extends \Google\Protobuf\Internal\Message
      */
     private $creation_timestamp = null;
     /**
+     * [Output Only] Health information for the reservation block.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ReservationBlockHealthInfo health_info = 235287729;</code>
+     */
+    private $health_info = null;
+    /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -64,6 +70,18 @@ class ReservationBlock extends \Google\Protobuf\Internal\Message
      */
     private $reservation_maintenance = null;
     /**
+     * [Output Only] The number of reservation subBlocks associated with this reservation block.
+     *
+     * Generated from protobuf field <code>optional int32 reservation_sub_block_count = 330782955;</code>
+     */
+    private $reservation_sub_block_count = null;
+    /**
+     * [Output Only] The number of in-use reservation subBlocks associated with this reservation block. If at least one VM is running on a subBlock, it is considered in-use.
+     *
+     * Generated from protobuf field <code>optional int32 reservation_sub_block_in_use_count = 186007137;</code>
+     */
+    private $reservation_sub_block_in_use_count = null;
+    /**
      * [Output Only] Server-defined fully-qualified URL for this resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
@@ -99,6 +117,8 @@ class ReservationBlock extends \Google\Protobuf\Internal\Message
      *           [Output Only] The number of resources that are allocated in this reservation block.
      *     @type string $creation_timestamp
      *           [Output Only] Creation timestamp in RFC3339 text format.
+     *     @type \Google\Cloud\Compute\V1\ReservationBlockHealthInfo $health_info
+     *           [Output Only] Health information for the reservation block.
      *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *     @type int $in_use_count
@@ -111,6 +131,10 @@ class ReservationBlock extends \Google\Protobuf\Internal\Message
      *           [Output Only] The physical topology of the reservation block.
      *     @type \Google\Cloud\Compute\V1\GroupMaintenanceInfo $reservation_maintenance
      *           [Output Only] Maintenance information for this reservation block.
+     *     @type int $reservation_sub_block_count
+     *           [Output Only] The number of reservation subBlocks associated with this reservation block.
+     *     @type int $reservation_sub_block_in_use_count
+     *           [Output Only] The number of in-use reservation subBlocks associated with this reservation block. If at least one VM is running on a subBlock, it is considered in-use.
      *     @type string $self_link
      *           [Output Only] Server-defined fully-qualified URL for this resource.
      *     @type string $self_link_with_id
@@ -195,6 +219,42 @@ class ReservationBlock extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->creation_timestamp = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] Health information for the reservation block.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ReservationBlockHealthInfo health_info = 235287729;</code>
+     * @return \Google\Cloud\Compute\V1\ReservationBlockHealthInfo|null
+     */
+    public function getHealthInfo()
+    {
+        return $this->health_info;
+    }
+
+    public function hasHealthInfo()
+    {
+        return isset($this->health_info);
+    }
+
+    public function clearHealthInfo()
+    {
+        unset($this->health_info);
+    }
+
+    /**
+     * [Output Only] Health information for the reservation block.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ReservationBlockHealthInfo health_info = 235287729;</code>
+     * @param \Google\Cloud\Compute\V1\ReservationBlockHealthInfo $var
+     * @return $this
+     */
+    public function setHealthInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\ReservationBlockHealthInfo::class);
+        $this->health_info = $var;
 
         return $this;
     }
@@ -411,6 +471,78 @@ class ReservationBlock extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\GroupMaintenanceInfo::class);
         $this->reservation_maintenance = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] The number of reservation subBlocks associated with this reservation block.
+     *
+     * Generated from protobuf field <code>optional int32 reservation_sub_block_count = 330782955;</code>
+     * @return int
+     */
+    public function getReservationSubBlockCount()
+    {
+        return isset($this->reservation_sub_block_count) ? $this->reservation_sub_block_count : 0;
+    }
+
+    public function hasReservationSubBlockCount()
+    {
+        return isset($this->reservation_sub_block_count);
+    }
+
+    public function clearReservationSubBlockCount()
+    {
+        unset($this->reservation_sub_block_count);
+    }
+
+    /**
+     * [Output Only] The number of reservation subBlocks associated with this reservation block.
+     *
+     * Generated from protobuf field <code>optional int32 reservation_sub_block_count = 330782955;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setReservationSubBlockCount($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->reservation_sub_block_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] The number of in-use reservation subBlocks associated with this reservation block. If at least one VM is running on a subBlock, it is considered in-use.
+     *
+     * Generated from protobuf field <code>optional int32 reservation_sub_block_in_use_count = 186007137;</code>
+     * @return int
+     */
+    public function getReservationSubBlockInUseCount()
+    {
+        return isset($this->reservation_sub_block_in_use_count) ? $this->reservation_sub_block_in_use_count : 0;
+    }
+
+    public function hasReservationSubBlockInUseCount()
+    {
+        return isset($this->reservation_sub_block_in_use_count);
+    }
+
+    public function clearReservationSubBlockInUseCount()
+    {
+        unset($this->reservation_sub_block_in_use_count);
+    }
+
+    /**
+     * [Output Only] The number of in-use reservation subBlocks associated with this reservation block. If at least one VM is running on a subBlock, it is considered in-use.
+     *
+     * Generated from protobuf field <code>optional int32 reservation_sub_block_in_use_count = 186007137;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setReservationSubBlockInUseCount($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->reservation_sub_block_in_use_count = $var;
 
         return $this;
     }

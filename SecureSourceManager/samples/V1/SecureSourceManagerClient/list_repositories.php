@@ -32,7 +32,8 @@ use Google\Cloud\SecureSourceManager\V1\Repository;
 /**
  * Lists Repositories in a given project and location.
  *
- * **Host: Data Plane**
+ * The instance field is required in the query parameter for requests using
+ * the securesourcemanager.googleapis.com endpoint.
  *
  * @param string $formattedParent Parent value for ListRepositoriesRequest. Please see
  *                                {@see SecureSourceManagerClient::locationName()} for help formatting this field.

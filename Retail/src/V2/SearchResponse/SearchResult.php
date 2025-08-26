@@ -110,6 +110,12 @@ class SearchResult extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string personal_labels = 7;</code>
      */
     private $personal_labels;
+    /**
+     * Google provided available scores.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.retail.v2.DoubleList> model_scores = 8;</code>
+     */
+    private $model_scores;
 
     /**
      * Constructor.
@@ -188,6 +194,8 @@ class SearchResult extends \Google\Protobuf\Internal\Message
      *           [SearchRequest.PersonalizationSpec.Mode.AUTO][google.cloud.retail.v2.SearchRequest.PersonalizationSpec.Mode.AUTO].
      *           Possible values:
      *           * `purchased`: Indicates that this product has been purchased before.
+     *     @type array|\Google\Protobuf\Internal\MapField $model_scores
+     *           Google provided available scores.
      * }
      */
     public function __construct($data = NULL) {
@@ -475,6 +483,32 @@ class SearchResult extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->personal_labels = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Google provided available scores.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.retail.v2.DoubleList> model_scores = 8;</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getModelScores()
+    {
+        return $this->model_scores;
+    }
+
+    /**
+     * Google provided available scores.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.retail.v2.DoubleList> model_scores = 8;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setModelScores($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Retail\V2\DoubleList::class);
+        $this->model_scores = $arr;
 
         return $this;
     }

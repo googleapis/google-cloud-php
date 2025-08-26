@@ -38,7 +38,8 @@ class ExtensionChain extends \Google\Protobuf\Internal\Message
      * At least one extension is required.
      * Up to 3 extensions can be defined for each extension chain
      * for `LbTrafficExtension` resource.
-     * `LbRouteExtension` chains are limited to 1 extension per extension chain.
+     * `LbRouteExtension` and `LbEdgeExtension` chains are limited to 1 extension
+     * per extension chain.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkservices.v1.ExtensionChain.Extension extensions = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -64,7 +65,8 @@ class ExtensionChain extends \Google\Protobuf\Internal\Message
      *           At least one extension is required.
      *           Up to 3 extensions can be defined for each extension chain
      *           for `LbTrafficExtension` resource.
-     *           `LbRouteExtension` chains are limited to 1 extension per extension chain.
+     *           `LbRouteExtension` and `LbEdgeExtension` chains are limited to 1 extension
+     *           per extension chain.
      * }
      */
     public function __construct($data = NULL) {
@@ -149,7 +151,8 @@ class ExtensionChain extends \Google\Protobuf\Internal\Message
      * At least one extension is required.
      * Up to 3 extensions can be defined for each extension chain
      * for `LbTrafficExtension` resource.
-     * `LbRouteExtension` chains are limited to 1 extension per extension chain.
+     * `LbRouteExtension` and `LbEdgeExtension` chains are limited to 1 extension
+     * per extension chain.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkservices.v1.ExtensionChain.Extension extensions = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -164,7 +167,8 @@ class ExtensionChain extends \Google\Protobuf\Internal\Message
      * At least one extension is required.
      * Up to 3 extensions can be defined for each extension chain
      * for `LbTrafficExtension` resource.
-     * `LbRouteExtension` chains are limited to 1 extension per extension chain.
+     * `LbRouteExtension` and `LbEdgeExtension` chains are limited to 1 extension
+     * per extension chain.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkservices.v1.ExtensionChain.Extension extensions = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param array<\Google\Cloud\NetworkServices\V1\ExtensionChain\Extension>|\Google\Protobuf\Internal\RepeatedField $var

@@ -16,20 +16,22 @@ use Google\Protobuf\Internal\GPBUtil;
 class RuntimeEnvironment extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The initial number of Google Compute Engine instnaces for the job.
+     * Optional. The initial number of Google Compute Engine instances for the
+     * job. The default value is 11.
      *
      * Generated from protobuf field <code>int32 num_workers = 11;</code>
      */
     protected $num_workers = 0;
     /**
-     * The maximum number of Google Compute Engine instances to be made
-     * available to your pipeline during execution, from 1 to 1000.
+     * Optional. The maximum number of Google Compute Engine instances to be made
+     * available to your pipeline during execution, from 1 to 1000. The default
+     * value is 1.
      *
      * Generated from protobuf field <code>int32 max_workers = 1;</code>
      */
     protected $max_workers = 0;
     /**
-     * The Compute Engine [availability
+     * Optional. The Compute Engine [availability
      * zone](https://cloud.google.com/compute/docs/regions-zones/regions-zones)
      * for launching worker instances to run your pipeline.
      * In the future, worker_zone will take precedence.
@@ -38,50 +40,50 @@ class RuntimeEnvironment extends \Google\Protobuf\Internal\Message
      */
     protected $zone = '';
     /**
-     * The email address of the service account to run the job as.
+     * Optional. The email address of the service account to run the job as.
      *
      * Generated from protobuf field <code>string service_account_email = 3;</code>
      */
     protected $service_account_email = '';
     /**
-     * The Cloud Storage path to use for temporary files.
+     * Required. The Cloud Storage path to use for temporary files.
      * Must be a valid Cloud Storage URL, beginning with `gs://`.
      *
      * Generated from protobuf field <code>string temp_location = 4;</code>
      */
     protected $temp_location = '';
     /**
-     * Whether to bypass the safety checks for the job's temporary directory.
-     * Use with caution.
+     * Optional. Whether to bypass the safety checks for the job's temporary
+     * directory. Use with caution.
      *
      * Generated from protobuf field <code>bool bypass_temp_dir_validation = 5;</code>
      */
     protected $bypass_temp_dir_validation = false;
     /**
-     * The machine type to use for the job. Defaults to the value from the
-     * template if not specified.
+     * Optional. The machine type to use for the job. Defaults to the value from
+     * the template if not specified.
      *
      * Generated from protobuf field <code>string machine_type = 6;</code>
      */
     protected $machine_type = '';
     /**
-     * Additional experiment flags for the job, specified with the
+     * Optional. Additional experiment flags for the job, specified with the
      * `--experiments` option.
      *
      * Generated from protobuf field <code>repeated string additional_experiments = 7;</code>
      */
     private $additional_experiments;
     /**
-     * Network to which VMs will be assigned.  If empty or unspecified,
+     * Optional. Network to which VMs will be assigned.  If empty or unspecified,
      * the service will use the network "default".
      *
      * Generated from protobuf field <code>string network = 8;</code>
      */
     protected $network = '';
     /**
-     * Subnetwork to which VMs will be assigned, if desired. You can specify a
-     * subnetwork using either a complete URL or an abbreviated path. Expected to
-     * be of the form
+     * Optional. Subnetwork to which VMs will be assigned, if desired. You can
+     * specify a subnetwork using either a complete URL or an abbreviated path.
+     *  Expected to be of the form
      * "https://www.googleapis.com/compute/v1/projects/HOST_PROJECT_ID/regions/REGION/subnetworks/SUBNETWORK"
      * or "regions/REGION/subnetworks/SUBNETWORK". If the subnetwork is located in
      * a Shared VPC network, you must use the complete URL.
@@ -90,7 +92,7 @@ class RuntimeEnvironment extends \Google\Protobuf\Internal\Message
      */
     protected $subnetwork = '';
     /**
-     * Additional user labels to be specified for the job.
+     * Optional. Additional user labels to be specified for the job.
      * Keys and values should follow the restrictions specified in the [labeling
      * restrictions](https://cloud.google.com/compute/docs/labeling-resources#restrictions)
      * page.
@@ -101,7 +103,7 @@ class RuntimeEnvironment extends \Google\Protobuf\Internal\Message
      */
     private $additional_user_labels;
     /**
-     * Name for the Cloud KMS key for the job.
+     * Optional. Name for the Cloud KMS key for the job.
      * Key format is:
      * projects/<project>/locations/<location>/keyRings/<keyring>/cryptoKeys/<key>
      *
@@ -109,13 +111,13 @@ class RuntimeEnvironment extends \Google\Protobuf\Internal\Message
      */
     protected $kms_key_name = '';
     /**
-     * Configuration for VM IPs.
+     * Optional. Configuration for VM IPs.
      *
      * Generated from protobuf field <code>.google.dataflow.v1beta3.WorkerIPAddressConfiguration ip_configuration = 14;</code>
      */
     protected $ip_configuration = 0;
     /**
-     * The Compute Engine region
+     * Required. The Compute Engine region
      * (https://cloud.google.com/compute/docs/regions-zones/regions-zones) in
      * which worker processing should occur, e.g. "us-west1". Mutually exclusive
      * with worker_zone. If neither worker_region nor worker_zone is specified,
@@ -125,7 +127,7 @@ class RuntimeEnvironment extends \Google\Protobuf\Internal\Message
      */
     protected $worker_region = '';
     /**
-     * The Compute Engine zone
+     * Optional. The Compute Engine zone
      * (https://cloud.google.com/compute/docs/regions-zones/regions-zones) in
      * which worker processing should occur, e.g. "us-west1-a". Mutually exclusive
      * with worker_region. If neither worker_region nor worker_zone is specified,
@@ -136,11 +138,30 @@ class RuntimeEnvironment extends \Google\Protobuf\Internal\Message
      */
     protected $worker_zone = '';
     /**
-     * Whether to enable Streaming Engine for the job.
+     * Optional. Whether to enable Streaming Engine for the job.
      *
      * Generated from protobuf field <code>bool enable_streaming_engine = 17;</code>
      */
     protected $enable_streaming_engine = false;
+    /**
+     * Optional. The disk size, in gigabytes, to use on each remote Compute Engine
+     * worker instance.
+     *
+     * Generated from protobuf field <code>int32 disk_size_gb = 18;</code>
+     */
+    protected $disk_size_gb = 0;
+    /**
+     * Optional. Specifies the Streaming Engine message processing guarantees.
+     * Reduces cost and latency but might result in duplicate messages committed
+     * to storage. Designed to run simple mapping streaming ETL jobs at the lowest
+     * cost. For example, Change Data Capture (CDC) to BigQuery is a canonical use
+     * case. For more information, see
+     * [Set the pipeline streaming
+     * mode](https://cloud.google.com/dataflow/docs/guides/streaming-modes).
+     *
+     * Generated from protobuf field <code>optional .google.dataflow.v1beta3.StreamingMode streaming_mode = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $streaming_mode = null;
 
     /**
      * Constructor.
@@ -149,67 +170,80 @@ class RuntimeEnvironment extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $num_workers
-     *           The initial number of Google Compute Engine instnaces for the job.
+     *           Optional. The initial number of Google Compute Engine instances for the
+     *           job. The default value is 11.
      *     @type int $max_workers
-     *           The maximum number of Google Compute Engine instances to be made
-     *           available to your pipeline during execution, from 1 to 1000.
+     *           Optional. The maximum number of Google Compute Engine instances to be made
+     *           available to your pipeline during execution, from 1 to 1000. The default
+     *           value is 1.
      *     @type string $zone
-     *           The Compute Engine [availability
+     *           Optional. The Compute Engine [availability
      *           zone](https://cloud.google.com/compute/docs/regions-zones/regions-zones)
      *           for launching worker instances to run your pipeline.
      *           In the future, worker_zone will take precedence.
      *     @type string $service_account_email
-     *           The email address of the service account to run the job as.
+     *           Optional. The email address of the service account to run the job as.
      *     @type string $temp_location
-     *           The Cloud Storage path to use for temporary files.
+     *           Required. The Cloud Storage path to use for temporary files.
      *           Must be a valid Cloud Storage URL, beginning with `gs://`.
      *     @type bool $bypass_temp_dir_validation
-     *           Whether to bypass the safety checks for the job's temporary directory.
-     *           Use with caution.
+     *           Optional. Whether to bypass the safety checks for the job's temporary
+     *           directory. Use with caution.
      *     @type string $machine_type
-     *           The machine type to use for the job. Defaults to the value from the
-     *           template if not specified.
+     *           Optional. The machine type to use for the job. Defaults to the value from
+     *           the template if not specified.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $additional_experiments
-     *           Additional experiment flags for the job, specified with the
+     *           Optional. Additional experiment flags for the job, specified with the
      *           `--experiments` option.
      *     @type string $network
-     *           Network to which VMs will be assigned.  If empty or unspecified,
+     *           Optional. Network to which VMs will be assigned.  If empty or unspecified,
      *           the service will use the network "default".
      *     @type string $subnetwork
-     *           Subnetwork to which VMs will be assigned, if desired. You can specify a
-     *           subnetwork using either a complete URL or an abbreviated path. Expected to
-     *           be of the form
+     *           Optional. Subnetwork to which VMs will be assigned, if desired. You can
+     *           specify a subnetwork using either a complete URL or an abbreviated path.
+     *            Expected to be of the form
      *           "https://www.googleapis.com/compute/v1/projects/HOST_PROJECT_ID/regions/REGION/subnetworks/SUBNETWORK"
      *           or "regions/REGION/subnetworks/SUBNETWORK". If the subnetwork is located in
      *           a Shared VPC network, you must use the complete URL.
      *     @type array|\Google\Protobuf\Internal\MapField $additional_user_labels
-     *           Additional user labels to be specified for the job.
+     *           Optional. Additional user labels to be specified for the job.
      *           Keys and values should follow the restrictions specified in the [labeling
      *           restrictions](https://cloud.google.com/compute/docs/labeling-resources#restrictions)
      *           page.
      *           An object containing a list of "key": value pairs.
      *           Example: { "name": "wrench", "mass": "1kg", "count": "3" }.
      *     @type string $kms_key_name
-     *           Name for the Cloud KMS key for the job.
+     *           Optional. Name for the Cloud KMS key for the job.
      *           Key format is:
      *           projects/<project>/locations/<location>/keyRings/<keyring>/cryptoKeys/<key>
      *     @type int $ip_configuration
-     *           Configuration for VM IPs.
+     *           Optional. Configuration for VM IPs.
      *     @type string $worker_region
-     *           The Compute Engine region
+     *           Required. The Compute Engine region
      *           (https://cloud.google.com/compute/docs/regions-zones/regions-zones) in
      *           which worker processing should occur, e.g. "us-west1". Mutually exclusive
      *           with worker_zone. If neither worker_region nor worker_zone is specified,
      *           default to the control plane's region.
      *     @type string $worker_zone
-     *           The Compute Engine zone
+     *           Optional. The Compute Engine zone
      *           (https://cloud.google.com/compute/docs/regions-zones/regions-zones) in
      *           which worker processing should occur, e.g. "us-west1-a". Mutually exclusive
      *           with worker_region. If neither worker_region nor worker_zone is specified,
      *           a zone in the control plane's region is chosen based on available capacity.
      *           If both `worker_zone` and `zone` are set, `worker_zone` takes precedence.
      *     @type bool $enable_streaming_engine
-     *           Whether to enable Streaming Engine for the job.
+     *           Optional. Whether to enable Streaming Engine for the job.
+     *     @type int $disk_size_gb
+     *           Optional. The disk size, in gigabytes, to use on each remote Compute Engine
+     *           worker instance.
+     *     @type int $streaming_mode
+     *           Optional. Specifies the Streaming Engine message processing guarantees.
+     *           Reduces cost and latency but might result in duplicate messages committed
+     *           to storage. Designed to run simple mapping streaming ETL jobs at the lowest
+     *           cost. For example, Change Data Capture (CDC) to BigQuery is a canonical use
+     *           case. For more information, see
+     *           [Set the pipeline streaming
+     *           mode](https://cloud.google.com/dataflow/docs/guides/streaming-modes).
      * }
      */
     public function __construct($data = NULL) {
@@ -218,7 +252,8 @@ class RuntimeEnvironment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The initial number of Google Compute Engine instnaces for the job.
+     * Optional. The initial number of Google Compute Engine instances for the
+     * job. The default value is 11.
      *
      * Generated from protobuf field <code>int32 num_workers = 11;</code>
      * @return int
@@ -229,7 +264,8 @@ class RuntimeEnvironment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The initial number of Google Compute Engine instnaces for the job.
+     * Optional. The initial number of Google Compute Engine instances for the
+     * job. The default value is 11.
      *
      * Generated from protobuf field <code>int32 num_workers = 11;</code>
      * @param int $var
@@ -244,8 +280,9 @@ class RuntimeEnvironment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of Google Compute Engine instances to be made
-     * available to your pipeline during execution, from 1 to 1000.
+     * Optional. The maximum number of Google Compute Engine instances to be made
+     * available to your pipeline during execution, from 1 to 1000. The default
+     * value is 1.
      *
      * Generated from protobuf field <code>int32 max_workers = 1;</code>
      * @return int
@@ -256,8 +293,9 @@ class RuntimeEnvironment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of Google Compute Engine instances to be made
-     * available to your pipeline during execution, from 1 to 1000.
+     * Optional. The maximum number of Google Compute Engine instances to be made
+     * available to your pipeline during execution, from 1 to 1000. The default
+     * value is 1.
      *
      * Generated from protobuf field <code>int32 max_workers = 1;</code>
      * @param int $var
@@ -272,7 +310,7 @@ class RuntimeEnvironment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Compute Engine [availability
+     * Optional. The Compute Engine [availability
      * zone](https://cloud.google.com/compute/docs/regions-zones/regions-zones)
      * for launching worker instances to run your pipeline.
      * In the future, worker_zone will take precedence.
@@ -286,7 +324,7 @@ class RuntimeEnvironment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Compute Engine [availability
+     * Optional. The Compute Engine [availability
      * zone](https://cloud.google.com/compute/docs/regions-zones/regions-zones)
      * for launching worker instances to run your pipeline.
      * In the future, worker_zone will take precedence.
@@ -304,7 +342,7 @@ class RuntimeEnvironment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The email address of the service account to run the job as.
+     * Optional. The email address of the service account to run the job as.
      *
      * Generated from protobuf field <code>string service_account_email = 3;</code>
      * @return string
@@ -315,7 +353,7 @@ class RuntimeEnvironment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The email address of the service account to run the job as.
+     * Optional. The email address of the service account to run the job as.
      *
      * Generated from protobuf field <code>string service_account_email = 3;</code>
      * @param string $var
@@ -330,7 +368,7 @@ class RuntimeEnvironment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Cloud Storage path to use for temporary files.
+     * Required. The Cloud Storage path to use for temporary files.
      * Must be a valid Cloud Storage URL, beginning with `gs://`.
      *
      * Generated from protobuf field <code>string temp_location = 4;</code>
@@ -342,7 +380,7 @@ class RuntimeEnvironment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Cloud Storage path to use for temporary files.
+     * Required. The Cloud Storage path to use for temporary files.
      * Must be a valid Cloud Storage URL, beginning with `gs://`.
      *
      * Generated from protobuf field <code>string temp_location = 4;</code>
@@ -358,8 +396,8 @@ class RuntimeEnvironment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether to bypass the safety checks for the job's temporary directory.
-     * Use with caution.
+     * Optional. Whether to bypass the safety checks for the job's temporary
+     * directory. Use with caution.
      *
      * Generated from protobuf field <code>bool bypass_temp_dir_validation = 5;</code>
      * @return bool
@@ -370,8 +408,8 @@ class RuntimeEnvironment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether to bypass the safety checks for the job's temporary directory.
-     * Use with caution.
+     * Optional. Whether to bypass the safety checks for the job's temporary
+     * directory. Use with caution.
      *
      * Generated from protobuf field <code>bool bypass_temp_dir_validation = 5;</code>
      * @param bool $var
@@ -386,8 +424,8 @@ class RuntimeEnvironment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The machine type to use for the job. Defaults to the value from the
-     * template if not specified.
+     * Optional. The machine type to use for the job. Defaults to the value from
+     * the template if not specified.
      *
      * Generated from protobuf field <code>string machine_type = 6;</code>
      * @return string
@@ -398,8 +436,8 @@ class RuntimeEnvironment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The machine type to use for the job. Defaults to the value from the
-     * template if not specified.
+     * Optional. The machine type to use for the job. Defaults to the value from
+     * the template if not specified.
      *
      * Generated from protobuf field <code>string machine_type = 6;</code>
      * @param string $var
@@ -414,7 +452,7 @@ class RuntimeEnvironment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Additional experiment flags for the job, specified with the
+     * Optional. Additional experiment flags for the job, specified with the
      * `--experiments` option.
      *
      * Generated from protobuf field <code>repeated string additional_experiments = 7;</code>
@@ -426,7 +464,7 @@ class RuntimeEnvironment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Additional experiment flags for the job, specified with the
+     * Optional. Additional experiment flags for the job, specified with the
      * `--experiments` option.
      *
      * Generated from protobuf field <code>repeated string additional_experiments = 7;</code>
@@ -442,7 +480,7 @@ class RuntimeEnvironment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Network to which VMs will be assigned.  If empty or unspecified,
+     * Optional. Network to which VMs will be assigned.  If empty or unspecified,
      * the service will use the network "default".
      *
      * Generated from protobuf field <code>string network = 8;</code>
@@ -454,7 +492,7 @@ class RuntimeEnvironment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Network to which VMs will be assigned.  If empty or unspecified,
+     * Optional. Network to which VMs will be assigned.  If empty or unspecified,
      * the service will use the network "default".
      *
      * Generated from protobuf field <code>string network = 8;</code>
@@ -470,9 +508,9 @@ class RuntimeEnvironment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Subnetwork to which VMs will be assigned, if desired. You can specify a
-     * subnetwork using either a complete URL or an abbreviated path. Expected to
-     * be of the form
+     * Optional. Subnetwork to which VMs will be assigned, if desired. You can
+     * specify a subnetwork using either a complete URL or an abbreviated path.
+     *  Expected to be of the form
      * "https://www.googleapis.com/compute/v1/projects/HOST_PROJECT_ID/regions/REGION/subnetworks/SUBNETWORK"
      * or "regions/REGION/subnetworks/SUBNETWORK". If the subnetwork is located in
      * a Shared VPC network, you must use the complete URL.
@@ -486,9 +524,9 @@ class RuntimeEnvironment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Subnetwork to which VMs will be assigned, if desired. You can specify a
-     * subnetwork using either a complete URL or an abbreviated path. Expected to
-     * be of the form
+     * Optional. Subnetwork to which VMs will be assigned, if desired. You can
+     * specify a subnetwork using either a complete URL or an abbreviated path.
+     *  Expected to be of the form
      * "https://www.googleapis.com/compute/v1/projects/HOST_PROJECT_ID/regions/REGION/subnetworks/SUBNETWORK"
      * or "regions/REGION/subnetworks/SUBNETWORK". If the subnetwork is located in
      * a Shared VPC network, you must use the complete URL.
@@ -506,7 +544,7 @@ class RuntimeEnvironment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Additional user labels to be specified for the job.
+     * Optional. Additional user labels to be specified for the job.
      * Keys and values should follow the restrictions specified in the [labeling
      * restrictions](https://cloud.google.com/compute/docs/labeling-resources#restrictions)
      * page.
@@ -522,7 +560,7 @@ class RuntimeEnvironment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Additional user labels to be specified for the job.
+     * Optional. Additional user labels to be specified for the job.
      * Keys and values should follow the restrictions specified in the [labeling
      * restrictions](https://cloud.google.com/compute/docs/labeling-resources#restrictions)
      * page.
@@ -542,7 +580,7 @@ class RuntimeEnvironment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name for the Cloud KMS key for the job.
+     * Optional. Name for the Cloud KMS key for the job.
      * Key format is:
      * projects/<project>/locations/<location>/keyRings/<keyring>/cryptoKeys/<key>
      *
@@ -555,7 +593,7 @@ class RuntimeEnvironment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name for the Cloud KMS key for the job.
+     * Optional. Name for the Cloud KMS key for the job.
      * Key format is:
      * projects/<project>/locations/<location>/keyRings/<keyring>/cryptoKeys/<key>
      *
@@ -572,7 +610,7 @@ class RuntimeEnvironment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Configuration for VM IPs.
+     * Optional. Configuration for VM IPs.
      *
      * Generated from protobuf field <code>.google.dataflow.v1beta3.WorkerIPAddressConfiguration ip_configuration = 14;</code>
      * @return int
@@ -583,7 +621,7 @@ class RuntimeEnvironment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Configuration for VM IPs.
+     * Optional. Configuration for VM IPs.
      *
      * Generated from protobuf field <code>.google.dataflow.v1beta3.WorkerIPAddressConfiguration ip_configuration = 14;</code>
      * @param int $var
@@ -598,7 +636,7 @@ class RuntimeEnvironment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Compute Engine region
+     * Required. The Compute Engine region
      * (https://cloud.google.com/compute/docs/regions-zones/regions-zones) in
      * which worker processing should occur, e.g. "us-west1". Mutually exclusive
      * with worker_zone. If neither worker_region nor worker_zone is specified,
@@ -613,7 +651,7 @@ class RuntimeEnvironment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Compute Engine region
+     * Required. The Compute Engine region
      * (https://cloud.google.com/compute/docs/regions-zones/regions-zones) in
      * which worker processing should occur, e.g. "us-west1". Mutually exclusive
      * with worker_zone. If neither worker_region nor worker_zone is specified,
@@ -632,7 +670,7 @@ class RuntimeEnvironment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Compute Engine zone
+     * Optional. The Compute Engine zone
      * (https://cloud.google.com/compute/docs/regions-zones/regions-zones) in
      * which worker processing should occur, e.g. "us-west1-a". Mutually exclusive
      * with worker_region. If neither worker_region nor worker_zone is specified,
@@ -648,7 +686,7 @@ class RuntimeEnvironment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Compute Engine zone
+     * Optional. The Compute Engine zone
      * (https://cloud.google.com/compute/docs/regions-zones/regions-zones) in
      * which worker processing should occur, e.g. "us-west1-a". Mutually exclusive
      * with worker_region. If neither worker_region nor worker_zone is specified,
@@ -668,7 +706,7 @@ class RuntimeEnvironment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether to enable Streaming Engine for the job.
+     * Optional. Whether to enable Streaming Engine for the job.
      *
      * Generated from protobuf field <code>bool enable_streaming_engine = 17;</code>
      * @return bool
@@ -679,7 +717,7 @@ class RuntimeEnvironment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether to enable Streaming Engine for the job.
+     * Optional. Whether to enable Streaming Engine for the job.
      *
      * Generated from protobuf field <code>bool enable_streaming_engine = 17;</code>
      * @param bool $var
@@ -689,6 +727,82 @@ class RuntimeEnvironment extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->enable_streaming_engine = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The disk size, in gigabytes, to use on each remote Compute Engine
+     * worker instance.
+     *
+     * Generated from protobuf field <code>int32 disk_size_gb = 18;</code>
+     * @return int
+     */
+    public function getDiskSizeGb()
+    {
+        return $this->disk_size_gb;
+    }
+
+    /**
+     * Optional. The disk size, in gigabytes, to use on each remote Compute Engine
+     * worker instance.
+     *
+     * Generated from protobuf field <code>int32 disk_size_gb = 18;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setDiskSizeGb($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->disk_size_gb = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies the Streaming Engine message processing guarantees.
+     * Reduces cost and latency but might result in duplicate messages committed
+     * to storage. Designed to run simple mapping streaming ETL jobs at the lowest
+     * cost. For example, Change Data Capture (CDC) to BigQuery is a canonical use
+     * case. For more information, see
+     * [Set the pipeline streaming
+     * mode](https://cloud.google.com/dataflow/docs/guides/streaming-modes).
+     *
+     * Generated from protobuf field <code>optional .google.dataflow.v1beta3.StreamingMode streaming_mode = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getStreamingMode()
+    {
+        return isset($this->streaming_mode) ? $this->streaming_mode : 0;
+    }
+
+    public function hasStreamingMode()
+    {
+        return isset($this->streaming_mode);
+    }
+
+    public function clearStreamingMode()
+    {
+        unset($this->streaming_mode);
+    }
+
+    /**
+     * Optional. Specifies the Streaming Engine message processing guarantees.
+     * Reduces cost and latency but might result in duplicate messages committed
+     * to storage. Designed to run simple mapping streaming ETL jobs at the lowest
+     * cost. For example, Change Data Capture (CDC) to BigQuery is a canonical use
+     * case. For more information, see
+     * [Set the pipeline streaming
+     * mode](https://cloud.google.com/dataflow/docs/guides/streaming-modes).
+     *
+     * Generated from protobuf field <code>optional .google.dataflow.v1beta3.StreamingMode streaming_mode = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setStreamingMode($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Dataflow\V1beta3\StreamingMode::class);
+        $this->streaming_mode = $var;
 
         return $this;
     }

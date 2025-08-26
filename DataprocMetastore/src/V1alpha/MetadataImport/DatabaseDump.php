@@ -77,7 +77,9 @@ class DatabaseDump extends \Google\Protobuf\Internal\Message
      */
     public function getDatabaseType()
     {
-        @trigger_error('database_type is deprecated.', E_USER_DEPRECATED);
+        if ($this->database_type !== 0) {
+            @trigger_error('database_type is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->database_type;
     }
 
@@ -135,7 +137,9 @@ class DatabaseDump extends \Google\Protobuf\Internal\Message
      */
     public function getSourceDatabase()
     {
-        @trigger_error('source_database is deprecated.', E_USER_DEPRECATED);
+        if ($this->source_database !== '') {
+            @trigger_error('source_database is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->source_database;
     }
 

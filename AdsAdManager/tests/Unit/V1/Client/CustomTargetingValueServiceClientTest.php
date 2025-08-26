@@ -74,19 +74,17 @@ class CustomTargetingValueServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name2 = 'name2-1052831874';
+        $customTargetingKey = 'customTargetingKey-385515133';
         $adTagName = 'adTagName-1355595604';
         $displayName = 'displayName1615086568';
         $expectedResponse = new CustomTargetingValue();
         $expectedResponse->setName($name2);
+        $expectedResponse->setCustomTargetingKey($customTargetingKey);
         $expectedResponse->setAdTagName($adTagName);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->customTargetingValueName(
-            '[NETWORK_CODE]',
-            '[CUSTOM_TARGETING_KEY]',
-            '[CUSTOM_TARGETING_VALUE]'
-        );
+        $formattedName = $gapicClient->customTargetingValueName('[NETWORK_CODE]', '[CUSTOM_TARGETING_VALUE]');
         $request = (new GetCustomTargetingValueRequest())->setName($formattedName);
         $response = $gapicClient->getCustomTargetingValue($request);
         $this->assertEquals($expectedResponse, $response);
@@ -125,11 +123,7 @@ class CustomTargetingValueServiceClientTest extends GeneratedTest
         );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->customTargetingValueName(
-            '[NETWORK_CODE]',
-            '[CUSTOM_TARGETING_KEY]',
-            '[CUSTOM_TARGETING_VALUE]'
-        );
+        $formattedName = $gapicClient->customTargetingValueName('[NETWORK_CODE]', '[CUSTOM_TARGETING_VALUE]');
         $request = (new GetCustomTargetingValueRequest())->setName($formattedName);
         try {
             $gapicClient->getCustomTargetingValue($request);
@@ -163,7 +157,7 @@ class CustomTargetingValueServiceClientTest extends GeneratedTest
         $expectedResponse->setCustomTargetingValues($customTargetingValues);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $gapicClient->customTargetingKeyName('[NETWORK_CODE]', '[CUSTOM_TARGETING_KEY]');
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
         $request = (new ListCustomTargetingValuesRequest())->setParent($formattedParent);
         $response = $gapicClient->listCustomTargetingValues($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
@@ -205,7 +199,7 @@ class CustomTargetingValueServiceClientTest extends GeneratedTest
         );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $gapicClient->customTargetingKeyName('[NETWORK_CODE]', '[CUSTOM_TARGETING_KEY]');
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
         $request = (new ListCustomTargetingValuesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listCustomTargetingValues($request);
@@ -230,19 +224,17 @@ class CustomTargetingValueServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name2 = 'name2-1052831874';
+        $customTargetingKey = 'customTargetingKey-385515133';
         $adTagName = 'adTagName-1355595604';
         $displayName = 'displayName1615086568';
         $expectedResponse = new CustomTargetingValue();
         $expectedResponse->setName($name2);
+        $expectedResponse->setCustomTargetingKey($customTargetingKey);
         $expectedResponse->setAdTagName($adTagName);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->customTargetingValueName(
-            '[NETWORK_CODE]',
-            '[CUSTOM_TARGETING_KEY]',
-            '[CUSTOM_TARGETING_VALUE]'
-        );
+        $formattedName = $gapicClient->customTargetingValueName('[NETWORK_CODE]', '[CUSTOM_TARGETING_VALUE]');
         $request = (new GetCustomTargetingValueRequest())->setName($formattedName);
         $response = $gapicClient->getCustomTargetingValueAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);

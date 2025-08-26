@@ -79,8 +79,14 @@ class RestoreBackupRequest extends \Google\Protobuf\Internal\Message
      *           not supported (00000000-0000-0000-0000-000000000000).
      *     @type \Google\Cloud\BackupDR\V1\ComputeInstanceTargetEnvironment $compute_instance_target_environment
      *           Compute Engine target environment to be used during restore.
+     *     @type \Google\Cloud\BackupDR\V1\DiskTargetEnvironment $disk_target_environment
+     *           Disk target environment to be used during restore.
+     *     @type \Google\Cloud\BackupDR\V1\RegionDiskTargetEnvironment $region_disk_target_environment
+     *           Region disk target environment to be used during restore.
      *     @type \Google\Cloud\BackupDR\V1\ComputeInstanceRestoreProperties $compute_instance_restore_properties
      *           Compute Engine instance properties to be overridden during restore.
+     *     @type \Google\Cloud\BackupDR\V1\DiskRestoreProperties $disk_restore_properties
+     *           Disk properties to be overridden during restore.
      * }
      */
     public function __construct($data = NULL) {
@@ -194,6 +200,68 @@ class RestoreBackupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Disk target environment to be used during restore.
+     *
+     * Generated from protobuf field <code>.google.cloud.backupdr.v1.DiskTargetEnvironment disk_target_environment = 5;</code>
+     * @return \Google\Cloud\BackupDR\V1\DiskTargetEnvironment|null
+     */
+    public function getDiskTargetEnvironment()
+    {
+        return $this->readOneof(5);
+    }
+
+    public function hasDiskTargetEnvironment()
+    {
+        return $this->hasOneof(5);
+    }
+
+    /**
+     * Disk target environment to be used during restore.
+     *
+     * Generated from protobuf field <code>.google.cloud.backupdr.v1.DiskTargetEnvironment disk_target_environment = 5;</code>
+     * @param \Google\Cloud\BackupDR\V1\DiskTargetEnvironment $var
+     * @return $this
+     */
+    public function setDiskTargetEnvironment($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\BackupDR\V1\DiskTargetEnvironment::class);
+        $this->writeOneof(5, $var);
+
+        return $this;
+    }
+
+    /**
+     * Region disk target environment to be used during restore.
+     *
+     * Generated from protobuf field <code>.google.cloud.backupdr.v1.RegionDiskTargetEnvironment region_disk_target_environment = 6;</code>
+     * @return \Google\Cloud\BackupDR\V1\RegionDiskTargetEnvironment|null
+     */
+    public function getRegionDiskTargetEnvironment()
+    {
+        return $this->readOneof(6);
+    }
+
+    public function hasRegionDiskTargetEnvironment()
+    {
+        return $this->hasOneof(6);
+    }
+
+    /**
+     * Region disk target environment to be used during restore.
+     *
+     * Generated from protobuf field <code>.google.cloud.backupdr.v1.RegionDiskTargetEnvironment region_disk_target_environment = 6;</code>
+     * @param \Google\Cloud\BackupDR\V1\RegionDiskTargetEnvironment $var
+     * @return $this
+     */
+    public function setRegionDiskTargetEnvironment($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\BackupDR\V1\RegionDiskTargetEnvironment::class);
+        $this->writeOneof(6, $var);
+
+        return $this;
+    }
+
+    /**
      * Compute Engine instance properties to be overridden during restore.
      *
      * Generated from protobuf field <code>.google.cloud.backupdr.v1.ComputeInstanceRestoreProperties compute_instance_restore_properties = 4;</code>
@@ -220,6 +288,37 @@ class RestoreBackupRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\BackupDR\V1\ComputeInstanceRestoreProperties::class);
         $this->writeOneof(4, $var);
+
+        return $this;
+    }
+
+    /**
+     * Disk properties to be overridden during restore.
+     *
+     * Generated from protobuf field <code>.google.cloud.backupdr.v1.DiskRestoreProperties disk_restore_properties = 7;</code>
+     * @return \Google\Cloud\BackupDR\V1\DiskRestoreProperties|null
+     */
+    public function getDiskRestoreProperties()
+    {
+        return $this->readOneof(7);
+    }
+
+    public function hasDiskRestoreProperties()
+    {
+        return $this->hasOneof(7);
+    }
+
+    /**
+     * Disk properties to be overridden during restore.
+     *
+     * Generated from protobuf field <code>.google.cloud.backupdr.v1.DiskRestoreProperties disk_restore_properties = 7;</code>
+     * @param \Google\Cloud\BackupDR\V1\DiskRestoreProperties $var
+     * @return $this
+     */
+    public function setDiskRestoreProperties($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\BackupDR\V1\DiskRestoreProperties::class);
+        $this->writeOneof(7, $var);
 
         return $this;
     }

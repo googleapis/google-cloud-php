@@ -33,7 +33,7 @@ use Google\ApiCore\ApiException;
  *
  * @param string $formattedName The resource name of the CustomTargetingValue.
  *                              Format:
- *                              `networks/{network_code}/customTargetingKeys/{custom_targeting_key_id}/customTargetingValues/{custom_targeting_value_id}`
+ *                              `networks/{network_code}/customTargetingValues/{custom_targeting_value_id}`
  *                              Please see {@see CustomTargetingValueServiceClient::customTargetingValueName()} for help formatting this field.
  */
 function get_custom_targeting_value_sample(string $formattedName): void
@@ -68,7 +68,6 @@ function callSample(): void
 {
     $formattedName = CustomTargetingValueServiceClient::customTargetingValueName(
         '[NETWORK_CODE]',
-        '[CUSTOM_TARGETING_KEY]',
         '[CUSTOM_TARGETING_VALUE]'
     );
 

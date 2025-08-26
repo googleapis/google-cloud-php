@@ -43,6 +43,8 @@ class SourceConfig extends \Google\Protobuf\Internal\Message
      *           SQLServer data source configuration.
      *     @type \Google\Cloud\Datastream\V1\SalesforceSourceConfig $salesforce_source_config
      *           Salesforce data source configuration.
+     *     @type \Google\Cloud\Datastream\V1\MongodbSourceConfig $mongodb_source_config
+     *           MongoDB data source configuration.
      * }
      */
     public function __construct($data = NULL) {
@@ -229,6 +231,37 @@ class SourceConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\SalesforceSourceConfig::class);
         $this->writeOneof(104, $var);
+
+        return $this;
+    }
+
+    /**
+     * MongoDB data source configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.MongodbSourceConfig mongodb_source_config = 105;</code>
+     * @return \Google\Cloud\Datastream\V1\MongodbSourceConfig|null
+     */
+    public function getMongodbSourceConfig()
+    {
+        return $this->readOneof(105);
+    }
+
+    public function hasMongodbSourceConfig()
+    {
+        return $this->hasOneof(105);
+    }
+
+    /**
+     * MongoDB data source configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.MongodbSourceConfig mongodb_source_config = 105;</code>
+     * @param \Google\Cloud\Datastream\V1\MongodbSourceConfig $var
+     * @return $this
+     */
+    public function setMongodbSourceConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\MongodbSourceConfig::class);
+        $this->writeOneof(105, $var);
 
         return $this;
     }

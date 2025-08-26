@@ -102,7 +102,9 @@ class SqlScheduledMaintenance extends \Google\Protobuf\Internal\Message
      */
     public function getCanDefer()
     {
-        @trigger_error('can_defer is deprecated.', E_USER_DEPRECATED);
+        if ($this->can_defer !== false) {
+            @trigger_error('can_defer is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->can_defer;
     }
 

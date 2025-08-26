@@ -23,6 +23,29 @@
 return [
     'interfaces' => [
         'google.shopping.merchant.accounts.v1beta.OnlineReturnPolicyService' => [
+            'CreateOnlineReturnPolicy' => [
+                'method' => 'post',
+                'uriTemplate' => '/accounts/v1beta/{parent=accounts/*}/onlineReturnPolicies',
+                'body' => 'online_return_policy',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteOnlineReturnPolicy' => [
+                'method' => 'delete',
+                'uriTemplate' => '/accounts/v1beta/{name=accounts/*/onlineReturnPolicies/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetOnlineReturnPolicy' => [
                 'method' => 'get',
                 'uriTemplate' => '/accounts/v1beta/{name=accounts/*/onlineReturnPolicies/*}',
@@ -41,6 +64,19 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateOnlineReturnPolicy' => [
+                'method' => 'patch',
+                'uriTemplate' => '/accounts/v1beta/{online_return_policy.name=accounts/*/onlineReturnPolicies/*}',
+                'body' => 'online_return_policy',
+                'placeholders' => [
+                    'online_return_policy.name' => [
+                        'getters' => [
+                            'getOnlineReturnPolicy',
+                            'getName',
                         ],
                     ],
                 ],

@@ -41,9 +41,8 @@ class Document extends \Google\Protobuf\Internal\Message
      */
     protected $schema_id = '';
     /**
-     * The unstructured data linked to this document. Content must be set if this
-     * document is under a
-     * `CONTENT_REQUIRED` data store.
+     * The unstructured data linked to this document. Content can only be set
+     * and must be set if this document is under a `CONTENT_REQUIRED` data store.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Document.Content content = 10;</code>
      */
@@ -64,6 +63,12 @@ class Document extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Struct derived_struct_data = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $derived_struct_data = null;
+    /**
+     * Access control information for the document.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Document.AclInfo acl_info = 11;</code>
+     */
+    protected $acl_info = null;
     /**
      * Output only. The last time the document was indexed. If this field is set,
      * the document could be returned in search results.
@@ -113,9 +118,8 @@ class Document extends \Google\Protobuf\Internal\Message
      *     @type string $schema_id
      *           The identifier of the schema located in the same data store.
      *     @type \Google\Cloud\DiscoveryEngine\V1\Document\Content $content
-     *           The unstructured data linked to this document. Content must be set if this
-     *           document is under a
-     *           `CONTENT_REQUIRED` data store.
+     *           The unstructured data linked to this document. Content can only be set
+     *           and must be set if this document is under a `CONTENT_REQUIRED` data store.
      *     @type string $parent_document_id
      *           The identifier of the parent document. Currently supports at most two level
      *           document hierarchy.
@@ -124,6 +128,8 @@ class Document extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Struct $derived_struct_data
      *           Output only. This field is OUTPUT_ONLY.
      *           It contains derived data that are not in the original input document.
+     *     @type \Google\Cloud\DiscoveryEngine\V1\Document\AclInfo $acl_info
+     *           Access control information for the document.
      *     @type \Google\Protobuf\Timestamp $index_time
      *           Output only. The last time the document was indexed. If this field is set,
      *           the document could be returned in search results.
@@ -304,9 +310,8 @@ class Document extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The unstructured data linked to this document. Content must be set if this
-     * document is under a
-     * `CONTENT_REQUIRED` data store.
+     * The unstructured data linked to this document. Content can only be set
+     * and must be set if this document is under a `CONTENT_REQUIRED` data store.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Document.Content content = 10;</code>
      * @return \Google\Cloud\DiscoveryEngine\V1\Document\Content|null
@@ -327,9 +332,8 @@ class Document extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The unstructured data linked to this document. Content must be set if this
-     * document is under a
-     * `CONTENT_REQUIRED` data store.
+     * The unstructured data linked to this document. Content can only be set
+     * and must be set if this document is under a `CONTENT_REQUIRED` data store.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Document.Content content = 10;</code>
      * @param \Google\Cloud\DiscoveryEngine\V1\Document\Content $var
@@ -409,6 +413,42 @@ class Document extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Struct::class);
         $this->derived_struct_data = $var;
+
+        return $this;
+    }
+
+    /**
+     * Access control information for the document.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Document.AclInfo acl_info = 11;</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\Document\AclInfo|null
+     */
+    public function getAclInfo()
+    {
+        return $this->acl_info;
+    }
+
+    public function hasAclInfo()
+    {
+        return isset($this->acl_info);
+    }
+
+    public function clearAclInfo()
+    {
+        unset($this->acl_info);
+    }
+
+    /**
+     * Access control information for the document.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Document.AclInfo acl_info = 11;</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\Document\AclInfo $var
+     * @return $this
+     */
+    public function setAclInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\Document\AclInfo::class);
+        $this->acl_info = $var;
 
         return $this;
     }

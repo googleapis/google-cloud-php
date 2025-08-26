@@ -112,6 +112,18 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.RayOperatorConfig ray_operator_config = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $ray_operator_config = null;
+    /**
+     * Configuration for the High Scale Checkpointing add-on.
+     *
+     * Generated from protobuf field <code>.google.container.v1.HighScaleCheckpointingConfig high_scale_checkpointing_config = 22;</code>
+     */
+    protected $high_scale_checkpointing_config = null;
+    /**
+     * Configuration for the Lustre CSI driver.
+     *
+     * Generated from protobuf field <code>.google.container.v1.LustreCsiDriverConfig lustre_csi_driver_config = 23;</code>
+     */
+    protected $lustre_csi_driver_config = null;
 
     /**
      * Constructor.
@@ -158,6 +170,10 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
      *           Configuration for the Cloud Storage Parallelstore CSI driver.
      *     @type \Google\Cloud\Container\V1\RayOperatorConfig $ray_operator_config
      *           Optional. Configuration for Ray Operator addon.
+     *     @type \Google\Cloud\Container\V1\HighScaleCheckpointingConfig $high_scale_checkpointing_config
+     *           Configuration for the High Scale Checkpointing add-on.
+     *     @type \Google\Cloud\Container\V1\LustreCsiDriverConfig $lustre_csi_driver_config
+     *           Configuration for the Lustre CSI driver.
      * }
      */
     public function __construct($data = NULL) {
@@ -256,13 +272,17 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
      */
     public function getKubernetesDashboard()
     {
-        @trigger_error('kubernetes_dashboard is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->kubernetes_dashboard)) {
+            @trigger_error('kubernetes_dashboard is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->kubernetes_dashboard;
     }
 
     public function hasKubernetesDashboard()
     {
-        @trigger_error('kubernetes_dashboard is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->kubernetes_dashboard)) {
+            @trigger_error('kubernetes_dashboard is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->kubernetes_dashboard);
     }
 
@@ -693,6 +713,78 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\RayOperatorConfig::class);
         $this->ray_operator_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Configuration for the High Scale Checkpointing add-on.
+     *
+     * Generated from protobuf field <code>.google.container.v1.HighScaleCheckpointingConfig high_scale_checkpointing_config = 22;</code>
+     * @return \Google\Cloud\Container\V1\HighScaleCheckpointingConfig|null
+     */
+    public function getHighScaleCheckpointingConfig()
+    {
+        return $this->high_scale_checkpointing_config;
+    }
+
+    public function hasHighScaleCheckpointingConfig()
+    {
+        return isset($this->high_scale_checkpointing_config);
+    }
+
+    public function clearHighScaleCheckpointingConfig()
+    {
+        unset($this->high_scale_checkpointing_config);
+    }
+
+    /**
+     * Configuration for the High Scale Checkpointing add-on.
+     *
+     * Generated from protobuf field <code>.google.container.v1.HighScaleCheckpointingConfig high_scale_checkpointing_config = 22;</code>
+     * @param \Google\Cloud\Container\V1\HighScaleCheckpointingConfig $var
+     * @return $this
+     */
+    public function setHighScaleCheckpointingConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\HighScaleCheckpointingConfig::class);
+        $this->high_scale_checkpointing_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Configuration for the Lustre CSI driver.
+     *
+     * Generated from protobuf field <code>.google.container.v1.LustreCsiDriverConfig lustre_csi_driver_config = 23;</code>
+     * @return \Google\Cloud\Container\V1\LustreCsiDriverConfig|null
+     */
+    public function getLustreCsiDriverConfig()
+    {
+        return $this->lustre_csi_driver_config;
+    }
+
+    public function hasLustreCsiDriverConfig()
+    {
+        return isset($this->lustre_csi_driver_config);
+    }
+
+    public function clearLustreCsiDriverConfig()
+    {
+        unset($this->lustre_csi_driver_config);
+    }
+
+    /**
+     * Configuration for the Lustre CSI driver.
+     *
+     * Generated from protobuf field <code>.google.container.v1.LustreCsiDriverConfig lustre_csi_driver_config = 23;</code>
+     * @param \Google\Cloud\Container\V1\LustreCsiDriverConfig $var
+     * @return $this
+     */
+    public function setLustreCsiDriverConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\LustreCsiDriverConfig::class);
+        $this->lustre_csi_driver_config = $var;
 
         return $this;
     }
