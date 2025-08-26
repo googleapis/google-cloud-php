@@ -23,9 +23,10 @@ class LookerExploreReferences extends \Google\Protobuf\Internal\Message
     private $explore_references;
     /**
      * Optional. The credentials to use when calling the Looker API.
-     * Currently supports both oauth token and api keys based credentials, as
+     * Currently supports both OAuth token and API key-based credentials, as
      * described in
-     * https://cloud.google.com/looker/docs/api-auth#authentication_with_an_sdk
+     * [Authentication with an
+     * SDK](https://cloud.google.com/looker/docs/api-auth#authentication_with_an_sdk).
      *
      * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.Credentials credentials = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -41,9 +42,10 @@ class LookerExploreReferences extends \Google\Protobuf\Internal\Message
      *           Required. References to Looker explores.
      *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\Credentials $credentials
      *           Optional. The credentials to use when calling the Looker API.
-     *           Currently supports both oauth token and api keys based credentials, as
+     *           Currently supports both OAuth token and API key-based credentials, as
      *           described in
-     *           https://cloud.google.com/looker/docs/api-auth#authentication_with_an_sdk
+     *           [Authentication with an
+     *           SDK](https://cloud.google.com/looker/docs/api-auth#authentication_with_an_sdk).
      * }
      */
     public function __construct($data = NULL) {
@@ -79,9 +81,10 @@ class LookerExploreReferences extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The credentials to use when calling the Looker API.
-     * Currently supports both oauth token and api keys based credentials, as
+     * Currently supports both OAuth token and API key-based credentials, as
      * described in
-     * https://cloud.google.com/looker/docs/api-auth#authentication_with_an_sdk
+     * [Authentication with an
+     * SDK](https://cloud.google.com/looker/docs/api-auth#authentication_with_an_sdk).
      *
      * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.Credentials credentials = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\GeminiDataAnalytics\V1beta\Credentials|null
@@ -103,9 +106,10 @@ class LookerExploreReferences extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The credentials to use when calling the Looker API.
-     * Currently supports both oauth token and api keys based credentials, as
+     * Currently supports both OAuth token and API key-based credentials, as
      * described in
-     * https://cloud.google.com/looker/docs/api-auth#authentication_with_an_sdk
+     * [Authentication with an
+     * SDK](https://cloud.google.com/looker/docs/api-auth#authentication_with_an_sdk).
      *
      * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.Credentials credentials = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\GeminiDataAnalytics\V1beta\Credentials $var
