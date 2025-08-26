@@ -122,3 +122,31 @@ jobs:
               echo "Missing repositories for one or more new components"
               exit 1
           fi
+  next-release-label-check:
+    name: Check for "next release" labels
+    runs-on: ubuntu-latest
+    # if: github.event.pull_request.user.login == 'release-please[bot]'
+    steps:
+      - name: Check for "next release" label
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const { data: pulls } = await github.rest.pulls.list({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+            });
+
+            # check for open PRs which contain the 'next release' label
+            const openPRs = pulls.filter(pr =>
+              pr.labels.some(label => label.name === 'next release')
+            ).map(pr => `  - #${pr.number}: ${pr.title}`);
+
+            if (openPRs.length > 0) {
+              const errorMessage = 'Found "next release" label on the following open pull requests:\n'
+                + openPRs.join('\n')
+                + '. Please merge them before release.';
+              core.setFailed(errorMessage);
+            } else {
+              console.log('No "next release" label found on any open pull requests!');
+            }
