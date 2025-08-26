@@ -17,6 +17,10 @@
 
 namespace Google\Cloud\Core\Tests\Unit;
 
+use Google\ApiCore\Options\CallOptions;
+use Google\ApiCore\Serializer;
+use Google\ApiCore\Testing\MockRequest;
+use Google\Cloud\Core\Blob;
 use Google\Cloud\Core\Duration;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Tests\Unit\Stubs\ApiHelpersTraitImpl;
@@ -36,6 +40,7 @@ class ApiHelperTraitTest extends TestCase
     public function setUp(): void
     {
         $this->implementation = new ApiHelpersTraitImpl();
+        $this->implementation->serializer = new Serializer();
     }
 
     public function testFormatsTimestamp()
@@ -257,5 +262,115 @@ class ApiHelperTraitTest extends TestCase
                 ]
             ]
         ];
+    }
+
+    /**
+     * @dataProvider validateOptionsProvider
+     */
+    public function testValidateOptions($options, $optionTypes, $expected)
+    {
+        $this->assertEquals(
+            $expected,
+            $this->implementation->validateOptions($options, ...$optionTypes)
+        );
+    }
+
+    public function validateOptionsProvider()
+    {
+        return [
+            [
+                [
+                    'foo' => 'bar',
+                    'baz' => 'bat',
+                    'qux' => 'quux',
+                ],
+                [
+                    ['foo', 'baz', 'qux'],
+                ],
+                [
+                    [
+                        'foo' => 'bar',
+                        'baz' => 'bat',
+                        'qux' => 'quux',
+                    ],
+                ]
+            ],
+            [
+                [
+                    'pageToken' => 'bat',
+                    'qux' => 'quux',
+                    'timeoutMillis' => 123,
+                ],
+                [
+                    CallOptions::class,
+                    MockRequest::class,
+                    ['qux'],
+                ],
+                [
+                    ['timeoutMillis' => 123],
+                    ['pageToken' => 'bat'],
+                    ['qux' => 'quux'],
+                ]
+            ],
+            [
+                [
+                    'baz' => 'bat',
+                ],
+                [
+                    ['baz'],
+                    MockRequest::class,
+                    CallOptions::class,
+                ],
+                [
+                    ['baz' => 'bat'],
+                    [],
+                    [],
+                ]
+            ],
+            [
+                [
+                    'baz' => 'bat',
+                    'pageToken' => 'foo1',
+                ],
+                [
+                    ['baz'],
+                    new MockRequest(),
+                ],
+                [
+                    ['baz' => 'bat'],
+                    (new MockRequest())->setPageToken('foo1'),
+                ]
+            ],
+        ];
+    }
+
+    public function testValidateOptionsWithUnknownOptionThrowsException()
+    {
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage('Unexpected option(s) provided: bar');
+
+        $options = [
+            'foo' => 'bar',
+            'bar' => 'baz',
+        ];
+
+        $this->implementation->validateOptions($options, ['foo']);
+    }
+
+    public function testValidateOptionsWithUnknownClassIsIgnored()
+    {
+        $options = [
+            'foo' => 'bar',
+            'bar' => 'baz',
+        ];
+
+        [$blob, $validated] = $this->implementation->validateOptions(
+            $options,
+            Blob::class,
+            ['foo', 'bar']
+        );
+
+        $this->assertEquals([], $blob);
+        $this->assertEquals($options, $validated);
     }
 }
