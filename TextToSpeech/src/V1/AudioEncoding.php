@@ -15,7 +15,8 @@ use UnexpectedValueException;
 class AudioEncoding
 {
     /**
-     * Not specified. Will return result
+     * Not specified. Only used by GenerateVoiceCloningKey. Otherwise, will return
+     * result
      * [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT].
      *
      * Generated from protobuf enum <code>AUDIO_ENCODING_UNSPECIFIED = 0;</code>
@@ -65,6 +66,12 @@ class AudioEncoding
      * Generated from protobuf enum <code>PCM = 7;</code>
      */
     const PCM = 7;
+    /**
+     * M4A audio.
+     *
+     * Generated from protobuf enum <code>M4A = 8;</code>
+     */
+    const M4A = 8;
 
     private static $valueToName = [
         self::AUDIO_ENCODING_UNSPECIFIED => 'AUDIO_ENCODING_UNSPECIFIED',
@@ -74,6 +81,7 @@ class AudioEncoding
         self::MULAW => 'MULAW',
         self::ALAW => 'ALAW',
         self::PCM => 'PCM',
+        self::M4A => 'M4A',
     ];
 
     public static function name($value)
