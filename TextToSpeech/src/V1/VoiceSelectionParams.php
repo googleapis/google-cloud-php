@@ -65,6 +65,13 @@ class VoiceSelectionParams extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.texttospeech.v1.VoiceCloneParams voice_clone = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $voice_clone = null;
+    /**
+     * Optional. The name of the model. If set, the service will choose the model
+     * matching the specified configuration.
+     *
+     * Generated from protobuf field <code>string model_name = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $model_name = '';
 
     /**
      * Constructor.
@@ -102,6 +109,9 @@ class VoiceSelectionParams extends \Google\Protobuf\Internal\Message
      *           Optional. The configuration for a voice clone. If
      *           [VoiceCloneParams.voice_clone_key] is set, the service chooses the voice
      *           clone matching the specified configuration.
+     *     @type string $model_name
+     *           Optional. The name of the model. If set, the service will choose the model
+     *           matching the specified configuration.
      * }
      */
     public function __construct($data = NULL) {
@@ -295,6 +305,34 @@ class VoiceSelectionParams extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\TextToSpeech\V1\VoiceCloneParams::class);
         $this->voice_clone = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The name of the model. If set, the service will choose the model
+     * matching the specified configuration.
+     *
+     * Generated from protobuf field <code>string model_name = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getModelName()
+    {
+        return $this->model_name;
+    }
+
+    /**
+     * Optional. The name of the model. If set, the service will choose the model
+     * matching the specified configuration.
+     *
+     * Generated from protobuf field <code>string model_name = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setModelName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->model_name = $var;
 
         return $this;
     }
