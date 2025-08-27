@@ -75,7 +75,8 @@ class ListenTest extends FirestoreTestCase
     {
         $this->expectException(ApiException::class);
         $this->expectExceptionMessage(
-            'Missing required http header (\'google-cloud-resource-prefix\' or \'x-goog-request-params\') or query param \'database\'.'
+            'Missing required http header (\'google-cloud-resource-prefix\' or \'x-goog-request-params\')'
+            . ' or query param \'database\'.'
         );
         $database = sprintf(self::DATABASE, $this->projectId);
 
