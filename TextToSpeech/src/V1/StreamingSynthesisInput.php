@@ -15,6 +15,12 @@ use Google\Protobuf\Internal\GPBUtil;
  */
 class StreamingSynthesisInput extends \Google\Protobuf\Internal\Message
 {
+    /**
+     * This is system instruction supported only for controllable voice models.
+     *
+     * Generated from protobuf field <code>optional string prompt = 6;</code>
+     */
+    protected $prompt = null;
     protected $input_source;
 
     /**
@@ -30,6 +36,8 @@ class StreamingSynthesisInput extends \Google\Protobuf\Internal\Message
      *     @type string $markup
      *           Markup for HD voices specifically. This field may not be used with any
      *           other voices.
+     *     @type string $prompt
+     *           This is system instruction supported only for controllable voice models.
      * }
      */
     public function __construct($data = NULL) {
@@ -101,6 +109,42 @@ class StreamingSynthesisInput extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->writeOneof(5, $var);
+
+        return $this;
+    }
+
+    /**
+     * This is system instruction supported only for controllable voice models.
+     *
+     * Generated from protobuf field <code>optional string prompt = 6;</code>
+     * @return string
+     */
+    public function getPrompt()
+    {
+        return isset($this->prompt) ? $this->prompt : '';
+    }
+
+    public function hasPrompt()
+    {
+        return isset($this->prompt);
+    }
+
+    public function clearPrompt()
+    {
+        unset($this->prompt);
+    }
+
+    /**
+     * This is system instruction supported only for controllable voice models.
+     *
+     * Generated from protobuf field <code>optional string prompt = 6;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPrompt($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->prompt = $var;
 
         return $this;
     }
