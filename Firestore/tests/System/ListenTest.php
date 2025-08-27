@@ -55,6 +55,39 @@ class ListenTest extends FirestoreTestCase
 
         // Call the API and handle any network failures.
         /** @var BidiStream $stream */
+        $stream = $firestoreClient->listen([
+            'headers' => [
+                'x-goog-request-params' => [
+                    'database=' . $database
+                ]
+            ]
+        ]);
+        $stream->writeAll([$request,]);
+
+        /** @var ListenResponse $element */
+        foreach ($stream->closeWriteAndReadAll() as $element) {
+            // TODO: Assert something
+        }
+        $this->assertTrue(true);
+    }
+
+    public function testListenThrowsExceptionWithoutDatabaseHeader()
+    {
+        $this->expectException(ApiException::class);
+        $this->expectExceptionMessage(
+            'Missing required http header (\'google-cloud-resource-prefix\' or \'x-goog-request-params\') or query param \'database\'.'
+        );
+        $database = sprintf(self::DATABASE, $this->projectId);
+
+        // Create a client.
+        $firestoreClient = new FirestoreClient();
+
+        // Prepare the request message.
+        $request = (new ListenRequest())
+            ->setDatabase($database);
+
+        // Call the API and handle any network failures.
+        /** @var BidiStream $stream */
         $stream = $firestoreClient->listen();
         $stream->writeAll([$request,]);
 

@@ -21,7 +21,7 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
-      - run: ./.github/emulator/start-emulator.sh datastore 521.0.0-emulators
+      - run: ./.github/emulator/start-emulator.sh datastore 522.0.0-emulators
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
