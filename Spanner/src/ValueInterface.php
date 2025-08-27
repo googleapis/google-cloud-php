@@ -26,17 +26,17 @@ interface ValueInterface
     /**
      * @return int|string
      */
-    public function type();
+    public function type(): int|string;
 
     /**
      * @return mixed
      */
-    public function get();
+    public function get(): mixed;
 
     /**
      * @return string
      */
-    public function formatAsString();
+    public function formatAsString(): string;
 
     /**
      * @return string

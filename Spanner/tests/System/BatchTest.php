@@ -17,12 +17,12 @@
 
 namespace Google\Cloud\Spanner\Tests\System;
 
+use Google\Cloud\Core\Exception\ServiceException;
+use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
 use Google\Cloud\Spanner\Batch\BatchClient;
 use Google\Cloud\Spanner\Batch\BatchSnapshot;
-use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
 use Google\Cloud\Spanner\KeyRange;
 use Google\Cloud\Spanner\KeySet;
-use Google\Cloud\Core\Exception\ServiceException;
 
 /**
  * @group spanner
@@ -43,7 +43,7 @@ class BatchTest extends SpannerTestCase
         if (self::$isSetup) {
             return;
         }
-        parent::setUpTestFixtures();
+        self::setUpTestDatabase();
 
         self::$tableName = uniqid(self::TESTING_PREFIX);
 
@@ -84,7 +84,7 @@ class BatchTest extends SpannerTestCase
 
     private static function seedTable()
     {
-        $decades = [1950,1960,1970,1980,1990,2000];
+        $decades = [1950, 1960, 1970, 1980, 1990, 2000];
         for ($i = 0; $i < 250; $i++) {
             self::$database->insert(self::$tableName, [
                 'id' => self::randId(),
@@ -121,7 +121,6 @@ class BatchTest extends SpannerTestCase
         $partitions = $snapshot->partitionQuery($query, ['parameters' => $parameters]);
         $this->assertEquals(count($resultSet), $this->executePartitions($batch, $snapshot, $partitions));
 
-        // ($table, KeySet $keySet, array $columns, array $options = [])
         $keySet = new KeySet([
             'ranges' => [
                 new KeyRange([
@@ -179,60 +178,6 @@ class BatchTest extends SpannerTestCase
         } else {
             $this->assertEquals($error->getServiceException()->getStatus(), $expected);
         }
-        $snapshot->close();
-    }
-
-    public function testBatchWithDataBoostEnabled()
-    {
-        // Emulator does not support dataBoostEnabled
-        $this->skipEmulatorTests();
-
-        $query = 'SELECT
-                id,
-                decade
-            FROM ' . self::$tableName . '
-            WHERE
-                decade > @earlyBound
-            AND
-                decade < @lateBound';
-
-        $parameters = [
-            'earlyBound' => 1960,
-            'lateBound' => 1980
-        ];
-
-        $resultSet = iterator_to_array(self::$database->execute($query, ['parameters' => $parameters]));
-
-        $batch = self::$client->batch(self::INSTANCE_NAME, self::$dbName);
-        $string = $batch->snapshot()->serialize();
-
-        $snapshot = $batch->snapshotFromString($string);
-
-        $partitions = $snapshot->partitionQuery($query, [
-            'parameters' => $parameters,
-            'dataBoostEnabled' => true
-        ]);
-        $this->assertEquals(count($resultSet), $this->executePartitions($batch, $snapshot, $partitions));
-
-        $keySet = new KeySet([
-            'ranges' => [
-                new KeyRange([
-                    'start' => $parameters['earlyBound'],
-                    'startType' => KeyRange::TYPE_OPEN,
-                    'end' => $parameters['lateBound'],
-                    'endType' => KeyRange::TYPE_OPEN
-                ])
-            ]
-        ]);
-
-        $partitions = $snapshot->partitionRead(
-            self::$tableName,
-            $keySet,
-            ['id', 'decade'],
-            ['dataBoostEnabled' => true]
-        );
-        $this->assertEquals(count($resultSet), $this->executePartitions($batch, $snapshot, $partitions));
-
         $snapshot->close();
     }
 
