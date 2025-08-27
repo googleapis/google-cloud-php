@@ -127,5 +127,5 @@ jobs:
     name: Ensure no open PRs exist with the "next release" label
     uses: GoogleCloudPlatform/php-tools/.github/workflows/release-checks.yml@add-next-release-label-check
     # if: github.event.pull_request.user.login == 'release-please[bot]'
-    with:
-      next-release-label-check: true
+    # with:
+    #   next-release-label-check: false
