@@ -33,6 +33,11 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Shopping\Merchant\Accounts\V1\BatchCreateRegionsRequest;
+use Google\Shopping\Merchant\Accounts\V1\BatchCreateRegionsResponse;
+use Google\Shopping\Merchant\Accounts\V1\BatchDeleteRegionsRequest;
+use Google\Shopping\Merchant\Accounts\V1\BatchUpdateRegionsRequest;
+use Google\Shopping\Merchant\Accounts\V1\BatchUpdateRegionsResponse;
 use Google\Shopping\Merchant\Accounts\V1\CreateRegionRequest;
 use Google\Shopping\Merchant\Accounts\V1\DeleteRegionRequest;
 use Google\Shopping\Merchant\Accounts\V1\GetRegionRequest;
@@ -57,6 +62,9 @@ use Psr\Log\LoggerInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
+ * @method PromiseInterface<BatchCreateRegionsResponse> batchCreateRegionsAsync(BatchCreateRegionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> batchDeleteRegionsAsync(BatchDeleteRegionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchUpdateRegionsResponse> batchUpdateRegionsAsync(BatchUpdateRegionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Region> createRegionAsync(CreateRegionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteRegionAsync(DeleteRegionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Region> getRegionAsync(GetRegionRequest $request, array $optionalArgs = [])
@@ -244,6 +252,89 @@ final class RegionsServiceClient
 
         array_unshift($args, substr($method, 0, -5));
         return call_user_func_array([$this, 'startAsyncCall'], $args);
+    }
+
+    /**
+     * Creates one or more regions in your Merchant Center account.
+     * Executing this method requires admin access.
+     *
+     * The async variant is {@see RegionsServiceClient::batchCreateRegionsAsync()} .
+     *
+     * @example samples/V1/RegionsServiceClient/batch_create_regions.php
+     *
+     * @param BatchCreateRegionsRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchCreateRegionsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchCreateRegions(
+        BatchCreateRegionsRequest $request,
+        array $callOptions = []
+    ): BatchCreateRegionsResponse {
+        return $this->startApiCall('BatchCreateRegions', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes multiple regions by name from your Merchant Center account.
+     * Executing this method requires admin access.
+     *
+     * The async variant is {@see RegionsServiceClient::batchDeleteRegionsAsync()} .
+     *
+     * @example samples/V1/RegionsServiceClient/batch_delete_regions.php
+     *
+     * @param BatchDeleteRegionsRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchDeleteRegions(BatchDeleteRegionsRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('BatchDeleteRegions', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates one or more regions in your Merchant Center account.
+     * Executing this method requires admin access.
+     *
+     * The async variant is {@see RegionsServiceClient::batchUpdateRegionsAsync()} .
+     *
+     * @example samples/V1/RegionsServiceClient/batch_update_regions.php
+     *
+     * @param BatchUpdateRegionsRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchUpdateRegionsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchUpdateRegions(
+        BatchUpdateRegionsRequest $request,
+        array $callOptions = []
+    ): BatchUpdateRegionsResponse {
+        return $this->startApiCall('BatchUpdateRegions', $request, $callOptions)->wait();
     }
 
     /**
