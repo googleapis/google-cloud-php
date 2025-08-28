@@ -755,7 +755,7 @@ class LoadJobConfiguration implements JobConfigurationInterface
      *
      * Example:
      * ```
-     * $loadJobConfig->dateFormat('%Y-%m-%d');
+     * $loadJobConfig->dateFormat('YYYY-MM-DD');
      * ```
      *
      * @param string $dateFormat The date format string.
@@ -773,7 +773,7 @@ class LoadJobConfiguration implements JobConfigurationInterface
      *
      * Example:
      * ```
-     * $loadJobConfig->datetimeFormat('%Y-%m-%d %H:%M:%S');
+     * $loadJobConfig->datetimeFormat('YYYY-MM-DD HH24:MI:SS');
      * ```
      *
      * @param string $datetimeFormat The datetime format string.
@@ -993,7 +993,7 @@ class LoadJobConfiguration implements JobConfigurationInterface
      *
      * Example:
      * ```
-     * $loadJobConfig->timeFormat('%H:%M:%S');
+     * $loadJobConfig->timeFormat('HH24:MI:SS');
      * ```
      *
      * @param string $timeFormat The time format string.
@@ -1030,7 +1030,7 @@ class LoadJobConfiguration implements JobConfigurationInterface
      *
      * Example:
      * ```
-     * $loadJobConfig->timestampFormat('%Y-%m-%d %H:%M:%S%F');
+     * $loadJobConfig->timestampFormat('YYYY-MM-DD HH24:MI:SS.FF3 TZH');
      * ```
      *
      * @param string $timestampFormat The timestamp format string.
