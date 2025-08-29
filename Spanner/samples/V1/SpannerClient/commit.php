@@ -36,8 +36,8 @@ use Google\Cloud\Spanner\V1\Mutation;
  * `Commit` might return an `ABORTED` error. This can occur at any time;
  * commonly, the cause is conflicts with concurrent
  * transactions. However, it can also happen for a variety of other
- * reasons. If `Commit` returns `ABORTED`, the caller should re-attempt
- * the transaction from the beginning, re-using the same session.
+ * reasons. If `Commit` returns `ABORTED`, the caller should retry
+ * the transaction from the beginning, reusing the same session.
  *
  * On very rare occasions, `Commit` might return `UNKNOWN`. This can happen,
  * for example, if the client job experiences a 1+ hour networking failure.

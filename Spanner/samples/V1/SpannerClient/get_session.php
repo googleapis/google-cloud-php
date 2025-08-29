@@ -29,7 +29,7 @@ use Google\Cloud\Spanner\V1\GetSessionRequest;
 use Google\Cloud\Spanner\V1\Session;
 
 /**
- * Gets a session. Returns `NOT_FOUND` if the session does not exist.
+ * Gets a session. Returns `NOT_FOUND` if the session doesn't exist.
  * This is mainly useful for determining whether a session is still
  * alive.
  *

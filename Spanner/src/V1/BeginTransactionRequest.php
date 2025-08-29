@@ -31,7 +31,7 @@ class BeginTransactionRequest extends \Google\Protobuf\Internal\Message
     /**
      * Common options for this request.
      * Priority is ignored for this request. Setting the priority in this
-     * request_options struct will not do anything. To set the priority for a
+     * `request_options` struct doesn't do anything. To set the priority for a
      * transaction, set it on the reads and writes that are part of this
      * transaction instead.
      *
@@ -40,11 +40,9 @@ class BeginTransactionRequest extends \Google\Protobuf\Internal\Message
     private $request_options = null;
     /**
      * Optional. Required for read-write transactions on a multiplexed session
-     * that commit mutations but do not perform any reads or queries. Clients
-     * should randomly select one of the mutations from the mutation set and send
-     * it as a part of this request.
-     * This feature is not yet supported and will result in an UNIMPLEMENTED
-     * error.
+     * that commit mutations but don't perform any reads or queries. You must
+     * randomly select one of the mutations from the mutation set and send it as a
+     * part of this request.
      *
      * Generated from protobuf field <code>.google.spanner.v1.Mutation mutation_key = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -79,16 +77,14 @@ class BeginTransactionRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Spanner\V1\RequestOptions $request_options
      *           Common options for this request.
      *           Priority is ignored for this request. Setting the priority in this
-     *           request_options struct will not do anything. To set the priority for a
+     *           `request_options` struct doesn't do anything. To set the priority for a
      *           transaction, set it on the reads and writes that are part of this
      *           transaction instead.
      *     @type \Google\Cloud\Spanner\V1\Mutation $mutation_key
      *           Optional. Required for read-write transactions on a multiplexed session
-     *           that commit mutations but do not perform any reads or queries. Clients
-     *           should randomly select one of the mutations from the mutation set and send
-     *           it as a part of this request.
-     *           This feature is not yet supported and will result in an UNIMPLEMENTED
-     *           error.
+     *           that commit mutations but don't perform any reads or queries. You must
+     *           randomly select one of the mutations from the mutation set and send it as a
+     *           part of this request.
      * }
      */
     public function __construct($data = NULL) {
@@ -161,7 +157,7 @@ class BeginTransactionRequest extends \Google\Protobuf\Internal\Message
     /**
      * Common options for this request.
      * Priority is ignored for this request. Setting the priority in this
-     * request_options struct will not do anything. To set the priority for a
+     * `request_options` struct doesn't do anything. To set the priority for a
      * transaction, set it on the reads and writes that are part of this
      * transaction instead.
      *
@@ -186,7 +182,7 @@ class BeginTransactionRequest extends \Google\Protobuf\Internal\Message
     /**
      * Common options for this request.
      * Priority is ignored for this request. Setting the priority in this
-     * request_options struct will not do anything. To set the priority for a
+     * `request_options` struct doesn't do anything. To set the priority for a
      * transaction, set it on the reads and writes that are part of this
      * transaction instead.
      *
@@ -204,11 +200,9 @@ class BeginTransactionRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Required for read-write transactions on a multiplexed session
-     * that commit mutations but do not perform any reads or queries. Clients
-     * should randomly select one of the mutations from the mutation set and send
-     * it as a part of this request.
-     * This feature is not yet supported and will result in an UNIMPLEMENTED
-     * error.
+     * that commit mutations but don't perform any reads or queries. You must
+     * randomly select one of the mutations from the mutation set and send it as a
+     * part of this request.
      *
      * Generated from protobuf field <code>.google.spanner.v1.Mutation mutation_key = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Spanner\V1\Mutation|null
@@ -230,11 +224,9 @@ class BeginTransactionRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Required for read-write transactions on a multiplexed session
-     * that commit mutations but do not perform any reads or queries. Clients
-     * should randomly select one of the mutations from the mutation set and send
-     * it as a part of this request.
-     * This feature is not yet supported and will result in an UNIMPLEMENTED
-     * error.
+     * that commit mutations but don't perform any reads or queries. You must
+     * randomly select one of the mutations from the mutation set and send it as a
+     * part of this request.
      *
      * Generated from protobuf field <code>.google.spanner.v1.Mutation mutation_key = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Spanner\V1\Mutation $var

@@ -27,7 +27,7 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      * For queries, if none is provided, the default is a temporary read-only
      * transaction with strong concurrency.
      * Standard DML statements require a read-write transaction. To protect
-     * against replays, single-use transactions are not supported.  The caller
+     * against replays, single-use transactions are not supported. The caller
      * must either supply an existing transaction ID or begin a new transaction.
      * Partitioned DML requires an existing Partitioned DML transaction ID.
      *
@@ -46,20 +46,20 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      * parameter name (for example, `&#64;firstName`). Parameter names must conform
      * to the naming requirements of identifiers as specified at
      * https://cloud.google.com/spanner/docs/lexical#identifiers.
-     * Parameters can appear anywhere that a literal value is expected.  The same
+     * Parameters can appear anywhere that a literal value is expected. The same
      * parameter name can be used more than once, for example:
      * `"WHERE id > &#64;msg_id AND id < &#64;msg_id + 100"`
-     * It is an error to execute a SQL statement with unbound parameters.
+     * It's an error to execute a SQL statement with unbound parameters.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct params = 4;</code>
      */
     private $params = null;
     /**
-     * It is not always possible for Cloud Spanner to infer the right SQL type
-     * from a JSON value.  For example, values of type `BYTES` and values
+     * It isn't always possible for Cloud Spanner to infer the right SQL type
+     * from a JSON value. For example, values of type `BYTES` and values
      * of type `STRING` both appear in
      * [params][google.spanner.v1.ExecuteSqlRequest.params] as JSON strings.
-     * In these cases, `param_types` can be used to specify the exact
+     * In these cases, you can use `param_types` to specify the exact
      * SQL type for some or all of the SQL statement parameters. See the
      * definition of [Type][google.spanner.v1.Type] for more information
      * about SQL types.
@@ -90,10 +90,10 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      */
     private $query_mode = 0;
     /**
-     * If present, results will be restricted to the specified partition
-     * previously created using PartitionQuery().  There must be an exact
+     * If present, results are restricted to the specified partition
+     * previously created using `PartitionQuery`. There must be an exact
      * match for the values of fields common to this message and the
-     * PartitionQueryRequest message used to create this partition_token.
+     * `PartitionQueryRequest` message used to create this `partition_token`.
      *
      * Generated from protobuf field <code>bytes partition_token = 8;</code>
      */
@@ -101,11 +101,11 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
     /**
      * A per-transaction sequence number used to identify this request. This field
      * makes each request idempotent such that if the request is received multiple
-     * times, at most one will succeed.
+     * times, at most one succeeds.
      * The sequence number must be monotonically increasing within the
      * transaction. If a request arrives for the first time with an out-of-order
-     * sequence number, the transaction may be aborted. Replays of previously
-     * handled requests will yield the same response as the first execution.
+     * sequence number, the transaction can be aborted. Replays of previously
+     * handled requests yield the same response as the first execution.
      * Required for DML statements. Ignored for queries.
      *
      * Generated from protobuf field <code>int64 seqno = 9;</code>
@@ -132,21 +132,21 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
     /**
      * If this is for a partitioned query and this field is set to `true`, the
      * request is executed with Spanner Data Boost independent compute resources.
-     * If the field is set to `true` but the request does not set
+     * If the field is set to `true` but the request doesn't set
      * `partition_token`, the API returns an `INVALID_ARGUMENT` error.
      *
      * Generated from protobuf field <code>bool data_boost_enabled = 16;</code>
      */
     private $data_boost_enabled = false;
     /**
-     * Optional. If set to true, this statement marks the end of the transaction.
-     * The transaction should be committed or aborted after this statement
-     * executes, and attempts to execute any other requests against this
-     * transaction (including reads and queries) will be rejected.
-     * For DML statements, setting this option may cause some error reporting to
-     * be deferred until commit time (e.g. validation of unique constraints).
-     * Given this, successful execution of a DML statement should not be assumed
-     * until a subsequent Commit call completes successfully.
+     * Optional. If set to `true`, this statement marks the end of the
+     * transaction. After this statement executes, you must commit or abort the
+     * transaction. Attempts to execute any other requests against this
+     * transaction (including reads and queries) are rejected.
+     * For DML statements, setting this option might cause some error reporting to
+     * be deferred until commit time (for example, validation of unique
+     * constraints). Given this, successful execution of a DML statement shouldn't
+     * be assumed until a subsequent `Commit` call completes successfully.
      *
      * Generated from protobuf field <code>bool last_statement = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -165,7 +165,7 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      *           For queries, if none is provided, the default is a temporary read-only
      *           transaction with strong concurrency.
      *           Standard DML statements require a read-write transaction. To protect
-     *           against replays, single-use transactions are not supported.  The caller
+     *           against replays, single-use transactions are not supported. The caller
      *           must either supply an existing transaction ID or begin a new transaction.
      *           Partitioned DML requires an existing Partitioned DML transaction ID.
      *     @type string $sql
@@ -176,16 +176,16 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      *           parameter name (for example, `&#64;firstName`). Parameter names must conform
      *           to the naming requirements of identifiers as specified at
      *           https://cloud.google.com/spanner/docs/lexical#identifiers.
-     *           Parameters can appear anywhere that a literal value is expected.  The same
+     *           Parameters can appear anywhere that a literal value is expected. The same
      *           parameter name can be used more than once, for example:
      *           `"WHERE id > &#64;msg_id AND id < &#64;msg_id + 100"`
-     *           It is an error to execute a SQL statement with unbound parameters.
+     *           It's an error to execute a SQL statement with unbound parameters.
      *     @type array|\Google\Protobuf\Internal\MapField $param_types
-     *           It is not always possible for Cloud Spanner to infer the right SQL type
-     *           from a JSON value.  For example, values of type `BYTES` and values
+     *           It isn't always possible for Cloud Spanner to infer the right SQL type
+     *           from a JSON value. For example, values of type `BYTES` and values
      *           of type `STRING` both appear in
      *           [params][google.spanner.v1.ExecuteSqlRequest.params] as JSON strings.
-     *           In these cases, `param_types` can be used to specify the exact
+     *           In these cases, you can use `param_types` to specify the exact
      *           SQL type for some or all of the SQL statement parameters. See the
      *           definition of [Type][google.spanner.v1.Type] for more information
      *           about SQL types.
@@ -204,18 +204,18 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      *           be set to
      *           [QueryMode.NORMAL][google.spanner.v1.ExecuteSqlRequest.QueryMode.NORMAL].
      *     @type string $partition_token
-     *           If present, results will be restricted to the specified partition
-     *           previously created using PartitionQuery().  There must be an exact
+     *           If present, results are restricted to the specified partition
+     *           previously created using `PartitionQuery`. There must be an exact
      *           match for the values of fields common to this message and the
-     *           PartitionQueryRequest message used to create this partition_token.
+     *           `PartitionQueryRequest` message used to create this `partition_token`.
      *     @type int|string $seqno
      *           A per-transaction sequence number used to identify this request. This field
      *           makes each request idempotent such that if the request is received multiple
-     *           times, at most one will succeed.
+     *           times, at most one succeeds.
      *           The sequence number must be monotonically increasing within the
      *           transaction. If a request arrives for the first time with an out-of-order
-     *           sequence number, the transaction may be aborted. Replays of previously
-     *           handled requests will yield the same response as the first execution.
+     *           sequence number, the transaction can be aborted. Replays of previously
+     *           handled requests yield the same response as the first execution.
      *           Required for DML statements. Ignored for queries.
      *     @type \Google\Cloud\Spanner\V1\ExecuteSqlRequest\QueryOptions $query_options
      *           Query optimizer configuration to use for the given query.
@@ -226,17 +226,17 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      *     @type bool $data_boost_enabled
      *           If this is for a partitioned query and this field is set to `true`, the
      *           request is executed with Spanner Data Boost independent compute resources.
-     *           If the field is set to `true` but the request does not set
+     *           If the field is set to `true` but the request doesn't set
      *           `partition_token`, the API returns an `INVALID_ARGUMENT` error.
      *     @type bool $last_statement
-     *           Optional. If set to true, this statement marks the end of the transaction.
-     *           The transaction should be committed or aborted after this statement
-     *           executes, and attempts to execute any other requests against this
-     *           transaction (including reads and queries) will be rejected.
-     *           For DML statements, setting this option may cause some error reporting to
-     *           be deferred until commit time (e.g. validation of unique constraints).
-     *           Given this, successful execution of a DML statement should not be assumed
-     *           until a subsequent Commit call completes successfully.
+     *           Optional. If set to `true`, this statement marks the end of the
+     *           transaction. After this statement executes, you must commit or abort the
+     *           transaction. Attempts to execute any other requests against this
+     *           transaction (including reads and queries) are rejected.
+     *           For DML statements, setting this option might cause some error reporting to
+     *           be deferred until commit time (for example, validation of unique
+     *           constraints). Given this, successful execution of a DML statement shouldn't
+     *           be assumed until a subsequent `Commit` call completes successfully.
      * }
      */
     public function __construct($data = NULL) {
@@ -275,7 +275,7 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      * For queries, if none is provided, the default is a temporary read-only
      * transaction with strong concurrency.
      * Standard DML statements require a read-write transaction. To protect
-     * against replays, single-use transactions are not supported.  The caller
+     * against replays, single-use transactions are not supported. The caller
      * must either supply an existing transaction ID or begin a new transaction.
      * Partitioned DML requires an existing Partitioned DML transaction ID.
      *
@@ -302,7 +302,7 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      * For queries, if none is provided, the default is a temporary read-only
      * transaction with strong concurrency.
      * Standard DML statements require a read-write transaction. To protect
-     * against replays, single-use transactions are not supported.  The caller
+     * against replays, single-use transactions are not supported. The caller
      * must either supply an existing transaction ID or begin a new transaction.
      * Partitioned DML requires an existing Partitioned DML transaction ID.
      *
@@ -350,10 +350,10 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      * parameter name (for example, `&#64;firstName`). Parameter names must conform
      * to the naming requirements of identifiers as specified at
      * https://cloud.google.com/spanner/docs/lexical#identifiers.
-     * Parameters can appear anywhere that a literal value is expected.  The same
+     * Parameters can appear anywhere that a literal value is expected. The same
      * parameter name can be used more than once, for example:
      * `"WHERE id > &#64;msg_id AND id < &#64;msg_id + 100"`
-     * It is an error to execute a SQL statement with unbound parameters.
+     * It's an error to execute a SQL statement with unbound parameters.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct params = 4;</code>
      * @return \Google\Protobuf\Struct|null
@@ -379,10 +379,10 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      * parameter name (for example, `&#64;firstName`). Parameter names must conform
      * to the naming requirements of identifiers as specified at
      * https://cloud.google.com/spanner/docs/lexical#identifiers.
-     * Parameters can appear anywhere that a literal value is expected.  The same
+     * Parameters can appear anywhere that a literal value is expected. The same
      * parameter name can be used more than once, for example:
      * `"WHERE id > &#64;msg_id AND id < &#64;msg_id + 100"`
-     * It is an error to execute a SQL statement with unbound parameters.
+     * It's an error to execute a SQL statement with unbound parameters.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct params = 4;</code>
      * @param \Google\Protobuf\Struct $var
@@ -397,11 +397,11 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * It is not always possible for Cloud Spanner to infer the right SQL type
-     * from a JSON value.  For example, values of type `BYTES` and values
+     * It isn't always possible for Cloud Spanner to infer the right SQL type
+     * from a JSON value. For example, values of type `BYTES` and values
      * of type `STRING` both appear in
      * [params][google.spanner.v1.ExecuteSqlRequest.params] as JSON strings.
-     * In these cases, `param_types` can be used to specify the exact
+     * In these cases, you can use `param_types` to specify the exact
      * SQL type for some or all of the SQL statement parameters. See the
      * definition of [Type][google.spanner.v1.Type] for more information
      * about SQL types.
@@ -415,11 +415,11 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * It is not always possible for Cloud Spanner to infer the right SQL type
-     * from a JSON value.  For example, values of type `BYTES` and values
+     * It isn't always possible for Cloud Spanner to infer the right SQL type
+     * from a JSON value. For example, values of type `BYTES` and values
      * of type `STRING` both appear in
      * [params][google.spanner.v1.ExecuteSqlRequest.params] as JSON strings.
-     * In these cases, `param_types` can be used to specify the exact
+     * In these cases, you can use `param_types` to specify the exact
      * SQL type for some or all of the SQL statement parameters. See the
      * definition of [Type][google.spanner.v1.Type] for more information
      * about SQL types.
@@ -509,10 +509,10 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If present, results will be restricted to the specified partition
-     * previously created using PartitionQuery().  There must be an exact
+     * If present, results are restricted to the specified partition
+     * previously created using `PartitionQuery`. There must be an exact
      * match for the values of fields common to this message and the
-     * PartitionQueryRequest message used to create this partition_token.
+     * `PartitionQueryRequest` message used to create this `partition_token`.
      *
      * Generated from protobuf field <code>bytes partition_token = 8;</code>
      * @return string
@@ -523,10 +523,10 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If present, results will be restricted to the specified partition
-     * previously created using PartitionQuery().  There must be an exact
+     * If present, results are restricted to the specified partition
+     * previously created using `PartitionQuery`. There must be an exact
      * match for the values of fields common to this message and the
-     * PartitionQueryRequest message used to create this partition_token.
+     * `PartitionQueryRequest` message used to create this `partition_token`.
      *
      * Generated from protobuf field <code>bytes partition_token = 8;</code>
      * @param string $var
@@ -543,11 +543,11 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
     /**
      * A per-transaction sequence number used to identify this request. This field
      * makes each request idempotent such that if the request is received multiple
-     * times, at most one will succeed.
+     * times, at most one succeeds.
      * The sequence number must be monotonically increasing within the
      * transaction. If a request arrives for the first time with an out-of-order
-     * sequence number, the transaction may be aborted. Replays of previously
-     * handled requests will yield the same response as the first execution.
+     * sequence number, the transaction can be aborted. Replays of previously
+     * handled requests yield the same response as the first execution.
      * Required for DML statements. Ignored for queries.
      *
      * Generated from protobuf field <code>int64 seqno = 9;</code>
@@ -561,11 +561,11 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
     /**
      * A per-transaction sequence number used to identify this request. This field
      * makes each request idempotent such that if the request is received multiple
-     * times, at most one will succeed.
+     * times, at most one succeeds.
      * The sequence number must be monotonically increasing within the
      * transaction. If a request arrives for the first time with an out-of-order
-     * sequence number, the transaction may be aborted. Replays of previously
-     * handled requests will yield the same response as the first execution.
+     * sequence number, the transaction can be aborted. Replays of previously
+     * handled requests yield the same response as the first execution.
      * Required for DML statements. Ignored for queries.
      *
      * Generated from protobuf field <code>int64 seqno = 9;</code>
@@ -691,7 +691,7 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
     /**
      * If this is for a partitioned query and this field is set to `true`, the
      * request is executed with Spanner Data Boost independent compute resources.
-     * If the field is set to `true` but the request does not set
+     * If the field is set to `true` but the request doesn't set
      * `partition_token`, the API returns an `INVALID_ARGUMENT` error.
      *
      * Generated from protobuf field <code>bool data_boost_enabled = 16;</code>
@@ -705,7 +705,7 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
     /**
      * If this is for a partitioned query and this field is set to `true`, the
      * request is executed with Spanner Data Boost independent compute resources.
-     * If the field is set to `true` but the request does not set
+     * If the field is set to `true` but the request doesn't set
      * `partition_token`, the API returns an `INVALID_ARGUMENT` error.
      *
      * Generated from protobuf field <code>bool data_boost_enabled = 16;</code>
@@ -721,14 +721,14 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If set to true, this statement marks the end of the transaction.
-     * The transaction should be committed or aborted after this statement
-     * executes, and attempts to execute any other requests against this
-     * transaction (including reads and queries) will be rejected.
-     * For DML statements, setting this option may cause some error reporting to
-     * be deferred until commit time (e.g. validation of unique constraints).
-     * Given this, successful execution of a DML statement should not be assumed
-     * until a subsequent Commit call completes successfully.
+     * Optional. If set to `true`, this statement marks the end of the
+     * transaction. After this statement executes, you must commit or abort the
+     * transaction. Attempts to execute any other requests against this
+     * transaction (including reads and queries) are rejected.
+     * For DML statements, setting this option might cause some error reporting to
+     * be deferred until commit time (for example, validation of unique
+     * constraints). Given this, successful execution of a DML statement shouldn't
+     * be assumed until a subsequent `Commit` call completes successfully.
      *
      * Generated from protobuf field <code>bool last_statement = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -739,14 +739,14 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If set to true, this statement marks the end of the transaction.
-     * The transaction should be committed or aborted after this statement
-     * executes, and attempts to execute any other requests against this
-     * transaction (including reads and queries) will be rejected.
-     * For DML statements, setting this option may cause some error reporting to
-     * be deferred until commit time (e.g. validation of unique constraints).
-     * Given this, successful execution of a DML statement should not be assumed
-     * until a subsequent Commit call completes successfully.
+     * Optional. If set to `true`, this statement marks the end of the
+     * transaction. After this statement executes, you must commit or abort the
+     * transaction. Attempts to execute any other requests against this
+     * transaction (including reads and queries) are rejected.
+     * For DML statements, setting this option might cause some error reporting to
+     * be deferred until commit time (for example, validation of unique
+     * constraints). Given this, successful execution of a DML statement shouldn't
+     * be assumed until a subsequent `Commit` call completes successfully.
      *
      * Generated from protobuf field <code>bool last_statement = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var

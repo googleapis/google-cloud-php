@@ -49,12 +49,12 @@ use Google\Cloud\Spanner\V1\TransactionSelector;
  * @param string $statementsSql    The DML string.
  * @param int    $seqno            A per-transaction sequence number used to identify this request.
  *                                 This field makes each request idempotent such that if the request is
- *                                 received multiple times, at most one will succeed.
+ *                                 received multiple times, at most one succeeds.
  *
  *                                 The sequence number must be monotonically increasing within the
  *                                 transaction. If a request arrives for the first time with an out-of-order
- *                                 sequence number, the transaction may be aborted. Replays of previously
- *                                 handled requests will yield the same response as the first execution.
+ *                                 sequence number, the transaction might be aborted. Replays of previously
+ *                                 handled requests yield the same response as the first execution.
  */
 function execute_batch_dml_sample(
     string $formattedSession,

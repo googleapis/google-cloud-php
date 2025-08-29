@@ -9,10 +9,10 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The DirectedReadOptions can be used to indicate which replicas or regions
+ * The `DirectedReadOptions` can be used to indicate which replicas or regions
  * should be used for non-transactional reads or queries.
- * DirectedReadOptions may only be specified for a read-only transaction,
- * otherwise the API will return an `INVALID_ARGUMENT` error.
+ * `DirectedReadOptions` can only be specified for a read-only transaction,
+ * otherwise the API returns an `INVALID_ARGUMENT` error.
  *
  * Generated from protobuf message <code>google.spanner.v1.DirectedReadOptions</code>
  */
@@ -27,14 +27,14 @@ class DirectedReadOptions extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Spanner\V1\DirectedReadOptions\IncludeReplicas $include_replicas
-     *           Include_replicas indicates the order of replicas (as they appear in
-     *           this list) to process the request. If auto_failover_disabled is set to
-     *           true and all replicas are exhausted without finding a healthy replica,
-     *           Spanner will wait for a replica in the list to become available, requests
-     *           may fail due to `DEADLINE_EXCEEDED` errors.
+     *           `Include_replicas` indicates the order of replicas (as they appear in
+     *           this list) to process the request. If `auto_failover_disabled` is set to
+     *           `true` and all replicas are exhausted without finding a healthy replica,
+     *           Spanner waits for a replica in the list to become available, requests
+     *           might fail due to `DEADLINE_EXCEEDED` errors.
      *     @type \Google\Cloud\Spanner\V1\DirectedReadOptions\ExcludeReplicas $exclude_replicas
-     *           Exclude_replicas indicates that specified replicas should be excluded
-     *           from serving requests. Spanner will not route requests to the replicas
+     *           `Exclude_replicas` indicates that specified replicas should be excluded
+     *           from serving requests. Spanner doesn't route requests to the replicas
      *           in this list.
      * }
      */
@@ -44,11 +44,11 @@ class DirectedReadOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Include_replicas indicates the order of replicas (as they appear in
-     * this list) to process the request. If auto_failover_disabled is set to
-     * true and all replicas are exhausted without finding a healthy replica,
-     * Spanner will wait for a replica in the list to become available, requests
-     * may fail due to `DEADLINE_EXCEEDED` errors.
+     * `Include_replicas` indicates the order of replicas (as they appear in
+     * this list) to process the request. If `auto_failover_disabled` is set to
+     * `true` and all replicas are exhausted without finding a healthy replica,
+     * Spanner waits for a replica in the list to become available, requests
+     * might fail due to `DEADLINE_EXCEEDED` errors.
      *
      * Generated from protobuf field <code>.google.spanner.v1.DirectedReadOptions.IncludeReplicas include_replicas = 1;</code>
      * @return \Google\Cloud\Spanner\V1\DirectedReadOptions\IncludeReplicas|null
@@ -64,11 +64,11 @@ class DirectedReadOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Include_replicas indicates the order of replicas (as they appear in
-     * this list) to process the request. If auto_failover_disabled is set to
-     * true and all replicas are exhausted without finding a healthy replica,
-     * Spanner will wait for a replica in the list to become available, requests
-     * may fail due to `DEADLINE_EXCEEDED` errors.
+     * `Include_replicas` indicates the order of replicas (as they appear in
+     * this list) to process the request. If `auto_failover_disabled` is set to
+     * `true` and all replicas are exhausted without finding a healthy replica,
+     * Spanner waits for a replica in the list to become available, requests
+     * might fail due to `DEADLINE_EXCEEDED` errors.
      *
      * Generated from protobuf field <code>.google.spanner.v1.DirectedReadOptions.IncludeReplicas include_replicas = 1;</code>
      * @param \Google\Cloud\Spanner\V1\DirectedReadOptions\IncludeReplicas $var
@@ -83,8 +83,8 @@ class DirectedReadOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Exclude_replicas indicates that specified replicas should be excluded
-     * from serving requests. Spanner will not route requests to the replicas
+     * `Exclude_replicas` indicates that specified replicas should be excluded
+     * from serving requests. Spanner doesn't route requests to the replicas
      * in this list.
      *
      * Generated from protobuf field <code>.google.spanner.v1.DirectedReadOptions.ExcludeReplicas exclude_replicas = 2;</code>
@@ -101,8 +101,8 @@ class DirectedReadOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Exclude_replicas indicates that specified replicas should be excluded
-     * from serving requests. Spanner will not route requests to the replicas
+     * `Exclude_replicas` indicates that specified replicas should be excluded
+     * from serving requests. Spanner doesn't route requests to the replicas
      * in this list.
      *
      * Generated from protobuf field <code>.google.spanner.v1.DirectedReadOptions.ExcludeReplicas exclude_replicas = 2;</code>

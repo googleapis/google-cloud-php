@@ -25,7 +25,7 @@ class QueryOptions extends \Google\Protobuf\Internal\Message
      * positive integer (from the list of supported optimizer versions)
      * overrides the default optimizer version for query execution.
      * The list of supported optimizer versions can be queried from
-     * SPANNER_SYS.SUPPORTED_OPTIMIZER_VERSIONS.
+     * `SPANNER_SYS.SUPPORTED_OPTIMIZER_VERSIONS`.
      * Executing a SQL statement with an invalid optimizer version fails with
      * an `INVALID_ARGUMENT` error.
      * See
@@ -43,11 +43,11 @@ class QueryOptions extends \Google\Protobuf\Internal\Message
      * Specifying `latest` as a value instructs Cloud Spanner to use the latest
      * generated statistics package. If not specified, Cloud Spanner uses
      * the statistics package set at the database level options, or the latest
-     * package if the database option is not set.
+     * package if the database option isn't set.
      * The statistics package requested by the query has to be exempt from
      * garbage collection. This can be achieved with the following DDL
      * statement:
-     * ```
+     * ```sql
      * ALTER STATISTICS <package_name> SET OPTIONS (allow_gc=false)
      * ```
      * The list of available statistics packages can be queried from
@@ -76,7 +76,7 @@ class QueryOptions extends \Google\Protobuf\Internal\Message
      *           positive integer (from the list of supported optimizer versions)
      *           overrides the default optimizer version for query execution.
      *           The list of supported optimizer versions can be queried from
-     *           SPANNER_SYS.SUPPORTED_OPTIMIZER_VERSIONS.
+     *           `SPANNER_SYS.SUPPORTED_OPTIMIZER_VERSIONS`.
      *           Executing a SQL statement with an invalid optimizer version fails with
      *           an `INVALID_ARGUMENT` error.
      *           See
@@ -90,11 +90,11 @@ class QueryOptions extends \Google\Protobuf\Internal\Message
      *           Specifying `latest` as a value instructs Cloud Spanner to use the latest
      *           generated statistics package. If not specified, Cloud Spanner uses
      *           the statistics package set at the database level options, or the latest
-     *           package if the database option is not set.
+     *           package if the database option isn't set.
      *           The statistics package requested by the query has to be exempt from
      *           garbage collection. This can be achieved with the following DDL
      *           statement:
-     *           ```
+     *           ```sql
      *           ALTER STATISTICS <package_name> SET OPTIONS (allow_gc=false)
      *           ```
      *           The list of available statistics packages can be queried from
@@ -119,7 +119,7 @@ class QueryOptions extends \Google\Protobuf\Internal\Message
      * positive integer (from the list of supported optimizer versions)
      * overrides the default optimizer version for query execution.
      * The list of supported optimizer versions can be queried from
-     * SPANNER_SYS.SUPPORTED_OPTIMIZER_VERSIONS.
+     * `SPANNER_SYS.SUPPORTED_OPTIMIZER_VERSIONS`.
      * Executing a SQL statement with an invalid optimizer version fails with
      * an `INVALID_ARGUMENT` error.
      * See
@@ -145,7 +145,7 @@ class QueryOptions extends \Google\Protobuf\Internal\Message
      * positive integer (from the list of supported optimizer versions)
      * overrides the default optimizer version for query execution.
      * The list of supported optimizer versions can be queried from
-     * SPANNER_SYS.SUPPORTED_OPTIMIZER_VERSIONS.
+     * `SPANNER_SYS.SUPPORTED_OPTIMIZER_VERSIONS`.
      * Executing a SQL statement with an invalid optimizer version fails with
      * an `INVALID_ARGUMENT` error.
      * See
@@ -172,11 +172,11 @@ class QueryOptions extends \Google\Protobuf\Internal\Message
      * Specifying `latest` as a value instructs Cloud Spanner to use the latest
      * generated statistics package. If not specified, Cloud Spanner uses
      * the statistics package set at the database level options, or the latest
-     * package if the database option is not set.
+     * package if the database option isn't set.
      * The statistics package requested by the query has to be exempt from
      * garbage collection. This can be achieved with the following DDL
      * statement:
-     * ```
+     * ```sql
      * ALTER STATISTICS <package_name> SET OPTIONS (allow_gc=false)
      * ```
      * The list of available statistics packages can be queried from
@@ -200,11 +200,11 @@ class QueryOptions extends \Google\Protobuf\Internal\Message
      * Specifying `latest` as a value instructs Cloud Spanner to use the latest
      * generated statistics package. If not specified, Cloud Spanner uses
      * the statistics package set at the database level options, or the latest
-     * package if the database option is not set.
+     * package if the database option isn't set.
      * The statistics package requested by the query has to be exempt from
      * garbage collection. This can be achieved with the following DDL
      * statement:
-     * ```
+     * ```sql
      * ALTER STATISTICS <package_name> SET OPTIONS (allow_gc=false)
      * ```
      * The list of available statistics packages can be queried from
