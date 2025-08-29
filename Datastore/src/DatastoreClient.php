@@ -22,9 +22,7 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\Int64;
-use Google\Cloud\Datastore\Connection\ConnectionInterface;
-use Google\Cloud\Datastore\Connection\Grpc;
-use Google\Cloud\Datastore\Connection\Rest;
+use Google\Cloud\Core\TimestampTrait;
 use Google\Cloud\Datastore\Query\AggregationQuery;
 use Google\Cloud\Datastore\Query\AggregationQueryResult;
 use Google\Cloud\Datastore\Query\GqlQuery;
@@ -91,6 +89,7 @@ class DatastoreClient
     use ArrayTrait;
     use ClientTrait;
     use DatastoreTrait;
+    use TimestampTrait;
 
     const VERSION = '1.34.0';
 
@@ -207,10 +206,9 @@ class DatastoreClient
         ];
 
         $config = $this->configureAuthentication($config);
-        // $this->connection = $connectionType === 'grpc'
-        //     ? new Grpc($config)
-        //     : new Rest($config);
 
+        /** Version 2 */
+        $this->projectId = $config['projectId'];
         $this->gapicClient = new GapicDatastoreClient($config);
 
         // The second parameter here should change to a variable
@@ -227,24 +225,6 @@ class DatastoreClient
             $config['namespaceId'],
             $this->entityMapper,
             $config['databaseId']
-        );
-
-        /** Version 2 */
-        $this->projectId = $config['projectId'];
-        $this->gapicClient = new GapicDatastoreClient();
-
-        $this->entityMapper = new EntityMapper(
-            $this->projectId,
-            true,
-            $config['returnInt64AsObject'],
-        );
-
-        $this->operation = new Operation(
-            $this->gapicClient,
-            $this->projectId,
-            $config['namespaceId'],
-            $this->entityMapper,
-            $config['databaseId'],
         );
     }
 
@@ -604,7 +584,6 @@ class DatastoreClient
      * @codingStandardsIgnoreStart
      * @param array $options {
      *     Configuration options.
-     *
      *     @type array $transactionOptions Transaction configuration. See
      *           [ReadWrite](https://cloud.google.com/datastore/docs/reference/rest/v1/projects/beginTransaction#ReadWrite).
      *     @type string $databaseId ID of the database to which the entities belong.
@@ -614,6 +593,11 @@ class DatastoreClient
      */
     public function transaction(array $options = [])
     {
+        if (isset($options['transactionOptions']['previousTransaction'])) {
+            $options['transactionOptions']['previousTransaction'] = base64_encode(
+                $options['transactionOptions']['previousTransaction']
+            );
+        }
         $transaction = $this->operation->beginTransaction([
             // if empty, force request to encode as {} rather than [].
             'readWrite' => $this->pluck('transactionOptions', $options, false) ?: (object) []
