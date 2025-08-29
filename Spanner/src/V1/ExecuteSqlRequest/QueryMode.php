@@ -29,7 +29,7 @@ class QueryMode
     /**
      * This mode returns the query plan, overall execution statistics,
      * operator level execution statistics along with the results. This has a
-     * performance overhead compared to the other modes. It is not recommended
+     * performance overhead compared to the other modes. It isn't recommended
      * to use this mode for production traffic.
      *
      * Generated from protobuf enum <code>PROFILE = 2;</code>

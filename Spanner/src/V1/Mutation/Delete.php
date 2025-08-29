@@ -22,12 +22,12 @@ class Delete extends \Google\Protobuf\Internal\Message
      */
     private $table = '';
     /**
-     * Required. The primary keys of the rows within [table][google.spanner.v1.Mutation.Delete.table] to delete.  The
-     * primary keys must be specified in the order in which they appear in the
-     * `PRIMARY KEY()` clause of the table's equivalent DDL statement (the DDL
-     * statement used to create the table).
-     * Delete is idempotent. The transaction will succeed even if some or all
-     * rows do not exist.
+     * Required. The primary keys of the rows within
+     * [table][google.spanner.v1.Mutation.Delete.table] to delete.  The primary
+     * keys must be specified in the order in which they appear in the `PRIMARY
+     * KEY()` clause of the table's equivalent DDL statement (the DDL statement
+     * used to create the table). Delete is idempotent. The transaction will
+     * succeed even if some or all rows do not exist.
      *
      * Generated from protobuf field <code>.google.spanner.v1.KeySet key_set = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -42,12 +42,12 @@ class Delete extends \Google\Protobuf\Internal\Message
      *     @type string $table
      *           Required. The table whose rows will be deleted.
      *     @type \Google\Cloud\Spanner\V1\KeySet $key_set
-     *           Required. The primary keys of the rows within [table][google.spanner.v1.Mutation.Delete.table] to delete.  The
-     *           primary keys must be specified in the order in which they appear in the
-     *           `PRIMARY KEY()` clause of the table's equivalent DDL statement (the DDL
-     *           statement used to create the table).
-     *           Delete is idempotent. The transaction will succeed even if some or all
-     *           rows do not exist.
+     *           Required. The primary keys of the rows within
+     *           [table][google.spanner.v1.Mutation.Delete.table] to delete.  The primary
+     *           keys must be specified in the order in which they appear in the `PRIMARY
+     *           KEY()` clause of the table's equivalent DDL statement (the DDL statement
+     *           used to create the table). Delete is idempotent. The transaction will
+     *           succeed even if some or all rows do not exist.
      * }
      */
     public function __construct($data = NULL) {
@@ -82,12 +82,12 @@ class Delete extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The primary keys of the rows within [table][google.spanner.v1.Mutation.Delete.table] to delete.  The
-     * primary keys must be specified in the order in which they appear in the
-     * `PRIMARY KEY()` clause of the table's equivalent DDL statement (the DDL
-     * statement used to create the table).
-     * Delete is idempotent. The transaction will succeed even if some or all
-     * rows do not exist.
+     * Required. The primary keys of the rows within
+     * [table][google.spanner.v1.Mutation.Delete.table] to delete.  The primary
+     * keys must be specified in the order in which they appear in the `PRIMARY
+     * KEY()` clause of the table's equivalent DDL statement (the DDL statement
+     * used to create the table). Delete is idempotent. The transaction will
+     * succeed even if some or all rows do not exist.
      *
      * Generated from protobuf field <code>.google.spanner.v1.KeySet key_set = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Spanner\V1\KeySet|null
@@ -108,12 +108,12 @@ class Delete extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The primary keys of the rows within [table][google.spanner.v1.Mutation.Delete.table] to delete.  The
-     * primary keys must be specified in the order in which they appear in the
-     * `PRIMARY KEY()` clause of the table's equivalent DDL statement (the DDL
-     * statement used to create the table).
-     * Delete is idempotent. The transaction will succeed even if some or all
-     * rows do not exist.
+     * Required. The primary keys of the rows within
+     * [table][google.spanner.v1.Mutation.Delete.table] to delete.  The primary
+     * keys must be specified in the order in which they appear in the `PRIMARY
+     * KEY()` clause of the table's equivalent DDL statement (the DDL statement
+     * used to create the table). Delete is idempotent. The transaction will
+     * succeed even if some or all rows do not exist.
      *
      * Generated from protobuf field <code>.google.spanner.v1.KeySet key_set = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Spanner\V1\KeySet $var

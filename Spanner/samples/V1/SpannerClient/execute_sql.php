@@ -30,7 +30,7 @@ use Google\Cloud\Spanner\V1\ResultSet;
 
 /**
  * Executes an SQL statement, returning all results in a single reply. This
- * method cannot be used to return a result set larger than 10 MiB;
+ * method can't be used to return a result set larger than 10 MiB;
  * if the query yields more data than that, the query fails with
  * a `FAILED_PRECONDITION` error.
  *
@@ -42,6 +42,9 @@ use Google\Cloud\Spanner\V1\ResultSet;
  * Larger result sets can be fetched in streaming fashion by calling
  * [ExecuteStreamingSql][google.spanner.v1.Spanner.ExecuteStreamingSql]
  * instead.
+ *
+ * The query string can be SQL or [Graph Query Language
+ * (GQL)](https://cloud.google.com/spanner/docs/reference/standard-sql/graph-intro).
  *
  * @param string $formattedSession The session in which the SQL query should be performed. Please see
  *                                 {@see SpannerClient::sessionName()} for help formatting this field.

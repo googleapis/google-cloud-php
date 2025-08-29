@@ -27,8 +27,9 @@ class IsolationLevel
      * actually occurred in parallel. Spanner assigns commit timestamps that
      * reflect the order of committed transactions to implement this property.
      * Spanner offers a stronger guarantee than serializability called external
-     * consistency. For further details, please refer to
-     * https://cloud.google.com/spanner/docs/true-time-external-consistency#serializability.
+     * consistency. For more information, see
+     * [TrueTime and external
+     * consistency](https://cloud.google.com/spanner/docs/true-time-external-consistency#serializability).
      *
      * Generated from protobuf enum <code>SERIALIZABLE = 1;</code>
      */
