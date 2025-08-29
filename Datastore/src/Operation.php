@@ -34,10 +34,14 @@ use Google\Cloud\Datastore\V1\CommitRequest;
 use Google\Cloud\Datastore\V1\CommitRequest\Mode;
 use Google\Cloud\Datastore\V1\Key as GrpcKey;
 use Google\Cloud\Datastore\V1\LookupRequest;
+use Google\Cloud\Datastore\V1\Mutation;
+use Google\Cloud\Datastore\V1\ReadOptions;
+use Google\Cloud\Datastore\V1\ReadOptions_ReadConsistency;
 use Google\Cloud\Datastore\V1\RollbackRequest;
 use Google\Cloud\Datastore\V1\RunAggregationQueryRequest;
 use Google\Cloud\Datastore\V1\RunQueryRequest;
 use Google\Cloud\Datastore\V1\TransactionOptions;
+use Google\Protobuf\Timestamp as ProtobufTimestamp;
 use InvalidArgumentException;
 
 /**
@@ -289,13 +293,13 @@ class Operation
      */
     public function beginTransaction($transactionOptions, array $options = [])
     {
-        $transactionOptions = new TransactionOptions();
-        $transactionOptions->mergeFromJsonString(json_encode($transactionOptions));
+        $protoTransactionOptions = new TransactionOptions();
+        $protoTransactionOptions->mergeFromJsonString(json_encode($transactionOptions));
 
         $beginTransactionRequest = new BeginTransactionRequest();
         $beginTransactionRequest->setProjectId($this->projectId);
         $beginTransactionRequest->setDatabaseId($this->databaseId);
-        $beginTransactionRequest->setTransactionOptions($transactionOptions);
+        $beginTransactionRequest->setTransactionOptions($protoTransactionOptions);
 
         $res = $this->gapicClient->beginTransaction($beginTransactionRequest, $options);
 
@@ -416,6 +420,16 @@ class Operation
         $lookupRequest->setDatabaseId($this->databaseId);
         $lookupRequest->setProjectId($this->projectId);
         $lookupRequest->setKeys($serviceKeys);
+
+        if (isset($options['readTime'])) {
+            $protoTime = new ProtobufTimestamp();
+            $protoTime->mergeFromJsonString(json_encode($options['readTime']));
+            unset($options['readTime']);
+
+            $readOptions = new ReadOptions();
+            $readOptions->setReadTime($protoTime);
+            $lookupRequest->setReadOptions($readOptions);
+        }
 
         $lookupResponse = $this->gapicClient->lookup($lookupRequest, $options);
 
@@ -652,8 +666,15 @@ class Operation
             'databaseId' => $this->databaseId,
         ];
 
+        $protoMutations = [];
+        foreach ($mutations as $mutation) {
+            $protoMutation = new Mutation();
+            $protoMutation->mergeFromJsonString(json_encode($mutation));
+            $protoMutations[] = $protoMutation;
+        }
+
         $commitRequest = new CommitRequest();
-        $commitRequest->setMutations($mutations);
+        $commitRequest->setMutations($protoMutations);
         $commitRequest->setDatabaseId($this->databaseId);
         $commitRequest->setProjectId($this->projectId);
         $commitRequest->setMode(($options['transaction']) ? Mode::TRANSACTIONAL : Mode::NON_TRANSACTIONAL);
@@ -875,8 +896,6 @@ class Operation
             'transaction' => null,
             'readTime' => null
         ];
-
-        $options = $this->formatReadTimeOption($options);
 
         $readOptions = array_filter([
             'readConsistency' => $options['readConsistency'],
