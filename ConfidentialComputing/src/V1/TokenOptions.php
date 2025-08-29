@@ -44,8 +44,8 @@ class TokenOptions extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\ConfidentialComputing\V1\TokenOptions\AwsPrincipalTagsOptions $aws_principal_tags_options
-     *           Optional. Options for the Limited AWS token type.
+     *     @type \Google\Cloud\ConfidentialComputing\V1\AwsPrincipalTagsOptions $aws_principal_tags_options
+     *           Optional. Options for AWS token type.
      *     @type string $audience
      *           Optional. Optional string to issue the token with a custom audience claim.
      *           Required if one or more nonces are specified.
@@ -63,10 +63,10 @@ class TokenOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Options for the Limited AWS token type.
+     * Optional. Options for AWS token type.
      *
-     * Generated from protobuf field <code>.google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions aws_principal_tags_options = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\ConfidentialComputing\V1\TokenOptions\AwsPrincipalTagsOptions|null
+     * Generated from protobuf field <code>.google.cloud.confidentialcomputing.v1.AwsPrincipalTagsOptions aws_principal_tags_options = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\ConfidentialComputing\V1\AwsPrincipalTagsOptions|null
      */
     public function getAwsPrincipalTagsOptions()
     {
@@ -79,15 +79,15 @@ class TokenOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Options for the Limited AWS token type.
+     * Optional. Options for AWS token type.
      *
-     * Generated from protobuf field <code>.google.cloud.confidentialcomputing.v1.TokenOptions.AwsPrincipalTagsOptions aws_principal_tags_options = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param \Google\Cloud\ConfidentialComputing\V1\TokenOptions\AwsPrincipalTagsOptions $var
+     * Generated from protobuf field <code>.google.cloud.confidentialcomputing.v1.AwsPrincipalTagsOptions aws_principal_tags_options = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\ConfidentialComputing\V1\AwsPrincipalTagsOptions $var
      * @return $this
      */
     public function setAwsPrincipalTagsOptions($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\ConfidentialComputing\V1\TokenOptions\AwsPrincipalTagsOptions::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\ConfidentialComputing\V1\AwsPrincipalTagsOptions::class);
         $this->writeOneof(4, $var);
 
         return $this;

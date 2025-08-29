@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,37 +22,34 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START confidentialcomputing_v1_generated_ConfidentialComputing_VerifyAttestation_sync]
+// [START confidentialcomputing_v1_generated_ConfidentialComputing_VerifyConfidentialSpace_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\ConfidentialComputing\V1\Client\ConfidentialComputingClient;
-use Google\Cloud\ConfidentialComputing\V1\TpmAttestation;
-use Google\Cloud\ConfidentialComputing\V1\VerifyAttestationRequest;
-use Google\Cloud\ConfidentialComputing\V1\VerifyAttestationResponse;
+use Google\Cloud\ConfidentialComputing\V1\VerifyConfidentialSpaceRequest;
+use Google\Cloud\ConfidentialComputing\V1\VerifyConfidentialSpaceResponse;
 
 /**
- * Verifies the provided attestation info, returning a signed attestation
- * token.
+ * Verifies whether the provided attestation info is valid, returning a signed
+ * attestation token if so.
  *
  * @param string $formattedChallenge The name of the Challenge whose nonce was used to generate the
  *                                   attestation, in the format `projects/&#42;/locations/&#42;/challenges/*`. The
  *                                   provided Challenge will be consumed, and cannot be used again. Please see
  *                                   {@see ConfidentialComputingClient::challengeName()} for help formatting this field.
  */
-function verify_attestation_sample(string $formattedChallenge): void
+function verify_confidential_space_sample(string $formattedChallenge): void
 {
     // Create a client.
     $confidentialComputingClient = new ConfidentialComputingClient();
 
     // Prepare the request message.
-    $tpmAttestation = new TpmAttestation();
-    $request = (new VerifyAttestationRequest())
-        ->setChallenge($formattedChallenge)
-        ->setTpmAttestation($tpmAttestation);
+    $request = (new VerifyConfidentialSpaceRequest())
+        ->setChallenge($formattedChallenge);
 
     // Call the API and handle any network failures.
     try {
-        /** @var VerifyAttestationResponse $response */
-        $response = $confidentialComputingClient->verifyAttestation($request);
+        /** @var VerifyConfidentialSpaceResponse $response */
+        $response = $confidentialComputingClient->verifyConfidentialSpace($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
@@ -76,6 +73,6 @@ function callSample(): void
         '[UUID]'
     );
 
-    verify_attestation_sample($formattedChallenge);
+    verify_confidential_space_sample($formattedChallenge);
 }
-// [END confidentialcomputing_v1_generated_ConfidentialComputing_VerifyAttestation_sync]
+// [END confidentialcomputing_v1_generated_ConfidentialComputing_VerifyConfidentialSpace_sync]
