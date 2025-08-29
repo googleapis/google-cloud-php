@@ -1,5 +1,163 @@
 # Changelog
 
+## 0.300.0
+
+<details><summary>google/cloud-ai-platform 1.36.0</summary>
+
+
+
+### Features
+
+* [AiPlatform] add data foundry service synthetic data generation API for v1 ([#8531](https://github.com/googleapis/google-cloud-php/issues/8531)) ([95d8954](https://github.com/googleapis/google-cloud-php/commit/95d895419485425841463fee6c3a0dc8272ad56b))
+
+</details>
+
+<details><summary>google/analytics-admin 0.30.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Remove the `FetchAutomatedGa4ConfigurationOptOut` method
+* Remove the `CreateConnectedSiteTag` method
+* Remove the `DeleteConnectedSiteTag` method
+* Remove the `ListConnectedSiteTags` method
+* Remove the `FetchConnectedGa4Property` method
+* Remove the `SetAutomatedGa4ConfigurationOptOutRequest` resource
+* Remove the `SetAutomatedGa4ConfigurationOptOutResponse` resource
+* Remove the `FetchAutomatedGa4ConfigurationOptOutRequest` resource
+* Remove the `FetchAutomatedGa4ConfigurationOptOutResponse` resource
+* Remove the `CreateConnectedSiteTagRequest` resource
+* Remove the `CreateConnectedSiteTagResponse` resource
+* Remove the `DeleteConnectedSiteTagRequest` resource
+* Remove the `ListConnectedSiteTagsRequest` resource
+* Remove the `ListConnectedSiteTagsResponse` resource
+* Remove the `FetchConnectedGa4PropertyRequest` resource
+* Remove the `FetchConnectedGa4PropertyResponse` resource
+* Remove the `ConnectedSiteTag` resource
+* Remove the `SetAutomatedGa4ConfigurationOptOut` method ([#8532](https://github.com/googleapis/google-cloud-php/issues/8532))
+
+### Features
+
+* Add reporting_identity_settings` fields to the `ChangeHistoryResource` resource ([7de4a72](https://github.com/googleapis/google-cloud-php/commit/7de4a722e38ad67c727d7b5610c4952fb5004240))
+* Add the `GetReportingIdentitySettings` method ([7de4a72](https://github.com/googleapis/google-cloud-php/commit/7de4a722e38ad67c727d7b5610c4952fb5004240))
+* Add the `GetReportingIdentitySettingsRequest` resource ([7de4a72](https://github.com/googleapis/google-cloud-php/commit/7de4a722e38ad67c727d7b5610c4952fb5004240))
+* Add the `REPORTING_IDENTITY_SETTINGS` resource type to the `ChangeHistoryResourceType` enum ([7de4a72](https://github.com/googleapis/google-cloud-php/commit/7de4a722e38ad67c727d7b5610c4952fb5004240))
+* Add the `ReportingIdentitySettings` resource ([7de4a72](https://github.com/googleapis/google-cloud-php/commit/7de4a722e38ad67c727d7b5610c4952fb5004240))
+
+
+### Bug Fixes
+
+* Remove the `ConnectedSiteTag` resource ([7de4a72](https://github.com/googleapis/google-cloud-php/commit/7de4a722e38ad67c727d7b5610c4952fb5004240))
+* Remove the `CreateConnectedSiteTag` method ([7de4a72](https://github.com/googleapis/google-cloud-php/commit/7de4a722e38ad67c727d7b5610c4952fb5004240))
+* Remove the `CreateConnectedSiteTagRequest` resource ([7de4a72](https://github.com/googleapis/google-cloud-php/commit/7de4a722e38ad67c727d7b5610c4952fb5004240))
+* Remove the `CreateConnectedSiteTagResponse` resource ([7de4a72](https://github.com/googleapis/google-cloud-php/commit/7de4a722e38ad67c727d7b5610c4952fb5004240))
+* Remove the `DeleteConnectedSiteTag` method ([7de4a72](https://github.com/googleapis/google-cloud-php/commit/7de4a722e38ad67c727d7b5610c4952fb5004240))
+* Remove the `DeleteConnectedSiteTagRequest` resource ([7de4a72](https://github.com/googleapis/google-cloud-php/commit/7de4a722e38ad67c727d7b5610c4952fb5004240))
+* Remove the `FetchAutomatedGa4ConfigurationOptOut` method ([7de4a72](https://github.com/googleapis/google-cloud-php/commit/7de4a722e38ad67c727d7b5610c4952fb5004240))
+* Remove the `FetchAutomatedGa4ConfigurationOptOutRequest` resource ([7de4a72](https://github.com/googleapis/google-cloud-php/commit/7de4a722e38ad67c727d7b5610c4952fb5004240))
+* Remove the `FetchAutomatedGa4ConfigurationOptOutResponse` resource ([7de4a72](https://github.com/googleapis/google-cloud-php/commit/7de4a722e38ad67c727d7b5610c4952fb5004240))
+* Remove the `FetchConnectedGa4Property` method ([7de4a72](https://github.com/googleapis/google-cloud-php/commit/7de4a722e38ad67c727d7b5610c4952fb5004240))
+* Remove the `FetchConnectedGa4PropertyRequest` resource ([7de4a72](https://github.com/googleapis/google-cloud-php/commit/7de4a722e38ad67c727d7b5610c4952fb5004240))
+* Remove the `FetchConnectedGa4PropertyResponse` resource ([7de4a72](https://github.com/googleapis/google-cloud-php/commit/7de4a722e38ad67c727d7b5610c4952fb5004240))
+* Remove the `ListConnectedSiteTags` method ([7de4a72](https://github.com/googleapis/google-cloud-php/commit/7de4a722e38ad67c727d7b5610c4952fb5004240))
+* Remove the `ListConnectedSiteTagsRequest` resource ([7de4a72](https://github.com/googleapis/google-cloud-php/commit/7de4a722e38ad67c727d7b5610c4952fb5004240))
+* Remove the `ListConnectedSiteTagsResponse` resource ([7de4a72](https://github.com/googleapis/google-cloud-php/commit/7de4a722e38ad67c727d7b5610c4952fb5004240))
+* Remove the `SetAutomatedGa4ConfigurationOptOut` method ([#8532](https://github.com/googleapis/google-cloud-php/issues/8532)) ([7de4a72](https://github.com/googleapis/google-cloud-php/commit/7de4a722e38ad67c727d7b5610c4952fb5004240))
+* Remove the `SetAutomatedGa4ConfigurationOptOutRequest` resource ([7de4a72](https://github.com/googleapis/google-cloud-php/commit/7de4a722e38ad67c727d7b5610c4952fb5004240))
+* Remove the `SetAutomatedGa4ConfigurationOptOutResponse` resource ([7de4a72](https://github.com/googleapis/google-cloud-php/commit/7de4a722e38ad67c727d7b5610c4952fb5004240))
+
+
+### Documentation
+
+* Provide additional guidelines for the `user_provided_data` field in the `SubmitUserDeletionRequest` resource ([7de4a72](https://github.com/googleapis/google-cloud-php/commit/7de4a722e38ad67c727d7b5610c4952fb5004240))
+
+</details>
+
+<details><summary>google/apps-chat 0.12.1</summary>
+
+
+
+### Bug Fixes
+
+* [AppsChat] Changed field behavior for an existing field `name` in message `.google.chat.v1.QuotedMessageMetadata` ([#8540](https://github.com/googleapis/google-cloud-php/issues/8540)) ([3ae6bb8](https://github.com/googleapis/google-cloud-php/commit/3ae6bb817e68d31f08f94a7a003d5c683eee5442))
+* Changed field behavior for an existing field `last_update_time` in message `.google.chat.v1.QuotedMessageMetadata` ([3ae6bb8](https://github.com/googleapis/google-cloud-php/commit/3ae6bb817e68d31f08f94a7a003d5c683eee5442))
+
+
+### Documentation
+
+* A comment for field `customer` in message `.google.chat.v1.Space` is changed ([3ae6bb8](https://github.com/googleapis/google-cloud-php/commit/3ae6bb817e68d31f08f94a7a003d5c683eee5442))
+* A comment for field `last_update_time` in message `.google.chat.v1.QuotedMessageMetadata` is changed ([3ae6bb8](https://github.com/googleapis/google-cloud-php/commit/3ae6bb817e68d31f08f94a7a003d5c683eee5442))
+* A comment for field `name` in message `.google.chat.v1.QuotedMessageMetadata` is changed ([3ae6bb8](https://github.com/googleapis/google-cloud-php/commit/3ae6bb817e68d31f08f94a7a003d5c683eee5442))
+* A comment for field `quoted_message_metadata` in message `.google.chat.v1.Message` is changed ([3ae6bb8](https://github.com/googleapis/google-cloud-php/commit/3ae6bb817e68d31f08f94a7a003d5c683eee5442))
+* A comment for field `update_mask` in message `.google.chat.v1.UpdateMessageRequest` is changed ([3ae6bb8](https://github.com/googleapis/google-cloud-php/commit/3ae6bb817e68d31f08f94a7a003d5c683eee5442))
+* A comment for message `QuotedMessageMetadata` is changed ([3ae6bb8](https://github.com/googleapis/google-cloud-php/commit/3ae6bb817e68d31f08f94a7a003d5c683eee5442))
+
+</details>
+
+<details><summary>google/cloud-bigquery 1.34.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-compute 1.36.0</summary>
+
+
+
+### Features
+
+* [Compute] Update Compute Engine v1 API to revision 20250807 ([#8538](https://github.com/googleapis/google-cloud-php/issues/8538)) ([6e4d3c2](https://github.com/googleapis/google-cloud-php/commit/6e4d3c227b10894e38388c3f998024b28ebb3a38))
+
+</details>
+
+<details><summary>google/cloud-geminidataanalytics 0.2.0</summary>
+
+
+
+### Features
+
+* [GeminiDataAnalytics] An existing service `ContextRetrievalService` is removed ([#8533](https://github.com/googleapis/google-cloud-php/issues/8533)) ([50ee998](https://github.com/googleapis/google-cloud-php/commit/50ee998d6b215643e12dabfb6a6932e011cb3f2d))
+* A new enum `DataFilterType` is added ([50ee998](https://github.com/googleapis/google-cloud-php/commit/50ee998d6b215643e12dabfb6a6932e011cb3f2d))
+* A new field `description` is added to message `.google.cloud.geminidataanalytics.v1alpha.Schema` ([50ee998](https://github.com/googleapis/google-cloud-php/commit/50ee998d6b215643e12dabfb6a6932e011cb3f2d))
+* A new field `example_queries` is added to message `.google.cloud.geminidataanalytics.v1alpha.Context` ([50ee998](https://github.com/googleapis/google-cloud-php/commit/50ee998d6b215643e12dabfb6a6932e011cb3f2d))
+* A new field `filters` is added to message `.google.cloud.geminidataanalytics.v1alpha.Schema` ([50ee998](https://github.com/googleapis/google-cloud-php/commit/50ee998d6b215643e12dabfb6a6932e011cb3f2d))
+* A new field `schema` is added to message `.google.cloud.geminidataanalytics.v1alpha.BigQueryTableReference` ([50ee998](https://github.com/googleapis/google-cloud-php/commit/50ee998d6b215643e12dabfb6a6932e011cb3f2d))
+* A new field `synonyms` is added to message `.google.cloud.geminidataanalytics.v1alpha.Field` ([50ee998](https://github.com/googleapis/google-cloud-php/commit/50ee998d6b215643e12dabfb6a6932e011cb3f2d))
+* A new field `synonyms` is added to message `.google.cloud.geminidataanalytics.v1alpha.Schema` ([50ee998](https://github.com/googleapis/google-cloud-php/commit/50ee998d6b215643e12dabfb6a6932e011cb3f2d))
+* A new field `tags` is added to message `.google.cloud.geminidataanalytics.v1alpha.Field` ([50ee998](https://github.com/googleapis/google-cloud-php/commit/50ee998d6b215643e12dabfb6a6932e011cb3f2d))
+* A new field `tags` is added to message `.google.cloud.geminidataanalytics.v1alpha.Schema` ([50ee998](https://github.com/googleapis/google-cloud-php/commit/50ee998d6b215643e12dabfb6a6932e011cb3f2d))
+* A new field `value_format` is added to message `.google.cloud.geminidataanalytics.v1alpha.Field` ([50ee998](https://github.com/googleapis/google-cloud-php/commit/50ee998d6b215643e12dabfb6a6932e011cb3f2d))
+* A new message `DataFilter` is added ([50ee998](https://github.com/googleapis/google-cloud-php/commit/50ee998d6b215643e12dabfb6a6932e011cb3f2d))
+* A new message `ExampleQuery` is added ([50ee998](https://github.com/googleapis/google-cloud-php/commit/50ee998d6b215643e12dabfb6a6932e011cb3f2d))
+
+
+### Documentation
+
+* Many comment updates ([50ee998](https://github.com/googleapis/google-cloud-php/commit/50ee998d6b215643e12dabfb6a6932e011cb3f2d))
+
+</details>
+
+<details><summary>google/cloud-text-to-speech 2.3.0</summary>
+
+
+
+### Features
+
+* [TextToSpeech] Support promptable voices by specifying a model name and a prompt ([#8542](https://github.com/googleapis/google-cloud-php/issues/8542)) ([c2dab4f](https://github.com/googleapis/google-cloud-php/commit/c2dab4f6aedf18413a08428bc330fe213667bcf3))
+
+</details>
+
+<details><summary>google/cloud-video-transcoder 1.2.0</summary>
+
+
+
+### Features
+
+* [VideoTranscoder] add support for automatically generating subtitle for input videos ([#8537](https://github.com/googleapis/google-cloud-php/issues/8537)) ([4f7aaa5](https://github.com/googleapis/google-cloud-php/commit/4f7aaa5af86731301d5c952e61ea291f0844cc89))
+
+</details>
+
 ## 0.299.1
 
 <details><summary>google/shopping-merchant-accounts 1.0.0</summary>
