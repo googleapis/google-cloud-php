@@ -9,8 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A request for an OIDC token, providing all the necessary information needed
- * for this service to verify the platform state of the requestor.
+ * A request for an attestation token, providing all the necessary information
+ * needed for this service to verify the platform state of the requestor.
  *
  * Generated from protobuf message <code>google.cloud.confidentialcomputing.v1.VerifyAttestationRequest</code>
  */
