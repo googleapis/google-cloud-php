@@ -25,7 +25,7 @@ class HeartbeatRecord extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp timestamp = 1;</code>
      */
-    private $timestamp = null;
+    protected $timestamp = null;
 
     /**
      * Constructor.
@@ -89,6 +89,4 @@ class HeartbeatRecord extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(HeartbeatRecord::class, \Google\Cloud\Spanner\V1\ChangeStreamRecord_HeartbeatRecord::class);
 

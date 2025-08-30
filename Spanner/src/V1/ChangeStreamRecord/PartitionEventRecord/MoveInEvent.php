@@ -31,7 +31,7 @@ class MoveInEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string source_partition_token = 1;</code>
      */
-    private $source_partition_token = '';
+    protected $source_partition_token = '';
 
     /**
      * Constructor.
@@ -82,6 +82,4 @@ class MoveInEvent extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(MoveInEvent::class, \Google\Cloud\Spanner\V1\ChangeStreamRecord_PartitionEventRecord_MoveInEvent::class);
 

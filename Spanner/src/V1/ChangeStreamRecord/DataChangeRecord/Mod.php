@@ -157,6 +157,4 @@ class Mod extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Mod::class, \Google\Cloud\Spanner\V1\ChangeStreamRecord_DataChangeRecord_Mod::class);
 

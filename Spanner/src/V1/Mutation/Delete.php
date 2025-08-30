@@ -20,7 +20,7 @@ class Delete extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string table = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $table = '';
+    protected $table = '';
     /**
      * Required. The primary keys of the rows within [table][google.spanner.v1.Mutation.Delete.table] to delete.  The
      * primary keys must be specified in the order in which they appear in the
@@ -31,7 +31,7 @@ class Delete extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.spanner.v1.KeySet key_set = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $key_set = null;
+    protected $key_set = null;
 
     /**
      * Constructor.
@@ -129,6 +129,4 @@ class Delete extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Delete::class, \Google\Cloud\Spanner\V1\Mutation_Delete::class);
 

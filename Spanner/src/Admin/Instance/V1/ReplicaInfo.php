@@ -18,13 +18,13 @@ class ReplicaInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string location = 1;</code>
      */
-    private $location = '';
+    protected $location = '';
     /**
      * The type of replica.
      *
      * Generated from protobuf field <code>.google.spanner.admin.instance.v1.ReplicaInfo.ReplicaType type = 2;</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * If true, this location is designated as the default leader location where
      * leader replicas are placed. See the [region types
@@ -33,7 +33,7 @@ class ReplicaInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool default_leader_location = 3;</code>
      */
-    private $default_leader_location = false;
+    protected $default_leader_location = false;
 
     /**
      * Constructor.

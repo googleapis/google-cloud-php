@@ -21,7 +21,7 @@ class ReadWrite extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.spanner.v1.TransactionOptions.ReadWrite.ReadLockMode read_lock_mode = 1;</code>
      */
-    private $read_lock_mode = 0;
+    protected $read_lock_mode = 0;
     /**
      * Optional. Clients should pass the transaction ID of the previous
      * transaction attempt that was aborted if this transaction is being
@@ -29,7 +29,7 @@ class ReadWrite extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes multiplexed_session_previous_transaction_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $multiplexed_session_previous_transaction_id = '';
+    protected $multiplexed_session_previous_transaction_id = '';
 
     /**
      * Constructor.
@@ -108,6 +108,4 @@ class ReadWrite extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ReadWrite::class, \Google\Cloud\Spanner\V1\TransactionOptions_ReadWrite::class);
 

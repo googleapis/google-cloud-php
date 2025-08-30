@@ -21,7 +21,7 @@ class BackupInstancePartition extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string instance_partition = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $instance_partition = '';
+    protected $instance_partition = '';
 
     /**
      * Constructor.

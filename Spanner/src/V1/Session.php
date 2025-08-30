@@ -20,7 +20,7 @@ class Session extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The labels for the session.
      *  * Label keys must be between 1 and 63 characters long and must conform to
@@ -38,20 +38,20 @@ class Session extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The approximate timestamp when the session is last used. It is
      * typically earlier than the actual last use time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp approximate_last_use_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $approximate_last_use_time = null;
+    protected $approximate_last_use_time = null;
     /**
      * The database role which created this session.
      *
      * Generated from protobuf field <code>string creator_role = 5;</code>
      */
-    private $creator_role = '';
+    protected $creator_role = '';
     /**
      * Optional. If true, specifies a multiplexed session. A multiplexed session
      * may be used for multiple, concurrent read-only operations but can not be
@@ -63,7 +63,7 @@ class Session extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool multiplexed = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $multiplexed = false;
+    protected $multiplexed = false;
 
     /**
      * Constructor.
