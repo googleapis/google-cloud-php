@@ -35,11 +35,11 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-Google\ApiCore\ApiException;
-Google\ApiCore\PagedListResponse;
-Google\Shopping\Merchant\Quota\V1\Client\QuotaServiceClient;
-Google\Shopping\Merchant\Quota\V1\ListQuotaGroupsRequest;
-Google\Shopping\Merchant\Quota\V1\QuotaGroup;
+use Google\ApiCore\ApiException;
+use Google\ApiCore\PagedListResponse;
+use Google\Shopping\Merchant\Quota\V1\Client\QuotaServiceClient;
+use Google\Shopping\Merchant\Quota\V1\ListQuotaGroupsRequest;
+use Google\Shopping\Merchant\Quota\V1\QuotaGroup;
 
 // Create a client.
 $quotaServiceClient = new QuotaServiceClient();

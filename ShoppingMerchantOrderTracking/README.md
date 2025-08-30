@@ -35,14 +35,14 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-Google\ApiCore\ApiException;
-Google\Shopping\Merchant\OrderTracking\V1\Client\OrderTrackingSignalsServiceClient;
-Google\Shopping\Merchant\OrderTracking\V1\CreateOrderTrackingSignalRequest;
-Google\Shopping\Merchant\OrderTracking\V1\OrderTrackingSignal;
-Google\Shopping\Merchant\OrderTracking\V1\OrderTrackingSignal\LineItemDetails;
-Google\Shopping\Merchant\OrderTracking\V1\OrderTrackingSignal\ShippingInfo;
-Google\Shopping\Merchant\OrderTracking\V1\OrderTrackingSignal\ShippingInfo\ShippingState;
-Google\Type\DateTime;
+use Google\ApiCore\ApiException;
+use Google\Shopping\Merchant\OrderTracking\V1\Client\OrderTrackingSignalsServiceClient;
+use Google\Shopping\Merchant\OrderTracking\V1\CreateOrderTrackingSignalRequest;
+use Google\Shopping\Merchant\OrderTracking\V1\OrderTrackingSignal;
+use Google\Shopping\Merchant\OrderTracking\V1\OrderTrackingSignal\LineItemDetails;
+use Google\Shopping\Merchant\OrderTracking\V1\OrderTrackingSignal\ShippingInfo;
+use Google\Shopping\Merchant\OrderTracking\V1\OrderTrackingSignal\ShippingInfo\ShippingState;
+use Google\Type\DateTime;
 
 $formattedParent = OrderTrackingSignalsServiceClient::accountName('[ACCOUNT]');
 $orderTrackingSignalOrderId = '[ORDER_ID]';

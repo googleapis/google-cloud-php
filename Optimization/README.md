@@ -28,6 +28,31 @@ please see our [gRPC installation guide](https://cloud.google.com/php/grpc).
 Please see our [Authentication guide](https://github.com/googleapis/google-cloud-php/blob/main/AUTHENTICATION.md) for more information
 on authenticating your client. Once authenticated, you'll be ready to start making requests.
 
+### Sample
+
+```php
+use Google\ApiCore\ApiException;
+use Google\Cloud\Optimization\V1\Client\FleetRoutingClient;
+use Google\Cloud\Optimization\V1\OptimizeToursRequest;
+use Google\Cloud\Optimization\V1\OptimizeToursResponse;
+
+// Create a client.
+$fleetRoutingClient = new FleetRoutingClient();
+
+// Prepare the request message.
+$request = (new OptimizeToursRequest())
+    ->setParent($parent);
+
+// Call the API and handle any network failures.
+try {
+    /** @var OptimizeToursResponse $response */
+    $response = $fleetRoutingClient->optimizeTours($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
+```
+
 ### Debugging
 
 Please see our [Debugging guide](https://github.com/googleapis/google-cloud-php/blob/main/DEBUG.md)

@@ -28,6 +28,30 @@ please see our [gRPC installation guide](https://cloud.google.com/php/grpc).
 Please see our [Authentication guide](https://github.com/googleapis/google-cloud-php/blob/main/AUTHENTICATION.md) for more information
 on authenticating your client. Once authenticated, you'll be ready to start making requests.
 
+### Sample
+
+```php
+use Google\ApiCore\ApiException;
+use Google\Cloud\Orchestration\Airflow\Service\V1\Client\EnvironmentsClient;
+use Google\Cloud\Orchestration\Airflow\Service\V1\Environment;
+use Google\Cloud\Orchestration\Airflow\Service\V1\GetEnvironmentRequest;
+
+// Create a client.
+$environmentsClient = new EnvironmentsClient();
+
+// Prepare the request message.
+$request = new GetEnvironmentRequest();
+
+// Call the API and handle any network failures.
+try {
+    /** @var Environment $response */
+    $response = $environmentsClient->getEnvironment($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
+```
+
 ### Debugging
 
 Please see our [Debugging guide](https://github.com/googleapis/google-cloud-php/blob/main/DEBUG.md)

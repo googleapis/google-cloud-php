@@ -48,16 +48,25 @@ outlined for the generated clients.
 ### Sample
 
 ```php
-require 'vendor/autoload.php';
+use Google\ApiCore\ApiException;
+use Google\Cloud\Bigtable\V2\Client\BigtableClient;
+use Google\Cloud\Bigtable\V2\PingAndWarmRequest;
+use Google\Cloud\Bigtable\V2\PingAndWarmResponse;
 
-use Google\Cloud\Bigtable\BigtableClient;
+// Create a client.
+$bigtableClient = new BigtableClient();
 
-$bigtable = new BigtableClient();
-$table = $bigtable->table('my-instance', 'my-table');
-$rows = $table->readRows();
+// Prepare the request message.
+$request = (new PingAndWarmRequest())
+    ->setName($formattedName);
 
-foreach ($rows as $row) {
-    print_r($row) . PHP_EOL;
+// Call the API and handle any network failures.
+try {
+    /** @var PingAndWarmResponse $response */
+    $response = $bigtableClient->pingAndWarm($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
 }
 ```
 

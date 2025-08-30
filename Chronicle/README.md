@@ -35,10 +35,10 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-Google\ApiCore\ApiException;
-Google\Cloud\Chronicle\V1\Client\DataAccessControlServiceClient;
-Google\Cloud\Chronicle\V1\DataAccessLabel;
-Google\Cloud\Chronicle\V1\GetDataAccessLabelRequest;
+use Google\ApiCore\ApiException;
+use Google\Cloud\Chronicle\V1\Client\DataAccessControlServiceClient;
+use Google\Cloud\Chronicle\V1\DataAccessLabel;
+use Google\Cloud\Chronicle\V1\GetDataAccessLabelRequest;
 
 // Create a client.
 $dataAccessControlServiceClient = new DataAccessControlServiceClient();

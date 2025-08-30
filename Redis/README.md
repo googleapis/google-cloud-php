@@ -34,21 +34,25 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-require 'vendor/autoload.php';
+use Google\ApiCore\ApiException;
+use Google\Cloud\Redis\V1\Client\CloudRedisClient;
+use Google\Cloud\Redis\V1\GetInstanceRequest;
+use Google\Cloud\Redis\V1\Instance;
 
-use Google\Cloud\Redis\V1\CloudRedisClient;
+// Create a client.
+$cloudRedisClient = new CloudRedisClient();
 
-$client = new CloudRedisClient();
+// Prepare the request message.
+$request = (new GetInstanceRequest())
+    ->setName($formattedName);
 
-$projectId = '[MY_PROJECT_ID]';
-$location = '-'; // The '-' wildcard refers to all regions available to the project for the listInstances method
-$formattedLocationName = $client->locationName($projectId, $location);
-$response = $client->listInstances($formattedLocationName);
-foreach ($response->iterateAllElements() as $instance) {
-    printf('Instance: %s : %s' . PHP_EOL,
-        $instance->getDisplayName(),
-        $instance->getName()
-    );
+// Call the API and handle any network failures.
+try {
+    /** @var Instance $response */
+    $response = $cloudRedisClient->getInstance($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
 }
 ```
 

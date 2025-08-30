@@ -28,6 +28,36 @@ please see our [gRPC installation guide](https://cloud.google.com/php/grpc).
 Please see our [Authentication guide](https://github.com/googleapis/google-cloud-php/blob/main/AUTHENTICATION.md) for more information
 on authenticating your client. Once authenticated, you'll be ready to start making requests.
 
+### Sample
+
+```php
+use Google\ApiCore\ApiException;
+use Google\ApiCore\BidiStream;
+use Google\Cloud\MediaTranslation\V1beta1\Client\SpeechTranslationServiceClient;
+use Google\Cloud\MediaTranslation\V1beta1\StreamingTranslateSpeechRequest;
+use Google\Cloud\MediaTranslation\V1beta1\StreamingTranslateSpeechResponse;
+
+// Create a client.
+$speechTranslationServiceClient = new SpeechTranslationServiceClient();
+
+// Prepare the request message.
+$request = new StreamingTranslateSpeechRequest();
+
+// Call the API and handle any network failures.
+try {
+    /** @var BidiStream $stream */
+    $stream = $speechTranslationServiceClient->streamingTranslateSpeech();
+    $stream->writeAll([$request,]);
+
+    /** @var StreamingTranslateSpeechResponse $element */
+    foreach ($stream->closeWriteAndReadAll() as $element) {
+        printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
+    }
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
+```
+
 ### Debugging
 
 Please see our [Debugging guide](https://github.com/googleapis/google-cloud-php/blob/main/DEBUG.md)

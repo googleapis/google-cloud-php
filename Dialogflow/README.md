@@ -36,24 +36,25 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-require 'vendor/autoload.php';
+use Google\ApiCore\ApiException;
+use Google\Cloud\Dialogflow\V2\Agent;
+use Google\Cloud\Dialogflow\V2\Client\AgentsClient;
+use Google\Cloud\Dialogflow\V2\GetAgentRequest;
 
-use Google\Cloud\Dialogflow\V2\EntityTypesClient;
+// Create a client.
+$agentsClient = new AgentsClient();
 
-$entityTypesClient = new EntityTypesClient();
-$projectId = '[MY_PROJECT_ID]';
-$entityTypeId = '[ENTITY_TYPE_ID]';
-$formattedEntityTypeName = $entityTypesClient->entityTypeName($projectId, $entityTypeId);
+// Prepare the request message.
+$request = (new GetAgentRequest())
+    ->setParent($formattedParent);
 
-$entityType = $entityTypesClient->getEntityType($formattedEntityTypeName);
-foreach ($entityType->getEntities() as $entity) {
-    print(PHP_EOL);
-    printf('Entity value: %s' . PHP_EOL, $entity->getValue());
-    print('Synonyms: ');
-    foreach ($entity->getSynonyms() as $synonym) {
-        print($synonym . "\t");
-    }
-    print(PHP_EOL);
+// Call the API and handle any network failures.
+try {
+    /** @var Agent $response */
+    $response = $agentsClient->getAgent($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
 }
 ```
 

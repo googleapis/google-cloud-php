@@ -35,10 +35,10 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-Google\ApiCore\ApiException;
-Google\Cloud\SecureSourceManager\V1\BranchRule;
-Google\Cloud\SecureSourceManager\V1\Client\SecureSourceManagerClient;
-Google\Cloud\SecureSourceManager\V1\GetBranchRuleRequest;
+use Google\ApiCore\ApiException;
+use Google\Cloud\SecureSourceManager\V1\BranchRule;
+use Google\Cloud\SecureSourceManager\V1\Client\SecureSourceManagerClient;
+use Google\Cloud\SecureSourceManager\V1\GetBranchRuleRequest;
 
 // Create a client.
 $secureSourceManagerClient = new SecureSourceManagerClient();

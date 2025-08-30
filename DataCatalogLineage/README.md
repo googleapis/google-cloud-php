@@ -31,10 +31,10 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-Google\ApiCore\ApiException;
-Google\Cloud\DataCatalog\Lineage\V1\Client\LineageClient;
-Google\Cloud\DataCatalog\Lineage\V1\GetLineageEventRequest;
-Google\Cloud\DataCatalog\Lineage\V1\LineageEvent;
+use Google\ApiCore\ApiException;
+use Google\Cloud\DataCatalog\Lineage\V1\Client\LineageClient;
+use Google\Cloud\DataCatalog\Lineage\V1\GetLineageEventRequest;
+use Google\Cloud\DataCatalog\Lineage\V1\LineageEvent;
 
 // Create a client.
 $lineageClient = new LineageClient();

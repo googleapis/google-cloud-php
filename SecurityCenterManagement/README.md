@@ -35,10 +35,10 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-Google\ApiCore\ApiException;
-Google\Cloud\SecurityCenterManagement\V1\Client\SecurityCenterManagementClient;
-Google\Cloud\SecurityCenterManagement\V1\EffectiveEventThreatDetectionCustomModule;
-Google\Cloud\SecurityCenterManagement\V1\GetEffectiveEventThreatDetectionCustomModuleRequest;
+use Google\ApiCore\ApiException;
+use Google\Cloud\SecurityCenterManagement\V1\Client\SecurityCenterManagementClient;
+use Google\Cloud\SecurityCenterManagement\V1\EffectiveEventThreatDetectionCustomModule;
+use Google\Cloud\SecurityCenterManagement\V1\GetEffectiveEventThreatDetectionCustomModuleRequest;
 
 // Create a client.
 $securityCenterManagementClient = new SecurityCenterManagementClient();

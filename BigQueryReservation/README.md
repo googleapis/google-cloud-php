@@ -31,20 +31,26 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-require 'vendor/autoload.php';
+use Google\ApiCore\ApiException;
+use Google\Cloud\BigQuery\Reservation\V1\BiReservation;
+use Google\Cloud\BigQuery\Reservation\V1\Client\ReservationServiceClient;
+use Google\Cloud\BigQuery\Reservation\V1\GetBiReservationRequest;
 
-use Google\Cloud\BigQuery\Reservation\V1\ReservationServiceClient;
+// Create a client.
+$reservationServiceClient = new ReservationServiceClient();
 
-$projectId = '[PROJECT_ID]';
-$locationId = '[LOCATION_ID]';
-$reservationId = '[RESERVATION_ID]';
+// Prepare the request message.
+$request = (new GetBiReservationRequest())
+    ->setName($formattedName);
 
-$client = new ReservationServiceClient();
-$parent = $client->locationName($projectId, $locationId);
-
-$reservation = $client->createReservation($parent, [
-    'reservationId' => $reservationId
-])
+// Call the API and handle any network failures.
+try {
+    /** @var BiReservation $response */
+    $response = $reservationServiceClient->getBiReservation($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
 ```
 
 ### Debugging

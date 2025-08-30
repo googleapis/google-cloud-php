@@ -35,10 +35,10 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-Google\ApiCore\ApiException;
-Google\Maps\RouteOptimization\V1\Client\RouteOptimizationClient;
-Google\Maps\RouteOptimization\V1\OptimizeToursRequest;
-Google\Maps\RouteOptimization\V1\OptimizeToursResponse;
+use Google\ApiCore\ApiException;
+use Google\Maps\RouteOptimization\V1\Client\RouteOptimizationClient;
+use Google\Maps\RouteOptimization\V1\OptimizeToursRequest;
+use Google\Maps\RouteOptimization\V1\OptimizeToursResponse;
 
 // Create a client.
 $routeOptimizationClient = new RouteOptimizationClient();

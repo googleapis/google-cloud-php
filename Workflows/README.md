@@ -31,18 +31,24 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-require 'vendor/autoload.php';
+use Google\ApiCore\ApiException;
+use Google\Cloud\Location\GetLocationRequest;
+use Google\Cloud\Location\Location;
+use Google\Cloud\Workflows\V1\Client\WorkflowsClient;
 
-use Google\Cloud\Workflows\V1beta\WorkflowsClient;
+// Create a client.
+$workflowsClient = new WorkflowsClient();
 
-$client = new WorkflowsClient();
+// Prepare the request message.
+$request = new GetLocationRequest();
 
-$workflows = $client->listWorkflows(
-    WorkflowsClient::locationName('[MY_PROJECT_ID]', 'us-central1')
-);
-
-foreach ($workflows as $workflow) {
-    print 'Found workflow: ' . $workflow->getName() . PHP_EOL;
+// Call the API and handle any network failures.
+try {
+    /** @var Location $response */
+    $response = $workflowsClient->getLocation($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
 }
 ```
 
