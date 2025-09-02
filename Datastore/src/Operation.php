@@ -298,7 +298,7 @@ class Operation
 
         $beginTransactionRequest = new BeginTransactionRequest();
         $beginTransactionRequest->setProjectId($this->projectId);
-        $beginTransactionRequest->setDatabaseId($this->databaseId);
+        $beginTransactionRequest->setDatabaseId($options['databaseId'] ?? $this->databaseId);
         $beginTransactionRequest->setTransactionOptions($protoTransactionOptions);
 
         $res = $this->gapicClient->beginTransaction($beginTransactionRequest, $options);
@@ -346,7 +346,7 @@ class Operation
 
         $request = new AllocateIdsRequest();
         $request->setProjectId($this->projectId);
-        $request->setDatabaseId($this->databaseId);
+        $request->setDatabaseId($options['databaseId'] ?? $this->databaseId);
         $request->setKeys($serviceKeys);
 
         $allocateIdsResponse = $this->gapicClient->allocateIds($request, $options);
@@ -417,19 +417,11 @@ class Operation
         });
 
         $lookupRequest = new LookupRequest();
-        $lookupRequest->setDatabaseId($this->databaseId);
+        $lookupRequest->setDatabaseId($options['databaseId'] ?? $this->databaseId);
         $lookupRequest->setProjectId($this->projectId);
         $lookupRequest->setKeys($serviceKeys);
 
-        if (isset($options['readTime'])) {
-            $protoTime = new ProtobufTimestamp();
-            $protoTime->mergeFromJsonString(json_encode($options['readTime']));
-            unset($options['readTime']);
-
-            $readOptions = new ReadOptions();
-            $readOptions->setReadTime($protoTime);
-            $lookupRequest->setReadOptions($readOptions);
-        }
+        $lookupRequest->setReadOptions($this->createReadOptions($options));
 
         $lookupResponse = $this->gapicClient->lookup($lookupRequest, $options);
 
@@ -675,7 +667,7 @@ class Operation
 
         $commitRequest = new CommitRequest();
         $commitRequest->setMutations($protoMutations);
-        $commitRequest->setDatabaseId($this->databaseId);
+        $commitRequest->setDatabaseId($options['databaseId']);
         $commitRequest->setProjectId($this->projectId);
         $commitRequest->setMode(($options['transaction']) ? Mode::TRANSACTIONAL : Mode::NON_TRANSACTIONAL);
 
@@ -863,7 +855,7 @@ class Operation
         }
 
         return $this->entity($key, $properties, [
-            'cursor' => (isset($result['cursor']))
+            'cursor' => (isset($result['cursor']) && $result['cursor'] !== '')
                 ? $result['cursor']
                 : null,
             'baseVersion' => (isset($result['version']))
@@ -930,5 +922,39 @@ class Operation
         }
 
         return $ret;
+    }
+
+    /**
+     * Create a ReadOptions object from an options array.
+     *
+     * @param array $options The options.
+     * @return null|ReadOptions
+     */
+    private function createReadOptions(array $options)
+    {
+        $empty = true;
+
+        $readOptions = new ReadOptions();
+        if (isset($options['transaction'])) {
+            $empty = false;
+            $readOptions->setTransaction($options['transaction']);
+        }
+        if (isset($options['readConsistency'])) {
+            $empty = false;
+            $readOptions->setReadConsistency($options['readConsistency']);
+        }
+        if (isset($options['readTime'])) {
+            $empty = false;
+            $protoTime = new ProtobufTimestamp();
+            // Timestamps can be passed as an array or a Timestamp object.
+            $protoTime->mergeFromJsonString(json_encode($options['readTime']));
+            $readOptions->setReadTime($protoTime);
+        }
+
+        if ($empty) {
+            return null;
+        }
+
+        return $readOptions;
     }
 }
