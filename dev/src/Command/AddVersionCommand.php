@@ -75,7 +75,7 @@ class AddVersionCommand extends Command
         // Ensure component exists
         $owlbotFile = sprintf('%s/%s/.OwlBot.yaml', $this->rootPath, $componentName);
         if (!file_exists($owlbotFile)) {
-            throw new RuntimeException("Component '$componentName' not found.");
+            throw new RuntimeException(".Owlbot.yaml for component '$componentName' not found.");
         }
         $output->writeln("Adding new version '$version' to .OwlBot.yaml.");
         $yaml = Yaml::parse(file_get_contents($owlbotFile));
