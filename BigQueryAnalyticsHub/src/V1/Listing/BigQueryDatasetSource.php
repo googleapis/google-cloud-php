@@ -42,6 +42,22 @@ class BigQueryDatasetSource extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.bigquery.analyticshub.v1.Listing.BigQueryDatasetSource.RestrictedExportPolicy restricted_export_policy = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $restricted_export_policy = null;
+    /**
+     * Optional. A list of regions where the publisher has created shared
+     * dataset replicas.
+     *
+     * Generated from protobuf field <code>repeated string replica_locations = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $replica_locations;
+    /**
+     * Output only. Server-owned effective state of replicas.
+     * Contains both primary and secondary replicas.
+     * Each replica includes a system-computed (output-only) state and primary
+     * designation.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.bigquery.analyticshub.v1.Listing.BigQueryDatasetSource.Replica effective_replicas = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $effective_replicas;
 
     /**
      * Constructor.
@@ -58,6 +74,14 @@ class BigQueryDatasetSource extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\BigQuery\AnalyticsHub\V1\Listing\BigQueryDatasetSource\RestrictedExportPolicy $restricted_export_policy
      *           Optional. If set, restricted export policy will be propagated and
      *           enforced on the linked dataset.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $replica_locations
+     *           Optional. A list of regions where the publisher has created shared
+     *           dataset replicas.
+     *     @type array<\Google\Cloud\BigQuery\AnalyticsHub\V1\Listing\BigQueryDatasetSource\Replica>|\Google\Protobuf\Internal\RepeatedField $effective_replicas
+     *           Output only. Server-owned effective state of replicas.
+     *           Contains both primary and secondary replicas.
+     *           Each replica includes a system-computed (output-only) state and primary
+     *           designation.
      * }
      */
     public function __construct($data = NULL) {
@@ -155,6 +179,66 @@ class BigQueryDatasetSource extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\AnalyticsHub\V1\Listing\BigQueryDatasetSource\RestrictedExportPolicy::class);
         $this->restricted_export_policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A list of regions where the publisher has created shared
+     * dataset replicas.
+     *
+     * Generated from protobuf field <code>repeated string replica_locations = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getReplicaLocations()
+    {
+        return $this->replica_locations;
+    }
+
+    /**
+     * Optional. A list of regions where the publisher has created shared
+     * dataset replicas.
+     *
+     * Generated from protobuf field <code>repeated string replica_locations = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setReplicaLocations($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->replica_locations = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Server-owned effective state of replicas.
+     * Contains both primary and secondary replicas.
+     * Each replica includes a system-computed (output-only) state and primary
+     * designation.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.bigquery.analyticshub.v1.Listing.BigQueryDatasetSource.Replica effective_replicas = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getEffectiveReplicas()
+    {
+        return $this->effective_replicas;
+    }
+
+    /**
+     * Output only. Server-owned effective state of replicas.
+     * Contains both primary and secondary replicas.
+     * Each replica includes a system-computed (output-only) state and primary
+     * designation.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.bigquery.analyticshub.v1.Listing.BigQueryDatasetSource.Replica effective_replicas = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<\Google\Cloud\BigQuery\AnalyticsHub\V1\Listing\BigQueryDatasetSource\Replica>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setEffectiveReplicas($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\BigQuery\AnalyticsHub\V1\Listing\BigQueryDatasetSource\Replica::class);
+        $this->effective_replicas = $arr;
 
         return $this;
     }
