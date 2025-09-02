@@ -128,6 +128,7 @@ class SpannerClient
     private array $directedReadOptions;
     private bool $routeToLeader;
     private array $defaultQueryOptions;
+    private CacheItemPoolInterface|null $cacheItemPool;
 
     /**
      * Create a Spanner client. Please note that this client requires
@@ -177,6 +178,7 @@ class SpannerClient
      *           **Defaults to** `true` (enabled).
      *     @type string $universeDomain The expected universe of the credentials. Defaults to
      *            "googleapis.com"
+     *     @type CacheItemPoolInterface $cacheItemPool
      * }
      * @throws GoogleException If the gRPC extension is not enabled.
      */
@@ -191,7 +193,8 @@ class SpannerClient
             'projectIdRequired' => true,
             'hasEmulator' => (bool) $emulatorHost,
             'emulatorHost' => $emulatorHost,
-            'queryOptions' => []
+            'queryOptions' => [],
+            'cacheItemPool' => null,
         ];
 
         $this->returnInt64AsObject = $options['returnInt64AsObject'];
@@ -248,6 +251,7 @@ class SpannerClient
         $this->databaseAdminClient->addMiddleware($middleware);
 
         $this->projectName = InstanceAdminClient::projectName($this->projectId);
+        $this->cacheItemPool = $options['cacheItemPool'];
     }
 
     /**
@@ -288,11 +292,13 @@ class SpannerClient
             ]
         );
 
-        $database = $this->instance($instanceId)->database($databaseId);
+        $database = $this->instance($instanceId)->database($databaseId, $options + [
+            'cacheItemPool' => $this->cacheItemPool,
+        ]);
 
         return new BatchClient(
             $operation,
-            $database,
+            $database->session(),
             $options
         );
     }
@@ -634,7 +640,9 @@ class SpannerClient
             $instance = $this->instance($instance);
         }
 
-        $database = $instance->database($name, $options);
+        $database = $instance->database($name, $options + [
+            'cacheItemPool' => $this->cacheItemPool
+        ]);
 
         return $database;
     }

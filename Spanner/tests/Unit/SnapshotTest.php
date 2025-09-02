@@ -21,7 +21,7 @@ use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Result;
-use Google\Cloud\Spanner\Session\Session;
+use Google\Cloud\Spanner\Session\SessionCache;
 use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\Timestamp;
 use InvalidArgumentException;
@@ -54,7 +54,7 @@ class SnapshotTest extends TestCase
 
         $this->snapshot = new Snapshot(
             $this->prophesize(Operation::class)->reveal(),
-            $this->prophesize(Session::class)->reveal(),
+            $this->prophesize(SessionCache::class)->reveal(),
             $args
         );
         $this->directedReadOptionsIncludeReplicas = [
@@ -75,7 +75,7 @@ class SnapshotTest extends TestCase
     {
         $snapshot = new Snapshot(
             $this->prophesize(Operation::class)->reveal(),
-            $this->prophesize(Session::class)->reveal()
+            $this->prophesize(SessionCache::class)->reveal()
         );
 
         $this->assertEquals(Snapshot::TYPE_SINGLE_USE, $snapshot->type());
@@ -96,7 +96,7 @@ class SnapshotTest extends TestCase
 
         new Snapshot(
             $this->prophesize(Operation::class)->reveal(),
-            $this->prophesize(Session::class)->reveal(),
+            $this->prophesize(SessionCache::class)->reveal(),
             $args
         );
     }
@@ -113,7 +113,7 @@ class SnapshotTest extends TestCase
 
         $snapshot = new Snapshot(
             $operation->reveal(),
-            $this->prophesize(Session::class)->reveal()
+            $this->prophesize(SessionCache::class)->reveal()
         );
 
         $snapshot->execute('foo');
@@ -135,7 +135,7 @@ class SnapshotTest extends TestCase
 
         $snapshot = new Snapshot(
             $operation->reveal(),
-            $this->prophesize(Session::class)->reveal(),
+            $this->prophesize(SessionCache::class)->reveal(),
             ['directedReadOptions' => $this->directedReadOptionsIncludeReplicas]
         );
 
@@ -162,7 +162,7 @@ class SnapshotTest extends TestCase
 
         $snapshot = new Snapshot(
             $operation->reveal(),
-            $this->prophesize(Session::class)->reveal(),
+            $this->prophesize(SessionCache::class)->reveal(),
             ['directedReadOptions' => $this->directedReadOptionsIncludeReplicas]
         );
 

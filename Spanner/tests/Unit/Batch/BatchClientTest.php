@@ -82,40 +82,17 @@ class BatchClientTest extends TestCase
             self::PROJECT,
             self::INSTANCE
         );
-        $this->database = new Database(
-            $this->spannerClient->reveal(),
-            $this->databaseAdminClient->reveal(),
-            new Serializer(),
-            $this->instance,
-            self::PROJECT,
-            self::DATABASE
-        );
+        $session = $this->prophesize(SessionCache::class);
+        $session->name()->willReturn(self::SESSION);
         $this->batchClient = new BatchClient(
             new Operation($this->spannerClient->reveal(), $this->serializer),
-            $this->database,
+            $session->reveal(),
         );
     }
 
     public function testSnapshot()
     {
         $time = time();
-        $this->spannerClient->createSession(
-            Argument::that(function (CreateSessionRequest $request) {
-                $this->assertEquals(
-                    $request->getDatabase(),
-                    self::DATABASE
-                );
-                return true;
-            }),
-            Argument::type('array')
-        )
-            ->shouldBeCalledOnce()
-            ->willReturn(new Session([
-                'name' => self::SESSION,
-                'multiplexed' => true,
-                'create_time' => new TimestampProto(['seconds' => $time])
-            ]));
-
         $this->spannerClient->beginTransaction(
             Argument::that(function (BeginTransactionRequest $request) {
                 $this->assertEquals(
@@ -146,16 +123,6 @@ class BatchClientTest extends TestCase
             'readTimestamp' => \DateTime::createFromFormat('U', (string) $time)->format(Timestamp::FORMAT)
         ]));
 
-        $this->spannerClient->createSession(
-            Argument::type(CreateSessionRequest::class),
-            Argument::type('array')
-        )
-            ->shouldBeCalledOnce()
-            ->willReturn(new Session([
-                'name' => self::SESSION,
-                'multiplexed' => true,
-                'create_time' => new TimestampProto(['seconds' => $time])
-            ]));
         $snapshot = $this->batchClient->snapshotFromString($identifier);
         $this->assertEquals(self::SESSION, $snapshot->session()->name());
         $this->assertEquals(self::TRANSACTION, $snapshot->id());
@@ -189,7 +156,6 @@ class BatchClientTest extends TestCase
         $options = ['hello' => 'world'];
 
         $partition = new ReadPartition($token, $table, $keyset, $columns, $options);
-        $string = (string) $partition;
 
         $res = $this->batchClient->partitionFromString($partition);
         $this->assertEquals($token, $res->token());
@@ -220,26 +186,10 @@ class BatchClientTest extends TestCase
     public function testSnapshotDatabaseRole()
     {
         $time = time();
-        $this->spannerClient->createSession(
-          Argument::that(function (CreateSessionRequest $request) {
-                $this->assertEquals(
-                    'Reader',
-                    $this->serializer->encodeMessage($request)['session']['creatorRole'],
-                );
-                return true;
-            }),
-            Argument::type('array')
-        )
-            ->shouldBeCalledOnce()
-            ->willReturn(new Session([
-                'name' => self::SESSION,
-                'multiplexed' => true,
-            ]));
-
         $this->spannerClient->beginTransaction(
             Argument::that(function (BeginTransactionRequest $request) {
                 $this->assertEquals(
-                    $this->serializer->encodeMessage($request)['options']['readOnly'],
+                    $this->serializer->encodeMessage($request->getOptions()->getReadOnly()),
                     ['returnReadTimestamp' => true]
                 );
                 return true;
@@ -249,15 +199,9 @@ class BatchClientTest extends TestCase
             ->shouldBeCalledOnce()
             ->willReturn(new Transaction([
                 'id' => self::TRANSACTION,
-                'read_timestamp' => new TimestampProto(['seconds' => $time])
+                'read_timestamp' => new TimestampProto(['seconds' => $time]),
             ]));
 
-        $batchClient = new BatchClient(
-            new Operation($this->spannerClient->reveal(), $this->serializer),
-            $this->database,
-            ['databaseRole' => 'Reader']
-        );
-
-        $snapshot = $batchClient->snapshot();
+        $this->batchClient->snapshot();
     }
 }

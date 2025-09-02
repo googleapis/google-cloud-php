@@ -52,6 +52,8 @@ use InvalidArgumentException;
  * Usage examples may be found in classes making use of this class:
  * * {@see \Google\Cloud\Spanner\Database}
  * * {@see \Google\Cloud\Spanner\Transaction}
+ *
+ * @internal
  */
 class Operation
 {

@@ -51,7 +51,6 @@ use Google\Cloud\Spanner\V1\BatchCreateSessionsRequest;
 use Google\Cloud\Spanner\V1\BatchWriteRequest;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Google\Cloud\Spanner\V1\CreateSessionRequest;
-use Google\Cloud\Spanner\V1\DeleteSessionRequest;
 use Google\Cloud\Spanner\V1\Mutation;
 use Google\Cloud\Spanner\V1\Mutation\Delete;
 use Google\Cloud\Spanner\V1\Mutation\Write;
@@ -59,12 +58,10 @@ use Google\Cloud\Spanner\V1\TypeCode;
 use Google\Cloud\Spanner\V1\Session;
 use Google\LongRunning\ListOperationsRequest;
 use Google\LongRunning\Operation as OperationProto;
-use Google\Protobuf\Duration;
 use Google\Protobuf\ListValue;
 use Google\Protobuf\Struct;
 use Google\Protobuf\Value;
 use Google\Rpc\Code;
-use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Cache\CacheItemPoolInterface;
 
 /**
@@ -193,10 +190,13 @@ class Database
             ]
         );
 
-        $this->cacheItemPool = $options['cacheItemPool'] ?? extension_loaded('sysvshm')
-            ? new SysVCacheItemPool()
-            : new FilesystemCacheItemPool(sys_get_temp_dir() . '/spanner_cache/');
+        $cacheItemPool = $options['cacheItemPool'] ?? (
+            extension_loaded('sysvshm')
+                ? new SysVCacheItemPool()
+                : new FilesystemCacheItemPool(sys_get_temp_dir() . '/spanner_cache/')
+        );
 
+        $this->session = new SessionCache($cacheItemPool, $this);
         $this->directedReadOptions = $instance->directedReadOptions();
     }
 
@@ -303,6 +303,21 @@ class Database
     public function name(): string
     {
         return $this->name;
+    }
+
+    /**
+     * Return the fully-qualified database name.
+     *
+     * Example:
+     * ```
+     * $name = $database->name();
+     * ```
+     *
+     * @return string
+     */
+    public function role(): string
+    {
+        return $this->databaseRole;
     }
 
     /**
@@ -745,9 +760,7 @@ class Database
             $options['maxStaleness'],
         );
 
-        $session = $this->selectSession();
-
-        return $this->operation->snapshot($session, $options);
+        return $this->operation->snapshot($this->session, $options);
     }
 
     /**
@@ -799,9 +812,7 @@ class Database
 
         $options['transactionOptions'] = $this->initReadWriteTransactionOptions();
 
-        $session = $this->selectSession();
-
-        return $this->operation->transaction($session, $options);
+        return $this->operation->transaction($this->session, $options);
     }
 
     /**
@@ -910,8 +921,6 @@ class Database
             $options['transactionOptions'] ?? []
         );
 
-        $session = $this->selectSession();
-
         $attempt = 0;
         $startTransactionFn = function ($session, $options) use (&$attempt) {
             // Initial attempt requires to set `begin` options (ILB).
@@ -924,7 +933,7 @@ class Database
                 $options['isRetry'] = true;
             }
 
-            $transaction = $this->operation->transaction($session, $options);
+            $transaction = $this->operation->transaction($this->session, $options);
 
             $attempt++;
             return $transaction;
@@ -968,8 +977,7 @@ class Database
         };
 
         $retry = new Retry($maxRetries, $delayFn);
-
-        return $retry->execute($transactionFn, [$operation, $session, $options]);
+        return $retry->execute($transactionFn, [$operation, $this->session, $options]);
     }
 
     /**
@@ -1536,6 +1544,8 @@ class Database
      *
      * ```
      * // Execute a read and return a new Snapshot for further reads.
+     * use Google\Cloud\Spanner\Database;
+     *
      * $result = $database->execute('SELECT * FROM Posts WHERE ID = @postId', [
      *     'parameters' => [
      *         'postId' => 1337
@@ -1551,6 +1561,8 @@ class Database
      *
      * ```
      * // Execute a read and return a new Transaction for further reads and writes.
+     * use Google\Cloud\Spanner\Database;
+     *
      * $result = $database->execute('SELECT * FROM Posts WHERE ID = @postId', [
      *     'parameters' => [
      *         'postId' => 1337
@@ -1650,7 +1662,7 @@ class Database
     {
         unset($options['requestOptions']['transactionTag']);
         $session = $this->pluck('session', $options, false)
-            ?: $this->selectSession();
+            ?: $this->session;
 
         list(
             $options['transaction'],
@@ -1732,9 +1744,6 @@ class Database
         }
         // Prevent nested transactions.
         $this->isRunningTransaction = true;
-        $session = $this->selectSession(
-            $this->pluck('sessionOptions', $options, false) ?: []
-        );
 
         $mutationGroups = array_map(fn ($x) => $x->toArray(), $mutationGroups);
 
@@ -1746,7 +1755,7 @@ class Database
         try {
             [$data, $callOptions] = $this->splitOptionalArgs($options);
             $data += [
-                'session' => $session->name(),
+                'session' => $this->session->name(),
                 'mutationGroups' => $mutationGroups
             ];
 
@@ -1883,7 +1892,6 @@ class Database
     public function executePartitionedUpdate($statement, array $options = []): int
     {
         unset($options['requestOptions']['transactionTag']);
-        $session = $this->selectSession();
 
         $beginTransactionOptions = [
             'transactionOptions' => [
@@ -1895,9 +1903,9 @@ class Database
                 $options['transactionOptions']['excludeTxnFromChangeStreams'];
             unset($options['transactionOptions']);
         }
-        $transaction = $this->operation->transaction($session, $beginTransactionOptions);
+        $transaction = $this->operation->transaction($this->session, $beginTransactionOptions);
 
-        return $this->operation->executeUpdate($session, $transaction, $statement, [
+        return $this->operation->executeUpdate($this->session, $transaction, $statement, [
             'statsItem' => 'rowCountLowerBound',
             'route-to-leader' => true,
         ] + $options);
@@ -1923,6 +1931,7 @@ class Database
      *
      * ```
      * // Execute a read and return a new Snapshot for further reads.
+     * use Google\Cloud\Spanner\Database;
      * use Google\Cloud\Spanner\KeySet;
      *
      * $keySet = new KeySet([
@@ -1943,6 +1952,7 @@ class Database
      *
      * ```
      * // Execute a read and return a new Transaction for further reads and writes.
+     * use Google\Cloud\Spanner\Database;
      * use Google\Cloud\Spanner\KeySet;
      *
      * $keySet = new KeySet([
@@ -2027,9 +2037,6 @@ class Database
     public function read($table, KeySet $keySet, array $columns, array $options = []): Result
     {
         unset($options['requestOptions']['transactionTag']);
-        $session = $this->selectSession(
-            $this->pluck('sessionOptions', $options, false) ?: []
-        );
 
         list($transactionOptions, $context) = $this->transactionSelector($options);
         $options['transaction'] = $transactionOptions;
@@ -2042,7 +2049,7 @@ class Database
 
         // Unset the internal flag.
         unset($options['singleUse']);
-        return $this->operation->read($session, $table, $keySet, $columns, $options + [
+        return $this->operation->read($this->session, $table, $keySet, $columns, $options + [
             'route-to-leader' => $context === Database::CONTEXT_READ
         ]);
     }
@@ -2057,7 +2064,7 @@ class Database
      * @param array $options [optional] Configuration options.
      * @return SessionCache
      */
-    public function createSession(array $options = []): SessionCache
+    public function createSession(array $options = []): Session
     {
         [$session, $callOptions] = $this->validateOptions(
             $options,
@@ -2073,12 +2080,10 @@ class Database
         ];
 
         $request = $this->serializer->decodeMessage(new CreateSessionRequest(), $createSession);
-        $session = $this->spannerClient->createSession($request, $callOptions + [
+        return $this->spannerClient->createSession($request, $callOptions + [
             'resource-prefix' => $this->name,
             'route-to-leader' => $this->routeToLeader
         ]);
-
-        return new SessionCache($this->cacheItemPool, $this, $session);
     }
 
 
@@ -2119,26 +2124,6 @@ class Database
             'route-to-leader' => $this->routeToLeader
         ]);
         return $this->handleResponse($response);
-    }
-
-    /**
-     * Delete session asynchronously.
-     *
-     * @access private
-     * @param array $options {
-     *     @type name The session name to be deleted
-     * }
-     * @return PromiseInterface
-     * @experimental
-     */
-    public function deleteSessionAsync(array $options): PromiseInterface
-    {
-        [$data, $callOptions] = $this->splitOptionalArgs($options);
-
-        $request = $this->serializer->decodeMessage(new DeleteSessionRequest(), $data);
-        return $this->spannerClient->deleteSessionAsync($request, $callOptions + [
-            'resource-prefix' => $this->name
-        ]);
     }
 
     /**
@@ -2311,23 +2296,11 @@ class Database
      * @internal
      * @return SessionCache
      */
-    public function session(array $options = []): SessionCache
+    public function session(): SessionCache
     {
         // Sessions are used by BatchClient to create a BatchSnapshot, so
         // this method must be public.
-        return $this->session = $this->session ?? $this->createSession($options);
-    }
-
-    /**
-     * If no session is already associated with the database use the session
-     * pool implementation to retrieve a session one - otherwise create on
-     * demand.
-     *
-     * @return SessionCache
-     */
-    private function selectSession(): SessionCache
-    {
-        return $this->session = $this->session ?? $this->createSession();
+        return $this->session;
     }
 
     /**
@@ -2515,7 +2488,7 @@ class Database
         return function (array $database): self {
             $name = DatabaseAdminClient::parseName($database['name']);
             return $this->instance->database($name['database'], [
-                'sessionCache' => $this->session ?? null,
+                'sessionCache' => $this->session,
                 'database' => $database,
                 'databaseRole' => $this->databaseRole,
             ]);
@@ -2546,8 +2519,7 @@ class Database
             'projectId' => $this->projectId,
             'name' => $this->name,
             'instance' => $this->instance,
-            'sessionPool' => $this->sessionPool,
-            'session' => $this->session ?? null,
+            'session' => $this->session,
         ];
     }
 }

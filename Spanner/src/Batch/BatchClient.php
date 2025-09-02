@@ -18,11 +18,10 @@
 namespace Google\Cloud\Spanner\Batch;
 
 use Google\Cloud\Core\TimeTrait;
-use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Operation;
+use Google\Cloud\Spanner\Session\SessionCache;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\TransactionConfigurationTrait;
-use Google\Protobuf\Duration;
 
 /**
  * Provides Batch APIs used to read data from a Cloud Spanner database.
@@ -74,10 +73,6 @@ use Google\Protobuf\Duration;
  * // and is not implemented here.
  * do {
  *     $finished = areWorkersDone();
- *
- *     if ($finished) {
- *         $snapshot->close();
- *     }
  * } while(!$finished);
  * ```
  *
@@ -114,24 +109,14 @@ class BatchClient
         ReadPartition::class
     ];
 
-    private string|null $databaseRole;
-
     /**
      * @param Operation $operation A Cloud Spanner Operations wrapper.
-     * @param string $databaseName The database name to which the batch client
-     *        instance is scoped.
-     * @param array $options  [optional] {
-     *     Configuration options.
-     *
-     *     @type string $databaseRole The user created database role which creates the session.
-     * }
+     * @param SessionCache $session The session to which the batch client instance is scoped.
      */
     public function __construct(
         private Operation $operation,
-        private Database $database,
-        array $options = []
+        private SessionCache $session,
     ) {
-        $this->databaseRole = $options['databaseRole'] ?? '';
     }
 
     /**
@@ -154,7 +139,6 @@ class BatchClient
      *           timestamp.
      *     @type Duration $transactionOptions.exactStaleness Represents a number of seconds. Executes
      *           all reads at a timestamp that is $exactStaleness old.
-     *     @type array $sessionOptions Configuration options for session creation.
      * }
      * @return BatchSnapshot
      */
@@ -164,8 +148,6 @@ class BatchClient
             'transactionOptions' => [],
         ];
 
-        $sessionOptions = $this->pluck('sessionOptions', $options, false) ?: [];
-
         // Single Use transactions are not supported in batch mode.
         $options['transactionOptions']['singleUse'] = false;
 
@@ -174,10 +156,8 @@ class BatchClient
 
         $transactionOptions = $this->configureReadOnlyTransactionOptions($transactionOptions);
 
-        $session = $this->database->session($sessionOptions);
-
         /** @var BatchSnapshot */
-        return $this->operation->snapshot($session, [
+        return $this->operation->snapshot($this->session, [
             'className' => BatchSnapshot::class,
             'transactionOptions' => $transactionOptions
         ] + $options);
@@ -218,7 +198,7 @@ class BatchClient
         }
         return new BatchSnapshot(
             $this->operation,
-            $this->database->session(),
+            $this->session,
             [
                 'id' => $data['transactionId'],
                 'readTimestamp' => $data['readTimestamp']

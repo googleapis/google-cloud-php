@@ -49,10 +49,13 @@ use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
 use Google\Cloud\Spanner\V1\Session;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
+use Google\Protobuf\Timestamp;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
+use Psr\Cache\CacheItemInterface;
+use Psr\Cache\CacheItemPoolInterface;
 
 /**
  * @group spanner
@@ -64,8 +67,8 @@ class InstanceTest extends TestCase
     use ProphecyTrait;
     use ResultGeneratorTrait;
 
-    const PROJECT_ID = 'test-project';
-    const NAME = 'instance-name';
+    const PROJECT = 'test-project';
+    const INSTANCE = 'instance-name';
     const DATABASE = 'database-name';
     const BACKUP = 'my-backup';
     const SESSION = 'projects/test-project/instances/instance-name/databases/database-name/sessions/session';
@@ -79,6 +82,7 @@ class InstanceTest extends TestCase
     private $operationResponse;
     private $page;
     private $pagedListResponse;
+    private $cacheItemPool;
 
     public function setUp(): void
     {
@@ -101,20 +105,36 @@ class InstanceTest extends TestCase
         $this->pagedListResponse = $this->prophesize(PagedListResponse::class);
         $this->pagedListResponse->getPage()->willReturn($this->page->reveal());
 
+        // ensure cache hit
+        $cacheItem = $this->prophesize(CacheItemInterface::class);
+        $cacheItem->get()->willReturn((new Session([
+            'name' => self::SESSION,
+            'multiplexed' => true,
+            'create_time' => new Timestamp(['seconds' => time()]),
+        ]))->serializeToString());
+
+        $cacheKey = sprintf('cache-session-pool.%s.%s.%s.%s', self::PROJECT, self::INSTANCE, self::DATABASE, '');
+        $this->cacheItemPool = $this->prophesize(CacheItemPoolInterface::class);
+        $this->cacheItemPool->getItem($cacheKey)
+            ->willReturn($cacheItem->reveal());
+
         $this->instance = new Instance(
             $this->spannerClient->reveal(),
             $this->instanceAdminClient->reveal(),
             $this->databaseAdminClient->reveal(),
             $this->serializer,
-            self::PROJECT_ID,
-            self::NAME,
-            ['directedReadOptions' => $this->directedReadOptionsIncludeReplicas]
+            self::PROJECT,
+            self::INSTANCE,
+            [
+                'directedReadOptions' => $this->directedReadOptionsIncludeReplicas,
+                'cacheItemPool' => $this->cacheItemPool->reveal(),
+            ]
         );
     }
 
     public function testName()
     {
-        $this->assertEquals(self::NAME, InstanceAdminClient::parseName($this->instance->name())['instance']);
+        $this->assertEquals(self::INSTANCE, InstanceAdminClient::parseName($this->instance->name())['instance']);
     }
 
     public function testInfo()
@@ -365,7 +385,7 @@ class InstanceTest extends TestCase
             Argument::that(function ($request) {
                 $this->assertEquals(
                     $request->getName(),
-                    InstanceAdminClient::instanceName(self::PROJECT_ID, self::NAME)
+                    InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE)
                 );
                 return true;
             }),
@@ -386,7 +406,7 @@ class InstanceTest extends TestCase
                 $this->assertEquals($message['createStatement'], $createStatement);
                 $this->assertEquals(
                     $message['parent'],
-                    InstanceAdminClient::instanceName(self::PROJECT_ID, self::NAME)
+                    InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE)
                 );
                 $this->assertEquals($message['extraStatements'], $extra);
                 return true;
@@ -405,7 +425,7 @@ class InstanceTest extends TestCase
 
     public function testCreateDatabaseFromBackupName()
     {
-        $backupName = DatabaseAdminClient::backupName(self::PROJECT_ID, self::NAME, self::BACKUP);
+        $backupName = DatabaseAdminClient::backupName(self::PROJECT, self::INSTANCE, self::BACKUP);
 
         $this->databaseAdminClient->restoreDatabase(
             Argument::that(function ($request) use ($backupName) {
@@ -453,11 +473,14 @@ class InstanceTest extends TestCase
     public function testDatabases()
     {
         $databases = [
-            new DatabaseProto(['name' => DatabaseAdminClient::databaseName(self::PROJECT_ID, self::NAME, 'database1')]),
-            new DatabaseProto(['name' => DatabaseAdminClient::databaseName(self::PROJECT_ID, self::NAME, 'database2')])
+            new DatabaseProto(['name' => DatabaseAdminClient::databaseName(self::PROJECT, self::INSTANCE, 'database1')]),
+            new DatabaseProto(['name' => DatabaseAdminClient::databaseName(self::PROJECT, self::INSTANCE, 'database2')])
         ];
 
-        $this->page->getResponseObject()->willReturn(new ListDatabasesResponse(['databases' => $databases]));
+        $this->page
+            ->getResponseObject()
+            ->shouldBeCalledOnce()
+            ->willReturn(new ListDatabasesResponse(['databases' => $databases]));
 
         $this->databaseAdminClient->listDatabases(
             Argument::that(function ($request) {
@@ -495,8 +518,8 @@ class InstanceTest extends TestCase
     public function testDatabasesPaged()
     {
         $databases = [
-            new DatabaseProto(['name' => DatabaseAdminClient::databaseName(self::PROJECT_ID, self::NAME, 'database1')]),
-            new DatabaseProto(['name' => DatabaseAdminClient::databaseName(self::PROJECT_ID, self::NAME, 'database2')]),
+            new DatabaseProto(['name' => DatabaseAdminClient::databaseName(self::PROJECT, self::INSTANCE, 'database1')]),
+            new DatabaseProto(['name' => DatabaseAdminClient::databaseName(self::PROJECT, self::INSTANCE, 'database2')]),
         ];
 
         $page1 = $this->prophesize(Page::class);
@@ -571,8 +594,8 @@ class InstanceTest extends TestCase
     public function testBackups()
     {
         $backups = [
-            new BackupProto(['name' => DatabaseAdminClient::backupName(self::PROJECT_ID, self::NAME, 'backup1')]),
-            new BackupProto(['name' => DatabaseAdminClient::backupName(self::PROJECT_ID, self::NAME, 'backup2')]),
+            new BackupProto(['name' => DatabaseAdminClient::backupName(self::PROJECT, self::INSTANCE, 'backup1')]),
+            new BackupProto(['name' => DatabaseAdminClient::backupName(self::PROJECT, self::INSTANCE, 'backup2')]),
         ];
 
         $this->page->getResponseObject()->willReturn(new ListBackupsResponse(['backups' => $backups]));
@@ -661,7 +684,23 @@ class InstanceTest extends TestCase
     public function testInstanceDatabaseRole()
     {
         $sql = 'SELECT * FROM Table';
-        $database = $this->instance->database($this::DATABASE, ['databaseRole' => 'Reader']);
+
+        // ensure cache miss
+        $cacheItem = $this->prophesize(CacheItemInterface::class);
+        $cacheItem->get()->willReturn(null);
+        $cacheItem->set(Argument::any())->willReturn($cacheItem->reveal());
+        $cacheItem->expiresAt(Argument::any())->willReturn($cacheItem->reveal());
+
+        $cacheItemPool = $this->prophesize(CacheItemPoolInterface::class);
+        $cacheItemPool->getItem(Argument::type('string'))
+            ->willReturn($cacheItem->reveal());
+        $cacheItemPool->save(Argument::type(CacheItemInterface::class))
+            ->willReturn(true);
+
+        $database = $this->instance->database($this::DATABASE, [
+            'databaseRole' => 'Reader',
+            'cacheItemPool' => $cacheItemPool->reveal(),
+        ]);
 
         $this->spannerClient->createSession(
             Argument::that(function ($request) {
@@ -674,6 +713,7 @@ class InstanceTest extends TestCase
             ->willReturn(new Session([
                 'name' => self::SESSION,
                 'multiplexed' => true,
+                'create_time' => new Timestamp(['seconds' => time()]),
             ]));
 
         $this->spannerClient->executeStreamingSql(
@@ -690,18 +730,7 @@ class InstanceTest extends TestCase
 
     public function testInstanceExecuteWithDirectedRead()
     {
-        $database = $this->instance->database(
-            $this::DATABASE
-        );
-        $this->spannerClient->createSession(
-            Argument::type(CreateSessionRequest::class),
-            Argument::type('array')
-        )
-            ->shouldBeCalledOnce()
-            ->willReturn(new Session([
-                'name' => self::SESSION,
-                'multiplexed' => true,
-            ]));
+        $database = $this->instance->database(self::DATABASE);
 
         $this->spannerClient->executeStreamingSql(
             Argument::that(function ($request) {
@@ -730,16 +759,6 @@ class InstanceTest extends TestCase
         $keys = [10, 'bar'];
         $columns = ['id', 'name'];
         $database = $this->instance->database($this::DATABASE);
-
-        $this->spannerClient->createSession(
-            Argument::type(CreateSessionRequest::class),
-            Argument::type('array')
-        )
-            ->shouldBeCalledOnce()
-            ->willReturn(new Session([
-                'name' => self::SESSION,
-                'multiplexed' => true,
-            ]));
 
         $this->spannerClient->streamingRead(
             Argument::that(function ($request) {

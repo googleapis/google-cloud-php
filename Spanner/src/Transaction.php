@@ -24,7 +24,6 @@ use Google\Cloud\Spanner\V1\RequestOptions;
 use Google\Cloud\Spanner\V1\TransactionOptions;
 use Google\Cloud\Spanner\V1\MultiplexedSessionPrecommitToken;
 use Google\Cloud\Spanner\V1\CommitResponse\CommitStats;
-use Google\Protobuf\Duration;
 
 /**
  * Manages interaction with Cloud Spanner inside a Transaction.
@@ -141,7 +140,7 @@ class Transaction implements TransactionalReadInterface
      * $commitStats = $transaction->getCommitStats();
      * ```
      *
-     * @return array The commit stats
+     * @return CommitStats|null The commit stats
      */
     public function getCommitStats(): CommitStats|null
     {

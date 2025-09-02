@@ -24,7 +24,7 @@ use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Result;
 use Google\Cloud\Spanner\Serializer;
-use Google\Cloud\Spanner\Session\Session;
+use Google\Cloud\Spanner\Session\SessionCache;
 use Google\Cloud\Spanner\StructType;
 use Google\Cloud\Spanner\StructValue;
 use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
@@ -55,6 +55,7 @@ class TransactionTest extends SnippetTestCase
     use ResultGeneratorTrait;
 
     const TRANSACTION = 'my-transaction';
+    const SESSION = 'projects/my-awesome-project/instances/my-instance/databases/my-database/sessions/session-id';
 
     private $spannerClient;
     private $serializer;
@@ -67,13 +68,8 @@ class TransactionTest extends SnippetTestCase
         $this->spannerClient = $this->prophesize(SpannerClient::class);
         $this->serializer = new Serializer();
         $operation = new Operation($this->spannerClient->reveal(), $this->serializer);
-        $session = $this->prophesize(Session::class);
-        $session->info()
-            ->willReturn([
-                'databaseName' => 'database'
-            ]);
-        $session->name()
-            ->willReturn('database');
+        $session = $this->prophesize(SessionCache::class);
+        $session->name()->willReturn(self::SESSION);
 
         $this->transaction = new Transaction(
             $operation,
@@ -417,7 +413,8 @@ class TransactionTest extends SnippetTestCase
         $snippet->addLocal('transaction', $this->transaction);
 
         $res = $snippet->invoke('commitStats');
-        $this->assertEquals(['mutationCount' => 4], $res->returnVal());
+        $this->assertInstanceOf(CommitStats::class, $res->returnVal());
+        $this->assertEquals(4, $res->returnVal()->getMutationCount());
     }
 
     public function testState()
