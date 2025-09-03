@@ -29,6 +29,7 @@ use Google\Cloud\Spanner\V1\CommitRequest;
 use Google\Cloud\Spanner\V1\CreateSessionRequest;
 use Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest;
 use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
+use Google\Cloud\Spanner\V1\PartitionOptions;
 use Google\Cloud\Spanner\V1\PartitionQueryRequest;
 use Google\Cloud\Spanner\V1\PartitionReadRequest;
 use Google\Cloud\Spanner\V1\ReadRequest;
@@ -38,9 +39,11 @@ use Google\Cloud\Spanner\V1\TransactionOptions;
 use Google\Cloud\Spanner\V1\TransactionOptions\ReadWrite;
 use Google\Cloud\Spanner\V1\TransactionSelector;
 use Google\Cloud\Spanner\V1\Type;
-use Google\Protobuf\Duration;
+use Google\Protobuf\Internal\MapField;
 use Google\Rpc\Code;
+use GPBMetadata\Google\Protobuf\Struct;
 use InvalidArgumentException;
+use PhpParser\Node\Expr\List_;
 
 /**
  * Common interface for running operations against Cloud Spanner. This class is
@@ -758,28 +761,28 @@ class Operation
         string $sql,
         array $options = []
     ): array {
+        $options += $this->formatPartitionQueryOptions([
+            'parameters' => $options['parameters'] ?? null,
+            'types' => $options['types'] ?? null,
+        ]);
+        $options['transaction'] = $this->createTransactionSelector($options, $transactionId);
+
         // Split all the options into their respective categories
-        [$paramsAndTypes, $partitionOptions, $partitionQuery, $executeSql, $callOptions] = $this->validateOptions(
+        [$_paramsAndTypes, $partitionOptions, $partitionQuery, $_executeSql, $callOptions] = $this->validateOptions(
             $options,
-            ['parameters', 'types'],
-            ['partitionSizeBytes', 'maxPartitions'],
-            PartitionQueryRequest::class,
-            ExecuteSqlRequest::class,
+            ['parameters', 'types'], // handled above, but define them here as well (so they're validated)
+            new PartitionOptions(),
+            new PartitionQueryRequest(),
+            new ExecuteSqlRequest(), // these options are unused in this method, but are passed to QueryPartition
             CallOptions::class
         );
-        // format "parameters" and "types" into "params" and "paramTypes"
-        $partitionQuery += $this->formatPartitionQueryOptions($paramsAndTypes);
 
-        $partitionQuery['transaction'] = $this->createTransactionSelector($partitionQuery, $transactionId);
-        $partitionQuery += [
-            'session' => $session->name(),
-            'sql' => $sql,
-            'partitionOptions' => $partitionOptions,
-        ];
+        $partitionQuery
+            ->setSession($session->name())
+            ->setSql($sql)
+            ->setPartitionOptions($partitionOptions);
 
-        $request = $this->serializer->decodeMessage(new PartitionQueryRequest(), $partitionQuery);
-
-        $response = $this->spannerClient->partitionQuery($request, $callOptions + [
+        $response = $this->spannerClient->partitionQuery($partitionQuery, $callOptions + [
             'resource-prefix' => $this->getDatabaseNameFromSession($session),
             'route-to-leader' => $this->routeToLeader
         ]);
@@ -790,7 +793,7 @@ class Operation
             $partitions[] = new QueryPartition(
                 $partition['partitionToken'],
                 $sql,
-                $options
+                $this->pluckArray(['parameters', 'types', 'maxPartitions', 'partitionSizeBytes'], $options)
             );
         }
 
@@ -829,29 +832,26 @@ class Operation
         array $columns,
         array $options = []
     ): array {
+        $options['transaction'] = $this->createTransactionSelector($options, $transactionId);
+        $options['columns'] = $columns;
+        $options['keySet'] = $this->flattenKeySet($keySet);
+
         // Split all the options into their respective categories.
         // $readRequest is unused, but the options are valid because they're passed in to the
         // constructor of ReadPartition.
-        [$partitionOptions, $partitionRead, $readRequest, $callOptions] = $this->validateOptions(
+        [$partitionOptions, $partitionRead, $_readRequest, $callOptions] = $this->validateOptions(
             $options,
-            ['partitionSizeBytes', 'maxPartitions'],
-            PartitionReadRequest::class,
-            ReadRequest::class,
+            new PartitionOptions(),
+            new PartitionReadRequest(),
+            new ReadRequest(), // these options are unused in this method, but are passed to ReadPartition
             CallOptions::class
         );
 
-        $partitionRead['transaction'] = $this->createTransactionSelector($partitionRead, $transactionId);
-        $partitionRead += [
-            'session' => $session->name(),
-            'table' => $table,
-            'columns' => $columns,
-            'keySet' => $this->flattenKeySet($keySet),
-            'partitionOptions' => $partitionOptions,
-        ];
+        $partitionRead->setSession($session->name());
+        $partitionRead->setTable($table);
+        $partitionRead->setPartitionOptions($partitionOptions);
 
-        $request = $this->serializer->decodeMessage(new PartitionReadRequest(), $partitionRead);
-
-        $response = $this->spannerClient->partitionRead($request, $callOptions + [
+        $response = $this->spannerClient->partitionRead($partitionRead, $callOptions + [
             'resource-prefix' => $this->getDatabaseNameFromSession($session),
             'route-to-leader' => $this->routeToLeader
         ]);
@@ -864,7 +864,7 @@ class Operation
                 $table,
                 $keySet,
                 $columns,
-                $options
+                $this->pluckArray(['index', 'maxPartitions', 'partitionSizeBytes'], $options)
             );
         }
 

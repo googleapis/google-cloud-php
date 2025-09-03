@@ -20,6 +20,7 @@ namespace Google\Cloud\Spanner;
 use Google\ApiCore\ClientOptionsTrait;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Middleware\MiddlewareInterface;
+use Google\ApiCore\Options\CallOptions;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Core\DetectProjectIdTrait;
@@ -392,14 +393,16 @@ class SpannerClient
      */
     public function instanceConfigurations(array $options = []): ItemIterator
     {
-        [$data, $callOptions] = $this->splitOptionalArgs($options);
-        $data['parent'] = $this->projectName;
-
-        $request = $this->serializer->decodeMessage(new ListInstanceConfigsRequest(), $data);
+        [$listInstanceConfigs, $callOptions] = $this->validateOptions(
+            $options,
+            new ListInstanceConfigsRequest(),
+            CallOptions::class
+        );
+        $listInstanceConfigs->setParent($this->projectName);
 
         return $this->buildListItemsIterator(
             [$this->instanceAdminClient, 'listInstanceConfigs'],
-            $request,
+            $listInstanceConfigs,
             $callOptions + ['resource-prefix' => $this->projectName],
             function (array $config) {
                 return $this->instanceConfiguration($config['name'], $config);
@@ -470,13 +473,16 @@ class SpannerClient
      */
     public function instanceConfigOperations(array $options = []): ItemIterator
     {
-        [$data, $callOptions] = $this->splitOptionalArgs($options);
-        $request = $this->serializer->decodeMessage(new ListInstanceConfigOperationsRequest(), $data);
-        $request->setParent($this->projectName);
+        [$listInstanceConfigOperations, $callOptions] = $this->validateOptions(
+            $options,
+            new ListInstanceConfigOperationsRequest(),
+            CallOptions::class,
+        );
+        $listInstanceConfigOperations->setParent($this->projectName);
 
         return $this->buildLongRunningIterator(
             [$this->instanceAdminClient, 'listInstanceConfigOperations'],
-            $request,
+            $listInstanceConfigOperations,
             $callOptions + ['resource-prefix' => $this->projectName],
             function (OperationProto $operation) {
                 return new LongRunningOperation(
@@ -586,14 +592,20 @@ class SpannerClient
      */
     public function instances(array $options = []): ItemIterator
     {
-        [$data, $callOptions] = $this->splitOptionalArgs($options);
-        $data += ['filter' => '', 'parent' => $this->projectName];
+        $options += [
+            'filter' => '',
+            'parent' => $this->projectName
+        ];
+        [$listInstances, $callOptions] = $this->validateOptions(
+            $options,
+            new ListInstancesRequest(),
+            CallOptions::class,
+        );
 
-        $request = $this->serializer->decodeMessage(new ListInstancesRequest(), $data);
 
         return $this->buildListItemsIterator(
             [$this->instanceAdminClient, 'listInstances'],
-            $request,
+            $listInstances,
             $callOptions + ['resource-prefix' => $this->projectName],
             function (array $instance) {
                 $name = InstanceAdminClient::parseName($instance['name'])['instance'];

@@ -51,8 +51,8 @@ class ArrayTypeTest extends SnippetTestCase
     const INSTANCE = 'my-instance';
 
     private $database;
-    private $type;
     private $spannerClient;
+    private $serializer;
 
     public function setUp(): void
     {

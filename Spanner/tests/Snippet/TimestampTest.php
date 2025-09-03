@@ -30,6 +30,7 @@ class TimestampTest extends SnippetTestCase
     use GrpcTestTrait;
 
     private $timestamp;
+    private $dt;
 
     public function setUp(): void
     {

@@ -302,12 +302,12 @@ class ApiHelperTraitTest extends TestCase
                 ],
                 [
                     CallOptions::class,
-                    MockRequest::class,
+                    new MockRequest(),
                     ['qux'],
                 ],
                 [
                     ['timeoutMillis' => 123],
-                    ['pageToken' => 'bat'],
+                    (new MockRequest())->setPageToken('bat'),
                     ['qux' => 'quux'],
                 ]
             ],
@@ -317,12 +317,12 @@ class ApiHelperTraitTest extends TestCase
                 ],
                 [
                     ['baz'],
-                    MockRequest::class,
+                    new MockRequest(),
                     CallOptions::class,
                 ],
                 [
                     ['baz' => 'bat'],
-                    [],
+                    new MockRequest(),
                     [],
                 ]
             ],

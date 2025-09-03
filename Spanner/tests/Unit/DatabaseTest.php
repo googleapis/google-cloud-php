@@ -1478,16 +1478,20 @@ class DatabaseTest extends TestCase
         $this->assertEquals(10, $rows[0]['ID']);
     }
 
-    public function testSetOrderByReachesTheConnection()
+    public function testSetOrderByReachesTheRequest()
     {
         $table = 'Table';
         $opts = ['foo' => 'bar'];
 
-        $this->connection->streamingRead(Argument::withEntry('orderBy', OrderBy::ORDER_BY_PRIMARY_KEY))
+        $this->spannerClient->streamingRead(
+            Argument::that(function (ReadRequest $request) {
+                $this->assertEquals(OrderBy::ORDER_BY_PRIMARY_KEY, $request->getOrderBy());
+                return true;
+	    }),
+            Argument::type('array')
+        )
             ->shouldBeCalled()
-            ->willReturn($this->resultGenerator());
-
-        $this->refreshOperation($this->database, $this->connection->reveal());
+            ->willReturn($this->resultGeneratorStream());
 
         $options = [
             'orderBy' => OrderBy::ORDER_BY_PRIMARY_KEY
@@ -1504,16 +1508,20 @@ class DatabaseTest extends TestCase
         $this->assertEquals(10, $rows[0]['ID']);
     }
 
-    public function testSetLockHintReachesTheConnection()
+    public function testSetLockHintReachesTheRequest()
     {
         $table = 'Table';
         $opts = ['foo' => 'bar'];
 
-        $this->connection->streamingRead(Argument::withEntry('lockHint', LockHint::LOCK_HINT_SHARED))
+        $this->spannerClient->streamingRead(
+            Argument::that(function (ReadRequest $request) {
+                $this->assertEquals(LockHint::LOCK_HINT_SHARED, $request->getLockHint());
+                return true;
+	    }),
+            Argument::type('array')
+        )
             ->shouldBeCalled()
-            ->willReturn($this->resultGenerator());
-
-        $this->refreshOperation($this->database, $this->connection->reveal());
+            ->willReturn($this->resultGeneratorStream());
 
         $options = [
             'lockHint' => LockHint::LOCK_HINT_SHARED

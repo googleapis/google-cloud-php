@@ -145,7 +145,6 @@ class BatchSnapshotTest extends TestCase
         $this->spannerClient->partitionRead(
             Argument::that(function (PartitionReadRequest $request) use ($expectedArguments) {
                 $actualArguments = $this->serializer->encodeMessage($request);
-                // var_dump($actualArguments, $expectedArguments);exit;
                 return $actualArguments == $expectedArguments;
             }),
             Argument::type('array')
