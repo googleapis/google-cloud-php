@@ -30,6 +30,8 @@ class MethodNode
     use ParentNodeTrait;
     use VisibilityTrait;
 
+    private const ENUM_REGEX = '/Generated from protobuf field <code>(\.google\.[\w\.]+)/';
+
     public function __construct(
         private SimpleXMLElement $xmlNode,
         private string $namespace,
@@ -46,18 +48,24 @@ class MethodNode
 
     public function getReturnDescription(): string
     {
+        $description = '';
         if ($this->xmlNode->docblock) {
             foreach ($this->xmlNode->docblock->tag as $tag) {
                 if ($tag['name'] == 'return') {
                     if ((string) $tag['description']) {
-                        return (string) $tag['description'];
+                        $description = (string) $tag['description'];
                     }
                     break;
                 }
             }
         }
 
-        return '';
+        if ($enum = $this->getProtobufEnumGetterType()) {
+            $enumName = array_reverse(explode('.', $enum))[0];
+            $description = sprintf('Enum of type [%s][%s]. ', $enumName, $enum) . $description;
+        }
+
+        return $description;
     }
 
     private function getReturnTypeTag(): string
@@ -120,6 +128,10 @@ class MethodNode
                     }
                 }
             }
+            if ($enum = $this->getProtobufEnumSetterType()) {
+                $enumName = array_reverse(explode('.', $enum))[0];
+                $description = sprintf('Enum of type [%s][%s]. ', $enumName, $enum) . $description;
+            }
             $parameter = new ParameterNode(
                 $parameterName,
                 (string) $parameterNode->type,
@@ -175,5 +187,47 @@ class MethodNode
         }
 
         return $content;
+    }
+
+    private function getProtobufEnumSetterType(): ?string
+    {
+        if (0 !== strpos($this->getName(), 'set')) {
+            return null;
+        }
+
+        if (1 !== count($this->xmlNode->argument)) {
+            return null;
+        }
+
+        if ('int' !== (string) $this->xmlNode->argument[0]->type) {
+            return null;
+        }
+
+        if (!preg_match(self::ENUM_REGEX, $this->getLongDescription(), $matches)) {
+            return null;
+        }
+
+        return $matches[1];
+    }
+
+    private function getProtobufEnumGetterType(): ?string
+    {
+        if (0 !== strpos($this->getName(), 'get')) {
+            return null;
+        }
+
+        if (0 !== count($this->xmlNode->argument)) {
+            return null;
+        }
+
+        if ('int' !== $this->getReturnType()) {
+            return null;
+        }
+
+        if (!preg_match(self::ENUM_REGEX, $this->getLongDescription(), $matches)) {
+            return null;
+        }
+
+        return $matches[1];
     }
 }
