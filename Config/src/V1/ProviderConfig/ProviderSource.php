@@ -52,6 +52,4 @@ class ProviderSource
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ProviderSource::class, \Google\Cloud\Config\V1\ProviderConfig_ProviderSource::class);
 

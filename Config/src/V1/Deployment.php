@@ -181,6 +181,12 @@ class Deployment extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, string> annotations = 24 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $annotations;
+    /**
+     * Optional. This field specifies the provider configurations.
+     *
+     * Generated from protobuf field <code>.google.cloud.config.v1.ProviderConfig provider_config = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $provider_config = null;
     protected $blueprint;
 
     /**
@@ -269,6 +275,8 @@ class Deployment extends \Google\Protobuf\Internal\Message
      *           identify deployments during automation. See
      *           https://google.aip.dev/148#annotations for details on format and size
      *           limitations.
+     *     @type \Google\Cloud\Config\V1\ProviderConfig $provider_config
+     *           Optional. This field specifies the provider configurations.
      * }
      */
     public function __construct($data = NULL) {
@@ -1023,6 +1031,42 @@ class Deployment extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->annotations = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. This field specifies the provider configurations.
+     *
+     * Generated from protobuf field <code>.google.cloud.config.v1.ProviderConfig provider_config = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Config\V1\ProviderConfig|null
+     */
+    public function getProviderConfig()
+    {
+        return $this->provider_config;
+    }
+
+    public function hasProviderConfig()
+    {
+        return isset($this->provider_config);
+    }
+
+    public function clearProviderConfig()
+    {
+        unset($this->provider_config);
+    }
+
+    /**
+     * Optional. This field specifies the provider configurations.
+     *
+     * Generated from protobuf field <code>.google.cloud.config.v1.ProviderConfig provider_config = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Config\V1\ProviderConfig $var
+     * @return $this
+     */
+    public function setProviderConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Config\V1\ProviderConfig::class);
+        $this->provider_config = $var;
 
         return $this;
     }
