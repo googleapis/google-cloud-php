@@ -32,7 +32,7 @@ class MoveOutEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string destination_partition_token = 1;</code>
      */
-    private $destination_partition_token = '';
+    protected $destination_partition_token = '';
 
     /**
      * Constructor.
@@ -83,6 +83,4 @@ class MoveOutEvent extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(MoveOutEvent::class, \Google\Cloud\Spanner\V1\ChangeStreamRecord_PartitionEventRecord_MoveOutEvent::class);
 

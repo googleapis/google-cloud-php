@@ -33,7 +33,7 @@ class ListInstancePartitionOperationsResponse extends \Google\Protobuf\Internal\
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
-    private $next_page_token = '';
+    protected $next_page_token = '';
     /**
      * The list of unreachable instance partitions.
      * It includes the names of instance partitions whose operation metadata could

@@ -22,20 +22,20 @@ class OperationProgress extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 progress_percent = 1;</code>
      */
-    private $progress_percent = 0;
+    protected $progress_percent = 0;
     /**
      * Time the request was received.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 2;</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * If set, the time at which this operation failed or was completed
      * successfully.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 3;</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
 
     /**
      * Constructor.

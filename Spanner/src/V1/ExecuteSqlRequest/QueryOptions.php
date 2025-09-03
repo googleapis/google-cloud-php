@@ -35,7 +35,7 @@ class QueryOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string optimizer_version = 1;</code>
      */
-    private $optimizer_version = '';
+    protected $optimizer_version = '';
     /**
      * An option to control the selection of optimizer statistics package.
      * This parameter allows individual queries to use a different query
@@ -58,7 +58,7 @@ class QueryOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string optimizer_statistics_package = 2;</code>
      */
-    private $optimizer_statistics_package = '';
+    protected $optimizer_statistics_package = '';
 
     /**
      * Constructor.
@@ -227,6 +227,4 @@ class QueryOptions extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(QueryOptions::class, \Google\Cloud\Spanner\V1\ExecuteSqlRequest_QueryOptions::class);
 

@@ -25,7 +25,7 @@ class RestoreDatabaseRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The id of the database to create and restore to. This
      * database must not already exist. The `database_id` appended to
@@ -34,7 +34,7 @@ class RestoreDatabaseRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string database_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $database_id = '';
+    protected $database_id = '';
     /**
      * Optional. An encryption configuration describing the encryption type and
      * key resources in Cloud KMS used to encrypt/decrypt the database to restore
@@ -45,7 +45,7 @@ class RestoreDatabaseRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.spanner.admin.database.v1.RestoreDatabaseEncryptionConfig encryption_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $encryption_config = null;
+    protected $encryption_config = null;
     protected $source;
 
     /**

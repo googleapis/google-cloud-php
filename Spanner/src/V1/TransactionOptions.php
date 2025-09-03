@@ -33,13 +33,13 @@ class TransactionOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool exclude_txn_from_change_streams = 5;</code>
      */
-    private $exclude_txn_from_change_streams = false;
+    protected $exclude_txn_from_change_streams = false;
     /**
      * Isolation level for the transaction.
      *
      * Generated from protobuf field <code>.google.spanner.v1.TransactionOptions.IsolationLevel isolation_level = 6;</code>
      */
-    private $isolation_level = 0;
+    protected $isolation_level = 0;
     protected $mode;
 
     /**
