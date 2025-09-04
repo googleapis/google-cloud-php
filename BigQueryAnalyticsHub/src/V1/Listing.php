@@ -79,7 +79,7 @@ class Listing extends \Google\Protobuf\Internal\Message
      */
     protected $data_provider = null;
     /**
-     * Optional. Categories of the listing. Up to two categories are allowed.
+     * Optional. Categories of the listing. Up to five categories are allowed.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.analyticshub.v1.Listing.Category categories = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -180,7 +180,7 @@ class Listing extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\BigQuery\AnalyticsHub\V1\DataProvider $data_provider
      *           Optional. Details of the data provider who owns the source data.
      *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $categories
-     *           Optional. Categories of the listing. Up to two categories are allowed.
+     *           Optional. Categories of the listing. Up to five categories are allowed.
      *     @type \Google\Cloud\BigQuery\AnalyticsHub\V1\Publisher $publisher
      *           Optional. Details of the publisher who owns the listing and who can share
      *           the source data.
@@ -516,7 +516,7 @@ class Listing extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Categories of the listing. Up to two categories are allowed.
+     * Optional. Categories of the listing. Up to five categories are allowed.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.analyticshub.v1.Listing.Category categories = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -527,7 +527,7 @@ class Listing extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Categories of the listing. Up to two categories are allowed.
+     * Optional. Categories of the listing. Up to five categories are allowed.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.analyticshub.v1.Listing.Category categories = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var

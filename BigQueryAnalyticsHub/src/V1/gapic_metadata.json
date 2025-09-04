@@ -10,6 +10,11 @@
                 "grpc": {
                     "libraryClient": "AnalyticsHubServiceGapicClient",
                     "rpcs": {
+                        "ApproveQueryTemplate": {
+                            "methods": [
+                                "approveQueryTemplate"
+                            ]
+                        },
                         "CreateDataExchange": {
                             "methods": [
                                 "createDataExchange"
@@ -20,6 +25,11 @@
                                 "createListing"
                             ]
                         },
+                        "CreateQueryTemplate": {
+                            "methods": [
+                                "createQueryTemplate"
+                            ]
+                        },
                         "DeleteDataExchange": {
                             "methods": [
                                 "deleteDataExchange"
@@ -28,6 +38,11 @@
                         "DeleteListing": {
                             "methods": [
                                 "deleteListing"
+                            ]
+                        },
+                        "DeleteQueryTemplate": {
+                            "methods": [
+                                "deleteQueryTemplate"
                             ]
                         },
                         "DeleteSubscription": {
@@ -50,6 +65,11 @@
                                 "getListing"
                             ]
                         },
+                        "GetQueryTemplate": {
+                            "methods": [
+                                "getQueryTemplate"
+                            ]
+                        },
                         "GetSubscription": {
                             "methods": [
                                 "getSubscription"
@@ -68,6 +88,11 @@
                         "ListOrgDataExchanges": {
                             "methods": [
                                 "listOrgDataExchanges"
+                            ]
+                        },
+                        "ListQueryTemplates": {
+                            "methods": [
+                                "listQueryTemplates"
                             ]
                         },
                         "ListSharedResourceSubscriptions": {
@@ -95,6 +120,11 @@
                                 "setIamPolicy"
                             ]
                         },
+                        "SubmitQueryTemplate": {
+                            "methods": [
+                                "submitQueryTemplate"
+                            ]
+                        },
                         "SubscribeDataExchange": {
                             "methods": [
                                 "subscribeDataExchange"
@@ -118,6 +148,11 @@
                         "UpdateListing": {
                             "methods": [
                                 "updateListing"
+                            ]
+                        },
+                        "UpdateQueryTemplate": {
+                            "methods": [
+                                "updateQueryTemplate"
                             ]
                         }
                     }
