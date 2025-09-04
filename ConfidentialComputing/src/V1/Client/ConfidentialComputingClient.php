@@ -37,6 +37,10 @@ use Google\Cloud\ConfidentialComputing\V1\Challenge;
 use Google\Cloud\ConfidentialComputing\V1\CreateChallengeRequest;
 use Google\Cloud\ConfidentialComputing\V1\VerifyAttestationRequest;
 use Google\Cloud\ConfidentialComputing\V1\VerifyAttestationResponse;
+use Google\Cloud\ConfidentialComputing\V1\VerifyConfidentialGkeRequest;
+use Google\Cloud\ConfidentialComputing\V1\VerifyConfidentialGkeResponse;
+use Google\Cloud\ConfidentialComputing\V1\VerifyConfidentialSpaceRequest;
+use Google\Cloud\ConfidentialComputing\V1\VerifyConfidentialSpaceResponse;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
@@ -56,6 +60,8 @@ use Psr\Log\LoggerInterface;
  *
  * @method PromiseInterface<Challenge> createChallengeAsync(CreateChallengeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<VerifyAttestationResponse> verifyAttestationAsync(VerifyAttestationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<VerifyConfidentialGkeResponse> verifyConfidentialGkeAsync(VerifyConfidentialGkeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<VerifyConfidentialSpaceResponse> verifyConfidentialSpaceAsync(VerifyConfidentialSpaceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
@@ -274,7 +280,8 @@ final class ConfidentialComputingClient
     }
 
     /**
-     * Verifies the provided attestation info, returning a signed OIDC token.
+     * Verifies the provided attestation info, returning a signed attestation
+     * token.
      *
      * The async variant is
      * {@see ConfidentialComputingClient::verifyAttestationAsync()} .
@@ -300,6 +307,66 @@ final class ConfidentialComputingClient
         array $callOptions = []
     ): VerifyAttestationResponse {
         return $this->startApiCall('VerifyAttestation', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Verifies the provided Confidential GKE attestation info, returning a signed
+     * OIDC token.
+     *
+     * The async variant is
+     * {@see ConfidentialComputingClient::verifyConfidentialGkeAsync()} .
+     *
+     * @example samples/V1/ConfidentialComputingClient/verify_confidential_gke.php
+     *
+     * @param VerifyConfidentialGkeRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return VerifyConfidentialGkeResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function verifyConfidentialGke(
+        VerifyConfidentialGkeRequest $request,
+        array $callOptions = []
+    ): VerifyConfidentialGkeResponse {
+        return $this->startApiCall('VerifyConfidentialGke', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Verifies whether the provided attestation info is valid, returning a signed
+     * attestation token if so.
+     *
+     * The async variant is
+     * {@see ConfidentialComputingClient::verifyConfidentialSpaceAsync()} .
+     *
+     * @example samples/V1/ConfidentialComputingClient/verify_confidential_space.php
+     *
+     * @param VerifyConfidentialSpaceRequest $request     A request to house fields associated with the call.
+     * @param array                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return VerifyConfidentialSpaceResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function verifyConfidentialSpace(
+        VerifyConfidentialSpaceRequest $request,
+        array $callOptions = []
+    ): VerifyConfidentialSpaceResponse {
+        return $this->startApiCall('VerifyConfidentialSpace', $request, $callOptions)->wait();
     }
 
     /**

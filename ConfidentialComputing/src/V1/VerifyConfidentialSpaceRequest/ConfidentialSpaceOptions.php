@@ -225,6 +225,4 @@ class ConfidentialSpaceOptions extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ConfidentialSpaceOptions::class, \Google\Cloud\ConfidentialComputing\V1\VerifyConfidentialSpaceRequest_ConfidentialSpaceOptions::class);
 

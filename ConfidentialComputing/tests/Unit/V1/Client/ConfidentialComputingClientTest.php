@@ -32,6 +32,10 @@ use Google\Cloud\ConfidentialComputing\V1\CreateChallengeRequest;
 use Google\Cloud\ConfidentialComputing\V1\TpmAttestation;
 use Google\Cloud\ConfidentialComputing\V1\VerifyAttestationRequest;
 use Google\Cloud\ConfidentialComputing\V1\VerifyAttestationResponse;
+use Google\Cloud\ConfidentialComputing\V1\VerifyConfidentialGkeRequest;
+use Google\Cloud\ConfidentialComputing\V1\VerifyConfidentialGkeResponse;
+use Google\Cloud\ConfidentialComputing\V1\VerifyConfidentialSpaceRequest;
+use Google\Cloud\ConfidentialComputing\V1\VerifyConfidentialSpaceResponse;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\ListLocationsResponse;
@@ -210,6 +214,142 @@ class ConfidentialComputingClientTest extends GeneratedTest
             ->setTpmAttestation($tpmAttestation);
         try {
             $gapicClient->verifyAttestation($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function verifyConfidentialGkeTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $attestationToken = 'attestationToken-1778335798';
+        $expectedResponse = new VerifyConfidentialGkeResponse();
+        $expectedResponse->setAttestationToken($attestationToken);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedChallenge = $gapicClient->challengeName('[PROJECT]', '[LOCATION]', '[UUID]');
+        $request = (new VerifyConfidentialGkeRequest())->setChallenge($formattedChallenge);
+        $response = $gapicClient->verifyConfidentialGke($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.confidentialcomputing.v1.ConfidentialComputing/VerifyConfidentialGke',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getChallenge();
+        $this->assertProtobufEquals($formattedChallenge, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function verifyConfidentialGkeExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedChallenge = $gapicClient->challengeName('[PROJECT]', '[LOCATION]', '[UUID]');
+        $request = (new VerifyConfidentialGkeRequest())->setChallenge($formattedChallenge);
+        try {
+            $gapicClient->verifyConfidentialGke($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function verifyConfidentialSpaceTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $attestationToken = 'attestationToken-1778335798';
+        $expectedResponse = new VerifyConfidentialSpaceResponse();
+        $expectedResponse->setAttestationToken($attestationToken);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedChallenge = $gapicClient->challengeName('[PROJECT]', '[LOCATION]', '[UUID]');
+        $request = (new VerifyConfidentialSpaceRequest())->setChallenge($formattedChallenge);
+        $response = $gapicClient->verifyConfidentialSpace($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.confidentialcomputing.v1.ConfidentialComputing/VerifyConfidentialSpace',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getChallenge();
+        $this->assertProtobufEquals($formattedChallenge, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function verifyConfidentialSpaceExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedChallenge = $gapicClient->challengeName('[PROJECT]', '[LOCATION]', '[UUID]');
+        $request = (new VerifyConfidentialSpaceRequest())->setChallenge($formattedChallenge);
+        try {
+            $gapicClient->verifyConfidentialSpace($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
