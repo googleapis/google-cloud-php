@@ -19,6 +19,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class SynthesisInput extends \Google\Protobuf\Internal\Message
 {
     /**
+     * This system instruction is supported only for controllable/promptable voice
+     * models. If this system instruction is used, we pass the unedited text to
+     * Gemini-TTS. Otherwise, a default system instruction is used. AI Studio
+     * calls this system instruction, Style Instructions.
+     *
+     * Generated from protobuf field <code>optional string prompt = 6;</code>
+     */
+    protected $prompt = null;
+    /**
      * Optional. The pronunciation customizations are applied to the input. If
      * this is set, the input is synthesized using the given pronunciation
      * customizations.
@@ -53,6 +62,11 @@ class SynthesisInput extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\TextToSpeech\V1\MultiSpeakerMarkup $multi_speaker_markup
      *           The multi-speaker input to be synthesized. Only applicable for
      *           multi-speaker synthesis.
+     *     @type string $prompt
+     *           This system instruction is supported only for controllable/promptable voice
+     *           models. If this system instruction is used, we pass the unedited text to
+     *           Gemini-TTS. Otherwise, a default system instruction is used. AI Studio
+     *           calls this system instruction, Style Instructions.
      *     @type \Google\Cloud\TextToSpeech\V1\CustomPronunciations $custom_pronunciations
      *           Optional. The pronunciation customizations are applied to the input. If
      *           this is set, the input is synthesized using the given pronunciation
@@ -201,6 +215,48 @@ class SynthesisInput extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\TextToSpeech\V1\MultiSpeakerMarkup::class);
         $this->writeOneof(4, $var);
+
+        return $this;
+    }
+
+    /**
+     * This system instruction is supported only for controllable/promptable voice
+     * models. If this system instruction is used, we pass the unedited text to
+     * Gemini-TTS. Otherwise, a default system instruction is used. AI Studio
+     * calls this system instruction, Style Instructions.
+     *
+     * Generated from protobuf field <code>optional string prompt = 6;</code>
+     * @return string
+     */
+    public function getPrompt()
+    {
+        return isset($this->prompt) ? $this->prompt : '';
+    }
+
+    public function hasPrompt()
+    {
+        return isset($this->prompt);
+    }
+
+    public function clearPrompt()
+    {
+        unset($this->prompt);
+    }
+
+    /**
+     * This system instruction is supported only for controllable/promptable voice
+     * models. If this system instruction is used, we pass the unedited text to
+     * Gemini-TTS. Otherwise, a default system instruction is used. AI Studio
+     * calls this system instruction, Style Instructions.
+     *
+     * Generated from protobuf field <code>optional string prompt = 6;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPrompt($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->prompt = $var;
 
         return $this;
     }
