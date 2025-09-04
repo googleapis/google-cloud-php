@@ -75,6 +75,4 @@ class VolumeHybridReplicationType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(VolumeHybridReplicationType::class, \Google\Cloud\NetApp\V1\HybridReplicationParameters_VolumeHybridReplicationType::class);
 

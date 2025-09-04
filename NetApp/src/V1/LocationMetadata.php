@@ -28,6 +28,12 @@ class LocationMetadata extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.netapp.v1.FlexPerformance supported_flex_performance = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $supported_flex_performance;
+    /**
+     * Output only. Indicates if the location has VCP support.
+     *
+     * Generated from protobuf field <code>bool has_vcp = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $has_vcp = false;
 
     /**
      * Constructor.
@@ -39,6 +45,8 @@ class LocationMetadata extends \Google\Protobuf\Internal\Message
      *           Output only. Supported service levels in a location.
      *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $supported_flex_performance
      *           Output only. Supported flex performance in a location.
+     *     @type bool $has_vcp
+     *           Output only. Indicates if the location has VCP support.
      * }
      */
     public function __construct($data = NULL) {
@@ -94,6 +102,32 @@ class LocationMetadata extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::ENUM, \Google\Cloud\NetApp\V1\FlexPerformance::class);
         $this->supported_flex_performance = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Indicates if the location has VCP support.
+     *
+     * Generated from protobuf field <code>bool has_vcp = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getHasVcp()
+    {
+        return $this->has_vcp;
+    }
+
+    /**
+     * Output only. Indicates if the location has VCP support.
+     *
+     * Generated from protobuf field <code>bool has_vcp = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setHasVcp($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->has_vcp = $var;
 
         return $this;
     }
