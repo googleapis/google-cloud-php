@@ -60,13 +60,10 @@ class ExecuteBatchDmlResponse extends \Google\Protobuf\Internal\Message
      */
     private $status = null;
     /**
-     * Optional. A precommit token will be included if the read-write transaction
-     * is on a multiplexed session.
-     * The precommit token with the highest sequence number from this transaction
-     * attempt should be passed to the
+     * Optional. A precommit token is included if the read-write transaction
+     * is on a multiplexed session. Pass the precommit token with the highest
+     * sequence number from this transaction attempt should be passed to the
      * [Commit][google.spanner.v1.Spanner.Commit] request for this transaction.
-     * This feature is not yet supported and will result in an UNIMPLEMENTED
-     * error.
      *
      * Generated from protobuf field <code>.google.spanner.v1.MultiplexedSessionPrecommitToken precommit_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -91,13 +88,10 @@ class ExecuteBatchDmlResponse extends \Google\Protobuf\Internal\Message
      *           If all DML statements are executed successfully, the status is `OK`.
      *           Otherwise, the error status of the first failed statement.
      *     @type \Google\Cloud\Spanner\V1\MultiplexedSessionPrecommitToken $precommit_token
-     *           Optional. A precommit token will be included if the read-write transaction
-     *           is on a multiplexed session.
-     *           The precommit token with the highest sequence number from this transaction
-     *           attempt should be passed to the
+     *           Optional. A precommit token is included if the read-write transaction
+     *           is on a multiplexed session. Pass the precommit token with the highest
+     *           sequence number from this transaction attempt should be passed to the
      *           [Commit][google.spanner.v1.Spanner.Commit] request for this transaction.
-     *           This feature is not yet supported and will result in an UNIMPLEMENTED
-     *           error.
      * }
      */
     public function __construct($data = NULL) {
@@ -184,13 +178,10 @@ class ExecuteBatchDmlResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A precommit token will be included if the read-write transaction
-     * is on a multiplexed session.
-     * The precommit token with the highest sequence number from this transaction
-     * attempt should be passed to the
+     * Optional. A precommit token is included if the read-write transaction
+     * is on a multiplexed session. Pass the precommit token with the highest
+     * sequence number from this transaction attempt should be passed to the
      * [Commit][google.spanner.v1.Spanner.Commit] request for this transaction.
-     * This feature is not yet supported and will result in an UNIMPLEMENTED
-     * error.
      *
      * Generated from protobuf field <code>.google.spanner.v1.MultiplexedSessionPrecommitToken precommit_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Spanner\V1\MultiplexedSessionPrecommitToken|null
@@ -211,13 +202,10 @@ class ExecuteBatchDmlResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A precommit token will be included if the read-write transaction
-     * is on a multiplexed session.
-     * The precommit token with the highest sequence number from this transaction
-     * attempt should be passed to the
+     * Optional. A precommit token is included if the read-write transaction
+     * is on a multiplexed session. Pass the precommit token with the highest
+     * sequence number from this transaction attempt should be passed to the
      * [Commit][google.spanner.v1.Spanner.Commit] request for this transaction.
-     * This feature is not yet supported and will result in an UNIMPLEMENTED
-     * error.
      *
      * Generated from protobuf field <code>.google.spanner.v1.MultiplexedSessionPrecommitToken precommit_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Spanner\V1\MultiplexedSessionPrecommitToken $var

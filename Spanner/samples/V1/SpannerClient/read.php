@@ -32,7 +32,7 @@ use Google\Cloud\Spanner\V1\ResultSet;
 /**
  * Reads rows from the database using key lookups and scans, as a
  * simple key/value style alternative to
- * [ExecuteSql][google.spanner.v1.Spanner.ExecuteSql].  This method cannot be
+ * [ExecuteSql][google.spanner.v1.Spanner.ExecuteSql]. This method can't be
  * used to return a result set larger than 10 MiB; if the read matches more
  * data than that, the read fails with a `FAILED_PRECONDITION`
  * error.

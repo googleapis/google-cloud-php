@@ -17,9 +17,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class Partition extends \Google\Protobuf\Internal\Message
 {
     /**
-     * This token can be passed to Read, StreamingRead, ExecuteSql, or
-     * ExecuteStreamingSql requests to restrict the results to those identified by
-     * this partition token.
+     * This token can be passed to `Read`, `StreamingRead`, `ExecuteSql`, or
+     * `ExecuteStreamingSql` requests to restrict the results to those identified
+     * by this partition token.
      *
      * Generated from protobuf field <code>bytes partition_token = 1;</code>
      */
@@ -32,9 +32,9 @@ class Partition extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $partition_token
-     *           This token can be passed to Read, StreamingRead, ExecuteSql, or
-     *           ExecuteStreamingSql requests to restrict the results to those identified by
-     *           this partition token.
+     *           This token can be passed to `Read`, `StreamingRead`, `ExecuteSql`, or
+     *           `ExecuteStreamingSql` requests to restrict the results to those identified
+     *           by this partition token.
      * }
      */
     public function __construct($data = NULL) {
@@ -43,9 +43,9 @@ class Partition extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This token can be passed to Read, StreamingRead, ExecuteSql, or
-     * ExecuteStreamingSql requests to restrict the results to those identified by
-     * this partition token.
+     * This token can be passed to `Read`, `StreamingRead`, `ExecuteSql`, or
+     * `ExecuteStreamingSql` requests to restrict the results to those identified
+     * by this partition token.
      *
      * Generated from protobuf field <code>bytes partition_token = 1;</code>
      * @return string
@@ -56,9 +56,9 @@ class Partition extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This token can be passed to Read, StreamingRead, ExecuteSql, or
-     * ExecuteStreamingSql requests to restrict the results to those identified by
-     * this partition token.
+     * This token can be passed to `Read`, `StreamingRead`, `ExecuteSql`, or
+     * `ExecuteStreamingSql` requests to restrict the results to those identified
+     * by this partition token.
      *
      * Generated from protobuf field <code>bytes partition_token = 1;</code>
      * @param string $var
