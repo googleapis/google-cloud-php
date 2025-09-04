@@ -24,7 +24,7 @@ class BackupRetentionPolicy extends \Google\Protobuf\Internal\Message
     protected $backup_minimum_enforced_retention_days = 0;
     /**
      * Optional. Indicates if the daily backups are immutable.
-     * Atleast one of daily_backup_immutable, weekly_backup_immutable,
+     * At least one of daily_backup_immutable, weekly_backup_immutable,
      * monthly_backup_immutable and manual_backup_immutable must be true.
      *
      * Generated from protobuf field <code>bool daily_backup_immutable = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -32,7 +32,7 @@ class BackupRetentionPolicy extends \Google\Protobuf\Internal\Message
     protected $daily_backup_immutable = false;
     /**
      * Optional. Indicates if the weekly backups are immutable.
-     * Atleast one of daily_backup_immutable, weekly_backup_immutable,
+     * At least one of daily_backup_immutable, weekly_backup_immutable,
      * monthly_backup_immutable and manual_backup_immutable must be true.
      *
      * Generated from protobuf field <code>bool weekly_backup_immutable = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -40,7 +40,7 @@ class BackupRetentionPolicy extends \Google\Protobuf\Internal\Message
     protected $weekly_backup_immutable = false;
     /**
      * Optional. Indicates if the monthly backups are immutable.
-     * Atleast one of daily_backup_immutable, weekly_backup_immutable,
+     * At least one of daily_backup_immutable, weekly_backup_immutable,
      * monthly_backup_immutable and manual_backup_immutable must be true.
      *
      * Generated from protobuf field <code>bool monthly_backup_immutable = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -48,7 +48,7 @@ class BackupRetentionPolicy extends \Google\Protobuf\Internal\Message
     protected $monthly_backup_immutable = false;
     /**
      * Optional. Indicates if the manual backups are immutable.
-     * Atleast one of daily_backup_immutable, weekly_backup_immutable,
+     * At least one of daily_backup_immutable, weekly_backup_immutable,
      * monthly_backup_immutable and manual_backup_immutable must be true.
      *
      * Generated from protobuf field <code>bool manual_backup_immutable = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -66,19 +66,19 @@ class BackupRetentionPolicy extends \Google\Protobuf\Internal\Message
      *           vault.
      *     @type bool $daily_backup_immutable
      *           Optional. Indicates if the daily backups are immutable.
-     *           Atleast one of daily_backup_immutable, weekly_backup_immutable,
+     *           At least one of daily_backup_immutable, weekly_backup_immutable,
      *           monthly_backup_immutable and manual_backup_immutable must be true.
      *     @type bool $weekly_backup_immutable
      *           Optional. Indicates if the weekly backups are immutable.
-     *           Atleast one of daily_backup_immutable, weekly_backup_immutable,
+     *           At least one of daily_backup_immutable, weekly_backup_immutable,
      *           monthly_backup_immutable and manual_backup_immutable must be true.
      *     @type bool $monthly_backup_immutable
      *           Optional. Indicates if the monthly backups are immutable.
-     *           Atleast one of daily_backup_immutable, weekly_backup_immutable,
+     *           At least one of daily_backup_immutable, weekly_backup_immutable,
      *           monthly_backup_immutable and manual_backup_immutable must be true.
      *     @type bool $manual_backup_immutable
      *           Optional. Indicates if the manual backups are immutable.
-     *           Atleast one of daily_backup_immutable, weekly_backup_immutable,
+     *           At least one of daily_backup_immutable, weekly_backup_immutable,
      *           monthly_backup_immutable and manual_backup_immutable must be true.
      * }
      */
@@ -117,7 +117,7 @@ class BackupRetentionPolicy extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Indicates if the daily backups are immutable.
-     * Atleast one of daily_backup_immutable, weekly_backup_immutable,
+     * At least one of daily_backup_immutable, weekly_backup_immutable,
      * monthly_backup_immutable and manual_backup_immutable must be true.
      *
      * Generated from protobuf field <code>bool daily_backup_immutable = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -130,7 +130,7 @@ class BackupRetentionPolicy extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Indicates if the daily backups are immutable.
-     * Atleast one of daily_backup_immutable, weekly_backup_immutable,
+     * At least one of daily_backup_immutable, weekly_backup_immutable,
      * monthly_backup_immutable and manual_backup_immutable must be true.
      *
      * Generated from protobuf field <code>bool daily_backup_immutable = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -147,7 +147,7 @@ class BackupRetentionPolicy extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Indicates if the weekly backups are immutable.
-     * Atleast one of daily_backup_immutable, weekly_backup_immutable,
+     * At least one of daily_backup_immutable, weekly_backup_immutable,
      * monthly_backup_immutable and manual_backup_immutable must be true.
      *
      * Generated from protobuf field <code>bool weekly_backup_immutable = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -160,7 +160,7 @@ class BackupRetentionPolicy extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Indicates if the weekly backups are immutable.
-     * Atleast one of daily_backup_immutable, weekly_backup_immutable,
+     * At least one of daily_backup_immutable, weekly_backup_immutable,
      * monthly_backup_immutable and manual_backup_immutable must be true.
      *
      * Generated from protobuf field <code>bool weekly_backup_immutable = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -177,7 +177,7 @@ class BackupRetentionPolicy extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Indicates if the monthly backups are immutable.
-     * Atleast one of daily_backup_immutable, weekly_backup_immutable,
+     * At least one of daily_backup_immutable, weekly_backup_immutable,
      * monthly_backup_immutable and manual_backup_immutable must be true.
      *
      * Generated from protobuf field <code>bool monthly_backup_immutable = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -190,7 +190,7 @@ class BackupRetentionPolicy extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Indicates if the monthly backups are immutable.
-     * Atleast one of daily_backup_immutable, weekly_backup_immutable,
+     * At least one of daily_backup_immutable, weekly_backup_immutable,
      * monthly_backup_immutable and manual_backup_immutable must be true.
      *
      * Generated from protobuf field <code>bool monthly_backup_immutable = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -207,7 +207,7 @@ class BackupRetentionPolicy extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Indicates if the manual backups are immutable.
-     * Atleast one of daily_backup_immutable, weekly_backup_immutable,
+     * At least one of daily_backup_immutable, weekly_backup_immutable,
      * monthly_backup_immutable and manual_backup_immutable must be true.
      *
      * Generated from protobuf field <code>bool manual_backup_immutable = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -220,7 +220,7 @@ class BackupRetentionPolicy extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Indicates if the manual backups are immutable.
-     * Atleast one of daily_backup_immutable, weekly_backup_immutable,
+     * At least one of daily_backup_immutable, weekly_backup_immutable,
      * monthly_backup_immutable and manual_backup_immutable must be true.
      *
      * Generated from protobuf field <code>bool manual_backup_immutable = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
