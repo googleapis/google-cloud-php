@@ -47,7 +47,7 @@ class ComputeEngineTargetDetails extends \Google\Protobuf\Internal\Message
      */
     protected $machine_type = '';
     /**
-     * A map of network tags to associate with the VM.
+     * A list of network tags to associate with the VM.
      *
      * Generated from protobuf field <code>repeated string network_tags = 6;</code>
      */
@@ -96,13 +96,25 @@ class ComputeEngineTargetDetails extends \Google\Protobuf\Internal\Message
     protected $compute_scheduling = null;
     /**
      * Defines whether the instance has Secure Boot enabled.
-     * This can be set to true only if the vm boot option is EFI.
+     * This can be set to true only if the VM boot option is EFI.
      *
      * Generated from protobuf field <code>bool secure_boot = 14;</code>
      */
     protected $secure_boot = false;
     /**
-     * The VM Boot Option, as set in the source vm.
+     * Optional. Defines whether the instance has vTPM enabled.
+     *
+     * Generated from protobuf field <code>bool enable_vtpm = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $enable_vtpm = false;
+    /**
+     * Optional. Defines whether the instance has integrity monitoring enabled.
+     *
+     * Generated from protobuf field <code>bool enable_integrity_monitoring = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $enable_integrity_monitoring = false;
+    /**
+     * The VM Boot Option, as set in the source VM.
      *
      * Generated from protobuf field <code>.google.cloud.vmmigration.v1.ComputeEngineBootOption boot_option = 15;</code>
      */
@@ -125,6 +137,34 @@ class ComputeEngineTargetDetails extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string hostname = 18;</code>
      */
     protected $hostname = '';
+    /**
+     * Optional. The encryption to apply to the VM disks.
+     *
+     * Generated from protobuf field <code>.google.cloud.vmmigration.v1.Encryption encryption = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $encryption = null;
+    /**
+     * Optional. By default the virtual machine will keep its existing boot
+     * option. Setting this property will trigger an internal process which will
+     * convert the virtual machine from using the existing boot option to another.
+     *
+     * Generated from protobuf field <code>.google.cloud.vmmigration.v1.BootConversion boot_conversion = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $boot_conversion = 0;
+    /**
+     * Optional. Additional replica zones of the target regional disks.
+     * If this list is not empty a regional disk will be created. The first
+     * supported zone would be the one stated in the
+     * [zone][google.cloud.vmmigration.v1.ComputeEngineTargetDetails.zone] field.
+     * The rest are taken from this list. Please refer to the [regional disk
+     * creation
+     * API](https://cloud.google.com/compute/docs/regions-zones/global-regional-zonal-resources)
+     * for further details about regional vs zonal disks. If not specified, a
+     * zonal disk will be created in the same zone the VM is created.
+     *
+     * Generated from protobuf field <code>repeated string disk_replica_zones = 24 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $disk_replica_zones;
 
     /**
      * Constructor.
@@ -143,7 +183,7 @@ class ComputeEngineTargetDetails extends \Google\Protobuf\Internal\Message
      *     @type string $machine_type
      *           The machine type to create the VM with.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $network_tags
-     *           A map of network tags to associate with the VM.
+     *           A list of network tags to associate with the VM.
      *     @type array<\Google\Cloud\VMMigration\V1\NetworkInterface>|\Google\Protobuf\Internal\RepeatedField $network_interfaces
      *           List of NICs connected to this VM.
      *     @type string $service_account
@@ -160,15 +200,35 @@ class ComputeEngineTargetDetails extends \Google\Protobuf\Internal\Message
      *           Compute instance scheduling information (if empty default is used).
      *     @type bool $secure_boot
      *           Defines whether the instance has Secure Boot enabled.
-     *           This can be set to true only if the vm boot option is EFI.
+     *           This can be set to true only if the VM boot option is EFI.
+     *     @type bool $enable_vtpm
+     *           Optional. Defines whether the instance has vTPM enabled.
+     *     @type bool $enable_integrity_monitoring
+     *           Optional. Defines whether the instance has integrity monitoring enabled.
      *     @type int $boot_option
-     *           The VM Boot Option, as set in the source vm.
+     *           The VM Boot Option, as set in the source VM.
      *     @type array|\Google\Protobuf\Internal\MapField $metadata
      *           The metadata key/value pairs to assign to the VM.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $additional_licenses
      *           Additional licenses to assign to the VM.
      *     @type string $hostname
      *           The hostname to assign to the VM.
+     *     @type \Google\Cloud\VMMigration\V1\Encryption $encryption
+     *           Optional. The encryption to apply to the VM disks.
+     *     @type int $boot_conversion
+     *           Optional. By default the virtual machine will keep its existing boot
+     *           option. Setting this property will trigger an internal process which will
+     *           convert the virtual machine from using the existing boot option to another.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $disk_replica_zones
+     *           Optional. Additional replica zones of the target regional disks.
+     *           If this list is not empty a regional disk will be created. The first
+     *           supported zone would be the one stated in the
+     *           [zone][google.cloud.vmmigration.v1.ComputeEngineTargetDetails.zone] field.
+     *           The rest are taken from this list. Please refer to the [regional disk
+     *           creation
+     *           API](https://cloud.google.com/compute/docs/regions-zones/global-regional-zonal-resources)
+     *           for further details about regional vs zonal disks. If not specified, a
+     *           zonal disk will be created in the same zone the VM is created.
      * }
      */
     public function __construct($data = NULL) {
@@ -307,7 +367,7 @@ class ComputeEngineTargetDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A map of network tags to associate with the VM.
+     * A list of network tags to associate with the VM.
      *
      * Generated from protobuf field <code>repeated string network_tags = 6;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -318,7 +378,7 @@ class ComputeEngineTargetDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A map of network tags to associate with the VM.
+     * A list of network tags to associate with the VM.
      *
      * Generated from protobuf field <code>repeated string network_tags = 6;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -536,7 +596,7 @@ class ComputeEngineTargetDetails extends \Google\Protobuf\Internal\Message
 
     /**
      * Defines whether the instance has Secure Boot enabled.
-     * This can be set to true only if the vm boot option is EFI.
+     * This can be set to true only if the VM boot option is EFI.
      *
      * Generated from protobuf field <code>bool secure_boot = 14;</code>
      * @return bool
@@ -548,7 +608,7 @@ class ComputeEngineTargetDetails extends \Google\Protobuf\Internal\Message
 
     /**
      * Defines whether the instance has Secure Boot enabled.
-     * This can be set to true only if the vm boot option is EFI.
+     * This can be set to true only if the VM boot option is EFI.
      *
      * Generated from protobuf field <code>bool secure_boot = 14;</code>
      * @param bool $var
@@ -563,7 +623,59 @@ class ComputeEngineTargetDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The VM Boot Option, as set in the source vm.
+     * Optional. Defines whether the instance has vTPM enabled.
+     *
+     * Generated from protobuf field <code>bool enable_vtpm = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getEnableVtpm()
+    {
+        return $this->enable_vtpm;
+    }
+
+    /**
+     * Optional. Defines whether the instance has vTPM enabled.
+     *
+     * Generated from protobuf field <code>bool enable_vtpm = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableVtpm($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_vtpm = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Defines whether the instance has integrity monitoring enabled.
+     *
+     * Generated from protobuf field <code>bool enable_integrity_monitoring = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getEnableIntegrityMonitoring()
+    {
+        return $this->enable_integrity_monitoring;
+    }
+
+    /**
+     * Optional. Defines whether the instance has integrity monitoring enabled.
+     *
+     * Generated from protobuf field <code>bool enable_integrity_monitoring = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableIntegrityMonitoring($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_integrity_monitoring = $var;
+
+        return $this;
+    }
+
+    /**
+     * The VM Boot Option, as set in the source VM.
      *
      * Generated from protobuf field <code>.google.cloud.vmmigration.v1.ComputeEngineBootOption boot_option = 15;</code>
      * @return int
@@ -574,7 +686,7 @@ class ComputeEngineTargetDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The VM Boot Option, as set in the source vm.
+     * The VM Boot Option, as set in the source VM.
      *
      * Generated from protobuf field <code>.google.cloud.vmmigration.v1.ComputeEngineBootOption boot_option = 15;</code>
      * @param int $var
@@ -662,6 +774,114 @@ class ComputeEngineTargetDetails extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->hostname = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The encryption to apply to the VM disks.
+     *
+     * Generated from protobuf field <code>.google.cloud.vmmigration.v1.Encryption encryption = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\VMMigration\V1\Encryption|null
+     */
+    public function getEncryption()
+    {
+        return $this->encryption;
+    }
+
+    public function hasEncryption()
+    {
+        return isset($this->encryption);
+    }
+
+    public function clearEncryption()
+    {
+        unset($this->encryption);
+    }
+
+    /**
+     * Optional. The encryption to apply to the VM disks.
+     *
+     * Generated from protobuf field <code>.google.cloud.vmmigration.v1.Encryption encryption = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\VMMigration\V1\Encryption $var
+     * @return $this
+     */
+    public function setEncryption($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\VMMigration\V1\Encryption::class);
+        $this->encryption = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. By default the virtual machine will keep its existing boot
+     * option. Setting this property will trigger an internal process which will
+     * convert the virtual machine from using the existing boot option to another.
+     *
+     * Generated from protobuf field <code>.google.cloud.vmmigration.v1.BootConversion boot_conversion = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getBootConversion()
+    {
+        return $this->boot_conversion;
+    }
+
+    /**
+     * Optional. By default the virtual machine will keep its existing boot
+     * option. Setting this property will trigger an internal process which will
+     * convert the virtual machine from using the existing boot option to another.
+     *
+     * Generated from protobuf field <code>.google.cloud.vmmigration.v1.BootConversion boot_conversion = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setBootConversion($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\VMMigration\V1\BootConversion::class);
+        $this->boot_conversion = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Additional replica zones of the target regional disks.
+     * If this list is not empty a regional disk will be created. The first
+     * supported zone would be the one stated in the
+     * [zone][google.cloud.vmmigration.v1.ComputeEngineTargetDetails.zone] field.
+     * The rest are taken from this list. Please refer to the [regional disk
+     * creation
+     * API](https://cloud.google.com/compute/docs/regions-zones/global-regional-zonal-resources)
+     * for further details about regional vs zonal disks. If not specified, a
+     * zonal disk will be created in the same zone the VM is created.
+     *
+     * Generated from protobuf field <code>repeated string disk_replica_zones = 24 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getDiskReplicaZones()
+    {
+        return $this->disk_replica_zones;
+    }
+
+    /**
+     * Optional. Additional replica zones of the target regional disks.
+     * If this list is not empty a regional disk will be created. The first
+     * supported zone would be the one stated in the
+     * [zone][google.cloud.vmmigration.v1.ComputeEngineTargetDetails.zone] field.
+     * The rest are taken from this list. Please refer to the [regional disk
+     * creation
+     * API](https://cloud.google.com/compute/docs/regions-zones/global-regional-zonal-resources)
+     * for further details about regional vs zonal disks. If not specified, a
+     * zonal disk will be created in the same zone the VM is created.
+     *
+     * Generated from protobuf field <code>repeated string disk_replica_zones = 24 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setDiskReplicaZones($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->disk_replica_zones = $arr;
 
         return $this;
     }

@@ -83,6 +83,30 @@ return [
                     ],
                 ],
             ],
+            'CancelDiskMigrationJob' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/sources/*/diskMigrationJobs/*}:cancel',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'CancelImageImportJob' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/imageImports/*/imageImportJobs/*}:cancel',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'CreateCloneJob' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*/sources/*/migratingVms/*}/cloneJobs',
@@ -128,6 +152,21 @@ return [
                     'datacenter_connector_id',
                 ],
             ],
+            'CreateDiskMigrationJob' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/sources/*}/diskMigrationJobs',
+                'body' => 'disk_migration_job',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'disk_migration_job_id',
+                ],
+            ],
             'CreateGroup' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/groups',
@@ -141,6 +180,21 @@ return [
                 ],
                 'queryParams' => [
                     'group_id',
+                ],
+            ],
+            'CreateImageImport' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/imageImports',
+                'body' => 'image_import',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'image_import_id',
                 ],
             ],
             'CreateMigratingVm' => [
@@ -214,9 +268,31 @@ return [
                     ],
                 ],
             ],
+            'DeleteDiskMigrationJob' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/sources/*/diskMigrationJobs/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteGroup' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/groups/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteImageImport' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/imageImports/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -269,9 +345,32 @@ return [
                     ],
                 ],
             ],
+            'ExtendMigration' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{migrating_vm=projects/*/locations/*/sources/*/migratingVms/*}:extendMigration',
+                'body' => '*',
+                'placeholders' => [
+                    'migrating_vm' => [
+                        'getters' => [
+                            'getMigratingVm',
+                        ],
+                    ],
+                ],
+            ],
             'FetchInventory' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{source=projects/*/locations/*/sources/*}:fetchInventory',
+                'placeholders' => [
+                    'source' => [
+                        'getters' => [
+                            'getSource',
+                        ],
+                    ],
+                ],
+            ],
+            'FetchStorageInventory' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{source=projects/*/locations/*/sources/*}:fetchStorageInventory',
                 'placeholders' => [
                     'source' => [
                         'getters' => [
@@ -325,9 +424,42 @@ return [
                     ],
                 ],
             ],
+            'GetDiskMigrationJob' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/sources/*/diskMigrationJobs/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetGroup' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/groups/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetImageImport' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/imageImports/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetImageImportJob' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/imageImports/*/imageImportJobs/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -433,6 +565,17 @@ return [
                     'page_token',
                 ],
             ],
+            'ListDiskMigrationJobs' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/sources/*}/diskMigrationJobs',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListGroups' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/groups',
@@ -445,6 +588,28 @@ return [
                 ],
                 'queryParams' => [
                     'page_token',
+                ],
+            ],
+            'ListImageImportJobs' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/imageImports/*}/imageImportJobs',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListImageImports' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/imageImports',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
                 ],
             ],
             'ListMigratingVms' => [
@@ -553,6 +718,18 @@ return [
                     ],
                 ],
             ],
+            'RunDiskMigrationJob' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/sources/*/diskMigrationJobs/*}:run',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'StartMigration' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{migrating_vm=projects/*/locations/*/sources/*/migratingVms/*}:startMigration',
@@ -561,6 +738,19 @@ return [
                     'migrating_vm' => [
                         'getters' => [
                             'getMigratingVm',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateDiskMigrationJob' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{disk_migration_job.name=projects/*/locations/*/sources/*/diskMigrationJobs/*}',
+                'body' => 'disk_migration_job',
+                'placeholders' => [
+                    'disk_migration_job.name' => [
+                        'getters' => [
+                            'getDiskMigrationJob',
+                            'getName',
                         ],
                     ],
                 ],

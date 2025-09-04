@@ -23,9 +23,9 @@ class TargetProject extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * The target project ID (number) or project name.
+     * Required. The target project ID (number) or project name.
      *
-     * Generated from protobuf field <code>string project = 2;</code>
+     * Generated from protobuf field <code>string project = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $project = '';
     /**
@@ -57,7 +57,7 @@ class TargetProject extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Output only. The name of the target project.
      *     @type string $project
-     *           The target project ID (number) or project name.
+     *           Required. The target project ID (number) or project name.
      *     @type string $description
      *           The target project's description.
      *     @type \Google\Protobuf\Timestamp $create_time
@@ -99,9 +99,9 @@ class TargetProject extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The target project ID (number) or project name.
+     * Required. The target project ID (number) or project name.
      *
-     * Generated from protobuf field <code>string project = 2;</code>
+     * Generated from protobuf field <code>string project = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getProject()
@@ -110,9 +110,9 @@ class TargetProject extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The target project ID (number) or project name.
+     * Required. The target project ID (number) or project name.
      *
-     * Generated from protobuf field <code>string project = 2;</code>
+     * Generated from protobuf field <code>string project = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

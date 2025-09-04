@@ -40,11 +40,15 @@ use Google\Cloud\Location\Location;
 use Google\Cloud\VMMigration\V1\AddGroupMigrationRequest;
 use Google\Cloud\VMMigration\V1\CancelCloneJobRequest;
 use Google\Cloud\VMMigration\V1\CancelCutoverJobRequest;
+use Google\Cloud\VMMigration\V1\CancelDiskMigrationJobRequest;
+use Google\Cloud\VMMigration\V1\CancelImageImportJobRequest;
 use Google\Cloud\VMMigration\V1\CloneJob;
 use Google\Cloud\VMMigration\V1\CreateCloneJobRequest;
 use Google\Cloud\VMMigration\V1\CreateCutoverJobRequest;
 use Google\Cloud\VMMigration\V1\CreateDatacenterConnectorRequest;
+use Google\Cloud\VMMigration\V1\CreateDiskMigrationJobRequest;
 use Google\Cloud\VMMigration\V1\CreateGroupRequest;
+use Google\Cloud\VMMigration\V1\CreateImageImportRequest;
 use Google\Cloud\VMMigration\V1\CreateMigratingVmRequest;
 use Google\Cloud\VMMigration\V1\CreateSourceRequest;
 use Google\Cloud\VMMigration\V1\CreateTargetProjectRequest;
@@ -52,28 +56,41 @@ use Google\Cloud\VMMigration\V1\CreateUtilizationReportRequest;
 use Google\Cloud\VMMigration\V1\CutoverJob;
 use Google\Cloud\VMMigration\V1\DatacenterConnector;
 use Google\Cloud\VMMigration\V1\DeleteDatacenterConnectorRequest;
+use Google\Cloud\VMMigration\V1\DeleteDiskMigrationJobRequest;
 use Google\Cloud\VMMigration\V1\DeleteGroupRequest;
+use Google\Cloud\VMMigration\V1\DeleteImageImportRequest;
 use Google\Cloud\VMMigration\V1\DeleteMigratingVmRequest;
 use Google\Cloud\VMMigration\V1\DeleteSourceRequest;
 use Google\Cloud\VMMigration\V1\DeleteTargetProjectRequest;
 use Google\Cloud\VMMigration\V1\DeleteUtilizationReportRequest;
+use Google\Cloud\VMMigration\V1\DiskMigrationJob;
+use Google\Cloud\VMMigration\V1\ExtendMigrationRequest;
 use Google\Cloud\VMMigration\V1\FetchInventoryRequest;
 use Google\Cloud\VMMigration\V1\FetchInventoryResponse;
+use Google\Cloud\VMMigration\V1\FetchStorageInventoryRequest;
 use Google\Cloud\VMMigration\V1\FinalizeMigrationRequest;
 use Google\Cloud\VMMigration\V1\GetCloneJobRequest;
 use Google\Cloud\VMMigration\V1\GetCutoverJobRequest;
 use Google\Cloud\VMMigration\V1\GetDatacenterConnectorRequest;
+use Google\Cloud\VMMigration\V1\GetDiskMigrationJobRequest;
 use Google\Cloud\VMMigration\V1\GetGroupRequest;
+use Google\Cloud\VMMigration\V1\GetImageImportJobRequest;
+use Google\Cloud\VMMigration\V1\GetImageImportRequest;
 use Google\Cloud\VMMigration\V1\GetMigratingVmRequest;
 use Google\Cloud\VMMigration\V1\GetReplicationCycleRequest;
 use Google\Cloud\VMMigration\V1\GetSourceRequest;
 use Google\Cloud\VMMigration\V1\GetTargetProjectRequest;
 use Google\Cloud\VMMigration\V1\GetUtilizationReportRequest;
 use Google\Cloud\VMMigration\V1\Group;
+use Google\Cloud\VMMigration\V1\ImageImport;
+use Google\Cloud\VMMigration\V1\ImageImportJob;
 use Google\Cloud\VMMigration\V1\ListCloneJobsRequest;
 use Google\Cloud\VMMigration\V1\ListCutoverJobsRequest;
 use Google\Cloud\VMMigration\V1\ListDatacenterConnectorsRequest;
+use Google\Cloud\VMMigration\V1\ListDiskMigrationJobsRequest;
 use Google\Cloud\VMMigration\V1\ListGroupsRequest;
+use Google\Cloud\VMMigration\V1\ListImageImportJobsRequest;
+use Google\Cloud\VMMigration\V1\ListImageImportsRequest;
 use Google\Cloud\VMMigration\V1\ListMigratingVmsRequest;
 use Google\Cloud\VMMigration\V1\ListReplicationCyclesRequest;
 use Google\Cloud\VMMigration\V1\ListSourcesRequest;
@@ -84,9 +101,11 @@ use Google\Cloud\VMMigration\V1\PauseMigrationRequest;
 use Google\Cloud\VMMigration\V1\RemoveGroupMigrationRequest;
 use Google\Cloud\VMMigration\V1\ReplicationCycle;
 use Google\Cloud\VMMigration\V1\ResumeMigrationRequest;
+use Google\Cloud\VMMigration\V1\RunDiskMigrationJobRequest;
 use Google\Cloud\VMMigration\V1\Source;
 use Google\Cloud\VMMigration\V1\StartMigrationRequest;
 use Google\Cloud\VMMigration\V1\TargetProject;
+use Google\Cloud\VMMigration\V1\UpdateDiskMigrationJobRequest;
 use Google\Cloud\VMMigration\V1\UpdateGroupRequest;
 use Google\Cloud\VMMigration\V1\UpdateMigratingVmRequest;
 use Google\Cloud\VMMigration\V1\UpdateSourceRequest;
@@ -112,26 +131,37 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<OperationResponse> addGroupMigrationAsync(AddGroupMigrationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> cancelCloneJobAsync(CancelCloneJobRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> cancelCutoverJobAsync(CancelCutoverJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> cancelDiskMigrationJobAsync(CancelDiskMigrationJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> cancelImageImportJobAsync(CancelImageImportJobRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createCloneJobAsync(CreateCloneJobRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createCutoverJobAsync(CreateCutoverJobRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createDatacenterConnectorAsync(CreateDatacenterConnectorRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createDiskMigrationJobAsync(CreateDiskMigrationJobRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createGroupAsync(CreateGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createImageImportAsync(CreateImageImportRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createMigratingVmAsync(CreateMigratingVmRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createSourceAsync(CreateSourceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createTargetProjectAsync(CreateTargetProjectRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createUtilizationReportAsync(CreateUtilizationReportRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteDatacenterConnectorAsync(DeleteDatacenterConnectorRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteDiskMigrationJobAsync(DeleteDiskMigrationJobRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteGroupAsync(DeleteGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteImageImportAsync(DeleteImageImportRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteMigratingVmAsync(DeleteMigratingVmRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteSourceAsync(DeleteSourceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteTargetProjectAsync(DeleteTargetProjectRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteUtilizationReportAsync(DeleteUtilizationReportRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> extendMigrationAsync(ExtendMigrationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<FetchInventoryResponse> fetchInventoryAsync(FetchInventoryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> fetchStorageInventoryAsync(FetchStorageInventoryRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> finalizeMigrationAsync(FinalizeMigrationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<CloneJob> getCloneJobAsync(GetCloneJobRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<CutoverJob> getCutoverJobAsync(GetCutoverJobRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<DatacenterConnector> getDatacenterConnectorAsync(GetDatacenterConnectorRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DiskMigrationJob> getDiskMigrationJobAsync(GetDiskMigrationJobRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Group> getGroupAsync(GetGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ImageImport> getImageImportAsync(GetImageImportRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ImageImportJob> getImageImportJobAsync(GetImageImportJobRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<MigratingVm> getMigratingVmAsync(GetMigratingVmRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ReplicationCycle> getReplicationCycleAsync(GetReplicationCycleRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Source> getSourceAsync(GetSourceRequest $request, array $optionalArgs = [])
@@ -140,7 +170,10 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<PagedListResponse> listCloneJobsAsync(ListCloneJobsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listCutoverJobsAsync(ListCutoverJobsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listDatacenterConnectorsAsync(ListDatacenterConnectorsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDiskMigrationJobsAsync(ListDiskMigrationJobsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listGroupsAsync(ListGroupsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listImageImportJobsAsync(ListImageImportJobsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listImageImportsAsync(ListImageImportsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listMigratingVmsAsync(ListMigratingVmsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listReplicationCyclesAsync(ListReplicationCyclesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listSourcesAsync(ListSourcesRequest $request, array $optionalArgs = [])
@@ -149,7 +182,9 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<OperationResponse> pauseMigrationAsync(PauseMigrationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> removeGroupMigrationAsync(RemoveGroupMigrationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> resumeMigrationAsync(ResumeMigrationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> runDiskMigrationJobAsync(RunDiskMigrationJobRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> startMigrationAsync(StartMigrationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateDiskMigrationJobAsync(UpdateDiskMigrationJobRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateGroupAsync(UpdateGroupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateMigratingVmAsync(UpdateMigratingVmRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateSourceAsync(UpdateSourceRequest $request, array $optionalArgs = [])
@@ -285,6 +320,27 @@ final class VmMigrationClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a crypto_key
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $keyRing
+     * @param string $cryptoKey
+     *
+     * @return string The formatted crypto_key resource.
+     */
+    public static function cryptoKeyName(string $project, string $location, string $keyRing, string $cryptoKey): string
+    {
+        return self::getPathTemplate('cryptoKey')->render([
+            'project' => $project,
+            'location' => $location,
+            'key_ring' => $keyRing,
+            'crypto_key' => $cryptoKey,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a cutover_job
      * resource.
      *
@@ -338,6 +394,31 @@ final class VmMigrationClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * disk_migration_job resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $source
+     * @param string $diskMigrationJob
+     *
+     * @return string The formatted disk_migration_job resource.
+     */
+    public static function diskMigrationJobName(
+        string $project,
+        string $location,
+        string $source,
+        string $diskMigrationJob
+    ): string {
+        return self::getPathTemplate('diskMigrationJob')->render([
+            'project' => $project,
+            'location' => $location,
+            'source' => $source,
+            'disk_migration_job' => $diskMigrationJob,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a group
      * resource.
      *
@@ -353,6 +434,63 @@ final class VmMigrationClient
             'project' => $project,
             'location' => $location,
             'group' => $group,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a image
+     * resource.
+     *
+     * @param string $project
+     * @param string $image
+     *
+     * @return string The formatted image resource.
+     */
+    public static function imageName(string $project, string $image): string
+    {
+        return self::getPathTemplate('image')->render([
+            'project' => $project,
+            'image' => $image,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a image_import
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $job
+     *
+     * @return string The formatted image_import resource.
+     */
+    public static function imageImportName(string $project, string $location, string $job): string
+    {
+        return self::getPathTemplate('imageImport')->render([
+            'project' => $project,
+            'location' => $location,
+            'job' => $job,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * image_import_job resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $job
+     * @param string $result
+     *
+     * @return string The formatted image_import_job resource.
+     */
+    public static function imageImportJobName(string $project, string $location, string $job, string $result): string
+    {
+        return self::getPathTemplate('imageImportJob')->render([
+            'project' => $project,
+            'location' => $location,
+            'job' => $job,
+            'result' => $result,
         ]);
     }
 
@@ -427,6 +565,23 @@ final class VmMigrationClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * service_account resource.
+     *
+     * @param string $project
+     * @param string $serviceAccount
+     *
+     * @return string The formatted service_account resource.
+     */
+    public static function serviceAccountName(string $project, string $serviceAccount): string
+    {
+        return self::getPathTemplate('serviceAccount')->render([
+            'project' => $project,
+            'service_account' => $serviceAccount,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a source
      * resource.
      *
@@ -494,12 +649,18 @@ final class VmMigrationClient
      * The following name formats are supported:
      * Template: Pattern
      * - cloneJob: projects/{project}/locations/{location}/sources/{source}/migratingVms/{migrating_vm}/cloneJobs/{clone_job}
+     * - cryptoKey: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
      * - cutoverJob: projects/{project}/locations/{location}/sources/{source}/migratingVms/{migrating_vm}/cutoverJobs/{cutover_job}
      * - datacenterConnector: projects/{project}/locations/{location}/sources/{source}/datacenterConnectors/{datacenter_connector}
+     * - diskMigrationJob: projects/{project}/locations/{location}/sources/{source}/diskMigrationJobs/{disk_migration_job}
      * - group: projects/{project}/locations/{location}/groups/{group}
+     * - image: projects/{project}/global/images/{image}
+     * - imageImport: projects/{project}/locations/{location}/imageImports/{job}
+     * - imageImportJob: projects/{project}/locations/{location}/imageImports/{job}/imageImportJobs/{result}
      * - location: projects/{project}/locations/{location}
      * - migratingVm: projects/{project}/locations/{location}/sources/{source}/migratingVms/{migrating_vm}
      * - replicationCycle: projects/{project}/locations/{location}/sources/{source}/migratingVms/{migrating_vm}/replicationCycles/{replication_cycle}
+     * - serviceAccount: projects/{project}/serviceAccounts/{service_account}
      * - source: projects/{project}/locations/{location}/sources/{source}
      * - targetProject: projects/{project}/locations/{location}/targetProjects/{target_project}
      * - utilizationReport: projects/{project}/locations/{location}/sources/{source}/utilizationReports/{utilization_report}
@@ -682,6 +843,62 @@ final class VmMigrationClient
     }
 
     /**
+     * Cancels the disk migration job.
+     *
+     * The async variant is {@see VmMigrationClient::cancelDiskMigrationJobAsync()} .
+     *
+     * @example samples/V1/VmMigrationClient/cancel_disk_migration_job.php
+     *
+     * @param CancelDiskMigrationJobRequest $request     A request to house fields associated with the call.
+     * @param array                         $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function cancelDiskMigrationJob(
+        CancelDiskMigrationJobRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('CancelDiskMigrationJob', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Initiates the cancellation of a running clone job.
+     *
+     * The async variant is {@see VmMigrationClient::cancelImageImportJobAsync()} .
+     *
+     * @example samples/V1/VmMigrationClient/cancel_image_import_job.php
+     *
+     * @param CancelImageImportJobRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function cancelImageImportJob(
+        CancelImageImportJobRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('CancelImageImportJob', $request, $callOptions)->wait();
+    }
+
+    /**
      * Initiates a Clone of a specific migrating VM.
      *
      * The async variant is {@see VmMigrationClient::createCloneJobAsync()} .
@@ -765,6 +982,34 @@ final class VmMigrationClient
     }
 
     /**
+     * Creates a new disk migration job in a given Source.
+     *
+     * The async variant is {@see VmMigrationClient::createDiskMigrationJobAsync()} .
+     *
+     * @example samples/V1/VmMigrationClient/create_disk_migration_job.php
+     *
+     * @param CreateDiskMigrationJobRequest $request     A request to house fields associated with the call.
+     * @param array                         $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createDiskMigrationJob(
+        CreateDiskMigrationJobRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('CreateDiskMigrationJob', $request, $callOptions)->wait();
+    }
+
+    /**
      * Creates a new Group in a given project and location.
      *
      * The async variant is {@see VmMigrationClient::createGroupAsync()} .
@@ -788,6 +1033,32 @@ final class VmMigrationClient
     public function createGroup(CreateGroupRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('CreateGroup', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates a new ImageImport in a given project.
+     *
+     * The async variant is {@see VmMigrationClient::createImageImportAsync()} .
+     *
+     * @example samples/V1/VmMigrationClient/create_image_import.php
+     *
+     * @param CreateImageImportRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createImageImport(CreateImageImportRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('CreateImageImport', $request, $callOptions)->wait();
     }
 
     /**
@@ -929,6 +1200,34 @@ final class VmMigrationClient
     }
 
     /**
+     * Deletes a single DiskMigrationJob.
+     *
+     * The async variant is {@see VmMigrationClient::deleteDiskMigrationJobAsync()} .
+     *
+     * @example samples/V1/VmMigrationClient/delete_disk_migration_job.php
+     *
+     * @param DeleteDiskMigrationJobRequest $request     A request to house fields associated with the call.
+     * @param array                         $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteDiskMigrationJob(
+        DeleteDiskMigrationJobRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('DeleteDiskMigrationJob', $request, $callOptions)->wait();
+    }
+
+    /**
      * Deletes a single Group.
      *
      * The async variant is {@see VmMigrationClient::deleteGroupAsync()} .
@@ -952,6 +1251,32 @@ final class VmMigrationClient
     public function deleteGroup(DeleteGroupRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('DeleteGroup', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a single ImageImport.
+     *
+     * The async variant is {@see VmMigrationClient::deleteImageImportAsync()} .
+     *
+     * @example samples/V1/VmMigrationClient/delete_image_import.php
+     *
+     * @param DeleteImageImportRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteImageImport(DeleteImageImportRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeleteImageImport', $request, $callOptions)->wait();
     }
 
     /**
@@ -1064,6 +1389,32 @@ final class VmMigrationClient
     }
 
     /**
+     * Extend the migrating VM time to live.
+     *
+     * The async variant is {@see VmMigrationClient::extendMigrationAsync()} .
+     *
+     * @example samples/V1/VmMigrationClient/extend_migration.php
+     *
+     * @param ExtendMigrationRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function extendMigration(ExtendMigrationRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('ExtendMigration', $request, $callOptions)->wait();
+    }
+
+    /**
      * List remote source's inventory of VMs.
      * The remote source is the onprem vCenter (remote in the sense it's not in
      * Compute Engine). The inventory describes the list of existing VMs in that
@@ -1091,6 +1442,39 @@ final class VmMigrationClient
     public function fetchInventory(FetchInventoryRequest $request, array $callOptions = []): FetchInventoryResponse
     {
         return $this->startApiCall('FetchInventory', $request, $callOptions)->wait();
+    }
+
+    /**
+     * List remote source's inventory of storage resources.
+     * The remote source is another cloud vendor (e.g. AWS, Azure).
+     * The inventory describes the list of existing storage resources in that
+     * source. Note that this operation lists the resources on the remote source,
+     * as opposed to listing the MigratingVms resources in the vmmigration
+     * service.
+     *
+     * The async variant is {@see VmMigrationClient::fetchStorageInventoryAsync()} .
+     *
+     * @example samples/V1/VmMigrationClient/fetch_storage_inventory.php
+     *
+     * @param FetchStorageInventoryRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function fetchStorageInventory(
+        FetchStorageInventoryRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('FetchStorageInventory', $request, $callOptions);
     }
 
     /**
@@ -1201,6 +1585,32 @@ final class VmMigrationClient
     }
 
     /**
+     * Gets details of a single DiskMigrationJob.
+     *
+     * The async variant is {@see VmMigrationClient::getDiskMigrationJobAsync()} .
+     *
+     * @example samples/V1/VmMigrationClient/get_disk_migration_job.php
+     *
+     * @param GetDiskMigrationJobRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return DiskMigrationJob
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getDiskMigrationJob(GetDiskMigrationJobRequest $request, array $callOptions = []): DiskMigrationJob
+    {
+        return $this->startApiCall('GetDiskMigrationJob', $request, $callOptions)->wait();
+    }
+
+    /**
      * Gets details of a single Group.
      *
      * The async variant is {@see VmMigrationClient::getGroupAsync()} .
@@ -1224,6 +1634,58 @@ final class VmMigrationClient
     public function getGroup(GetGroupRequest $request, array $callOptions = []): Group
     {
         return $this->startApiCall('GetGroup', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets details of a single ImageImport.
+     *
+     * The async variant is {@see VmMigrationClient::getImageImportAsync()} .
+     *
+     * @example samples/V1/VmMigrationClient/get_image_import.php
+     *
+     * @param GetImageImportRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ImageImport
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getImageImport(GetImageImportRequest $request, array $callOptions = []): ImageImport
+    {
+        return $this->startApiCall('GetImageImport', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets details of a single ImageImportJob.
+     *
+     * The async variant is {@see VmMigrationClient::getImageImportJobAsync()} .
+     *
+     * @example samples/V1/VmMigrationClient/get_image_import_job.php
+     *
+     * @param GetImageImportJobRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ImageImportJob
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getImageImportJob(GetImageImportJobRequest $request, array $callOptions = []): ImageImportJob
+    {
+        return $this->startApiCall('GetImageImportJob', $request, $callOptions)->wait();
     }
 
     /**
@@ -1362,7 +1824,8 @@ final class VmMigrationClient
     }
 
     /**
-     * Lists CloneJobs of a given migrating VM.
+     * Lists the CloneJobs of a migrating VM. Only 25 most recent CloneJobs are
+     * listed.
      *
      * The async variant is {@see VmMigrationClient::listCloneJobsAsync()} .
      *
@@ -1388,7 +1851,8 @@ final class VmMigrationClient
     }
 
     /**
-     * Lists CutoverJobs of a given migrating VM.
+     * Lists the CutoverJobs of a migrating VM. Only 25 most recent CutoverJobs
+     * are listed.
      *
      * The async variant is {@see VmMigrationClient::listCutoverJobsAsync()} .
      *
@@ -1442,6 +1906,34 @@ final class VmMigrationClient
     }
 
     /**
+     * Lists DiskMigrationJobs in a given Source.
+     *
+     * The async variant is {@see VmMigrationClient::listDiskMigrationJobsAsync()} .
+     *
+     * @example samples/V1/VmMigrationClient/list_disk_migration_jobs.php
+     *
+     * @param ListDiskMigrationJobsRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listDiskMigrationJobs(
+        ListDiskMigrationJobsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListDiskMigrationJobs', $request, $callOptions);
+    }
+
+    /**
      * Lists Groups in a given project and location.
      *
      * The async variant is {@see VmMigrationClient::listGroupsAsync()} .
@@ -1465,6 +1957,58 @@ final class VmMigrationClient
     public function listGroups(ListGroupsRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListGroups', $request, $callOptions);
+    }
+
+    /**
+     * Lists ImageImportJobs in a given project.
+     *
+     * The async variant is {@see VmMigrationClient::listImageImportJobsAsync()} .
+     *
+     * @example samples/V1/VmMigrationClient/list_image_import_jobs.php
+     *
+     * @param ListImageImportJobsRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listImageImportJobs(ListImageImportJobsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListImageImportJobs', $request, $callOptions);
+    }
+
+    /**
+     * Lists ImageImports in a given project.
+     *
+     * The async variant is {@see VmMigrationClient::listImageImportsAsync()} .
+     *
+     * @example samples/V1/VmMigrationClient/list_image_imports.php
+     *
+     * @param ListImageImportsRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listImageImports(ListImageImportsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListImageImports', $request, $callOptions);
     }
 
     /**
@@ -1690,6 +2234,32 @@ final class VmMigrationClient
     }
 
     /**
+     * Runs the disk migration job.
+     *
+     * The async variant is {@see VmMigrationClient::runDiskMigrationJobAsync()} .
+     *
+     * @example samples/V1/VmMigrationClient/run_disk_migration_job.php
+     *
+     * @param RunDiskMigrationJobRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function runDiskMigrationJob(RunDiskMigrationJobRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('RunDiskMigrationJob', $request, $callOptions)->wait();
+    }
+
+    /**
      * Starts migration for a VM. Starts the process of uploading
      * data and creating snapshots, in replication cycles scheduled by the policy.
      *
@@ -1714,6 +2284,34 @@ final class VmMigrationClient
     public function startMigration(StartMigrationRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('StartMigration', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates the parameters of a single DiskMigrationJob.
+     *
+     * The async variant is {@see VmMigrationClient::updateDiskMigrationJobAsync()} .
+     *
+     * @example samples/V1/VmMigrationClient/update_disk_migration_job.php
+     *
+     * @param UpdateDiskMigrationJobRequest $request     A request to house fields associated with the call.
+     * @param array                         $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateDiskMigrationJob(
+        UpdateDiskMigrationJobRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('UpdateDiskMigrationJob', $request, $callOptions)->wait();
     }
 
     /**
