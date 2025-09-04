@@ -267,7 +267,9 @@ class PsrLoggerTest extends TestCase
             $attr->setAccessible(true);
             $this->assertEquals(
                 $attr->getValue($psrLogger),
-                $options[$attributeName]
+                $attributeName === 'clientConfig'
+                    ? serialize($options[$attributeName])
+                    : $options[$attributeName]
             );
         }
     }
