@@ -65,7 +65,7 @@ items:
       returns:
         -
           var_type: int
-          description: 'Enum of type [State][.google.cloud.vision.v1.OperationMetadata.State]. '
+          description: 'Enum of type <xref uid="\\Google\Cloud\Vision\V1\OperationMetadata\State">State</xref>.'
   -
     uid: '\Google\Cloud\Vision\V1\OperationMetadata::setState()'
     name: setState

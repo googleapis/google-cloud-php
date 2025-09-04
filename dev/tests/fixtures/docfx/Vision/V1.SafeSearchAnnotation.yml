@@ -90,7 +90,7 @@ items:
       returns:
         -
           var_type: int
-          description: 'Enum of type [Likelihood][.google.cloud.vision.v1.Likelihood]. '
+          description: 'Enum of type <xref uid="\\Google\Cloud\Vision\V1\Likelihood">Likelihood</xref>.'
   -
     uid: '\Google\Cloud\Vision\V1\SafeSearchAnnotation::setAdult()'
     name: setAdult
@@ -128,7 +128,7 @@ items:
       returns:
         -
           var_type: int
-          description: 'Enum of type [Likelihood][.google.cloud.vision.v1.Likelihood]. '
+          description: 'Enum of type <xref uid="\\Google\Cloud\Vision\V1\Likelihood">Likelihood</xref>.'
   -
     uid: '\Google\Cloud\Vision\V1\SafeSearchAnnotation::setSpoof()'
     name: setSpoof
@@ -163,7 +163,7 @@ items:
       returns:
         -
           var_type: int
-          description: 'Enum of type [Likelihood][.google.cloud.vision.v1.Likelihood]. '
+          description: 'Enum of type <xref uid="\\Google\Cloud\Vision\V1\Likelihood">Likelihood</xref>.'
   -
     uid: '\Google\Cloud\Vision\V1\SafeSearchAnnotation::setMedical()'
     name: setMedical
@@ -198,7 +198,7 @@ items:
       returns:
         -
           var_type: int
-          description: 'Enum of type [Likelihood][.google.cloud.vision.v1.Likelihood]. '
+          description: 'Enum of type <xref uid="\\Google\Cloud\Vision\V1\Likelihood">Likelihood</xref>.'
   -
     uid: '\Google\Cloud\Vision\V1\SafeSearchAnnotation::setViolence()'
     name: setViolence
@@ -237,7 +237,7 @@ items:
       returns:
         -
           var_type: int
-          description: 'Enum of type [Likelihood][.google.cloud.vision.v1.Likelihood]. '
+          description: 'Enum of type <xref uid="\\Google\Cloud\Vision\V1\Likelihood">Likelihood</xref>.'
   -
     uid: '\Google\Cloud\Vision\V1\SafeSearchAnnotation::setRacy()'
     name: setRacy

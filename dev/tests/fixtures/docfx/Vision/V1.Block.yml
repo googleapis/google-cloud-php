@@ -234,7 +234,7 @@ items:
       returns:
         -
           var_type: int
-          description: 'Enum of type [BlockType][.google.cloud.vision.v1.Block.BlockType]. '
+          description: 'Enum of type <xref uid="\\Google\Cloud\Vision\V1\Block\BlockType">BlockType</xref>.'
   -
     uid: '\Google\Cloud\Vision\V1\Block::setBlockType()'
     name: setBlockType

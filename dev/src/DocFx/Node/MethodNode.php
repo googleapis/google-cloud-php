@@ -62,7 +62,9 @@ class MethodNode
 
         if ($enum = $this->getProtobufEnumGetterType()) {
             $enumName = array_reverse(explode('.', $enum))[0];
-            $description = sprintf('Enum of type [%s][%s]. ', $enumName, $enum) . $description;
+            $description = trim($this->replaceProtoRef(
+                sprintf('Enum of type [%s][%s]. ', $enumName, $enum)
+            ) . $description);
         }
 
         return $description;

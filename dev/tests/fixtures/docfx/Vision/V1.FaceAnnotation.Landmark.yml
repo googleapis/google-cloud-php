@@ -57,7 +57,7 @@ items:
       returns:
         -
           var_type: int
-          description: 'Enum of type [Type][.google.cloud.vision.v1.FaceAnnotation.Landmark.Type]. '
+          description: 'Enum of type <xref uid="\\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type">Type</xref>.'
   -
     uid: '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark::setType()'
     name: setType
