@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -58,11 +58,35 @@ return [
                 ],
             ],
         ],
-        'google.cloud.networksecurity.v1.NetworkSecurity' => [
-            'CreateAuthorizationPolicy' => [
+        'google.cloud.networksecurity.v1.OrganizationAddressGroupService' => [
+            'AddAddressGroupItems' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/authorizationPolicies',
-                'body' => 'authorization_policy',
+                'uriTemplate' => '/v1/{address_group=organizations/*/locations/*/addressGroups/*}:addItems',
+                'body' => '*',
+                'placeholders' => [
+                    'address_group' => [
+                        'getters' => [
+                            'getAddressGroup',
+                        ],
+                    ],
+                ],
+            ],
+            'CloneAddressGroupItems' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{address_group=organizations/*/locations/*/addressGroups/*}:cloneItems',
+                'body' => '*',
+                'placeholders' => [
+                    'address_group' => [
+                        'getters' => [
+                            'getAddressGroup',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateAddressGroup' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=organizations/*/locations/*}/addressGroups',
+                'body' => 'address_group',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -71,172 +95,73 @@ return [
                     ],
                 ],
                 'queryParams' => [
-                    'authorization_policy_id',
+                    'address_group_id',
                 ],
             ],
-            'CreateClientTlsPolicy' => [
+            'DeleteAddressGroup' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=organizations/*/locations/*/addressGroups/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetAddressGroup' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=organizations/*/locations/*/addressGroups/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListAddressGroupReferences' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{address_group=organizations/*/locations/*/addressGroups/*}:listReferences',
+                'placeholders' => [
+                    'address_group' => [
+                        'getters' => [
+                            'getAddressGroup',
+                        ],
+                    ],
+                ],
+            ],
+            'ListAddressGroups' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=organizations/*/locations/*}/addressGroups',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'RemoveAddressGroupItems' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/clientTlsPolicies',
-                'body' => 'client_tls_policy',
+                'uriTemplate' => '/v1/{address_group=organizations/*/locations/*/addressGroups/*}:removeItems',
+                'body' => '*',
                 'placeholders' => [
-                    'parent' => [
+                    'address_group' => [
                         'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-                'queryParams' => [
-                    'client_tls_policy_id',
-                ],
-            ],
-            'CreateServerTlsPolicy' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/serverTlsPolicies',
-                'body' => 'server_tls_policy',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-                'queryParams' => [
-                    'server_tls_policy_id',
-                ],
-            ],
-            'DeleteAuthorizationPolicy' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/authorizationPolicies/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
+                            'getAddressGroup',
                         ],
                     ],
                 ],
             ],
-            'DeleteClientTlsPolicy' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/clientTlsPolicies/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'DeleteServerTlsPolicy' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/serverTlsPolicies/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'GetAuthorizationPolicy' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/authorizationPolicies/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'GetClientTlsPolicy' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/clientTlsPolicies/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'GetServerTlsPolicy' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/serverTlsPolicies/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'ListAuthorizationPolicies' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/authorizationPolicies',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'ListClientTlsPolicies' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/clientTlsPolicies',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'ListServerTlsPolicies' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/serverTlsPolicies',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'UpdateAuthorizationPolicy' => [
+            'UpdateAddressGroup' => [
                 'method' => 'patch',
-                'uriTemplate' => '/v1/{authorization_policy.name=projects/*/locations/*/authorizationPolicies/*}',
-                'body' => 'authorization_policy',
+                'uriTemplate' => '/v1/{address_group.name=organizations/*/locations/*/addressGroups/*}',
+                'body' => 'address_group',
                 'placeholders' => [
-                    'authorization_policy.name' => [
+                    'address_group.name' => [
                         'getters' => [
-                            'getAuthorizationPolicy',
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'UpdateClientTlsPolicy' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v1/{client_tls_policy.name=projects/*/locations/*/clientTlsPolicies/*}',
-                'body' => 'client_tls_policy',
-                'placeholders' => [
-                    'client_tls_policy.name' => [
-                        'getters' => [
-                            'getClientTlsPolicy',
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'UpdateServerTlsPolicy' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v1/{server_tls_policy.name=projects/*/locations/*/serverTlsPolicies/*}',
-                'body' => 'server_tls_policy',
-                'placeholders' => [
-                    'server_tls_policy.name' => [
-                        'getters' => [
-                            'getServerTlsPolicy',
+                            'getAddressGroup',
                             'getName',
                         ],
                     ],
