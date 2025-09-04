@@ -58,9 +58,9 @@ use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
 /**
- * Service Description: Organization AddressGroup is created under organization. Requests against
- * Organization AddressGroup will use project from request credential for
- * activation/quota/visibility check.
+ * Service Description: AddressGroup is a resource that manages a collection of IP or Domain Names,
+ * it can be used in Firewall Policy to represent allow or deny traffic from
+ * all the IP or Domain Names from the Address Group.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
@@ -85,13 +85,13 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  */
-final class OrganizationAddressGroupServiceClient
+final class AddressGroupServiceClient
 {
     use GapicClientTrait;
     use ResourceHelperTrait;
 
     /** The name of the service. */
-    private const SERVICE_NAME = 'google.cloud.networksecurity.v1.OrganizationAddressGroupService';
+    private const SERVICE_NAME = 'google.cloud.networksecurity.v1.AddressGroupService';
 
     /**
      * The default address of the service.
@@ -110,9 +110,7 @@ final class OrganizationAddressGroupServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -121,15 +119,15 @@ final class OrganizationAddressGroupServiceClient
         return [
             'serviceName' => self::SERVICE_NAME,
             'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
-            'clientConfig' => __DIR__ . '/../resources/organization_address_group_service_client_config.json',
-            'descriptorsConfigPath' => __DIR__ . '/../resources/organization_address_group_service_descriptor_config.php',
-            'gcpApiConfigPath' => __DIR__ . '/../resources/organization_address_group_service_grpc_config.json',
+            'clientConfig' => __DIR__ . '/../resources/address_group_service_client_config.json',
+            'descriptorsConfigPath' => __DIR__ . '/../resources/address_group_service_descriptor_config.php',
+            'gcpApiConfigPath' => __DIR__ . '/../resources/address_group_service_grpc_config.json',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/organization_address_group_service_rest_client_config.php',
+                    'restClientConfigPath' => __DIR__ . '/../resources/address_group_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -158,7 +156,9 @@ final class OrganizationAddressGroupServiceClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -246,8 +246,11 @@ final class OrganizationAddressGroupServiceClient
      *
      * @return string The formatted organization_location_address_group resource.
      */
-    public static function organizationLocationAddressGroupName(string $organization, string $location, string $addressGroup): string
-    {
+    public static function organizationLocationAddressGroupName(
+        string $organization,
+        string $location,
+        string $addressGroup
+    ): string {
         return self::getPathTemplate('organizationLocationAddressGroup')->render([
             'organization' => $organization,
             'location' => $location,
@@ -265,8 +268,11 @@ final class OrganizationAddressGroupServiceClient
      *
      * @return string The formatted project_location_address_group resource.
      */
-    public static function projectLocationAddressGroupName(string $project, string $location, string $addressGroup): string
-    {
+    public static function projectLocationAddressGroupName(
+        string $project,
+        string $location,
+        string $addressGroup
+    ): string {
         return self::getPathTemplate('projectLocationAddressGroup')->render([
             'project' => $project,
             'location' => $location,
@@ -387,9 +393,9 @@ final class OrganizationAddressGroupServiceClient
      * Adds items to an address group.
      *
      * The async variant is
-     * {@see OrganizationAddressGroupServiceClient::addAddressGroupItemsAsync()} .
+     * {@see AddressGroupServiceClient::addAddressGroupItemsAsync()} .
      *
-     * @example samples/V1/OrganizationAddressGroupServiceClient/add_address_group_items.php
+     * @example samples/V1/AddressGroupServiceClient/add_address_group_items.php
      *
      * @param AddAddressGroupItemsRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -405,8 +411,10 @@ final class OrganizationAddressGroupServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function addAddressGroupItems(AddAddressGroupItemsRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function addAddressGroupItems(
+        AddAddressGroupItemsRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('AddAddressGroupItems', $request, $callOptions)->wait();
     }
 
@@ -414,9 +422,9 @@ final class OrganizationAddressGroupServiceClient
      * Clones items from one address group to another.
      *
      * The async variant is
-     * {@see OrganizationAddressGroupServiceClient::cloneAddressGroupItemsAsync()} .
+     * {@see AddressGroupServiceClient::cloneAddressGroupItemsAsync()} .
      *
-     * @example samples/V1/OrganizationAddressGroupServiceClient/clone_address_group_items.php
+     * @example samples/V1/AddressGroupServiceClient/clone_address_group_items.php
      *
      * @param CloneAddressGroupItemsRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -432,18 +440,20 @@ final class OrganizationAddressGroupServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function cloneAddressGroupItems(CloneAddressGroupItemsRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function cloneAddressGroupItems(
+        CloneAddressGroupItemsRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CloneAddressGroupItems', $request, $callOptions)->wait();
     }
 
     /**
      * Creates a new address group in a given project and location.
      *
-     * The async variant is
-     * {@see OrganizationAddressGroupServiceClient::createAddressGroupAsync()} .
+     * The async variant is {@see AddressGroupServiceClient::createAddressGroupAsync()}
+     * .
      *
-     * @example samples/V1/OrganizationAddressGroupServiceClient/create_address_group.php
+     * @example samples/V1/AddressGroupServiceClient/create_address_group.php
      *
      * @param CreateAddressGroupRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -465,12 +475,12 @@ final class OrganizationAddressGroupServiceClient
     }
 
     /**
-     * Deletes an address group.
+     * Deletes a single address group.
      *
-     * The async variant is
-     * {@see OrganizationAddressGroupServiceClient::deleteAddressGroupAsync()} .
+     * The async variant is {@see AddressGroupServiceClient::deleteAddressGroupAsync()}
+     * .
      *
-     * @example samples/V1/OrganizationAddressGroupServiceClient/delete_address_group.php
+     * @example samples/V1/AddressGroupServiceClient/delete_address_group.php
      *
      * @param DeleteAddressGroupRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -494,10 +504,9 @@ final class OrganizationAddressGroupServiceClient
     /**
      * Gets details of a single address group.
      *
-     * The async variant is
-     * {@see OrganizationAddressGroupServiceClient::getAddressGroupAsync()} .
+     * The async variant is {@see AddressGroupServiceClient::getAddressGroupAsync()} .
      *
-     * @example samples/V1/OrganizationAddressGroupServiceClient/get_address_group.php
+     * @example samples/V1/AddressGroupServiceClient/get_address_group.php
      *
      * @param GetAddressGroupRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -522,10 +531,9 @@ final class OrganizationAddressGroupServiceClient
      * Lists references of an address group.
      *
      * The async variant is
-     * {@see OrganizationAddressGroupServiceClient::listAddressGroupReferencesAsync()}
-     * .
+     * {@see AddressGroupServiceClient::listAddressGroupReferencesAsync()} .
      *
-     * @example samples/V1/OrganizationAddressGroupServiceClient/list_address_group_references.php
+     * @example samples/V1/AddressGroupServiceClient/list_address_group_references.php
      *
      * @param ListAddressGroupReferencesRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
@@ -541,18 +549,20 @@ final class OrganizationAddressGroupServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listAddressGroupReferences(ListAddressGroupReferencesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listAddressGroupReferences(
+        ListAddressGroupReferencesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListAddressGroupReferences', $request, $callOptions);
     }
 
     /**
      * Lists address groups in a given project and location.
      *
-     * The async variant is
-     * {@see OrganizationAddressGroupServiceClient::listAddressGroupsAsync()} .
+     * The async variant is {@see AddressGroupServiceClient::listAddressGroupsAsync()}
+     * .
      *
-     * @example samples/V1/OrganizationAddressGroupServiceClient/list_address_groups.php
+     * @example samples/V1/AddressGroupServiceClient/list_address_groups.php
      *
      * @param ListAddressGroupsRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -577,9 +587,9 @@ final class OrganizationAddressGroupServiceClient
      * Removes items from an address group.
      *
      * The async variant is
-     * {@see OrganizationAddressGroupServiceClient::removeAddressGroupItemsAsync()} .
+     * {@see AddressGroupServiceClient::removeAddressGroupItemsAsync()} .
      *
-     * @example samples/V1/OrganizationAddressGroupServiceClient/remove_address_group_items.php
+     * @example samples/V1/AddressGroupServiceClient/remove_address_group_items.php
      *
      * @param RemoveAddressGroupItemsRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -595,18 +605,20 @@ final class OrganizationAddressGroupServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function removeAddressGroupItems(RemoveAddressGroupItemsRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function removeAddressGroupItems(
+        RemoveAddressGroupItemsRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('RemoveAddressGroupItems', $request, $callOptions)->wait();
     }
 
     /**
-     * Updates parameters of an address group.
+     * Updates the parameters of a single address group.
      *
-     * The async variant is
-     * {@see OrganizationAddressGroupServiceClient::updateAddressGroupAsync()} .
+     * The async variant is {@see AddressGroupServiceClient::updateAddressGroupAsync()}
+     * .
      *
-     * @example samples/V1/OrganizationAddressGroupServiceClient/update_address_group.php
+     * @example samples/V1/AddressGroupServiceClient/update_address_group.php
      *
      * @param UpdateAddressGroupRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -630,10 +642,9 @@ final class OrganizationAddressGroupServiceClient
     /**
      * Gets information about a location.
      *
-     * The async variant is
-     * {@see OrganizationAddressGroupServiceClient::getLocationAsync()} .
+     * The async variant is {@see AddressGroupServiceClient::getLocationAsync()} .
      *
-     * @example samples/V1/OrganizationAddressGroupServiceClient/get_location.php
+     * @example samples/V1/AddressGroupServiceClient/get_location.php
      *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -657,10 +668,9 @@ final class OrganizationAddressGroupServiceClient
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is
-     * {@see OrganizationAddressGroupServiceClient::listLocationsAsync()} .
+     * The async variant is {@see AddressGroupServiceClient::listLocationsAsync()} .
      *
-     * @example samples/V1/OrganizationAddressGroupServiceClient/list_locations.php
+     * @example samples/V1/AddressGroupServiceClient/list_locations.php
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -685,10 +695,9 @@ final class OrganizationAddressGroupServiceClient
      * Gets the access control policy for a resource. Returns an empty policy
     if the resource exists and does not have a policy set.
      *
-     * The async variant is
-     * {@see OrganizationAddressGroupServiceClient::getIamPolicyAsync()} .
+     * The async variant is {@see AddressGroupServiceClient::getIamPolicyAsync()} .
      *
-     * @example samples/V1/OrganizationAddressGroupServiceClient/get_iam_policy.php
+     * @example samples/V1/AddressGroupServiceClient/get_iam_policy.php
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -716,10 +725,9 @@ final class OrganizationAddressGroupServiceClient
     Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
     errors.
      *
-     * The async variant is
-     * {@see OrganizationAddressGroupServiceClient::setIamPolicyAsync()} .
+     * The async variant is {@see AddressGroupServiceClient::setIamPolicyAsync()} .
      *
-     * @example samples/V1/OrganizationAddressGroupServiceClient/set_iam_policy.php
+     * @example samples/V1/AddressGroupServiceClient/set_iam_policy.php
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -749,10 +757,10 @@ final class OrganizationAddressGroupServiceClient
     permission-aware UIs and command-line tools, not for authorization
     checking. This operation may "fail open" without warning.
      *
-     * The async variant is
-     * {@see OrganizationAddressGroupServiceClient::testIamPermissionsAsync()} .
+     * The async variant is {@see AddressGroupServiceClient::testIamPermissionsAsync()}
+     * .
      *
-     * @example samples/V1/OrganizationAddressGroupServiceClient/test_iam_permissions.php
+     * @example samples/V1/AddressGroupServiceClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -768,8 +776,10 @@ final class OrganizationAddressGroupServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

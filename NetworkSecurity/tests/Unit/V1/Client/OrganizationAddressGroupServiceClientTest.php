@@ -74,7 +74,9 @@ class OrganizationAddressGroupServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return OrganizationAddressGroupServiceClient */
@@ -126,9 +128,7 @@ class OrganizationAddressGroupServiceClientTest extends GeneratedTest
         // Mock request
         $formattedAddressGroup = $gapicClient->addressGroupName('[PROJECT]', '[LOCATION]', '[ADDRESS_GROUP]');
         $items = [];
-        $request = (new AddAddressGroupItemsRequest())
-            ->setAddressGroup($formattedAddressGroup)
-            ->setItems($items);
+        $request = (new AddAddressGroupItemsRequest())->setAddressGroup($formattedAddressGroup)->setItems($items);
         $response = $gapicClient->addAddressGroupItems($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -138,7 +138,10 @@ class OrganizationAddressGroupServiceClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.networksecurity.v1.OrganizationAddressGroupService/AddAddressGroupItems', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.networksecurity.v1.OrganizationAddressGroupService/AddAddressGroupItems',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getAddressGroup();
         $this->assertProtobufEquals($formattedAddressGroup, $actualValue);
         $actualValue = $actualApiRequestObject->getItems();
@@ -186,19 +189,20 @@ class OrganizationAddressGroupServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedAddressGroup = $gapicClient->addressGroupName('[PROJECT]', '[LOCATION]', '[ADDRESS_GROUP]');
         $items = [];
-        $request = (new AddAddressGroupItemsRequest())
-            ->setAddressGroup($formattedAddressGroup)
-            ->setItems($items);
+        $request = (new AddAddressGroupItemsRequest())->setAddressGroup($formattedAddressGroup)->setItems($items);
         $response = $gapicClient->addAddressGroupItems($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -273,7 +277,10 @@ class OrganizationAddressGroupServiceClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.networksecurity.v1.OrganizationAddressGroupService/CloneAddressGroupItems', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.networksecurity.v1.OrganizationAddressGroupService/CloneAddressGroupItems',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getAddressGroup();
         $this->assertProtobufEquals($formattedAddressGroup, $actualValue);
         $actualValue = $actualApiRequestObject->getSourceAddressGroup();
@@ -321,12 +328,15 @@ class OrganizationAddressGroupServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedAddressGroup = $gapicClient->addressGroupName('[PROJECT]', '[LOCATION]', '[ADDRESS_GROUP]');
@@ -416,7 +426,10 @@ class OrganizationAddressGroupServiceClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.networksecurity.v1.OrganizationAddressGroupService/CreateAddressGroup', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.networksecurity.v1.OrganizationAddressGroupService/CreateAddressGroup',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualApiRequestObject->getAddressGroupId();
@@ -466,12 +479,15 @@ class OrganizationAddressGroupServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
@@ -540,8 +556,7 @@ class OrganizationAddressGroupServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->addressGroupName('[PROJECT]', '[LOCATION]', '[ADDRESS_GROUP]');
-        $request = (new DeleteAddressGroupRequest())
-            ->setName($formattedName);
+        $request = (new DeleteAddressGroupRequest())->setName($formattedName);
         $response = $gapicClient->deleteAddressGroup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -551,7 +566,10 @@ class OrganizationAddressGroupServiceClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.networksecurity.v1.OrganizationAddressGroupService/DeleteAddressGroup', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.networksecurity.v1.OrganizationAddressGroupService/DeleteAddressGroup',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -597,17 +615,19 @@ class OrganizationAddressGroupServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->addressGroupName('[PROJECT]', '[LOCATION]', '[ADDRESS_GROUP]');
-        $request = (new DeleteAddressGroupRequest())
-            ->setName($formattedName);
+        $request = (new DeleteAddressGroupRequest())->setName($formattedName);
         $response = $gapicClient->deleteAddressGroup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -651,15 +671,17 @@ class OrganizationAddressGroupServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->addressGroupName('[PROJECT]', '[LOCATION]', '[ADDRESS_GROUP]');
-        $request = (new GetAddressGroupRequest())
-            ->setName($formattedName);
+        $request = (new GetAddressGroupRequest())->setName($formattedName);
         $response = $gapicClient->getAddressGroup($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.networksecurity.v1.OrganizationAddressGroupService/GetAddressGroup', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.networksecurity.v1.OrganizationAddressGroupService/GetAddressGroup',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -676,17 +698,19 @@ class OrganizationAddressGroupServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->addressGroupName('[PROJECT]', '[LOCATION]', '[ADDRESS_GROUP]');
-        $request = (new GetAddressGroupRequest())
-            ->setName($formattedName);
+        $request = (new GetAddressGroupRequest())->setName($formattedName);
         try {
             $gapicClient->getAddressGroup($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -711,17 +735,14 @@ class OrganizationAddressGroupServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $addressGroupReferencesElement = new AddressGroupReference();
-        $addressGroupReferences = [
-            $addressGroupReferencesElement,
-        ];
+        $addressGroupReferences = [$addressGroupReferencesElement];
         $expectedResponse = new ListAddressGroupReferencesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setAddressGroupReferences($addressGroupReferences);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedAddressGroup = $gapicClient->addressGroupName('[PROJECT]', '[LOCATION]', '[ADDRESS_GROUP]');
-        $request = (new ListAddressGroupReferencesRequest())
-            ->setAddressGroup($formattedAddressGroup);
+        $request = (new ListAddressGroupReferencesRequest())->setAddressGroup($formattedAddressGroup);
         $response = $gapicClient->listAddressGroupReferences($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -731,7 +752,10 @@ class OrganizationAddressGroupServiceClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.networksecurity.v1.OrganizationAddressGroupService/ListAddressGroupReferences', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.networksecurity.v1.OrganizationAddressGroupService/ListAddressGroupReferences',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getAddressGroup();
         $this->assertProtobufEquals($formattedAddressGroup, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -748,17 +772,19 @@ class OrganizationAddressGroupServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedAddressGroup = $gapicClient->addressGroupName('[PROJECT]', '[LOCATION]', '[ADDRESS_GROUP]');
-        $request = (new ListAddressGroupReferencesRequest())
-            ->setAddressGroup($formattedAddressGroup);
+        $request = (new ListAddressGroupReferencesRequest())->setAddressGroup($formattedAddressGroup);
         try {
             $gapicClient->listAddressGroupReferences($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -783,17 +809,14 @@ class OrganizationAddressGroupServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $addressGroupsElement = new AddressGroup();
-        $addressGroups = [
-            $addressGroupsElement,
-        ];
+        $addressGroups = [$addressGroupsElement];
         $expectedResponse = new ListAddressGroupsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setAddressGroups($addressGroups);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListAddressGroupsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListAddressGroupsRequest())->setParent($formattedParent);
         $response = $gapicClient->listAddressGroups($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -803,7 +826,10 @@ class OrganizationAddressGroupServiceClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.networksecurity.v1.OrganizationAddressGroupService/ListAddressGroups', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.networksecurity.v1.OrganizationAddressGroupService/ListAddressGroups',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -820,17 +846,19 @@ class OrganizationAddressGroupServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListAddressGroupsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListAddressGroupsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listAddressGroups($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -884,9 +912,7 @@ class OrganizationAddressGroupServiceClientTest extends GeneratedTest
         // Mock request
         $formattedAddressGroup = $gapicClient->addressGroupName('[PROJECT]', '[LOCATION]', '[ADDRESS_GROUP]');
         $items = [];
-        $request = (new RemoveAddressGroupItemsRequest())
-            ->setAddressGroup($formattedAddressGroup)
-            ->setItems($items);
+        $request = (new RemoveAddressGroupItemsRequest())->setAddressGroup($formattedAddressGroup)->setItems($items);
         $response = $gapicClient->removeAddressGroupItems($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -896,7 +922,10 @@ class OrganizationAddressGroupServiceClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.networksecurity.v1.OrganizationAddressGroupService/RemoveAddressGroupItems', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.networksecurity.v1.OrganizationAddressGroupService/RemoveAddressGroupItems',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getAddressGroup();
         $this->assertProtobufEquals($formattedAddressGroup, $actualValue);
         $actualValue = $actualApiRequestObject->getItems();
@@ -944,19 +973,20 @@ class OrganizationAddressGroupServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedAddressGroup = $gapicClient->addressGroupName('[PROJECT]', '[LOCATION]', '[ADDRESS_GROUP]');
         $items = [];
-        $request = (new RemoveAddressGroupItemsRequest())
-            ->setAddressGroup($formattedAddressGroup)
-            ->setItems($items);
+        $request = (new RemoveAddressGroupItemsRequest())->setAddressGroup($formattedAddressGroup)->setItems($items);
         $response = $gapicClient->removeAddressGroupItems($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1024,8 +1054,7 @@ class OrganizationAddressGroupServiceClientTest extends GeneratedTest
         $addressGroup->setType($addressGroupType);
         $addressGroupCapacity = 1210917061;
         $addressGroup->setCapacity($addressGroupCapacity);
-        $request = (new UpdateAddressGroupRequest())
-            ->setAddressGroup($addressGroup);
+        $request = (new UpdateAddressGroupRequest())->setAddressGroup($addressGroup);
         $response = $gapicClient->updateAddressGroup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1035,7 +1064,10 @@ class OrganizationAddressGroupServiceClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.networksecurity.v1.OrganizationAddressGroupService/UpdateAddressGroup', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.networksecurity.v1.OrganizationAddressGroupService/UpdateAddressGroup',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getAddressGroup();
         $this->assertProtobufEquals($addressGroup, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1081,12 +1113,15 @@ class OrganizationAddressGroupServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $addressGroup = new AddressGroup();
@@ -1096,8 +1131,7 @@ class OrganizationAddressGroupServiceClientTest extends GeneratedTest
         $addressGroup->setType($addressGroupType);
         $addressGroupCapacity = 1210917061;
         $addressGroup->setCapacity($addressGroupCapacity);
-        $request = (new UpdateAddressGroupRequest())
-            ->setAddressGroup($addressGroup);
+        $request = (new UpdateAddressGroupRequest())->setAddressGroup($addressGroup);
         $response = $gapicClient->updateAddressGroup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1159,12 +1193,15 @@ class OrganizationAddressGroupServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new GetLocationRequest();
         try {
@@ -1191,9 +1228,7 @@ class OrganizationAddressGroupServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $locationsElement = new Location();
-        $locations = [
-            $locationsElement,
-        ];
+        $locations = [$locationsElement];
         $expectedResponse = new ListLocationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLocations($locations);
@@ -1223,12 +1258,15 @@ class OrganizationAddressGroupServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new ListLocationsRequest();
         try {
@@ -1261,8 +1299,7 @@ class OrganizationAddressGroupServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1286,17 +1323,19 @@ class OrganizationAddressGroupServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1328,9 +1367,7 @@ class OrganizationAddressGroupServiceClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1356,19 +1393,20 @@ class OrganizationAddressGroupServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1396,9 +1434,7 @@ class OrganizationAddressGroupServiceClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1424,19 +1460,20 @@ class OrganizationAddressGroupServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1490,9 +1527,7 @@ class OrganizationAddressGroupServiceClientTest extends GeneratedTest
         // Mock request
         $formattedAddressGroup = $gapicClient->addressGroupName('[PROJECT]', '[LOCATION]', '[ADDRESS_GROUP]');
         $items = [];
-        $request = (new AddAddressGroupItemsRequest())
-            ->setAddressGroup($formattedAddressGroup)
-            ->setItems($items);
+        $request = (new AddAddressGroupItemsRequest())->setAddressGroup($formattedAddressGroup)->setItems($items);
         $response = $gapicClient->addAddressGroupItemsAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1502,7 +1537,10 @@ class OrganizationAddressGroupServiceClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.networksecurity.v1.OrganizationAddressGroupService/AddAddressGroupItems', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.networksecurity.v1.OrganizationAddressGroupService/AddAddressGroupItems',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getAddressGroup();
         $this->assertProtobufEquals($formattedAddressGroup, $actualValue);
         $actualValue = $actualApiRequestObject->getItems();
