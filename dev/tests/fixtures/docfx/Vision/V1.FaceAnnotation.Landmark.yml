@@ -57,6 +57,7 @@ items:
       returns:
         -
           var_type: int
+          description: 'Enum of type <xref uid="\\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type">Type</xref>.'
   -
     uid: '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark::setType()'
     name: setType
@@ -71,7 +72,7 @@ items:
         -
           id: var
           var_type: int
-          description: ''
+          description: 'Enum of type <xref uid="\\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type">Type</xref>. '
       returns:
         -
           var_type: $this

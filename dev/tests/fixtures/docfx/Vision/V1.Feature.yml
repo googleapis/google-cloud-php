@@ -63,6 +63,7 @@ items:
       returns:
         -
           var_type: int
+          description: 'Enum of type <xref uid="\\Google\Cloud\Vision\V1\Feature\Type">Type</xref>.'
   -
     uid: '\Google\Cloud\Vision\V1\Feature::setType()'
     name: setType
@@ -77,7 +78,7 @@ items:
         -
           id: var
           var_type: int
-          description: ''
+          description: 'Enum of type <xref uid="\\Google\Cloud\Vision\V1\Feature\Type">Type</xref>. '
       returns:
         -
           var_type: $this

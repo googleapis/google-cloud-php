@@ -90,6 +90,7 @@ items:
       returns:
         -
           var_type: int
+          description: 'Enum of type <xref uid="\\Google\Cloud\Vision\V1\Likelihood">Likelihood</xref>.'
   -
     uid: '\Google\Cloud\Vision\V1\SafeSearchAnnotation::setAdult()'
     name: setAdult
@@ -107,7 +108,7 @@ items:
         -
           id: var
           var_type: int
-          description: ''
+          description: 'Enum of type <xref uid="\\Google\Cloud\Vision\V1\Likelihood">Likelihood</xref>. '
       returns:
         -
           var_type: $this
@@ -127,6 +128,7 @@ items:
       returns:
         -
           var_type: int
+          description: 'Enum of type <xref uid="\\Google\Cloud\Vision\V1\Likelihood">Likelihood</xref>.'
   -
     uid: '\Google\Cloud\Vision\V1\SafeSearchAnnotation::setSpoof()'
     name: setSpoof
@@ -144,7 +146,7 @@ items:
         -
           id: var
           var_type: int
-          description: ''
+          description: 'Enum of type <xref uid="\\Google\Cloud\Vision\V1\Likelihood">Likelihood</xref>. '
       returns:
         -
           var_type: $this
@@ -161,6 +163,7 @@ items:
       returns:
         -
           var_type: int
+          description: 'Enum of type <xref uid="\\Google\Cloud\Vision\V1\Likelihood">Likelihood</xref>.'
   -
     uid: '\Google\Cloud\Vision\V1\SafeSearchAnnotation::setMedical()'
     name: setMedical
@@ -175,7 +178,7 @@ items:
         -
           id: var
           var_type: int
-          description: ''
+          description: 'Enum of type <xref uid="\\Google\Cloud\Vision\V1\Likelihood">Likelihood</xref>. '
       returns:
         -
           var_type: $this
@@ -195,6 +198,7 @@ items:
       returns:
         -
           var_type: int
+          description: 'Enum of type <xref uid="\\Google\Cloud\Vision\V1\Likelihood">Likelihood</xref>.'
   -
     uid: '\Google\Cloud\Vision\V1\SafeSearchAnnotation::setViolence()'
     name: setViolence
@@ -212,7 +216,7 @@ items:
         -
           id: var
           var_type: int
-          description: ''
+          description: 'Enum of type <xref uid="\\Google\Cloud\Vision\V1\Likelihood">Likelihood</xref>. '
       returns:
         -
           var_type: $this
@@ -233,6 +237,7 @@ items:
       returns:
         -
           var_type: int
+          description: 'Enum of type <xref uid="\\Google\Cloud\Vision\V1\Likelihood">Likelihood</xref>.'
   -
     uid: '\Google\Cloud\Vision\V1\SafeSearchAnnotation::setRacy()'
     name: setRacy
@@ -251,7 +256,7 @@ items:
         -
           id: var
           var_type: int
-          description: ''
+          description: 'Enum of type <xref uid="\\Google\Cloud\Vision\V1\Likelihood">Likelihood</xref>. '
       returns:
         -
           var_type: $this

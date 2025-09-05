@@ -68,6 +68,7 @@ items:
       returns:
         -
           var_type: int
+          description: 'Enum of type <xref uid="\\Google\Cloud\Vision\V1\BatchOperationMetadata\State">State</xref>.'
   -
     uid: '\Google\Cloud\Vision\V1\BatchOperationMetadata::setState()'
     name: setState
@@ -82,7 +83,7 @@ items:
         -
           id: var
           var_type: int
-          description: ''
+          description: 'Enum of type <xref uid="\\Google\Cloud\Vision\V1\BatchOperationMetadata\State">State</xref>. '
       returns:
         -
           var_type: $this
