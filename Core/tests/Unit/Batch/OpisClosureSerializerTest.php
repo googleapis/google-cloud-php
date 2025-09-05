@@ -18,6 +18,7 @@
 namespace Google\Cloud\Core\Tests\Unit\Batch;
 
 use Google\Cloud\Core\Batch\OpisClosureSerializer;
+use Google\Cloud\Core\Batch\OpisClosureSerializerV4;
 use Opis\Closure\SerializableClosure;
 use PHPUnit\Framework\TestCase;
 
@@ -27,25 +28,40 @@ use PHPUnit\Framework\TestCase;
  */
 class OpisClosureSerializerTest extends TestCase
 {
-    private $serialzer;
-
-    public function setUp(): void
-    {
-        $this->serializer = new OpisClosureSerializer();
-    }
-
     public function testWrapAndUnwrapClosures()
     {
+        if (!method_exists(SerializableClosure::class, 'enterContext')) {
+            $this->markTestSkipped('Requires ops/serializer:v3');
+        }
+
         $data['closure'] = function () {
             return true;
         };
 
-        $this->serializer
-            ->wrapClosures($data);
+        $serializer = new OpisClosureSerializer();
 
+        $serializer->wrapClosures($data);
         $this->assertInstanceOf(SerializableClosure::class, $data['closure']);
-        $this->serializer
-            ->unwrapClosures($data);
+
+        $serializer->unwrapClosures($data);
+        $this->assertTrue($data['closure']());
+    }
+
+    public function testWrapAndUnwrapClosuresV4()
+    {
+        if (!function_exists('Opis\Closure\serialize')) {
+            $this->markTestSkipped('Requires ops/serializer:v3');
+        }
+
+        $data['closure'] = function () {
+            return true;
+        };
+
+        $serializer = new OpisClosureSerializerV4();
+        $serializer->wrapClosures($data);
+        $this->assertIsString($data);
+
+        $serializer->unwrapClosures($data);
         $this->assertTrue($data['closure']());
     }
 }
