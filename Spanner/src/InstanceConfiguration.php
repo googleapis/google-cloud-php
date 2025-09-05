@@ -19,6 +19,7 @@ namespace Google\Cloud\Spanner;
 
 use Closure;
 use Google\ApiCore\ApiException;
+use Google\ApiCore\Options\CallOptions;
 use Google\ApiCore\ValidationException;
 use Google\Cloud\Core\LongRunning\LongRunningClientConnection;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
@@ -163,12 +164,14 @@ class InstanceConfiguration
      */
     public function reload(array $options = [])
     {
-        [$data, $callOptions] = $this->splitOptionalArgs($options);
-        $data += ['name' => $this->name];
+        $options += ['name' => $this->name];
+        [$getInstanceConfig, $callOptions] = $this->validateOptions(
+            $options,
+            new GetInstanceConfigRequest(),
+            CallOptions::class
+        );
 
-        $request = $this->serializer->decodeMessage(new GetInstanceConfigRequest(), $data);
-
-        $response = $this->instanceAdminClient->getInstanceConfig($request, $callOptions + [
+        $response = $this->instanceAdminClient->getInstanceConfig($getInstanceConfig, $callOptions + [
             'resource-prefix' => InstanceAdminClient::projectName($this->projectId),
         ]);
 
@@ -307,12 +310,14 @@ class InstanceConfiguration
      */
     public function delete(array $options = [])
     {
-        [$data, $callOptions] = $this->splitOptionalArgs($options);
-        $data += ['name' => $this->name];
+        $options += ['name' => $this->name];
+        [$deleteInstanceConfigs, $callOptions] = $this->validateOptions(
+            $options,
+            new DeleteInstanceConfigRequest(),
+            CallOptions::class
+        );
 
-        $request = $this->serializer->decodeMessage(new DeleteInstanceConfigRequest(), $data);
-
-        $this->instanceAdminClient->deleteInstanceConfig($request, $callOptions + [
+        $this->instanceAdminClient->deleteInstanceConfig($deleteInstanceConfigs, $callOptions + [
             'resource-prefix' => $this->name
         ]);
     }

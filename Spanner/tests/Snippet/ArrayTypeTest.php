@@ -55,7 +55,6 @@ class ArrayTypeTest extends SnippetTestCase
     const SESSION = 'my-session';
 
     private $database;
-    private $type;
     private $spannerClient;
     private $serializer;
 

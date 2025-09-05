@@ -18,6 +18,7 @@
 namespace Google\Cloud\Spanner;
 
 use Closure;
+use Google\ApiCore\Options\CallOptions;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Iam\IamManager;
 use Google\Cloud\Core\Iterator\ItemIterator;
@@ -176,16 +177,19 @@ class Instance
      */
     public function exists(array $options = []): bool
     {
-        [$data, $callOptions] = $this->splitOptionalArgs($options);
         try {
             if ($this->info) {
-                $data += [
+                $options += [
                     'name' => $this->name,
                     'fieldMask' => ['paths' => ['name']],
                 ];
-                $request = $this->serializer->decodeMessage(new GetInstanceRequest(), $data);
+                [$getInstanceRequest, $callOptions] = $this->validateOptions(
+                    $options,
+                    new GetInstanceRequest(),
+                    CallOptions::class
+                );
 
-                $this->instanceAdminClient->getInstance($request, $callOptions + [
+                $this->instanceAdminClient->getInstance($getInstanceRequest, $callOptions + [
                     'resource-prefix' => $this->projectName
                 ]);
             } else {
@@ -395,12 +399,14 @@ class Instance
      */
     public function delete(array $options = []): void
     {
-        [$data, $callOptions] = $this->splitOptionalArgs($options);
-        $data['name'] = $this->name;
+        [$deleteInstancesRequest, $callOptions] = $this->validateOptions(
+            $options,
+            new DeleteInstanceRequest(),
+            CallOptions::class
+        );
+        $deleteInstancesRequest->setName($this->name);
 
-        $request = $this->serializer->decodeMessage(new DeleteInstanceRequest(), $data);
-
-        $this->instanceAdminClient->deleteInstance($request, $callOptions + [
+        $this->instanceAdminClient->deleteInstance($deleteInstancesRequest, $callOptions + [
             'resource-prefix' => $this->name
         ]);
     }
@@ -547,14 +553,16 @@ class Instance
      */
     public function databases(array $options = []): ItemIterator
     {
-        [$data, $callOptions] = $this->splitOptionalArgs($options);
-        $data['parent'] = $this->name;
-
-        $request = $this->serializer->decodeMessage(new ListDatabasesRequest(), $data);
+        [$listDatabasesRequest, $callOptions] = $this->validateOptions(
+            $options,
+            new ListDatabasesRequest(),
+            CallOptions::class
+        );
+        $listDatabasesRequest->setParent($this->name);
 
         return $this->buildListItemsIterator(
             [$this->databaseAdminClient, 'listDatabases'],
-            $request,
+            $listDatabasesRequest,
             $callOptions + ['resource-prefix' => $this->name],
             function (array $database) {
                 return $this->database($database['name'], ['database' => $database]);
@@ -621,14 +629,16 @@ class Instance
      */
     public function backups(array $options = []): ItemIterator
     {
-        [$data, $callOptions] = $this->splitOptionalArgs($options);
-        $data['parent'] = $this->name;
-
-        $request = $this->serializer->decodeMessage(new ListBackupsRequest(), $data);
+        [$listBackupsRequest, $callOptions] = $this->validateOptions(
+            $options,
+            new ListBackupsRequest(),
+            CallOptions::class
+        );
+        $listBackupsRequest->setParent($this->name);
 
         return $this->buildListItemsIterator(
             [$this->databaseAdminClient, 'listBackups'],
-            $request,
+            $listBackupsRequest,
             $callOptions + ['resource-prefix' => $this->name],
             function (array $backup) {
                 return $this->backup($backup['name'], $backup);
@@ -856,13 +866,16 @@ class Instance
      */
     public function longRunningOperations(array $options = []): ItemIterator
     {
-        [$data, $callOptions] = $this->splitOptionalArgs($options);
-        $request = $this->serializer->decodeMessage(new ListOperationsRequest(), $data);
-        $request->setName($this->name . '/operations');
+        [$listOperationsRequest, $callOptions] = $this->validateOptions(
+            $options,
+            new ListOperationsRequest(),
+            CallOptions::class
+        );
+        $listOperationsRequest->setName($this->name . '/operations');
 
         return $this->buildLongRunningIterator(
             [$this->instanceAdminClient->getOperationsClient(), 'listOperations'],
-            $request,
+            $listOperationsRequest,
             $callOptions,
             function (OperationProto $operation) {
                 return $this->resumeOperation(

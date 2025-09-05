@@ -22,9 +22,9 @@ use DateTimeInterface;
 use Google\Auth\Cache\SysVCacheItemPool;
 use Google\Auth\Cache\FilesystemCacheItemPool;
 use Google\ApiCore\ApiException;
+use Google\ApiCore\Options\CallOptions;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\ValidationException;
-use Google\ApiCore\Options\CallOptions;
 use Google\Cloud\Core\Exception\AbortedException;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Exception\ServiceException;
@@ -357,12 +357,14 @@ class Database
      */
     public function reload(array $options = []): array
     {
-        [$data, $callOptions] = $this->splitOptionalArgs($options);
-        $data['name'] = $this->name;
+        [$getDatabase, $callOptions] = $this->validateOptions(
+            $options,
+            new GetDatabaseRequest(),
+            CallOptions::class
+        );
+        $getDatabase->setName($this->name);
 
-        $request = $this->serializer->decodeMessage(new GetDatabaseRequest(), $data);
-
-        $response = $this->databaseAdminClient->getDatabase($request, $callOptions + [
+        $response = $this->databaseAdminClient->getDatabase($getDatabase, $callOptions + [
             'resource-prefix' => $this->name,
         ]);
         return $this->info = $this->handleResponse($response);
@@ -421,17 +423,20 @@ class Database
      */
     public function create(array $options = []): LongRunningOperation
     {
-        [$data, $callOptions] = $this->splitOptionalArgs($options);
-        $dialect = $data['databaseDialect'] ?? DatabaseDialect::DATABASE_DIALECT_UNSPECIFIED;
-
-        $data += [
+        $dialect = $options['databaseDialect'] ?? DatabaseDialect::DATABASE_DIALECT_UNSPECIFIED;
+        $options += [
             'parent' => $this->instance->name(),
             'createStatement' => $this->getCreateDbStatement($dialect),
-            'extraStatements' => $this->pluck('statements', $data, false) ?: []
+            'extraStatements' => $this->pluck('statements', $options, false) ?: []
         ];
 
-        $request = $this->serializer->decodeMessage(new CreateDatabaseRequest(), $data);
-        $operation = $this->databaseAdminClient->createDatabase($request, $callOptions + [
+        [$createDatabase, $callOptions] = $this->validateOptions(
+            $options,
+            new CreateDatabaseRequest(),
+            CallOptions::class,
+        );
+
+        $operation = $this->databaseAdminClient->createDatabase($createDatabase, $callOptions + [
             'resource-prefix' => $this->instance->name(),
         ]);
         return $this->operationFromOperationResponse($operation);
@@ -480,24 +485,26 @@ class Database
      */
     public function updateDatabase(array $options = []): LongRunningOperation
     {
-        [$data, $callOptions] = $this->splitOptionalArgs($options);
         $fieldMask = [];
-
-        if (isset($data['enableDropProtection'])) {
+        if (isset($options['enableDropProtection'])) {
             $fieldMask[] = 'enable_drop_protection';
         }
-        $data += [
+        $options += [
             'updateMask' => ['paths' => $fieldMask],
             'database' => [
                 'name' => $this->name,
                 'enableDropProtection' =>
-                    $this->pluck('enableDropProtection', $data, false) ?: false
+                    $this->pluck('enableDropProtection', $options, false) ?: false
             ]
         ];
 
-        $request = $this->serializer->decodeMessage(new UpdateDatabaseRequest(), $data);
+        [$updateDatabase, $callOptions] = $this->validateOptions(
+            $options,
+            new UpdateDatabaseRequest(),
+            CallOptions::class
+        );
 
-        $operation = $this->databaseAdminClient->updateDatabase($request, $callOptions + [
+        $operation = $this->databaseAdminClient->updateDatabase($updateDatabase, $callOptions + [
             'resource-prefix' => $this->name,
         ]);
         return $this->operationFromOperationResponse($operation);
@@ -565,14 +572,17 @@ class Database
      */
     public function updateDdlBatch(array $statements, array $options = []): LongRunningOperation
     {
-        [$data, $callOptions] = $this->splitOptionalArgs($options);
-        $data += [
+        $options += [
             'database' => $this->name,
             'statements' => $statements
         ];
+        [$updateDatabaseDdl, $callOptions] = $this->validateOptions(
+            $options,
+            new UpdateDatabaseDdlRequest(),
+            CallOptions::class,
+        );
 
-        $request = $this->serializer->decodeMessage(new UpdateDatabaseDdlRequest(), $data);
-        $operation = $this->databaseAdminClient->updateDatabaseDdl($request, $callOptions + [
+        $operation = $this->databaseAdminClient->updateDatabaseDdl($updateDatabaseDdl, $callOptions + [
             'resource-prefix' => $this->name
         ]);
 
@@ -603,12 +613,14 @@ class Database
      */
     public function drop(array $options = []): void
     {
-        [$data, $callOptions] = $this->splitOptionalArgs($options);
-        $data['database'] = $this->name;
+        [$dropDatabase, $callOptions] = $this->validateOptions(
+            $options,
+            new DropDatabaseRequest(),
+            CallOptions::class,
+        );
+        $dropDatabase->setDatabase($this->name);
 
-        $request = $this->serializer->decodeMessage(new DropDatabaseRequest(), $data);
-
-        $this->databaseAdminClient->dropDatabase($request, $callOptions + [
+        $this->databaseAdminClient->dropDatabase($dropDatabase, $callOptions + [
             'resource-prefix' => $this->name
         ]);
     }
@@ -632,12 +644,14 @@ class Database
      */
     public function ddl(array $options = []): array
     {
-        [$data, $callOptions] = $this->splitOptionalArgs($options);
-        $data['database'] = $this->name;
+        [$getDatabaseDdl, $callOptions] = $this->validateOptions(
+            $options,
+            new GetDatabaseDdlRequest(),
+            CallOptions::class,
+        );
+        $getDatabaseDdl->setDatabase($this->name);
 
-        $request = $this->serializer->decodeMessage(new GetDatabaseDdlRequest(), $data);
-
-        $response = $this->databaseAdminClient->getDatabaseDdl($request, $callOptions + [
+        $response = $this->databaseAdminClient->getDatabaseDdl($getDatabaseDdl, $callOptions + [
             'resource-prefix' => $this->name
         ]);
         $ddl = $this->handleResponse($response);
@@ -1753,15 +1767,17 @@ class Database
         );
 
         try {
-            [$data, $callOptions] = $this->splitOptionalArgs($options);
-            $data += [
+            $options += [
                 'session' => $this->session->name(),
                 'mutationGroups' => $mutationGroups
             ];
+            [$batchWrite, $callOptions] = $this->validateOptions(
+                $options,
+                new BatchWriteRequest(),
+                CallOptions::class
+            );
 
-            $request = $this->serializer->decodeMessage(new BatchWriteRequest(), $data);
-
-            $response = $this->spannerClient->batchWrite($request, $callOptions + [
+            $response = $this->spannerClient->batchWrite($batchWrite, $callOptions + [
                 'resource-prefix' => $this->name,
                 'route-to-leader' => $this->routeToLeader,
             ]);
@@ -2068,15 +2084,16 @@ class Database
     {
         [$session, $callOptions] = $this->validateOptions(
             $options,
-            Session::class,
+            new Session(),
             CallOptions::class
         );
+
+        $session->setMultiplexed(true)
+            ->setCreatorRole($this->databaseRole);
+
         $createSession = [
             'database' => $this->name,
-            'session' => $session + [
-                'multiplexed' => true,
-                'creatorRole' => $this->databaseRole,
-            ]
+            'session' => $session,
         ];
 
         $request = $this->serializer->decodeMessage(new CreateSessionRequest(), $createSession);
@@ -2149,13 +2166,16 @@ class Database
      */
     public function backupOperations(array $options = []): ItemIterator
     {
-        [$data, $callOptions] = $this->splitOptionalArgs($options);
-        $request = $this->serializer->decodeMessage(new ListBackupOperationsRequest(), $data);
-        $request->setParent($this->instance->name());
+        [$listBackupOperations, $callOptions] = $this->validateOptions(
+            $options,
+            new ListBackupOperationsRequest(),
+            CallOptions::class
+        );
+        $listBackupOperations->setParent($this->instance->name());
 
         return $this->buildLongRunningIterator(
             [$this->databaseAdminClient, 'listBackupOperations'],
-            $request,
+            $listBackupOperations,
             $callOptions +  ['resource-prefix' => $this->name],
             $this->getResultMapper()
         );
@@ -2174,15 +2194,18 @@ class Database
      */
     public function createDatabaseFromBackup($name, $backup, array $options = []): LongRunningOperation
     {
-        [$data, $callOptions] = $this->splitOptionalArgs($options);
-        $data += [
+        $options += [
             'parent' => $this->instance->name(),
             'databaseId' => $this->databaseIdOnly($name),
             'backup' => $backup instanceof Backup ? $backup->name() : $backup
         ];
+        [$restoreDatabase, $callOptions] = $this->validateOptions(
+            $options,
+            new RestoreDatabaseRequest(),
+            CallOptions::class
+        );
 
-        $request = $this->serializer->decodeMessage(new RestoreDatabaseRequest(), $data);
-        $operation = $this->databaseAdminClient->restoreDatabase($request, $callOptions + [
+        $operation = $this->databaseAdminClient->restoreDatabase($restoreDatabase, $callOptions + [
             'resource-prefix' => $this->name
         ]);
 
@@ -2212,13 +2235,16 @@ class Database
      */
     public function databaseOperations(array $options = []): ItemIterator
     {
-        [$data, $callOptions] = $this->splitOptionalArgs($options);
-        $request = $this->serializer->decodeMessage(new ListDatabaseOperationsRequest(), $data);
-        $request->setParent($this->instance->name());
+        [$listDatabaseOperations, $callOptions] = $this->validateOptions(
+            $options,
+            new ListDatabaseOperationsRequest(),
+            CallOptions::class
+        );
+        $listDatabaseOperations->setParent($this->instance->name());
 
         return $this->buildLongRunningIterator(
             [$this->databaseAdminClient, 'listDatabaseOperations'],
-            $request,
+            $listDatabaseOperations,
             $callOptions + ['resource-prefix' => $this->name],
             $this->getResultMapper()
         );
@@ -2278,13 +2304,16 @@ class Database
      */
     public function longRunningOperations(array $options = []): ItemIterator
     {
-        [$data, $callOptions] = $this->splitOptionalArgs($options);
-        $request = $this->serializer->decodeMessage(new ListOperationsRequest(), $data);
-        $request->setName($this->name . '/operations');
+        [$listOperationsRequest, $callOptions] = $this->validateOptions(
+            $options,
+            new ListOperationsRequest(),
+            CallOptions::class
+        );
+        $listOperationsRequest->setName($this->name . '/operations');
 
         return $this->buildLongRunningIterator(
             [$this->databaseAdminClient->getOperationsClient(), 'listOperations'],
-            $request,
+            $listOperationsRequest,
             $callOptions,
             $this->getResultMapper()
         );

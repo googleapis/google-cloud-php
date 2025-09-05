@@ -19,6 +19,7 @@ namespace Google\Cloud\Spanner;
 
 use Closure;
 use DateTimeInterface;
+use Google\ApiCore\Options\CallOptions;
 use Google\ApiCore\ValidationException;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Iterator\ItemIterator;
@@ -105,9 +106,7 @@ class Backup
         DateTimeInterface $expireTime,
         array $options = []
     ): LongRunningOperation {
-        [$data, $callOptions] = $this->splitOptionalArgs($options);
-
-        $data += [
+        $options += [
             'parent' => $this->instance->name(),
             'backupId' => DatabaseAdminClient::parseName($this->name)['backup'],
             'backup' => [
@@ -116,17 +115,22 @@ class Backup
             ],
         ];
 
-        if ($versionTime = $this->pluck('versionTime', $data, false)) {
+        if ($versionTime = $this->pluck('versionTime', $options, false)) {
             if (!$versionTime instanceof DateTimeInterface) {
                 throw new \InvalidArgumentException(
                     'Optional argument `versionTime` must be a DateTimeInterface'
                 );
             }
-            $data['backup']['versionTime'] = $this->formatTimeAsArray($versionTime);
+            $options['backup']['versionTime'] = $this->formatTimeAsArray($versionTime);
         }
 
-        $request = $this->serializer->decodeMessage(new CreateBackupRequest(), $data);
-        $operation = $this->databaseAdminClient->createBackup($request, $callOptions + [
+        [$createBackup, $callOptions] = $this->validateOptions(
+            $options,
+            new CreateBackupRequest(),
+            CallOptions::class
+        );
+
+        $operation = $this->databaseAdminClient->createBackup($createBackup, $callOptions + [
             'resource-prefix' => $this->instance->name(),
         ]);
         return $this->operationFromOperationResponse($operation);
@@ -161,17 +165,19 @@ class Backup
         DateTimeInterface $expireTime,
         array $options = []
     ): LongRunningOperation {
-        [$data, $callOptions] = $this->splitOptionalArgs($options);
-        $data += [
+        $options += [
             'parent' => $newBackup->instance->name(),
             'backupId' => DatabaseAdminClient::parseName($newBackup->name)['backup'],
             'sourceBackup' => $this->fullyQualifiedBackupName($this->name),
             'expireTime' => $this->formatTimeAsArray($expireTime)
         ];
+        [$copyBackup, $callOptions] = $this->validateOptions(
+            $options,
+            new CopyBackupRequest(),
+            CallOptions::class
+        );
 
-        $request = $this->serializer->decodeMessage(new CopyBackupRequest(), $data);
-
-        $operation = $this->databaseAdminClient->copyBackup($request, $callOptions + [
+        $operation = $this->databaseAdminClient->copyBackup($copyBackup, $callOptions + [
             'resource-prefix' => $this->instance->name(),
         ]);
         return $this->operationFromOperationResponse($operation);
@@ -190,14 +196,16 @@ class Backup
      */
     public function delete(array $options = []): void
     {
-        [$data, $callOptions] = $this->splitOptionalArgs($options);
-        $data += [
+        $options += [
             'name' => $this->name
         ];
+        [$deleteBackup, $callOptions] = $this->validateOptions(
+            $options,
+            new DeleteBackupRequest(),
+            CallOptions::class,
+        );
 
-        $request = $this->serializer->decodeMessage(new DeleteBackupRequest(), $data);
-
-        $this->databaseAdminClient->deleteBackup($request, $callOptions + [
+        $this->databaseAdminClient->deleteBackup($deleteBackup, $callOptions + [
             'resource-prefix' => $this->name,
         ]);
     }
@@ -275,16 +283,20 @@ class Backup
      */
     public function reload(array $options = []): array
     {
-        [$data, $callOptions] = $this->splitOptionalArgs($options);
-        $data += [
+        $options += [
             'name' => $this->name
         ];
 
-        $request = $this->serializer->decodeMessage(new GetBackupRequest(), $data);
+        [$getBackup, $callOptions] = $this->validateOptions(
+            $options,
+            new GetBackupRequest(),
+            CallOptions::class,
+        );
 
-        $response = $this->databaseAdminClient->getBackup($request, $callOptions + [
+        $response = $this->databaseAdminClient->getBackup($getBackup, $callOptions + [
             'resource-prefix' => $this->name,
         ]);
+
         return $this->info = $this->handleResponse($response);
     }
 
@@ -333,8 +345,7 @@ class Backup
      */
     public function updateExpireTime(DateTimeInterface $newTimestamp, array $options = []): array
     {
-        [$data, $callOptions] = $this->splitOptionalArgs($options);
-        $data += [
+        $options += [
             'backup' => [
                 'name' => $this->name(),
                 'expireTime' => $this->formatTimeAsArray($newTimestamp),
@@ -344,11 +355,16 @@ class Backup
             ]
         ];
 
-        $request = $this->serializer->decodeMessage(new UpdateBackupRequest(), $data);
+        [$updateBackup, $callOptions] = $this->validateOptions(
+            $options,
+            new UpdateBackupRequest(),
+            CallOptions::class,
+        );
 
-        $response = $this->databaseAdminClient->updateBackup($request, $callOptions + [
+        $response = $this->databaseAdminClient->updateBackup($updateBackup, $callOptions + [
             'resource-prefix' => $this->name,
         ]);
+
         return $this->info = $this->handleResponse($response);
     }
 
@@ -402,13 +418,16 @@ class Backup
      */
     public function longRunningOperations(array $options = []): ItemIterator
     {
-        [$data, $callOptions] = $this->splitOptionalArgs($options);
-        $request = $this->serializer->decodeMessage(new ListOperationsRequest(), $data);
-        $request->setName($this->name . '/operations');
+        [$listOperations, $callOptions] = $this->validateOptions(
+            $options,
+            new ListOperationsRequest(),
+            CallOptions::class,
+        );
+        $listOperations->setName($this->name . '/operations');
 
         return $this->buildLongRunningIterator(
             [$this->databaseAdminClient->getOperationsClient(), 'listOperations'],
-            $request,
+            $listOperations,
             $callOptions,
             function (OperationProto $operation) {
                 return $this->resumeOperation(
