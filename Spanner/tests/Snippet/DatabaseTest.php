@@ -45,8 +45,6 @@ use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Result;
 use Google\Cloud\Spanner\Serializer;
-use Google\Cloud\Spanner\Session\Session;
-use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
 use Google\Cloud\Spanner\Timestamp;
@@ -60,6 +58,7 @@ use Google\Cloud\Spanner\V1\PartialResultSet;
 use Google\Cloud\Spanner\V1\ReadRequest;
 use Google\Cloud\Spanner\V1\ResultSetStats;
 use Google\Cloud\Spanner\V1\RollbackRequest;
+use Google\Cloud\Spanner\V1\Session;
 use Google\Cloud\Spanner\V1\Transaction as TransactionProto;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\ListOperationsResponse;
@@ -67,6 +66,8 @@ use Google\LongRunning\Operation;
 use Google\Protobuf\Timestamp as TimestampProto;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
+use Psr\Cache\CacheItemInterface;
+use Psr\Cache\CacheItemPoolInterface;
 
 /**
  * @group spanner
@@ -102,21 +103,18 @@ class DatabaseTest extends SnippetTestCase
         $this->operationResponse = $this->prophesize(OperationResponse::class);
         $this->serializer = new Serializer();
 
-        $session = $this->prophesize(Session::class);
-        $session->info()
-            ->willReturn([
-                'databaseName' => 'database'
-            ]);
-        $session->name()
-            ->willReturn('database');
-        $session->setExpiration(Argument::any());
+        // ensure cache hit
+        $cacheItem = $this->prophesize(CacheItemInterface::class);
+        $cacheItem->get()->willReturn((new Session([
+            'name' => SpannerClient::sessionName(self::PROJECT, self::INSTANCE, self::DATABASE, 'my-session'),
+            'multiplexed' => true,
+            'create_time' => new TimestampProto(['seconds' => time()]),
+        ]))->serializeToString());
 
-        $sessionPool = $this->prophesize(SessionPoolInterface::class);
-        $sessionPool->acquire(Argument::any())
-            ->willReturn($session->reveal());
-        $sessionPool->setDatabase(Argument::any())
-            ->willReturn(null);
-        $sessionPool->clear()->willReturn(null);
+        $cacheKey = sprintf('cache-session-pool.%s.%s.%s.%s', self::PROJECT, self::INSTANCE, self::DATABASE, '');
+        $cacheItemPool = $this->prophesize(CacheItemPoolInterface::class);
+        $cacheItemPool->getItem($cacheKey)
+            ->willReturn($cacheItem->reveal());
 
         $this->instance = new Instance(
             $this->spannerClient->reveal(),
@@ -134,7 +132,7 @@ class DatabaseTest extends SnippetTestCase
             $this->instance,
             self::PROJECT,
             self::DATABASE,
-            ['sessionPool' => $sessionPool->reveal()]
+            ['cacheItemPool' => $cacheItemPool->reveal()]
         );
     }
 
@@ -951,24 +949,6 @@ class DatabaseTest extends SnippetTestCase
         $res = $snippet->invoke('result');
         $this->assertInstanceOf(Result::class, $res->returnVal());
         $this->assertInstanceOf(Transaction::class, $res->returnVal()->transaction());
-    }
-
-    public function testSessionPool()
-    {
-        $snippet = $this->snippetFromMethod(Database::class, 'sessionPool');
-        $snippet->addLocal('database', $this->database);
-
-        $res = $snippet->invoke('pool');
-        $this->assertInstanceOf(SessionPoolInterface::class, $res->returnVal());
-    }
-
-    public function testClose()
-    {
-        $snippet = $this->snippetFromMethod(Database::class, 'close');
-        $snippet->addLocal('database', $this->database);
-
-        $res = $snippet->invoke();
-        $this->assertNull($res->returnVal());
     }
 
     public function testIam()
