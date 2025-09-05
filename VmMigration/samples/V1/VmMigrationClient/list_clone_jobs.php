@@ -30,7 +30,8 @@ use Google\Cloud\VMMigration\V1\CloneJob;
 use Google\Cloud\VMMigration\V1\ListCloneJobsRequest;
 
 /**
- * Lists CloneJobs of a given migrating VM.
+ * Lists the CloneJobs of a migrating VM. Only 25 most recent CloneJobs are
+ * listed.
  *
  * @param string $formattedParent The parent, which owns this collection of source VMs. Please see
  *                                {@see VmMigrationClient::migratingVmName()} for help formatting this field.

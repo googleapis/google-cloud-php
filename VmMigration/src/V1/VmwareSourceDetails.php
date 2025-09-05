@@ -41,6 +41,12 @@ class VmwareSourceDetails extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string thumbprint = 4;</code>
      */
     protected $thumbprint = '';
+    /**
+     * The hostname of the vcenter.
+     *
+     * Generated from protobuf field <code>string resolved_vcenter_host = 5;</code>
+     */
+    protected $resolved_vcenter_host = '';
 
     /**
      * Constructor.
@@ -57,6 +63,8 @@ class VmwareSourceDetails extends \Google\Protobuf\Internal\Message
      *           The ip address of the vcenter this Source represents.
      *     @type string $thumbprint
      *           The thumbprint representing the certificate for the vcenter.
+     *     @type string $resolved_vcenter_host
+     *           The hostname of the vcenter.
      * }
      */
     public function __construct($data = NULL) {
@@ -166,6 +174,32 @@ class VmwareSourceDetails extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->thumbprint = $var;
+
+        return $this;
+    }
+
+    /**
+     * The hostname of the vcenter.
+     *
+     * Generated from protobuf field <code>string resolved_vcenter_host = 5;</code>
+     * @return string
+     */
+    public function getResolvedVcenterHost()
+    {
+        return $this->resolved_vcenter_host;
+    }
+
+    /**
+     * The hostname of the vcenter.
+     *
+     * Generated from protobuf field <code>string resolved_vcenter_host = 5;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setResolvedVcenterHost($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->resolved_vcenter_host = $var;
 
         return $this;
     }
