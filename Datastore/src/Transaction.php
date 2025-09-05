@@ -350,6 +350,15 @@ class Transaction
      */
     public function commit(array $options = [])
     {
+        if (empty($this->mutations)) {
+            $this->operation->rollback($this->transactionId);
+
+            return [
+                'mutationResults' => [],
+                'indexUpdates' => 0
+            ];
+        }
+
         $options['transaction'] = $this->transactionId;
 
         return $this->operation->commit($this->mutations, $options);

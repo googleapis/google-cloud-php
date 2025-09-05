@@ -113,7 +113,21 @@ class Operation
         $this->namespaceId = $namespaceId;
         $this->databaseId = $databaseId;
         $this->entityMapper = $entityMapper;
-        $this->serializer = new Serializer();
+        $this->serializer = new Serializer([
+            'end_cursor' => function ($v) {
+                return base64_encode($v);
+            },
+            'start_cursor' => function ($v) {
+                return base64_encode($v);
+            },
+            'cursor' => function ($v) {
+                return base64_encode($v);
+            }
+        ],[
+            'google.protobuf.Duration' => function ($v) {
+                return $this->formatDurationFromApi($v);
+            }
+        ]);
     }
 
     /**
@@ -303,7 +317,7 @@ class Operation
 
         $res = $this->gapicClient->beginTransaction($beginTransactionRequest, $options);
 
-        return $res->getTransaction();
+        return base64_encode($res->getTransaction());
     }
 
     /**
@@ -398,7 +412,7 @@ class Operation
     {
         $options += [
             'className' => Entity::class,
-            'sort' => false,
+            'sort' => false
         ];
 
         $serviceKeys = [];
@@ -540,6 +554,11 @@ class Operation
             ] + $this->readOptions($options) + $options;
 
             $runQueryRequest = new RunQueryRequest();
+
+            if (isset($request['explainOptions'])) {
+                $runQueryRequest->setExplainOptions($request['explainOptions']);
+            }
+
             $runQueryRequest->mergeFromJsonString(json_encode($request), true);
             $runQueryResponse = $this->gapicClient->runQuery($runQueryRequest);
 
@@ -605,12 +624,6 @@ class Operation
             'databaseId' => $this->databaseId,
         ];
 
-        if (isset($options['explainOptions']) && !$options['explainOptions'] instanceof ExplainOptions) {
-            throw new InvalidArgumentException(
-                'The explainOptions option needs to be an instance of the ExplainOptions class'
-            );
-        }
-
         $args = [
             'query' => [],
         ];
@@ -625,6 +638,17 @@ class Operation
         ] + $requestQueryArr + $this->readOptions($options) + $options;
 
         $runAggregationQueryRequest = new RunAggregationQueryRequest();
+
+        if (isset($options['explainOptions'])) {
+            if (!$options['explainOptions'] instanceof ExplainOptions) {
+                throw new InvalidArgumentException(
+                    'The explainOptions option needs to be an instance of the ExplainOptions class'
+                );
+            }
+
+            $runAggregationQueryRequest->setExplainOptions($options['explainOptions']);
+        }
+
         $runAggregationQueryRequest->mergeFromJsonString(json_encode($request), true);
         $runAggregationQueryResponse = $this->gapicClient->runAggregationQuery($runAggregationQueryRequest, $options);
 
@@ -658,6 +682,8 @@ class Operation
             'databaseId' => $this->databaseId,
         ];
 
+        $transactionMode = isset($options['transaction']) ? Mode::TRANSACTIONAL : Mode::NON_TRANSACTIONAL;
+
         $protoMutations = [];
         foreach ($mutations as $mutation) {
             $protoMutation = new Mutation();
@@ -669,7 +695,10 @@ class Operation
         $commitRequest->setMutations($protoMutations);
         $commitRequest->setDatabaseId($options['databaseId']);
         $commitRequest->setProjectId($this->projectId);
-        $commitRequest->setMode(($options['transaction']) ? Mode::TRANSACTIONAL : Mode::NON_TRANSACTIONAL);
+        $commitRequest->setMode($transactionMode);
+        if ($transactionMode === Mode::TRANSACTIONAL) {
+            $commitRequest->setTransaction(base64_decode($options['transaction']));
+        }
 
         $commitResponse = $this->gapicClient->commit($commitRequest, $options);
 
@@ -767,6 +796,7 @@ class Operation
         $rollbackRequest->setTransaction($transactionId);
         $rollbackRequest->setProjectId($this->projectId);
         $rollbackRequest->setDatabaseId($this->databaseId);
+        $rollbackRequest->setTransaction(base64_decode($transactionId));
 
         $this->gapicClient->rollback($rollbackRequest);
     }
@@ -937,7 +967,7 @@ class Operation
         $readOptions = new ReadOptions();
         if (isset($options['transaction'])) {
             $empty = false;
-            $readOptions->setTransaction($options['transaction']);
+            $readOptions->setTransaction(base64_decode($options['transaction']));
         }
         if (isset($options['readConsistency'])) {
             $empty = false;
@@ -956,5 +986,19 @@ class Operation
         }
 
         return $readOptions;
+    }
+
+    /**
+     * Format a duration from the API
+     *
+     * @param array $value
+     * @return string
+     */
+    private function formatDurationFromApi($value): string
+    {
+        $seconds = $value['seconds'];
+        $nanos = str_pad($value['nanos'], 9, 0, STR_PAD_LEFT);
+
+        return "{$seconds}.{$nanos}s";
     }
 }

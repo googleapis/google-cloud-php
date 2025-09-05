@@ -168,9 +168,6 @@ class DatastoreClient
         ];
 
         $config = $this->configureAuthentication($config);
-
-        /** Version 2 */
-        $this->projectId = $config['projectId'];
         $this->gapicClient = new GapicDatastoreClient($config);
 
         // The second parameter here should change to a variable

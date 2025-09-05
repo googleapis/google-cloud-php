@@ -222,11 +222,15 @@ class EntityMapper
                 break;
 
             case 'timestampValue':
-                $result = \DateTimeImmutable::createFromFormat(self::DATE_FORMAT, $value);
-
-                if (!$result) {
-                    $result = \DateTimeImmutable::createFromFormat(self::DATE_FORMAT_NO_MS, $value);
-                }
+                // The Serializer converts timestamps to an array [seconds, nanos].
+                // This code is taking that format to convert it into an Immutable date.
+                $seconds = $value['seconds'];
+                $nanos = $value['nanos'] ?? 0;
+                $microseconds = (int)($nanos / 1000);
+                $result = \DateTimeImmutable::createFromFormat(
+                    'U.u',
+                    sprintf('%d.%06d', $seconds, $microseconds)
+                );
 
                 break;
 
@@ -355,18 +359,14 @@ class EntityMapper
                 break;
 
             case 'double':
-                // The mappings happen automatically for grpc hence
-                // this is required only incase of rest as grpc
-                // doesn't recognises 'Infinity', '-Infinity' and 'NaN'.
-                if ($this->connectionType == 'rest') {
-                    if ($value == INF) {
-                        $value = 'Infinity';
-                    } elseif ($value == -INF) {
-                        $value = '-Infinity';
-                    } elseif (is_nan($value)) {
-                        $value = 'NaN';
-                    }
+                if ($value == INF) {
+                    $value = 'Infinity';
+                } elseif ($value == -INF) {
+                    $value = '-Infinity';
+                } elseif (is_nan($value)) {
+                    $value = 'NaN';
                 }
+
                 $propertyValue = [
                     'doubleValue' => $value
                 ];
