@@ -34,72 +34,26 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-require 'vendor/autoload.php';
+use Google\ApiCore\ApiException;
+use Google\Cloud\Spanner\V1\Client\SpannerClient;
+use Google\Cloud\Spanner\V1\GetSessionRequest;
+use Google\Cloud\Spanner\V1\Session;
 
-use Google\Cloud\Spanner\SpannerClient;
+// Create a client.
+$spannerClient = new SpannerClient();
 
-$spanner = new SpannerClient();
+// Prepare the request message.
+$request = (new GetSessionRequest())
+    ->setName($formattedName);
 
-$db = $spanner->connect('my-instance', 'my-database');
-
-$userQuery = $db->execute('SELECT * FROM Users WHERE id = @id', [
-    'parameters' => [
-        'id' => $userId
-    ]
-]);
-
-$user = $userQuery->rows()->current();
-
-echo 'Hello ' . $user['firstName'];
-```
-
-### Session warmup
-
-To issue a query against the Spanner service, the client library needs to request a session id from the server under the cover. This API call will add significant latency to your program. The Spanner client library provides a handy way to alleviate this problem by having a cached session pool.
-
-For more details, see: https://github.com/googleapis/google-cloud-php/blob/main/Spanner/src/Session/CacheSessionPool.php#L30
-
-The following example shows how to use the `CacheSessionPool` with `SysVCacheItemPool` as well as how to configure a proper cache for authentication:
-
-```php
-require __DIR__ . '/vendor/autoload.php';
-
-use Google\Cloud\Spanner\SpannerClient;
-use Google\Cloud\Spanner\Session\CacheSessionPool;
-use Google\Auth\Cache\SysVCacheItemPool;
-
-$authCache = new SysVCacheItemPool();
-$sessionCache = new SysVCacheItemPool([
-    // Use a different project identifier for ftok than the default
-    'proj' => 'B',
-    // We highly recommend using 250kb as it should safely contain the default
-    // 500 maximum sessions the pool can handle. Please modify this value
-    // accordingly depending on the number of maximum sessions you would like
-    // for the pool to handle.
-    'memsize' => 250000
-]);
-
-$spanner = new SpannerClient([
-    'authCache' => $authCache
-]);
-
-$sessionPool = new CacheSessionPool(
-    $sessionCache,
-    [
-        'minSessions' => 10,
-        'maxSessions' => 10  // Here it will create 10 sessions under the cover.
-    ]
-);
-
-$database = $spanner->connect(
-    'my-instance',
-    'my-db',
-    [
-        'sessionPool' => $sessionPool
-    ]
-);
-// `warmup` will actually create the sessions for the first time.
-$sessionPool->warmup();
+// Call the API and handle any network failures.
+try {
+    /** @var Session $response */
+    $response = $spannerClient->getSession($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
 ```
 
 By using a cache implementation like `SysVCacheItemPool`, you can share the cached sessions among multiple processes, so that for example, you can warmup the session upon the server startup, then all the other PHP processes will benefit from the warmed up sessions.

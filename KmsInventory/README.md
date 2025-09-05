@@ -35,10 +35,10 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-Google\ApiCore\ApiException;
-Google\Cloud\Kms\Inventory\V1\Client\KeyTrackingServiceClient;
-Google\Cloud\Kms\Inventory\V1\GetProtectedResourcesSummaryRequest;
-Google\Cloud\Kms\Inventory\V1\ProtectedResourcesSummary;
+use Google\ApiCore\ApiException;
+use Google\Cloud\Kms\Inventory\V1\Client\KeyTrackingServiceClient;
+use Google\Cloud\Kms\Inventory\V1\GetProtectedResourcesSummaryRequest;
+use Google\Cloud\Kms\Inventory\V1\ProtectedResourcesSummary;
 
 // Create a client.
 $keyTrackingServiceClient = new KeyTrackingServiceClient();

@@ -35,10 +35,10 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-Google\ApiCore\ApiException;
-Google\Cloud\PrivilegedAccessManager\V1\Client\PrivilegedAccessManagerClient;
-Google\Cloud\PrivilegedAccessManager\V1\Entitlement;
-Google\Cloud\PrivilegedAccessManager\V1\GetEntitlementRequest;
+use Google\ApiCore\ApiException;
+use Google\Cloud\PrivilegedAccessManager\V1\Client\PrivilegedAccessManagerClient;
+use Google\Cloud\PrivilegedAccessManager\V1\Entitlement;
+use Google\Cloud\PrivilegedAccessManager\V1\GetEntitlementRequest;
 
 // Create a client.
 $privilegedAccessManagerClient = new PrivilegedAccessManagerClient();

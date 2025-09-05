@@ -35,10 +35,10 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-Google\ApiCore\ApiException;
-Google\Cloud\Config\V1\Client\ConfigClient;
-Google\Cloud\Config\V1\Deployment;
-Google\Cloud\Config\V1\GetDeploymentRequest;
+use Google\ApiCore\ApiException;
+use Google\Cloud\Config\V1\Client\ConfigClient;
+use Google\Cloud\Config\V1\Deployment;
+use Google\Cloud\Config\V1\GetDeploymentRequest;
 
 // Create a client.
 $configClient = new ConfigClient();

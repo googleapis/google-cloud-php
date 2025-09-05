@@ -35,10 +35,10 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-Google\ApiCore\ApiException;
-Google\Cloud\CloudQuotas\V1\Client\CloudQuotasClient;
-Google\Cloud\CloudQuotas\V1\GetQuotaInfoRequest;
-Google\Cloud\CloudQuotas\V1\QuotaInfo;
+use Google\ApiCore\ApiException;
+use Google\Cloud\CloudQuotas\V1\Client\CloudQuotasClient;
+use Google\Cloud\CloudQuotas\V1\GetQuotaInfoRequest;
+use Google\Cloud\CloudQuotas\V1\QuotaInfo;
 
 // Create a client.
 $cloudQuotasClient = new CloudQuotasClient();

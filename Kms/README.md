@@ -31,58 +31,26 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-require __DIR__ . '/vendor/autoload.php';
-
 use Google\ApiCore\ApiException;
-use Google\Cloud\Kms\V1\CryptoKey;
-use Google\Cloud\Kms\V1\CryptoKey\CryptoKeyPurpose;
-use Google\Cloud\Kms\V1\KeyManagementServiceClient;
-use Google\Cloud\Kms\V1\KeyRing;
+use Google\Cloud\Kms\V1\AutokeyConfig;
+use Google\Cloud\Kms\V1\Client\AutokeyAdminClient;
+use Google\Cloud\Kms\V1\GetAutokeyConfigRequest;
 
-$client = new KeyManagementServiceClient();
+// Create a client.
+$autokeyAdminClient = new AutokeyAdminClient();
 
-$projectId = 'example-project';
-$location = 'global';
+// Prepare the request message.
+$request = (new GetAutokeyConfigRequest())
+    ->setName($formattedName);
 
-// Create a keyring
-$keyRingId = 'example-keyring';
-$locationName = $client::locationName($projectId, $location);
-$keyRingName = $client::keyRingName($projectId, $location, $keyRingId);
-
+// Call the API and handle any network failures.
 try {
-    $keyRing = $client->getKeyRing($keyRingName);
-} catch (ApiException $e) {
-    if ($e->getStatus() === 'NOT_FOUND') {
-        $keyRing = new KeyRing();
-        $keyRing->setName($keyRingName);
-        $client->createKeyRing($locationName, $keyRingId, $keyRing);
-    }
+    /** @var AutokeyConfig $response */
+    $response = $autokeyAdminClient->getAutokeyConfig($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
 }
-
-// Create a cryptokey
-$keyId = 'example-key';
-$keyName = $client::cryptoKeyName($projectId, $location, $keyRingId, $keyId);
-
-try {
-    $cryptoKey = $client->getCryptoKey($keyName);
-} catch (ApiException $e) {
-    if ($e->getStatus() === 'NOT_FOUND') {
-        $cryptoKey = new CryptoKey();
-        $cryptoKey->setPurpose(CryptoKeyPurpose::ENCRYPT_DECRYPT);
-        $cryptoKey = $client->createCryptoKey($keyRingName, $keyId, $cryptoKey);
-    }
-}
-
-// Encrypt and decrypt
-$secret = 'My secret text';
-$response = $client->encrypt($keyName, $secret);
-$cipherText = $response->getCiphertext();
-
-$response = $client->decrypt($keyName, $cipherText);
-
-$plainText = $response->getPlaintext();
-
-assert($secret === $plainText);
 ```
 
 ### Debugging

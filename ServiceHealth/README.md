@@ -35,10 +35,10 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-Google\ApiCore\ApiException;
-Google\Cloud\ServiceHealth\V1\Client\ServiceHealthClient;
-Google\Cloud\ServiceHealth\V1\Event;
-Google\Cloud\ServiceHealth\V1\GetEventRequest;
+use Google\ApiCore\ApiException;
+use Google\Cloud\ServiceHealth\V1\Client\ServiceHealthClient;
+use Google\Cloud\ServiceHealth\V1\Event;
+use Google\Cloud\ServiceHealth\V1\GetEventRequest;
 
 // Create a client.
 $serviceHealthClient = new ServiceHealthClient();

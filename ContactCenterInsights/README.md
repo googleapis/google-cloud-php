@@ -28,6 +28,31 @@ please see our [gRPC installation guide](https://cloud.google.com/php/grpc).
 Please see our [Authentication guide](https://github.com/googleapis/google-cloud-php/blob/main/AUTHENTICATION.md) for more information
 on authenticating your client. Once authenticated, you'll be ready to start making requests.
 
+### Sample
+
+```php
+use Google\ApiCore\ApiException;
+use Google\Cloud\ContactCenterInsights\V1\Analysis;
+use Google\Cloud\ContactCenterInsights\V1\Client\ContactCenterInsightsClient;
+use Google\Cloud\ContactCenterInsights\V1\GetAnalysisRequest;
+
+// Create a client.
+$contactCenterInsightsClient = new ContactCenterInsightsClient();
+
+// Prepare the request message.
+$request = (new GetAnalysisRequest())
+    ->setName($formattedName);
+
+// Call the API and handle any network failures.
+try {
+    /** @var Analysis $response */
+    $response = $contactCenterInsightsClient->getAnalysis($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
+```
+
 ### Debugging
 
 Please see our [Debugging guide](https://github.com/googleapis/google-cloud-php/blob/main/DEBUG.md)
