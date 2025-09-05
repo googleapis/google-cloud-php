@@ -122,3 +122,10 @@ jobs:
               echo "Missing repositories for one or more new components"
               exit 1
           fi
+
+  next-release-label-check:
+    name: Check for "next release" label
+    uses: GoogleCloudPlatform/php-tools/.github/workflows/release-checks.yml@main
+    if: github.event.pull_request.user.login == 'release-please[bot]'
+    with:
+      next-release-label-check: true
