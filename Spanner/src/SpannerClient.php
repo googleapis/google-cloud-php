@@ -602,7 +602,6 @@ class SpannerClient
             CallOptions::class,
         );
 
-
         return $this->buildListItemsIterator(
             [$this->instanceAdminClient, 'listInstances'],
             $listInstances,

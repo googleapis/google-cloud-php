@@ -279,8 +279,8 @@ trait ApiHelperTrait
             if (is_array($optionType)) {
                 $splitOptions[] = $this->pluckArray($optionType, $options);
             } elseif ($optionType === CallOptions::class) {
-                    $callOptionKeys = array_keys((new CallOptions([]))->toArray());
-                    $splitOptions[] = $this->pluckArray($callOptionKeys, $options);
+                $callOptionKeys = array_keys((new CallOptions([]))->toArray());
+                $splitOptions[] = $this->pluckArray($callOptionKeys, $options);
             } elseif ($optionType instanceof Message) {
                 $messageKeys = array_map(
                     fn ($method) => lcfirst(substr($method, 3)),

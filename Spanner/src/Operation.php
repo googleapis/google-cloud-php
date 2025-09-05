@@ -39,11 +39,9 @@ use Google\Cloud\Spanner\V1\TransactionOptions;
 use Google\Cloud\Spanner\V1\TransactionOptions\ReadWrite;
 use Google\Cloud\Spanner\V1\TransactionSelector;
 use Google\Cloud\Spanner\V1\Type;
-use Google\Protobuf\Internal\MapField;
 use Google\Rpc\Code;
 use GPBMetadata\Google\Protobuf\Struct;
 use InvalidArgumentException;
-use PhpParser\Node\Expr\List_;
 
 /**
  * Common interface for running operations against Cloud Spanner. This class is
@@ -255,17 +253,19 @@ class Operation
             $options['types'] ?? []
         );
 
-        $executeSql = $this->formatSqlParams($options);
-        $executeSql['transaction'] = $this->createTransactionSelector($options);
-        $executeSql['queryOptions'] = $this->createQueryOptions($options);
+        $options = $this->formatSqlParams($options);
+        $options['transaction'] = $this->createTransactionSelector($options);
+        $options['queryOptions'] = $this->createQueryOptions($options);
 
-        [$executeSqlRequest, $callOptions, $options, $rtl] = $this->validateOptions(
+        [$executeSqlRequest, $callOptions, $miscOptions, $rtl] = $this->validateOptions(
             $options,
             new ExecuteSqlRequest(),
             CallOptions::class,
             ['parameters', 'types', 'transactionContext'],
             ['route-to-leader']
         );
+        $executeSqlRequest->setSql($sql);
+        $executeSqlRequest->setSession($session->name());
 
         // Spanner allows "route-to-leader" as a call option (See SpannerMiddleware)
         // @TODO potentially move to a `Spanner\CallOptions`
@@ -287,13 +287,10 @@ class Operation
                 $executeSqlRequest->setResumeToken($resumeToken);
             }
 
-            $executeSqlRequest->setSql($sql);
-            $executeSqlRequest->setSession($session->name());
-
             $databaseName = $this->getDatabaseNameFromSession($session);
             return $this->executeStreamingSql($databaseName, $executeSqlRequest, $callOptions);
         };
-        return new Result($this, $session, $call, $options['transactionContext'] ?? null, $this->mapper);
+        return new Result($this, $session, $call, $miscOptions['transactionContext'] ?? null, $this->mapper);
     }
 
     /**
@@ -789,11 +786,12 @@ class Operation
         $res = $this->handleResponse($response);
 
         $partitions = [];
+        $queryPartitionOptions = $this->pluckArray(['parameters', 'types', 'maxPartitions', 'partitionSizeBytes'], $options);
         foreach ($res['partitions'] as $partition) {
             $partitions[] = new QueryPartition(
                 $partition['partitionToken'],
                 $sql,
-                $this->pluckArray(['parameters', 'types', 'maxPartitions', 'partitionSizeBytes'], $options)
+                $queryPartitionOptions
             );
         }
 
@@ -858,13 +856,14 @@ class Operation
         $res = $this->handleResponse($response);
 
         $partitions = [];
+        $readPartitionOptions = $this->pluckArray(['index', 'maxPartitions', 'partitionSizeBytes'], $options);
         foreach ($res['partitions'] as $partition) {
             $partitions[] = new ReadPartition(
                 $partition['partitionToken'],
                 $table,
                 $keySet,
                 $columns,
-                $this->pluckArray(['index', 'maxPartitions', 'partitionSizeBytes'], $options)
+                $readPartitionOptions
             );
         }
 
