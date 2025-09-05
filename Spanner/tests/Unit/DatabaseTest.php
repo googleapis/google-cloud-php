@@ -1487,7 +1487,7 @@ class DatabaseTest extends TestCase
             Argument::that(function (ReadRequest $request) {
                 $this->assertEquals(OrderBy::ORDER_BY_PRIMARY_KEY, $request->getOrderBy());
                 return true;
-	    }),
+            }),
             Argument::type('array')
         )
             ->shouldBeCalled()
@@ -1517,7 +1517,7 @@ class DatabaseTest extends TestCase
             Argument::that(function (ReadRequest $request) {
                 $this->assertEquals(LockHint::LOCK_HINT_SHARED, $request->getLockHint());
                 return true;
-	    }),
+            }),
             Argument::type('array')
         )
             ->shouldBeCalled()
