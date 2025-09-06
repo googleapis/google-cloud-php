@@ -775,10 +775,8 @@ class Database
      * If you wish Google Cloud PHP to handle retry logic for you (recommended
      * for most cases), use {@see \Google\Cloud\Spanner\Database::runTransaction()}.
      *
-     * Please note that once a transaction reads data, it will lock the read
-     * data, preventing other users from modifying that data. For this reason,
-     * it is important that every transaction commits or rolls back as early as
-     * possible. Do not hold transactions open longer than necessary.
+     * Please note for locking semantics and defaults for the transactions
+     * use {@see \Google\Cloud\Spanner\V1\TransactionOptions\ReadWrite\ReadLockMode}
      *
      * Example:
      * ```
@@ -812,8 +810,8 @@ class Database
             throw new \BadMethodCallException('Nested transactions are not supported by this client.');
         }
 
-        // There isn't anything configurable here.
-        $options['transactionOptions'] = $this->configureTransactionOptions();
+        // Configure readWrite options here. Any nested options for readWrite should be added to this call
+        $options['transactionOptions'] = $this->configureTransactionOptions($options['transactionOptions'] ?? []);
 
         $session = $this->selectSession(
             SessionPoolInterface::CONTEXT_READWRITE,
@@ -840,10 +838,8 @@ class Database
      * exception types will immediately bubble up and will interrupt the retry
      * operation.
      *
-     * Please note that once a transaction reads data, it will lock the read
-     * data, preventing other users from modifying that data. For this reason,
-     * it is important that every transaction commits or rolls back as early as
-     * possible. Do not hold transactions open longer than necessary.
+     * Please note for locking semantics and defaults for the transactions
+     * use {@see \Google\Cloud\Spanner\V1\TransactionOptions\ReadWrite\ReadLockMode}
      *
      * Please also note that nested transactions are NOT supported by this client.
      * Attempting to call `runTransaction` inside a transaction callable will
@@ -920,7 +916,6 @@ class Database
             'maxRetries' => self::MAX_RETRIES,
         ];
 
-        // There isn't anything configurable here.
         $options['transactionOptions'] = $this->configureTransactionOptions($options['transactionOptions'] ?? []);
 
         $session = $this->selectSession(
