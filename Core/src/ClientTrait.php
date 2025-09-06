@@ -30,7 +30,7 @@ trait ClientTrait
     use JsonTrait;
 
     /**
-     * @var string|null The project ID created in the Google Developers Console.
+     * @var string The project ID created in the Google Developers Console.
      */
     private $projectId;
 
