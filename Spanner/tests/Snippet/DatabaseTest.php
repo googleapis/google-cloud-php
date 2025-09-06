@@ -40,6 +40,7 @@ use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
 use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
+use Google\Cloud\Spanner\V1\TransactionOptions\IsolationLevel;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -462,7 +463,12 @@ class DatabaseTest extends SnippetTestCase
             ->shouldBeCalled();
 
         $this->connection->executeStreamingSql(
-            Argument::withEntry('transaction', ['begin' => ['readWrite' => []]])
+            Argument::withEntry('transaction', [
+                'begin' => [
+                    'readWrite' => [],
+                    'isolationLevel' => IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED
+                ]
+            ])
         )
             ->shouldBeCalled()
             ->willReturn($this->resultGeneratorData([
