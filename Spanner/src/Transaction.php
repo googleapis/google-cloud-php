@@ -415,6 +415,17 @@ class Transaction implements TransactionalReadInterface
             throw new \BadMethodCallException('The transaction cannot be committed because it is not active');
         }
 
+        // set mutations, transactionId, and precommit token in the request
+        $options['mutations'] = ($options['mutations'] ?? []) + $this->getMutations();
+        if ($this->precommitToken) {
+            $options['precommitToken'] = $this->precommitToken;
+        }
+        // set the transaction tag if it exists
+        unset($options['requestOptions']['requestTag']);
+        if (isset($this->tag)) {
+            $options['requestOptions']['transactionTag'] = $this->tag;
+        }
+
         // For commit, A transaction ID is mandatory for non-single-use transactions,
         // and the `begin` option is not supported (because `begin` is only used in "inline begin transactions")
         if (empty($this->transactionId) && isset($this->transactionSelector['begin'])) {
@@ -423,6 +434,12 @@ class Transaction implements TransactionalReadInterface
                 'transactionOptions' => $this->transactionOptions,
                 'singleUse' => $this->transactionSelector['singleUse'] ?? null,
             ]);
+            // generate mutation key
+            if (!empty($options['mutations'])) {
+                $mutation = $options['mutations'][rand(0, count($options['mutations']) - 1)];
+                // (new Serializer())->decodeMessage(new Mutation(), $mutation);
+                $operationTransactionOptions['mutationKey'] = $mutation;
+            }
             // Execute the beginTransaction RPC.
             $transaction = $this->operation->transaction($this->session, $operationTransactionOptions);
             // Set the transaction ID of the current transaction.
@@ -438,17 +455,8 @@ class Transaction implements TransactionalReadInterface
             'requestOptions' => []
         ];
 
-        // set mutations, transactionId, and precommit token in the request
-        $options['mutations'] += $this->getMutations();
+        // set transactionId in the request
         $options['transactionId'] = $this->transactionId;
-        if ($this->precommitToken) {
-            $options['precommitToken'] = $this->precommitToken;
-        }
-
-        unset($options['requestOptions']['requestTag']);
-        if (isset($this->tag)) {
-            $options['requestOptions']['transactionTag'] = $this->tag;
-        }
 
         $t = $this->transactionOptions($options);
 

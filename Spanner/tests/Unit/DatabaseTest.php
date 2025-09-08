@@ -61,6 +61,7 @@ use Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type as Replica
 use Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest;
 use Google\Cloud\Spanner\V1\ExecuteBatchDmlResponse;
 use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
+use Google\Cloud\Spanner\V1\KeySet as V1KeySet;
 use Google\Cloud\Spanner\V1\Mutation;
 use Google\Cloud\Spanner\V1\PartialResultSet;
 use Google\Cloud\Spanner\V1\ReadRequest;
@@ -1229,20 +1230,12 @@ class DatabaseTest extends TestCase
 
         $this->spannerClient->commit(
             Argument::that(function ($request) use ($table, $keys) {
-                $request = $this->serializer->encodeMessage($request);
-
-                if ($request['mutations'][0][Operation::OP_DELETE]['table'] !== $table) {
-                    return false;
-                }
-
-                if ($request['mutations'][0][Operation::OP_DELETE]['keySet']['keys'][0][0] !== (string) $keys[0]) {
-                    return false;
-                }
-
-                if ($request['mutations'][0][Operation::OP_DELETE]['keySet']['keys'][1][0] !== $keys[1]) {
-                    return false;
-                }
-
+                $mutation = $request->getMutations()[0]->getDelete();
+                $this->assertNotNull($mutation);
+                $this->assertEquals($table, $mutation->getTable());
+                $keySet = $this->serializer->encodeMessage($mutation->getKeySet());
+                $this->assertEquals($keys[0], $keySet['keys'][0][0]);
+                $this->assertEquals($keys[1], $keySet['keys'][1][0]);
                 return true;
             }),
             Argument::type('array')

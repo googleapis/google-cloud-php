@@ -921,14 +921,10 @@ class Database
         if ($this->isRunningTransaction) {
             throw new \BadMethodCallException('Nested transactions are not supported by this client.');
         }
-        $options += ['retrySettings' => ['maxRetries' => self::MAX_RETRIES]];
-
-        $retrySettings = $this->pluck('retrySettings', $options);
-        if ($retrySettings instanceof RetrySettings) {
-            $maxRetries = $retrySettings->getMaxRetries();
-        } else {
-            $maxRetries = $retrySettings['maxRetries'];
-        }
+        $retrySettings = $options['retrySettings'] ?? ['maxRetries' => self::MAX_RETRIES];
+        $maxRetries = $retrySettings instanceof RetrySettings
+            ? $retrySettings->getMaxRetries()
+            : $retrySettings['maxRetries'];
 
         // Configure necessary readWrite nested and base options
         $options['transactionOptions'] = $this->configureReadWriteTransactionOptions(

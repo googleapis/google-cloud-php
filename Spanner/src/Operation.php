@@ -504,11 +504,18 @@ class Operation
      *     @type array $requestOptions
      *     @type array $transactionOptions
      *     @type string $tag
+     *     @type Mutation $mutationKey Required for read-write transactions on a multiplexed session
+     *           that commit mutations but do not perform any reads or queries. If not supplied,
+     *           one of the mutations from the mutation set will be selected and sent as a part of
+     *           this request.
      * }
      * @return Transaction
      */
     public function transaction(SessionCache $session, array $options = []): Transaction
     {
+        if (isset($options['mutationKey'])) {
+            $options['mutationKey'] = $this->serializeMutation($options['mutationKey']);
+        }
         [$options, $beginTransaction, $transactionSelector, $callOptions] = $this->validateOptions(
             $options,
             ['tag', 'isRetry', 'transactionOptions', 'singleUse'], // "singleUse" is an internal flag
@@ -520,6 +527,7 @@ class Operation
         $precommitToken = null;
         $transactionTag = $options['tag'] ?? null;
         $isRetry = $options['isRetry'] ?? false;
+
         // transaction options may be passed in as a message or array
         // TODO: only allow messages
         $transactionOptions = null;
@@ -859,27 +867,28 @@ class Operation
         $serializedMutations = [];
         if (is_array($mutations)) {
             foreach ($mutations as $mutation) {
-                $type = array_keys($mutation)[0];
-                $data = $mutation[$type];
-
-                switch ($type) {
-                    case Operation::OP_DELETE:
-                        // if (isset($data['keySet'])) {
-                        //     $data['keySet'] = $this->formatKeySet($data['keySet']);
-                        // }
-                        break;
-                    default:
-                        $modifiedData = array_map([$this, 'formatValueForApi'], $data['values']);
-                        $data['values'] = [['values' => $modifiedData]];
-
-                        break;
-                }
-
-                $serializedMutations[] = [$type => $data];
+                $serializedMutations[] = $this->serializeMutation($mutation);
             }
         }
 
         return $serializedMutations;
+    }
+
+    private function serializeMutation(array $mutation): array
+    {
+        $type = array_keys($mutation)[0];
+        $data = $mutation[$type];
+        switch ($type) {
+            case Operation::OP_DELETE:
+                // no-op
+                break;
+            default:
+                $modifiedData = array_map([$this, 'formatValueForApi'], $data['values']);
+                $data['values'] = [['values' => $modifiedData]];
+                break;
+        }
+
+        return [$type => $data];
     }
 
     /**
