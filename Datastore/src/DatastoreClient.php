@@ -29,6 +29,7 @@ use Google\Cloud\Datastore\Query\GqlQuery;
 use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Query\QueryInterface;
 use Google\Cloud\Datastore\V1\Client\DatastoreClient as GapicDatastoreClient;
+use InvalidArgumentException;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\Http\Message\StreamInterface;
 
@@ -186,6 +187,8 @@ class DatastoreClient
      *     @type bool $returnInt64AsObject If true, 64 bit integers will be
      *           returned as a {@see \Google\Cloud\Core\Int64} object for 32 bit
      *           platform compatibility. **Defaults to** false.
+     *     @type Google\Cloud\Datastore\V1\Client\DatastoreClient $datastoreClient A client that is of
+     *           type {@see \Google\Cloud\Datastore\V1\Client\DatastoreClient}
      * }
      * @throws \InvalidArgumentException
      */
@@ -206,7 +209,7 @@ class DatastoreClient
         ];
 
         $config = $this->configureAuthentication($config);
-        $this->gapicClient = new GapicDatastoreClient($config);
+        $this->gapicClient = $this->getGapicClient($config);
 
         // The second parameter here should change to a variable
         // when gRPC support is added for variable encoding.
@@ -1293,5 +1296,14 @@ class DatastoreClient
 
         // cast to string for conformance between REST and gRPC.
         return (string) $mutationResult['version'];
+    }
+
+    private function getGapicClient(array $config): GapicDatastoreClient
+    {
+        if (isset($config['datastoreClient']) && (!$config['datastoreClient'] instanceof GapicDatastoreClient)) {
+            throw new InvalidArgumentException('The client configuration option must be an instance of ' . GapicDatastoreClient::class);
+        }
+
+        return $config['datastoreClient'] ?? new GapicDatastoreClient($config);
     }
 }
