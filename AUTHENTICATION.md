@@ -94,6 +94,38 @@ $video = new VideoIntelligenceServiceClient([
 ]);
 ```
 
+#### Note:
+Some clients accept the `keyFilePath` and `keyFile` configuration options pointing to the credentials file:
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Storage\StorageClient;
+
+// Authenticate using a keyfile path
+$cloud = new StorageClient([
+    'keyFilePath' => 'path/to/keyfile.json'
+]);
+
+// Authenticate using keyfile data
+$cloud = new StorageClient([
+    'keyFile' => json_decode(file_get_contents('/path/to/keyfile.json'), true)
+]);
+```
+A list of clients that accept these parameters are:
+- [Bigtable](https://github.com/googleapis/google-cloud-php-bigtable)
+- [Spanner](https://github.com/googleapis/google-cloud-php-spanner)
+- [Firestore](https://github.com/googleapis/google-cloud-php-firestore)
+- [Datastore](https://github.com/googleapis/google-cloud-php-datastore)
+- [Pubsub](https://github.com/googleapis/google-cloud-php-pubsub)
+- [Logging](https://github.com/googleapis/google-cloud-php-logging)
+- [Translate](https://github.com/googleapis/google-cloud-php-translate)
+- [Bigquery](https://github.com/googleapis/google-cloud-php-bigquery)
+- [Storage](https://github.com/googleapis/google-cloud-php-storage)
+
+We recommend to visit the Check the [client documentation][php-ref-docs] for the client library you're using
+for more in depth information.
+
 ### Local ADC file
 
 This option allows for an easy way to authenticate in a local environment during development. If
