@@ -228,6 +228,21 @@ return [
                     ],
                 ],
             ],
+            'GetIamPolicy' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Iam\V1\Policy',
+                'headerParams' => [
+                    [
+                        'keyName' => 'bucket',
+                        'fieldAccessors' => [
+                            'getResource',
+                        ],
+                        'matchers' => [
+                            '/^(?<bucket>projects\/[^\/]+\/buckets\/[^\/]+)(?:\/.*)?$/',
+                        ],
+                    ],
+                ],
+            ],
             'GetManagedFolder' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Storage\Control\V2\ManagedFolder',
@@ -388,6 +403,37 @@ return [
                 ],
                 'autoPopulatedFields' => [
                     'requestId' => \Google\Api\FieldInfo\Format::UUID4,
+                ],
+            ],
+            'SetIamPolicy' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Iam\V1\Policy',
+                'headerParams' => [
+                    [
+                        'keyName' => 'bucket',
+                        'fieldAccessors' => [
+                            'getResource',
+                        ],
+                        'matchers' => [
+                            '/^(?<bucket>projects\/[^\/]+\/buckets\/[^\/]+)(?:\/.*)?$/',
+                        ],
+                    ],
+                ],
+            ],
+            'TestIamPermissions' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Iam\V1\TestIamPermissionsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'bucket',
+                        'fieldAccessors' => [
+                            'getResource',
+                        ],
+                        'matchers' => [
+                            '/^(?<bucket>projects\/[^\/]+\/buckets\/[^\/]+)\/objects(?:\/.*)?$/',
+                            '/^(?<bucket>projects\/[^\/]+\/buckets\/[^\/]+)\/managedFolders(?:\/.*)?$/',
+                        ],
+                    ],
                 ],
             ],
             'UpdateFolderIntelligenceConfig' => [

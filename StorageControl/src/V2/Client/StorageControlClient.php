@@ -34,6 +34,11 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Iam\V1\GetIamPolicyRequest;
+use Google\Cloud\Iam\V1\Policy;
+use Google\Cloud\Iam\V1\SetIamPolicyRequest;
+use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
+use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\Storage\Control\V2\AnywhereCache;
 use Google\Cloud\Storage\Control\V2\CreateAnywhereCacheRequest;
 use Google\Cloud\Storage\Control\V2\CreateFolderRequest;
@@ -87,6 +92,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<AnywhereCache> getAnywhereCacheAsync(GetAnywhereCacheRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Folder> getFolderAsync(GetFolderRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<IntelligenceConfig> getFolderIntelligenceConfigAsync(GetFolderIntelligenceConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ManagedFolder> getManagedFolderAsync(GetManagedFolderRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<IntelligenceConfig> getOrganizationIntelligenceConfigAsync(GetOrganizationIntelligenceConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<IntelligenceConfig> getProjectIntelligenceConfigAsync(GetProjectIntelligenceConfigRequest $request, array $optionalArgs = [])
@@ -97,6 +103,8 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<AnywhereCache> pauseAnywhereCacheAsync(PauseAnywhereCacheRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> renameFolderAsync(RenameFolderRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<AnywhereCache> resumeAnywhereCacheAsync(ResumeAnywhereCacheRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateAnywhereCacheAsync(UpdateAnywhereCacheRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<IntelligenceConfig> updateFolderIntelligenceConfigAsync(UpdateFolderIntelligenceConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<IntelligenceConfig> updateOrganizationIntelligenceConfigAsync(UpdateOrganizationIntelligenceConfigRequest $request, array $optionalArgs = [])
@@ -718,6 +726,36 @@ final class StorageControlClient
     }
 
     /**
+     * Gets the IAM policy for a specified bucket.
+     * The `resource` field in the request should be
+     * `projects/_/buckets/{bucket}` for a bucket, or
+     * `projects/_/buckets/{bucket}/managedFolders/{managedFolder}`
+     * for a managed folder.
+     *
+     * The async variant is {@see StorageControlClient::getIamPolicyAsync()} .
+     *
+     * @example samples/V2/StorageControlClient/get_iam_policy.php
+     *
+     * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Policy
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getIamPolicy(GetIamPolicyRequest $request, array $callOptions = []): Policy
+    {
+        return $this->startApiCall('GetIamPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
      * Returns metadata for the specified managed folder.
      *
      * The async variant is {@see StorageControlClient::getManagedFolderAsync()} .
@@ -985,6 +1023,70 @@ final class StorageControlClient
     public function resumeAnywhereCache(ResumeAnywhereCacheRequest $request, array $callOptions = []): AnywhereCache
     {
         return $this->startApiCall('ResumeAnywhereCache', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates an IAM policy for the specified bucket.
+     * The `resource` field in the request should be
+     * `projects/_/buckets/{bucket}` for a bucket, or
+     * `projects/_/buckets/{bucket}/managedFolders/{managedFolder}`
+     * for a managed folder.
+     *
+     * The async variant is {@see StorageControlClient::setIamPolicyAsync()} .
+     *
+     * @example samples/V2/StorageControlClient/set_iam_policy.php
+     *
+     * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Policy
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function setIamPolicy(SetIamPolicyRequest $request, array $callOptions = []): Policy
+    {
+        return $this->startApiCall('SetIamPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Tests a set of permissions on the given bucket, object, or managed folder
+     * to see which, if any, are held by the caller.
+     * The `resource` field in the request should be
+     * `projects/_/buckets/{bucket}` for a bucket,
+     * `projects/_/buckets/{bucket}/objects/{object}` for an object, or
+     * `projects/_/buckets/{bucket}/managedFolders/{managedFolder}`
+     * for a managed folder.
+     *
+     * The async variant is {@see StorageControlClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V2/StorageControlClient/test_iam_permissions.php
+     *
+     * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return TestIamPermissionsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
+        return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 
     /**
