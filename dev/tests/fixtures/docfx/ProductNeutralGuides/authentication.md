@@ -79,8 +79,6 @@ Each Google Cloud PHP client may be authenticated in code when creating a client
 Most clients use the `credentials` option for providing credentials as a constructor option:
 
 ```php
-require 'vendor/autoload.php';
-
 use Google\Cloud\VideoIntelligence\V1\VideoIntelligenceServiceClient;
 
 // Authenticating with keyfile data.
@@ -93,6 +91,36 @@ $video = new VideoIntelligenceServiceClient([
     'credentials' => '/path/to/credential-file.json'
 ]);
 ```
+
+#### Note:
+Some clients accept the `keyFilePath` and `keyFile` configuration options pointing to the credentials file:
+
+```php
+use Google\Cloud\Storage\StorageClient;
+
+// Authenticate using a keyfile path
+$cloud = new StorageClient([
+    'keyFilePath' => 'path/to/keyfile.json'
+]);
+
+// Authenticate using keyfile data
+$cloud = new StorageClient([
+    'keyFile' => json_decode(file_get_contents('/path/to/keyfile.json'), true)
+]);
+```
+A list of clients that accept these parameters are:
+- [Bigtable](https://github.com/googleapis/google-cloud-php-bigtable)
+- [Spanner](https://github.com/googleapis/google-cloud-php-spanner)
+- [Firestore](https://github.com/googleapis/google-cloud-php-firestore)
+- [Datastore](https://github.com/googleapis/google-cloud-php-datastore)
+- [Pubsub](https://github.com/googleapis/google-cloud-php-pubsub)
+- [Logging](https://github.com/googleapis/google-cloud-php-logging)
+- [Translate](https://github.com/googleapis/google-cloud-php-translate)
+- [Bigquery](https://github.com/googleapis/google-cloud-php-bigquery)
+- [Storage](https://github.com/googleapis/google-cloud-php-storage)
+
+We recommend to visit the Check the [client documentation][php-ref-docs] for the client library you're using
+for more in depth information.
 
 ### Local ADC file
 

@@ -79,8 +79,6 @@ Each Google Cloud PHP client may be authenticated in code when creating a client
 Most clients use the `credentials` option for providing credentials as a constructor option:
 
 ```php
-require 'vendor/autoload.php';
-
 use Google\Cloud\VideoIntelligence\V1\VideoIntelligenceServiceClient;
 
 // Authenticating with keyfile data.
@@ -98,8 +96,6 @@ $video = new VideoIntelligenceServiceClient([
 Some clients accept the `keyFilePath` and `keyFile` configuration options pointing to the credentials file:
 
 ```php
-require 'vendor/autoload.php';
-
 use Google\Cloud\Storage\StorageClient;
 
 // Authenticate using a keyfile path
