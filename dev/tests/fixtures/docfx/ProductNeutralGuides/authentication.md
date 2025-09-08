@@ -32,7 +32,7 @@ For more information, see
 ### Environment Variables
 
 **NOTE**: This library uses [`getenv`](https://www.php.net/manual/en/function.getenv.php), so if
-your environemnt variables are set in PHP, they must use
+your environment variables are set in PHP, they must use
 [`putenv`](https://www.php.net/manual/en/function.putenv.php),
 
 ```php
