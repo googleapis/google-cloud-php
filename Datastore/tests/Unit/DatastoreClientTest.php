@@ -86,15 +86,10 @@ class DatastoreClientTest extends TestCase
         }
 
         $this->gapicClient = $this->prophesize(GapicClient::class);
-
-        $this->client = TestHelpers::stub(DatastoreClient::class, [
-            [
-                'projectId' => self::PROJECT,
-                'databaseId' => self::DATABASE
-            ]
-        ], [
-            'operation',
-            'gapicClient'
+        $this->client = new DatastoreClient([
+            'projectId' => self::PROJECT,
+            'databaseId' => self::DATABASE,
+            'datastoreClient' => $this->gapicClient->reveal()
         ]);
     }
 
@@ -212,9 +207,6 @@ class DatastoreClientTest extends TestCase
             ->shouldBeCalled(1)
             ->willReturn($response);
 
-        // 4. Inject the new Operation object into our DatastoreClient stub
-        $this->client->___setProperty('operation', $this->getOperationMock());
-
         // 5. Call the method under test
         $responseKey = $this->client->allocateId($incompleteKey);
 
@@ -253,8 +245,6 @@ class DatastoreClientTest extends TestCase
 
         $this->gapicClient->allocateIds($request, [])->shouldBeCalled(1)->willReturn($response);
 
-        $this->client->___setProperty('operation', $this->getOperationMock());
-
         $responseKeys = $this->client->allocateIds($incompleteKeys);
 
         $this->assertCount(2, $responseKeys);
@@ -281,10 +271,8 @@ class DatastoreClientTest extends TestCase
         $expectedTransaction = new Transaction(
             $this->getOperationMock(),
             self::PROJECT,
-            $expectedId
+            base64_encode($expectedId)
         );
-
-        $this->client->___setProperty('operation', $this->getOperationMock());
 
         $response = $this->client->transaction();
         $this->assertInstanceOf(Transaction::class, $response);
@@ -298,7 +286,7 @@ class DatastoreClientTest extends TestCase
         $expectedTransaction = new ReadOnlyTransaction(
             $this->getOperationMock(),
             self::PROJECT,
-            $expectedId
+            base64_encode($expectedId)
         );
 
         $response = new BeginTransactionResponse();
@@ -311,8 +299,6 @@ class DatastoreClientTest extends TestCase
             return true;
         }), [])->shouldBeCalled(1)->willReturn($response);
 
-        $this->client->___setProperty('operation', $this->getOperationMock());
-
         $response = $this->client->readOnlyTransaction();
         $this->assertInstanceOf(ReadOnlyTransaction::class, $response);
         $this->assertEquals($expectedTransaction, $response);
@@ -324,7 +310,7 @@ class DatastoreClientTest extends TestCase
         $expectedTransaction = new Transaction(
             $this->getOperationMock(),
             self::PROJECT,
-            self::TRANSACTION,
+            base64_encode(self::TRANSACTION),
             $options
         );
 
@@ -343,8 +329,6 @@ class DatastoreClientTest extends TestCase
             $response
         );
 
-        $this->client->___setProperty('operation', $this->getOperationMock());
-
         $res = $this->client->transaction(['transactionOptions' => $options]);
         $this->assertInstanceOf(Transaction::class, $res);
         $this->assertEquals($expectedTransaction, $res);
@@ -358,7 +342,7 @@ class DatastoreClientTest extends TestCase
         $expectedTransaction = new ReadOnlyTransaction(
             $this->getOperationMock(),
             self::PROJECT,
-            self::TRANSACTION,
+            base64_encode(self::TRANSACTION),
             $options
         );
 
@@ -377,8 +361,6 @@ class DatastoreClientTest extends TestCase
         }), [])->shouldBeCalled(1)->willReturn(
             $response
         );
-
-        $this->client->___setProperty('operation', $this->getOperationMock());
 
         $res = $this->client->readOnlyTransaction(['transactionOptions' => $options]);
         $this->assertInstanceOf(ReadOnlyTransaction::class, $res);
@@ -404,8 +386,6 @@ class DatastoreClientTest extends TestCase
         ])->shouldBeCalledTimes(1)
             ->willReturn($commitResponse);
 
-        $this->client->___setProperty('operation', $this->getOperationMock());
-
         $this->client->insert($entity);
 
         // 2. Test Update
@@ -424,8 +404,6 @@ class DatastoreClientTest extends TestCase
         )->shouldBeCalledTimes(1)
             ->willReturn($commitResponse);
 
-        $this->client->___setProperty('operation', $this->getOperationMock());
-
         $this->client->update($updateEntity);
 
         // 3. Test Upsert
@@ -443,8 +421,6 @@ class DatastoreClientTest extends TestCase
         )->shouldBeCalledTimes(1)
             ->willReturn($commitResponse);
 
-        $this->client->___setProperty('operation', $this->getOperationMock());
-
         $this->client->upsert($upsertEntity);
 
         // 4. Test Delete
@@ -456,17 +432,11 @@ class DatastoreClientTest extends TestCase
             'databaseId' => self::DATABASE,
         ])->shouldBeCalledTimes(1)->willReturn($commitResponse);
 
-        $this->client->___setProperty('operation', $this->getOperationMock());
-
         $this->client->delete($key);
     }
 
     public function testDatastoreBatchCrudOperations()
     {
-        $this->client->___setProperty('gapicClient', $this->gapicClient->reveal());
-        $operation = $this->getOperationMock();
-        $this->client->___setProperty('operation', $operation);
-
         $key1 = $this->client->key('Person', 'jeff');
         $key2 = $this->client->key('Person', 'bob');
         $keys = [$key1, $key2];
@@ -545,8 +515,6 @@ class DatastoreClientTest extends TestCase
             ->shouldBeCalled(1)
             ->willReturn($commitResponse);
 
-        $this->client->___setProperty('operation', $this->getOperationMock());
-
         $this->client->insertBatch($incompleteEntities);
     }
 
@@ -573,8 +541,6 @@ class DatastoreClientTest extends TestCase
             ->shouldBeCalled(1)
             ->willReturn($commitResponse);
 
-        $this->client->___setProperty('operation', $this->getOperationMock());
-
         $this->client->upsertBatch($incompleteEntities);
     }
 
@@ -588,8 +554,6 @@ class DatastoreClientTest extends TestCase
         $this->gapicClient->commit(Argument::type(CommitRequest::class), Argument::any())
             ->shouldBeCalled(1)
             ->willReturn($commitResponse);
-
-        $this->client->___setProperty('operation', $this->getOperationMock());
 
         $entity = $this->client->entity($this->client->key('test', 'test'), ['name' => 'John']);
         $this->client->insert($entity);
@@ -612,8 +576,6 @@ class DatastoreClientTest extends TestCase
         $this->gapicClient->lookup(Argument::type(LookupRequest::class), Argument::any())
             ->shouldBeCalled(1)
             ->willReturn($response);
-
-        $this->client->___setProperty('operation', $this->getOperationMock());
 
         $key = $this->client->key('Person', 'John');
         $res = $this->client->lookup($key);
@@ -638,8 +600,6 @@ class DatastoreClientTest extends TestCase
         $this->gapicClient->lookup(Argument::type(LookupRequest::class), Argument::any())
             ->shouldBeCalled(1)
             ->willReturn($response);
-
-        $this->client->___setProperty('operation', $this->getOperationMock());
 
         $key = $this->client->key('Person', 'John');
         $res = $this->client->lookup($key);
@@ -673,8 +633,6 @@ class DatastoreClientTest extends TestCase
             ->shouldBeCalled(1)
             ->willReturn($response);
 
-        $this->client->___setProperty('operation', $this->getOperationMock());
-
         $key = $this->client->key('Person', 'John');
         $res = $this->client->lookupBatch([$key]);
 
@@ -707,8 +665,6 @@ class DatastoreClientTest extends TestCase
             ->shouldBeCalled(1)
             ->willReturn($response);
 
-        $this->client->___setProperty('operation', $this->getOperationMock());
-
         $res = $this->client->lookupBatch([$key], ['readTime' => $time]);
         $this->assertInstanceOf(Entity::class, $res['found'][0]);
     }
@@ -736,8 +692,6 @@ class DatastoreClientTest extends TestCase
         }), Argument::any())
             ->shouldBeCalled(1)
             ->willReturn($response);
-
-        $this->client->___setProperty('operation', $this->getOperationMock());
 
         $res = $this->client->lookup($key, ['readTime' => $time]);
         $this->assertInstanceOf(Entity::class, $res);
@@ -779,8 +733,6 @@ class DatastoreClientTest extends TestCase
             ->shouldBeCalled(1)
             ->willReturn($response);
 
-        $this->client->___setProperty('operation', $this->getOperationMock());
-
         $query = $this->prophesize(QueryInterface::class);
         $query->queryKey()->willReturn('gqlQuery');
         $query->queryObject()->willReturn(['queryString' => 'SELECT 1=1']);
@@ -814,8 +766,6 @@ class DatastoreClientTest extends TestCase
         $this->gapicClient->runAggregationQuery(Argument::type(RunAggregationQueryRequest::class), Argument::any())
             ->shouldBeCalled(1)
             ->willReturn($response);
-
-        $this->client->___setProperty('operation', $this->getOperationMock());
 
         $query = $this->prophesize(AggregationQuery::class);
         $query->queryObject()->willReturn([
@@ -851,8 +801,6 @@ class DatastoreClientTest extends TestCase
             ->shouldBeCalled(1)
             ->willReturn($response);
 
-        $this->client->___setProperty('operation', $this->getOperationMock());
-
         $query = $this->prophesize(AggregationQuery::class);
         $query->queryObject()->willReturn([
             'gqlQuery' => [
@@ -887,8 +835,6 @@ class DatastoreClientTest extends TestCase
             ->shouldBeCalled(1)
             ->willReturn($response);
 
-        $this->client->___setProperty('operation', $this->getOperationMock());
-
         $query = $this->prophesize(QueryInterface::class);
         $query->queryKey()->willReturn('gqlQuery');
         $query->queryObject()->willReturn(['queryString' => 'SELECT 1=1']);
@@ -919,8 +865,6 @@ class DatastoreClientTest extends TestCase
         $this->gapicClient->runQuery(Argument::type(RunQueryRequest::class), Argument::any())
             ->shouldBeCalled(1)
             ->willReturn($response);
-
-        $this->client->___setProperty('operation', $this->getOperationMock());
 
         $query = $this->prophesize(QueryInterface::class);
         $query->queryKey()->willReturn('gqlQuery');
@@ -1058,5 +1002,19 @@ class DatastoreClientTest extends TestCase
             $v1IncompleteKeys,
             $v1CompleteKeys
         ];
+    }
+
+    private function getClient(null|GapicClient $client): DatastoreClient
+    {
+        $config = [
+            'databaseId' => self::DATABASE,
+            'projectId' => self::PROJECT
+        ];
+
+        if (!is_null($client)) {
+            $config['client'] = $client;
+        }
+
+        return new DatastoreClient($config);
     }
 }

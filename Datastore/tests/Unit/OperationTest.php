@@ -75,7 +75,7 @@ class OperationTest extends TestCase
         $this->operation = TestHelpers::stub(Operation::class, [
             $this->gapicClient->reveal(),
             self::PROJECT,
-            null,
+            self::NAMESPACEID,
             new EntityMapper('foo', true, false),
             self::DATABASEID,
         ], ['gapicClient', 'namespaceId']);
@@ -109,7 +109,6 @@ class OperationTest extends TestCase
 
     public function testKeyWithNamespaceIdOverride()
     {
-        $this->operation->___setProperty('namespaceId', self::NAMESPACEID);
         $key = $this->operation->key('Person', 'Bob', [
             'namespaceId' => 'otherNamespace',
         ]);
@@ -259,8 +258,6 @@ class OperationTest extends TestCase
             ->shouldBeCalled()
             ->willReturn(self::generateProto(AllocateIdsResponse::class, $responseData));
 
-        $this->operation->___setProperty('gapicClient', $this->gapicClient->reveal());
-
         $res = $this->operation->allocateIds([$key]);
 
         $this->assertEquals($res[0]->state(), Key::STATE_NAMED);
@@ -284,8 +281,6 @@ class OperationTest extends TestCase
             ->shouldBeCalled()
             ->willReturn(new LookupResponse());
 
-        $this->operation->___setProperty('gapicClient', $this->gapicClient->reveal());
-
         $res = $this->operation->lookup([$key]);
 
         $this->assertIsArray($res);
@@ -300,8 +295,6 @@ class OperationTest extends TestCase
         ];
 
         $this->gapicClient->lookup(Argument::any(), Argument::any())->willReturn(self::generateProto(LookupResponse::class, $responseData));
-
-        $this->operation->___setProperty('gapicClient', $this->gapicClient->reveal());
 
         $key = $this->operation->key('Kind', 'ID');
         $res = $this->operation->lookup([$key]);
@@ -323,8 +316,6 @@ class OperationTest extends TestCase
             self::generateProto(LookupResponse::class, ['missing' => $body])
         );
 
-        $this->operation->___setProperty('gapicClient', $this->gapicClient->reveal());
-
         $key = $this->operation->key('Kind', 'ID');
 
         $res = $this->operation->lookup([$key]);
@@ -343,8 +334,6 @@ class OperationTest extends TestCase
             'deferred' => [$body[0]['entity']['key']],
         ]));
 
-        $this->operation->___setProperty('gapicClient', $this->gapicClient->reveal());
-
         $key = $this->operation->key('Kind', 'ID');
 
         $res = $this->operation->lookup([$key]);
@@ -359,8 +348,6 @@ class OperationTest extends TestCase
         $this->gapicClient->lookup(Argument::type(LookupRequest::class), Argument::any())
             ->shouldBeCalled()
             ->willReturn(self::generateProto(LookupResponse::class, []));
-
-        $this->operation->___setProperty('gapicClient', $this->gapicClient->reveal());
 
         $k = new Key('test-project', [
             'path' => [['kind' => 'kind', 'id' => '123']],
@@ -377,8 +364,6 @@ class OperationTest extends TestCase
             ->shouldBeCalled()
             ->willReturn(self::generateProto(LookupResponse::class, []));
 
-        $this->operation->___setProperty('gapicClient', $this->gapicClient->reveal());
-
         $k = new Key('test-project', [
             'path' => [['kind' => 'kind', 'id' => '123']],
         ]);
@@ -391,8 +376,6 @@ class OperationTest extends TestCase
         $this->gapicClient->lookup(Argument::that(function (LookupRequest $request) {
             return is_null($request->getReadOptions());
         }), Argument::any())->shouldBeCalled()->willReturn(self::generateProto(LookupResponse::class, []));
-
-        $this->operation->___setProperty('gapicClient', $this->gapicClient->reveal());
 
         $k = new Key('test-project', [
             'path' => [['kind' => 'kind', 'id' => '123']],
@@ -416,8 +399,6 @@ class OperationTest extends TestCase
             ->willReturn(self::generateProto(LookupResponse::class, [
                 'found' => $data['entities'],
             ]));
-
-        $this->operation->___setProperty('gapicClient', $this->gapicClient->reveal());
 
         $res = $this->operation->lookup($keys, [
             'sort' => true,
@@ -446,8 +427,6 @@ class OperationTest extends TestCase
                 'found' => $data['entities'],
                 'missing' => $data['missing'],
             ]));
-
-        $this->operation->___setProperty('gapicClient', $this->gapicClient->reveal());
 
         $res = $this->operation->lookup($keys);
 
@@ -478,8 +457,6 @@ class OperationTest extends TestCase
             ->willReturn(self::generateProto(LookupResponse::class, [
                 'found' => $data['entities'],
             ]));
-
-        $this->operation->___setProperty('gapicClient', $this->gapicClient->reveal());
 
         $res = $this->operation->lookup($keys, [
             'sort' => true,
@@ -513,8 +490,6 @@ class OperationTest extends TestCase
         $queryResult = json_decode(file_get_contents(Fixtures::QUERY_RESULTS_FIXTURE()), true);
         $this->gapicClient->runQuery(Argument::type(RunQueryRequest::class), Argument::any())
             ->willReturn(self::generateProto(RunQueryResponse::class, $queryResult['notPaged']));
-
-        $this->operation->___setProperty('gapicClient', $this->gapicClient->reveal());
 
         $q = $this->prophesize(QueryInterface::class);
         $q->queryKey()->shouldBeCalled()->willReturn('query');
@@ -575,8 +550,6 @@ class OperationTest extends TestCase
         $this->gapicClient->runQuery(Argument::type(RunQueryRequest::class), Argument::any())
             ->willReturn(self::generateProto(RunQueryResponse::class, $queryResult['noResults']));
 
-        $this->operation->___setProperty('gapicClient', $this->gapicClient->reveal());
-
         $q = $this->prophesize(QueryInterface::class);
         $q->queryKey()->shouldBeCalled()->willReturn('query');
         $q->queryObject()->shouldBeCalled()->willReturn([]);
@@ -598,8 +571,6 @@ class OperationTest extends TestCase
             ->shouldBeCalled()
             ->willReturn(self::generateProto(RunQueryResponse::class, []));
 
-        $this->operation->___setProperty('gapicClient', $this->gapicClient->reveal());
-
         $q = $this->prophesize(QueryInterface::class);
         $q->queryKey()->willReturn('query');
         $q->queryObject()->willReturn([]);
@@ -616,8 +587,6 @@ class OperationTest extends TestCase
             ->shouldBeCalled()
             ->willReturn(self::generateProto(RunQueryResponse::class, []));
 
-        $this->operation->___setProperty('gapicClient', $this->gapicClient->reveal());
-
         $q = $this->prophesize(QueryInterface::class);
         $q->queryKey()->willReturn('query');
         $q->queryObject()->willReturn([]);
@@ -633,8 +602,6 @@ class OperationTest extends TestCase
         }), Argument::any())->willReturn(self::generateProto(RunQueryResponse::class, []))
             ->shouldBeCalled()
             ->willReturn(self::generateProto(RunQueryResponse::class, []));
-
-        $this->operation->___setProperty('gapicClient', $this->gapicClient->reveal());
 
         $q = $this->prophesize(QueryInterface::class);
         $q->queryKey()->willReturn('query');
@@ -671,8 +638,6 @@ class OperationTest extends TestCase
         }), Argument::any())->shouldBeCalled()
             ->willReturn(self::generateProto(CommitResponse::class, []));
 
-        $this->operation->___setProperty('gapicClient', $this->gapicClient->reveal());
-
         $expectedResult = [
             'mutationResults' => [],
             'indexUpdates' => 0
@@ -688,8 +653,6 @@ class OperationTest extends TestCase
                 count($request->getMutations()) === 0);
         }), Argument::any())->shouldBeCalled()
             ->willReturn(self::generateProto(CommitResponse::class, []));
-
-        $this->operation->___setProperty('gapicClient', $this->gapicClient->reveal());
 
         $response = $this->operation->commit([], [
             'transaction' => '1234',
@@ -730,8 +693,6 @@ class OperationTest extends TestCase
             ->shouldBeCalled()
             ->willReturn(self::generateProto(CommitResponse::class, $commitResponseData));
 
-        $this->operation->___setProperty('gapicClient', $this->gapicClient->reveal());
-
         $res = $this->operation->commit([$mutation]);
 
         $this->assertIsArray($res);
@@ -749,8 +710,6 @@ class OperationTest extends TestCase
             ->shouldBeCalledTimes(1)
             ->willReturn(self::generateProto(CommitResponse::class, []));
 
-        $this->operation->___setProperty('gapicClient', $this->gapicClient->reveal());
-
         $iterator = $this->operation->commit(
             [],
             ['databaseId' => 'otherDatabaseId']
@@ -759,14 +718,15 @@ class OperationTest extends TestCase
 
     public function testRollback()
     {
-        $this->gapicClient->rollback(Argument::that(function (RollbackRequest $request) {
+        $rawTransactionId = 'testTransactionId';
+        $decodedId = base64_decode($rawTransactionId);
+
+        $this->gapicClient->rollback(Argument::that(function (RollbackRequest $request) use ($decodedId) {
             return $request->getProjectId() === self::PROJECT &&
-                $request->getTransaction() === 'bar';
+                $request->getTransaction() === $decodedId;
         }), Argument::any())->shouldBeCalled()->willReturn(self::generateProto(RollbackResponse::class, []));
 
-        $this->operation->___setProperty('gapicClient', $this->gapicClient->reveal());
-
-        $this->operation->rollback('bar');
+        $this->operation->rollback($rawTransactionId);
     }
 
     public function testAllocateIdsToEntities()
@@ -786,8 +746,6 @@ class OperationTest extends TestCase
                     $keyWithId->keyObject(),
                 ],
             ]));
-
-        $this->operation->___setProperty('gapicClient', $this->gapicClient->reveal());
 
         $entities = [
             $this->operation->entity($completeKey),
@@ -831,8 +789,6 @@ class OperationTest extends TestCase
             ->shouldBeCalled()
             ->willReturn(self::generateProto(CommitResponse::class, $commitResponseData));
 
-        $this->operation->___setProperty('gapicClient', $this->gapicClient->reveal());
-
         $key = $this->operation->key('Person', $id);
         $e = new Entity($key);
 
@@ -863,8 +819,6 @@ class OperationTest extends TestCase
         $this->gapicClient->commit(Argument::that(function (CommitRequest $request) {
             return $request->getMutations()[0]->getBaseVersion() === 1;
         }), Argument::any())->willReturn(self::generateProto(CommitResponse::class, $commitResponseData));
-
-        $this->operation->___setProperty('gapicClient', $this->gapicClient->reveal());
 
         $key = $this->operation->key('Person', 'Bob');
         $e = new Entity($key, [], [
@@ -913,8 +867,6 @@ class OperationTest extends TestCase
 
             return true;
         }), Argument::any())->willReturn(self::generateProto(CommitResponse::class, $commitResponseData));
-
-        $this->operation->___setProperty('gapicClient', $this->gapicClient->reveal());
 
         $key = new Key('foo', [
             'path' => [['kind' => 'foo', 'id' => 1]],
@@ -977,8 +929,6 @@ class OperationTest extends TestCase
                 'found' => $res,
             ]));
 
-        $this->operation->___setProperty('gapicClient', $this->gapicClient->reveal());
-
         $key = $this->operation->key('Person', 12345);
 
         $entity = $this->operation->lookup([$key]);
@@ -992,14 +942,11 @@ class OperationTest extends TestCase
     public function testMapEntityResultFromQuery()
     {
         $res = json_decode(file_get_contents(Fixtures::ENTITY_RESULT_FIXTURE()), true);
-        $res[0]['cursor'] = base64_encode($res[0]['cursor']);
 
         $this->gapicClient->runQuery(Argument::type(RunQueryRequest::class), Argument::any())
             ->willReturn(self::generateProto(RunQueryResponse::class, [
                 'batch' => ['entityResults' => $res]
             ]));
-
-        $this->operation->___setProperty('gapicClient', $this->gapicClient->reveal());
 
         $query = $this->prophesize(QueryInterface::class);
         $query->queryKey()->willReturn('query');
@@ -1009,7 +956,7 @@ class OperationTest extends TestCase
         $entities = iterator_to_array($this->operation->runQuery($query->reveal()));
 
         $this->assertEquals($entities[0]->baseVersion(), $res[0]['version']);
-        $this->assertEquals(base64_decode($res[0]['cursor']), $entities[0]->cursor());
+        $this->assertEquals($res[0]['cursor'], $entities[0]->cursor());
         $this->assertEquals($entities[0]->prop, $res[0]['entity']['properties']['prop']['stringValue']);
     }
 
@@ -1023,8 +970,6 @@ class OperationTest extends TestCase
             ->willReturn(self::generateProto(LookupResponse::class, [
                 'found' => $res,
             ]));
-
-        $this->operation->___setProperty('gapicClient', $this->gapicClient->reveal());
 
         $key = $this->operation->key('Person', 12345);
 
@@ -1043,8 +988,6 @@ class OperationTest extends TestCase
             ->willReturn(self::generateProto(LookupResponse::class, [
                 'found' => $res,
             ]));
-
-        $this->operation->___setProperty('gapicClient', $this->gapicClient->reveal());
 
         $key = $this->operation->key('Person', 12345);
 
@@ -1068,8 +1011,6 @@ class OperationTest extends TestCase
                 'found' => $res,
             ]));
 
-        $this->operation->___setProperty('gapicClient', $this->gapicClient->reveal());
-
         $key = $this->operation->key('Person', 12345);
 
         $entity = $this->operation->lookup([$key], [
@@ -1087,8 +1028,6 @@ class OperationTest extends TestCase
             ->willReturn(self::generateProto(LookupResponse::class, []))
             ->shouldBeCalled();
 
-        $this->operation->___setProperty('gapicClient', $this->gapicClient->reveal());
-
         $key = $this->operation->key('Person', 12345);
         $this->operation->lookup([$key], [
             'transaction' => '1234',
@@ -1103,8 +1042,6 @@ class OperationTest extends TestCase
             ->willReturn(self::generateProto(LookupResponse::class, []))
             ->shouldBeCalled();
 
-        $this->operation->___setProperty('gapicClient', $this->gapicClient->reveal());
-
         $key = $this->operation->key('Person', 12345);
         $this->operation->lookup([$key]);
     }
@@ -1115,8 +1052,6 @@ class OperationTest extends TestCase
             return $request->getReadOptions()->getReadConsistency() === ReadConsistency::STRONG;
         }), Argument::any())->shouldBeCalled()
             ->willReturn(self::generateProto(LookupResponse::class, []));
-
-        $this->operation->___setProperty('gapicClient', $this->gapicClient->reveal());
 
         $key = $this->operation->key('Person', 12345);
         $this->operation->lookup([$key], [
@@ -1133,6 +1068,8 @@ class OperationTest extends TestCase
 
     public function testBeginTransactionWithDatabaseIdOverride()
     {
+        $rawTransactionId = 'valid_test_transaction';
+
         $this->gapicClient
             ->beginTransaction(
                 Argument::that(function (BeginTransactionRequest $request) {
@@ -1140,14 +1077,14 @@ class OperationTest extends TestCase
                 }),
                 Argument::any()
             )
-            ->willReturn(self::generateProto(BeginTransactionResponse::class, ['transaction' => base64_encode('valid_test_transaction')]));
+            ->willReturn(self::generateProto(BeginTransactionResponse::class, ['transaction' => base64_encode($rawTransactionId)]));
 
         $transactionId = $this->operation->beginTransaction(
             [],
             ['databaseId' => 'otherDatabaseId']
         );
 
-        $this->assertEquals('valid_test_transaction', $transactionId);
+        $this->assertEquals(base64_encode($rawTransactionId), $transactionId);
     }
 
     public function testAllocateIdsWithDatabaseIdOverride()
