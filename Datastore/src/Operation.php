@@ -793,7 +793,6 @@ class Operation
     public function rollback($transactionId)
     {
         $rollbackRequest = new RollbackRequest();
-        $rollbackRequest->setTransaction($transactionId);
         $rollbackRequest->setProjectId($this->projectId);
         $rollbackRequest->setDatabaseId($this->databaseId);
         $rollbackRequest->setTransaction(base64_decode($transactionId));
