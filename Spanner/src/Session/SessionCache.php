@@ -44,7 +44,6 @@ class SessionCache
 
     private string $cacheKey;
     private LockInterface $lock;
-    private MultiplexedSessionPrecommitToken $precommitToken;
 
     /**
      */
