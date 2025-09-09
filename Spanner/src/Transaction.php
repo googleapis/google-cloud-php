@@ -417,6 +417,8 @@ class Transaction implements TransactionalReadInterface
 
         // set mutations, transactionId, and precommit token in the request
         $options['mutations'] = ($options['mutations'] ?? []) + $this->getMutations();
+
+        // Set the latest received precommit token from the last request from within this transaction.
         if ($this->precommitToken) {
             $options['precommitToken'] = $this->precommitToken;
         }
@@ -436,8 +438,7 @@ class Transaction implements TransactionalReadInterface
             ]);
             // generate mutation key
             if (!empty($options['mutations'])) {
-                $mutation = $options['mutations'][rand(0, count($options['mutations']) - 1)];
-                // (new Serializer())->decodeMessage(new Mutation(), $mutation);
+                $mutation = $options['mutations'][mt_rand(0, count($options['mutations']) - 1)];
                 $operationTransactionOptions['mutationKey'] = $mutation;
             }
             // Execute the beginTransaction RPC.
@@ -469,9 +470,10 @@ class Transaction implements TransactionalReadInterface
             $options
         );
 
-        // Update the precommitToken and commitStats
+        // Update commitStats
         $this->commitStats = $response->getCommitStats();
-        $this->precommitToken = $response->getPrecommitToken();
+        // Unset the precommitToken, as this transaction has finished.
+        $this->precommitToken = null;
 
         // Return the commit timestamp as a Core Timestamp
         $timestamp = $response->getCommitTimestamp();

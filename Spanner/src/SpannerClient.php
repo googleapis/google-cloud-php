@@ -18,11 +18,9 @@
 namespace Google\Cloud\Spanner;
 
 use Google\ApiCore\ClientOptionsTrait;
-use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Middleware\MiddlewareInterface;
 use Google\ApiCore\Options\CallOptions;
 use Google\ApiCore\ValidationException;
-use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Core\DetectProjectIdTrait;
 use Google\Cloud\Core\EmulatorTrait;
 use Google\Cloud\Core\Exception\GoogleException;

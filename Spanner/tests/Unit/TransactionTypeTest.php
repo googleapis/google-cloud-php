@@ -34,6 +34,7 @@ use Google\Cloud\Spanner\V1\BeginTransactionRequest;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Google\Cloud\Spanner\V1\CommitRequest;
 use Google\Cloud\Spanner\V1\CommitResponse;
+use Google\Cloud\Spanner\V1\CreateSessionRequest;
 use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
 use Google\Cloud\Spanner\V1\PartialResultSet;
 use Google\Cloud\Spanner\V1\ReadRequest;
@@ -73,6 +74,7 @@ class TransactionTypeTest extends TestCase
     private $timestamp;
     private $protoTimestamp;
     private $database;
+    private $cacheItemPool;
 
     public function setUp(): void
     {
@@ -97,8 +99,8 @@ class TransactionTypeTest extends TestCase
         ]))->serializeToString());
 
         $cacheKey = sprintf('cache-session-pool.%s.%s.%s.%s', self::PROJECT, self::INSTANCE, self::DATABASE, '');
-        $cacheItemPool = $this->prophesize(CacheItemPoolInterface::class);
-        $cacheItemPool->getItem($cacheKey)
+        $this->cacheItemPool = $this->prophesize(CacheItemPoolInterface::class);
+        $this->cacheItemPool->getItem($cacheKey)
             ->willReturn($cacheItem->reveal());
 
         $this->database = new Database(
@@ -108,7 +110,7 @@ class TransactionTypeTest extends TestCase
             $instance->reveal(),
             self::PROJECT,
             self::DATABASE,
-            ['cacheItemPool' => $cacheItemPool->reveal()]
+            ['cacheItemPool' => $this->cacheItemPool->reveal()]
         );
     }
 
@@ -794,7 +796,8 @@ class TransactionTypeTest extends TestCase
             $serializer ?: new Serializer(),
             $instance->reveal(),
             self::PROJECT,
-            self::DATABASE
+            self::DATABASE,
+            ['cacheItemPool' => $this->cacheItemPool->reveal()]
         );
     }
 

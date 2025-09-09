@@ -47,7 +47,6 @@ use Google\Cloud\Spanner\Admin\Database\V1\RestoreDatabaseRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseDdlRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseRequest;
 use Google\Cloud\Spanner\Session\SessionCache;
-use Google\Cloud\Spanner\V1\BatchCreateSessionsRequest;
 use Google\Cloud\Spanner\V1\BatchWriteRequest;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Google\Cloud\Spanner\V1\CreateSessionRequest;
@@ -2074,7 +2073,7 @@ class Database
      *
      * @access private
      * @param array $options [optional] Configuration options.
-     * @return SessionCache
+     * @return Session
      */
     public function createSession(array $options = []): Session
     {
@@ -2087,13 +2086,11 @@ class Database
         $session->setMultiplexed(true)
             ->setCreatorRole($this->databaseRole);
 
-        $createSession = [
-            'database' => $this->name,
-            'session' => $session,
-        ];
+        $createSessionRequest = (new CreateSessionRequest())
+            ->setDatabase($this->name)
+            ->setSession($session);
 
-        $request = $this->serializer->decodeMessage(new CreateSessionRequest(), $createSession);
-        return $this->spannerClient->createSession($request, $callOptions + [
+        return $this->spannerClient->createSession($createSessionRequest, $callOptions + [
             'resource-prefix' => $this->name,
             'route-to-leader' => $this->routeToLeader
         ]);
@@ -2116,27 +2113,6 @@ class Database
             'database' => end($databaseParts),
             'instance' => end($instanceParts),
         ];
-    }
-
-    /**
-     * Creates a batch of sessions.
-     *
-     * @param array $options {
-     *     @type array $sessionTemplate
-     *     @type int $sessionCount
-     * }
-     */
-    public function batchCreateSessions(array $options): array
-    {
-        [$data, $callOptions] = $this->splitOptionalArgs($options);
-        $data['database'] = $this->name;
-
-        $request = $this->serializer->decodeMessage(new BatchCreateSessionsRequest(), $data);
-        $response = $this->spannerClient->batchCreateSessions($request, $callOptions + [
-            'resource-prefix' => $this->name,
-            'route-to-leader' => $this->routeToLeader
-        ]);
-        return $this->handleResponse($response);
     }
 
     /**

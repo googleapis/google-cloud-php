@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Spanner\Tests\Unit;
 
+use Google\ApiCore\ApiException;
 use Google\ApiCore\ServerStream;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
@@ -35,9 +36,11 @@ use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\V1\BeginTransactionRequest;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
+use Google\Cloud\Spanner\V1\CommitRequest;
 use Google\Cloud\Spanner\V1\CommitResponse;
 use Google\Cloud\Spanner\V1\CommitResponse\CommitStats;
 use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
+use Google\Cloud\Spanner\V1\MultiplexedSessionPrecommitToken;
 use Google\Cloud\Spanner\V1\PartialResultSet;
 use Google\Cloud\Spanner\V1\Partition;
 use Google\Cloud\Spanner\V1\PartitionResponse;
@@ -565,6 +568,51 @@ class OperationTest extends TestCase
         $this->assertCount(2, $res);
         $this->assertEquals($partitionToken1, $res[0]->token());
         $this->assertEquals($partitionToken2, $res[1]->token());
+    }
+
+    public function testCommitWithPrecommitTokenOnRetry()
+    {
+        $failureResponse = (new CommitResponse())
+            ->setPrecommitToken(new MultiplexedSessionPrecommitToken([
+                'precommit_token' => '123',
+            ]));
+        $this->spannerClient->commit(
+            Argument::type(CommitRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledTimes(2)
+            ->willReturn(
+                $failureResponse,
+                $this->commitResponse()
+            );
+
+        $mutation = $this->operation->mutation(Operation::OP_INSERT, 'Posts', ['foo' => 'bar']);
+        $response = $this->operation->commit($this->session, [$mutation]);
+        $this->assertInstanceOf(CommitResponse::class, $response);
+    }
+
+    public function testCommitWithPrecommitTokenOnRetryOnlyRetriesOnce()
+    {
+        $this->expectException(ApiException::class);
+        $this->expectExceptionMessage('Commit has not submitted');
+
+        $failureResponse = (new CommitResponse())
+            ->setPrecommitToken(new MultiplexedSessionPrecommitToken([
+                'precommit_token' => '123',
+            ]));
+        $this->spannerClient->commit(
+            Argument::type(CommitRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledTimes(2)
+            ->willReturn(
+                $failureResponse,
+                $failureResponse,
+            );
+
+        $mutation = $this->operation->mutation(Operation::OP_INSERT, 'Posts', ['foo' => 'bar']);
+        $response = $this->operation->commit($this->session, [$mutation]);
+        $this->assertInstanceOf(CommitResponse::class, $response);
     }
 
     private function executeAndReadResponseStream(?string $transactionId = null)

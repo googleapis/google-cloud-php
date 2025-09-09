@@ -17,7 +17,9 @@
 
 namespace Google\Cloud\Spanner;
 
+use Google\ApiCore\ApiException;
 use Google\ApiCore\Options\CallOptions;
+use Google\ApiCore\ServerStream;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\RequestProcessorTrait;
 use Google\Cloud\Spanner\Batch\QueryPartition;
@@ -29,6 +31,7 @@ use Google\Cloud\Spanner\V1\CommitRequest;
 use Google\Cloud\Spanner\V1\CommitResponse;
 use Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest;
 use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
+use Google\Cloud\Spanner\V1\PartialResultSet;
 use Google\Cloud\Spanner\V1\PartitionOptions;
 use Google\Cloud\Spanner\V1\PartitionQueryRequest;
 use Google\Cloud\Spanner\V1\PartitionReadRequest;
@@ -40,9 +43,8 @@ use Google\Cloud\Spanner\V1\TransactionOptions\ReadWrite;
 use Google\Cloud\Spanner\V1\Transaction as TransactionProto;
 use Google\Cloud\Spanner\V1\Type;
 use Google\Cloud\Spanner\V1\TransactionSelector;
-use Google\Protobuf\Duration;
 use Google\Rpc\Code;
-use GPBMetadata\Google\Protobuf\Struct;
+use GPBMetadata\Google\Spanner\V1\ResultSet;
 use InvalidArgumentException;
 
 /**
@@ -150,6 +152,11 @@ class Operation
             );
         }
 
+        /**
+         * Retry once if a precommit token exists in the response
+         */
+        $retryAttempt = 0;
+        $maxRetries = 1;
         do {
             $precommitToken = null;
             $response = $this->spannerClient->commit($commitRequest, $callOptions + [
@@ -157,9 +164,13 @@ class Operation
                 'route-to-leader' => $this->routeToLeader
             ]);
             if ($precommitToken = $response->getPrecommitToken()) {
-                $request->setPrecommitToken($precommitToken);
+                $commitRequest->setPrecommitToken($precommitToken);
             }
-        } while ($precommitToken); // if a precommit token exists in the response, retry the request
+        } while ($precommitToken && $retryAttempt++ < $maxRetries);
+
+        if ($response->hasPrecommitToken()) {
+            throw new ApiException('Commit has not submitted', Code::INTERNAL);
+        }
 
         return $response;
     }
@@ -252,7 +263,6 @@ class Operation
         // transaction will be passed to this callable by the Result class.
         $call = function ($resumeToken = null, $transaction = null) use (
             $session,
-            $sql,
             $executeSqlRequest,
             $callOptions
         ) {
@@ -263,8 +273,15 @@ class Operation
                 $executeSqlRequest->setResumeToken($resumeToken);
             }
 
-            $databaseName = $this->getDatabaseNameFromSession($session);
-            return $this->executeStreamingSql($databaseName, $executeSqlRequest, $callOptions);
+            if (!$this->routeToLeader) {
+                unset($callOptions['route-to-leader']);
+            }
+
+            $stream = $this->spannerClient->executeStreamingSql($executeSqlRequest, $callOptions + [
+                'resource-prefix' => $this->getDatabaseNameFromSession($session),
+            ]);
+
+            return $this->handleResultSetStream($stream, $transaction);
         };
         return new Result($this, $session, $call, $miscOptions['transactionContext'] ?? null, $this->mapper);
     }
@@ -385,6 +402,7 @@ class Operation
             'route-to-leader' => $this->routeToLeader
         ]);
         if ($precommitToken = $response->getPrecommitToken()) {
+            // Set the precommitToken from {@see ExecuteBatchDmlResponse::getPrecommitToken}
             $transaction->setPrecommitToken($precommitToken);
         }
         $res = $this->handleResponse($response);
@@ -472,12 +490,16 @@ class Operation
                 ->setSession($session->name())
                 ->setColumns($columns);
 
+            if (!$this->routeToLeader) {
+                unset($callOptions['route-to-leader']);
+            }
+
+            $stream = $this->spannerClient->streamingRead($readRequest, $callOptions + [
+                'resource-prefix' => $this->getDatabaseNameFromSession($session),
+            ]);
+
             // return the generator
-            return $this->streamingRead(
-                $this->getDatabaseNameFromSession($session),
-                $readRequest,
-                $callOptions
-            );
+            return $this->handleResultSetStream($stream, $transaction);
         };
 
         return new Result($this, $session, $call, $context['transactionContext'] ?? null, $this->mapper);
@@ -513,9 +535,7 @@ class Operation
      */
     public function transaction(SessionCache $session, array $options = []): Transaction
     {
-        if (isset($options['mutationKey'])) {
-            $options['mutationKey'] = $this->serializeMutation($options['mutationKey']);
-        }
+        $options['mutationKey'] = $this->serializeMutation($options['mutationKey'] ?? []);
         [$options, $beginTransaction, $transactionSelector, $callOptions] = $this->validateOptions(
             $options,
             ['tag', 'isRetry', 'transactionOptions', 'singleUse'], // "singleUse" is an internal flag
@@ -577,6 +597,7 @@ class Operation
         );
 
         if ($precommitToken) {
+            // Set the precommitToken from {@see Transaction::getPrecommitToken}
             $transaction->setPrecommitToken($precommitToken);
         }
 
@@ -777,6 +798,11 @@ class Operation
             'resource-prefix' => $this->getDatabaseNameFromSession($session),
             'route-to-leader' => $this->routeToLeader
         ]);
+
+        if ($precommitToken = $response->getTransaction()->getPrecommitToken()) {
+            // We don't have a transaction to set the precommitToken on
+            // @TODO: Figure out how to handle this
+        }
         $res = $this->handleResponse($response);
 
         $partitions = [];
@@ -876,6 +902,9 @@ class Operation
 
     private function serializeMutation(array $mutation): array
     {
+        if (!$mutation) {
+            return [];
+        }
         $type = array_keys($mutation)[0];
         $data = $mutation[$type];
         switch ($type) {
@@ -1009,44 +1038,6 @@ class Operation
     }
 
     /**
-     * @param string $databaseName
-     * @param ExecuteSqlRequest $executeSqlRequest
-     * @param array $callOptions
-     * @return \Generator
-     */
-    private function executeStreamingSql(string $databaseName, ExecuteSqlRequest $executeSqlRequest, array $callOptions): \Generator
-    {
-        if (!$this->routeToLeader) {
-            unset($callOptions['route-to-leader']);
-        }
-
-        $response = $this->spannerClient->executeStreamingSql($executeSqlRequest, $callOptions + [
-            'resource-prefix' => $databaseName,
-        ]);
-
-        return $this->handleResponse($response);
-    }
-
-    /**
-     * @param string $databaseName
-     * @param ReadRequest $readRequest
-     * @param array $callOptions
-     * @return \Generator
-     */
-    private function streamingRead(string $databaseName, ReadRequest $readRequest, array $callOptions): \Generator
-    {
-        if (!$this->routeToLeader) {
-            unset($callOptions['route-to-leader']);
-        }
-
-        $response = $this->spannerClient->streamingRead($readRequest, $callOptions + [
-            'resource-prefix' => $databaseName,
-        ]);
-
-        return $this->handleResponse($response);
-    }
-
-    /**
      * @param array $args
      *
      * @return array{params: array, paramTypes: array}
@@ -1058,6 +1049,28 @@ class Operation
 
         $paramsAndParamTypes = $this->mapper->formatParamsForExecuteSql($parameters, $types);
         return $this->formatSqlParams($paramsAndParamTypes);
+    }
+
+    /**
+     * Handles a streaming response.
+     *
+     * @param ServerStream $response
+     * @return \Generator<ResultSet|PartialResultSet>
+     * @throws Exception\ServiceException
+     */
+    private function handleResultSetStream(ServerStream $response, ?Transaction $transaction)
+    {
+        try {
+            foreach ($response->readAll() as $count => $result) {
+                if ($transaction && $precommitToken = $result->getPrecommitToken()) {
+                    $transaction->setPrecommitToken($precommitToken);
+                }
+                $res = $this->serializer->encodeMessage($result);
+                yield $res;
+            }
+        } catch (\Exception $ex) {
+            throw $this->convertToGoogleException($ex);
+        }
     }
 
     /**

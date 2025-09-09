@@ -23,9 +23,7 @@ use Google\Cloud\Core\Lock\FlockLock;
 use Google\Cloud\Core\Lock\LockInterface;
 use Google\Cloud\Core\Lock\SemaphoreLock;
 use Google\Cloud\Spanner\Database;
-use Google\Cloud\Spanner\V1\MultiplexedSessionPrecommitToken;
 use Google\Cloud\Spanner\V1\Session as SessionProto;
-use Psr\Cache\CacheItemInterface;
 use Psr\Cache\CacheItemPoolInterface;
 
 
@@ -85,18 +83,25 @@ class SessionCache
                 if ($sessionData = $item->get()) {
                     $session = new SessionProto();
                     $session->mergeFromString($sessionData);
-                } else {
-                    $session = $this->database->createSession();
-                    $expiresAtSeconds = $session->getCreateTime()->getSeconds() + self::SESSION_EXPIRATION_SECONDS;
-                    $expiresAt = DateTimeImmutable::createFromFormat('U', (string) $expiresAtSeconds);
-                    $item->set($session->serializeToString());
-                    $item->expiresAt($expiresAt);
-                    $this->cacheItemPool->save($item);
+                    return $session;
                 }
 
-                return $session;
+                return $this->refreshSession();
             });
         }
+    }
+
+    public function refreshSession(): SessionProto
+    {
+        $item = $this->cacheItemPool->getItem($this->cacheKey);
+        $sessionProto = $this->database->createSession();
+        $expiresAtSeconds = $sessionProto->getCreateTime()->getSeconds() + self::SESSION_EXPIRATION_SECONDS;
+        $expiresAt = DateTimeImmutable::createFromFormat('U', (string) $expiresAtSeconds);
+        $item->set($sessionProto->serializeToString());
+        $item->expiresAt($expiresAt);
+        $this->cacheItemPool->save($item);
+
+        return $sessionProto;
     }
 
     private function isExpired(): bool
