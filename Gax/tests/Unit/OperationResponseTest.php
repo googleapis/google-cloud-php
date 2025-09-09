@@ -274,7 +274,14 @@ class OperationResponseTest extends TestCase
                 $phpunit->assertEquals('test-123', $request->name);
                 $phpunit->assertEquals('arg2', $request->arg2);
                 $phpunit->assertEquals('arg3', $request->arg3);
-                return new \stdClass();
+                return new class {
+                    public function getDone() {
+                        return true;
+                    }
+                    public function getError() {
+                        return false;
+                    }
+                };
             });
         $operationClient->cancelNewSurfaceOperation(Argument::type(Client\CancelOperationRequest::class))
             ->shouldBeCalledOnce()
@@ -310,6 +317,11 @@ class OperationResponseTest extends TestCase
 
         // Test getOperationMethod
         $operationResponse->reload();
+
+        // Test operationStatusMethod and operationStatusDoneValue
+        $this->assertTrue($operationResponse->isDone());
+
+        $this->assertTrue($operationResponse->operationSucceeded());
 
         // test cancelOperationMethod
         $operationResponse->cancel();
