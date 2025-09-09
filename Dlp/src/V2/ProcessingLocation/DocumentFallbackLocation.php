@@ -9,13 +9,13 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Configure image processing to fall back to any of the following processing
- * options if image processing is unavailable in the original request
- * location.
+ * Configure document processing to fall back to any of the following
+ * processing options if document processing is unavailable in the original
+ * request location.
  *
- * Generated from protobuf message <code>google.privacy.dlp.v2.ProcessingLocation.ImageFallbackLocation</code>
+ * Generated from protobuf message <code>google.privacy.dlp.v2.ProcessingLocation.DocumentFallbackLocation</code>
  */
-class ImageFallbackLocation extends \Google\Protobuf\Internal\Message
+class DocumentFallbackLocation extends \Google\Protobuf\Internal\Message
 {
     /**
      * Processing occurs in a multi-region that contains the current region
