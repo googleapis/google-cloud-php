@@ -55,6 +55,11 @@
                                 "getFolderIntelligenceConfig"
                             ]
                         },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
                         "GetManagedFolder": {
                             "methods": [
                                 "getManagedFolder"
@@ -103,6 +108,16 @@
                         "ResumeAnywhereCache": {
                             "methods": [
                                 "resumeAnywhereCache"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
                             ]
                         },
                         "UpdateAnywhereCache": {
