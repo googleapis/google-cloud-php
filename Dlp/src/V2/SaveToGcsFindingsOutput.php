@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Collection of findings saved to a Cloud Storage bucket. This is used as the
  * proto schema for textproto files created when specifying a cloud storage
- * path to save inspection findings.
+ * path to save Inspect findings.
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.SaveToGcsFindingsOutput</code>
  */
