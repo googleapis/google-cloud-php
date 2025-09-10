@@ -9,18 +9,32 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * UTF-8 encoding
- * * Order-preserving? Yes (code point order)
- * * Self-delimiting? No
- * * Compatibility?
- *    - BigQuery Federation `TEXT` encoding
- *    - HBase `Bytes.toBytes`
- *    - Java `String#getBytes(StandardCharsets.UTF_8)`
+ * UTF-8 encoding.
+ * Sorted mode:
+ *  - All values are supported.
+ *  - Code point order is preserved.
+ * Distinct mode: all values are supported.
+ * Compatible with:
+ *  - BigQuery `TEXT` encoding
+ *  - HBase `Bytes.toBytes`
+ *  - Java `String#getBytes(StandardCharsets.UTF_8)`
  *
  * Generated from protobuf message <code>google.bigtable.v2.Type.String.Encoding.Utf8Bytes</code>
  */
 class Utf8Bytes extends \Google\Protobuf\Internal\Message
 {
+    /**
+     * Single-character escape sequence used to support NULL values.
+     * If set, allows NULL values to be encoded as the empty string "".
+     * The actual empty string, or any value where every character equals
+     * `null_escape_char`, has one more `null_escape_char` appended.
+     * If `null_escape_char` is set and does not equal the ASCII null
+     * character `0x00`, then the encoding will not support sorted mode.
+     * .
+     *
+     * Generated from protobuf field <code>string null_escape_char = 1;</code>
+     */
+    protected $null_escape_char = '';
 
     /**
      * Constructor.
@@ -28,11 +42,57 @@ class Utf8Bytes extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type string $null_escape_char
+     *           Single-character escape sequence used to support NULL values.
+     *           If set, allows NULL values to be encoded as the empty string "".
+     *           The actual empty string, or any value where every character equals
+     *           `null_escape_char`, has one more `null_escape_char` appended.
+     *           If `null_escape_char` is set and does not equal the ASCII null
+     *           character `0x00`, then the encoding will not support sorted mode.
+     *           .
      * }
      */
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Bigtable\V2\Types::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Single-character escape sequence used to support NULL values.
+     * If set, allows NULL values to be encoded as the empty string "".
+     * The actual empty string, or any value where every character equals
+     * `null_escape_char`, has one more `null_escape_char` appended.
+     * If `null_escape_char` is set and does not equal the ASCII null
+     * character `0x00`, then the encoding will not support sorted mode.
+     * .
+     *
+     * Generated from protobuf field <code>string null_escape_char = 1;</code>
+     * @return string
+     */
+    public function getNullEscapeChar()
+    {
+        return $this->null_escape_char;
+    }
+
+    /**
+     * Single-character escape sequence used to support NULL values.
+     * If set, allows NULL values to be encoded as the empty string "".
+     * The actual empty string, or any value where every character equals
+     * `null_escape_char`, has one more `null_escape_char` appended.
+     * If `null_escape_char` is set and does not equal the ASCII null
+     * character `0x00`, then the encoding will not support sorted mode.
+     * .
+     *
+     * Generated from protobuf field <code>string null_escape_char = 1;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setNullEscapeChar($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->null_escape_char = $var;
+
+        return $this;
     }
 
 }
