@@ -38,6 +38,7 @@ use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\V1\Client\SpannerClient as GapicSpannerClient;
 use Google\LongRunning\ListOperationsRequest;
 use Google\LongRunning\Operation as OperationProto;
+use Psr\Cache\CacheItemPoolInterface;
 
 /**
  * Represents a Cloud Spanner instance
@@ -66,6 +67,7 @@ class Instance
     private bool $routeToLeader;
     private string $projectName;
     private bool $returnInt64AsObject;
+    private CacheItemPoolInterface|null $cacheItemPool;
 
     /**
      * Create an object representing a Cloud Spanner instance.
@@ -108,6 +110,7 @@ class Instance
         $this->routeToLeader = $options['routeToLeader'] ?? true;
         $this->defaultQueryOptions = $options['defaultQueryOptions'] ?? [];
         $this->returnInt64AsObject = $options['returnInt64AsObject'] ?? false;
+        $this->cacheItemPool = $options['cacheItemPool'] ?? null;
         $this->projectName = InstanceAdminClient::projectName($projectId);
     }
 
@@ -500,6 +503,14 @@ class Instance
      */
     public function database(string $name, array $options = []): Database
     {
+        [$options] = $this->validateOptions($options, [
+            'routeToLeader',
+            'defaultQueryOptions',
+            'returnint64AsObject',
+            'cacheItemPool',
+            'databaseRole',
+            'database'
+        ]);
         return new Database(
             $this->spannerClient,
             $this->databaseAdminClient,
@@ -511,6 +522,7 @@ class Instance
                 'routeToLeader' => $this->routeToLeader,
                 'defaultQueryOptions' => $this->defaultQueryOptions,
                 'returnInt64AsObject' => $this->returnInt64AsObject,
+                'cacheItemPool' => $this->cacheItemPool ?? null,
             ]
         );
     }

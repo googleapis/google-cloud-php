@@ -21,7 +21,7 @@ use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Result;
-use Google\Cloud\Spanner\Session\Session;
+use Google\Cloud\Spanner\Session\SessionCache;
 use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\Transaction;
 use Prophecy\Argument;
@@ -51,7 +51,7 @@ class ResultTest extends SnippetTestCase
         $result->columns()
             ->willReturn([]);
         $result->session()
-            ->willReturn($this->prophesize(Session::class)->reveal());
+            ->willReturn($this->prophesize(SessionCache::class)->reveal());
         $result->snapshot()
             ->willReturn($this->prophesize(Snapshot::class)->reveal());
         $result->transaction()
@@ -102,7 +102,7 @@ class ResultTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Result::class, 'session');
         $snippet->addLocal('result', $this->result);
         $res = $snippet->invoke('session');
-        $this->assertInstanceOf(Session::class, $res->returnVal());
+        $this->assertInstanceOf(SessionCache::class, $res->returnVal());
     }
 
     public function testStats()

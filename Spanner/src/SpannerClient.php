@@ -18,11 +18,9 @@
 namespace Google\Cloud\Spanner;
 
 use Google\ApiCore\ClientOptionsTrait;
-use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Middleware\MiddlewareInterface;
 use Google\ApiCore\Options\CallOptions;
 use Google\ApiCore\ValidationException;
-use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Core\DetectProjectIdTrait;
 use Google\Cloud\Core\EmulatorTrait;
 use Google\Cloud\Core\Exception\GoogleException;
@@ -39,7 +37,6 @@ use Google\Cloud\Spanner\Admin\Instance\V1\ListInstancesRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\ReplicaInfo;
 use Google\Cloud\Spanner\Batch\BatchClient;
 use Google\Cloud\Spanner\Middleware\SpannerMiddleware;
-use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\V1\Client\SpannerClient as GapicSpannerClient;
 use Google\LongRunning\Operation as OperationProto;
 use Google\Protobuf\Duration;
@@ -130,6 +127,7 @@ class SpannerClient
     private array $directedReadOptions;
     private bool $routeToLeader;
     private array $defaultQueryOptions;
+    private CacheItemPoolInterface|null $cacheItemPool;
 
     /**
      * Create a Spanner client. Please note that this client requires
@@ -179,6 +177,7 @@ class SpannerClient
      *           **Defaults to** `true` (enabled).
      *     @type string $universeDomain The expected universe of the credentials. Defaults to
      *            "googleapis.com"
+     *     @type CacheItemPoolInterface $cacheItemPool
      * }
      * @throws GoogleException If the gRPC extension is not enabled.
      */
@@ -193,7 +192,8 @@ class SpannerClient
             'projectIdRequired' => true,
             'hasEmulator' => (bool) $emulatorHost,
             'emulatorHost' => $emulatorHost,
-            'queryOptions' => []
+            'queryOptions' => [],
+            'cacheItemPool' => null,
         ];
 
         $this->returnInt64AsObject = $options['returnInt64AsObject'];
@@ -250,6 +250,7 @@ class SpannerClient
         $this->databaseAdminClient->addMiddleware($middleware);
 
         $this->projectName = InstanceAdminClient::projectName($this->projectId);
+        $this->cacheItemPool = $options['cacheItemPool'];
     }
 
     /**
@@ -290,13 +291,13 @@ class SpannerClient
             ]
         );
 
+        $database = $this->instance($instanceId)->database($databaseId, $options + [
+            'cacheItemPool' => $this->cacheItemPool,
+        ]);
+
         return new BatchClient(
             $operation,
-            GapicSpannerClient::databaseName(
-                $this->projectId,
-                $instanceId,
-                $databaseId
-            ),
+            $database->session(),
             $options
         );
     }
@@ -636,7 +637,7 @@ class SpannerClient
      * @param array $options [optional] {
      *     Configuration options.
      *
-     *     @type SessionPoolInterface $sessionPool A pool used to manage
+     *     @type CacheItemPoolInterface $cacheItemPool A pool used to manage
      *           sessions.
      *     @type string $databaseRole The user created database role which creates the session.
      * }
@@ -648,7 +649,9 @@ class SpannerClient
             $instance = $this->instance($instance);
         }
 
-        $database = $instance->database($name, $options);
+        $database = $instance->database($name, $options + [
+            'cacheItemPool' => $this->cacheItemPool
+        ]);
 
         return $database;
     }
