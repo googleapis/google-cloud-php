@@ -44,7 +44,7 @@ use Google\ApiCore\RetrySettings;
  * {@see \Google\ApiCore\Transport\TransportInterface::startClientStreamingCall()}, and
  * {@see \Google\ApiCore\Transport\TransportInterface::startServerStreamingCall()}.
  */
-class CallOptions implements ArrayAccess
+class CallOptions implements ArrayAccess, OptionsInterface
 {
     use OptionsTrait;
 

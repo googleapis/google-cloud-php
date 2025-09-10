@@ -59,7 +59,7 @@ use Psr\Log\LoggerInterface;
  * Note: It's possible to pass an associative array to the API clients as well,
  * as ClientOptions will still be used internally for validation.
  */
-class ClientOptions implements ArrayAccess
+class ClientOptions implements ArrayAccess, OptionsInterface
 {
     use OptionsTrait;
 

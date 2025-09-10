@@ -34,6 +34,7 @@ namespace Google\ApiCore\Options\TransportOptions;
 
 use ArrayAccess;
 use Closure;
+use Google\ApiCore\Options\OptionsInterface;
 use Google\ApiCore\Options\OptionsTrait;
 use Google\ApiCore\Transport\Grpc\UnaryInterceptorInterface;
 use Grpc\Channel;
@@ -44,7 +45,7 @@ use Psr\Log\LoggerInterface;
  * The GrpcTransportOptions class provides typing to the associative array of options used to
  * configure {@see \Google\ApiCore\Transport\GrpcTransport}.
  */
-class GrpcTransportOptions implements ArrayAccess
+class GrpcTransportOptions implements ArrayAccess, OptionsInterface
 {
     use OptionsTrait;
 
