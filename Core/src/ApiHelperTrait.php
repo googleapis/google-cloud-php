@@ -17,10 +17,12 @@
  */
 namespace Google\Cloud\Core;
 
+use Exception;
 use Google\ApiCore\ArrayTrait;
 use Google\ApiCore\Options\CallOptions;
 use Google\Protobuf\Internal\Message;
 use Google\Protobuf\NullValue;
+use LogicException;
 
 /**
  * @internal
@@ -261,9 +263,9 @@ trait ApiHelperTrait
         $callOptionFields = array_keys((new CallOptions([]))->toArray());
         $keys = array_merge($callOptionFields, $extraAllowedKeys);
 
-        $optionalArgs = $this->pluckArray($keys, $input);
+        $callOptions = $this->pluckArray($keys, $input);
 
-        return [$input, $optionalArgs];
+        return [$input, $callOptions];
     }
 
     /**
@@ -278,28 +280,28 @@ trait ApiHelperTrait
         foreach ($optionTypes as $optionType) {
             if (is_array($optionType)) {
                 $splitOptions[] = $this->pluckArray($optionType, $options);
+            } elseif ($optionType === CallOptions::class) {
+                $callOptionKeys = array_keys((new CallOptions([]))->toArray());
+                $splitOptions[] = $this->pluckArray($callOptionKeys, $options);
+            } elseif ($optionType instanceof Message) {
+                $messageKeys = array_map(
+                    fn ($method) => lcfirst(substr($method, 3)),
+                    array_filter(
+                        get_class_methods($optionType),
+                        fn ($m) => 0 === strpos($m, 'get')
+                    )
+                );
+                $messageOptions = $this->pluckArray($messageKeys, $options);
+                $splitOptions[] = $optionType instanceof Message
+                    ? $this->serializer->decodeMessage($optionType, $messageOptions)
+                    : $messageOptions;
             } else {
-                if ($optionType === CallOptions::class) {
-                    $callOptionKeys = array_keys((new CallOptions([]))->toArray());
-                    $splitOptions[] = $this->pluckArray($callOptionKeys, $options);
-                } else {
-                    $messageKeys = array_map(
-                        fn ($method) => lcfirst(substr($method, 3)),
-                        array_filter(
-                            get_class_methods($optionType),
-                            fn ($m) => 0 === strpos($m, 'get')
-                        )
-                    );
-                    $messageOptions = $this->pluckArray($messageKeys, $options);
-                    $splitOptions[] = $optionType instanceof Message
-                        ? $this->serializer->decodeMessage($optionType, $messageOptions)
-                        : $messageOptions;
-                }
+                throw new LogicException(sprintf('Invalid option type: %s', $optionType));
             }
         }
 
         if (!empty($options)) {
-            throw new \Exception(
+            throw new Exception(
                 'Unexpected option(s) provided: ' . implode(', ', array_keys($options))
             );
         }

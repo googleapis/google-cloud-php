@@ -20,10 +20,10 @@ namespace Google\Cloud\Core\Tests\Unit;
 use Google\ApiCore\Options\CallOptions;
 use Google\ApiCore\Serializer;
 use Google\ApiCore\Testing\MockRequest;
-use Google\Cloud\Core\Blob;
 use Google\Cloud\Core\Duration;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Tests\Unit\Stubs\ApiHelpersTraitImpl;
+use LogicException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -303,12 +303,12 @@ class ApiHelperTraitTest extends TestCase
                 ],
                 [
                     CallOptions::class,
-                    MockRequest::class,
+                    new MockRequest(),
                     ['qux'],
                 ],
                 [
                     ['timeoutMillis' => 123],
-                    ['pageToken' => 'bat'],
+                    (new MockRequest())->setPageToken('bat'),
                     ['qux' => 'quux'],
                 ]
             ],
@@ -318,12 +318,12 @@ class ApiHelperTraitTest extends TestCase
                 ],
                 [
                     ['baz'],
-                    MockRequest::class,
+                    new MockRequest(),
                     CallOptions::class,
                 ],
                 [
                     ['baz' => 'bat'],
-                    [],
+                    new MockRequest(),
                     [],
                 ]
             ],
@@ -344,7 +344,7 @@ class ApiHelperTraitTest extends TestCase
         ];
     }
 
-    public function testValidateOptionsWithUnknownOptionThrowsException()
+    public function testValidateOptionsThrowsException()
     {
         $this->expectException(\Exception::class);
         $this->expectExceptionMessage('Unexpected option(s) provided: bar');
@@ -357,8 +357,11 @@ class ApiHelperTraitTest extends TestCase
         $this->implementation->validateOptions($options, ['foo']);
     }
 
-    public function testValidateOptionsWithUnknownClassIsIgnored()
+    public function testValidateOptionsWithClassnameThrowsException()
     {
+        $this->expectException(LogicException::class);
+        $this->expectExceptionMessage('Invalid option type: ' . Blob::class);
+
         $options = [
             'foo' => 'bar',
             'bar' => 'baz',
