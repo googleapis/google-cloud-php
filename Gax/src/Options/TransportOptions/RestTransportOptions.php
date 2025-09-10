@@ -34,6 +34,7 @@ namespace Google\ApiCore\Options\TransportOptions;
 
 use ArrayAccess;
 use Closure;
+use Google\ApiCore\Options\OptionsInterface;
 use Google\ApiCore\Options\OptionsTrait;
 use Psr\Log\LoggerInterface;
 
@@ -41,7 +42,7 @@ use Psr\Log\LoggerInterface;
  * The RestTransportOptions class provides typing to the associative array of options used to
  * configure {@see \Google\ApiCore\Transport\RestTransport}.
  */
-class RestTransportOptions implements ArrayAccess
+class RestTransportOptions implements ArrayAccess, OptionsInterface
 {
     use OptionsTrait;
 

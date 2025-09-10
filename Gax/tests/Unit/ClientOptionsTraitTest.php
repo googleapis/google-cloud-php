@@ -34,6 +34,7 @@ namespace Google\ApiCore\Tests\Unit;
 
 use Google\ApiCore\ClientOptionsTrait;
 use Google\ApiCore\CredentialsWrapper;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\ValidationException;
 use Google\Auth\CredentialsLoader;
 use Google\Auth\FetchAuthTokenInterface;
@@ -556,6 +557,16 @@ class ClientOptionsTraitTest extends TestCase
         $options = $client->buildClientOptions([]);
         $options2 = $client->buildClientOptions($options);
         $this->assertEquals($options, $options2);
+    }
+
+    public function testBuildClientOptionsWithClientOptions()
+    {
+        $client = new StubClientOptionsClient();
+        $clientOptions = new ClientOptions([]);
+        $clientOptions->setApiEndpoint('TestEndpoint.com');
+        $builtOptions = $client->buildClientOptions($clientOptions);
+
+        $this->assertEquals($clientOptions['apiEndpoint'], $builtOptions['apiEndpoint']);
     }
 
     /**
