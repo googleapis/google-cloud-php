@@ -461,7 +461,7 @@ items:
       returns:
         -
           var_type: int
-          description: 'Enum of type <xref uid="\\Google\Cloud\Vision\V1\Likelihood">Likelihood</xref>.'
+          description: 'Enum of type <xref uid="\Google\Cloud\Vision\V1\Likelihood">Likelihood</xref>.'
   -
     uid: '\Google\Cloud\Vision\V1\FaceAnnotation::setJoyLikelihood()'
     name: setJoyLikelihood
@@ -476,7 +476,7 @@ items:
         -
           id: var
           var_type: int
-          description: 'Enum of type <xref uid="\\Google\Cloud\Vision\V1\Likelihood">Likelihood</xref>. '
+          description: 'Enum of type <xref uid="\Google\Cloud\Vision\V1\Likelihood">Likelihood</xref>. '
       returns:
         -
           var_type: $this
@@ -493,7 +493,7 @@ items:
       returns:
         -
           var_type: int
-          description: 'Enum of type <xref uid="\\Google\Cloud\Vision\V1\Likelihood">Likelihood</xref>.'
+          description: 'Enum of type <xref uid="\Google\Cloud\Vision\V1\Likelihood">Likelihood</xref>.'
   -
     uid: '\Google\Cloud\Vision\V1\FaceAnnotation::setSorrowLikelihood()'
     name: setSorrowLikelihood
@@ -508,7 +508,7 @@ items:
         -
           id: var
           var_type: int
-          description: 'Enum of type <xref uid="\\Google\Cloud\Vision\V1\Likelihood">Likelihood</xref>. '
+          description: 'Enum of type <xref uid="\Google\Cloud\Vision\V1\Likelihood">Likelihood</xref>. '
       returns:
         -
           var_type: $this
@@ -525,7 +525,7 @@ items:
       returns:
         -
           var_type: int
-          description: 'Enum of type <xref uid="\\Google\Cloud\Vision\V1\Likelihood">Likelihood</xref>.'
+          description: 'Enum of type <xref uid="\Google\Cloud\Vision\V1\Likelihood">Likelihood</xref>.'
   -
     uid: '\Google\Cloud\Vision\V1\FaceAnnotation::setAngerLikelihood()'
     name: setAngerLikelihood
@@ -540,7 +540,7 @@ items:
         -
           id: var
           var_type: int
-          description: 'Enum of type <xref uid="\\Google\Cloud\Vision\V1\Likelihood">Likelihood</xref>. '
+          description: 'Enum of type <xref uid="\Google\Cloud\Vision\V1\Likelihood">Likelihood</xref>. '
       returns:
         -
           var_type: $this
@@ -557,7 +557,7 @@ items:
       returns:
         -
           var_type: int
-          description: 'Enum of type <xref uid="\\Google\Cloud\Vision\V1\Likelihood">Likelihood</xref>.'
+          description: 'Enum of type <xref uid="\Google\Cloud\Vision\V1\Likelihood">Likelihood</xref>.'
   -
     uid: '\Google\Cloud\Vision\V1\FaceAnnotation::setSurpriseLikelihood()'
     name: setSurpriseLikelihood
@@ -572,7 +572,7 @@ items:
         -
           id: var
           var_type: int
-          description: 'Enum of type <xref uid="\\Google\Cloud\Vision\V1\Likelihood">Likelihood</xref>. '
+          description: 'Enum of type <xref uid="\Google\Cloud\Vision\V1\Likelihood">Likelihood</xref>. '
       returns:
         -
           var_type: $this
@@ -589,7 +589,7 @@ items:
       returns:
         -
           var_type: int
-          description: 'Enum of type <xref uid="\\Google\Cloud\Vision\V1\Likelihood">Likelihood</xref>.'
+          description: 'Enum of type <xref uid="\Google\Cloud\Vision\V1\Likelihood">Likelihood</xref>.'
   -
     uid: '\Google\Cloud\Vision\V1\FaceAnnotation::setUnderExposedLikelihood()'
     name: setUnderExposedLikelihood
@@ -604,7 +604,7 @@ items:
         -
           id: var
           var_type: int
-          description: 'Enum of type <xref uid="\\Google\Cloud\Vision\V1\Likelihood">Likelihood</xref>. '
+          description: 'Enum of type <xref uid="\Google\Cloud\Vision\V1\Likelihood">Likelihood</xref>. '
       returns:
         -
           var_type: $this
@@ -621,7 +621,7 @@ items:
       returns:
         -
           var_type: int
-          description: 'Enum of type <xref uid="\\Google\Cloud\Vision\V1\Likelihood">Likelihood</xref>.'
+          description: 'Enum of type <xref uid="\Google\Cloud\Vision\V1\Likelihood">Likelihood</xref>.'
   -
     uid: '\Google\Cloud\Vision\V1\FaceAnnotation::setBlurredLikelihood()'
     name: setBlurredLikelihood
@@ -636,7 +636,7 @@ items:
         -
           id: var
           var_type: int
-          description: 'Enum of type <xref uid="\\Google\Cloud\Vision\V1\Likelihood">Likelihood</xref>. '
+          description: 'Enum of type <xref uid="\Google\Cloud\Vision\V1\Likelihood">Likelihood</xref>. '
       returns:
         -
           var_type: $this
@@ -653,7 +653,7 @@ items:
       returns:
         -
           var_type: int
-          description: 'Enum of type <xref uid="\\Google\Cloud\Vision\V1\Likelihood">Likelihood</xref>.'
+          description: 'Enum of type <xref uid="\Google\Cloud\Vision\V1\Likelihood">Likelihood</xref>.'
   -
     uid: '\Google\Cloud\Vision\V1\FaceAnnotation::setHeadwearLikelihood()'
     name: setHeadwearLikelihood
@@ -668,7 +668,7 @@ items:
         -
           id: var
           var_type: int
-          description: 'Enum of type <xref uid="\\Google\Cloud\Vision\V1\Likelihood">Likelihood</xref>. '
+          description: 'Enum of type <xref uid="\Google\Cloud\Vision\V1\Likelihood">Likelihood</xref>. '
       returns:
         -
           var_type: $this
