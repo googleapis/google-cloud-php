@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Delele AspectType Request.
+ * Delete AspectType Request.
  *
  * Generated from protobuf message <code>google.cloud.dataplex.v1.DeleteAspectTypeRequest</code>
  */

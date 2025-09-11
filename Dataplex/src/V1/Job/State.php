@@ -48,7 +48,7 @@ class State
      */
     const FAILED = 5;
     /**
-     * The job was cancelled outside of Dataplex.
+     * The job was cancelled outside of Dataplex Universal Catalog.
      *
      * Generated from protobuf enum <code>ABORTED = 6;</code>
      */

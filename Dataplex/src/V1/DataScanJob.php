@@ -20,7 +20,7 @@ class DataScanJob extends \Google\Protobuf\Internal\Message
      * the form:
      * `projects/{project}/locations/{location_id}/dataScans/{datascan_id}/jobs/{job_id}`,
      * where `project` refers to a *project_id* or *project_number* and
-     * `location_id` refers to a GCP region.
+     * `location_id` refers to a Google Cloud region.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER];</code>
      */
@@ -81,7 +81,7 @@ class DataScanJob extends \Google\Protobuf\Internal\Message
      *           the form:
      *           `projects/{project}/locations/{location_id}/dataScans/{datascan_id}/jobs/{job_id}`,
      *           where `project` refers to a *project_id* or *project_number* and
-     *           `location_id` refers to a GCP region.
+     *           `location_id` refers to a Google Cloud region.
      *     @type string $uid
      *           Output only. System generated globally unique ID for the DataScanJob.
      *     @type \Google\Protobuf\Timestamp $create_time
@@ -120,7 +120,7 @@ class DataScanJob extends \Google\Protobuf\Internal\Message
      * the form:
      * `projects/{project}/locations/{location_id}/dataScans/{datascan_id}/jobs/{job_id}`,
      * where `project` refers to a *project_id* or *project_number* and
-     * `location_id` refers to a GCP region.
+     * `location_id` refers to a Google Cloud region.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -135,7 +135,7 @@ class DataScanJob extends \Google\Protobuf\Internal\Message
      * the form:
      * `projects/{project}/locations/{location_id}/dataScans/{datascan_id}/jobs/{job_id}`,
      * where `project` refers to a *project_id* or *project_number* and
-     * `location_id` refers to a GCP region.
+     * `location_id` refers to a Google Cloud region.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var

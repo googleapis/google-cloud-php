@@ -16,21 +16,21 @@ use Google\Protobuf\Internal\GPBUtil;
 class StringFieldInfo extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Minimum length of non-null values in the scanned data.
+     * Output only. Minimum length of non-null values in the scanned data.
      *
-     * Generated from protobuf field <code>int64 min_length = 1;</code>
+     * Generated from protobuf field <code>int64 min_length = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $min_length = 0;
     /**
-     * Maximum length of non-null values in the scanned data.
+     * Output only. Maximum length of non-null values in the scanned data.
      *
-     * Generated from protobuf field <code>int64 max_length = 2;</code>
+     * Generated from protobuf field <code>int64 max_length = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $max_length = 0;
     /**
-     * Average length of non-null values in the scanned data.
+     * Output only. Average length of non-null values in the scanned data.
      *
-     * Generated from protobuf field <code>double average_length = 3;</code>
+     * Generated from protobuf field <code>double average_length = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $average_length = 0.0;
 
@@ -41,11 +41,11 @@ class StringFieldInfo extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int|string $min_length
-     *           Minimum length of non-null values in the scanned data.
+     *           Output only. Minimum length of non-null values in the scanned data.
      *     @type int|string $max_length
-     *           Maximum length of non-null values in the scanned data.
+     *           Output only. Maximum length of non-null values in the scanned data.
      *     @type float $average_length
-     *           Average length of non-null values in the scanned data.
+     *           Output only. Average length of non-null values in the scanned data.
      * }
      */
     public function __construct($data = NULL) {
@@ -54,9 +54,9 @@ class StringFieldInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Minimum length of non-null values in the scanned data.
+     * Output only. Minimum length of non-null values in the scanned data.
      *
-     * Generated from protobuf field <code>int64 min_length = 1;</code>
+     * Generated from protobuf field <code>int64 min_length = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int|string
      */
     public function getMinLength()
@@ -65,9 +65,9 @@ class StringFieldInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Minimum length of non-null values in the scanned data.
+     * Output only. Minimum length of non-null values in the scanned data.
      *
-     * Generated from protobuf field <code>int64 min_length = 1;</code>
+     * Generated from protobuf field <code>int64 min_length = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int|string $var
      * @return $this
      */
@@ -80,9 +80,9 @@ class StringFieldInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Maximum length of non-null values in the scanned data.
+     * Output only. Maximum length of non-null values in the scanned data.
      *
-     * Generated from protobuf field <code>int64 max_length = 2;</code>
+     * Generated from protobuf field <code>int64 max_length = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int|string
      */
     public function getMaxLength()
@@ -91,9 +91,9 @@ class StringFieldInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Maximum length of non-null values in the scanned data.
+     * Output only. Maximum length of non-null values in the scanned data.
      *
-     * Generated from protobuf field <code>int64 max_length = 2;</code>
+     * Generated from protobuf field <code>int64 max_length = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int|string $var
      * @return $this
      */
@@ -106,9 +106,9 @@ class StringFieldInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Average length of non-null values in the scanned data.
+     * Output only. Average length of non-null values in the scanned data.
      *
-     * Generated from protobuf field <code>double average_length = 3;</code>
+     * Generated from protobuf field <code>double average_length = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return float
      */
     public function getAverageLength()
@@ -117,9 +117,9 @@ class StringFieldInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Average length of non-null values in the scanned data.
+     * Output only. Average length of non-null values in the scanned data.
      *
-     * Generated from protobuf field <code>double average_length = 3;</code>
+     * Generated from protobuf field <code>double average_length = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param float $var
      * @return $this
      */
