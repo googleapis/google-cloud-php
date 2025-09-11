@@ -48,6 +48,8 @@ use Google\Cloud\Kms\V1\CreateImportJobRequest;
 use Google\Cloud\Kms\V1\CreateKeyRingRequest;
 use Google\Cloud\Kms\V1\CryptoKey;
 use Google\Cloud\Kms\V1\CryptoKeyVersion;
+use Google\Cloud\Kms\V1\DecapsulateRequest;
+use Google\Cloud\Kms\V1\DecapsulateResponse;
 use Google\Cloud\Kms\V1\DecryptRequest;
 use Google\Cloud\Kms\V1\DecryptResponse;
 use Google\Cloud\Kms\V1\DestroyCryptoKeyVersionRequest;
@@ -114,6 +116,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<CryptoKeyVersion> createCryptoKeyVersionAsync(CreateCryptoKeyVersionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ImportJob> createImportJobAsync(CreateImportJobRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<KeyRing> createKeyRingAsync(CreateKeyRingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DecapsulateResponse> decapsulateAsync(DecapsulateRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<DecryptResponse> decryptAsync(DecryptRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<CryptoKeyVersion> destroyCryptoKeyVersionAsync(DestroyCryptoKeyVersionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<EncryptResponse> encryptAsync(EncryptRequest $request, array $optionalArgs = [])
@@ -588,6 +591,36 @@ final class KeyManagementServiceClient
     public function createKeyRing(CreateKeyRingRequest $request, array $callOptions = []): KeyRing
     {
         return $this->startApiCall('CreateKeyRing', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Decapsulates data that was encapsulated with a public key retrieved from
+     * [GetPublicKey][google.cloud.kms.v1.KeyManagementService.GetPublicKey]
+     * corresponding to a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]
+     * with [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose]
+     * KEY_ENCAPSULATION.
+     *
+     * The async variant is {@see KeyManagementServiceClient::decapsulateAsync()} .
+     *
+     * @example samples/V1/KeyManagementServiceClient/decapsulate.php
+     *
+     * @param DecapsulateRequest $request     A request to house fields associated with the call.
+     * @param array              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return DecapsulateResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function decapsulate(DecapsulateRequest $request, array $callOptions = []): DecapsulateResponse
+    {
+        return $this->startApiCall('Decapsulate', $request, $callOptions)->wait();
     }
 
     /**
