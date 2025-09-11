@@ -1,9 +1,7 @@
 <?xml version="1.0"?>
 <project name="Documentation">
                 <file path="V1/Client/ClientSnippetsClient.php" hash="0a04827d6cb7880dcd29fdbef5604796">
-            
-Deprecated: Twig\Node\SetNode::__construct(): Implicitly marking parameter $tag as nullable is deprecated, the explicit nullable type must be used instead in phar:///Users/betterbrent/bin/phpdoc/vendor/twig/twig/src/Node/SetNode.php on line 24
-<docblock line="0">
+            <docblock line="0">
     <description></description>
     <long-description></long-description>
                     <tag
