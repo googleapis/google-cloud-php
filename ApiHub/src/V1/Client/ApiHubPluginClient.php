@@ -27,19 +27,34 @@ namespace Google\Cloud\ApiHub\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\ApiHub\V1\CreatePluginInstanceRequest;
+use Google\Cloud\ApiHub\V1\CreatePluginRequest;
+use Google\Cloud\ApiHub\V1\DeletePluginInstanceRequest;
+use Google\Cloud\ApiHub\V1\DeletePluginRequest;
+use Google\Cloud\ApiHub\V1\DisablePluginInstanceActionRequest;
 use Google\Cloud\ApiHub\V1\DisablePluginRequest;
+use Google\Cloud\ApiHub\V1\EnablePluginInstanceActionRequest;
 use Google\Cloud\ApiHub\V1\EnablePluginRequest;
+use Google\Cloud\ApiHub\V1\ExecutePluginInstanceActionRequest;
+use Google\Cloud\ApiHub\V1\GetPluginInstanceRequest;
 use Google\Cloud\ApiHub\V1\GetPluginRequest;
+use Google\Cloud\ApiHub\V1\ListPluginInstancesRequest;
+use Google\Cloud\ApiHub\V1\ListPluginsRequest;
 use Google\Cloud\ApiHub\V1\Plugin;
+use Google\Cloud\ApiHub\V1\PluginInstance;
+use Google\Cloud\ApiHub\V1\UpdatePluginInstanceRequest;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
+use Google\LongRunning\Client\OperationsClient;
+use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
@@ -54,9 +69,20 @@ use Psr\Log\LoggerInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
+ * @method PromiseInterface<Plugin> createPluginAsync(CreatePluginRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createPluginInstanceAsync(CreatePluginInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deletePluginAsync(DeletePluginRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deletePluginInstanceAsync(DeletePluginInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Plugin> disablePluginAsync(DisablePluginRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> disablePluginInstanceActionAsync(DisablePluginInstanceActionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Plugin> enablePluginAsync(EnablePluginRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> enablePluginInstanceActionAsync(EnablePluginInstanceActionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> executePluginInstanceActionAsync(ExecutePluginInstanceActionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Plugin> getPluginAsync(GetPluginRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PluginInstance> getPluginInstanceAsync(GetPluginInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listPluginInstancesAsync(ListPluginInstancesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listPluginsAsync(ListPluginsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PluginInstance> updatePluginInstanceAsync(UpdatePluginInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
@@ -86,6 +112,8 @@ final class ApiHubPluginClient
 
     /** The default scopes required by the service. */
     public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
+
+    private $operationsClient;
 
     private static function getClientDefaults()
     {
@@ -119,6 +147,92 @@ final class ApiHubPluginClient
     }
 
     /**
+     * Return an OperationsClient object with the same endpoint as $this.
+     *
+     * @return OperationsClient
+     */
+    public function getOperationsClient()
+    {
+        return $this->operationsClient;
+    }
+
+    /**
+     * Resume an existing long running operation that was previously started by a long
+     * running API method. If $methodName is not provided, or does not match a long
+     * running API method, then the operation can still be resumed, but the
+     * OperationResponse object will not deserialize the final response.
+     *
+     * @param string $operationName The name of the long running operation
+     * @param string $methodName    The name of the method used to start the operation
+     *
+     * @return OperationResponse
+     */
+    public function resumeOperation($operationName, $methodName = null)
+    {
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
+        $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
+        $operation->reload();
+        return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a attribute
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $attribute
+     *
+     * @return string The formatted attribute resource.
+     */
+    public static function attributeName(string $project, string $location, string $attribute): string
+    {
+        return self::getPathTemplate('attribute')->render([
+            'project' => $project,
+            'location' => $location,
+            'attribute' => $attribute,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a location
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     *
+     * @return string The formatted location resource.
+     */
+    public static function locationName(string $project, string $location): string
+    {
+        return self::getPathTemplate('location')->render([
+            'project' => $project,
+            'location' => $location,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a plugin
      * resource.
      *
@@ -138,10 +252,56 @@ final class ApiHubPluginClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * plugin_instance resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $plugin
+     * @param string $instance
+     *
+     * @return string The formatted plugin_instance resource.
+     */
+    public static function pluginInstanceName(
+        string $project,
+        string $location,
+        string $plugin,
+        string $instance
+    ): string {
+        return self::getPathTemplate('pluginInstance')->render([
+            'project' => $project,
+            'location' => $location,
+            'plugin' => $plugin,
+            'instance' => $instance,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * service_account resource.
+     *
+     * @param string $project
+     * @param string $serviceAccount
+     *
+     * @return string The formatted service_account resource.
+     */
+    public static function serviceAccountName(string $project, string $serviceAccount): string
+    {
+        return self::getPathTemplate('serviceAccount')->render([
+            'project' => $project,
+            'service_account' => $serviceAccount,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - attribute: projects/{project}/locations/{location}/attributes/{attribute}
+     * - location: projects/{project}/locations/{location}
      * - plugin: projects/{project}/locations/{location}/plugins/{plugin}
+     * - pluginInstance: projects/{project}/locations/{location}/plugins/{plugin}/instances/{instance}
+     * - serviceAccount: projects/{project}/serviceAccounts/{service_account}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -225,6 +385,7 @@ final class ApiHubPluginClient
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
+        $this->operationsClient = $this->createOperationsClient($clientOptions);
     }
 
     /** Handles execution of the async variants for each documented method. */
@@ -236,6 +397,116 @@ final class ApiHubPluginClient
 
         array_unshift($args, substr($method, 0, -5));
         return call_user_func_array([$this, 'startAsyncCall'], $args);
+    }
+
+    /**
+     * Create an API Hub plugin resource in the API hub.
+     * Once a plugin is created, it can be used to create plugin instances.
+     *
+     * The async variant is {@see ApiHubPluginClient::createPluginAsync()} .
+     *
+     * @example samples/V1/ApiHubPluginClient/create_plugin.php
+     *
+     * @param CreatePluginRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Plugin
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createPlugin(CreatePluginRequest $request, array $callOptions = []): Plugin
+    {
+        return $this->startApiCall('CreatePlugin', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates a Plugin instance in the API hub.
+     *
+     * The async variant is {@see ApiHubPluginClient::createPluginInstanceAsync()} .
+     *
+     * @example samples/V1/ApiHubPluginClient/create_plugin_instance.php
+     *
+     * @param CreatePluginInstanceRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createPluginInstance(
+        CreatePluginInstanceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('CreatePluginInstance', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Delete a Plugin in API hub.
+     * Note, only user owned plugins can be deleted via this method.
+     *
+     * The async variant is {@see ApiHubPluginClient::deletePluginAsync()} .
+     *
+     * @example samples/V1/ApiHubPluginClient/delete_plugin.php
+     *
+     * @param DeletePluginRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deletePlugin(DeletePluginRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeletePlugin', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a plugin instance in the API hub.
+     *
+     * The async variant is {@see ApiHubPluginClient::deletePluginInstanceAsync()} .
+     *
+     * @example samples/V1/ApiHubPluginClient/delete_plugin_instance.php
+     *
+     * @param DeletePluginInstanceRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deletePluginInstance(
+        DeletePluginInstanceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('DeletePluginInstance', $request, $callOptions)->wait();
     }
 
     /**
@@ -266,6 +537,35 @@ final class ApiHubPluginClient
     }
 
     /**
+     * Disables a plugin instance in the API hub.
+     *
+     * The async variant is
+     * {@see ApiHubPluginClient::disablePluginInstanceActionAsync()} .
+     *
+     * @example samples/V1/ApiHubPluginClient/disable_plugin_instance_action.php
+     *
+     * @param DisablePluginInstanceActionRequest $request     A request to house fields associated with the call.
+     * @param array                              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function disablePluginInstanceAction(
+        DisablePluginInstanceActionRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('DisablePluginInstanceAction', $request, $callOptions)->wait();
+    }
+
+    /**
      * Enables a plugin.
      * The `state` of the plugin after enabling is `ENABLED`
      *
@@ -293,7 +593,65 @@ final class ApiHubPluginClient
     }
 
     /**
-     * Get details about an API Hub plugin.
+     * Enables a plugin instance in the API hub.
+     *
+     * The async variant is
+     * {@see ApiHubPluginClient::enablePluginInstanceActionAsync()} .
+     *
+     * @example samples/V1/ApiHubPluginClient/enable_plugin_instance_action.php
+     *
+     * @param EnablePluginInstanceActionRequest $request     A request to house fields associated with the call.
+     * @param array                             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function enablePluginInstanceAction(
+        EnablePluginInstanceActionRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('EnablePluginInstanceAction', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Executes a plugin instance in the API hub.
+     *
+     * The async variant is
+     * {@see ApiHubPluginClient::executePluginInstanceActionAsync()} .
+     *
+     * @example samples/V1/ApiHubPluginClient/execute_plugin_instance_action.php
+     *
+     * @param ExecutePluginInstanceActionRequest $request     A request to house fields associated with the call.
+     * @param array                              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function executePluginInstanceAction(
+        ExecutePluginInstanceActionRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('ExecutePluginInstanceAction', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Get an API Hub plugin.
      *
      * The async variant is {@see ApiHubPluginClient::getPluginAsync()} .
      *
@@ -316,6 +674,128 @@ final class ApiHubPluginClient
     public function getPlugin(GetPluginRequest $request, array $callOptions = []): Plugin
     {
         return $this->startApiCall('GetPlugin', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Get an API Hub plugin instance.
+     *
+     * The async variant is {@see ApiHubPluginClient::getPluginInstanceAsync()} .
+     *
+     * @example samples/V1/ApiHubPluginClient/get_plugin_instance.php
+     *
+     * @param GetPluginInstanceRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PluginInstance
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getPluginInstance(GetPluginInstanceRequest $request, array $callOptions = []): PluginInstance
+    {
+        return $this->startApiCall('GetPluginInstance', $request, $callOptions)->wait();
+    }
+
+    /**
+     * List all the plugins in a given project and location.
+     * `-` can be used as wildcard value for {plugin_id}
+     *
+     * The async variant is {@see ApiHubPluginClient::listPluginInstancesAsync()} .
+     *
+     * @example samples/V1/ApiHubPluginClient/list_plugin_instances.php
+     *
+     * @param ListPluginInstancesRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listPluginInstances(ListPluginInstancesRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListPluginInstances', $request, $callOptions);
+    }
+
+    /**
+     * List all the plugins in a given project and location.
+     *
+     * The async variant is {@see ApiHubPluginClient::listPluginsAsync()} .
+     *
+     * @example samples/V1/ApiHubPluginClient/list_plugins.php
+     *
+     * @param ListPluginsRequest $request     A request to house fields associated with the call.
+     * @param array              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listPlugins(ListPluginsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListPlugins', $request, $callOptions);
+    }
+
+    /**
+     * Updates a plugin instance in the API hub.
+     * The following fields in the
+     * [plugin_instance][google.cloud.apihub.v1.PluginInstance] can be updated
+     * currently:
+     *
+     * * [display_name][google.cloud.apihub.v1.PluginInstance.display_name]
+     * * [schedule_cron_expression][PluginInstance.actions.schedule_cron_expression]
+     *
+     * The
+     * [update_mask][google.cloud.apihub.v1.UpdatePluginInstanceRequest.update_mask]
+     * should be used to specify the fields being updated.
+     *
+     * To update the
+     * [auth_config][google.cloud.apihub.v1.PluginInstance.auth_config] and
+     * [additional_config][google.cloud.apihub.v1.PluginInstance.additional_config]
+     * of the plugin instance, use the
+     * [ApplyPluginInstanceConfig][google.cloud.apihub.v1.ApiHubPlugin.ApplyPluginInstanceConfig]
+     * method.
+     *
+     * The async variant is {@see ApiHubPluginClient::updatePluginInstanceAsync()} .
+     *
+     * @example samples/V1/ApiHubPluginClient/update_plugin_instance.php
+     *
+     * @param UpdatePluginInstanceRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PluginInstance
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updatePluginInstance(UpdatePluginInstanceRequest $request, array $callOptions = []): PluginInstance
+    {
+        return $this->startApiCall('UpdatePluginInstance', $request, $callOptions)->wait();
     }
 
     /**

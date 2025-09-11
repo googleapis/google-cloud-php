@@ -31,7 +31,7 @@ use Google\Protobuf\FieldMask;
 
 /**
  * Update an API resource in the API hub. The following fields in the
- * [API][] can be updated:
+ * [API][google.cloud.apihub.v1.Api] can be updated:
  *
  * * [display_name][google.cloud.apihub.v1.Api.display_name]
  * * [description][google.cloud.apihub.v1.Api.description]
@@ -41,6 +41,7 @@ use Google\Protobuf\FieldMask;
  * * [team][google.cloud.apihub.v1.Api.team]
  * * [business_unit][google.cloud.apihub.v1.Api.business_unit]
  * * [maturity_level][google.cloud.apihub.v1.Api.maturity_level]
+ * * [api_style][google.cloud.apihub.v1.Api.api_style]
  * * [attributes][google.cloud.apihub.v1.Api.attributes]
  *
  * The

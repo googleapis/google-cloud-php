@@ -106,6 +106,12 @@ class Spec extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.apihub.v1.Spec.ParsingMode parsing_mode = 12 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = INPUT_ONLY];</code>
      */
     protected $parsing_mode = 0;
+    /**
+     * Output only. The list of sources and metadata from the sources of the spec.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.SourceMetadata source_metadata = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $source_metadata;
 
     /**
      * Constructor.
@@ -154,6 +160,8 @@ class Spec extends \Google\Protobuf\Internal\Message
      *     @type int $parsing_mode
      *           Optional. Input only. Enum specifying the parsing mode for OpenAPI
      *           Specification (OAS) parsing.
+     *     @type array<\Google\Cloud\ApiHub\V1\SourceMetadata>|\Google\Protobuf\Internal\RepeatedField $source_metadata
+     *           Output only. The list of sources and metadata from the sources of the spec.
      * }
      */
     public function __construct($data = NULL) {
@@ -573,6 +581,32 @@ class Spec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\ApiHub\V1\Spec\ParsingMode::class);
         $this->parsing_mode = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The list of sources and metadata from the sources of the spec.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.SourceMetadata source_metadata = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getSourceMetadata()
+    {
+        return $this->source_metadata;
+    }
+
+    /**
+     * Output only. The list of sources and metadata from the sources of the spec.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.SourceMetadata source_metadata = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<\Google\Cloud\ApiHub\V1\SourceMetadata>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setSourceMetadata($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\ApiHub\V1\SourceMetadata::class);
+        $this->source_metadata = $arr;
 
         return $this;
     }

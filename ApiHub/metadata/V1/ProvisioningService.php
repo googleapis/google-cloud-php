@@ -20,25 +20,31 @@ class ProvisioningService
         \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Cloud\Apihub\V1\CommonFields::initOnce();
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
+        \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         $pool->internalAddGeneratedFile(
             '
-É
-1google/cloud/apihub/v1/provisioning_service.protogoogle.cloud.apihub.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto*google/cloud/apihub/v1/common_fields.proto#google/longrunning/operations.proto"¡
+Ÿ
+1google/cloud/apihub/v1/provisioning_service.protogoogle.cloud.apihub.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto*google/cloud/apihub/v1/common_fields.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto"¡
 CreateApiHubInstanceRequest9
 parent (	B)‡A˙A#
 !locations.googleapis.com/Location 
 api_hub_instance_id (	B‡AE
-api_hub_instance (2&.google.cloud.apihub.v1.ApiHubInstanceB‡A"V
+api_hub_instance (2&.google.cloud.apihub.v1.ApiHubInstanceB‡A"Y
+DeleteApiHubInstanceRequest:
+name (	B,‡A˙A&
+$apihub.googleapis.com/ApiHubInstance"V
 GetApiHubInstanceRequest:
 name (	B,‡A˙A&
 $apihub.googleapis.com/ApiHubInstance"[
 LookupApiHubInstanceRequest<
 parent (	B,‡A˙A&$apihub.googleapis.com/ApiHubInstance"`
 LookupApiHubInstanceResponse@
-api_hub_instance (2&.google.cloud.apihub.v1.ApiHubInstance2Ô
+api_hub_instance (2&.google.cloud.apihub.v1.ApiHubInstance2Õ
 Provisioningé
 CreateApiHubInstance3.google.cloud.apihub.v1.CreateApiHubInstanceRequest.google.longrunning.Operation"° A#
-ApiHubInstanceOperationMetadata⁄A+parent,api_hub_instance,api_hub_instance_idÇ”‰ìG"3/v1/{parent=projects/*/locations/*}/apiHubInstances:api_hub_instance±
+ApiHubInstanceOperationMetadata⁄A+parent,api_hub_instance,api_hub_instance_idÇ”‰ìG"3/v1/{parent=projects/*/locations/*}/apiHubInstances:api_hub_instance€
+DeleteApiHubInstance3.google.cloud.apihub.v1.DeleteApiHubInstanceRequest.google.longrunning.Operation"o A*
+google.protobuf.EmptyOperationMetadata⁄AnameÇ”‰ì5*3/v1/{name=projects/*/locations/*/apiHubInstances/*}±
 GetApiHubInstance0.google.cloud.apihub.v1.GetApiHubInstanceRequest&.google.cloud.apihub.v1.ApiHubInstance"B⁄AnameÇ”‰ì53/v1/{name=projects/*/locations/*/apiHubInstances/*}Œ
 LookupApiHubInstance3.google.cloud.apihub.v1.LookupApiHubInstanceRequest4.google.cloud.apihub.v1.LookupApiHubInstanceResponse"K⁄AparentÇ”‰ì<:/v1/{parent=projects/*/locations/*}/apiHubInstances:lookupI Aapihub.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformB∫
 com.google.cloud.apihub.v1BProvisioningServiceProtoPZ2cloud.google.com/go/apihub/apiv1/apihubpb;apihubpb™Google.Cloud.ApiHub.V1 Google\\Cloud\\ApiHub\\V1ÍGoogle::Cloud::ApiHub::V1bproto3'

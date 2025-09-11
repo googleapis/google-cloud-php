@@ -151,6 +151,55 @@ class Api extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string selected_version = 15 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     protected $selected_version = '';
+    /**
+     * Optional. The api requirement doc associated with the API resource.
+     * Carinality is 1 for this attribute. This maps to the following system
+     * defined attribute:
+     * `projects/{project}/locations/{location}/attributes/system-api-requirements`
+     * attribute. The value of the attribute should be a proper URI, and in case
+     * of Cloud Storage URI, it should point to a Cloud Storage object,
+     * not a directory.
+     *
+     * Generated from protobuf field <code>.google.cloud.apihub.v1.AttributeValues api_requirements = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $api_requirements = null;
+    /**
+     * Optional. Fingerprint of the API resource.
+     *
+     * Generated from protobuf field <code>string fingerprint = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $fingerprint = '';
+    /**
+     * Output only. The list of sources and metadata from the sources of the API
+     * resource.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.SourceMetadata source_metadata = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $source_metadata;
+    /**
+     * Optional. The api functional requirements associated with the API resource.
+     * Carinality is 1 for this attribute.
+     * This maps to the following system defined attribute:
+     * `projects/{project}/locations/{location}/attributes/system-api-functional-requirements`
+     * attribute. The value of the attribute should be a proper URI, and in case
+     * of Cloud Storage URI, it should point to a Cloud Storage object,
+     * not a directory.
+     *
+     * Generated from protobuf field <code>.google.cloud.apihub.v1.AttributeValues api_functional_requirements = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $api_functional_requirements = null;
+    /**
+     * Optional. The api technical requirements associated with the API resource.
+     * Carinality is 1 for this attribute. This maps to the following system
+     * defined attribute:
+     * `projects/{project}/locations/{location}/attributes/system-api-technical-requirements`
+     * attribute. The value of the attribute should be a proper URI, and in case
+     * of Cloud Storage URI, it should point to a Cloud Storage object,
+     * not a directory.
+     *
+     * Generated from protobuf field <code>.google.cloud.apihub.v1.AttributeValues api_technical_requirements = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $api_technical_requirements = null;
 
     /**
      * Constructor.
@@ -234,6 +283,35 @@ class Api extends \Google\Protobuf\Internal\Message
      *           This can be used when special handling is needed on client side for
      *           particular version of the API. Format is
      *           `projects/{project}/locations/{location}/apis/{api}/versions/{version}`
+     *     @type \Google\Cloud\ApiHub\V1\AttributeValues $api_requirements
+     *           Optional. The api requirement doc associated with the API resource.
+     *           Carinality is 1 for this attribute. This maps to the following system
+     *           defined attribute:
+     *           `projects/{project}/locations/{location}/attributes/system-api-requirements`
+     *           attribute. The value of the attribute should be a proper URI, and in case
+     *           of Cloud Storage URI, it should point to a Cloud Storage object,
+     *           not a directory.
+     *     @type string $fingerprint
+     *           Optional. Fingerprint of the API resource.
+     *     @type array<\Google\Cloud\ApiHub\V1\SourceMetadata>|\Google\Protobuf\Internal\RepeatedField $source_metadata
+     *           Output only. The list of sources and metadata from the sources of the API
+     *           resource.
+     *     @type \Google\Cloud\ApiHub\V1\AttributeValues $api_functional_requirements
+     *           Optional. The api functional requirements associated with the API resource.
+     *           Carinality is 1 for this attribute.
+     *           This maps to the following system defined attribute:
+     *           `projects/{project}/locations/{location}/attributes/system-api-functional-requirements`
+     *           attribute. The value of the attribute should be a proper URI, and in case
+     *           of Cloud Storage URI, it should point to a Cloud Storage object,
+     *           not a directory.
+     *     @type \Google\Cloud\ApiHub\V1\AttributeValues $api_technical_requirements
+     *           Optional. The api technical requirements associated with the API resource.
+     *           Carinality is 1 for this attribute. This maps to the following system
+     *           defined attribute:
+     *           `projects/{project}/locations/{location}/attributes/system-api-technical-requirements`
+     *           attribute. The value of the attribute should be a proper URI, and in case
+     *           of Cloud Storage URI, it should point to a Cloud Storage object,
+     *           not a directory.
      * }
      */
     public function __construct($data = NULL) {
@@ -809,6 +887,204 @@ class Api extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->selected_version = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The api requirement doc associated with the API resource.
+     * Carinality is 1 for this attribute. This maps to the following system
+     * defined attribute:
+     * `projects/{project}/locations/{location}/attributes/system-api-requirements`
+     * attribute. The value of the attribute should be a proper URI, and in case
+     * of Cloud Storage URI, it should point to a Cloud Storage object,
+     * not a directory.
+     *
+     * Generated from protobuf field <code>.google.cloud.apihub.v1.AttributeValues api_requirements = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\ApiHub\V1\AttributeValues|null
+     */
+    public function getApiRequirements()
+    {
+        return $this->api_requirements;
+    }
+
+    public function hasApiRequirements()
+    {
+        return isset($this->api_requirements);
+    }
+
+    public function clearApiRequirements()
+    {
+        unset($this->api_requirements);
+    }
+
+    /**
+     * Optional. The api requirement doc associated with the API resource.
+     * Carinality is 1 for this attribute. This maps to the following system
+     * defined attribute:
+     * `projects/{project}/locations/{location}/attributes/system-api-requirements`
+     * attribute. The value of the attribute should be a proper URI, and in case
+     * of Cloud Storage URI, it should point to a Cloud Storage object,
+     * not a directory.
+     *
+     * Generated from protobuf field <code>.google.cloud.apihub.v1.AttributeValues api_requirements = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\ApiHub\V1\AttributeValues $var
+     * @return $this
+     */
+    public function setApiRequirements($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\ApiHub\V1\AttributeValues::class);
+        $this->api_requirements = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Fingerprint of the API resource.
+     *
+     * Generated from protobuf field <code>string fingerprint = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getFingerprint()
+    {
+        return $this->fingerprint;
+    }
+
+    /**
+     * Optional. Fingerprint of the API resource.
+     *
+     * Generated from protobuf field <code>string fingerprint = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setFingerprint($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->fingerprint = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The list of sources and metadata from the sources of the API
+     * resource.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.SourceMetadata source_metadata = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getSourceMetadata()
+    {
+        return $this->source_metadata;
+    }
+
+    /**
+     * Output only. The list of sources and metadata from the sources of the API
+     * resource.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.SourceMetadata source_metadata = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<\Google\Cloud\ApiHub\V1\SourceMetadata>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setSourceMetadata($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\ApiHub\V1\SourceMetadata::class);
+        $this->source_metadata = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The api functional requirements associated with the API resource.
+     * Carinality is 1 for this attribute.
+     * This maps to the following system defined attribute:
+     * `projects/{project}/locations/{location}/attributes/system-api-functional-requirements`
+     * attribute. The value of the attribute should be a proper URI, and in case
+     * of Cloud Storage URI, it should point to a Cloud Storage object,
+     * not a directory.
+     *
+     * Generated from protobuf field <code>.google.cloud.apihub.v1.AttributeValues api_functional_requirements = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\ApiHub\V1\AttributeValues|null
+     */
+    public function getApiFunctionalRequirements()
+    {
+        return $this->api_functional_requirements;
+    }
+
+    public function hasApiFunctionalRequirements()
+    {
+        return isset($this->api_functional_requirements);
+    }
+
+    public function clearApiFunctionalRequirements()
+    {
+        unset($this->api_functional_requirements);
+    }
+
+    /**
+     * Optional. The api functional requirements associated with the API resource.
+     * Carinality is 1 for this attribute.
+     * This maps to the following system defined attribute:
+     * `projects/{project}/locations/{location}/attributes/system-api-functional-requirements`
+     * attribute. The value of the attribute should be a proper URI, and in case
+     * of Cloud Storage URI, it should point to a Cloud Storage object,
+     * not a directory.
+     *
+     * Generated from protobuf field <code>.google.cloud.apihub.v1.AttributeValues api_functional_requirements = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\ApiHub\V1\AttributeValues $var
+     * @return $this
+     */
+    public function setApiFunctionalRequirements($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\ApiHub\V1\AttributeValues::class);
+        $this->api_functional_requirements = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The api technical requirements associated with the API resource.
+     * Carinality is 1 for this attribute. This maps to the following system
+     * defined attribute:
+     * `projects/{project}/locations/{location}/attributes/system-api-technical-requirements`
+     * attribute. The value of the attribute should be a proper URI, and in case
+     * of Cloud Storage URI, it should point to a Cloud Storage object,
+     * not a directory.
+     *
+     * Generated from protobuf field <code>.google.cloud.apihub.v1.AttributeValues api_technical_requirements = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\ApiHub\V1\AttributeValues|null
+     */
+    public function getApiTechnicalRequirements()
+    {
+        return $this->api_technical_requirements;
+    }
+
+    public function hasApiTechnicalRequirements()
+    {
+        return isset($this->api_technical_requirements);
+    }
+
+    public function clearApiTechnicalRequirements()
+    {
+        unset($this->api_technical_requirements);
+    }
+
+    /**
+     * Optional. The api technical requirements associated with the API resource.
+     * Carinality is 1 for this attribute. This maps to the following system
+     * defined attribute:
+     * `projects/{project}/locations/{location}/attributes/system-api-technical-requirements`
+     * attribute. The value of the attribute should be a proper URI, and in case
+     * of Cloud Storage URI, it should point to a Cloud Storage object,
+     * not a directory.
+     *
+     * Generated from protobuf field <code>.google.cloud.apihub.v1.AttributeValues api_technical_requirements = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\ApiHub\V1\AttributeValues $var
+     * @return $this
+     */
+    public function setApiTechnicalRequirements($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\ApiHub\V1\AttributeValues::class);
+        $this->api_technical_requirements = $var;
 
         return $this;
     }
