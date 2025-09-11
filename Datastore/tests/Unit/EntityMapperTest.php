@@ -109,11 +109,22 @@ class EntityMapperTest extends TestCase
 
     public function testResponseToPropertiesTimestampValue()
     {
-        $date = new \DateTimeImmutable;
+        $seconds = 1678886400;
+        $nanos = 123456789;
+        $microseconds = floor($nanos / 1000);
+        $date = \DateTimeImmutable::createFromFormat(
+            'U.u',
+            sprintf('%d.%06d', $seconds, $microseconds)
+        );
 
         $data = [
             'foo' => [
-                'timestampValue' => $date->format(self::DATE_FORMAT)
+                // This data is after a Proto has been transformed
+                // by the serializer class
+                'timestampValue' => [
+                    'seconds' => $seconds,
+                    'nanos' => $nanos
+                ]
             ]
         ];
 
@@ -677,16 +688,6 @@ class EntityMapperTest extends TestCase
     }
 
     /**
-     * @dataProvider valueObjectDoubleCases
-     */
-    public function testValueObjectDoubleForGrpcClient($input, $expected)
-    {
-        $double = $this->mapper->valueObject($input);
-
-        $this->compareResult($expected, $double['doubleValue']);
-    }
-
-    /**
      * @dataProvider valueObjectDoubleForRestCases
      */
     public function testValueObjectDoubleForRestClient($input, $expected)
@@ -922,16 +923,9 @@ class EntityMapperTest extends TestCase
     {
         return [
             [1.1, 1.1],
-
-            // Happens when using rest client
             ['Infinity', INF],
             ['-Infinity', -INF],
             ['NaN', NAN],
-
-            // Happens when using grpc client
-            [INF, INF],
-            [-INF, -INF],
-            [NAN, NAN]
         ];
     }
 

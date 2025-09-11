@@ -222,18 +222,26 @@ class EntityMapper
                 break;
 
             case 'timestampValue':
-                // The Serializer converts timestamps to an array [seconds, nanos].
-                // This code is taking that format to convert it into an Immutable date.
-                $seconds = $value['seconds'];
-                $nanos = $value['nanos'] ?? 0;
-                $microseconds = (int)($nanos / 1000);
-                $result = \DateTimeImmutable::createFromFormat(
-                    'U.u',
-                    sprintf('%d.%06d', $seconds, $microseconds)
-                );
+                if (is_array($value)) {
+                    // The Serializer converts timestamps to an array [seconds, nanos].
+                    // This code is taking that format to convert it into an Immutable date.
+                    $seconds = $value['seconds'];
+                    $nanos = $value['nanos'] ?? 0;
+                    $microseconds = (int)($nanos / 1000);
+                    $result = \DateTimeImmutable::createFromFormat(
+                        'U.u',
+                        sprintf('%d.%06d', $seconds, $microseconds)
+                    );
+                } else {
+                    // This is to keep compatibility with the previous implementation
+                    $result = \DateTimeImmutable::createFromFormat(self::DATE_FORMAT, $value);
+
+                    if (!$result) {
+                        $result = \DateTimeImmutable::createFromFormat(self::DATE_FORMAT_NO_MS, $value);
+                    }
+                }
 
                 break;
-
             case 'keyValue':
                 $namespaceId = (isset($value['partitionId']['namespaceId']))
                     ? $value['partitionId']['namespaceId']
