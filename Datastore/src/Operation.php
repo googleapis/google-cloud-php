@@ -543,6 +543,7 @@ class Operation
             if (isset($remainingLimit)) {
                 $requestQueryArr['limit'] = $remainingLimit;
             }
+
             $request = [
                 'projectId' => $this->projectId,
                 'partitionId' => $this->partitionId(
@@ -924,6 +925,10 @@ class Operation
             'readTime' => $options['readTime']
         ]);
 
+        if (count($readOptions) > 1) {
+            throw new InvalidArgumentException('ReadOptions can only be one of `readConsistency`, `transaction` or `readTime`.');
+        }
+
         return array_filter([
             'readOptions' => $readOptions,
         ]);
@@ -961,27 +966,31 @@ class Operation
      */
     private function createReadOptions(array $options)
     {
-        $empty = true;
+        $totalSet = 0;
 
         $readOptions = new ReadOptions();
         if (isset($options['transaction'])) {
-            $empty = false;
+            $totalSet++;
             $readOptions->setTransaction(base64_decode($options['transaction']));
         }
         if (isset($options['readConsistency'])) {
-            $empty = false;
+            $totalSet++;
             $readOptions->setReadConsistency($options['readConsistency']);
         }
         if (isset($options['readTime'])) {
-            $empty = false;
+            $totalSet++;
             $protoTime = new ProtobufTimestamp();
             // Timestamps can be passed as an array or a Timestamp object.
             $protoTime->mergeFromJsonString(json_encode($options['readTime']));
             $readOptions->setReadTime($protoTime);
         }
 
-        if ($empty) {
+        if ($totalSet === 0) {
             return null;
+        }
+
+        if ($totalSet > 1) {
+            throw new InvalidArgumentException('Only one of `readConsistency`, `transaction` or `readTime` may be set.');
         }
 
         return $readOptions;
