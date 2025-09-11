@@ -98,64 +98,7 @@ var_dump($response->getTranslations()[0]);
 
 ### Authentication
 
-#### Note
-This quickstart is built with local development in mind. The steps for deploying your project are
-different depending on the environment you use. Here we provide some basic instruction in how to get
-started with deployment of your project:
-
- * For applications running elsewhere, authentication is usually accomplished using a Service
-   Account.
-
-For more information on obtaining Service Account credentials see our
-[Authentication Guide](https://cloud.google.com/docs/authentication/production#manually). Set the
-`GOOGLE_APPLICATION_CREDENTIALS` environment variable pointing to your credentials file.
-
-#### Note:
-Some clients accept the `keyFilePath` and `keyFile` configuration options pointing to the credentials file:
-
-```php
-require 'vendor/autoload.php';
-
-use Google\Cloud\Storage\StorageClient;
-
-// Authenticate using a keyfile path
-$cloud = new StorageClient([
-    'keyFilePath' => 'path/to/keyfile.json'
-]);
-
-// Authenticate using keyfile data
-$cloud = new StorageClient([
-    'keyFile' => json_decode(file_get_contents('/path/to/keyfile.json'), true)
-]);
-```
-A list of clients that accept these parameters are:
-- [Bigtable](https://github.com/googleapis/google-cloud-php-bigtable)
-- [Spanner](https://github.com/googleapis/google-cloud-php-spanner)
-- [Firestore](https://github.com/googleapis/google-cloud-php-firestore)
-- [Datastore](https://github.com/googleapis/google-cloud-php-datastore)
-- [Pubsub](https://github.com/googleapis/google-cloud-php-pubsub)
-- [Logging](https://github.com/googleapis/google-cloud-php-logging)
-- [Translate](https://github.com/googleapis/google-cloud-php-translate)
-- [Bigquery](https://github.com/googleapis/google-cloud-php-bigquery)
-- [Storage](https://github.com/googleapis/google-cloud-php-storage)
-
-We recommend to visit the Check the [client documentation][php-ref-docs] for the client library you're using for more in depth information.
-
-[php-ref-docs]: https://cloud.google.com/php/docs/reference
-
-If you do not wish to embed your authentication information in your application code, you may also make use of [Application Default Credentials](https://developers.google.com/identity/protocols/application-default-credentials).
-
-```php
-require 'vendor/autoload.php';
-
-use Google\Cloud\Storage\StorageClient;
-
-putenv('GOOGLE_APPLICATION_CREDENTIALS=/path/to/keyfile.json');
-
-$cloud = new StorageClient();
-```
-
-The `GOOGLE_APPLICATION_CREDENTIALS` environment variable may be set in your server configuration.
+See [AUTHENTICATION.md](AUTHENTICATION.md)
 
 ### Debugging
 
