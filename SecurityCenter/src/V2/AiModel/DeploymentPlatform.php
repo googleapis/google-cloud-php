@@ -31,11 +31,25 @@ class DeploymentPlatform
      * Generated from protobuf enum <code>GKE = 2;</code>
      */
     const GKE = 2;
+    /**
+     * Google Compute Engine.
+     *
+     * Generated from protobuf enum <code>GCE = 3;</code>
+     */
+    const GCE = 3;
+    /**
+     * Fine tuned model.
+     *
+     * Generated from protobuf enum <code>FINE_TUNED_MODEL = 4;</code>
+     */
+    const FINE_TUNED_MODEL = 4;
 
     private static $valueToName = [
         self::DEPLOYMENT_PLATFORM_UNSPECIFIED => 'DEPLOYMENT_PLATFORM_UNSPECIFIED',
         self::VERTEX_AI => 'VERTEX_AI',
         self::GKE => 'GKE',
+        self::GCE => 'GCE',
+        self::FINE_TUNED_MODEL => 'FINE_TUNED_MODEL',
     ];
 
     public static function name($value)
