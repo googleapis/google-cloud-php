@@ -42,8 +42,6 @@ class CommitTimestampTest extends SnippetTestCase
     use ProphecyTrait;
     use GrpcTestTrait;
 
-    const SESSION = 'projects/my-awesome-project/instances/my-instance/databases/my-database/sessions/session-id';
-
     private $spannerClient;
     private $serializer;
 
@@ -98,9 +96,7 @@ class CommitTimestampTest extends SnippetTestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn(new CommitResponse([
-                'commit_timestamp' => new TimestampProto(['seconds' => time()])
-            ]));
+            ->willReturn(new CommitResponse());
 
         $client = new SpannerClient([
             'projectId' => 'my-project',

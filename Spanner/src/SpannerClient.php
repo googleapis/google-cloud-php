@@ -110,6 +110,7 @@ class SpannerClient
     use RequestTrait;
 
     const VERSION = '1.104.0';
+    private const SERVICE_NAME='google.spanner.v1.Spanner';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/spanner.data';
     const ADMIN_SCOPE = 'https://www.googleapis.com/auth/spanner.admin';
@@ -291,9 +292,7 @@ class SpannerClient
             ]
         );
 
-        $database = $this->instance($instanceId)->database($databaseId, $options + [
-            'cacheItemPool' => $this->cacheItemPool,
-        ]);
+        $database = $this->instance($instanceId)->database($databaseId, $options);
 
         return new BatchClient(
             $operation,
@@ -637,8 +636,6 @@ class SpannerClient
      * @param array $options [optional] {
      *     Configuration options.
      *
-     *     @type CacheItemPoolInterface $cacheItemPool A pool used to manage
-     *           sessions.
      *     @type string $databaseRole The user created database role which creates the session.
      * }
      * @return Database
@@ -649,9 +646,7 @@ class SpannerClient
             $instance = $this->instance($instance);
         }
 
-        $database = $instance->database($name, $options + [
-            'cacheItemPool' => $this->cacheItemPool
-        ]);
+        $database = $instance->database($name, $options);
 
         return $database;
     }

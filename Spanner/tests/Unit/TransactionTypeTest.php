@@ -26,6 +26,7 @@ use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Serializer;
+use Google\Cloud\Spanner\Session\SessionCache;
 use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
 use Google\Cloud\Spanner\Timestamp;
@@ -34,12 +35,10 @@ use Google\Cloud\Spanner\V1\BeginTransactionRequest;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Google\Cloud\Spanner\V1\CommitRequest;
 use Google\Cloud\Spanner\V1\CommitResponse;
-use Google\Cloud\Spanner\V1\CreateSessionRequest;
 use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
 use Google\Cloud\Spanner\V1\PartialResultSet;
 use Google\Cloud\Spanner\V1\ReadRequest;
 use Google\Cloud\Spanner\V1\RollbackRequest;
-use Google\Cloud\Spanner\V1\Session;
 use Google\Cloud\Spanner\V1\Transaction as TransactionProto;
 use Google\Cloud\Spanner\V1\TransactionOptions;
 use Google\Cloud\Spanner\V1\TransactionOptions\PBReadOnly;
@@ -49,8 +48,6 @@ use Google\Protobuf\Timestamp as TimestampProto;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
-use Psr\Cache\CacheItemInterface;
-use Psr\Cache\CacheItemPoolInterface;
 
 /**
  * @group spanner
@@ -74,7 +71,7 @@ class TransactionTypeTest extends TestCase
     private $timestamp;
     private $protoTimestamp;
     private $database;
-    private $cacheItemPool;
+    private $session;
 
     public function setUp(): void
     {
@@ -91,17 +88,8 @@ class TransactionTypeTest extends TestCase
         $instance->name()->willReturn(InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE));
         $instance->directedReadOptions()->willReturn([]);
 
-        $cacheItem = $this->prophesize(CacheItemInterface::class);
-        $cacheItem->get()->willReturn((new Session([
-            'name' => $this->getFullyQualifiedSessionName(),
-            'multiplexed' => true,
-            'create_time' => new TimestampProto(['seconds' => time()]),
-        ]))->serializeToString());
-
-        $cacheKey = sprintf('cache-session-pool.%s.%s.%s.%s', self::PROJECT, self::INSTANCE, self::DATABASE, '');
-        $this->cacheItemPool = $this->prophesize(CacheItemPoolInterface::class);
-        $this->cacheItemPool->getItem($cacheKey)
-            ->willReturn($cacheItem->reveal());
+        $this->session = $this->prophesize(SessionCache::class);
+        $this->session->name()->willReturn(SpannerClient::sessionName(self::PROJECT, self::INSTANCE, self::DATABASE, self::SESSION));
 
         $this->database = new Database(
             $this->spannerClient->reveal(),
@@ -110,7 +98,7 @@ class TransactionTypeTest extends TestCase
             $instance->reveal(),
             self::PROJECT,
             self::DATABASE,
-            ['cacheItemPool' => $this->cacheItemPool->reveal()]
+            $this->session->reveal(),
         );
     }
 
@@ -134,7 +122,7 @@ class TransactionTypeTest extends TestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn(new CommitResponse(['commit_timestamp' => $this->protoTimestamp]));
+            ->willReturn(new CommitResponse());
 
         $this->database->runTransaction(function ($t) {
             // Transaction gets created at the commit operation
@@ -157,7 +145,7 @@ class TransactionTypeTest extends TestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn(new CommitResponse(['commit_timestamp' => $this->protoTimestamp]));
+            ->willReturn(new CommitResponse());
 
         $this->database->runTransaction(function ($t) {
             $this->assertNull($t->id());
@@ -504,7 +492,7 @@ class TransactionTypeTest extends TestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn(new CommitResponse(['commit_timestamp' => $this->protoTimestamp]));
+            ->willReturn(new CommitResponse());
 
         $this->database->insert('Table', [
             'column' => 'value'
@@ -797,7 +785,7 @@ class TransactionTypeTest extends TestCase
             $instance->reveal(),
             self::PROJECT,
             self::DATABASE,
-            ['cacheItemPool' => $this->cacheItemPool->reveal()]
+            $this->session->reveal(),
         );
     }
 
@@ -902,6 +890,6 @@ class TransactionTypeTest extends TestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn(new CommitResponse(['commit_timestamp' => $this->protoTimestamp]));
+            ->willReturn(new CommitResponse());
     }
 }

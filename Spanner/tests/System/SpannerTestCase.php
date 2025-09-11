@@ -17,11 +17,9 @@
 
 namespace Google\Cloud\Spanner\Tests\System;
 
-use Google\Auth\Cache\MemoryCacheItemPool;
 use Google\Cloud\Core\Testing\System\SystemTestCase;
 use Google\Cloud\Spanner;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
-use Google\Cloud\Spanner\Session\CacheSessionPool;
 use Google\Cloud\Spanner\SpannerClient;
 
 /**
@@ -107,7 +105,8 @@ abstract class SpannerTestCase extends SystemTestCase
         $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
 
         $clientConfig = [
-            'keyFilePath' => $keyFilePath
+            'keyFilePath' => $keyFilePath,
+            'cacheItemPool' => self::getCacheItemPool(),
         ];
 
         $serviceAddress = getenv('SPANNER_SERVICE_ADDRESS');
@@ -145,6 +144,13 @@ abstract class SpannerTestCase extends SystemTestCase
     {
         if ((bool) getenv('SPANNER_EMULATOR_HOST')) {
             self::markTestSkipped('This test is not supported by the emulator.');
+        }
+    }
+
+    public static function emulatorOnly()
+    {
+        if (!(bool) getenv('SPANNER_EMULATOR_HOST')) {
+            self::markTestSkipped('This test is only supported by the emulator.');
         }
     }
 

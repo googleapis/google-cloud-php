@@ -18,7 +18,6 @@
 namespace Google\Cloud\Spanner;
 
 use Google\Cloud\Spanner\Session\SessionCache;
-use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\V1\TransactionOptions;
 
 /**
@@ -264,15 +263,12 @@ trait TransactionalReadTrait
 
         unset($executeSqlOptions['requestOptions']['transactionTag']);
         if (isset($this->tag)) {
-            $executeSqlOptions += [
-                'requestOptions' => []
-            ];
             $executeSqlOptions['requestOptions']['transactionTag'] = $this->tag;
         }
 
         $executeSqlOptions['directedReadOptions'] = $this->configureDirectedReadOptions(
             $executeSqlOptions,
-            $this->directedReadOptions ?? []
+            $this->directedReadOptions
         );
 
         // Unsetting the internal flag

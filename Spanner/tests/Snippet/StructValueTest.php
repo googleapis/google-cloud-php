@@ -26,13 +26,12 @@ use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\Serializer;
+use Google\Cloud\Spanner\Session\SessionCache;
 use Google\Cloud\Spanner\StructValue;
 use Google\Cloud\Spanner\V1\Session;
 use Google\Protobuf\Timestamp;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
-use Psr\Cache\CacheItemInterface;
-use Psr\Cache\CacheItemPoolInterface;
 
 /**
  * @group spanner
@@ -63,17 +62,8 @@ class StructValueTest extends SnippetTestCase
         $instance->name()->willReturn(InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE));
         $instance->directedReadOptions()->willReturn([]);
 
-        $cacheItem = $this->prophesize(CacheItemInterface::class);
-        $cacheItem->get()->willReturn((new Session([
-            'name' => SpannerClient::sessionName(self::PROJECT, self::INSTANCE, self::DATABASE, 'my-session'),
-            'multiplexed' => true,
-            'create_time' => new Timestamp(['seconds' => time()]),
-        ]))->serializeToString());
-
-        $cacheKey = sprintf('cache-session-pool.%s.%s.%s.%s', self::PROJECT, self::INSTANCE, self::DATABASE, '');
-        $cacheItemPool = $this->prophesize(CacheItemPoolInterface::class);
-        $cacheItemPool->getItem($cacheKey)
-            ->willReturn($cacheItem->reveal());
+        $session = $this->prophesize(SessionCache::class);
+        $session->name()->willReturn(self::SESSION);
 
         $this->serializer = new Serializer();
         $this->database = new Database(
@@ -83,7 +73,7 @@ class StructValueTest extends SnippetTestCase
             $instance->reveal(),
             self::PROJECT,
             self::DATABASE,
-            ['cacheItemPool' => $cacheItemPool->reveal()]
+            $session->reveal(),
         );
 
         $this->value = new StructValue();

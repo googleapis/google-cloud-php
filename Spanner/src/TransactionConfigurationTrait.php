@@ -18,7 +18,6 @@
 namespace Google\Cloud\Spanner;
 
 use Google\ApiCore\ArrayTrait;
-use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\V1\TransactionOptions;
 use Google\Cloud\Spanner\V1\TransactionOptions\PBReadOnly;
 use Google\Protobuf\Duration;

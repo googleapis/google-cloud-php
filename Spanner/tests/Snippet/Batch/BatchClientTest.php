@@ -56,10 +56,6 @@ class BatchClientTest extends SnippetTestCase
     use GrpcTestTrait;
     use ResultGeneratorTrait;
 
-    const DATABASE = 'projects/my-awesome-project/instances/my-instance/databases/my-database';
-    const SESSION = 'projects/my-awesome-project/instances/my-instance/databases/my-database/sessions/session-id';
-    const TRANSACTION = 'transaction-id';
-
     private $spannerClient;
     private $serializer;
     private $client;

@@ -38,11 +38,11 @@ use Google\Cloud\Spanner\V1\PartitionReadRequest;
 use Google\Cloud\Spanner\V1\ReadRequest;
 use Google\Cloud\Spanner\V1\RequestOptions;
 use Google\Cloud\Spanner\V1\RollbackRequest;
+use Google\Cloud\Spanner\V1\Transaction as TransactionProto;
 use Google\Cloud\Spanner\V1\TransactionOptions;
 use Google\Cloud\Spanner\V1\TransactionOptions\ReadWrite;
-use Google\Cloud\Spanner\V1\Transaction as TransactionProto;
-use Google\Cloud\Spanner\V1\Type;
 use Google\Cloud\Spanner\V1\TransactionSelector;
+use Google\Cloud\Spanner\V1\Type;
 use Google\Rpc\Code;
 use GPBMetadata\Google\Spanner\V1\ResultSet;
 use InvalidArgumentException;
@@ -134,7 +134,7 @@ class Operation
     {
         $options += [
             'session' => $session->name(),
-            'mutations' => $this->serializeMutations($mutations),
+            'mutations' => $mutations,
         ];
         [$commitRequest, $_singleUse, $callOptions] = $this->validateOptions(
             $options,
@@ -535,7 +535,9 @@ class Operation
      */
     public function transaction(SessionCache $session, array $options = []): Transaction
     {
-        $options['mutationKey'] = $this->serializeMutation($options['mutationKey'] ?? []);
+        if (isset($options['transactionOptions'])) {
+            $options['options'] = $options['transactionOptions'];
+        }
         [$options, $beginTransaction, $transactionSelector, $callOptions] = $this->validateOptions(
             $options,
             ['tag', 'isRetry', 'transactionOptions', 'singleUse'], // "singleUse" is an internal flag
@@ -550,16 +552,8 @@ class Operation
 
         // transaction options may be passed in as a message or array
         // TODO: only allow messages
-        $transactionOptions = null;
-        if (isset($options['transactionOptions'])) {
-            $transactionOptions = is_array($options['transactionOptions'])
-                ? $this->serializer->decodeMessage(
-                    new TransactionOptions(),
-                    $this->formatTransactionOptions($options['transactionOptions'])
-                )
-                : $options['transactionOptions'];
-        }
-        $res = [];
+        $transactionOptions = $beginTransaction->getOptions();
+
         if (empty($options['singleUse']) && (
             !$transactionSelector->hasBegin()
             || $transactionOptions?->hasPartitionedDml()
@@ -626,38 +620,44 @@ class Operation
      */
     public function snapshot(SessionCache $session, array $options = []): TransactionalReadInterface
     {
+        // We allow the setting of "options" under the keyword "transactionOptions"
+        // @TODO: get rid of this? This seems like a poor naming choice.
+        if (isset($options['transactionOptions'])) {
+            $options['options'] = $options['transactionOptions'];
+            unset($options['transactionOptions']);
+        }
+
         [$beginTransaction, $callOptions, $misc] = $this->validateOptions(
             $options,
             new BeginTransactionRequest(),
             CallOptions::class,
-            ['singleUse', 'className', 'transactionOptions']
+            ['singleUse', 'className']
         );
-        if (isset($misc['transactionOptions'])) {
-            $transactionOptions = is_array($misc['transactionOptions'])
-                ? $this->serializer->decodeMessage(
-                    new TransactionOptions(),
-                    $this->formatTransactionOptions($misc['transactionOptions'])
-                )
-                : $misc['transactionOptions'];
-            $beginTransaction->setOptions($transactionOptions);
-            $options['transactionOptions'] = $transactionOptions;
-        }
 
-        $res = [];
-        if (false === ($misc['singleUse'] ?? false)) {
+        $misc['singleUse'] ??= false;
+        $misc['className'] ??= Snapshot::class;
+        $transactionId = null;
+        $readTimestamp = null;
+        if (false === $misc['singleUse']) {
             $transactionProto = $this->beginTransaction($session, $beginTransaction, $callOptions);
-            $res = $this->handleResponse($transactionProto);
-        }
-
-        $snapshotClass = $misc['className'] ?? Snapshot::class;
-        if (isset($res['readTimestamp'])) {
-            if (!($res['readTimestamp'] instanceof Timestamp)) {
-                $time = $this->parseTimeString($res['readTimestamp']);
-                $res['readTimestamp'] = new Timestamp($time[0], $time[1]);
+            $transactionId = $transactionProto->getId();
+            if ($timestamp = $transactionProto->getReadTimestamp()) {
+                $dateTime = \DateTimeImmutable::createFromFormat(
+                    'U',
+                    (int) $timestamp?->getSeconds(),
+                    new \DateTimeZone('UTC')
+                );
+                $readTimestamp = new Timestamp($dateTime, $timestamp?->getNanos());
             }
         }
 
-        return new $snapshotClass($this, $session, $res + $options);
+        return new $misc['className']($this, $session, [
+            'id' => $transactionId,
+            'readTimestamp' => $readTimestamp,
+            'singleUse' => $misc['singleUse'],
+            'directedReadOptions' => $options['directedReadOptions'] ?? null,
+            'transactionOptions' => $beginTransaction->getOptions(),
+        ]);
     }
 
     /**
@@ -728,13 +728,12 @@ class Operation
             'resource-prefix' => $this->getDatabaseNameFromSession($session),
             'route-to-leader' => $this->routeToLeader
         ]);
-        $res = $this->handleResponse($response);
 
         $partitions = [];
         $queryPartitionOptions = $this->pluckArray(['parameters', 'types', 'maxPartitions', 'partitionSizeBytes'], $options);
-        foreach ($res['partitions'] as $partition) {
+        foreach ($response->getPartitions() as $partition) {
             $partitions[] = new QueryPartition(
-                $partition['partitionToken'],
+                $partition->getPartitionToken(),
                 $sql,
                 $queryPartitionOptions
             );
@@ -799,17 +798,11 @@ class Operation
             'route-to-leader' => $this->routeToLeader
         ]);
 
-        if ($precommitToken = $response->getTransaction()->getPrecommitToken()) {
-            // We don't have a transaction to set the precommitToken on
-            // @TODO: Figure out how to handle this
-        }
-        $res = $this->handleResponse($response);
-
         $partitions = [];
         $readPartitionOptions = $this->pluckArray(['index', 'maxPartitions', 'partitionSizeBytes'], $options);
-        foreach ($res['partitions'] as $partition) {
+        foreach ($response->getPartitions() as $partition) {
             $partitions[] = new ReadPartition(
-                $partition['partitionToken'],
+                $partition->getPartitionToken(),
                 $table,
                 $keySet,
                 $columns,
@@ -971,18 +964,7 @@ class Operation
         string|null $transactionId = null
     ): array {
         if (isset($args['transaction'])) {
-            $transactionSelector = $args['transaction'];
-
-            if (isset($transactionSelector['singleUse'])) {
-                $transactionSelector['singleUse'] =
-                    $this->formatTransactionOptions($transactionSelector['singleUse']);
-            }
-
-            if (isset($transactionSelector['begin'])) {
-                $transactionSelector['begin'] =
-                    $this->formatTransactionOptions($transactionSelector['begin']);
-            }
-            return $transactionSelector;
+            return $args['transaction'];
         }
 
         if ($transactionId) {
@@ -1012,29 +994,6 @@ class Operation
         $queryOptions += $this->defaultQueryOptions ?: [];
 
         return $queryOptions;
-    }
-
-    /**
-     * @param array $transactionOptions
-     * @return array
-     */
-    private function formatTransactionOptions(array $transactionOptions): array
-    {
-        // sometimes readOnly is a PBReadOnly message instance
-        if (isset($transactionOptions['readOnly']) && is_array($transactionOptions['readOnly'])) {
-            $ro = $transactionOptions['readOnly'];
-            if (isset($ro['minReadTimestamp'])) {
-                $ro['minReadTimestamp'] = $this->formatTimestampForApi($ro['minReadTimestamp']);
-            }
-
-            if (isset($ro['readTimestamp'])) {
-                $ro['readTimestamp'] = $this->formatTimestampForApi($ro['readTimestamp']);
-            }
-
-            $transactionOptions['readOnly'] = $ro;
-        }
-
-        return $transactionOptions;
     }
 
     /**

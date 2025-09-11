@@ -58,12 +58,6 @@ class TransactionalReadMethodsTest extends SnippetTestCase
     use ProphecyTrait;
     use ResultGeneratorTrait;
 
-    const PROJECT = 'my-awesome-project';
-    const DATABASE = 'my-database';
-    const INSTANCE = 'my-instance';
-    const TRANSACTION = 'my-transaction';
-    const SESSION = 'projects/my-awesome-project/instances/my-instance/databases/my-database/sessions/session-id';
-
     private $spannerClient;
     private $databaseAdminClient;
     private $serializer;
@@ -363,18 +357,8 @@ class TransactionalReadMethodsTest extends SnippetTestCase
         $instance->name()->willReturn(InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE));
         $instance->directedReadOptions()->willReturn([]);
 
-        // ensure cache hit
-        $cacheItem = $this->prophesize(CacheItemInterface::class);
-        $cacheItem->get()->willReturn((new Session([
-            'name' => self::SESSION,
-            'multiplexed' => true,
-            'create_time' => new ProtobufTimestamp(['seconds' => time()]),
-        ]))->serializeToString());
-
-        $cacheKey = sprintf('cache-session-pool.%s.%s.%s.%s', self::PROJECT, self::INSTANCE, self::DATABASE, '');
-        $cacheItemPool = $this->prophesize(CacheItemPoolInterface::class);
-        $cacheItemPool->getItem($cacheKey)
-            ->willReturn($cacheItem->reveal());
+        $session = $this->prophesize(SessionCache::class);
+        $session->name()->willReturn(self::SESSION);
 
         return new Database(
             $this->spannerClient->reveal(),
@@ -383,7 +367,7 @@ class TransactionalReadMethodsTest extends SnippetTestCase
             $instance->reveal(),
             self::PROJECT,
             self::DATABASE,
-            ['cacheItemPool' => $cacheItemPool->reveal()]
+            $session->reveal(),
         );
     }
 

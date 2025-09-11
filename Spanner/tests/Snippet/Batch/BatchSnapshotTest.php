@@ -55,10 +55,6 @@ class BatchSnapshotTest extends SnippetTestCase
     use ProphecyTrait;
     use ResultGeneratorTrait;
 
-    const DATABASE = 'projects/my-awesome-project/instances/my-instance/databases/my-database';
-    const SESSION = 'projects/my-awesome-project/instances/my-instance/databases/my-database/sessions/session-id';
-    const TRANSACTION = 'transaction-id';
-
     private $spannerClient;
     private $serializer;
     private $session;
@@ -72,9 +68,9 @@ class BatchSnapshotTest extends SnippetTestCase
         $this->serializer = new Serializer();
         $this->spannerClient = $this->prophesize(SpannerClient::class);
 
-        $sessData = SpannerClient::parseName(self::SESSION, 'session');
         $this->session = $this->prophesize(SessionCache::class);
         $this->session->name()->willReturn(self::SESSION);
+
         $this->time = time();
         $this->snapshot = new BatchSnapshot(
             new Operation($this->spannerClient->reveal(), $this->serializer),

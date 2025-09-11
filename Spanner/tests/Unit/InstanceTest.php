@@ -691,15 +691,17 @@ class InstanceTest extends TestCase
         $cacheItem->set(Argument::any())->willReturn($cacheItem->reveal());
         $cacheItem->expiresAt(Argument::any())->willReturn($cacheItem->reveal());
 
-        $cacheItemPool = $this->prophesize(CacheItemPoolInterface::class);
-        $cacheItemPool->getItem(Argument::type('string'))
+        $this->cacheItemPool->getItem(
+            'cache-session-pool.test-project.instance-name.database-name.Reader'
+        )
+            ->shouldBeCalledOnce()
             ->willReturn($cacheItem->reveal());
-        $cacheItemPool->save(Argument::type(CacheItemInterface::class))
+        $this->cacheItemPool->save(Argument::type(CacheItemInterface::class))
+            ->shouldBeCalledOnce()
             ->willReturn(true);
 
         $database = $this->instance->database($this::DATABASE, [
             'databaseRole' => 'Reader',
-            'cacheItemPool' => $cacheItemPool->reveal(),
         ]);
 
         $this->spannerClient->createSession(

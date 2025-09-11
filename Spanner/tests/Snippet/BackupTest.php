@@ -54,11 +54,6 @@ class BackupTest extends SnippetTestCase
     use GrpcTestTrait;
     use ProphecyTrait;
 
-    const PROJECT = 'my-awesome-project';
-    const INSTANCE = 'my-instance';
-    const DATABASE = 'my-database';
-    const BACKUP = 'my-backup';
-
     private $serializer;
     private $operationResponse;
     private $databaseAdminClient;

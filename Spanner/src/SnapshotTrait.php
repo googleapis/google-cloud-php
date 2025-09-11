@@ -48,6 +48,8 @@ trait SnapshotTrait
      *           If using the `replicaSelection::type` setting, utilize the constants available in
      *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type} to set a value.
      *     @type array $transactionOptions The Transaction Options
+     *     @type array $singleUse
+     *     @type array $begin
      * }
      */
     private function initialize(

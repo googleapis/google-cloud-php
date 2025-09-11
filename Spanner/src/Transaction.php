@@ -20,10 +20,10 @@ namespace Google\Cloud\Spanner;
 use Google\ApiCore\ValidationException;
 use Google\Cloud\Core\Exception\AbortedException;
 use Google\Cloud\Spanner\Session\SessionCache;
+use Google\Cloud\Spanner\V1\CommitResponse\CommitStats;
+use Google\Cloud\Spanner\V1\MultiplexedSessionPrecommitToken;
 use Google\Cloud\Spanner\V1\RequestOptions;
 use Google\Cloud\Spanner\V1\TransactionOptions;
-use Google\Cloud\Spanner\V1\MultiplexedSessionPrecommitToken;
-use Google\Cloud\Spanner\V1\CommitResponse\CommitStats;
 
 /**
  * Manages interaction with Cloud Spanner inside a Transaction.
@@ -429,17 +429,17 @@ class Transaction implements TransactionalReadInterface
         }
 
         // For commit, A transaction ID is mandatory for non-single-use transactions,
-        // and the `begin` option is not supported (because `begin` is only used in "inline begin transactions")
+        // and the `begin` option is not supported (because `begin` is only used by ILBs)
         if (empty($this->transactionId) && isset($this->transactionSelector['begin'])) {
             $operationTransactionOptions = array_filter([
                 'requestOptions' => $this->requestOptions,
                 'transactionOptions' => $this->transactionOptions,
                 'singleUse' => $this->transactionSelector['singleUse'] ?? null,
             ]);
-            // generate mutation key
             if (!empty($options['mutations'])) {
-                $mutation = $options['mutations'][mt_rand(0, count($options['mutations']) - 1)];
-                $operationTransactionOptions['mutationKey'] = $mutation;
+                // generate mutation key
+                $mutationKey = $options['mutations'][array_rand($options['mutations'])];
+                $operationTransactionOptions['mutationKey'] = $mutationKey;
             }
             // Execute the beginTransaction RPC.
             $transaction = $this->operation->transaction($this->session, $operationTransactionOptions);
@@ -479,10 +479,10 @@ class Transaction implements TransactionalReadInterface
         $timestamp = $response->getCommitTimestamp();
         $dateTime = \DateTimeImmutable::createFromFormat(
             'U',
-            (string) $timestamp->getSeconds(),
+            (int) $timestamp?->getSeconds(),
             new \DateTimeZone('UTC')
         );
-        return new Timestamp($dateTime, $timestamp->getNanos());
+        return new Timestamp($dateTime, $timestamp?->getNanos());
     }
 
     /**
@@ -528,6 +528,11 @@ class Transaction implements TransactionalReadInterface
 
     public function setPrecommitToken(MultiplexedSessionPrecommitToken $precommitToken): void
     {
+        if (isset($this->precommitToken)
+            && $this->precommitToken->getSeqNum() > $precommitToken->getSeqNum()
+        ) {
+            return;
+        }
         $this->precommitToken = $precommitToken;
     }
 

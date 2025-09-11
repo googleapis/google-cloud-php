@@ -19,6 +19,9 @@ namespace Google\Cloud\Spanner;
 
 use Closure;
 use Google\ApiCore\Options\CallOptions;
+use Google\ApiCore\ValidationException;
+use Google\Auth\Cache\FileSystemCacheItemPool;
+use Google\Auth\Cache\SysVCacheItemPool;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Iam\IamManager;
 use Google\Cloud\Core\Iterator\ItemIterator;
@@ -26,7 +29,9 @@ use Google\Cloud\Core\LongRunning\LongRunningClientConnection;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
+use Google\Cloud\Spanner\Admin\Database\V1\ListBackupOperationsRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\ListBackupsRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\ListDatabaseOperationsRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\ListDatabasesRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\CreateInstanceRequest;
@@ -34,7 +39,7 @@ use Google\Cloud\Spanner\Admin\Instance\V1\DeleteInstanceRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\GetInstanceRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\Instance\State;
 use Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceRequest;
-use Google\Cloud\Spanner\Session\SessionPoolInterface;
+use Google\Cloud\Spanner\Session\SessionCache;
 use Google\Cloud\Spanner\V1\Client\SpannerClient as GapicSpannerClient;
 use Google\LongRunning\ListOperationsRequest;
 use Google\LongRunning\Operation as OperationProto;
@@ -92,6 +97,7 @@ class Instance
      *     @type bool $returnInt64AsObject If true, 64 bit integers will be
      *           returned as a {@see \Google\Cloud\Core\Int64} object for 32 bit platform
      *           compatibility. **Defaults to** false.
+     *     @type CacheItemPool $cacheItemPool
      * }
      * @param array $info A representation of the instance object.
      */
@@ -490,14 +496,13 @@ class Instance
      *     @type bool $routeToLeader Enable/disable Leader Aware Routing.
      *         **Defaults to** `true` (enabled).
      *     @type array $defaultQueryOptions
-     *     @type SessionPoolInterface $sessionPool The session pool
-     *         implementation.
      *     @type bool $returnInt64AsObject If true, 64 bit integers will
      *         be returned as a {@see \Google\Cloud\Core\Int64} object for 32 bit
      *         platform compatibility. **Defaults to** false.
      *     @type string $databaseRole The user created database role which
      *         creates the session.
      *     @type array $database The database info.
+     *     @type SessionCache $session
      * }
      * @return Database
      */
@@ -507,10 +512,34 @@ class Instance
             'routeToLeader',
             'defaultQueryOptions',
             'returnint64AsObject',
-            'cacheItemPool',
             'databaseRole',
-            'database'
+            'database',
+            'session',
         ]);
+
+        try {
+            $instance = DatabaseAdminClient::parseName($this->name())['instance'];
+            $databaseName = GapicSpannerClient::databaseName(
+                $this->projectId,
+                $instance,
+                $name
+            );
+        } catch (ValidationException $e) {
+            $databaseName = $name;
+        }
+
+        if (!$session = $options['session'] ?? null) {
+            $cacheItemPool = $this->cacheItemPool ?? (
+                extension_loaded('sysvshm')
+                    ? new SysVCacheItemPool()
+                    : new FileSystemCacheItemPool(sys_get_temp_dir() . '/spanner_cache/')
+            );
+            $session = new SessionCache($cacheItemPool, $this->spannerClient, $databaseName, [
+                'databaseRole' => $options['databaseRole'] ?? '',
+                'routeToLeader' => $this->routeToLeader,
+            ]);
+        }
+
         return new Database(
             $this->spannerClient,
             $this->databaseAdminClient,
@@ -518,11 +547,11 @@ class Instance
             $this,
             $this->projectId,
             $name,
+            $session,
             $options + [
                 'routeToLeader' => $this->routeToLeader,
                 'defaultQueryOptions' => $this->defaultQueryOptions,
                 'returnInt64AsObject' => $this->returnInt64AsObject,
-                'cacheItemPool' => $this->cacheItemPool ?? null,
             ]
         );
     }
@@ -676,7 +705,19 @@ class Instance
      */
     public function backupOperations(array $options = []): ItemIterator
     {
-        return $this->database($this->name)->backupOperations($options);
+        [$listBackupOperations, $callOptions] = $this->validateOptions(
+            $options,
+            new ListBackupOperationsRequest(),
+            CallOptions::class
+        );
+        $listBackupOperations->setParent($this->name);
+
+        return $this->buildLongRunningIterator(
+            [$this->databaseAdminClient, 'listBackupOperations'],
+            $listBackupOperations,
+            $callOptions +  ['resource-prefix' => $this->name],
+            $this->getResultMapper()
+        );
     }
 
     /**
@@ -707,7 +748,19 @@ class Instance
      */
     public function databaseOperations(array $options = []): ItemIterator
     {
-        return $this->database($this->name)->databaseOperations($options);
+        [$listDatabaseOperations, $callOptions] = $this->validateOptions(
+            $options,
+            new ListDatabaseOperationsRequest(),
+            CallOptions::class
+        );
+        $listDatabaseOperations->setParent($this->name);
+
+        return $this->buildLongRunningIterator(
+            [$this->databaseAdminClient, 'listDatabaseOperations'],
+            $listDatabaseOperations,
+            $callOptions + ['resource-prefix' => $this->name],
+            $this->getResultMapper()
+        );
     }
 
     /**
@@ -763,7 +816,8 @@ class Instance
             'instanceAdminClient' => get_class($this->instanceAdminClient),
             'projectId' => $this->projectId,
             'name' => $this->name,
-            'info' => $this->info
+            'info' => $this->info,
+            'cacheItemPool' => $this->cacheItemPool,
         ];
     }
 
@@ -877,12 +931,7 @@ class Instance
             [$this->instanceAdminClient->getOperationsClient(), 'listOperations'],
             $listOperationsRequest,
             $callOptions,
-            function (OperationProto $operation) {
-                return $this->resumeOperation(
-                    $operation->getName(),
-                    $this->handleResponse($operation)
-                );
-            }
+            $this->getResultMapper(),
         );
     }
 
@@ -904,6 +953,16 @@ class Instance
                     'returnInt64AsObject' => $this->returnInt64AsObject,
                 ],
                 $result,
+            );
+        };
+    }
+
+    private function getResultMapper()
+    {
+        return function (OperationProto $operation) {
+            return $this->resumeOperation(
+                $operation->getName(),
+                $this->handleResponse($operation)
             );
         };
     }

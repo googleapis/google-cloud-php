@@ -19,8 +19,6 @@ namespace Google\Cloud\Spanner;
 
 use Closure;
 use DateTimeInterface;
-use Google\Auth\Cache\SysVCacheItemPool;
-use Google\Auth\Cache\FilesystemCacheItemPool;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\Options\CallOptions;
 use Google\ApiCore\RetrySettings;
@@ -49,12 +47,10 @@ use Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseRequest;
 use Google\Cloud\Spanner\Session\SessionCache;
 use Google\Cloud\Spanner\V1\BatchWriteRequest;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
-use Google\Cloud\Spanner\V1\CreateSessionRequest;
 use Google\Cloud\Spanner\V1\Mutation;
 use Google\Cloud\Spanner\V1\Mutation\Delete;
 use Google\Cloud\Spanner\V1\Mutation\Write;
 use Google\Cloud\Spanner\V1\TypeCode;
-use Google\Cloud\Spanner\V1\Session;
 use Google\LongRunning\ListOperationsRequest;
 use Google\LongRunning\Operation as OperationProto;
 use Google\Protobuf\ListValue;
@@ -118,7 +114,6 @@ class Database
 
     private Operation $operation;
     private IamManager|null $iam = null;
-    private SessionCache $session;
     private bool $isRunningTransaction = false;
     private array $directedReadOptions;
     private bool $routeToLeader;
@@ -147,14 +142,13 @@ class Database
      * @param Instance $instance The instance in which the database exists.
      * @param string $projectId The project ID.
      * @param string $name The database name or ID.
+     * @param SessionCache $session the current Session
      * @param array $options [Optional] {
      *     Database options.
      *
      *     @type bool $routeToLeader Enable/disable Leader Aware Routing.
      *         **Defaults to** `true` (enabled).
      *     @type array $defaultQueryOptions
-     *     @type CacheItemPoolInterface $cacheItemPool The session pool
-     *         implementation.
      *     @type bool $returnInt64AsObject If true, 64 bit integers will
      *         be returned as a {@see \Google\Cloud\Core\Int64} object for 32 bit
      *         platform compatibility. **Defaults to** false.
@@ -170,6 +164,7 @@ class Database
         private Instance $instance,
         private string $projectId,
         private string $name,
+        private SessionCache $session,
         array $options = [],
     ) {
         $this->name = $this->fullyQualifiedDatabaseName($name);
@@ -189,13 +184,6 @@ class Database
             ]
         );
 
-        $cacheItemPool = $options['cacheItemPool'] ?? (
-            extension_loaded('sysvshm')
-                ? new SysVCacheItemPool()
-                : new FilesystemCacheItemPool(sys_get_temp_dir() . '/spanner_cache/')
-        );
-
-        $this->session = new SessionCache($cacheItemPool, $this);
         $this->directedReadOptions = $instance->directedReadOptions();
     }
 
@@ -931,7 +919,7 @@ class Database
         );
 
         $attempt = 0;
-        $startTransactionFn = function ($session, $options) use (&$attempt) {
+        $startTransactionFn = function ($options) use (&$attempt) {
             // Initial attempt requires to set `begin` options (ILB).
             if ($attempt === 0) {
                 // Partitioned DML does not support ILB.
@@ -961,11 +949,8 @@ class Database
             throw $e;
         };
 
-        $transactionFn = function ($operation, $session, $options) use ($startTransactionFn) {
-            $transaction = call_user_func_array($startTransactionFn, [
-                $session,
-                $options
-            ]);
+        $transactionFn = function ($operation, $options) use ($startTransactionFn) {
+            $transaction = $startTransactionFn($options);
 
             // Prevent nested transactions.
             $this->isRunningTransaction = true;
@@ -986,7 +971,7 @@ class Database
         };
 
         $retry = new Retry($maxRetries, $delayFn);
-        return $retry->execute($transactionFn, [$operation, $this->session, $options]);
+        return $retry->execute($transactionFn, [$operation, $options]);
     }
 
     /**
@@ -2066,38 +2051,6 @@ class Database
     }
 
     /**
-     * Create a new session.
-     *
-     * Sessions are handled behind the scenes and this method does not need to
-     * be called directly.
-     *
-     * @access private
-     * @param array $options [optional] Configuration options.
-     * @return Session
-     */
-    public function createSession(array $options = []): Session
-    {
-        [$session, $callOptions] = $this->validateOptions(
-            $options,
-            new Session(),
-            CallOptions::class
-        );
-
-        $session->setMultiplexed(true)
-            ->setCreatorRole($this->databaseRole);
-
-        $createSessionRequest = (new CreateSessionRequest())
-            ->setDatabase($this->name)
-            ->setSession($session);
-
-        return $this->spannerClient->createSession($createSessionRequest, $callOptions + [
-            'resource-prefix' => $this->name,
-            'route-to-leader' => $this->routeToLeader
-        ]);
-    }
-
-
-    /**
      * Retrieves the database's identity.
      *
      * @access private
@@ -2489,7 +2442,7 @@ class Database
         return function (array $database): self {
             $name = DatabaseAdminClient::parseName($database['name']);
             return $this->instance->database($name['database'], [
-                'sessionCache' => $this->session,
+                'session' => $this->session,
                 'database' => $database,
                 'databaseRole' => $this->databaseRole,
             ]);

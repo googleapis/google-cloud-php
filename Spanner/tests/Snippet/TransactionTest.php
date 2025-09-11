@@ -54,9 +54,6 @@ class TransactionTest extends SnippetTestCase
     use ProphecyTrait;
     use ResultGeneratorTrait;
 
-    const TRANSACTION = 'my-transaction';
-    const SESSION = 'projects/my-awesome-project/instances/my-instance/databases/my-database/sessions/session-id';
-
     private $spannerClient;
     private $serializer;
     private $transaction;
@@ -388,9 +385,7 @@ class TransactionTest extends SnippetTestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn(new CommitResponse([
-                'commit_timestamp' => new TimestampProto(['seconds' => time()])
-            ]));
+            ->willReturn(new CommitResponse());
 
         $snippet = $this->snippetFromMethod(Transaction::class, 'commit');
         $snippet->addLocal('transaction', $this->transaction);
@@ -405,7 +400,6 @@ class TransactionTest extends SnippetTestCase
             Argument::type(CommitRequest::class),
             Argument::type('array')
         )->willReturn(new CommitResponse([
-            'commit_timestamp' => new TimestampProto(['seconds' => time()]),
             'commit_stats' => $expectedCommitStats,
         ]));
 

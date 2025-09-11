@@ -40,6 +40,7 @@ use Google\Cloud\Spanner\Admin\Database\V1\GetDatabaseRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\ListBackupsResponse;
 use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
 use Google\Cloud\Spanner\Database;
+use Google\Cloud\Spanner\Date;
 use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Operation;
@@ -165,17 +166,8 @@ class DatabaseTest extends TestCase
             ['directedReadOptions' => self::DIRECTED_READ_OPTIONS_INCLUDE_REPLICAS]
         );
 
-        $cacheItem = $this->prophesize(CacheItemInterface::class);
-        $cacheItem->get()->willReturn((new Session([
-            'name' => $this->sessionName,
-            'multiplexed' => true,
-            'create_time' => new TimestampProto(['seconds' => time()]),
-        ]))->serializeToString());
-
-        $cacheKey = sprintf('cache-session-pool.%s.%s.%s.%s', self::PROJECT, self::INSTANCE, self::DATABASE, '');
-        $cacheItemPool = $this->prophesize(CacheItemPoolInterface::class);
-        $cacheItemPool->getItem($cacheKey)
-            ->willReturn($cacheItem->reveal());
+        $session = $this->prophesize(SessionCache::class);
+        $session->name()->willReturn($this->sessionName);
 
         $this->database = new Database(
             $this->spannerClient->reveal(),
@@ -184,7 +176,7 @@ class DatabaseTest extends TestCase
             $this->instance,
             self::PROJECT,
             self::DATABASE,
-            ['cacheItemPool' => $cacheItemPool->reveal()]
+            $session->reveal(),
         );
 
         $this->operationResponse = $this->prophesize(OperationResponse::class);
@@ -1460,27 +1452,6 @@ class DatabaseTest extends TestCase
         $this->assertEquals(10, $rows[0]['ID']);
     }
 
-    public function testCreateSession()
-    {
-        $this->spannerClient->createSession(
-            Argument::that(function ($request) {
-                $message = $this->serializer->encodeMessage($request);
-                return $message['database'] == $this->database->name();
-            }),
-            Argument::type('array')
-        )
-            ->shouldBeCalledOnce()
-            ->willReturn(new Session([
-                'name' => $this->sessionName,
-                'multiplexed' => true,
-            ]));
-
-        $sess = $this->database->createSession();
-
-        $this->assertInstanceOf(Session::class, $sess);
-        $this->assertEquals($this->sessionName, $sess->getName());
-    }
-
     public function testSession()
     {
         $sess = $this->database->session();
@@ -1565,6 +1536,15 @@ class DatabaseTest extends TestCase
         $cacheItemPool->save(Argument::type(CacheItemInterface::class))
             ->willReturn(true);
 
+        $sessionCache = new SessionCache(
+            $cacheItemPool->reveal(),
+            $this->spannerClient->reveal(),
+            $this->database->name(),
+            [
+                'databaseRole' => 'Reader'
+            ]
+        );
+
         $databaseWithDatabaseRole = new Database(
             $this->spannerClient->reveal(),
             $this->databaseAdminClient->reveal(),
@@ -1572,10 +1552,10 @@ class DatabaseTest extends TestCase
             $this->instance,
             self::PROJECT,
             self::DATABASE,
+            $sessionCache,
             [
                 'databaseRole' => 'Reader',
-                'cacheItemPool' => $cacheItemPool->reveal(),
-            ]
+            ],
         );
         $databaseWithDatabaseRole->execute($sql);
     }
@@ -2264,6 +2244,101 @@ class DatabaseTest extends TestCase
             'excludeTxnFromChangeStreams' => true
         ]);
     }
+
+    public function testMutationKeyIsSetFromInsert()
+    {
+        $this->spannerClient->beginTransaction(
+            Argument::that(function (BeginTransactionRequest $request) {
+                $this->assertNotNull($request->getMutationKey());
+                $this->assertNotNull($request->getMutationKey()->getInsert());
+                $this->assertGreaterThan(0, $request->getMutationKey()->getInsert()->getValues()->count());
+                return true;
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new TransactionProto());
+
+        $this->spannerClient->commit(
+            Argument::type(CommitRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new CommitResponse());
+
+        $row = [
+            'id' => 123,
+            'name' => 'my-row',
+            'birthday' => new Date(new \DateTime())
+        ];
+
+        $this->database->runTransaction(function (Transaction $t) use ($row) {
+            $t->insert(self::TEST_TABLE_NAME, $row);
+            $t->commit();
+        });
+    }
+
+    // public function testMutationKeyIsNullForGenericTransaction()
+    // {
+    //     $this->spannerClient->beginTransaction(
+    //         Argument::that(function (BeginTransactionRequest $request) {
+    //             $this->assertNull($request->getMutationKey());
+    //             // $this->assertNotNull($request->getMutationKey()->getInsert());
+    //             // $this->assertGreaterThan(0, $request->getMutationKey()->getInsert()->getValues()->count());
+    //             return true;
+    //         }),
+    //         Argument::type('array')
+    //     )
+    //         ->shouldBeCalledOnce()
+    //         ->willReturn(new TransactionProto());
+
+    //     $this->spannerClient->commit(
+    //         Argument::type(CommitRequest::class),
+    //         Argument::type('array')
+    //     )
+    //         ->shouldBeCalledOnce()
+    //         ->willReturn(new CommitResponse());
+
+    //     $t = $this->database->transaction();
+    //     $res = $t->execute('SELECT * FROM ' . self::TEST_TABLE_NAME . ' WHERE id = @id', [
+    //         'parameters' => [
+    //             'id' => 123
+    //         ]
+    //     ]);
+    //         // $t->executeUpdate(
+    //         //     'INSERT INTO ' . self::TEST_TABLE_NAME . ' (id, name, birthday) VALUES (@id, @name, @birthday)',
+    //         //     [
+    //         //         'parameters' => [
+    //         //             'id' => 123,
+    //         //             'name' => 'my-row-new-name',
+    //         //             'birthday' => new Date(new \DateTime())
+    //         //         ]
+    //         //     ]
+    //         // );
+    //     $t->commit();
+    //     // });
+    // }
+
+        // $db->runTransaction(function ($t) use ($values) {
+        //     $id = rand(1, 346464);
+        //     $t->insert(self::TEST_TABLE_NAME, $values);
+
+        //     $t->commit();
+        // });
+        // $cols = array_keys($row);
+        // $keySet = new KeySet([
+        //     'keys' => [$id]
+        // ]);
+        // $snapshot = $db->snapshot();
+        // $res = $snapshot->read(self::TEST_TABLE_NAME, $keySet, $cols);
+        // $resRow = $res->rows()->current();
+        // $this->assertEquals($resRow['id'], $row['id']);
+        // $this->assertEquals($resRow['name'], $row['name']);
+        // $this->assertEquals(
+        //     $resRow['birthday']->formatAsString(),
+        //     $row['birthday']->formatAsString()
+        // );
+    // }
 
     private function createStreamingAPIArgs()
     {

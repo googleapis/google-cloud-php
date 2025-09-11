@@ -18,14 +18,16 @@
 namespace Google\Cloud\Spanner\Session;
 
 use DateTimeImmutable;
-use Google\Cloud\Core\SysvTrait;
 use Google\Cloud\Core\Lock\FlockLock;
 use Google\Cloud\Core\Lock\LockInterface;
 use Google\Cloud\Core\Lock\SemaphoreLock;
-use Google\Cloud\Spanner\Database;
-use Google\Cloud\Spanner\V1\Session as SessionProto;
+use Google\Cloud\Core\SysvTrait;
+use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
+use Google\Cloud\Spanner\V1\Client\SpannerClient;
+use Google\Cloud\Spanner\V1\CreateSessionRequest;
+use Google\Cloud\Spanner\V1\Session;
+use Psr\Cache\CacheItemInterface;
 use Psr\Cache\CacheItemPoolInterface;
-
 
 /**
  * Represents and manages a Cloud Spanner Multiplexed Session.
@@ -42,24 +44,37 @@ class SessionCache
 
     private string $cacheKey;
     private LockInterface $lock;
+    private ?Session $session = null;
+    private string $databaseRole;
+    private bool $routeToLeader;
 
     /**
+     * @param array $options {
+     *         Configuration Options.
+     *
+     *         @type string $databaseRole
+     *         @type LockInterface $lock
+     *         @type bool $routeToLeader
+     * }
      */
     public function __construct(
         private CacheItemPoolInterface $cacheItemPool,
-        private Database $database,
-        protected SessionProto|null $session = null,
-        LockInterface|null $lock = null,
+        private SpannerClient $spannerClient,
+        private string $databaseName,
+        array $options = [],
     ) {
-        $identity = $database->identity();
+        $this->databaseRole = $options['databaseRole'] ?? '';
+        $identity = DatabaseAdminClient::parseName($databaseName);
         $this->cacheKey = sprintf(
             self::CACHE_KEY_TEMPLATE,
-            $identity['projectId'],
+            $identity['project'],
             $identity['instance'],
             $identity['database'],
-            $database->role(),
+            $this->databaseRole,
         );
-        $this->lock = $lock ?? $this->getDefaultLock($this->cacheKey);
+
+        $this->routeToLeader = $options['routeToLeader'] ?? false;
+        $this->lock = $options['lock'] ?? $this->getDefaultLock($this->cacheKey);
     }
 
     /**
@@ -74,6 +89,12 @@ class SessionCache
         return $this->session->getName();
     }
 
+    public function refreshSession(): Session
+    {
+        $item = $this->cacheItemPool->getItem($this->cacheKey);
+        return $this->refreshCacheItem($item);
+    }
+
     private function ensureValidSession(): void
     {
         if (!$this->session || $this->isExpired()) {
@@ -81,27 +102,42 @@ class SessionCache
             $this->session = $this->lock->synchronize(function () {
                 $item = $this->cacheItemPool->getItem($this->cacheKey);
                 if ($sessionData = $item->get()) {
-                    $session = new SessionProto();
+                    $session = new Session();
                     $session->mergeFromString($sessionData);
                     return $session;
                 }
 
-                return $this->refreshSession();
+                return $this->refreshCacheItem($item);
             });
         }
     }
 
-    public function refreshSession(): SessionProto
+    private function refreshCacheItem(CacheItemInterface $item)
     {
-        $item = $this->cacheItemPool->getItem($this->cacheKey);
-        $sessionProto = $this->database->createSession();
-        $expiresAtSeconds = $sessionProto->getCreateTime()->getSeconds() + self::SESSION_EXPIRATION_SECONDS;
+        $session = $this->createSession();
+        $expiresAtSeconds = $session->getCreateTime()->getSeconds() + self::SESSION_EXPIRATION_SECONDS;
         $expiresAt = DateTimeImmutable::createFromFormat('U', (string) $expiresAtSeconds);
-        $item->set($sessionProto->serializeToString());
+        $item->set($session->serializeToString());
         $item->expiresAt($expiresAt);
         $this->cacheItemPool->save($item);
 
-        return $sessionProto;
+        return $session;
+    }
+
+    private function createSession(): Session
+    {
+        $session = new Session();
+        $session->setMultiplexed(true)
+            ->setCreatorRole($this->databaseRole);
+
+        $createSessionRequest = (new CreateSessionRequest())
+            ->setDatabase($this->databaseName)
+            ->setSession($session);
+
+        return $this->spannerClient->createSession($createSessionRequest, [
+            'resource-prefix' => $this->databaseName,
+            'route-to-leader' => $this->routeToLeader
+        ]);
     }
 
     private function isExpired(): bool
@@ -136,7 +172,7 @@ class SessionCache
     {
         return [
             'session' => $this->session,
-            'sessionPool' => $this->cacheItemPool,
+            'cacheItemPool' => $this->cacheItemPool,
         ];
     }
 }

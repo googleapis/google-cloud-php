@@ -36,6 +36,7 @@ use Google\Cloud\Spanner\V1\CommitResponse\CommitStats;
 use Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest;
 use Google\Cloud\Spanner\V1\ExecuteBatchDmlResponse;
 use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
+use Google\Cloud\Spanner\V1\MultiplexedSessionPrecommitToken;
 use Google\Cloud\Spanner\V1\ReadRequest;
 use Google\Cloud\Spanner\V1\ResultSet;
 use Google\Cloud\Spanner\V1\ResultSetStats;
@@ -47,6 +48,7 @@ use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
+use ReflectionClass;
 
 /**
  * @group spanner
@@ -553,9 +555,7 @@ class TransactionTest extends TestCase
         $operation = $this->prophesize(Operation::class);
         $operation->commit(Argument::cetera())
             ->shouldBeCalledOnce()
-            ->willReturn(new CommitResponse([
-                'commit_timestamp' => new TimestampProto()
-            ]));
+            ->willReturn(new CommitResponse());
 
         $transaction = new Transaction(
             $operation->reveal(),
@@ -592,9 +592,7 @@ class TransactionTest extends TestCase
         $operation = $this->prophesize(Operation::class);
         $operation->commit(Argument::cetera())
             ->shouldBeCalledOnce()
-            ->willReturn(new CommitResponse([
-                'commit_timestamp' => new TimestampProto()
-            ]));
+            ->willReturn(new CommitResponse());
 
         $transaction = new Transaction(
             $operation->reveal(),
@@ -620,9 +618,7 @@ class TransactionTest extends TestCase
         $operation = $this->prophesize(Operation::class);
         $operation->commit(Argument::cetera())
             ->shouldBeCalledOnce()
-            ->willReturn(new CommitResponse([
-                'commit_timestamp' => new TimestampProto()
-            ]));
+            ->willReturn(new CommitResponse());
 
         $transaction = new Transaction(
             $operation->reveal(),
@@ -665,6 +661,36 @@ class TransactionTest extends TestCase
         );
 
         $this->assertTrue($transaction->isRetry());
+    }
+
+    public function testSavePrecommitTokenWithHighestSequenceNum()
+    {
+        $transaction = new Transaction(
+            $this->operation,
+            $this->session->reveal(),
+            self::TRANSACTION,
+        );
+
+        $precommitToken1 = (new MultiplexedSessionPrecommitToken())
+            ->setSeqNum(1)
+            ->setPrecommitToken('abc');
+        $precommitToken2 = (new MultiplexedSessionPrecommitToken())
+            ->setSeqNum(2)
+            ->setPrecommitToken('def');
+        $precommitToken3 = (new MultiplexedSessionPrecommitToken())
+            ->setSeqNum(0)
+            ->setPrecommitToken('ghi');
+
+        $precommitTokenProp = (new ReflectionClass($transaction))->getProperty('precommitToken');
+
+        $transaction->setPrecommitToken($precommitToken1);
+        $this->assertEquals($precommitToken1, $precommitTokenProp->getValue($transaction));
+        // setting a precommit token with a higher sequence number updates the token
+        $transaction->setPrecommitToken($precommitToken2);
+        $this->assertEquals($precommitToken2, $precommitTokenProp->getValue($transaction));
+        // setting a precommit token with a lower sequence number does not update the token
+        $transaction->setPrecommitToken($precommitToken3);
+        $this->assertEquals($precommitToken2, $precommitTokenProp->getValue($transaction));
     }
 
     // *******
