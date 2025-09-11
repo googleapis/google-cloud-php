@@ -51,7 +51,8 @@ use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
 /**
- * Service Description: ContentService manages Notebook and SQL Scripts for Dataplex.
+ * Service Description: ContentService manages Notebook and SQL Scripts for Dataplex Universal
+ * Catalog.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.

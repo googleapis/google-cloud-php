@@ -18,7 +18,7 @@ class CreateLakeRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the lake location, of the form:
      * projects/{project_number}/locations/{location_id}
-     * where `location_id` refers to a GCP region.
+     * where `location_id` refers to a Google Cloud region.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -53,7 +53,7 @@ class CreateLakeRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                         $parent Required. The resource name of the lake location, of the form:
      *                                               projects/{project_number}/locations/{location_id}
-     *                                               where `location_id` refers to a GCP region. Please see
+     *                                               where `location_id` refers to a Google Cloud region. Please see
      *                                               {@see DataplexServiceClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\Dataplex\V1\Lake $lake   Required. Lake resource
      * @param string                         $lakeId Required. Lake identifier.
@@ -86,7 +86,7 @@ class CreateLakeRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The resource name of the lake location, of the form:
      *           projects/{project_number}/locations/{location_id}
-     *           where `location_id` refers to a GCP region.
+     *           where `location_id` refers to a Google Cloud region.
      *     @type string $lake_id
      *           Required. Lake identifier.
      *           This ID will be used to generate names such as database and dataset names
@@ -111,7 +111,7 @@ class CreateLakeRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the lake location, of the form:
      * projects/{project_number}/locations/{location_id}
-     * where `location_id` refers to a GCP region.
+     * where `location_id` refers to a Google Cloud region.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -124,7 +124,7 @@ class CreateLakeRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the lake location, of the form:
      * projects/{project_number}/locations/{location_id}
-     * where `location_id` refers to a GCP region.
+     * where `location_id` refers to a Google Cloud region.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

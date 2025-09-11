@@ -28,21 +28,29 @@ class ImportItem extends \Google\Protobuf\Internal\Message
      */
     protected $entry = null;
     /**
+     * Information about the entry link. User should provide either one of the
+     * entry or entry_link. While providing entry_link, user should not
+     * provide update_mask and aspect_keys.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.EntryLink entry_link = 4;</code>
+     */
+    protected $entry_link = null;
+    /**
      * The fields to update, in paths that are relative to the `Entry` resource.
      * Separate each field with a comma.
-     * In `FULL` entry sync mode, Dataplex includes the paths of all of the fields
-     * for an entry that can be modified, including aspects. This means that
-     * Dataplex replaces the existing entry with the entry in the metadata import
-     * file. All modifiable fields are updated, regardless of the fields that are
-     * listed in the update mask, and regardless of whether a field is present
-     * in the `entry` object.
+     * In `FULL` entry sync mode, Dataplex Universal Catalog includes the paths of
+     * all of the fields for an entry that can be modified, including aspects.
+     * This means that Dataplex Universal Catalog replaces the existing entry with
+     * the entry in the metadata import file. All modifiable fields are updated,
+     * regardless of the fields that are listed in the update mask, and regardless
+     * of whether a field is present in the `entry` object.
      * The `update_mask` field is ignored when an entry is created or re-created.
      * In an aspect-only metadata job (when entry sync mode is `NONE`), set this
      * value to `aspects`.
-     * Dataplex also determines which entries and aspects to modify by comparing
-     * the values and timestamps that you provide in the metadata import file with
-     * the values and timestamps that exist in your project. For more information,
-     * see [Comparison
+     * Dataplex Universal Catalog also determines which entries and aspects to
+     * modify by comparing the values and timestamps that you provide in the
+     * metadata import file with the values and timestamps that exist in your
+     * project. For more information, see [Comparison
      * logic](https://cloud.google.com/dataplex/docs/import-metadata#data-modification-logic).
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
@@ -62,8 +70,8 @@ class ImportItem extends \Google\Protobuf\Internal\Message
      * `{project_id_or_number}.{location_id}.{aspect_type_id}`.
      * In `FULL` entry sync mode, if you leave this field empty, it is treated as
      * specifying exactly those aspects that are present within the specified
-     * entry. Dataplex implicitly adds the keys for all of the required aspects of
-     * an entry.
+     * entry. Dataplex Universal Catalog implicitly adds the keys for all of the
+     * required aspects of an entry.
      *
      * Generated from protobuf field <code>repeated string aspect_keys = 3;</code>
      */
@@ -77,22 +85,26 @@ class ImportItem extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Dataplex\V1\Entry $entry
      *           Information about an entry and its attached aspects.
+     *     @type \Google\Cloud\Dataplex\V1\EntryLink $entry_link
+     *           Information about the entry link. User should provide either one of the
+     *           entry or entry_link. While providing entry_link, user should not
+     *           provide update_mask and aspect_keys.
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           The fields to update, in paths that are relative to the `Entry` resource.
      *           Separate each field with a comma.
-     *           In `FULL` entry sync mode, Dataplex includes the paths of all of the fields
-     *           for an entry that can be modified, including aspects. This means that
-     *           Dataplex replaces the existing entry with the entry in the metadata import
-     *           file. All modifiable fields are updated, regardless of the fields that are
-     *           listed in the update mask, and regardless of whether a field is present
-     *           in the `entry` object.
+     *           In `FULL` entry sync mode, Dataplex Universal Catalog includes the paths of
+     *           all of the fields for an entry that can be modified, including aspects.
+     *           This means that Dataplex Universal Catalog replaces the existing entry with
+     *           the entry in the metadata import file. All modifiable fields are updated,
+     *           regardless of the fields that are listed in the update mask, and regardless
+     *           of whether a field is present in the `entry` object.
      *           The `update_mask` field is ignored when an entry is created or re-created.
      *           In an aspect-only metadata job (when entry sync mode is `NONE`), set this
      *           value to `aspects`.
-     *           Dataplex also determines which entries and aspects to modify by comparing
-     *           the values and timestamps that you provide in the metadata import file with
-     *           the values and timestamps that exist in your project. For more information,
-     *           see [Comparison
+     *           Dataplex Universal Catalog also determines which entries and aspects to
+     *           modify by comparing the values and timestamps that you provide in the
+     *           metadata import file with the values and timestamps that exist in your
+     *           project. For more information, see [Comparison
      *           logic](https://cloud.google.com/dataplex/docs/import-metadata#data-modification-logic).
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $aspect_keys
      *           The aspects to modify. Supports the following syntaxes:
@@ -108,8 +120,8 @@ class ImportItem extends \Google\Protobuf\Internal\Message
      *           `{project_id_or_number}.{location_id}.{aspect_type_id}`.
      *           In `FULL` entry sync mode, if you leave this field empty, it is treated as
      *           specifying exactly those aspects that are present within the specified
-     *           entry. Dataplex implicitly adds the keys for all of the required aspects of
-     *           an entry.
+     *           entry. Dataplex Universal Catalog implicitly adds the keys for all of the
+     *           required aspects of an entry.
      * }
      */
     public function __construct($data = NULL) {
@@ -154,21 +166,61 @@ class ImportItem extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Information about the entry link. User should provide either one of the
+     * entry or entry_link. While providing entry_link, user should not
+     * provide update_mask and aspect_keys.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.EntryLink entry_link = 4;</code>
+     * @return \Google\Cloud\Dataplex\V1\EntryLink|null
+     */
+    public function getEntryLink()
+    {
+        return $this->entry_link;
+    }
+
+    public function hasEntryLink()
+    {
+        return isset($this->entry_link);
+    }
+
+    public function clearEntryLink()
+    {
+        unset($this->entry_link);
+    }
+
+    /**
+     * Information about the entry link. User should provide either one of the
+     * entry or entry_link. While providing entry_link, user should not
+     * provide update_mask and aspect_keys.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.EntryLink entry_link = 4;</code>
+     * @param \Google\Cloud\Dataplex\V1\EntryLink $var
+     * @return $this
+     */
+    public function setEntryLink($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataplex\V1\EntryLink::class);
+        $this->entry_link = $var;
+
+        return $this;
+    }
+
+    /**
      * The fields to update, in paths that are relative to the `Entry` resource.
      * Separate each field with a comma.
-     * In `FULL` entry sync mode, Dataplex includes the paths of all of the fields
-     * for an entry that can be modified, including aspects. This means that
-     * Dataplex replaces the existing entry with the entry in the metadata import
-     * file. All modifiable fields are updated, regardless of the fields that are
-     * listed in the update mask, and regardless of whether a field is present
-     * in the `entry` object.
+     * In `FULL` entry sync mode, Dataplex Universal Catalog includes the paths of
+     * all of the fields for an entry that can be modified, including aspects.
+     * This means that Dataplex Universal Catalog replaces the existing entry with
+     * the entry in the metadata import file. All modifiable fields are updated,
+     * regardless of the fields that are listed in the update mask, and regardless
+     * of whether a field is present in the `entry` object.
      * The `update_mask` field is ignored when an entry is created or re-created.
      * In an aspect-only metadata job (when entry sync mode is `NONE`), set this
      * value to `aspects`.
-     * Dataplex also determines which entries and aspects to modify by comparing
-     * the values and timestamps that you provide in the metadata import file with
-     * the values and timestamps that exist in your project. For more information,
-     * see [Comparison
+     * Dataplex Universal Catalog also determines which entries and aspects to
+     * modify by comparing the values and timestamps that you provide in the
+     * metadata import file with the values and timestamps that exist in your
+     * project. For more information, see [Comparison
      * logic](https://cloud.google.com/dataplex/docs/import-metadata#data-modification-logic).
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
@@ -192,19 +244,19 @@ class ImportItem extends \Google\Protobuf\Internal\Message
     /**
      * The fields to update, in paths that are relative to the `Entry` resource.
      * Separate each field with a comma.
-     * In `FULL` entry sync mode, Dataplex includes the paths of all of the fields
-     * for an entry that can be modified, including aspects. This means that
-     * Dataplex replaces the existing entry with the entry in the metadata import
-     * file. All modifiable fields are updated, regardless of the fields that are
-     * listed in the update mask, and regardless of whether a field is present
-     * in the `entry` object.
+     * In `FULL` entry sync mode, Dataplex Universal Catalog includes the paths of
+     * all of the fields for an entry that can be modified, including aspects.
+     * This means that Dataplex Universal Catalog replaces the existing entry with
+     * the entry in the metadata import file. All modifiable fields are updated,
+     * regardless of the fields that are listed in the update mask, and regardless
+     * of whether a field is present in the `entry` object.
      * The `update_mask` field is ignored when an entry is created or re-created.
      * In an aspect-only metadata job (when entry sync mode is `NONE`), set this
      * value to `aspects`.
-     * Dataplex also determines which entries and aspects to modify by comparing
-     * the values and timestamps that you provide in the metadata import file with
-     * the values and timestamps that exist in your project. For more information,
-     * see [Comparison
+     * Dataplex Universal Catalog also determines which entries and aspects to
+     * modify by comparing the values and timestamps that you provide in the
+     * metadata import file with the values and timestamps that exist in your
+     * project. For more information, see [Comparison
      * logic](https://cloud.google.com/dataplex/docs/import-metadata#data-modification-logic).
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
@@ -233,8 +285,8 @@ class ImportItem extends \Google\Protobuf\Internal\Message
      * `{project_id_or_number}.{location_id}.{aspect_type_id}`.
      * In `FULL` entry sync mode, if you leave this field empty, it is treated as
      * specifying exactly those aspects that are present within the specified
-     * entry. Dataplex implicitly adds the keys for all of the required aspects of
-     * an entry.
+     * entry. Dataplex Universal Catalog implicitly adds the keys for all of the
+     * required aspects of an entry.
      *
      * Generated from protobuf field <code>repeated string aspect_keys = 3;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -258,8 +310,8 @@ class ImportItem extends \Google\Protobuf\Internal\Message
      * `{project_id_or_number}.{location_id}.{aspect_type_id}`.
      * In `FULL` entry sync mode, if you leave this field empty, it is treated as
      * specifying exactly those aspects that are present within the specified
-     * entry. Dataplex implicitly adds the keys for all of the required aspects of
-     * an entry.
+     * entry. Dataplex Universal Catalog implicitly adds the keys for all of the
+     * required aspects of an entry.
      *
      * Generated from protobuf field <code>repeated string aspect_keys = 3;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

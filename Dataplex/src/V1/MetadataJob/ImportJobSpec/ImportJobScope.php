@@ -57,6 +57,46 @@ class ImportJobScope extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string aspect_types = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     private $aspect_types;
+    /**
+     * Optional. The glossaries that are in scope for the import job,
+     * specified as relative resource names in the format
+     * `projects/{project_number_or_id}/locations/{location_id}/glossaries/{glossary_id}`.
+     * While importing Business Glossary entries, the user must
+     * provide glossaries. While importing entries, the user does not have to
+     * provide glossaries. If the metadata import file attempts to modify
+     * Business Glossary entries whose glossary isn't included in this list,
+     * the import job will skip those entries.
+     * The location of a glossary must either match the location of the
+     * job, or the glossary must be global.
+     *
+     * Generated from protobuf field <code>repeated string glossaries = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    private $glossaries;
+    /**
+     * Optional. The entry link types that are in scope for the import job,
+     * specified as relative resource names in the format
+     * `projects/{project_number_or_id}/locations/{location_id}/entryLinkTypes/{entry_link_type_id}`.
+     * The job modifies only the entryLinks that belong to these entry link
+     * types.
+     * If the metadata import file attempts to create or delete an entry link
+     * whose entry link type isn't included in this list, the import job will
+     * skip those entry links.
+     *
+     * Generated from protobuf field <code>repeated string entry_link_types = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $entry_link_types;
+    /**
+     * Optional. Defines the scope of entries that can be referenced in the
+     * entry links.
+     * Currently, projects are supported as valid scopes.
+     * Format: `projects/{project_number_or_id}`
+     * If the metadata import file attempts to create an entry link
+     * which references an entry that is not in the scope, the import job will
+     * skip that entry link.
+     *
+     * Generated from protobuf field <code>repeated string referenced_entry_scopes = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $referenced_entry_scopes;
 
     /**
      * Constructor.
@@ -94,6 +134,34 @@ class ImportJobScope extends \Google\Protobuf\Internal\Message
      *           any entries or aspects.
      *           The location of an aspect type must either match the location of the
      *           job, or the aspect type must be global.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $glossaries
+     *           Optional. The glossaries that are in scope for the import job,
+     *           specified as relative resource names in the format
+     *           `projects/{project_number_or_id}/locations/{location_id}/glossaries/{glossary_id}`.
+     *           While importing Business Glossary entries, the user must
+     *           provide glossaries. While importing entries, the user does not have to
+     *           provide glossaries. If the metadata import file attempts to modify
+     *           Business Glossary entries whose glossary isn't included in this list,
+     *           the import job will skip those entries.
+     *           The location of a glossary must either match the location of the
+     *           job, or the glossary must be global.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $entry_link_types
+     *           Optional. The entry link types that are in scope for the import job,
+     *           specified as relative resource names in the format
+     *           `projects/{project_number_or_id}/locations/{location_id}/entryLinkTypes/{entry_link_type_id}`.
+     *           The job modifies only the entryLinks that belong to these entry link
+     *           types.
+     *           If the metadata import file attempts to create or delete an entry link
+     *           whose entry link type isn't included in this list, the import job will
+     *           skip those entry links.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $referenced_entry_scopes
+     *           Optional. Defines the scope of entries that can be referenced in the
+     *           entry links.
+     *           Currently, projects are supported as valid scopes.
+     *           Format: `projects/{project_number_or_id}`
+     *           If the metadata import file attempts to create an entry link
+     *           which references an entry that is not in the scope, the import job will
+     *           skip that entry link.
      * }
      */
     public function __construct($data = NULL) {
@@ -223,6 +291,128 @@ class ImportJobScope extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->aspect_types = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The glossaries that are in scope for the import job,
+     * specified as relative resource names in the format
+     * `projects/{project_number_or_id}/locations/{location_id}/glossaries/{glossary_id}`.
+     * While importing Business Glossary entries, the user must
+     * provide glossaries. While importing entries, the user does not have to
+     * provide glossaries. If the metadata import file attempts to modify
+     * Business Glossary entries whose glossary isn't included in this list,
+     * the import job will skip those entries.
+     * The location of a glossary must either match the location of the
+     * job, or the glossary must be global.
+     *
+     * Generated from protobuf field <code>repeated string glossaries = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getGlossaries()
+    {
+        return $this->glossaries;
+    }
+
+    /**
+     * Optional. The glossaries that are in scope for the import job,
+     * specified as relative resource names in the format
+     * `projects/{project_number_or_id}/locations/{location_id}/glossaries/{glossary_id}`.
+     * While importing Business Glossary entries, the user must
+     * provide glossaries. While importing entries, the user does not have to
+     * provide glossaries. If the metadata import file attempts to modify
+     * Business Glossary entries whose glossary isn't included in this list,
+     * the import job will skip those entries.
+     * The location of a glossary must either match the location of the
+     * job, or the glossary must be global.
+     *
+     * Generated from protobuf field <code>repeated string glossaries = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setGlossaries($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->glossaries = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The entry link types that are in scope for the import job,
+     * specified as relative resource names in the format
+     * `projects/{project_number_or_id}/locations/{location_id}/entryLinkTypes/{entry_link_type_id}`.
+     * The job modifies only the entryLinks that belong to these entry link
+     * types.
+     * If the metadata import file attempts to create or delete an entry link
+     * whose entry link type isn't included in this list, the import job will
+     * skip those entry links.
+     *
+     * Generated from protobuf field <code>repeated string entry_link_types = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getEntryLinkTypes()
+    {
+        return $this->entry_link_types;
+    }
+
+    /**
+     * Optional. The entry link types that are in scope for the import job,
+     * specified as relative resource names in the format
+     * `projects/{project_number_or_id}/locations/{location_id}/entryLinkTypes/{entry_link_type_id}`.
+     * The job modifies only the entryLinks that belong to these entry link
+     * types.
+     * If the metadata import file attempts to create or delete an entry link
+     * whose entry link type isn't included in this list, the import job will
+     * skip those entry links.
+     *
+     * Generated from protobuf field <code>repeated string entry_link_types = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setEntryLinkTypes($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->entry_link_types = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Defines the scope of entries that can be referenced in the
+     * entry links.
+     * Currently, projects are supported as valid scopes.
+     * Format: `projects/{project_number_or_id}`
+     * If the metadata import file attempts to create an entry link
+     * which references an entry that is not in the scope, the import job will
+     * skip that entry link.
+     *
+     * Generated from protobuf field <code>repeated string referenced_entry_scopes = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getReferencedEntryScopes()
+    {
+        return $this->referenced_entry_scopes;
+    }
+
+    /**
+     * Optional. Defines the scope of entries that can be referenced in the
+     * entry links.
+     * Currently, projects are supported as valid scopes.
+     * Format: `projects/{project_number_or_id}`
+     * If the metadata import file attempts to create an entry link
+     * which references an entry that is not in the scope, the import job will
+     * skip that entry link.
+     *
+     * Generated from protobuf field <code>repeated string referenced_entry_scopes = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setReferencedEntryScopes($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->referenced_entry_scopes = $arr;
 
         return $this;
     }
