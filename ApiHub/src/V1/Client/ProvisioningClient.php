@@ -36,6 +36,7 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\ApiHub\V1\ApiHubInstance;
 use Google\Cloud\ApiHub\V1\CreateApiHubInstanceRequest;
+use Google\Cloud\ApiHub\V1\DeleteApiHubInstanceRequest;
 use Google\Cloud\ApiHub\V1\GetApiHubInstanceRequest;
 use Google\Cloud\ApiHub\V1\LookupApiHubInstanceRequest;
 use Google\Cloud\ApiHub\V1\LookupApiHubInstanceResponse;
@@ -59,6 +60,7 @@ use Psr\Log\LoggerInterface;
  * contained within formatted names that are returned by the API.
  *
  * @method PromiseInterface<OperationResponse> createApiHubInstanceAsync(CreateApiHubInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteApiHubInstanceAsync(DeleteApiHubInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ApiHubInstance> getApiHubInstanceAsync(GetApiHubInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<LookupApiHubInstanceResponse> lookupApiHubInstanceAsync(LookupApiHubInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
@@ -339,6 +341,34 @@ final class ProvisioningClient
         array $callOptions = []
     ): OperationResponse {
         return $this->startApiCall('CreateApiHubInstance', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes the API hub instance.
+     *
+     * The async variant is {@see ProvisioningClient::deleteApiHubInstanceAsync()} .
+     *
+     * @example samples/V1/ProvisioningClient/delete_api_hub_instance.php
+     *
+     * @param DeleteApiHubInstanceRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteApiHubInstance(
+        DeleteApiHubInstanceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('DeleteApiHubInstance', $request, $callOptions)->wait();
     }
 
     /**

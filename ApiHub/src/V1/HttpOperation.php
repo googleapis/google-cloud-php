@@ -16,15 +16,21 @@ use Google\Protobuf\Internal\GPBUtil;
 class HttpOperation extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The path details for the Operation.
+     * Optional. The path details for the Operation.
+     * Note: Even though this field is optional, it is required for
+     * [CreateApiOperation][google.cloud.apihub.v1.ApiHub.CreateApiOperation]
+     * API and we will fail the request if not provided.
      *
-     * Generated from protobuf field <code>.google.cloud.apihub.v1.Path path = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>.google.cloud.apihub.v1.Path path = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $path = null;
     /**
-     * Output only. Operation method
+     * Optional. Operation method
+     * Note: Even though this field is optional, it is required for
+     * [CreateApiOperation][google.cloud.apihub.v1.ApiHub.CreateApiOperation]
+     * API and we will fail the request if not provided.
      *
-     * Generated from protobuf field <code>.google.cloud.apihub.v1.HttpOperation.Method method = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>.google.cloud.apihub.v1.HttpOperation.Method method = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $method = 0;
 
@@ -35,9 +41,15 @@ class HttpOperation extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\ApiHub\V1\Path $path
-     *           Output only. The path details for the Operation.
+     *           Optional. The path details for the Operation.
+     *           Note: Even though this field is optional, it is required for
+     *           [CreateApiOperation][google.cloud.apihub.v1.ApiHub.CreateApiOperation]
+     *           API and we will fail the request if not provided.
      *     @type int $method
-     *           Output only. Operation method
+     *           Optional. Operation method
+     *           Note: Even though this field is optional, it is required for
+     *           [CreateApiOperation][google.cloud.apihub.v1.ApiHub.CreateApiOperation]
+     *           API and we will fail the request if not provided.
      * }
      */
     public function __construct($data = NULL) {
@@ -46,9 +58,12 @@ class HttpOperation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The path details for the Operation.
+     * Optional. The path details for the Operation.
+     * Note: Even though this field is optional, it is required for
+     * [CreateApiOperation][google.cloud.apihub.v1.ApiHub.CreateApiOperation]
+     * API and we will fail the request if not provided.
      *
-     * Generated from protobuf field <code>.google.cloud.apihub.v1.Path path = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>.google.cloud.apihub.v1.Path path = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\ApiHub\V1\Path|null
      */
     public function getPath()
@@ -67,9 +82,12 @@ class HttpOperation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The path details for the Operation.
+     * Optional. The path details for the Operation.
+     * Note: Even though this field is optional, it is required for
+     * [CreateApiOperation][google.cloud.apihub.v1.ApiHub.CreateApiOperation]
+     * API and we will fail the request if not provided.
      *
-     * Generated from protobuf field <code>.google.cloud.apihub.v1.Path path = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>.google.cloud.apihub.v1.Path path = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\ApiHub\V1\Path $var
      * @return $this
      */
@@ -82,9 +100,12 @@ class HttpOperation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Operation method
+     * Optional. Operation method
+     * Note: Even though this field is optional, it is required for
+     * [CreateApiOperation][google.cloud.apihub.v1.ApiHub.CreateApiOperation]
+     * API and we will fail the request if not provided.
      *
-     * Generated from protobuf field <code>.google.cloud.apihub.v1.HttpOperation.Method method = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>.google.cloud.apihub.v1.HttpOperation.Method method = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getMethod()
@@ -93,9 +114,12 @@ class HttpOperation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Operation method
+     * Optional. Operation method
+     * Note: Even though this field is optional, it is required for
+     * [CreateApiOperation][google.cloud.apihub.v1.ApiHub.CreateApiOperation]
+     * API and we will fail the request if not provided.
      *
-     * Generated from protobuf field <code>.google.cloud.apihub.v1.HttpOperation.Method method = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>.google.cloud.apihub.v1.HttpOperation.Method method = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */

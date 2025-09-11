@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The [GetStyleGuide][ApiHub.GetStyleGuide] method's request.
+ * The [GetStyleGuide][google.cloud.apihub.v1.LintingService.GetStyleGuide]
+ * method's request.
  *
  * Generated from protobuf message <code>google.cloud.apihub.v1.GetStyleGuideRequest</code>
  */

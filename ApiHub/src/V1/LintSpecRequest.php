@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The [LintSpec][ApiHub.LintSpec] method's request.
+ * The [LintSpec][google.cloud.apihub.v1.LintingService.LintSpec] method's
+ * request.
  *
  * Generated from protobuf message <code>google.cloud.apihub.v1.LintSpecRequest</code>
  */

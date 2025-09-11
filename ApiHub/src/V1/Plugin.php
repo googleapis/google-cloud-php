@@ -30,7 +30,7 @@ class Plugin extends \Google\Protobuf\Internal\Message
      */
     protected $display_name = '';
     /**
-     * Required. The type of the API.
+     * Optional. The type of the API.
      * This maps to the following system defined attribute:
      * `projects/{project}/locations/{location}/attributes/system-plugin-type`
      * attribute.
@@ -38,8 +38,9 @@ class Plugin extends \Google\Protobuf\Internal\Message
      * cardinality of the attribute. The same can be retrieved via GetAttribute
      * API. All values should be from the list of allowed values defined for the
      * attribute.
+     * Note this field is not required for plugins developed via plugin framework.
      *
-     * Generated from protobuf field <code>.google.cloud.apihub.v1.AttributeValues type = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.apihub.v1.AttributeValues type = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $type = null;
     /**
@@ -51,10 +52,82 @@ class Plugin extends \Google\Protobuf\Internal\Message
     protected $description = '';
     /**
      * Output only. Represents the state of the plugin.
+     * Note this field will not be set for plugins developed via plugin
+     * framework as the state will be managed at plugin instance level.
      *
      * Generated from protobuf field <code>.google.cloud.apihub.v1.Plugin.State state = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $state = 0;
+    /**
+     * Output only. The type of the plugin, indicating whether it is
+     * 'SYSTEM_OWNED' or 'USER_OWNED'.
+     *
+     * Generated from protobuf field <code>.google.cloud.apihub.v1.Plugin.OwnershipType ownership_type = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $ownership_type = 0;
+    /**
+     * Optional. This field is optional. It is used to notify the plugin hosting
+     * service for any lifecycle changes of the plugin instance and trigger
+     * execution of plugin instance actions in case of API hub managed actions.
+     * This field should be provided if the plugin instance lifecycle of the
+     * developed plugin needs to be managed from API hub. Also, in this case the
+     * plugin hosting service interface needs to be implemented.
+     * This field should not be provided if the plugin wants to manage plugin
+     * instance lifecycle events outside of hub interface and use plugin framework
+     * for only registering of plugin and plugin instances to capture the source
+     * of data into hub. Note, in this case the plugin hosting service interface
+     * is not required to be implemented. Also, the plugin instance lifecycle
+     * actions will be disabled from API hub's UI.
+     *
+     * Generated from protobuf field <code>.google.cloud.apihub.v1.Plugin.HostingService hosting_service = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $hosting_service = null;
+    /**
+     * Optional. The configuration of actions supported by the plugin.
+     * **REQUIRED**: This field must be provided when creating or updating a
+     * Plugin. The server will reject requests if this field is missing.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.PluginActionConfig actions_config = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $actions_config;
+    /**
+     * Optional. The documentation of the plugin, that explains how to set up and
+     * use the plugin.
+     *
+     * Generated from protobuf field <code>.google.cloud.apihub.v1.Documentation documentation = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $documentation = null;
+    /**
+     * Optional. The category of the plugin, identifying its primary category or
+     * purpose. This field is required for all plugins.
+     *
+     * Generated from protobuf field <code>.google.cloud.apihub.v1.PluginCategory plugin_category = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $plugin_category = 0;
+    /**
+     * Optional. The configuration template for the plugin.
+     *
+     * Generated from protobuf field <code>.google.cloud.apihub.v1.Plugin.ConfigTemplate config_template = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $config_template = null;
+    /**
+     * Output only. Timestamp indicating when the plugin was created.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $create_time = null;
+    /**
+     * Output only. Timestamp indicating when the plugin was last updated.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $update_time = null;
+    /**
+     * Optional. The type of the gateway.
+     *
+     * Generated from protobuf field <code>.google.cloud.apihub.v1.GatewayType gateway_type = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $gateway_type = 0;
 
     /**
      * Constructor.
@@ -69,7 +142,7 @@ class Plugin extends \Google\Protobuf\Internal\Message
      *           Required. The display name of the plugin. Max length is 50 characters
      *           (Unicode code points).
      *     @type \Google\Cloud\ApiHub\V1\AttributeValues $type
-     *           Required. The type of the API.
+     *           Optional. The type of the API.
      *           This maps to the following system defined attribute:
      *           `projects/{project}/locations/{location}/attributes/system-plugin-type`
      *           attribute.
@@ -77,11 +150,48 @@ class Plugin extends \Google\Protobuf\Internal\Message
      *           cardinality of the attribute. The same can be retrieved via GetAttribute
      *           API. All values should be from the list of allowed values defined for the
      *           attribute.
+     *           Note this field is not required for plugins developed via plugin framework.
      *     @type string $description
      *           Optional. The plugin description. Max length is 2000 characters (Unicode
      *           code points).
      *     @type int $state
      *           Output only. Represents the state of the plugin.
+     *           Note this field will not be set for plugins developed via plugin
+     *           framework as the state will be managed at plugin instance level.
+     *     @type int $ownership_type
+     *           Output only. The type of the plugin, indicating whether it is
+     *           'SYSTEM_OWNED' or 'USER_OWNED'.
+     *     @type \Google\Cloud\ApiHub\V1\Plugin\HostingService $hosting_service
+     *           Optional. This field is optional. It is used to notify the plugin hosting
+     *           service for any lifecycle changes of the plugin instance and trigger
+     *           execution of plugin instance actions in case of API hub managed actions.
+     *           This field should be provided if the plugin instance lifecycle of the
+     *           developed plugin needs to be managed from API hub. Also, in this case the
+     *           plugin hosting service interface needs to be implemented.
+     *           This field should not be provided if the plugin wants to manage plugin
+     *           instance lifecycle events outside of hub interface and use plugin framework
+     *           for only registering of plugin and plugin instances to capture the source
+     *           of data into hub. Note, in this case the plugin hosting service interface
+     *           is not required to be implemented. Also, the plugin instance lifecycle
+     *           actions will be disabled from API hub's UI.
+     *     @type array<\Google\Cloud\ApiHub\V1\PluginActionConfig>|\Google\Protobuf\Internal\RepeatedField $actions_config
+     *           Optional. The configuration of actions supported by the plugin.
+     *           **REQUIRED**: This field must be provided when creating or updating a
+     *           Plugin. The server will reject requests if this field is missing.
+     *     @type \Google\Cloud\ApiHub\V1\Documentation $documentation
+     *           Optional. The documentation of the plugin, that explains how to set up and
+     *           use the plugin.
+     *     @type int $plugin_category
+     *           Optional. The category of the plugin, identifying its primary category or
+     *           purpose. This field is required for all plugins.
+     *     @type \Google\Cloud\ApiHub\V1\Plugin\ConfigTemplate $config_template
+     *           Optional. The configuration template for the plugin.
+     *     @type \Google\Protobuf\Timestamp $create_time
+     *           Output only. Timestamp indicating when the plugin was created.
+     *     @type \Google\Protobuf\Timestamp $update_time
+     *           Output only. Timestamp indicating when the plugin was last updated.
+     *     @type int $gateway_type
+     *           Optional. The type of the gateway.
      * }
      */
     public function __construct($data = NULL) {
@@ -146,7 +256,7 @@ class Plugin extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The type of the API.
+     * Optional. The type of the API.
      * This maps to the following system defined attribute:
      * `projects/{project}/locations/{location}/attributes/system-plugin-type`
      * attribute.
@@ -154,8 +264,9 @@ class Plugin extends \Google\Protobuf\Internal\Message
      * cardinality of the attribute. The same can be retrieved via GetAttribute
      * API. All values should be from the list of allowed values defined for the
      * attribute.
+     * Note this field is not required for plugins developed via plugin framework.
      *
-     * Generated from protobuf field <code>.google.cloud.apihub.v1.AttributeValues type = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.apihub.v1.AttributeValues type = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\ApiHub\V1\AttributeValues|null
      */
     public function getType()
@@ -174,7 +285,7 @@ class Plugin extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The type of the API.
+     * Optional. The type of the API.
      * This maps to the following system defined attribute:
      * `projects/{project}/locations/{location}/attributes/system-plugin-type`
      * attribute.
@@ -182,8 +293,9 @@ class Plugin extends \Google\Protobuf\Internal\Message
      * cardinality of the attribute. The same can be retrieved via GetAttribute
      * API. All values should be from the list of allowed values defined for the
      * attribute.
+     * Note this field is not required for plugins developed via plugin framework.
      *
-     * Generated from protobuf field <code>.google.cloud.apihub.v1.AttributeValues type = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.apihub.v1.AttributeValues type = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\ApiHub\V1\AttributeValues $var
      * @return $this
      */
@@ -225,6 +337,8 @@ class Plugin extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Represents the state of the plugin.
+     * Note this field will not be set for plugins developed via plugin
+     * framework as the state will be managed at plugin instance level.
      *
      * Generated from protobuf field <code>.google.cloud.apihub.v1.Plugin.State state = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
@@ -236,6 +350,8 @@ class Plugin extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Represents the state of the plugin.
+     * Note this field will not be set for plugins developed via plugin
+     * framework as the state will be managed at plugin instance level.
      *
      * Generated from protobuf field <code>.google.cloud.apihub.v1.Plugin.State state = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
@@ -245,6 +361,322 @@ class Plugin extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\ApiHub\V1\Plugin\State::class);
         $this->state = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The type of the plugin, indicating whether it is
+     * 'SYSTEM_OWNED' or 'USER_OWNED'.
+     *
+     * Generated from protobuf field <code>.google.cloud.apihub.v1.Plugin.OwnershipType ownership_type = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getOwnershipType()
+    {
+        return $this->ownership_type;
+    }
+
+    /**
+     * Output only. The type of the plugin, indicating whether it is
+     * 'SYSTEM_OWNED' or 'USER_OWNED'.
+     *
+     * Generated from protobuf field <code>.google.cloud.apihub.v1.Plugin.OwnershipType ownership_type = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setOwnershipType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\ApiHub\V1\Plugin\OwnershipType::class);
+        $this->ownership_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. This field is optional. It is used to notify the plugin hosting
+     * service for any lifecycle changes of the plugin instance and trigger
+     * execution of plugin instance actions in case of API hub managed actions.
+     * This field should be provided if the plugin instance lifecycle of the
+     * developed plugin needs to be managed from API hub. Also, in this case the
+     * plugin hosting service interface needs to be implemented.
+     * This field should not be provided if the plugin wants to manage plugin
+     * instance lifecycle events outside of hub interface and use plugin framework
+     * for only registering of plugin and plugin instances to capture the source
+     * of data into hub. Note, in this case the plugin hosting service interface
+     * is not required to be implemented. Also, the plugin instance lifecycle
+     * actions will be disabled from API hub's UI.
+     *
+     * Generated from protobuf field <code>.google.cloud.apihub.v1.Plugin.HostingService hosting_service = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\ApiHub\V1\Plugin\HostingService|null
+     */
+    public function getHostingService()
+    {
+        return $this->hosting_service;
+    }
+
+    public function hasHostingService()
+    {
+        return isset($this->hosting_service);
+    }
+
+    public function clearHostingService()
+    {
+        unset($this->hosting_service);
+    }
+
+    /**
+     * Optional. This field is optional. It is used to notify the plugin hosting
+     * service for any lifecycle changes of the plugin instance and trigger
+     * execution of plugin instance actions in case of API hub managed actions.
+     * This field should be provided if the plugin instance lifecycle of the
+     * developed plugin needs to be managed from API hub. Also, in this case the
+     * plugin hosting service interface needs to be implemented.
+     * This field should not be provided if the plugin wants to manage plugin
+     * instance lifecycle events outside of hub interface and use plugin framework
+     * for only registering of plugin and plugin instances to capture the source
+     * of data into hub. Note, in this case the plugin hosting service interface
+     * is not required to be implemented. Also, the plugin instance lifecycle
+     * actions will be disabled from API hub's UI.
+     *
+     * Generated from protobuf field <code>.google.cloud.apihub.v1.Plugin.HostingService hosting_service = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\ApiHub\V1\Plugin\HostingService $var
+     * @return $this
+     */
+    public function setHostingService($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\ApiHub\V1\Plugin\HostingService::class);
+        $this->hosting_service = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The configuration of actions supported by the plugin.
+     * **REQUIRED**: This field must be provided when creating or updating a
+     * Plugin. The server will reject requests if this field is missing.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.PluginActionConfig actions_config = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getActionsConfig()
+    {
+        return $this->actions_config;
+    }
+
+    /**
+     * Optional. The configuration of actions supported by the plugin.
+     * **REQUIRED**: This field must be provided when creating or updating a
+     * Plugin. The server will reject requests if this field is missing.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.PluginActionConfig actions_config = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<\Google\Cloud\ApiHub\V1\PluginActionConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setActionsConfig($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\ApiHub\V1\PluginActionConfig::class);
+        $this->actions_config = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The documentation of the plugin, that explains how to set up and
+     * use the plugin.
+     *
+     * Generated from protobuf field <code>.google.cloud.apihub.v1.Documentation documentation = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\ApiHub\V1\Documentation|null
+     */
+    public function getDocumentation()
+    {
+        return $this->documentation;
+    }
+
+    public function hasDocumentation()
+    {
+        return isset($this->documentation);
+    }
+
+    public function clearDocumentation()
+    {
+        unset($this->documentation);
+    }
+
+    /**
+     * Optional. The documentation of the plugin, that explains how to set up and
+     * use the plugin.
+     *
+     * Generated from protobuf field <code>.google.cloud.apihub.v1.Documentation documentation = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\ApiHub\V1\Documentation $var
+     * @return $this
+     */
+    public function setDocumentation($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\ApiHub\V1\Documentation::class);
+        $this->documentation = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The category of the plugin, identifying its primary category or
+     * purpose. This field is required for all plugins.
+     *
+     * Generated from protobuf field <code>.google.cloud.apihub.v1.PluginCategory plugin_category = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getPluginCategory()
+    {
+        return $this->plugin_category;
+    }
+
+    /**
+     * Optional. The category of the plugin, identifying its primary category or
+     * purpose. This field is required for all plugins.
+     *
+     * Generated from protobuf field <code>.google.cloud.apihub.v1.PluginCategory plugin_category = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setPluginCategory($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\ApiHub\V1\PluginCategory::class);
+        $this->plugin_category = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The configuration template for the plugin.
+     *
+     * Generated from protobuf field <code>.google.cloud.apihub.v1.Plugin.ConfigTemplate config_template = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\ApiHub\V1\Plugin\ConfigTemplate|null
+     */
+    public function getConfigTemplate()
+    {
+        return $this->config_template;
+    }
+
+    public function hasConfigTemplate()
+    {
+        return isset($this->config_template);
+    }
+
+    public function clearConfigTemplate()
+    {
+        unset($this->config_template);
+    }
+
+    /**
+     * Optional. The configuration template for the plugin.
+     *
+     * Generated from protobuf field <code>.google.cloud.apihub.v1.Plugin.ConfigTemplate config_template = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\ApiHub\V1\Plugin\ConfigTemplate $var
+     * @return $this
+     */
+    public function setConfigTemplate($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\ApiHub\V1\Plugin\ConfigTemplate::class);
+        $this->config_template = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Timestamp indicating when the plugin was created.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getCreateTime()
+    {
+        return $this->create_time;
+    }
+
+    public function hasCreateTime()
+    {
+        return isset($this->create_time);
+    }
+
+    public function clearCreateTime()
+    {
+        unset($this->create_time);
+    }
+
+    /**
+     * Output only. Timestamp indicating when the plugin was created.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setCreateTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->create_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Timestamp indicating when the plugin was last updated.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getUpdateTime()
+    {
+        return $this->update_time;
+    }
+
+    public function hasUpdateTime()
+    {
+        return isset($this->update_time);
+    }
+
+    public function clearUpdateTime()
+    {
+        unset($this->update_time);
+    }
+
+    /**
+     * Output only. Timestamp indicating when the plugin was last updated.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setUpdateTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->update_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The type of the gateway.
+     *
+     * Generated from protobuf field <code>.google.cloud.apihub.v1.GatewayType gateway_type = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getGatewayType()
+    {
+        return $this->gateway_type;
+    }
+
+    /**
+     * Optional. The type of the gateway.
+     *
+     * Generated from protobuf field <code>.google.cloud.apihub.v1.GatewayType gateway_type = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setGatewayType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\ApiHub\V1\GatewayType::class);
+        $this->gateway_type = $var;
 
         return $this;
     }

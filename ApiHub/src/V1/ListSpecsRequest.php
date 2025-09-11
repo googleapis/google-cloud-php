@@ -46,6 +46,30 @@ class ListSpecsRequest extends \Google\Protobuf\Internal\Message
      *   operators: `:`.
      *   * `mime_type` - The MIME type of the Spec. Allowed comparison
      *   operators: `=`.
+     *   * `attributes.projects/test-project-id/locations/test-location-id/
+     *   attributes/user-defined-attribute-id.enum_values.values.id` - The
+     *   allowed value id of the user defined enum attribute associated with the
+     *   Resource. Allowed comparison operator is `:`. Here
+     *   user-defined-attribute-enum-id is a placeholder that can be replaced with
+     *   any user defined enum attribute name.
+     *   * `attributes.projects/test-project-id/locations/test-location-id/
+     *   attributes/user-defined-attribute-id.enum_values.values.display_name`
+     *   - The allowed value display name of the user defined enum attribute
+     *   associated with the Resource. Allowed comparison operator is `:`. Here
+     *   user-defined-attribute-enum-display-name is a placeholder that can be
+     *   replaced with any user defined enum attribute enum name.
+     *   * `attributes.projects/test-project-id/locations/test-location-id/
+     *   attributes/user-defined-attribute-id.string_values.values` - The
+     *   allowed value of the user defined string attribute associated with the
+     *   Resource. Allowed comparison operator is `:`. Here
+     *   user-defined-attribute-string is a placeholder that can be replaced with
+     *   any user defined string attribute name.
+     *   * `attributes.projects/test-project-id/locations/test-location-id/
+     *   attributes/user-defined-attribute-id.json_values.values` - The
+     *   allowed value of the user defined JSON attribute associated with the
+     *   Resource. Allowed comparison operator is `:`. Here
+     *   user-defined-attribute-json is a placeholder that can be replaced with
+     *   any user defined JSON attribute name.
      * Expressions are combined with either `AND` logic operator or `OR` logical
      * operator but not both of them together i.e. only one of the `AND` or `OR`
      * operator can be used throughout the filter string and both the operators
@@ -69,6 +93,13 @@ class ListSpecsRequest extends \Google\Protobuf\Internal\Message
      *   spec_type.enum_values.values.id: grpc-id`
      *   - The id of the allowed value associated with the spec_type attribute is
      *   _rest-id_ or _grpc-id_.
+     *   * `spec_type.enum_values.values.id: rest-id AND
+     *   attributes.projects/test-project-id/locations/test-location-id/
+     *   attributes/17650f90-4a29-4971-b3c0-d5532da3764b.enum_values.values.id:
+     *   test`  - The filter string specifies that the id of the allowed value
+     *   associated with the spec_type attribute is _rest-id_ and the id of the
+     *   allowed value associated with the user defined attribute of type enum is
+     *   _test_.
      *
      * Generated from protobuf field <code>string filter = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -141,6 +172,30 @@ class ListSpecsRequest extends \Google\Protobuf\Internal\Message
      *             operators: `:`.
      *             * `mime_type` - The MIME type of the Spec. Allowed comparison
      *             operators: `=`.
+     *             * `attributes.projects/test-project-id/locations/test-location-id/
+     *             attributes/user-defined-attribute-id.enum_values.values.id` - The
+     *             allowed value id of the user defined enum attribute associated with the
+     *             Resource. Allowed comparison operator is `:`. Here
+     *             user-defined-attribute-enum-id is a placeholder that can be replaced with
+     *             any user defined enum attribute name.
+     *             * `attributes.projects/test-project-id/locations/test-location-id/
+     *             attributes/user-defined-attribute-id.enum_values.values.display_name`
+     *             - The allowed value display name of the user defined enum attribute
+     *             associated with the Resource. Allowed comparison operator is `:`. Here
+     *             user-defined-attribute-enum-display-name is a placeholder that can be
+     *             replaced with any user defined enum attribute enum name.
+     *             * `attributes.projects/test-project-id/locations/test-location-id/
+     *             attributes/user-defined-attribute-id.string_values.values` - The
+     *             allowed value of the user defined string attribute associated with the
+     *             Resource. Allowed comparison operator is `:`. Here
+     *             user-defined-attribute-string is a placeholder that can be replaced with
+     *             any user defined string attribute name.
+     *             * `attributes.projects/test-project-id/locations/test-location-id/
+     *             attributes/user-defined-attribute-id.json_values.values` - The
+     *             allowed value of the user defined JSON attribute associated with the
+     *             Resource. Allowed comparison operator is `:`. Here
+     *             user-defined-attribute-json is a placeholder that can be replaced with
+     *             any user defined JSON attribute name.
      *           Expressions are combined with either `AND` logic operator or `OR` logical
      *           operator but not both of them together i.e. only one of the `AND` or `OR`
      *           operator can be used throughout the filter string and both the operators
@@ -164,6 +219,13 @@ class ListSpecsRequest extends \Google\Protobuf\Internal\Message
      *             spec_type.enum_values.values.id: grpc-id`
      *             - The id of the allowed value associated with the spec_type attribute is
      *             _rest-id_ or _grpc-id_.
+     *             * `spec_type.enum_values.values.id: rest-id AND
+     *             attributes.projects/test-project-id/locations/test-location-id/
+     *             attributes/17650f90-4a29-4971-b3c0-d5532da3764b.enum_values.values.id:
+     *             test`  - The filter string specifies that the id of the allowed value
+     *             associated with the spec_type attribute is _rest-id_ and the id of the
+     *             allowed value associated with the user defined attribute of type enum is
+     *             _test_.
      *     @type int $page_size
      *           Optional. The maximum number of specs to return. The service may return
      *           fewer than this value. If unspecified, at most 50 specs will be
@@ -234,6 +296,30 @@ class ListSpecsRequest extends \Google\Protobuf\Internal\Message
      *   operators: `:`.
      *   * `mime_type` - The MIME type of the Spec. Allowed comparison
      *   operators: `=`.
+     *   * `attributes.projects/test-project-id/locations/test-location-id/
+     *   attributes/user-defined-attribute-id.enum_values.values.id` - The
+     *   allowed value id of the user defined enum attribute associated with the
+     *   Resource. Allowed comparison operator is `:`. Here
+     *   user-defined-attribute-enum-id is a placeholder that can be replaced with
+     *   any user defined enum attribute name.
+     *   * `attributes.projects/test-project-id/locations/test-location-id/
+     *   attributes/user-defined-attribute-id.enum_values.values.display_name`
+     *   - The allowed value display name of the user defined enum attribute
+     *   associated with the Resource. Allowed comparison operator is `:`. Here
+     *   user-defined-attribute-enum-display-name is a placeholder that can be
+     *   replaced with any user defined enum attribute enum name.
+     *   * `attributes.projects/test-project-id/locations/test-location-id/
+     *   attributes/user-defined-attribute-id.string_values.values` - The
+     *   allowed value of the user defined string attribute associated with the
+     *   Resource. Allowed comparison operator is `:`. Here
+     *   user-defined-attribute-string is a placeholder that can be replaced with
+     *   any user defined string attribute name.
+     *   * `attributes.projects/test-project-id/locations/test-location-id/
+     *   attributes/user-defined-attribute-id.json_values.values` - The
+     *   allowed value of the user defined JSON attribute associated with the
+     *   Resource. Allowed comparison operator is `:`. Here
+     *   user-defined-attribute-json is a placeholder that can be replaced with
+     *   any user defined JSON attribute name.
      * Expressions are combined with either `AND` logic operator or `OR` logical
      * operator but not both of them together i.e. only one of the `AND` or `OR`
      * operator can be used throughout the filter string and both the operators
@@ -257,6 +343,13 @@ class ListSpecsRequest extends \Google\Protobuf\Internal\Message
      *   spec_type.enum_values.values.id: grpc-id`
      *   - The id of the allowed value associated with the spec_type attribute is
      *   _rest-id_ or _grpc-id_.
+     *   * `spec_type.enum_values.values.id: rest-id AND
+     *   attributes.projects/test-project-id/locations/test-location-id/
+     *   attributes/17650f90-4a29-4971-b3c0-d5532da3764b.enum_values.values.id:
+     *   test`  - The filter string specifies that the id of the allowed value
+     *   associated with the spec_type attribute is _rest-id_ and the id of the
+     *   allowed value associated with the user defined attribute of type enum is
+     *   _test_.
      *
      * Generated from protobuf field <code>string filter = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -289,6 +382,30 @@ class ListSpecsRequest extends \Google\Protobuf\Internal\Message
      *   operators: `:`.
      *   * `mime_type` - The MIME type of the Spec. Allowed comparison
      *   operators: `=`.
+     *   * `attributes.projects/test-project-id/locations/test-location-id/
+     *   attributes/user-defined-attribute-id.enum_values.values.id` - The
+     *   allowed value id of the user defined enum attribute associated with the
+     *   Resource. Allowed comparison operator is `:`. Here
+     *   user-defined-attribute-enum-id is a placeholder that can be replaced with
+     *   any user defined enum attribute name.
+     *   * `attributes.projects/test-project-id/locations/test-location-id/
+     *   attributes/user-defined-attribute-id.enum_values.values.display_name`
+     *   - The allowed value display name of the user defined enum attribute
+     *   associated with the Resource. Allowed comparison operator is `:`. Here
+     *   user-defined-attribute-enum-display-name is a placeholder that can be
+     *   replaced with any user defined enum attribute enum name.
+     *   * `attributes.projects/test-project-id/locations/test-location-id/
+     *   attributes/user-defined-attribute-id.string_values.values` - The
+     *   allowed value of the user defined string attribute associated with the
+     *   Resource. Allowed comparison operator is `:`. Here
+     *   user-defined-attribute-string is a placeholder that can be replaced with
+     *   any user defined string attribute name.
+     *   * `attributes.projects/test-project-id/locations/test-location-id/
+     *   attributes/user-defined-attribute-id.json_values.values` - The
+     *   allowed value of the user defined JSON attribute associated with the
+     *   Resource. Allowed comparison operator is `:`. Here
+     *   user-defined-attribute-json is a placeholder that can be replaced with
+     *   any user defined JSON attribute name.
      * Expressions are combined with either `AND` logic operator or `OR` logical
      * operator but not both of them together i.e. only one of the `AND` or `OR`
      * operator can be used throughout the filter string and both the operators
@@ -312,6 +429,13 @@ class ListSpecsRequest extends \Google\Protobuf\Internal\Message
      *   spec_type.enum_values.values.id: grpc-id`
      *   - The id of the allowed value associated with the spec_type attribute is
      *   _rest-id_ or _grpc-id_.
+     *   * `spec_type.enum_values.values.id: rest-id AND
+     *   attributes.projects/test-project-id/locations/test-location-id/
+     *   attributes/17650f90-4a29-4971-b3c0-d5532da3764b.enum_values.values.id:
+     *   test`  - The filter string specifies that the id of the allowed value
+     *   associated with the spec_type attribute is _rest-id_ and the id of the
+     *   allowed value associated with the user defined attribute of type enum is
+     *   _test_.
      *
      * Generated from protobuf field <code>string filter = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
