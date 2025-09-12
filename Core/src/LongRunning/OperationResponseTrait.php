@@ -19,7 +19,6 @@ namespace Google\Cloud\Core\LongRunning;
 
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\Serializer;
-use Google\GAX\OperationResponse as GaxOperationResponse;
 
 /**
  * Serializes and deserializes ApiCore LRO Response objects.
@@ -31,7 +30,7 @@ trait OperationResponseTrait
     /**
      * Convert a ApiCore OperationResponse object to an array.
      *
-     * @param OperationResponse|GaxOperationResponse $operation The operation response
+     * @param OperationResponse $operation The operation response
      * @param Serializer|GaxSerializer $serializer The serializer to use for gRPC serialization/deserialization.
      * @param array $lroMappers A list of mappers for deserializing operation results.
      * @return array
