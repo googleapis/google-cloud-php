@@ -30,7 +30,7 @@ class MethodNode
     use ParentNodeTrait;
     use VisibilityTrait;
 
-    private const ENUM_REGEX = '/Generated from protobuf field <code>(\.google\.[\w\.]+)/';
+    private const ENUM_REGEX = '/Generated from protobuf field <code>\.(google\.[\w\.]+)/';
 
     public function __construct(
         private SimpleXMLElement $xmlNode,
