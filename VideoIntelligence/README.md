@@ -40,46 +40,36 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-require __DIR__ . '/vendor/autoload.php';
+use Google\ApiCore\ApiException;
+use Google\ApiCore\OperationResponse;
+use Google\Cloud\VideoIntelligence\V1\AnnotateVideoRequest;
+use Google\Cloud\VideoIntelligence\V1\AnnotateVideoResponse;
+use Google\Cloud\VideoIntelligence\V1\Client\VideoIntelligenceServiceClient;
+use Google\Rpc\Status;
 
-use Google\Cloud\VideoIntelligence\V1\VideoIntelligenceServiceClient;
-use Google\Cloud\VideoIntelligence\V1\Feature;
-
+// Create a client.
 $videoIntelligenceServiceClient = new VideoIntelligenceServiceClient();
 
-$inputUri = "gs://example-bucket/example-video.mp4";
+// Prepare the request message.
+$request = new AnnotateVideoRequest();
 
-$features = [
-    Feature::LABEL_DETECTION,
-];
-$operationResponse = $videoIntelligenceServiceClient->annotateVideo([
-    'inputUri' => $inputUri,
-    'features' => $features
-]);
-$operationResponse->pollUntilComplete();
-if ($operationResponse->operationSucceeded()) {
-    $results = $operationResponse->getResult();
-    foreach ($results->getAnnotationResults() as $result) {
-        echo 'Segment labels' . PHP_EOL;
-        foreach ($result->getSegmentLabelAnnotations() as $labelAnnotation) {
-            echo "Label: " . $labelAnnotation->getEntity()->getDescription()
-                . PHP_EOL;
-        }
-        echo 'Shot labels' . PHP_EOL;
-        foreach ($result->getShotLabelAnnotations() as $labelAnnotation) {
-            echo "Label: " . $labelAnnotation->getEntity()->getDescription()
-                . PHP_EOL;
-        }
-        echo 'Frame labels' . PHP_EOL;
-        foreach ($result->getFrameLabelAnnotations() as $labelAnnotation) {
-            echo "Label: " . $labelAnnotation->getEntity()->getDescription()
-                . PHP_EOL;
-        }
+// Call the API and handle any network failures.
+try {
+    /** @var OperationResponse $response */
+    $response = $videoIntelligenceServiceClient->annotateVideo($request);
+    $response->pollUntilComplete();
+
+    if ($response->operationSucceeded()) {
+        /** @var AnnotateVideoResponse $result */
+        $result = $response->getResult();
+        printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
+    } else {
+        /** @var Status $error */
+        $error = $response->getError();
+        printf('Operation failed with error data: %s' . PHP_EOL, $error->serializeToJsonString());
     }
-} else {
-    $error = $operationResponse->getError();
-    echo "error: " . $error->getMessage() . PHP_EOL;
-
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
 }
 ```
 

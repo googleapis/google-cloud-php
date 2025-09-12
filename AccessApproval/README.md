@@ -29,6 +29,30 @@ Please see our [Authentication guide](https://github.com/googleapis/google-cloud
 on authenticating your client. Once authenticated, you'll be ready to start making requests.
 
 
+### Sample
+
+```php
+use Google\ApiCore\ApiException;
+use Google\Cloud\AccessApproval\V1\AccessApprovalServiceAccount;
+use Google\Cloud\AccessApproval\V1\Client\AccessApprovalClient;
+use Google\Cloud\AccessApproval\V1\GetAccessApprovalServiceAccountMessage;
+
+// Create a client.
+$accessApprovalClient = new AccessApprovalClient();
+
+// Prepare the request message.
+$request = new GetAccessApprovalServiceAccountMessage();
+
+// Call the API and handle any network failures.
+try {
+    /** @var AccessApprovalServiceAccount $response */
+    $response = $accessApprovalClient->getAccessApprovalServiceAccount($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
+```
+
 ### Debugging
 
 Please see our [Debugging guide](https://github.com/googleapis/google-cloud-php/blob/main/DEBUG.md)

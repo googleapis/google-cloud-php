@@ -35,10 +35,10 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-Google\ApiCore\ApiException;
-Google\Cloud\Lustre\V1\Client\LustreClient;
-Google\Cloud\Lustre\V1\GetInstanceRequest;
-Google\Cloud\Lustre\V1\Instance;
+use Google\ApiCore\ApiException;
+use Google\Cloud\Lustre\V1\Client\LustreClient;
+use Google\Cloud\Lustre\V1\GetInstanceRequest;
+use Google\Cloud\Lustre\V1\Instance;
 
 // Create a client.
 $lustreClient = new LustreClient();

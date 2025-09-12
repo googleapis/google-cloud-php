@@ -31,22 +31,25 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-require 'vendor/autoload.php';
+use Google\ApiCore\ApiException;
+use Google\Cloud\Security\PrivateCA\V1\CaPool;
+use Google\Cloud\Security\PrivateCA\V1\Client\CertificateAuthorityServiceClient;
+use Google\Cloud\Security\PrivateCA\V1\GetCaPoolRequest;
 
-use Google\Cloud\Security\PrivateCA\V1\CertificateAuthorityServiceClient;
+// Create a client.
+$certificateAuthorityServiceClient = new CertificateAuthorityServiceClient();
 
-$client = new CertificateAuthorityServiceClient();
+// Prepare the request message.
+$request = (new GetCaPoolRequest())
+    ->setName($formattedName);
 
-$parent = CertificateAuthorityServiceClient::locationName(
-    '[MY_PROJECT]',
-    'us-west1',
-);
-$authorities = $client->listCertificateAuthorities(
-    $parent,
-);
-
-foreach ($authorities as $authority) {
-    print 'Found authority: ' . $authority->getName() . PHP_EOL;
+// Call the API and handle any network failures.
+try {
+    /** @var CaPool $response */
+    $response = $certificateAuthorityServiceClient->getCaPool($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
 }
 ```
 

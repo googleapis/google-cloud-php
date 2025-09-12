@@ -35,22 +35,24 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-require 'vendor/autoload.php';
+use Google\ApiCore\ApiException;
+use Google\Cloud\Container\V1\Client\ClusterManagerClient;
+use Google\Cloud\Container\V1\Cluster;
+use Google\Cloud\Container\V1\GetClusterRequest;
 
-use Google\Cloud\Container\V1\ClusterManagerClient;
-
+// Create a client.
 $clusterManagerClient = new ClusterManagerClient();
 
-$projectId = '[MY-PROJECT-ID]';
-$zone = 'us-central1-a';
+// Prepare the request message.
+$request = new GetClusterRequest();
 
+// Call the API and handle any network failures.
 try {
-    $clusters = $clusterManagerClient->listClusters($projectId, $zone);
-    foreach ($clusters->getClusters() as $cluster) {
-        print('Cluster: ' . $cluster->getName() . PHP_EOL);
-    }
-} finally {
-    $clusterManagerClient->close();
+    /** @var Cluster $response */
+    $response = $clusterManagerClient->getCluster($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
 }
 ```
 

@@ -35,10 +35,10 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-Google\ApiCore\ApiException;
-Google\Cloud\Support\V2\Client\CaseServiceClient;
-Google\Cloud\Support\V2\GetCaseRequest;
-Google\Cloud\Support\V2\PBCase;
+use Google\ApiCore\ApiException;
+use Google\Cloud\Support\V2\Client\CaseServiceClient;
+use Google\Cloud\Support\V2\GetCaseRequest;
+use Google\Cloud\Support\V2\PBCase;
 
 // Create a client.
 $caseServiceClient = new CaseServiceClient();

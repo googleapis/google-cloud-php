@@ -31,18 +31,25 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-require 'vendor/autoload.php';
+use Google\ApiCore\ApiException;
+use Google\Cloud\AssuredWorkloads\V1\Client\AssuredWorkloadsServiceClient;
+use Google\Cloud\AssuredWorkloads\V1\GetViolationRequest;
+use Google\Cloud\AssuredWorkloads\V1\Violation;
 
-use Google\Cloud\AssuredWorkloads\V1beta1\AssuredWorkloadsServiceClient;
+// Create a client.
+$assuredWorkloadsServiceClient = new AssuredWorkloadsServiceClient();
 
-$client = new AssuredWorkloadsServiceClient();
+// Prepare the request message.
+$request = (new GetViolationRequest())
+    ->setName($formattedName);
 
-$workloads = $client->listWorkloads(
-    AssuredWorkloadsServiceClient::locationName('[MY_ORGANIZATION]', 'us-west1')
-);
-
-foreach ($workloads as $workload) {
-    print 'Workload: ' . $workload->getName() . PHP_EOL;
+// Call the API and handle any network failures.
+try {
+    /** @var Violation $response */
+    $response = $assuredWorkloadsServiceClient->getViolation($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
 }
 ```
 

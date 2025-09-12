@@ -34,6 +34,28 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 
 ### Sample
 
+```php
+use Google\ApiCore\ApiException;
+use Google\Cloud\GeminiDataAnalytics\V1beta\Client\ContextRetrievalServiceClient;
+use Google\Cloud\Location\GetLocationRequest;
+use Google\Cloud\Location\Location;
+
+// Create a client.
+$contextRetrievalServiceClient = new ContextRetrievalServiceClient();
+
+// Prepare the request message.
+$request = new GetLocationRequest();
+
+// Call the API and handle any network failures.
+try {
+    /** @var Location $response */
+    $response = $contextRetrievalServiceClient->getLocation($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
+```
+
 See the [samples directory](https://github.com/googleapis/google-cloud-php-geminidataanalytics/tree/main/samples) for a canonical list of samples.
 
 ### Debugging

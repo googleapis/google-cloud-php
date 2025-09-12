@@ -34,14 +34,26 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-require 'vendor/autoload.php';
+use Google\ApiCore\ApiException;
+use Google\Cloud\OsLogin\V1\Client\OsLoginServiceClient;
+use Google\Cloud\OsLogin\V1\GetLoginProfileRequest;
+use Google\Cloud\OsLogin\V1\LoginProfile;
 
-use Google\Cloud\OsLogin\V1\OsLoginServiceClient;
-
+// Create a client.
 $osLoginServiceClient = new OsLoginServiceClient();
-$userId = '[MY_USER_ID]';
-$formattedName = $osLoginServiceClient->userName($userId);
-$loginProfile = $osLoginServiceClient->getLoginProfile($formattedName);
+
+// Prepare the request message.
+$request = (new GetLoginProfileRequest())
+    ->setName($formattedName);
+
+// Call the API and handle any network failures.
+try {
+    /** @var LoginProfile $response */
+    $response = $osLoginServiceClient->getLoginProfile($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
 ```
 
 ### Debugging

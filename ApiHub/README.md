@@ -35,10 +35,10 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-Google\ApiCore\ApiException;
-Google\Cloud\ApiHub\V1\Api;
-Google\Cloud\ApiHub\V1\Client\ApiHubClient;
-Google\Cloud\ApiHub\V1\GetApiRequest;
+use Google\ApiCore\ApiException;
+use Google\Cloud\ApiHub\V1\Api;
+use Google\Cloud\ApiHub\V1\Client\ApiHubClient;
+use Google\Cloud\ApiHub\V1\GetApiRequest;
 
 // Create a client.
 $apiHubClient = new ApiHubClient();

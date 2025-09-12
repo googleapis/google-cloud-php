@@ -31,17 +31,25 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-require 'vendor/autoload.php';
+use Google\ApiCore\ApiException;
+use Google\Cloud\Memcache\V1\Client\CloudMemcacheClient;
+use Google\Cloud\Memcache\V1\GetInstanceRequest;
+use Google\Cloud\Memcache\V1\Instance;
 
-use Google\Cloud\Memcache\V1\CloudMemcacheClient;
+// Create a client.
+$cloudMemcacheClient = new CloudMemcacheClient();
 
-$client = new CloudMemcacheClient();
-$location = CloudMemcacheClient::locationName('[MY_PROJECT_ID]', '-');
+// Prepare the request message.
+$request = (new GetInstanceRequest())
+    ->setName($formattedName);
 
-foreach ($client->listInstances($location) as $response) {
-    foreach ($response->getResources() as $instance) {
-        printf('Discovered instance: %s', $instance->getDisplayName());
-    }
+// Call the API and handle any network failures.
+try {
+    /** @var Instance $response */
+    $response = $cloudMemcacheClient->getInstance($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
 }
 ```
 
