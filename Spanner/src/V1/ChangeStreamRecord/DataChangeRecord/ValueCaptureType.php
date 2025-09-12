@@ -77,6 +77,4 @@ class ValueCaptureType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ValueCaptureType::class, \Google\Cloud\Spanner\V1\ChangeStreamRecord_DataChangeRecord_ValueCaptureType::class);
 
