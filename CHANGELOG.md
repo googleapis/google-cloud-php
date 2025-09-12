@@ -1,5 +1,168 @@
 # Changelog
 
+## 0.301.0
+
+<details><summary>google/cloud-ai-platform 1.37.0</summary>
+
+
+
+### Features
+
+* [AiPlatform] add private_model_server_enabled to in Endpoint.proto ([#8589](https://github.com/googleapis/google-cloud-php/issues/8589)) ([93211a7](https://github.com/googleapis/google-cloud-php/commit/93211a7a88f17f78cb6b8ff3139552f3cedf0405))
+
+</details>
+
+<details><summary>google/cloud-apihub 0.3.0</summary>
+
+
+
+### Features
+
+* [ApiHub] Introduce new services for data collection (ApiHubCollect) and curation (ApiHubCurate) ([#8583](https://github.com/googleapis/google-cloud-php/issues/8583)) ([89de3fc](https://github.com/googleapis/google-cloud-php/commit/89de3fc508e6e68bff0a0ffc0bacc9e6a44f61c6))
+
+</details>
+
+<details><summary>google/cloud-bigtable 2.18.0</summary>
+
+
+
+### Features
+
+* [Bigtable] Add Type API updates needed to support structured keys in materialized views ([#8578](https://github.com/googleapis/google-cloud-php/issues/8578)) ([caa2737](https://github.com/googleapis/google-cloud-php/commit/caa273710ecffcdbe86c9727df94704887e5dd9d))
+
+</details>
+
+<details><summary>google/cloud-dataplex 1.8.0</summary>
+
+
+
+### Features
+
+* [Dataplex] A new service `BusinessGlossaryService` is added ([#8582](https://github.com/googleapis/google-cloud-php/issues/8582)) ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new field `catalog_publishing_enabled` is added to message `.google.cloud.dataplex.v1.DataQualitySpec` ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new field `catalog_publishing_status` is added to message `.google.cloud.dataplex.v1.DataQualityResult` ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new field `catalog_publishing_status` is added to message `.google.cloud.dataplex.v1.DataScanEvent` ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new field `created_entry_links` is added to message `.google.cloud.dataplex.v1.MetadataJob` ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new field `deleted_entry_links` is added to message `.google.cloud.dataplex.v1.MetadataJob` ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new field `dimensions` is added to message `.google.cloud.dataplex.v1.DataQualityColumnResult` ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new field `entry_link_types` is added to message `.google.cloud.dataplex.v1.MetadataJob` ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new field `entry_link` is added to message `.google.cloud.dataplex.v1.ImportItem` ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new field `glossaries` is added to message `.google.cloud.dataplex.v1.MetadataJob` ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new field `passed` is added to message `.google.cloud.dataplex.v1.DataQualityColumnResult` ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new field `project` is added to message `.google.cloud.dataplex.v1.DataDiscoverySpec` ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new field `referenced_entry_scopes` is added to message `.google.cloud.dataplex.v1.MetadataJob` ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new field `unchanged_entry_links` is added to message `.google.cloud.dataplex.v1.MetadataJob` ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new message `CreateEntryLinkRequest` is added ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new message `CreateGlossaryCategoryRequest` is added ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new message `CreateGlossaryRequest` is added ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new message `CreateGlossaryTermRequest` is added ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new message `DataScanCatalogPublishingStatus` is added ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new message `DeleteEntryLinkRequest` is added ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new message `DeleteGlossaryCategoryRequest` is added ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new message `DeleteGlossaryRequest` is added ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new message `DeleteGlossaryTermRequest` is added ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new message `EntryLink` is added ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new message `GetEntryLinkRequest` is added ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new message `GetGlossaryCategoryRequest` is added ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new message `GetGlossaryRequest` is added ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new message `GetGlossaryTermRequest` is added ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new message `Glossary` is added ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new message `GlossaryCategory` is added ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new message `GlossaryTerm` is added ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new message `ListGlossariesRequest` is added ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new message `ListGlossariesResponse` is added ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new message `ListGlossaryCategoriesRequest` is added ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new message `ListGlossaryCategoriesResponse` is added ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new message `ListGlossaryTermsRequest` is added ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new message `ListGlossaryTermsResponse` is added ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new message `UpdateGlossaryCategoryRequest` is added ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new message `UpdateGlossaryRequest` is added ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new message `UpdateGlossaryTermRequest` is added ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new method `CreateEntryLink` is added to service `CatalogService` ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new method `DeleteEntryLink` is added to service `CatalogService` ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new method `GetEntryLink` is added to service `CatalogService` ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new resource_definition `dataplex.googleapis.com/EntryLink` is added ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new resource_definition `dataplex.googleapis.com/Glossary` is added ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new resource_definition `dataplex.googleapis.com/GlossaryCategory` is added ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new resource_definition `dataplex.googleapis.com/GlossaryTerm` is added ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+
+</details>
+
+<details><summary>google/cloud-discoveryengine 1.8.0</summary>
+
+
+
+### Features
+
+* [DiscoveryEngine] Added `ranking_expression_backed` and `rank_signals` fields related to the Custom Ranking feature ([#8579](https://github.com/googleapis/google-cloud-php/issues/8579)) ([37a3ed3](https://github.com/googleapis/google-cloud-php/commit/37a3ed395bfd48659cecdba03a2b4c97a56326f5))
+
+</details>
+
+<details><summary>google/cloud-dlp 2.7.0</summary>
+
+
+
+### Features
+
+* [Dlp] add LocationSupport,Domain,DocumentFallbackLocation ([#8577](https://github.com/googleapis/google-cloud-php/issues/8577)) ([e0f0406](https://github.com/googleapis/google-cloud-php/commit/e0f040675b18642017b4b9ebf5d011f66dba7cc5))
+
+</details>
+
+<details><summary>google/cloud-gke-hub 1.1.0</summary>
+
+
+
+### Features
+
+* [GkeHub] add `k8s_git_version` field ([#8586](https://github.com/googleapis/google-cloud-php/issues/8586)) ([1fae34a](https://github.com/googleapis/google-cloud-php/commit/1fae34a59c70d128460b71b69b7b92222a9b2afd))
+
+
+### Documentation
+
+* Correct comment for `k8s_version` field ([1fae34a](https://github.com/googleapis/google-cloud-php/commit/1fae34a59c70d128460b71b69b7b92222a9b2afd))
+
+</details>
+
+<details><summary>google/cloud-kms 2.4.0</summary>
+
+
+
+### Features
+
+* [Kms] Support KEY_ENCAPSULATION purpose and quantum-safe algorithms ML_KEM_768, ML_KEM_1024 and KEM_XWING ([#8580](https://github.com/googleapis/google-cloud-php/issues/8580)) ([e0cc9a8](https://github.com/googleapis/google-cloud-php/commit/e0cc9a84058da969221cd81bff5e891454b02145))
+
+</details>
+
+<details><summary>google/cloud-retail 2.4.0</summary>
+
+
+
+### Features
+
+* [Retail] release the conversational search public SDK ([#8573](https://github.com/googleapis/google-cloud-php/issues/8573)) ([dd9c5cd](https://github.com/googleapis/google-cloud-php/commit/dd9c5cd0570d362eba9ff8d6c1d0ae2dd482d003))
+
+</details>
+
+<details><summary>google/cloud-security-center 2.3.0</summary>
+
+
+
+### Features
+
+* [SecurityCenter] add GCE to DeploymentPlatform enum ([#8581](https://github.com/googleapis/google-cloud-php/issues/8581)) ([8a06f2c](https://github.com/googleapis/google-cloud-php/commit/8a06f2cacc676bc1399b760e0b6c50b8fb81e6fe))
+
+</details>
+
+<details><summary>google/cloud-storage-control 1.5.0</summary>
+
+
+
+### Features
+
+* [StorageControl] Add new GetIamPolicy, SetIamPolicy, and TestIamPermissions RPCs ([#8576](https://github.com/googleapis/google-cloud-php/issues/8576)) ([30bd552](https://github.com/googleapis/google-cloud-php/commit/30bd5526b39ab86858dcfe15c6b791f69ec39e7c))
+
+</details>
+
 ## 0.300.0
 
 <details><summary>google/cloud-ai-platform 1.36.0</summary>
