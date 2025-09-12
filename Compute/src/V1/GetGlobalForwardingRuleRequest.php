@@ -20,13 +20,13 @@ class GetGlobalForwardingRuleRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string forwarding_rule = 269964030 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $forwarding_rule = '';
+    protected $forwarding_rule = '';
     /**
      * Project ID for this request.
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project = '';
+    protected $project = '';
 
     /**
      * @param string $project        Project ID for this request.

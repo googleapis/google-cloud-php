@@ -20,14 +20,14 @@ class InstanceGroupManagerInstanceLifecyclePolicy extends \Google\Protobuf\Inter
      *
      * Generated from protobuf field <code>optional string default_action_on_failure = 61383253;</code>
      */
-    private $default_action_on_failure = null;
+    protected $default_action_on_failure = null;
     /**
      * A bit indicating whether to forcefully apply the group's latest configuration when repairing a VM. Valid options are: - NO (default): If configuration updates are available, they are not forcefully applied during repair. Instead, configuration updates are applied according to the group's update policy. - YES: If configuration updates are available, they are applied during repair.
      * Check the ForceUpdateOnRepair enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string force_update_on_repair = 356302027;</code>
      */
-    private $force_update_on_repair = null;
+    protected $force_update_on_repair = null;
 
     /**
      * Constructor.

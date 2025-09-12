@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,7 +37,6 @@ use Google\Cloud\Compute\V1\DeleteRegionTargetHttpProxyRequest;
 use Google\Cloud\Compute\V1\GetRegionTargetHttpProxyRequest;
 use Google\Cloud\Compute\V1\InsertRegionTargetHttpProxyRequest;
 use Google\Cloud\Compute\V1\ListRegionTargetHttpProxiesRequest;
-use Google\Cloud\Compute\V1\RegionOperationsClient;
 use Google\Cloud\Compute\V1\SetUrlMapRegionTargetHttpProxyRequest;
 use Google\Cloud\Compute\V1\TargetHttpProxy;
 use GuzzleHttp\Promise\PromiseInterface;
@@ -99,10 +98,10 @@ final class RegionTargetHttpProxiesClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/region_target_http_proxies_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/region_target_http_proxies_rest_client_config.php',
                 ],
             ],
-            'operationsClientClass' => RegionOperationsClient::class,
         ];
     }
 
@@ -115,9 +114,7 @@ final class RegionTargetHttpProxiesClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -134,10 +131,7 @@ final class RegionTargetHttpProxiesClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-                'getRegion',
-            ],
+            'additionalArgumentMethods' => ['getProject', 'getRegion'],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -165,10 +159,31 @@ final class RegionTargetHttpProxiesClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : $this->getDefaultOperationDescriptor();
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : $this->getDefaultOperationDescriptor();
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return RegionOperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new RegionOperationsClient($options);
     }
 
     /**
@@ -374,8 +389,10 @@ final class RegionTargetHttpProxiesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setUrlMap(SetUrlMapRegionTargetHttpProxyRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function setUrlMap(
+        SetUrlMapRegionTargetHttpProxyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SetUrlMap', $request, $callOptions)->wait();
     }
 }

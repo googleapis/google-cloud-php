@@ -20,20 +20,20 @@ class SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfigThresholdConf
      *
      * Generated from protobuf field <code>optional bool enable_each_unique_value = 469206341;</code>
      */
-    private $enable_each_unique_value = null;
+    protected $enable_each_unique_value = null;
     /**
      * Type of this configuration.
      * Check the Type enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string type = 3575610;</code>
      */
-    private $type = null;
+    protected $type = null;
     /**
      * Requests that match this value constitute a granular traffic unit.
      *
      * Generated from protobuf field <code>optional string value = 111972721;</code>
      */
-    private $value = null;
+    protected $value = null;
 
     /**
      * Constructor.

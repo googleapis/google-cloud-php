@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -49,7 +49,6 @@ use Google\Cloud\Compute\V1\NatIpInfoResponse;
 use Google\Cloud\Compute\V1\PatchRoutePolicyRouterRequest;
 use Google\Cloud\Compute\V1\PatchRouterRequest;
 use Google\Cloud\Compute\V1\PreviewRouterRequest;
-use Google\Cloud\Compute\V1\RegionOperationsClient;
 use Google\Cloud\Compute\V1\Router;
 use Google\Cloud\Compute\V1\RouterStatusResponse;
 use Google\Cloud\Compute\V1\RoutersGetRoutePolicyResponse;
@@ -132,7 +131,6 @@ final class RoutersClient
                     'restClientConfigPath' => __DIR__ . '/../resources/routers_rest_client_config.php',
                 ],
             ],
-            'operationsClientClass' => RegionOperationsClient::class,
         ];
     }
 
@@ -145,9 +143,7 @@ final class RoutersClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -164,10 +160,7 @@ final class RoutersClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-                'getRegion',
-            ],
+            'additionalArgumentMethods' => ['getProject', 'getRegion'],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -195,10 +188,31 @@ final class RoutersClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : $this->getDefaultOperationDescriptor();
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : $this->getDefaultOperationDescriptor();
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return RegionOperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new RegionOperationsClient($options);
     }
 
     /**
@@ -352,8 +366,10 @@ final class RoutersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteRoutePolicy(DeleteRoutePolicyRouterRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteRoutePolicy(
+        DeleteRoutePolicyRouterRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteRoutePolicy', $request, $callOptions)->wait();
     }
 
@@ -430,8 +446,10 @@ final class RoutersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getNatMappingInfo(GetNatMappingInfoRoutersRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function getNatMappingInfo(
+        GetNatMappingInfoRoutersRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('GetNatMappingInfo', $request, $callOptions);
     }
 
@@ -456,8 +474,10 @@ final class RoutersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getRoutePolicy(GetRoutePolicyRouterRequest $request, array $callOptions = []): RoutersGetRoutePolicyResponse
-    {
+    public function getRoutePolicy(
+        GetRoutePolicyRouterRequest $request,
+        array $callOptions = []
+    ): RoutersGetRoutePolicyResponse {
         return $this->startApiCall('GetRoutePolicy', $request, $callOptions)->wait();
     }
 
@@ -482,8 +502,10 @@ final class RoutersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getRouterStatus(GetRouterStatusRouterRequest $request, array $callOptions = []): RouterStatusResponse
-    {
+    public function getRouterStatus(
+        GetRouterStatusRouterRequest $request,
+        array $callOptions = []
+    ): RouterStatusResponse {
         return $this->startApiCall('GetRouterStatus', $request, $callOptions)->wait();
     }
 
@@ -586,8 +608,10 @@ final class RoutersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listRoutePolicies(ListRoutePoliciesRoutersRequest $request, array $callOptions = []): RoutersListRoutePolicies
-    {
+    public function listRoutePolicies(
+        ListRoutePoliciesRoutersRequest $request,
+        array $callOptions = []
+    ): RoutersListRoutePolicies {
         return $this->startApiCall('ListRoutePolicies', $request, $callOptions)->wait();
     }
 
@@ -716,8 +740,10 @@ final class RoutersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateRoutePolicy(UpdateRoutePolicyRouterRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function updateRoutePolicy(
+        UpdateRoutePolicyRouterRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UpdateRoutePolicy', $request, $callOptions)->wait();
     }
 }

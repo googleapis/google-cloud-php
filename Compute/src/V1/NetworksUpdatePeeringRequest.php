@@ -17,7 +17,7 @@ class NetworksUpdatePeeringRequest extends \Google\Protobuf\Internal\Message
     /**
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkPeering network_peering = 328926767;</code>
      */
-    private $network_peering = null;
+    protected $network_peering = null;
 
     /**
      * Constructor.

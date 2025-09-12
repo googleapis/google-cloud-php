@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -41,7 +41,6 @@ use Google\Cloud\Compute\V1\GetHealthTargetPoolRequest;
 use Google\Cloud\Compute\V1\GetTargetPoolRequest;
 use Google\Cloud\Compute\V1\InsertTargetPoolRequest;
 use Google\Cloud\Compute\V1\ListTargetPoolsRequest;
-use Google\Cloud\Compute\V1\RegionOperationsClient;
 use Google\Cloud\Compute\V1\RemoveHealthCheckTargetPoolRequest;
 use Google\Cloud\Compute\V1\RemoveInstanceTargetPoolRequest;
 use Google\Cloud\Compute\V1\SetBackupTargetPoolRequest;
@@ -117,7 +116,6 @@ final class TargetPoolsClient
                     'restClientConfigPath' => __DIR__ . '/../resources/target_pools_rest_client_config.php',
                 ],
             ],
-            'operationsClientClass' => RegionOperationsClient::class,
         ];
     }
 
@@ -130,9 +128,7 @@ final class TargetPoolsClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -149,10 +145,7 @@ final class TargetPoolsClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-                'getRegion',
-            ],
+            'additionalArgumentMethods' => ['getProject', 'getRegion'],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -180,10 +173,31 @@ final class TargetPoolsClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : $this->getDefaultOperationDescriptor();
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : $this->getDefaultOperationDescriptor();
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return RegionOperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new RegionOperationsClient($options);
     }
 
     /**
@@ -337,8 +351,10 @@ final class TargetPoolsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function aggregatedList(AggregatedListTargetPoolsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function aggregatedList(
+        AggregatedListTargetPoolsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('AggregatedList', $request, $callOptions);
     }
 
@@ -493,8 +509,10 @@ final class TargetPoolsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function removeHealthCheck(RemoveHealthCheckTargetPoolRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function removeHealthCheck(
+        RemoveHealthCheckTargetPoolRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('RemoveHealthCheck', $request, $callOptions)->wait();
     }
 
@@ -571,8 +589,10 @@ final class TargetPoolsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setSecurityPolicy(SetSecurityPolicyTargetPoolRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function setSecurityPolicy(
+        SetSecurityPolicyTargetPoolRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SetSecurityPolicy', $request, $callOptions)->wait();
     }
 }

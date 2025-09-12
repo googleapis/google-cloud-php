@@ -20,13 +20,13 @@ class InterconnectDiagnosticsMacsecStatus extends \Google\Protobuf\Internal\Mess
      *
      * Generated from protobuf field <code>optional string ckn = 98566;</code>
      */
-    private $ckn = null;
+    protected $ckn = null;
     /**
      * Indicates whether or not MACsec is operational on this link.
      *
      * Generated from protobuf field <code>optional bool operational = 129704914;</code>
      */
-    private $operational = null;
+    protected $operational = null;
 
     /**
      * Constructor.

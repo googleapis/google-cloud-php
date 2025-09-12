@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -44,7 +44,6 @@ use Google\Cloud\Compute\V1\ListRegionBackendServicesRequest;
 use Google\Cloud\Compute\V1\ListUsableRegionBackendServicesRequest;
 use Google\Cloud\Compute\V1\PatchRegionBackendServiceRequest;
 use Google\Cloud\Compute\V1\Policy;
-use Google\Cloud\Compute\V1\RegionOperationsClient;
 use Google\Cloud\Compute\V1\SetIamPolicyRegionBackendServiceRequest;
 use Google\Cloud\Compute\V1\SetSecurityPolicyRegionBackendServiceRequest;
 use Google\Cloud\Compute\V1\TestIamPermissionsRegionBackendServiceRequest;
@@ -119,7 +118,6 @@ final class RegionBackendServicesClient
                     'restClientConfigPath' => __DIR__ . '/../resources/region_backend_services_rest_client_config.php',
                 ],
             ],
-            'operationsClientClass' => RegionOperationsClient::class,
         ];
     }
 
@@ -132,9 +130,7 @@ final class RegionBackendServicesClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -151,10 +147,7 @@ final class RegionBackendServicesClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-                'getRegion',
-            ],
+            'additionalArgumentMethods' => ['getProject', 'getRegion'],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -182,10 +175,31 @@ final class RegionBackendServicesClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : $this->getDefaultOperationDescriptor();
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : $this->getDefaultOperationDescriptor();
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return RegionOperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new RegionOperationsClient($options);
     }
 
     /**
@@ -339,8 +353,10 @@ final class RegionBackendServicesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getHealth(GetHealthRegionBackendServiceRequest $request, array $callOptions = []): BackendServiceGroupHealth
-    {
+    public function getHealth(
+        GetHealthRegionBackendServiceRequest $request,
+        array $callOptions = []
+    ): BackendServiceGroupHealth {
         return $this->startApiCall('GetHealth', $request, $callOptions)->wait();
     }
 
@@ -443,8 +459,10 @@ final class RegionBackendServicesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listUsable(ListUsableRegionBackendServicesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listUsable(
+        ListUsableRegionBackendServicesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListUsable', $request, $callOptions);
     }
 
@@ -522,8 +540,10 @@ final class RegionBackendServicesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setSecurityPolicy(SetSecurityPolicyRegionBackendServiceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function setSecurityPolicy(
+        SetSecurityPolicyRegionBackendServiceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SetSecurityPolicy', $request, $callOptions)->wait();
     }
 
@@ -549,8 +569,10 @@ final class RegionBackendServicesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRegionBackendServiceRequest $request, array $callOptions = []): TestPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRegionBackendServiceRequest $request,
+        array $callOptions = []
+    ): TestPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 

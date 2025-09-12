@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -51,7 +51,6 @@ use Google\Cloud\Compute\V1\SetNodeTemplateNodeGroupRequest;
 use Google\Cloud\Compute\V1\SimulateMaintenanceEventNodeGroupRequest;
 use Google\Cloud\Compute\V1\TestIamPermissionsNodeGroupRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
-use Google\Cloud\Compute\V1\ZoneOperationsClient;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
@@ -124,7 +123,6 @@ final class NodeGroupsClient
                     'restClientConfigPath' => __DIR__ . '/../resources/node_groups_rest_client_config.php',
                 ],
             ],
-            'operationsClientClass' => ZoneOperationsClient::class,
         ];
     }
 
@@ -137,9 +135,7 @@ final class NodeGroupsClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -156,10 +152,7 @@ final class NodeGroupsClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-                'getZone',
-            ],
+            'additionalArgumentMethods' => ['getProject', 'getZone'],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -187,10 +180,31 @@ final class NodeGroupsClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : $this->getDefaultOperationDescriptor();
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : $this->getDefaultOperationDescriptor();
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return ZoneOperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new ZoneOperationsClient($options);
     }
 
     /**
@@ -552,8 +566,10 @@ final class NodeGroupsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function performMaintenance(PerformMaintenanceNodeGroupRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function performMaintenance(
+        PerformMaintenanceNodeGroupRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('PerformMaintenance', $request, $callOptions)->wait();
     }
 
@@ -604,8 +620,10 @@ final class NodeGroupsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setNodeTemplate(SetNodeTemplateNodeGroupRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function setNodeTemplate(
+        SetNodeTemplateNodeGroupRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SetNodeTemplate', $request, $callOptions)->wait();
     }
 
@@ -630,8 +648,10 @@ final class NodeGroupsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function simulateMaintenanceEvent(SimulateMaintenanceEventNodeGroupRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function simulateMaintenanceEvent(
+        SimulateMaintenanceEventNodeGroupRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SimulateMaintenanceEvent', $request, $callOptions)->wait();
     }
 
@@ -656,8 +676,10 @@ final class NodeGroupsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsNodeGroupRequest $request, array $callOptions = []): TestPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsNodeGroupRequest $request,
+        array $callOptions = []
+    ): TestPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

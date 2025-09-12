@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -43,7 +43,6 @@ use Google\Cloud\Compute\V1\GetRegionDiskRequest;
 use Google\Cloud\Compute\V1\InsertRegionDiskRequest;
 use Google\Cloud\Compute\V1\ListRegionDisksRequest;
 use Google\Cloud\Compute\V1\Policy;
-use Google\Cloud\Compute\V1\RegionOperationsClient;
 use Google\Cloud\Compute\V1\RemoveResourcePoliciesRegionDiskRequest;
 use Google\Cloud\Compute\V1\ResizeRegionDiskRequest;
 use Google\Cloud\Compute\V1\SetIamPolicyRegionDiskRequest;
@@ -128,7 +127,6 @@ final class RegionDisksClient
                     'restClientConfigPath' => __DIR__ . '/../resources/region_disks_rest_client_config.php',
                 ],
             ],
-            'operationsClientClass' => RegionOperationsClient::class,
         ];
     }
 
@@ -141,9 +139,7 @@ final class RegionDisksClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -160,10 +156,7 @@ final class RegionDisksClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-                'getRegion',
-            ],
+            'additionalArgumentMethods' => ['getProject', 'getRegion'],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -191,10 +184,31 @@ final class RegionDisksClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : $this->getDefaultOperationDescriptor();
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : $this->getDefaultOperationDescriptor();
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return RegionOperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new RegionOperationsClient($options);
     }
 
     /**
@@ -296,8 +310,10 @@ final class RegionDisksClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function addResourcePolicies(AddResourcePoliciesRegionDiskRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function addResourcePolicies(
+        AddResourcePoliciesRegionDiskRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('AddResourcePolicies', $request, $callOptions)->wait();
     }
 
@@ -504,8 +520,10 @@ final class RegionDisksClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function removeResourcePolicies(RemoveResourcePoliciesRegionDiskRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function removeResourcePolicies(
+        RemoveResourcePoliciesRegionDiskRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('RemoveResourcePolicies', $request, $callOptions)->wait();
     }
 
@@ -608,8 +626,10 @@ final class RegionDisksClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function startAsyncReplication(StartAsyncReplicationRegionDiskRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function startAsyncReplication(
+        StartAsyncReplicationRegionDiskRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('StartAsyncReplication', $request, $callOptions)->wait();
     }
 
@@ -634,8 +654,10 @@ final class RegionDisksClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function stopAsyncReplication(StopAsyncReplicationRegionDiskRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function stopAsyncReplication(
+        StopAsyncReplicationRegionDiskRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('StopAsyncReplication', $request, $callOptions)->wait();
     }
 
@@ -661,8 +683,10 @@ final class RegionDisksClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function stopGroupAsyncReplication(StopGroupAsyncReplicationRegionDiskRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function stopGroupAsyncReplication(
+        StopGroupAsyncReplicationRegionDiskRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('StopGroupAsyncReplication', $request, $callOptions)->wait();
     }
 
@@ -687,8 +711,10 @@ final class RegionDisksClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRegionDiskRequest $request, array $callOptions = []): TestPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRegionDiskRequest $request,
+        array $callOptions = []
+    ): TestPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 

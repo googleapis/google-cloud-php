@@ -20,31 +20,31 @@ class ResourcePolicyInstanceSchedulePolicy extends \Google\Protobuf\Internal\Mes
      *
      * Generated from protobuf field <code>optional string expiration_time = 230299229;</code>
      */
-    private $expiration_time = null;
+    protected $expiration_time = null;
     /**
      * The start time of the schedule. The timestamp is an RFC3339 string.
      *
      * Generated from protobuf field <code>optional string start_time = 37467274;</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * Specifies the time zone to be used in interpreting Schedule.schedule. The value of this field must be a time zone name from the tz database: https://wikipedia.org/wiki/Tz_database.
      *
      * Generated from protobuf field <code>optional string time_zone = 36848094;</code>
      */
-    private $time_zone = null;
+    protected $time_zone = null;
     /**
      * Specifies the schedule for starting instances.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourcePolicyInstanceSchedulePolicySchedule vm_start_schedule = 17762396;</code>
      */
-    private $vm_start_schedule = null;
+    protected $vm_start_schedule = null;
     /**
      * Specifies the schedule for stopping instances.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourcePolicyInstanceSchedulePolicySchedule vm_stop_schedule = 426242732;</code>
      */
-    private $vm_stop_schedule = null;
+    protected $vm_stop_schedule = null;
 
     /**
      * Constructor.

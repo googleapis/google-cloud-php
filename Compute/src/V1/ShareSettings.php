@@ -27,7 +27,7 @@ class ShareSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string share_type = 359533466;</code>
      */
-    private $share_type = null;
+    protected $share_type = null;
 
     /**
      * Constructor.

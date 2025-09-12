@@ -20,7 +20,7 @@ class RouterBgp extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string advertise_mode = 312134331;</code>
      */
-    private $advertise_mode = null;
+    protected $advertise_mode = null;
     /**
      * User-specified list of prefix groups to advertise in custom mode. This field can only be populated if advertise_mode is CUSTOM and is advertised to all peers of the router. These groups will be advertised in addition to any specified prefixes. Leave this field blank to advertise no custom groups.
      * Check the AdvertisedGroups enum for the list of possible values.
@@ -39,19 +39,19 @@ class RouterBgp extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional uint32 asn = 96892;</code>
      */
-    private $asn = null;
+    protected $asn = null;
     /**
      * Explicitly specifies a range of valid BGP Identifiers for this Router. It is provided as a link-local IPv4 range (from 169.254.0.0/16), of size at least /30, even if the BGP sessions are over IPv6. It must not overlap with any IPv4 BGP session ranges. Other vendors commonly call this "router ID".
      *
      * Generated from protobuf field <code>optional string identifier_range = 501573159;</code>
      */
-    private $identifier_range = null;
+    protected $identifier_range = null;
     /**
      * The interval in seconds between BGP keepalive messages that are sent to the peer. Hold time is three times the interval at which keepalive messages are sent, and the hold time is the maximum number of seconds allowed to elapse between successive keepalive messages that BGP receives from a peer. BGP will use the smaller of either the local hold time value or the peer's hold time value as the hold time for the BGP connection between the two peers. If set, this value must be between 20 and 60. The default is 20.
      *
      * Generated from protobuf field <code>optional uint32 keepalive_interval = 276771516;</code>
      */
-    private $keepalive_interval = null;
+    protected $keepalive_interval = null;
 
     /**
      * Constructor.

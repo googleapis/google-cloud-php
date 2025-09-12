@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -90,7 +90,8 @@ final class InterconnectRemoteLocationsClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/interconnect_remote_locations_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/interconnect_remote_locations_rest_client_config.php',
                 ],
             ],
         ];
@@ -105,9 +106,7 @@ final class InterconnectRemoteLocationsClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -208,8 +207,10 @@ final class InterconnectRemoteLocationsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function get(GetInterconnectRemoteLocationRequest $request, array $callOptions = []): InterconnectRemoteLocation
-    {
+    public function get(
+        GetInterconnectRemoteLocationRequest $request,
+        array $callOptions = []
+    ): InterconnectRemoteLocation {
         return $this->startApiCall('Get', $request, $callOptions)->wait();
     }
 

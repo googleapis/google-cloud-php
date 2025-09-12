@@ -19,13 +19,13 @@ class LicenseResourceRequirements extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int32 min_guest_cpu_count = 477964836;</code>
      */
-    private $min_guest_cpu_count = null;
+    protected $min_guest_cpu_count = null;
     /**
      * [Input Only] Deprecated. This field no longer reflects the minimum memory required to use the Instance.
      *
      * Generated from protobuf field <code>optional int32 min_memory_mb = 504785894;</code>
      */
-    private $min_memory_mb = null;
+    protected $min_memory_mb = null;
 
     /**
      * Constructor.

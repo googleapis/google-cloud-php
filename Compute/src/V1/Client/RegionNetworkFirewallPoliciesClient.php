@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -51,7 +51,6 @@ use Google\Cloud\Compute\V1\PatchRegionNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\PatchRuleRegionNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\Policy;
 use Google\Cloud\Compute\V1\RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponse;
-use Google\Cloud\Compute\V1\RegionOperationsClient;
 use Google\Cloud\Compute\V1\RemoveAssociationRegionNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\RemoveRuleRegionNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\SetIamPolicyRegionNetworkFirewallPolicyRequest;
@@ -128,10 +127,10 @@ final class RegionNetworkFirewallPoliciesClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/region_network_firewall_policies_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/region_network_firewall_policies_rest_client_config.php',
                 ],
             ],
-            'operationsClientClass' => RegionOperationsClient::class,
         ];
     }
 
@@ -144,9 +143,7 @@ final class RegionNetworkFirewallPoliciesClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -163,10 +160,7 @@ final class RegionNetworkFirewallPoliciesClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-                'getRegion',
-            ],
+            'additionalArgumentMethods' => ['getProject', 'getRegion'],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -194,10 +188,31 @@ final class RegionNetworkFirewallPoliciesClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : $this->getDefaultOperationDescriptor();
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : $this->getDefaultOperationDescriptor();
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return RegionOperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new RegionOperationsClient($options);
     }
 
     /**
@@ -300,8 +315,10 @@ final class RegionNetworkFirewallPoliciesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function addAssociation(AddAssociationRegionNetworkFirewallPolicyRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function addAssociation(
+        AddAssociationRegionNetworkFirewallPolicyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('AddAssociation', $request, $callOptions)->wait();
     }
 
@@ -327,8 +344,10 @@ final class RegionNetworkFirewallPoliciesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function addRule(AddRuleRegionNetworkFirewallPolicyRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function addRule(
+        AddRuleRegionNetworkFirewallPolicyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('AddRule', $request, $callOptions)->wait();
     }
 
@@ -354,8 +373,10 @@ final class RegionNetworkFirewallPoliciesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function cloneRules(CloneRulesRegionNetworkFirewallPolicyRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function cloneRules(
+        CloneRulesRegionNetworkFirewallPolicyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CloneRules', $request, $callOptions)->wait();
     }
 
@@ -380,8 +401,10 @@ final class RegionNetworkFirewallPoliciesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function delete(DeleteRegionNetworkFirewallPolicyRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function delete(
+        DeleteRegionNetworkFirewallPolicyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('Delete', $request, $callOptions)->wait();
     }
 
@@ -433,8 +456,10 @@ final class RegionNetworkFirewallPoliciesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getAssociation(GetAssociationRegionNetworkFirewallPolicyRequest $request, array $callOptions = []): FirewallPolicyAssociation
-    {
+    public function getAssociation(
+        GetAssociationRegionNetworkFirewallPolicyRequest $request,
+        array $callOptions = []
+    ): FirewallPolicyAssociation {
         return $this->startApiCall('GetAssociation', $request, $callOptions)->wait();
     }
 
@@ -460,8 +485,10 @@ final class RegionNetworkFirewallPoliciesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getEffectiveFirewalls(GetEffectiveFirewallsRegionNetworkFirewallPolicyRequest $request, array $callOptions = []): RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponse
-    {
+    public function getEffectiveFirewalls(
+        GetEffectiveFirewallsRegionNetworkFirewallPolicyRequest $request,
+        array $callOptions = []
+    ): RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponse {
         return $this->startApiCall('GetEffectiveFirewalls', $request, $callOptions)->wait();
     }
 
@@ -487,8 +514,10 @@ final class RegionNetworkFirewallPoliciesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getIamPolicy(GetIamPolicyRegionNetworkFirewallPolicyRequest $request, array $callOptions = []): Policy
-    {
+    public function getIamPolicy(
+        GetIamPolicyRegionNetworkFirewallPolicyRequest $request,
+        array $callOptions = []
+    ): Policy {
         return $this->startApiCall('GetIamPolicy', $request, $callOptions)->wait();
     }
 
@@ -514,8 +543,10 @@ final class RegionNetworkFirewallPoliciesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getRule(GetRuleRegionNetworkFirewallPolicyRequest $request, array $callOptions = []): FirewallPolicyRule
-    {
+    public function getRule(
+        GetRuleRegionNetworkFirewallPolicyRequest $request,
+        array $callOptions = []
+    ): FirewallPolicyRule {
         return $this->startApiCall('GetRule', $request, $callOptions)->wait();
     }
 
@@ -540,8 +571,10 @@ final class RegionNetworkFirewallPoliciesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function insert(InsertRegionNetworkFirewallPolicyRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function insert(
+        InsertRegionNetworkFirewallPolicyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('Insert', $request, $callOptions)->wait();
     }
 
@@ -619,8 +652,10 @@ final class RegionNetworkFirewallPoliciesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function patchRule(PatchRuleRegionNetworkFirewallPolicyRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function patchRule(
+        PatchRuleRegionNetworkFirewallPolicyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('PatchRule', $request, $callOptions)->wait();
     }
 
@@ -646,8 +681,10 @@ final class RegionNetworkFirewallPoliciesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function removeAssociation(RemoveAssociationRegionNetworkFirewallPolicyRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function removeAssociation(
+        RemoveAssociationRegionNetworkFirewallPolicyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('RemoveAssociation', $request, $callOptions)->wait();
     }
 
@@ -673,8 +710,10 @@ final class RegionNetworkFirewallPoliciesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function removeRule(RemoveRuleRegionNetworkFirewallPolicyRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function removeRule(
+        RemoveRuleRegionNetworkFirewallPolicyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('RemoveRule', $request, $callOptions)->wait();
     }
 
@@ -700,8 +739,10 @@ final class RegionNetworkFirewallPoliciesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setIamPolicy(SetIamPolicyRegionNetworkFirewallPolicyRequest $request, array $callOptions = []): Policy
-    {
+    public function setIamPolicy(
+        SetIamPolicyRegionNetworkFirewallPolicyRequest $request,
+        array $callOptions = []
+    ): Policy {
         return $this->startApiCall('SetIamPolicy', $request, $callOptions)->wait();
     }
 
@@ -727,8 +768,10 @@ final class RegionNetworkFirewallPoliciesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRegionNetworkFirewallPolicyRequest $request, array $callOptions = []): TestPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRegionNetworkFirewallPolicyRequest $request,
+        array $callOptions = []
+    ): TestPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

@@ -20,13 +20,13 @@ class MetadataFilterLabelMatch extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
     /**
      * The value of the label must match the specified value. value can have a maximum length of 1024 characters.
      *
      * Generated from protobuf field <code>optional string value = 111972721;</code>
      */
-    private $value = null;
+    protected $value = null;
 
     /**
      * Constructor.

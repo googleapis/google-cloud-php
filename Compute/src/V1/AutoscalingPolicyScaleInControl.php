@@ -20,13 +20,13 @@ class AutoscalingPolicyScaleInControl extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.FixedOrPercent max_scaled_in_replicas = 180710123;</code>
      */
-    private $max_scaled_in_replicas = null;
+    protected $max_scaled_in_replicas = null;
     /**
      * How far back autoscaling looks when computing recommendations to include directives regarding slower scale in, as described above.
      *
      * Generated from protobuf field <code>optional int32 time_window_sec = 36405300;</code>
      */
-    private $time_window_sec = null;
+    protected $time_window_sec = null;
 
     /**
      * Constructor.

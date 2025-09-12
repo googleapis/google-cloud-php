@@ -20,112 +20,112 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string I_p_address = 42976943;</code>
      */
-    private $I_p_address = null;
+    protected $I_p_address = null;
     /**
      * The IP protocol to which this rule applies. For protocol forwarding, valid options are TCP, UDP, ESP, AH, SCTP, ICMP and L3_DEFAULT. The valid IP protocols are different for different load balancing products as described in [Load balancing features](https://cloud.google.com/load-balancing/docs/features#protocols_from_the_load_balancer_to_the_backends).
      * Check the IPProtocolEnum enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string I_p_protocol = 488094525;</code>
      */
-    private $I_p_protocol = null;
+    protected $I_p_protocol = null;
     /**
      * The ports, portRange, and allPorts fields are mutually exclusive. Only packets addressed to ports in the specified range will be forwarded to the backends configured with this forwarding rule. The allPorts field has the following limitations: - It requires that the forwarding rule IPProtocol be TCP, UDP, SCTP, or L3_DEFAULT. - It's applicable only to the following products: internal passthrough Network Load Balancers, backend service-based external passthrough Network Load Balancers, and internal and external protocol forwarding. - Set this field to true to allow packets addressed to any port or packets lacking destination port information (for example, UDP fragments after the first fragment) to be forwarded to the backends configured with this forwarding rule. The L3_DEFAULT protocol requires allPorts be set to true. 
      *
      * Generated from protobuf field <code>optional bool all_ports = 445175796;</code>
      */
-    private $all_ports = null;
+    protected $all_ports = null;
     /**
      * If set to true, clients can access the internal passthrough Network Load Balancers, the regional internal Application Load Balancer, and the regional internal proxy Network Load Balancer from all regions. If false, only allows access from the local region the load balancer is located at. Note that for INTERNAL_MANAGED forwarding rules, this field cannot be changed after the forwarding rule is created.
      *
      * Generated from protobuf field <code>optional bool allow_global_access = 499409674;</code>
      */
-    private $allow_global_access = null;
+    protected $allow_global_access = null;
     /**
      * This is used in PSC consumer ForwardingRule to control whether the PSC endpoint can be accessed from another region.
      *
      * Generated from protobuf field <code>optional bool allow_psc_global_access = 263471819;</code>
      */
-    private $allow_psc_global_access = null;
+    protected $allow_psc_global_access = null;
     /**
      * Identifies the backend service to which the forwarding rule sends traffic. Required for internal and external passthrough Network Load Balancers; must be omitted for all other load balancer types.
      *
      * Generated from protobuf field <code>optional string backend_service = 306946058;</code>
      */
-    private $backend_service = null;
+    protected $backend_service = null;
     /**
      * [Output Only] The URL for the corresponding base forwarding rule. By base forwarding rule, we mean the forwarding rule that has the same IP address, protocol, and port settings with the current forwarding rule, but without sourceIPRanges specified. Always empty if the current forwarding rule does not have sourceIPRanges specified.
      *
      * Generated from protobuf field <code>optional string base_forwarding_rule = 524873104;</code>
      */
-    private $base_forwarding_rule = null;
+    protected $base_forwarding_rule = null;
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
-    private $creation_timestamp = null;
+    protected $creation_timestamp = null;
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
-    private $description = null;
+    protected $description = null;
     /**
      * Specifies the canary migration state for the backend buckets attached to this forwarding rule. Possible values are PREPARE, TEST_BY_PERCENTAGE, and TEST_ALL_TRAFFIC. To begin the migration from EXTERNAL to EXTERNAL_MANAGED, the state must be changed to PREPARE. The state must be changed to TEST_ALL_TRAFFIC before the loadBalancingScheme can be changed to EXTERNAL_MANAGED. Optionally, the TEST_BY_PERCENTAGE state can be used to migrate traffic to backend buckets attached to this forwarding rule by percentage using externalManagedBackendBucketMigrationTestingPercentage. Rolling back a migration requires the states to be set in reverse order. So changing the scheme from EXTERNAL_MANAGED to EXTERNAL requires the state to be set to TEST_ALL_TRAFFIC at the same time. Optionally, the TEST_BY_PERCENTAGE state can be used to migrate some traffic back to EXTERNAL or PREPARE can be used to migrate all traffic back to EXTERNAL.
      * Check the ExternalManagedBackendBucketMigrationState enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string external_managed_backend_bucket_migration_state = 107811370;</code>
      */
-    private $external_managed_backend_bucket_migration_state = null;
+    protected $external_managed_backend_bucket_migration_state = null;
     /**
      * Determines the fraction of requests to backend buckets that should be processed by the global external Application Load Balancer. The value of this field must be in the range [0, 100]. This value can only be set if the loadBalancingScheme in the BackendService is set to EXTERNAL (when using the classic Application Load Balancer) and the migration state is TEST_BY_PERCENTAGE.
      *
      * Generated from protobuf field <code>optional float external_managed_backend_bucket_migration_testing_percentage = 105676592;</code>
      */
-    private $external_managed_backend_bucket_migration_testing_percentage = null;
+    protected $external_managed_backend_bucket_migration_testing_percentage = null;
     /**
      * Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a ForwardingRule. Include the fingerprint in patch request to ensure that you do not overwrite changes that were applied from another concurrent request. To see the latest fingerprint, make a get() request to retrieve a ForwardingRule.
      *
      * Generated from protobuf field <code>optional string fingerprint = 234678500;</code>
      */
-    private $fingerprint = null;
+    protected $fingerprint = null;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
-    private $id = null;
+    protected $id = null;
     /**
      * Resource reference of a PublicDelegatedPrefix. The PDP must be a sub-PDP in EXTERNAL_IPV6_FORWARDING_RULE_CREATION mode. Use one of the following formats to specify a sub-PDP when creating an IPv6 NetLB forwarding rule using BYOIP: Full resource URL, as in https://www.googleapis.com/compute/v1/projects/project_id/regions/region /publicDelegatedPrefixes/sub-pdp-name Partial URL, as in: - projects/project_id/regions/region/publicDelegatedPrefixes/sub-pdp-name - regions/region/publicDelegatedPrefixes/sub-pdp-name 
      *
      * Generated from protobuf field <code>optional string ip_collection = 176818358;</code>
      */
-    private $ip_collection = null;
+    protected $ip_collection = null;
     /**
      * The IP Version that will be used by this forwarding rule. Valid options are IPV4 or IPV6.
      * Check the IpVersion enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string ip_version = 294959552;</code>
      */
-    private $ip_version = null;
+    protected $ip_version = null;
     /**
      * Indicates whether or not this load balancer can be used as a collector for packet mirroring. To prevent mirroring loops, instances behind this load balancer will not have their traffic mirrored even if a PacketMirroring rule applies to them. This can only be set to true for load balancers that have their loadBalancingScheme set to INTERNAL.
      *
      * Generated from protobuf field <code>optional bool is_mirroring_collector = 119255164;</code>
      */
-    private $is_mirroring_collector = null;
+    protected $is_mirroring_collector = null;
     /**
      * [Output Only] Type of the resource. Always compute#forwardingRule for forwarding rule resources.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
-    private $kind = null;
+    protected $kind = null;
     /**
      * A fingerprint for the labels being applied to this resource, which is essentially a hash of the labels set used for optimistic locking. The fingerprint is initially generated by Compute Engine and changes after every request to modify or update labels. You must always provide an up-to-date fingerprint hash in order to update or change labels, otherwise the request will fail with error 412 conditionNotMet. To see the latest fingerprint, make a get() request to retrieve a ForwardingRule.
      *
      * Generated from protobuf field <code>optional string label_fingerprint = 178124825;</code>
      */
-    private $label_fingerprint = null;
+    protected $label_fingerprint = null;
     /**
      * Labels for this resource. These can only be added or modified by the setLabels method. Each label key/value pair must comply with RFC1035. Label values may be empty.
      *
@@ -138,7 +138,7 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string load_balancing_scheme = 363890244;</code>
      */
-    private $load_balancing_scheme = null;
+    protected $load_balancing_scheme = null;
     /**
      * Opaque filter criteria used by load balancer to restrict routing configuration to a limited set of xDS compliant clients. In their xDS requests to load balancer, xDS clients present node metadata. When there is a match, the relevant configuration is made available to those proxies. Otherwise, all the resources (e.g. TargetHttpProxy, UrlMap) referenced by the ForwardingRule are not visible to those proxies. For each metadataFilter in this list, if its filterMatchCriteria is set to MATCH_ANY, at least one of the filterLabels must match the corresponding label provided in the metadata. If its filterMatchCriteria is set to MATCH_ALL, then all of its filterLabels must match with corresponding labels provided in the metadata. If multiple metadataFilters are specified, all of them need to be satisfied in order to be considered a match. metadataFilters specified here will be applifed before those specified in the UrlMap that this ForwardingRule references. metadataFilters only applies to Loadbalancers that have their loadBalancingScheme set to INTERNAL_SELF_MANAGED.
      *
@@ -150,32 +150,32 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
     /**
      * This field is not used for global external load balancing. For internal passthrough Network Load Balancers, this field identifies the network that the load balanced IP should belong to for this forwarding rule. If the subnetwork is specified, the network of the subnetwork will be used. If neither subnetwork nor this field is specified, the default network will be used. For Private Service Connect forwarding rules that forward traffic to Google APIs, a network must be provided.
      *
      * Generated from protobuf field <code>optional string network = 232872494;</code>
      */
-    private $network = null;
+    protected $network = null;
     /**
      * This signifies the networking tier used for configuring this load balancer and can only take the following values: PREMIUM, STANDARD. For regional ForwardingRule, the valid values are PREMIUM and STANDARD. For GlobalForwardingRule, the valid value is PREMIUM. If this field is not specified, it is assumed to be PREMIUM. If IPAddress is specified, this value must be equal to the networkTier of the Address.
      * Check the NetworkTier enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string network_tier = 517397843;</code>
      */
-    private $network_tier = null;
+    protected $network_tier = null;
     /**
      * This is used in PSC consumer ForwardingRule to control whether it should try to auto-generate a DNS zone or not. Non-PSC forwarding rules do not use this field. Once set, this field is not mutable.
      *
      * Generated from protobuf field <code>optional bool no_automate_dns_zone = 64546991;</code>
      */
-    private $no_automate_dns_zone = null;
+    protected $no_automate_dns_zone = null;
     /**
      * The ports, portRange, and allPorts fields are mutually exclusive. Only packets addressed to ports in the specified range will be forwarded to the backends configured with this forwarding rule. The portRange field has the following limitations: - It requires that the forwarding rule IPProtocol be TCP, UDP, or SCTP, and - It's applicable only to the following products: external passthrough Network Load Balancers, internal and external proxy Network Load Balancers, internal and external Application Load Balancers, external protocol forwarding, and Classic VPN. - Some products have restrictions on what ports can be used. See port specifications for details. For external forwarding rules, two or more forwarding rules cannot use the same [IPAddress, IPProtocol] pair, and cannot have overlapping portRanges. For internal forwarding rules within the same VPC network, two or more forwarding rules cannot use the same [IPAddress, IPProtocol] pair, and cannot have overlapping portRanges. &#64;pattern: \\d+(?:-\\d+)?
      *
      * Generated from protobuf field <code>optional string port_range = 217518079;</code>
      */
-    private $port_range = null;
+    protected $port_range = null;
     /**
      * The ports, portRange, and allPorts fields are mutually exclusive. Only packets addressed to ports in the specified range will be forwarded to the backends configured with this forwarding rule. The ports field has the following limitations: - It requires that the forwarding rule IPProtocol be TCP, UDP, or SCTP, and - It's applicable only to the following products: internal passthrough Network Load Balancers, backend service-based external passthrough Network Load Balancers, and internal protocol forwarding. - You can specify a list of up to five ports by number, separated by commas. The ports can be contiguous or discontiguous. For external forwarding rules, two or more forwarding rules cannot use the same [IPAddress, IPProtocol] pair if they share at least one port number. For internal forwarding rules within the same VPC network, two or more forwarding rules cannot use the same [IPAddress, IPProtocol] pair if they share at least one port number. &#64;pattern: \\d+(?:-\\d+)?
      *
@@ -187,32 +187,32 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional uint64 psc_connection_id = 292082397;</code>
      */
-    private $psc_connection_id = null;
+    protected $psc_connection_id = null;
     /**
      * 
      * Check the PscConnectionStatus enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string psc_connection_status = 184149172;</code>
      */
-    private $psc_connection_status = null;
+    protected $psc_connection_status = null;
     /**
      * [Output Only] URL of the region where the regional forwarding rule resides. This field is not applicable to global forwarding rules. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
      */
-    private $region = null;
+    protected $region = null;
     /**
      * [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
-    private $self_link = null;
+    protected $self_link = null;
     /**
      * [Output Only] Server-defined URL for this resource with the resource id.
      *
      * Generated from protobuf field <code>optional string self_link_with_id = 44520962;</code>
      */
-    private $self_link_with_id = null;
+    protected $self_link_with_id = null;
     /**
      * Service Directory resources to register this forwarding rule with. Currently, only supports a single Service Directory resource.
      *
@@ -224,13 +224,13 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string service_label = 417008874;</code>
      */
-    private $service_label = null;
+    protected $service_label = null;
     /**
      * [Output Only] The internal fully qualified service name for this forwarding rule. This field is only used for internal load balancing.
      *
      * Generated from protobuf field <code>optional string service_name = 359880149;</code>
      */
-    private $service_name = null;
+    protected $service_name = null;
     /**
      * If not empty, this forwarding rule will only forward the traffic when the source IP address matches one of the IP addresses or CIDR ranges set here. Note that a forwarding rule can only have up to 64 source IP ranges, and this field can only be used with a regional forwarding rule whose scheme is EXTERNAL. Each source_ip_range entry should be either an IP address (for example, 1.2.3.4) or a CIDR range (for example, 1.2.3.0/24).
      *
@@ -242,13 +242,13 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string subnetwork = 307827694;</code>
      */
-    private $subnetwork = null;
+    protected $subnetwork = null;
     /**
      * The URL of the target resource to receive the matched traffic. For regional forwarding rules, this target must be in the same region as the forwarding rule. For global forwarding rules, this target must be a global load balancing resource. The forwarded traffic must be of a type appropriate to the target object. - For load balancers, see the "Target" column in [Port specifications](https://cloud.google.com/load-balancing/docs/forwarding-rule-concepts#ip_address_specifications). - For Private Service Connect forwarding rules that forward traffic to Google APIs, provide the name of a supported Google API bundle: - vpc-sc - APIs that support VPC Service Controls. - all-apis - All supported Google APIs. - For Private Service Connect forwarding rules that forward traffic to managed services, the target must be a service attachment. The target is not mutable once set as a service attachment. 
      *
      * Generated from protobuf field <code>optional string target = 192835985;</code>
      */
-    private $target = null;
+    protected $target = null;
 
     /**
      * Constructor.

@@ -19,25 +19,25 @@ class InstanceConsumptionInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int32 guest_cpus = 393356754;</code>
      */
-    private $guest_cpus = null;
+    protected $guest_cpus = null;
     /**
      * The amount of local SSD storage available to the instance, defined in GiB.
      *
      * Generated from protobuf field <code>optional int32 local_ssd_gb = 329237578;</code>
      */
-    private $local_ssd_gb = null;
+    protected $local_ssd_gb = null;
     /**
      * The amount of physical memory available to the instance, defined in MiB.
      *
      * Generated from protobuf field <code>optional int32 memory_mb = 116001171;</code>
      */
-    private $memory_mb = null;
+    protected $memory_mb = null;
     /**
      * The minimal guaranteed number of virtual CPUs that are reserved.
      *
      * Generated from protobuf field <code>optional int32 min_node_cpus = 317231675;</code>
      */
-    private $min_node_cpus = null;
+    protected $min_node_cpus = null;
 
     /**
      * Constructor.

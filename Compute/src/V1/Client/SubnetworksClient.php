@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -43,7 +43,6 @@ use Google\Cloud\Compute\V1\ListSubnetworksRequest;
 use Google\Cloud\Compute\V1\ListUsableSubnetworksRequest;
 use Google\Cloud\Compute\V1\PatchSubnetworkRequest;
 use Google\Cloud\Compute\V1\Policy;
-use Google\Cloud\Compute\V1\RegionOperationsClient;
 use Google\Cloud\Compute\V1\SetIamPolicySubnetworkRequest;
 use Google\Cloud\Compute\V1\SetPrivateIpGoogleAccessSubnetworkRequest;
 use Google\Cloud\Compute\V1\Subnetwork;
@@ -118,7 +117,6 @@ final class SubnetworksClient
                     'restClientConfigPath' => __DIR__ . '/../resources/subnetworks_rest_client_config.php',
                 ],
             ],
-            'operationsClientClass' => RegionOperationsClient::class,
         ];
     }
 
@@ -131,9 +129,7 @@ final class SubnetworksClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -150,10 +146,7 @@ final class SubnetworksClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-                'getRegion',
-            ],
+            'additionalArgumentMethods' => ['getProject', 'getRegion'],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -181,10 +174,31 @@ final class SubnetworksClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : $this->getDefaultOperationDescriptor();
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : $this->getDefaultOperationDescriptor();
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return RegionOperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new RegionOperationsClient($options);
     }
 
     /**
@@ -286,8 +300,10 @@ final class SubnetworksClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function aggregatedList(AggregatedListSubnetworksRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function aggregatedList(
+        AggregatedListSubnetworksRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('AggregatedList', $request, $callOptions);
     }
 
@@ -338,8 +354,10 @@ final class SubnetworksClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function expandIpCidrRange(ExpandIpCidrRangeSubnetworkRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function expandIpCidrRange(
+        ExpandIpCidrRangeSubnetworkRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('ExpandIpCidrRange', $request, $callOptions)->wait();
     }
 
@@ -546,8 +564,10 @@ final class SubnetworksClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setPrivateIpGoogleAccess(SetPrivateIpGoogleAccessSubnetworkRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function setPrivateIpGoogleAccess(
+        SetPrivateIpGoogleAccessSubnetworkRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SetPrivateIpGoogleAccess', $request, $callOptions)->wait();
     }
 
@@ -572,8 +592,10 @@ final class SubnetworksClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsSubnetworkRequest $request, array $callOptions = []): TestPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsSubnetworkRequest $request,
+        array $callOptions = []
+    ): TestPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }
