@@ -34,6 +34,7 @@ use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\V1\SpannerClient;
+use Google\Cloud\Spanner\V1\TransactionOptions\IsolationLevel;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -84,7 +85,8 @@ class TransactionTypeTest extends TestCase
         $this->connection->beginTransaction(Argument::allOf(
             Argument::withEntry('singleUse', false),
             Argument::withEntry('transactionOptions', [
-                'readWrite' => []
+                'readWrite' => [],
+                'isolationLevel' => IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED
             ])
         ))->shouldBeCalledTimes(1)->willReturn(['id' => self::TRANSACTION]);
 
@@ -123,7 +125,8 @@ class TransactionTypeTest extends TestCase
         $this->connection->beginTransaction(Argument::allOf(
             Argument::withEntry('singleUse', false),
             Argument::withEntry('transactionOptions', [
-                'readWrite' => []
+                'readWrite' => [],
+                'isolationLevel' => IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED,
             ])
         ))->shouldBeCalledTimes(1)->willReturn(['id' => self::TRANSACTION]);
 
@@ -740,7 +743,8 @@ class TransactionTypeTest extends TestCase
     public function testTransactionPreAllocatedRollback()
     {
         $this->connection->beginTransaction(Argument::withEntry('transactionOptions', [
-            'readWrite' => []
+            'readWrite' => [],
+            'isolationLevel' => IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED
         ]))->shouldBeCalledTimes(1)->willReturn(['id' => self::TRANSACTION]);
 
         $sess = SpannerClient::sessionName(
