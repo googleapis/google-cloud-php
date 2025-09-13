@@ -26,13 +26,13 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
+use Google\Cloud\Compute\V1\Client\GlobalOperationsClient;
 use Google\Cloud\Compute\V1\Client\InterconnectAttachmentGroupsClient;
 use Google\Cloud\Compute\V1\DeleteInterconnectAttachmentGroupRequest;
 use Google\Cloud\Compute\V1\GetGlobalOperationRequest;
 use Google\Cloud\Compute\V1\GetIamPolicyInterconnectAttachmentGroupRequest;
 use Google\Cloud\Compute\V1\GetInterconnectAttachmentGroupRequest;
 use Google\Cloud\Compute\V1\GetOperationalStatusInterconnectAttachmentGroupRequest;
-use Google\Cloud\Compute\V1\GlobalOperationsClient;
 use Google\Cloud\Compute\V1\GlobalSetPolicyRequest;
 use Google\Cloud\Compute\V1\InsertInterconnectAttachmentGroupRequest;
 use Google\Cloud\Compute\V1\InterconnectAttachmentGroup;
@@ -66,7 +66,9 @@ class InterconnectAttachmentGroupsClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return InterconnectAttachmentGroupsClient */
@@ -165,12 +167,15 @@ class InterconnectAttachmentGroupsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $interconnectAttachmentGroup = 'interconnectAttachmentGroup-460965900';
@@ -256,12 +261,15 @@ class InterconnectAttachmentGroupsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $interconnectAttachmentGroup = 'interconnectAttachmentGroup-460965900';
@@ -302,9 +310,7 @@ class InterconnectAttachmentGroupsClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyInterconnectAttachmentGroupRequest())
-            ->setProject($project)
-            ->setResource($resource);
+        $request = (new GetIamPolicyInterconnectAttachmentGroupRequest())->setProject($project)->setResource($resource);
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -330,19 +336,20 @@ class InterconnectAttachmentGroupsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyInterconnectAttachmentGroupRequest())
-            ->setProject($project)
-            ->setResource($resource);
+        $request = (new GetIamPolicyInterconnectAttachmentGroupRequest())->setProject($project)->setResource($resource);
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -381,7 +388,10 @@ class InterconnectAttachmentGroupsClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.InterconnectAttachmentGroups/GetOperationalStatus', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.compute.v1.InterconnectAttachmentGroups/GetOperationalStatus',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getInterconnectAttachmentGroup();
         $this->assertProtobufEquals($interconnectAttachmentGroup, $actualValue);
         $actualValue = $actualRequestObject->getProject();
@@ -400,12 +410,15 @@ class InterconnectAttachmentGroupsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $interconnectAttachmentGroup = 'interconnectAttachmentGroup-460965900';
@@ -513,12 +526,15 @@ class InterconnectAttachmentGroupsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $interconnectAttachmentGroupResource = new InterconnectAttachmentGroup();
@@ -569,8 +585,7 @@ class InterconnectAttachmentGroupsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $project = 'project-309310695';
-        $request = (new ListInterconnectAttachmentGroupsRequest())
-            ->setProject($project);
+        $request = (new ListInterconnectAttachmentGroupsRequest())->setProject($project);
         $response = $gapicClient->list($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -594,17 +609,19 @@ class InterconnectAttachmentGroupsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';
-        $request = (new ListInterconnectAttachmentGroupsRequest())
-            ->setProject($project);
+        $request = (new ListInterconnectAttachmentGroupsRequest())->setProject($project);
         try {
             $gapicClient->list($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -709,12 +726,15 @@ class InterconnectAttachmentGroupsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $interconnectAttachmentGroup = 'interconnectAttachmentGroup-460965900';
@@ -796,12 +816,15 @@ class InterconnectAttachmentGroupsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $globalSetPolicyRequestResource = new GlobalSetPolicyRequest();
@@ -870,12 +893,15 @@ class InterconnectAttachmentGroupsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';

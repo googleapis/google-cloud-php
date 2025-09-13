@@ -20,19 +20,19 @@ class ReservationBlockPhysicalTopologyInstance extends \Google\Protobuf\Internal
      *
      * Generated from protobuf field <code>optional uint64 instance_id = 45488389;</code>
      */
-    private $instance_id = null;
+    protected $instance_id = null;
     /**
      * The PhysicalHostTopology of instances within a Block resource.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ReservationBlockPhysicalTopologyInstancePhysicalHostTopology physical_host_topology = 390842814;</code>
      */
-    private $physical_host_topology = null;
+    protected $physical_host_topology = null;
     /**
      * Project where the instance lives
      *
      * Generated from protobuf field <code>optional uint64 project_id = 177513473;</code>
      */
-    private $project_id = null;
+    protected $project_id = null;
 
     /**
      * Constructor.

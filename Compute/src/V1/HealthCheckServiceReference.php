@@ -18,7 +18,7 @@ class HealthCheckServiceReference extends \Google\Protobuf\Internal\Message
     /**
      * Generated from protobuf field <code>optional string health_check_service = 408374747;</code>
      */
-    private $health_check_service = null;
+    protected $health_check_service = null;
 
     /**
      * Constructor.

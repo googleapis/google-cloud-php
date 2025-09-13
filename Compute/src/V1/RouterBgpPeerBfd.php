@@ -19,26 +19,26 @@ class RouterBgpPeerBfd extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional uint32 min_receive_interval = 186981614;</code>
      */
-    private $min_receive_interval = null;
+    protected $min_receive_interval = null;
     /**
      * The minimum interval, in milliseconds, between BFD control packets transmitted to the peer router. The actual value is negotiated between the two routers and is equal to the greater of this value and the corresponding receive interval of the other router. If set, this value must be between 1000 and 30000. The default is 1000.
      *
      * Generated from protobuf field <code>optional uint32 min_transmit_interval = 523282631;</code>
      */
-    private $min_transmit_interval = null;
+    protected $min_transmit_interval = null;
     /**
      * The number of consecutive BFD packets that must be missed before BFD declares that a peer is unavailable. If set, the value must be a value between 5 and 16. The default is 5.
      *
      * Generated from protobuf field <code>optional uint32 multiplier = 191331777;</code>
      */
-    private $multiplier = null;
+    protected $multiplier = null;
     /**
      * The BFD session initialization mode for this BGP peer. If set to ACTIVE, the Cloud Router will initiate the BFD session for this BGP peer. If set to PASSIVE, the Cloud Router will wait for the peer router to initiate the BFD session for this BGP peer. If set to DISABLED, BFD is disabled for this BGP peer. The default is DISABLED.
      * Check the SessionInitializationMode enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string session_initialization_mode = 105957049;</code>
      */
-    private $session_initialization_mode = null;
+    protected $session_initialization_mode = null;
 
     /**
      * Constructor.

@@ -21,7 +21,7 @@ class RouterNat extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string auto_network_tier = 269770211;</code>
      */
-    private $auto_network_tier = null;
+    protected $auto_network_tier = null;
     /**
      * A list of URLs of the IP resources to be drained. These IPs must be valid static external IPs that have been assigned to the NAT. These IPs should be used for updating/patching a NAT only.
      *
@@ -33,11 +33,11 @@ class RouterNat extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional bool enable_dynamic_port_allocation = 532106402;</code>
      */
-    private $enable_dynamic_port_allocation = null;
+    protected $enable_dynamic_port_allocation = null;
     /**
      * Generated from protobuf field <code>optional bool enable_endpoint_independent_mapping = 259441819;</code>
      */
-    private $enable_endpoint_independent_mapping = null;
+    protected $enable_endpoint_independent_mapping = null;
     /**
      * List of NAT-ted endpoint types supported by the Nat Gateway. If the list is empty, then it will be equivalent to include ENDPOINT_TYPE_VM
      * Check the EndpointTypes enum for the list of possible values.
@@ -50,31 +50,31 @@ class RouterNat extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int32 icmp_idle_timeout_sec = 3647562;</code>
      */
-    private $icmp_idle_timeout_sec = null;
+    protected $icmp_idle_timeout_sec = null;
     /**
      * Configure logging on this NAT.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.RouterNatLogConfig log_config = 351299741;</code>
      */
-    private $log_config = null;
+    protected $log_config = null;
     /**
      * Maximum number of ports allocated to a VM from this NAT config when Dynamic Port Allocation is enabled. If Dynamic Port Allocation is not enabled, this field has no effect. If Dynamic Port Allocation is enabled, and this field is set, it must be set to a power of two greater than minPortsPerVm, or 64 if minPortsPerVm is not set. If Dynamic Port Allocation is enabled and this field is not set, a maximum of 65536 ports will be allocated to a VM from this NAT config.
      *
      * Generated from protobuf field <code>optional int32 max_ports_per_vm = 250062049;</code>
      */
-    private $max_ports_per_vm = null;
+    protected $max_ports_per_vm = null;
     /**
      * Minimum number of ports allocated to a VM from this NAT config. If not set, a default number of ports is allocated to a VM. This is rounded up to the nearest power of 2. For example, if the value of this field is 50, at least 64 ports are allocated to a VM.
      *
      * Generated from protobuf field <code>optional int32 min_ports_per_vm = 186193587;</code>
      */
-    private $min_ports_per_vm = null;
+    protected $min_ports_per_vm = null;
     /**
      * Unique name of this Nat service. The name must be 1-63 characters long and comply with RFC1035.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
     /**
      * List of Subnetwork resources whose traffic should be translated by NAT64 Gateway. It is used only when LIST_OF_IPV6_SUBNETWORKS is selected for the SubnetworkIpRangeToNat64Option above.
      *
@@ -87,7 +87,7 @@ class RouterNat extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string nat_ip_allocate_option = 429726845;</code>
      */
-    private $nat_ip_allocate_option = null;
+    protected $nat_ip_allocate_option = null;
     /**
      * A list of URLs of the IP resources used for this Nat service. These IP addresses must be valid static external IP addresses assigned to the project.
      *
@@ -106,14 +106,14 @@ class RouterNat extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string source_subnetwork_ip_ranges_to_nat = 252213211;</code>
      */
-    private $source_subnetwork_ip_ranges_to_nat = null;
+    protected $source_subnetwork_ip_ranges_to_nat = null;
     /**
      * Specify the Nat option for NAT64, which can take one of the following values: - ALL_IPV6_SUBNETWORKS: All of the IP ranges in every Subnetwork are allowed to Nat. - LIST_OF_IPV6_SUBNETWORKS: A list of Subnetworks are allowed to Nat (specified in the field nat64_subnetwork below) The default is NAT64_OPTION_UNSPECIFIED. Note that if this field contains NAT64_ALL_V6_SUBNETWORKS no other Router.Nat section in this region can also enable NAT64 for any Subnetworks in this network. Other Router.Nat sections can still be present to enable NAT44 only.
      * Check the SourceSubnetworkIpRangesToNat64 enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string source_subnetwork_ip_ranges_to_nat64 = 248116185;</code>
      */
-    private $source_subnetwork_ip_ranges_to_nat64 = null;
+    protected $source_subnetwork_ip_ranges_to_nat64 = null;
     /**
      * A list of Subnetwork resources whose traffic should be translated by NAT Gateway. It is used only when LIST_OF_SUBNETWORKS is selected for the SubnetworkIpRangeToNatOption above.
      *
@@ -125,32 +125,32 @@ class RouterNat extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int32 tcp_established_idle_timeout_sec = 223098349;</code>
      */
-    private $tcp_established_idle_timeout_sec = null;
+    protected $tcp_established_idle_timeout_sec = null;
     /**
      * Timeout (in seconds) for TCP connections that are in TIME_WAIT state. Defaults to 120s if not set.
      *
      * Generated from protobuf field <code>optional int32 tcp_time_wait_timeout_sec = 513596925;</code>
      */
-    private $tcp_time_wait_timeout_sec = null;
+    protected $tcp_time_wait_timeout_sec = null;
     /**
      * Timeout (in seconds) for TCP transitory connections. Defaults to 30s if not set.
      *
      * Generated from protobuf field <code>optional int32 tcp_transitory_idle_timeout_sec = 205028774;</code>
      */
-    private $tcp_transitory_idle_timeout_sec = null;
+    protected $tcp_transitory_idle_timeout_sec = null;
     /**
      * Indicates whether this NAT is used for public or private IP translation. If unspecified, it defaults to PUBLIC.
      * Check the Type enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string type = 3575610;</code>
      */
-    private $type = null;
+    protected $type = null;
     /**
      * Timeout (in seconds) for UDP connections. Defaults to 30s if not set.
      *
      * Generated from protobuf field <code>optional int32 udp_idle_timeout_sec = 64919878;</code>
      */
-    private $udp_idle_timeout_sec = null;
+    protected $udp_idle_timeout_sec = null;
 
     /**
      * Constructor.

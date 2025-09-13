@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -49,7 +49,6 @@ use Google\Cloud\Compute\V1\ListRegionInstanceGroupManagersRequest;
 use Google\Cloud\Compute\V1\PatchPerInstanceConfigsRegionInstanceGroupManagerRequest;
 use Google\Cloud\Compute\V1\PatchRegionInstanceGroupManagerRequest;
 use Google\Cloud\Compute\V1\RecreateInstancesRegionInstanceGroupManagerRequest;
-use Google\Cloud\Compute\V1\RegionOperationsClient;
 use Google\Cloud\Compute\V1\ResizeRegionInstanceGroupManagerRequest;
 use Google\Cloud\Compute\V1\ResumeInstancesRegionInstanceGroupManagerRequest;
 use Google\Cloud\Compute\V1\SetInstanceTemplateRegionInstanceGroupManagerRequest;
@@ -135,10 +134,10 @@ final class RegionInstanceGroupManagersClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/region_instance_group_managers_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/region_instance_group_managers_rest_client_config.php',
                 ],
             ],
-            'operationsClientClass' => RegionOperationsClient::class,
         ];
     }
 
@@ -151,9 +150,7 @@ final class RegionInstanceGroupManagersClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -170,10 +167,7 @@ final class RegionInstanceGroupManagersClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-                'getRegion',
-            ],
+            'additionalArgumentMethods' => ['getProject', 'getRegion'],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -201,10 +195,31 @@ final class RegionInstanceGroupManagersClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : $this->getDefaultOperationDescriptor();
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : $this->getDefaultOperationDescriptor();
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return RegionOperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new RegionOperationsClient($options);
     }
 
     /**
@@ -307,8 +322,10 @@ final class RegionInstanceGroupManagersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function abandonInstances(AbandonInstancesRegionInstanceGroupManagerRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function abandonInstances(
+        AbandonInstancesRegionInstanceGroupManagerRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('AbandonInstances', $request, $callOptions)->wait();
     }
 
@@ -334,8 +351,10 @@ final class RegionInstanceGroupManagersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function applyUpdatesToInstances(ApplyUpdatesToInstancesRegionInstanceGroupManagerRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function applyUpdatesToInstances(
+        ApplyUpdatesToInstancesRegionInstanceGroupManagerRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('ApplyUpdatesToInstances', $request, $callOptions)->wait();
     }
 
@@ -361,8 +380,10 @@ final class RegionInstanceGroupManagersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createInstances(CreateInstancesRegionInstanceGroupManagerRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createInstances(
+        CreateInstancesRegionInstanceGroupManagerRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateInstances', $request, $callOptions)->wait();
     }
 
@@ -414,8 +435,10 @@ final class RegionInstanceGroupManagersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteInstances(DeleteInstancesRegionInstanceGroupManagerRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteInstances(
+        DeleteInstancesRegionInstanceGroupManagerRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteInstances', $request, $callOptions)->wait();
     }
 
@@ -441,8 +464,10 @@ final class RegionInstanceGroupManagersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deletePerInstanceConfigs(DeletePerInstanceConfigsRegionInstanceGroupManagerRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deletePerInstanceConfigs(
+        DeletePerInstanceConfigsRegionInstanceGroupManagerRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeletePerInstanceConfigs', $request, $callOptions)->wait();
     }
 
@@ -546,8 +571,10 @@ final class RegionInstanceGroupManagersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listErrors(ListErrorsRegionInstanceGroupManagersRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listErrors(
+        ListErrorsRegionInstanceGroupManagersRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListErrors', $request, $callOptions);
     }
 
@@ -573,8 +600,10 @@ final class RegionInstanceGroupManagersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listManagedInstances(ListManagedInstancesRegionInstanceGroupManagersRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listManagedInstances(
+        ListManagedInstancesRegionInstanceGroupManagersRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListManagedInstances', $request, $callOptions);
     }
 
@@ -600,8 +629,10 @@ final class RegionInstanceGroupManagersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listPerInstanceConfigs(ListPerInstanceConfigsRegionInstanceGroupManagersRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listPerInstanceConfigs(
+        ListPerInstanceConfigsRegionInstanceGroupManagersRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListPerInstanceConfigs', $request, $callOptions);
     }
 
@@ -653,8 +684,10 @@ final class RegionInstanceGroupManagersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function patchPerInstanceConfigs(PatchPerInstanceConfigsRegionInstanceGroupManagerRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function patchPerInstanceConfigs(
+        PatchPerInstanceConfigsRegionInstanceGroupManagerRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('PatchPerInstanceConfigs', $request, $callOptions)->wait();
     }
 
@@ -680,8 +713,10 @@ final class RegionInstanceGroupManagersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function recreateInstances(RecreateInstancesRegionInstanceGroupManagerRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function recreateInstances(
+        RecreateInstancesRegionInstanceGroupManagerRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('RecreateInstances', $request, $callOptions)->wait();
     }
 
@@ -733,8 +768,10 @@ final class RegionInstanceGroupManagersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function resumeInstances(ResumeInstancesRegionInstanceGroupManagerRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function resumeInstances(
+        ResumeInstancesRegionInstanceGroupManagerRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('ResumeInstances', $request, $callOptions)->wait();
     }
 
@@ -760,8 +797,10 @@ final class RegionInstanceGroupManagersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setInstanceTemplate(SetInstanceTemplateRegionInstanceGroupManagerRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function setInstanceTemplate(
+        SetInstanceTemplateRegionInstanceGroupManagerRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SetInstanceTemplate', $request, $callOptions)->wait();
     }
 
@@ -787,8 +826,10 @@ final class RegionInstanceGroupManagersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setTargetPools(SetTargetPoolsRegionInstanceGroupManagerRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function setTargetPools(
+        SetTargetPoolsRegionInstanceGroupManagerRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SetTargetPools', $request, $callOptions)->wait();
     }
 
@@ -814,8 +855,10 @@ final class RegionInstanceGroupManagersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function startInstances(StartInstancesRegionInstanceGroupManagerRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function startInstances(
+        StartInstancesRegionInstanceGroupManagerRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('StartInstances', $request, $callOptions)->wait();
     }
 
@@ -841,8 +884,10 @@ final class RegionInstanceGroupManagersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function stopInstances(StopInstancesRegionInstanceGroupManagerRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function stopInstances(
+        StopInstancesRegionInstanceGroupManagerRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('StopInstances', $request, $callOptions)->wait();
     }
 
@@ -868,8 +913,10 @@ final class RegionInstanceGroupManagersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function suspendInstances(SuspendInstancesRegionInstanceGroupManagerRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function suspendInstances(
+        SuspendInstancesRegionInstanceGroupManagerRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SuspendInstances', $request, $callOptions)->wait();
     }
 
@@ -895,8 +942,10 @@ final class RegionInstanceGroupManagersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updatePerInstanceConfigs(UpdatePerInstanceConfigsRegionInstanceGroupManagerRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function updatePerInstanceConfigs(
+        UpdatePerInstanceConfigsRegionInstanceGroupManagerRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UpdatePerInstanceConfigs', $request, $callOptions)->wait();
     }
 }

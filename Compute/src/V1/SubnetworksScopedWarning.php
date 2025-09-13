@@ -19,13 +19,13 @@ class SubnetworksScopedWarning extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string scope_name = 345557398;</code>
      */
-    private $scope_name = null;
+    protected $scope_name = null;
     /**
      * An informational warning about unreachable scope
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warning warning = 50704284;</code>
      */
-    private $warning = null;
+    protected $warning = null;
 
     /**
      * Constructor.

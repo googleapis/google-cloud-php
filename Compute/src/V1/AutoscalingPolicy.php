@@ -16,17 +16,17 @@ use Google\Protobuf\Internal\GPBUtil;
 class AutoscalingPolicy extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The number of seconds that your application takes to initialize on a VM instance. This is referred to as the [initialization period](https://cloud.google.com/compute/docs/autoscaler#cool_down_period). Specifying an accurate initialization period improves autoscaler decisions. For example, when scaling out, the autoscaler ignores data from VMs that are still initializing because those VMs might not yet represent normal usage of your application. The default initialization period is 60 seconds. Initialization periods might vary because of numerous factors. We recommend that you test how long your application takes to initialize. To do this, create a VM and time your application's startup process.
+     * The number of seconds that your application takes to initialize on a VM instance. This is referred to as the [initialization period](/compute/docs/autoscaler#cool_down_period). Specifying an accurate initialization period improves autoscaler decisions. For example, when scaling out, the autoscaler ignores data from VMs that are still initializing because those VMs might not yet represent normal usage of your application. The default initialization period is 60 seconds. Initialization periods might vary because of numerous factors. We recommend that you test how long your application takes to initialize. To do this, create a VM and time your application's startup process.
      *
      * Generated from protobuf field <code>optional int32 cool_down_period_sec = 107692954;</code>
      */
-    private $cool_down_period_sec = null;
+    protected $cool_down_period_sec = null;
     /**
      * Defines the CPU utilization policy that allows the autoscaler to scale based on the average CPU utilization of a managed instance group.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.AutoscalingPolicyCpuUtilization cpu_utilization = 381211147;</code>
      */
-    private $cpu_utilization = null;
+    protected $cpu_utilization = null;
     /**
      * Configuration parameters of autoscaling based on a custom metric.
      *
@@ -38,30 +38,30 @@ class AutoscalingPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.AutoscalingPolicyLoadBalancingUtilization load_balancing_utilization = 429746403;</code>
      */
-    private $load_balancing_utilization = null;
+    protected $load_balancing_utilization = null;
     /**
      * The maximum number of instances that the autoscaler can scale out to. This is required when creating or updating an autoscaler. The maximum number of replicas must not be lower than minimal number of replicas.
      *
      * Generated from protobuf field <code>optional int32 max_num_replicas = 62327375;</code>
      */
-    private $max_num_replicas = null;
+    protected $max_num_replicas = null;
     /**
      * The minimum number of replicas that the autoscaler can scale in to. This cannot be less than 0. If not provided, autoscaler chooses a default value depending on maximum number of instances allowed.
      *
      * Generated from protobuf field <code>optional int32 min_num_replicas = 535329825;</code>
      */
-    private $min_num_replicas = null;
+    protected $min_num_replicas = null;
     /**
      * Defines the operating mode for this policy. The following modes are available: - OFF: Disables the autoscaler but maintains its configuration. - ONLY_SCALE_OUT: Restricts the autoscaler to add VM instances only. - ON: Enables all autoscaler activities according to its policy. For more information, see "Turning off or restricting an autoscaler"
      * Check the Mode enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string mode = 3357091;</code>
      */
-    private $mode = null;
+    protected $mode = null;
     /**
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.AutoscalingPolicyScaleInControl scale_in_control = 527670872;</code>
      */
-    private $scale_in_control = null;
+    protected $scale_in_control = null;
     /**
      * Scaling schedules defined for an autoscaler. Multiple schedules can be set on an autoscaler, and they can overlap. During overlapping periods the greatest min_required_replicas of all scaling schedules is applied. Up to 128 scaling schedules are allowed.
      *
@@ -76,7 +76,7 @@ class AutoscalingPolicy extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $cool_down_period_sec
-     *           The number of seconds that your application takes to initialize on a VM instance. This is referred to as the [initialization period](https://cloud.google.com/compute/docs/autoscaler#cool_down_period). Specifying an accurate initialization period improves autoscaler decisions. For example, when scaling out, the autoscaler ignores data from VMs that are still initializing because those VMs might not yet represent normal usage of your application. The default initialization period is 60 seconds. Initialization periods might vary because of numerous factors. We recommend that you test how long your application takes to initialize. To do this, create a VM and time your application's startup process.
+     *           The number of seconds that your application takes to initialize on a VM instance. This is referred to as the [initialization period](/compute/docs/autoscaler#cool_down_period). Specifying an accurate initialization period improves autoscaler decisions. For example, when scaling out, the autoscaler ignores data from VMs that are still initializing because those VMs might not yet represent normal usage of your application. The default initialization period is 60 seconds. Initialization periods might vary because of numerous factors. We recommend that you test how long your application takes to initialize. To do this, create a VM and time your application's startup process.
      *     @type \Google\Cloud\Compute\V1\AutoscalingPolicyCpuUtilization $cpu_utilization
      *           Defines the CPU utilization policy that allows the autoscaler to scale based on the average CPU utilization of a managed instance group.
      *     @type array<\Google\Cloud\Compute\V1\AutoscalingPolicyCustomMetricUtilization>|\Google\Protobuf\Internal\RepeatedField $custom_metric_utilizations
@@ -101,7 +101,7 @@ class AutoscalingPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The number of seconds that your application takes to initialize on a VM instance. This is referred to as the [initialization period](https://cloud.google.com/compute/docs/autoscaler#cool_down_period). Specifying an accurate initialization period improves autoscaler decisions. For example, when scaling out, the autoscaler ignores data from VMs that are still initializing because those VMs might not yet represent normal usage of your application. The default initialization period is 60 seconds. Initialization periods might vary because of numerous factors. We recommend that you test how long your application takes to initialize. To do this, create a VM and time your application's startup process.
+     * The number of seconds that your application takes to initialize on a VM instance. This is referred to as the [initialization period](/compute/docs/autoscaler#cool_down_period). Specifying an accurate initialization period improves autoscaler decisions. For example, when scaling out, the autoscaler ignores data from VMs that are still initializing because those VMs might not yet represent normal usage of your application. The default initialization period is 60 seconds. Initialization periods might vary because of numerous factors. We recommend that you test how long your application takes to initialize. To do this, create a VM and time your application's startup process.
      *
      * Generated from protobuf field <code>optional int32 cool_down_period_sec = 107692954;</code>
      * @return int
@@ -122,7 +122,7 @@ class AutoscalingPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The number of seconds that your application takes to initialize on a VM instance. This is referred to as the [initialization period](https://cloud.google.com/compute/docs/autoscaler#cool_down_period). Specifying an accurate initialization period improves autoscaler decisions. For example, when scaling out, the autoscaler ignores data from VMs that are still initializing because those VMs might not yet represent normal usage of your application. The default initialization period is 60 seconds. Initialization periods might vary because of numerous factors. We recommend that you test how long your application takes to initialize. To do this, create a VM and time your application's startup process.
+     * The number of seconds that your application takes to initialize on a VM instance. This is referred to as the [initialization period](/compute/docs/autoscaler#cool_down_period). Specifying an accurate initialization period improves autoscaler decisions. For example, when scaling out, the autoscaler ignores data from VMs that are still initializing because those VMs might not yet represent normal usage of your application. The default initialization period is 60 seconds. Initialization periods might vary because of numerous factors. We recommend that you test how long your application takes to initialize. To do this, create a VM and time your application's startup process.
      *
      * Generated from protobuf field <code>optional int32 cool_down_period_sec = 107692954;</code>
      * @param int $var

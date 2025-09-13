@@ -20,7 +20,7 @@ class ShieldedInstanceIntegrityPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional bool update_auto_learn_policy = 245490215;</code>
      */
-    private $update_auto_learn_policy = null;
+    protected $update_auto_learn_policy = null;
 
     /**
      * Constructor.

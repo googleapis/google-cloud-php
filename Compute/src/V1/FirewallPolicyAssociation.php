@@ -19,31 +19,31 @@ class FirewallPolicyAssociation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string attachment_target = 175773741;</code>
      */
-    private $attachment_target = null;
+    protected $attachment_target = null;
     /**
      * [Output Only] Deprecated, please use short name instead. The display name of the firewall policy of the association.
      *
      * Generated from protobuf field <code>optional string display_name = 4473832;</code>
      */
-    private $display_name = null;
+    protected $display_name = null;
     /**
      * [Output Only] The firewall policy ID of the association.
      *
      * Generated from protobuf field <code>optional string firewall_policy_id = 357211849;</code>
      */
-    private $firewall_policy_id = null;
+    protected $firewall_policy_id = null;
     /**
      * The name for an association.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
     /**
      * [Output Only] The short name of the firewall policy of the association.
      *
      * Generated from protobuf field <code>optional string short_name = 492051566;</code>
      */
-    private $short_name = null;
+    protected $short_name = null;
 
     /**
      * Constructor.

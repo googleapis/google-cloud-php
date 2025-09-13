@@ -20,7 +20,7 @@ class ListAssociationsFirewallPolicyRequest extends \Google\Protobuf\Internal\Me
      *
      * Generated from protobuf field <code>optional string target_resource = 467318524;</code>
      */
-    private $target_resource = null;
+    protected $target_resource = null;
 
     /**
      * Constructor.

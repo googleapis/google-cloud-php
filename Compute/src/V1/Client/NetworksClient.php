@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,7 +37,6 @@ use Google\Cloud\Compute\V1\AddPeeringNetworkRequest;
 use Google\Cloud\Compute\V1\DeleteNetworkRequest;
 use Google\Cloud\Compute\V1\GetEffectiveFirewallsNetworkRequest;
 use Google\Cloud\Compute\V1\GetNetworkRequest;
-use Google\Cloud\Compute\V1\GlobalOperationsClient;
 use Google\Cloud\Compute\V1\InsertNetworkRequest;
 use Google\Cloud\Compute\V1\ListNetworksRequest;
 use Google\Cloud\Compute\V1\ListPeeringRoutesNetworksRequest;
@@ -117,7 +116,6 @@ final class NetworksClient
                     'restClientConfigPath' => __DIR__ . '/../resources/networks_rest_client_config.php',
                 ],
             ],
-            'operationsClientClass' => GlobalOperationsClient::class,
         ];
     }
 
@@ -130,9 +128,7 @@ final class NetworksClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -149,9 +145,7 @@ final class NetworksClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-            ],
+            'additionalArgumentMethods' => ['getProject'],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -179,10 +173,31 @@ final class NetworksClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : $this->getDefaultOperationDescriptor();
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : $this->getDefaultOperationDescriptor();
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return GlobalOperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new GlobalOperationsClient($options);
     }
 
     /**
@@ -362,8 +377,10 @@ final class NetworksClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getEffectiveFirewalls(GetEffectiveFirewallsNetworkRequest $request, array $callOptions = []): NetworksGetEffectiveFirewallsResponse
-    {
+    public function getEffectiveFirewalls(
+        GetEffectiveFirewallsNetworkRequest $request,
+        array $callOptions = []
+    ): NetworksGetEffectiveFirewallsResponse {
         return $this->startApiCall('GetEffectiveFirewalls', $request, $callOptions)->wait();
     }
 
@@ -440,8 +457,10 @@ final class NetworksClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listPeeringRoutes(ListPeeringRoutesNetworksRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listPeeringRoutes(
+        ListPeeringRoutesNetworksRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListPeeringRoutes', $request, $callOptions);
     }
 
@@ -518,8 +537,10 @@ final class NetworksClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function requestRemovePeering(RequestRemovePeeringNetworkRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function requestRemovePeering(
+        RequestRemovePeeringNetworkRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('RequestRemovePeering', $request, $callOptions)->wait();
     }
 
@@ -544,8 +565,10 @@ final class NetworksClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function switchToCustomMode(SwitchToCustomModeNetworkRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function switchToCustomMode(
+        SwitchToCustomModeNetworkRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SwitchToCustomMode', $request, $callOptions)->wait();
     }
 

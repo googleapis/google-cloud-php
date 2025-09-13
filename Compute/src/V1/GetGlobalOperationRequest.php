@@ -20,13 +20,13 @@ class GetGlobalOperationRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string operation = 52090215 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_response_field) = "name"];</code>
      */
-    private $operation = '';
+    protected $operation = '';
     /**
      * Project ID for this request.
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project = '';
+    protected $project = '';
 
     /**
      * @param string $project   Project ID for this request.

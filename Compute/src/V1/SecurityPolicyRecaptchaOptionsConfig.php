@@ -19,7 +19,7 @@ class SecurityPolicyRecaptchaOptionsConfig extends \Google\Protobuf\Internal\Mes
      *
      * Generated from protobuf field <code>optional string redirect_site_key = 447677034;</code>
      */
-    private $redirect_site_key = null;
+    protected $redirect_site_key = null;
 
     /**
      * Constructor.

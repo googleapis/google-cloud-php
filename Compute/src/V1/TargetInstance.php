@@ -20,68 +20,68 @@ class TargetInstance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
-    private $creation_timestamp = null;
+    protected $creation_timestamp = null;
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
-    private $description = null;
+    protected $description = null;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
-    private $id = null;
+    protected $id = null;
     /**
      * A URL to the virtual machine instance that handles traffic for this target instance. When creating a target instance, you can provide the fully-qualified URL or a valid partial URL to the desired virtual machine. For example, the following are all valid URLs: - https://www.googleapis.com/compute/v1/projects/project/zones/zone /instances/instance - projects/project/zones/zone/instances/instance - zones/zone/instances/instance 
      *
      * Generated from protobuf field <code>optional string instance = 18257045;</code>
      */
-    private $instance = null;
+    protected $instance = null;
     /**
      * [Output Only] The type of the resource. Always compute#targetInstance for target instances.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
-    private $kind = null;
+    protected $kind = null;
     /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
     /**
      * Must have a value of NO_NAT. Protocol forwarding delivers packets while preserving the destination IP address of the forwarding rule referencing the target instance.
      * Check the NatPolicy enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string nat_policy = 509780496;</code>
      */
-    private $nat_policy = null;
+    protected $nat_policy = null;
     /**
      * The URL of the network this target instance uses to forward traffic. If not specified, the traffic will be forwarded to the network that the default network interface belongs to.
      *
      * Generated from protobuf field <code>optional string network = 232872494;</code>
      */
-    private $network = null;
+    protected $network = null;
     /**
      * [Output Only] The resource URL for the security policy associated with this target instance.
      *
      * Generated from protobuf field <code>optional string security_policy = 171082513;</code>
      */
-    private $security_policy = null;
+    protected $security_policy = null;
     /**
      * [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
-    private $self_link = null;
+    protected $self_link = null;
     /**
      * [Output Only] URL of the zone where the target instance resides. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
      *
      * Generated from protobuf field <code>optional string zone = 3744684;</code>
      */
-    private $zone = null;
+    protected $zone = null;
 
     /**
      * Constructor.

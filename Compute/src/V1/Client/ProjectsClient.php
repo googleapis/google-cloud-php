@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -40,7 +40,6 @@ use Google\Cloud\Compute\V1\EnableXpnResourceProjectRequest;
 use Google\Cloud\Compute\V1\GetProjectRequest;
 use Google\Cloud\Compute\V1\GetXpnHostProjectRequest;
 use Google\Cloud\Compute\V1\GetXpnResourcesProjectsRequest;
-use Google\Cloud\Compute\V1\GlobalOperationsClient;
 use Google\Cloud\Compute\V1\ListXpnHostsProjectsRequest;
 use Google\Cloud\Compute\V1\MoveDiskProjectRequest;
 use Google\Cloud\Compute\V1\MoveInstanceProjectRequest;
@@ -120,7 +119,6 @@ final class ProjectsClient
                     'restClientConfigPath' => __DIR__ . '/../resources/projects_rest_client_config.php',
                 ],
             ],
-            'operationsClientClass' => GlobalOperationsClient::class,
         ];
     }
 
@@ -133,9 +131,7 @@ final class ProjectsClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -152,9 +148,7 @@ final class ProjectsClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-            ],
+            'additionalArgumentMethods' => ['getProject'],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -182,10 +176,31 @@ final class ProjectsClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : $this->getDefaultOperationDescriptor();
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : $this->getDefaultOperationDescriptor();
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return GlobalOperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new GlobalOperationsClient($options);
     }
 
     /**
@@ -313,8 +328,10 @@ final class ProjectsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function disableXpnResource(DisableXpnResourceProjectRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function disableXpnResource(
+        DisableXpnResourceProjectRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DisableXpnResource', $request, $callOptions)->wait();
     }
 
@@ -365,8 +382,10 @@ final class ProjectsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function enableXpnResource(EnableXpnResourceProjectRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function enableXpnResource(
+        EnableXpnResourceProjectRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('EnableXpnResource', $request, $callOptions)->wait();
     }
 
@@ -501,7 +520,7 @@ final class ProjectsClient
     }
 
     /**
-     * Moves an instance and its attached persistent disks from one zone to another. *Note*: Moving VMs or disks by using this method might cause unexpected behavior. For more information, see the [known issue](/compute/docs/troubleshooting/known-issues#moving_vms_or_disks_using_the_moveinstance_api_or_the_causes_unexpected_behavior). [Deprecated] This method is deprecated. See [moving instance across zones](https://cloud.google.com/compute/docs/instances/moving-instance-across-zones) instead.
+     * Moves an instance and its attached persistent disks from one zone to another. *Note*: Moving VMs or disks by using this method might cause unexpected behavior. For more information, see the [known issue](/compute/docs/troubleshooting/known-issues#moving_vms_or_disks_using_the_moveinstance_api_or_the_causes_unexpected_behavior). [Deprecated] This method is deprecated. See [moving instance across zones](/compute/docs/instances/moving-instance-across-zones) instead.
      *
      * The async variant is {@see ProjectsClient::moveInstanceAsync()} .
      *
@@ -547,8 +566,10 @@ final class ProjectsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setCloudArmorTier(SetCloudArmorTierProjectRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function setCloudArmorTier(
+        SetCloudArmorTierProjectRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SetCloudArmorTier', $request, $callOptions)->wait();
     }
 
@@ -573,8 +594,10 @@ final class ProjectsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setCommonInstanceMetadata(SetCommonInstanceMetadataProjectRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function setCommonInstanceMetadata(
+        SetCommonInstanceMetadataProjectRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SetCommonInstanceMetadata', $request, $callOptions)->wait();
     }
 
@@ -599,8 +622,10 @@ final class ProjectsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setDefaultNetworkTier(SetDefaultNetworkTierProjectRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function setDefaultNetworkTier(
+        SetDefaultNetworkTierProjectRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SetDefaultNetworkTier', $request, $callOptions)->wait();
     }
 
@@ -625,8 +650,10 @@ final class ProjectsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setUsageExportBucket(SetUsageExportBucketProjectRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function setUsageExportBucket(
+        SetUsageExportBucketProjectRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SetUsageExportBucket', $request, $callOptions)->wait();
     }
 }

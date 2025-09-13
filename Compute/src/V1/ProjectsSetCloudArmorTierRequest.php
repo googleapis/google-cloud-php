@@ -20,7 +20,7 @@ class ProjectsSetCloudArmorTierRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string cloud_armor_tier = 4427052;</code>
      */
-    private $cloud_armor_tier = null;
+    protected $cloud_armor_tier = null;
 
     /**
      * Constructor.

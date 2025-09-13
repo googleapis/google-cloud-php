@@ -20,13 +20,13 @@ class UrlMapTestHeader extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
     /**
      * Header value.
      *
      * Generated from protobuf field <code>optional string value = 111972721;</code>
      */
-    private $value = null;
+    protected $value = null;
 
     /**
      * Constructor.

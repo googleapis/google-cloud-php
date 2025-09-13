@@ -24,14 +24,14 @@ class AuditLogConfig extends \Google\Protobuf\Internal\Message
     /**
      * Generated from protobuf field <code>optional bool ignore_child_exemptions = 70141850;</code>
      */
-    private $ignore_child_exemptions = null;
+    protected $ignore_child_exemptions = null;
     /**
      * The log type that this config enables.
      * Check the LogType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string log_type = 403115861;</code>
      */
-    private $log_type = null;
+    protected $log_type = null;
 
     /**
      * Constructor.

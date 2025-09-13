@@ -20,7 +20,7 @@ class ErrorInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string domain = 284415172;</code>
      */
-    private $domain = null;
+    protected $domain = null;
     /**
      * Additional structured details about this error. Keys must match a regular expression of `a-z+` but should ideally be lowerCamelCase. Also, they must be limited to 64 characters in length. When identifying the current value of an exceeded limit, the units should be contained in the key, not the value. For example, rather than `{"instanceLimit": "100/request"}`, should be returned as, `{"instanceLimitPerRequest": "100"}`, if the client exceeds the number of instances that can be created in a single (batch) request.
      *
@@ -32,7 +32,7 @@ class ErrorInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string reason = 138777156;</code>
      */
-    private $reason = null;
+    protected $reason = null;
 
     /**
      * Constructor.

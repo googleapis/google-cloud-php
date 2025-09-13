@@ -20,19 +20,19 @@ class UpcomingMaintenance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional bool can_reschedule = 95981977;</code>
      */
-    private $can_reschedule = null;
+    protected $can_reschedule = null;
     /**
      * The latest time for the planned maintenance window to start. This timestamp value is in RFC3339 text format.
      *
      * Generated from protobuf field <code>optional string latest_window_start_time = 128032129;</code>
      */
-    private $latest_window_start_time = null;
+    protected $latest_window_start_time = null;
     /**
      * Indicates whether the UpcomingMaintenance will be triggered on VM shutdown.
      *
      * Generated from protobuf field <code>optional bool maintenance_on_shutdown = 231055754;</code>
      */
-    private $maintenance_on_shutdown = null;
+    protected $maintenance_on_shutdown = null;
     /**
      * The reasons for the maintenance. Only valid for vms.
      * Check the MaintenanceReasons enum for the list of possible values.
@@ -46,26 +46,26 @@ class UpcomingMaintenance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string maintenance_status = 81645214;</code>
      */
-    private $maintenance_status = null;
+    protected $maintenance_status = null;
     /**
      * Defines the type of maintenance.
      * Check the Type enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string type = 3575610;</code>
      */
-    private $type = null;
+    protected $type = null;
     /**
      * The time by which the maintenance disruption will be completed. This timestamp value is in RFC3339 text format.
      *
      * Generated from protobuf field <code>optional string window_end_time = 271816480;</code>
      */
-    private $window_end_time = null;
+    protected $window_end_time = null;
     /**
      * The current start time of the maintenance window. This timestamp value is in RFC3339 text format.
      *
      * Generated from protobuf field <code>optional string window_start_time = 473061433;</code>
      */
-    private $window_start_time = null;
+    protected $window_start_time = null;
 
     /**
      * Constructor.

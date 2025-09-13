@@ -20,7 +20,7 @@ class ConnectionDraining extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int32 draining_timeout_sec = 225127070;</code>
      */
-    private $draining_timeout_sec = null;
+    protected $draining_timeout_sec = null;
 
     /**
      * Constructor.

@@ -20,13 +20,13 @@ class GetMachineImageRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string machine_image = 69189475 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $machine_image = '';
+    protected $machine_image = '';
     /**
      * Project ID for this request.
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project = '';
+    protected $project = '';
 
     /**
      * @param string $project      Project ID for this request.

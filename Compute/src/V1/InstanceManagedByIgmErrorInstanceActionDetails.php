@@ -20,19 +20,19 @@ class InstanceManagedByIgmErrorInstanceActionDetails extends \Google\Protobuf\In
      *
      * Generated from protobuf field <code>optional string action = 187661878;</code>
      */
-    private $action = null;
+    protected $action = null;
     /**
      * [Output Only] The URL of the instance. The URL can be set even if the instance has not yet been created.
      *
      * Generated from protobuf field <code>optional string instance = 18257045;</code>
      */
-    private $instance = null;
+    protected $instance = null;
     /**
      * [Output Only] Version this instance was created from, or was being created from, but the creation failed. Corresponds to one of the versions that were set on the Instance Group Manager resource at the time this instance was being created.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ManagedInstanceVersion version = 351608024;</code>
      */
-    private $version = null;
+    protected $version = null;
 
     /**
      * Constructor.

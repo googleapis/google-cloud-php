@@ -20,13 +20,13 @@ class SslCertificateSelfManagedSslCertificate extends \Google\Protobuf\Internal\
      *
      * Generated from protobuf field <code>optional string certificate = 341787031;</code>
      */
-    private $certificate = null;
+    protected $certificate = null;
     /**
      * A write-only private key in PEM format. Only insert requests will include this field.
      *
      * Generated from protobuf field <code>optional string private_key = 361331107;</code>
      */
-    private $private_key = null;
+    protected $private_key = null;
 
     /**
      * Constructor.

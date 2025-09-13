@@ -20,7 +20,7 @@ class InterconnectAttachmentGroupLogicalStructureRegionMetroFacility extends \Go
      *
      * Generated from protobuf field <code>optional string facility = 501116579;</code>
      */
-    private $facility = null;
+    protected $facility = null;
     /**
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectAttachmentGroupLogicalStructureRegionMetroFacilityZone zones = 116085319;</code>
      */

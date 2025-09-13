@@ -20,13 +20,13 @@ class RegionInstanceGroupsListInstancesRequest extends \Google\Protobuf\Internal
      *
      * Generated from protobuf field <code>optional string instance_state = 92223591;</code>
      */
-    private $instance_state = null;
+    protected $instance_state = null;
     /**
      * Name of port user is interested in. It is optional. If it is set, only information about this ports will be returned. If it is not set, all the named ports will be returned. Always lists all instances.
      *
      * Generated from protobuf field <code>optional string port_name = 41534345;</code>
      */
-    private $port_name = null;
+    protected $port_name = null;
 
     /**
      * Constructor.

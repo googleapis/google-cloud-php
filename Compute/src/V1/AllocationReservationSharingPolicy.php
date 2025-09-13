@@ -20,7 +20,7 @@ class AllocationReservationSharingPolicy extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>optional string service_share_type = 514508644;</code>
      */
-    private $service_share_type = null;
+    protected $service_share_type = null;
 
     /**
      * Constructor.

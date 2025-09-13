@@ -20,19 +20,19 @@ class NetworkAttachmentConnectedEndpoint extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>optional string ip_address = 406272220;</code>
      */
-    private $ip_address = null;
+    protected $ip_address = null;
     /**
      * The IPv6 address assigned to the producer instance network interface. This is only assigned when the stack types of both the instance network interface and the consumer subnet are IPv4_IPv6.
      *
      * Generated from protobuf field <code>optional string ipv6_address = 341563804;</code>
      */
-    private $ipv6_address = null;
+    protected $ipv6_address = null;
     /**
      * The project id or number of the interface to which the IP was assigned.
      *
      * Generated from protobuf field <code>optional string project_id_or_num = 349783336;</code>
      */
-    private $project_id_or_num = null;
+    protected $project_id_or_num = null;
     /**
      * Alias IP ranges from the same subnetwork.
      *
@@ -45,19 +45,19 @@ class NetworkAttachmentConnectedEndpoint extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>
      */
-    private $status = null;
+    protected $status = null;
     /**
      * The subnetwork used to assign the IP to the producer instance network interface.
      *
      * Generated from protobuf field <code>optional string subnetwork = 307827694;</code>
      */
-    private $subnetwork = null;
+    protected $subnetwork = null;
     /**
      * [Output Only] The CIDR range of the subnet from which the IPv4 internal IP was allocated from.
      *
      * Generated from protobuf field <code>optional string subnetwork_cidr_range = 383249827;</code>
      */
-    private $subnetwork_cidr_range = null;
+    protected $subnetwork_cidr_range = null;
 
     /**
      * Constructor.

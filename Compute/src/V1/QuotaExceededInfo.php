@@ -26,32 +26,32 @@ class QuotaExceededInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional double future_limit = 456564287;</code>
      */
-    private $future_limit = null;
+    protected $future_limit = null;
     /**
      * Current effective quota limit. The limit's unit depends on the quota type or metric.
      *
      * Generated from protobuf field <code>optional double limit = 102976443;</code>
      */
-    private $limit = null;
+    protected $limit = null;
     /**
      * The name of the quota limit.
      *
      * Generated from protobuf field <code>optional string limit_name = 398197903;</code>
      */
-    private $limit_name = null;
+    protected $limit_name = null;
     /**
      * The Compute Engine quota metric name.
      *
      * Generated from protobuf field <code>optional string metric_name = 409881530;</code>
      */
-    private $metric_name = null;
+    protected $metric_name = null;
     /**
      * Rollout status of the future quota limit.
      * Check the RolloutStatus enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string rollout_status = 476426816;</code>
      */
-    private $rollout_status = null;
+    protected $rollout_status = null;
 
     /**
      * Constructor.

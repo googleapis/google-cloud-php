@@ -19,7 +19,7 @@ class ResourceGroupReference extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string group = 98629247;</code>
      */
-    private $group = null;
+    protected $group = null;
 
     /**
      * Constructor.

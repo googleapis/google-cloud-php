@@ -20,102 +20,102 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.NodeGroupAutoscalingPolicy autoscaling_policy = 221950041;</code>
      */
-    private $autoscaling_policy = null;
+    protected $autoscaling_policy = null;
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
-    private $creation_timestamp = null;
+    protected $creation_timestamp = null;
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
-    private $description = null;
+    protected $description = null;
     /**
      * Generated from protobuf field <code>optional string fingerprint = 234678500;</code>
      */
-    private $fingerprint = null;
+    protected $fingerprint = null;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
-    private $id = null;
+    protected $id = null;
     /**
      * [Output Only] The type of the resource. Always compute#nodeGroup for node group.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
-    private $kind = null;
+    protected $kind = null;
     /**
      * An opaque location hint used to place the Node close to other resources. This field is for use by internal tools that use the public API. The location hint here on the NodeGroup overrides any location_hint present in the NodeTemplate.
      *
      * Generated from protobuf field <code>optional string location_hint = 350519505;</code>
      */
-    private $location_hint = null;
+    protected $location_hint = null;
     /**
      * Specifies the frequency of planned maintenance events. The accepted values are: `AS_NEEDED` and `RECURRENT`.
      * Check the MaintenanceInterval enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string maintenance_interval = 403368049;</code>
      */
-    private $maintenance_interval = null;
+    protected $maintenance_interval = null;
     /**
      * Specifies how to handle instances when a node in the group undergoes maintenance. Set to one of: DEFAULT, RESTART_IN_PLACE, or MIGRATE_WITHIN_NODE_GROUP. The default value is DEFAULT. For more information, see Maintenance policies.
      * Check the MaintenancePolicy enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string maintenance_policy = 528327646;</code>
      */
-    private $maintenance_policy = null;
+    protected $maintenance_policy = null;
     /**
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.NodeGroupMaintenanceWindow maintenance_window = 186374812;</code>
      */
-    private $maintenance_window = null;
+    protected $maintenance_window = null;
     /**
      * The name of the resource, provided by the client when initially creating the resource. The resource name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
     /**
      * URL of the node template to create the node group from.
      *
      * Generated from protobuf field <code>optional string node_template = 323154455;</code>
      */
-    private $node_template = null;
+    protected $node_template = null;
     /**
      * [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
-    private $self_link = null;
+    protected $self_link = null;
     /**
      * Share-settings for the node group
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ShareSettings share_settings = 266668163;</code>
      */
-    private $share_settings = null;
+    protected $share_settings = null;
     /**
      * [Output Only] The total number of nodes in the node group.
      *
      * Generated from protobuf field <code>optional int32 size = 3530753;</code>
      */
-    private $size = null;
+    protected $size = null;
     /**
      * 
      * Check the Status enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>
      */
-    private $status = null;
+    protected $status = null;
     /**
      * [Output Only] The name of the zone where the node group resides, such as us-central1-a.
      *
      * Generated from protobuf field <code>optional string zone = 3744684;</code>
      */
-    private $zone = null;
+    protected $zone = null;
 
     /**
      * Constructor.

@@ -20,26 +20,26 @@ class DiskInstantiationConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional bool auto_delete = 464761403;</code>
      */
-    private $auto_delete = null;
+    protected $auto_delete = null;
     /**
      * The custom source image to be used to restore this disk when instantiating this instance template.
      *
      * Generated from protobuf field <code>optional string custom_image = 184123149;</code>
      */
-    private $custom_image = null;
+    protected $custom_image = null;
     /**
      * Specifies the device name of the disk to which the configurations apply to.
      *
      * Generated from protobuf field <code>optional string device_name = 67541716;</code>
      */
-    private $device_name = null;
+    protected $device_name = null;
     /**
      * Specifies whether to include the disk and what image to use. Possible values are: - source-image: to use the same image that was used to create the source instance's corresponding disk. Applicable to the boot disk and additional read-write disks. - source-image-family: to use the same image family that was used to create the source instance's corresponding disk. Applicable to the boot disk and additional read-write disks. - custom-image: to use a user-provided image url for disk creation. Applicable to the boot disk and additional read-write disks. - attach-read-only: to attach a read-only disk. Applicable to read-only disks. - do-not-include: to exclude a disk from the template. Applicable to additional read-write disks, local SSDs, and read-only disks.
      * Check the InstantiateFrom enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string instantiate_from = 393383903;</code>
      */
-    private $instantiate_from = null;
+    protected $instantiate_from = null;
 
     /**
      * Constructor.

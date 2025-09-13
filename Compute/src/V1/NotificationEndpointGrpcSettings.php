@@ -20,31 +20,31 @@ class NotificationEndpointGrpcSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string authority = 401868611;</code>
      */
-    private $authority = null;
+    protected $authority = null;
     /**
      * Endpoint to which gRPC notifications are sent. This must be a valid gRPCLB DNS name.
      *
      * Generated from protobuf field <code>optional string endpoint = 130489749;</code>
      */
-    private $endpoint = null;
+    protected $endpoint = null;
     /**
      * Optional. If specified, this field is used to populate the "name" field in gRPC requests.
      *
      * Generated from protobuf field <code>optional string payload_name = 300358300;</code>
      */
-    private $payload_name = null;
+    protected $payload_name = null;
     /**
      * Optional. This field is used to configure how often to send a full update of all non-healthy backends. If unspecified, full updates are not sent. If specified, must be in the range between 600 seconds to 3600 seconds. Nanos are disallowed. Can only be set for regional notification endpoints.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Duration resend_interval = 478288969;</code>
      */
-    private $resend_interval = null;
+    protected $resend_interval = null;
     /**
      * How much time (in seconds) is spent attempting notification retries until a successful response is received. Default is 30s. Limit is 20m (1200s). Must be a positive number.
      *
      * Generated from protobuf field <code>optional uint32 retry_duration_sec = 115681117;</code>
      */
-    private $retry_duration_sec = null;
+    protected $retry_duration_sec = null;
 
     /**
      * Constructor.

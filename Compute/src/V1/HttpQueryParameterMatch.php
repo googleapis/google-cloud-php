@@ -20,25 +20,25 @@ class HttpQueryParameterMatch extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string exact_match = 457641093;</code>
      */
-    private $exact_match = null;
+    protected $exact_match = null;
     /**
      * The name of the query parameter to match. The query parameter must exist in the request, in the absence of which the request match fails.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
     /**
      * Specifies that the queryParameterMatch matches if the request contains the query parameter, irrespective of whether the parameter has a value or not. Only one of presentMatch, exactMatch, or regexMatch must be set. 
      *
      * Generated from protobuf field <code>optional bool present_match = 67435841;</code>
      */
-    private $present_match = null;
+    protected $present_match = null;
     /**
      * The queryParameterMatch matches if the value of the parameter matches the regular expression specified by regexMatch. For more information about regular expression syntax, see Syntax. Only one of presentMatch, exactMatch, or regexMatch must be set. Regular expressions can only be used when the loadBalancingScheme is set to INTERNAL_SELF_MANAGED. 
      *
      * Generated from protobuf field <code>optional string regex_match = 107387853;</code>
      */
-    private $regex_match = null;
+    protected $regex_match = null;
 
     /**
      * Constructor.

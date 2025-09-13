@@ -20,7 +20,7 @@ class CorsPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional bool allow_credentials = 481263366;</code>
      */
-    private $allow_credentials = null;
+    protected $allow_credentials = null;
     /**
      * Specifies the content for the Access-Control-Allow-Headers header.
      *
@@ -50,7 +50,7 @@ class CorsPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional bool disabled = 270940796;</code>
      */
-    private $disabled = null;
+    protected $disabled = null;
     /**
      * Specifies the content for the Access-Control-Expose-Headers header.
      *
@@ -62,7 +62,7 @@ class CorsPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int32 max_age = 307559332;</code>
      */
-    private $max_age = null;
+    protected $max_age = null;
 
     /**
      * Constructor.

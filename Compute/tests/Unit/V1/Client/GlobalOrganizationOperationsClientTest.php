@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -52,7 +52,9 @@ class GlobalOrganizationOperationsClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return GlobalOrganizationOperationsClient */
@@ -77,8 +79,7 @@ class GlobalOrganizationOperationsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $operation = 'operation1662702951';
-        $request = (new DeleteGlobalOrganizationOperationRequest())
-            ->setOperation($operation);
+        $request = (new DeleteGlobalOrganizationOperationRequest())->setOperation($operation);
         $response = $gapicClient->delete($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -102,17 +103,19 @@ class GlobalOrganizationOperationsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $operation = 'operation1662702951';
-        $request = (new DeleteGlobalOrganizationOperationRequest())
-            ->setOperation($operation);
+        $request = (new DeleteGlobalOrganizationOperationRequest())->setOperation($operation);
         try {
             $gapicClient->delete($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -181,8 +184,7 @@ class GlobalOrganizationOperationsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $operation = 'operation1662702951';
-        $request = (new GetGlobalOrganizationOperationRequest())
-            ->setOperation($operation);
+        $request = (new GetGlobalOrganizationOperationRequest())->setOperation($operation);
         $response = $gapicClient->get($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -206,17 +208,19 @@ class GlobalOrganizationOperationsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $operation = 'operation1662702951';
-        $request = (new GetGlobalOrganizationOperationRequest())
-            ->setOperation($operation);
+        $request = (new GetGlobalOrganizationOperationRequest())->setOperation($operation);
         try {
             $gapicClient->get($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -244,9 +248,7 @@ class GlobalOrganizationOperationsClientTest extends GeneratedTest
         $nextPageToken = '';
         $selfLink = 'selfLink-1691268851';
         $itemsElement = new Operation();
-        $items = [
-            $itemsElement,
-        ];
+        $items = [$itemsElement];
         $expectedResponse = new OperationList();
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
@@ -279,12 +281,15 @@ class GlobalOrganizationOperationsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new ListGlobalOrganizationOperationsRequest();
         try {
@@ -313,8 +318,7 @@ class GlobalOrganizationOperationsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $operation = 'operation1662702951';
-        $request = (new DeleteGlobalOrganizationOperationRequest())
-            ->setOperation($operation);
+        $request = (new DeleteGlobalOrganizationOperationRequest())->setOperation($operation);
         $response = $gapicClient->deleteAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();

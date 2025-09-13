@@ -20,7 +20,7 @@ class InterconnectGroupsCreateMembers extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string intent_mismatch_behavior = 164408000;</code>
      */
-    private $intent_mismatch_behavior = null;
+    protected $intent_mismatch_behavior = null;
     /**
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectGroupsCreateMembersInterconnectInput interconnects = 520187301;</code>
      */
@@ -30,7 +30,7 @@ class InterconnectGroupsCreateMembers extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectGroupsCreateMembersInterconnectInput template_interconnect = 224745523;</code>
      */
-    private $template_interconnect = null;
+    protected $template_interconnect = null;
 
     /**
      * Constructor.

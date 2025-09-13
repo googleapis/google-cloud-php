@@ -20,32 +20,32 @@ class GetReservationBlockRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * The name of the reservation. Name should conform to RFC1035 or be a resource ID.
      *
      * Generated from protobuf field <code>string reservation = 47530956 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $reservation = '';
+    protected $reservation = '';
     /**
      * The name of the reservation block. Name should conform to RFC1035 or be a resource ID.
      *
      * Generated from protobuf field <code>string reservation_block = 532832858 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $reservation_block = '';
+    protected $reservation_block = '';
     /**
      * View of the Block.
      * Check the View enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string view = 3619493;</code>
      */
-    private $view = null;
+    protected $view = null;
     /**
      * Name of the zone for this request. Zone name should conform to RFC1035.
      *
      * Generated from protobuf field <code>string zone = 3744684 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $zone = '';
+    protected $zone = '';
 
     /**
      * @param string $project          Project ID for this request.

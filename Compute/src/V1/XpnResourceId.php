@@ -20,14 +20,14 @@ class XpnResourceId extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string id = 3355;</code>
      */
-    private $id = null;
+    protected $id = null;
     /**
      * The type of the service resource.
      * Check the Type enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string type = 3575610;</code>
      */
-    private $type = null;
+    protected $type = null;
 
     /**
      * Constructor.

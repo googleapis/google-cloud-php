@@ -24,7 +24,7 @@ class InterconnectAttachmentGroupLogicalStructureRegionMetro extends \Google\Pro
      *
      * Generated from protobuf field <code>optional string metro = 103787801;</code>
      */
-    private $metro = null;
+    protected $metro = null;
 
     /**
      * Constructor.

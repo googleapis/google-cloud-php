@@ -20,26 +20,26 @@ class NetworkEndpointGroupPscData extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string consumer_psc_address = 452646572;</code>
      */
-    private $consumer_psc_address = null;
+    protected $consumer_psc_address = null;
     /**
      * The psc producer port is used to connect PSC NEG with specific port on the PSC Producer side; should only be used for the PRIVATE_SERVICE_CONNECT NEG type
      *
      * Generated from protobuf field <code>optional int32 producer_port = 410021134;</code>
      */
-    private $producer_port = null;
+    protected $producer_port = null;
     /**
      * [Output Only] The PSC connection id of the PSC Network Endpoint Group Consumer.
      *
      * Generated from protobuf field <code>optional uint64 psc_connection_id = 292082397;</code>
      */
-    private $psc_connection_id = null;
+    protected $psc_connection_id = null;
     /**
      * [Output Only] The connection status of the PSC Forwarding Rule.
      * Check the PscConnectionStatus enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string psc_connection_status = 184149172;</code>
      */
-    private $psc_connection_status = null;
+    protected $psc_connection_status = null;
 
     /**
      * Constructor.

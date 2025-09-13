@@ -19,7 +19,7 @@ class InterconnectRemoteLocationPermittedConnections extends \Google\Protobuf\In
      *
      * Generated from protobuf field <code>optional string interconnect_location = 492235846;</code>
      */
-    private $interconnect_location = null;
+    protected $interconnect_location = null;
 
     /**
      * Constructor.

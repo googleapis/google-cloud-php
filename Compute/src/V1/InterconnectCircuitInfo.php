@@ -20,19 +20,19 @@ class InterconnectCircuitInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string customer_demarc_id = 28771859;</code>
      */
-    private $customer_demarc_id = null;
+    protected $customer_demarc_id = null;
     /**
      * Google-assigned unique ID for this circuit. Assigned at circuit turn-up.
      *
      * Generated from protobuf field <code>optional string google_circuit_id = 262014711;</code>
      */
-    private $google_circuit_id = null;
+    protected $google_circuit_id = null;
     /**
      * Google-side demarc ID for this circuit. Assigned at circuit turn-up and provided by Google to the customer in the LOA.
      *
      * Generated from protobuf field <code>optional string google_demarc_id = 448196270;</code>
      */
-    private $google_demarc_id = null;
+    protected $google_demarc_id = null;
 
     /**
      * Constructor.

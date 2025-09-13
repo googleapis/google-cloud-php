@@ -21,19 +21,19 @@ class ManagedInstance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string current_action = 178475964;</code>
      */
-    private $current_action = null;
+    protected $current_action = null;
     /**
      * [Output only] The unique identifier for this resource. This field is empty when instance does not exist.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
-    private $id = null;
+    protected $id = null;
     /**
      * [Output Only] The URL of the instance. The URL can exist even if the instance has not yet been created.
      *
      * Generated from protobuf field <code>optional string instance = 18257045;</code>
      */
-    private $instance = null;
+    protected $instance = null;
     /**
      * [Output Only] Health state of the instance per health-check.
      *
@@ -46,43 +46,43 @@ class ManagedInstance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string instance_status = 174577372;</code>
      */
-    private $instance_status = null;
+    protected $instance_status = null;
     /**
      * [Output Only] Information about the last attempt to create or delete the instance.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ManagedInstanceLastAttempt last_attempt = 434771492;</code>
      */
-    private $last_attempt = null;
+    protected $last_attempt = null;
     /**
      * [Output Only] The name of the instance. The name always exists even if the instance has not yet been created.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
     /**
      * [Output Only] Preserved state applied from per-instance config for this instance.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.PreservedState preserved_state_from_config = 98661858;</code>
      */
-    private $preserved_state_from_config = null;
+    protected $preserved_state_from_config = null;
     /**
      * [Output Only] Preserved state generated based on stateful policy for this instance.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.PreservedState preserved_state_from_policy = 470783954;</code>
      */
-    private $preserved_state_from_policy = null;
+    protected $preserved_state_from_policy = null;
     /**
      * [Output Only] Instance properties selected for this instance resulting from InstanceFlexibilityPolicy.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ManagedInstancePropertiesFromFlexibilityPolicy properties_from_flexibility_policy = 155525825;</code>
      */
-    private $properties_from_flexibility_policy = null;
+    protected $properties_from_flexibility_policy = null;
     /**
      * [Output Only] Intended version of this instance.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ManagedInstanceVersion version = 351608024;</code>
      */
-    private $version = null;
+    protected $version = null;
 
     /**
      * Constructor.

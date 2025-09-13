@@ -38,7 +38,7 @@ class InitialStateConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.FileContentBuffer pk = 3579;</code>
      */
-    private $pk = null;
+    protected $pk = null;
 
     /**
      * Constructor.

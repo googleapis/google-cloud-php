@@ -20,13 +20,13 @@ class SignedUrlKey extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string key_name = 500938859;</code>
      */
-    private $key_name = null;
+    protected $key_name = null;
     /**
      * 128-bit key value used for signing the URL. The key value must be a valid RFC 4648 Section 5 base64url encoded string.
      *
      * Generated from protobuf field <code>optional string key_value = 504106897;</code>
      */
-    private $key_value = null;
+    protected $key_value = null;
 
     /**
      * Constructor.

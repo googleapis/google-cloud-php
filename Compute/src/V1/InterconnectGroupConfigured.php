@@ -18,7 +18,7 @@ class InterconnectGroupConfigured extends \Google\Protobuf\Internal\Message
     /**
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectGroupConfiguredTopologyCapability topology_capability = 144190696;</code>
      */
-    private $topology_capability = null;
+    protected $topology_capability = null;
 
     /**
      * Constructor.

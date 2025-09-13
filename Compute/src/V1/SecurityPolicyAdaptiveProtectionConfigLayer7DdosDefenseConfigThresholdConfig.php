@@ -17,37 +17,37 @@ class SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfigThresholdConf
     /**
      * Generated from protobuf field <code>optional float auto_deploy_confidence_threshold = 84309694;</code>
      */
-    private $auto_deploy_confidence_threshold = null;
+    protected $auto_deploy_confidence_threshold = null;
     /**
      * Generated from protobuf field <code>optional int32 auto_deploy_expiration_sec = 69638793;</code>
      */
-    private $auto_deploy_expiration_sec = null;
+    protected $auto_deploy_expiration_sec = null;
     /**
      * Generated from protobuf field <code>optional float auto_deploy_impacted_baseline_threshold = 292441667;</code>
      */
-    private $auto_deploy_impacted_baseline_threshold = null;
+    protected $auto_deploy_impacted_baseline_threshold = null;
     /**
      * Generated from protobuf field <code>optional float auto_deploy_load_threshold = 522227738;</code>
      */
-    private $auto_deploy_load_threshold = null;
+    protected $auto_deploy_load_threshold = null;
     /**
      * Generated from protobuf field <code>optional float detection_absolute_qps = 383123174;</code>
      */
-    private $detection_absolute_qps = null;
+    protected $detection_absolute_qps = null;
     /**
      * Generated from protobuf field <code>optional float detection_load_threshold = 430499148;</code>
      */
-    private $detection_load_threshold = null;
+    protected $detection_load_threshold = null;
     /**
      * Generated from protobuf field <code>optional float detection_relative_to_baseline_qps = 291343749;</code>
      */
-    private $detection_relative_to_baseline_qps = null;
+    protected $detection_relative_to_baseline_qps = null;
     /**
      * The name must be 1-63 characters long, and comply with RFC1035. The name must be unique within the security policy.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
     /**
      * Configuration options for enabling Adaptive Protection to operate on specified granular traffic units.
      *

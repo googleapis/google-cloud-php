@@ -19,14 +19,14 @@ class LocationPolicyLocation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.LocationPolicyLocationConstraints constraints = 3909174;</code>
      */
-    private $constraints = null;
+    protected $constraints = null;
     /**
      * Preference for a given location. Set to either ALLOW or DENY.
      * Check the Preference enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string preference = 150781147;</code>
      */
-    private $preference = null;
+    protected $preference = null;
 
     /**
      * Constructor.

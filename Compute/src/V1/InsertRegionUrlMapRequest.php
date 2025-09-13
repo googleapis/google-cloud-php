@@ -20,25 +20,25 @@ class InsertRegionUrlMapRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "project"];</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * Name of the region scoping this request.
      *
      * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "region"];</code>
      */
-    private $region = '';
+    protected $region = '';
     /**
      * begin_interface: MixerMutationRequestBuilder Request ID to support idempotency.
      *
      * Generated from protobuf field <code>optional string request_id = 37109963;</code>
      */
-    private $request_id = null;
+    protected $request_id = null;
     /**
      * The body resource for this request
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.UrlMap url_map_resource = 168675425 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $url_map_resource = null;
+    protected $url_map_resource = null;
 
     /**
      * @param string                          $project        Project ID for this request.

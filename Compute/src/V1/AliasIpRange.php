@@ -20,13 +20,13 @@ class AliasIpRange extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string ip_cidr_range = 98117322;</code>
      */
-    private $ip_cidr_range = null;
+    protected $ip_cidr_range = null;
     /**
      * The name of a subnetwork secondary IP range from which to allocate an IP alias range. If not specified, the primary range of the subnetwork is used.
      *
      * Generated from protobuf field <code>optional string subnetwork_range_name = 387995966;</code>
      */
-    private $subnetwork_range_name = null;
+    protected $subnetwork_range_name = null;
 
     /**
      * Constructor.

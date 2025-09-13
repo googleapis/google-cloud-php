@@ -20,7 +20,7 @@ class LocationPolicyLocationConstraints extends \Google\Protobuf\Internal\Messag
      *
      * Generated from protobuf field <code>optional int32 max_count = 287620724;</code>
      */
-    private $max_count = null;
+    protected $max_count = null;
 
     /**
      * Constructor.

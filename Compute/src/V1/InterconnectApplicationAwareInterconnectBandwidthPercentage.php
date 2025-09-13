@@ -20,14 +20,14 @@ class InterconnectApplicationAwareInterconnectBandwidthPercentage extends \Googl
      *
      * Generated from protobuf field <code>optional uint32 percentage = 151909018;</code>
      */
-    private $percentage = null;
+    protected $percentage = null;
     /**
      * TrafficClass whose bandwidth percentage is being specified.
      * Check the TrafficClass enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string traffic_class = 198180022;</code>
      */
-    private $traffic_class = null;
+    protected $traffic_class = null;
 
     /**
      * Constructor.

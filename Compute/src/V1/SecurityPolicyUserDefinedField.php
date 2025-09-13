@@ -20,31 +20,31 @@ class SecurityPolicyUserDefinedField extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string base = 3016401;</code>
      */
-    private $base = null;
+    protected $base = null;
     /**
      * If specified, apply this mask (bitwise AND) to the field to ignore bits before matching. Encoded as a hexadecimal number (starting with "0x"). The last byte of the field (in network byte order) corresponds to the least significant byte of the mask.
      *
      * Generated from protobuf field <code>optional string mask = 3344108;</code>
      */
-    private $mask = null;
+    protected $mask = null;
     /**
      * The name of this field. Must be unique within the policy.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
     /**
      * Offset of the first byte of the field (in network byte order) relative to 'base'.
      *
      * Generated from protobuf field <code>optional int32 offset = 53961875;</code>
      */
-    private $offset = null;
+    protected $offset = null;
     /**
      * Size of the field in bytes. Valid values: 1-4.
      *
      * Generated from protobuf field <code>optional int32 size = 3530753;</code>
      */
-    private $size = null;
+    protected $size = null;
 
     /**
      * Constructor.

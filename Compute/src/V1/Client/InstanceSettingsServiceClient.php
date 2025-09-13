@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,7 +35,6 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Compute\V1\GetInstanceSettingRequest;
 use Google\Cloud\Compute\V1\InstanceSettings;
 use Google\Cloud\Compute\V1\PatchInstanceSettingRequest;
-use Google\Cloud\Compute\V1\ZoneOperationsClient;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
@@ -92,10 +91,10 @@ final class InstanceSettingsServiceClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/instance_settings_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/instance_settings_service_rest_client_config.php',
                 ],
             ],
-            'operationsClientClass' => ZoneOperationsClient::class,
         ];
     }
 
@@ -108,9 +107,7 @@ final class InstanceSettingsServiceClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -127,10 +124,7 @@ final class InstanceSettingsServiceClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-                'getZone',
-            ],
+            'additionalArgumentMethods' => ['getProject', 'getZone'],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -158,10 +152,31 @@ final class InstanceSettingsServiceClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : $this->getDefaultOperationDescriptor();
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : $this->getDefaultOperationDescriptor();
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return ZoneOperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new ZoneOperationsClient($options);
     }
 
     /**

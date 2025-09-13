@@ -20,7 +20,7 @@ class GetProjectRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project = '';
+    protected $project = '';
 
     /**
      * @param string $project Project ID for this request.

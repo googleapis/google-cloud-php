@@ -20,13 +20,13 @@ class NodeGroupMaintenanceWindow extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Duration maintenance_duration = 525291840;</code>
      */
-    private $maintenance_duration = null;
+    protected $maintenance_duration = null;
     /**
      * Start time of the window. This must be in UTC format that resolves to one of 00:00, 04:00, 08:00, 12:00, 16:00, or 20:00. For example, both 13:00-5 and 08:00 are valid.
      *
      * Generated from protobuf field <code>optional string start_time = 37467274;</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
 
     /**
      * Constructor.

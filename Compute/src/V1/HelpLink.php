@@ -20,13 +20,13 @@ class HelpLink extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
-    private $description = null;
+    protected $description = null;
     /**
      * The URL of the link.
      *
      * Generated from protobuf field <code>optional string url = 116079;</code>
      */
-    private $url = null;
+    protected $url = null;
 
     /**
      * Constructor.

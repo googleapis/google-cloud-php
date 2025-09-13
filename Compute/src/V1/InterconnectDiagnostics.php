@@ -27,14 +27,14 @@ class InterconnectDiagnostics extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string bundle_aggregation_type = 434939028;</code>
      */
-    private $bundle_aggregation_type = null;
+    protected $bundle_aggregation_type = null;
     /**
      * The operational status of the bundle interface.
      * Check the BundleOperationalStatus enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string bundle_operational_status = 106433500;</code>
      */
-    private $bundle_operational_status = null;
+    protected $bundle_operational_status = null;
     /**
      * A list of InterconnectDiagnostics.LinkStatus objects, describing the status for each link on the Interconnect.
      *
@@ -46,7 +46,7 @@ class InterconnectDiagnostics extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string mac_address = 332540164;</code>
      */
-    private $mac_address = null;
+    protected $mac_address = null;
 
     /**
      * Constructor.

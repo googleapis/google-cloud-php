@@ -19,7 +19,7 @@ class InstanceGroupManagerResizeRequestStatusLastAttempt extends \Google\Protobu
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Error error = 96784904;</code>
      */
-    private $error = null;
+    protected $error = null;
 
     /**
      * Constructor.

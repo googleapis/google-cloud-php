@@ -20,80 +20,80 @@ class PacketMirroring extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.PacketMirroringForwardingRuleInfo collector_ilb = 426607853;</code>
      */
-    private $collector_ilb = null;
+    protected $collector_ilb = null;
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
-    private $creation_timestamp = null;
+    protected $creation_timestamp = null;
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
-    private $description = null;
+    protected $description = null;
     /**
      * Indicates whether or not this packet mirroring takes effect. If set to FALSE, this packet mirroring policy will not be enforced on the network. The default is TRUE.
      * Check the Enable enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string enable = 311764355;</code>
      */
-    private $enable = null;
+    protected $enable = null;
     /**
      * Filter for mirrored traffic. If unspecified, all IPv4 traffic is mirrored.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.PacketMirroringFilter filter = 336120696;</code>
      */
-    private $filter = null;
+    protected $filter = null;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
-    private $id = null;
+    protected $id = null;
     /**
      * [Output Only] Type of the resource. Always compute#packetMirroring for packet mirrorings.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
-    private $kind = null;
+    protected $kind = null;
     /**
      * PacketMirroring mirroredResourceInfos. MirroredResourceInfo specifies a set of mirrored VM instances, subnetworks and/or tags for which traffic from/to all VM instances will be mirrored.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.PacketMirroringMirroredResourceInfo mirrored_resources = 124817348;</code>
      */
-    private $mirrored_resources = null;
+    protected $mirrored_resources = null;
     /**
      * Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
     /**
      * Specifies the mirrored VPC network. Only packets in this network will be mirrored. All mirrored VMs should have a NIC in the given network. All mirrored subnetworks should belong to the given network.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.PacketMirroringNetworkInfo network = 232872494;</code>
      */
-    private $network = null;
+    protected $network = null;
     /**
      * The priority of applying this configuration. Priority is used to break ties in cases where there is more than one matching rule. In the case of two rules that apply for a given Instance, the one with the lowest-numbered priority value wins. Default value is 1000. Valid range is 0 through 65535.
      *
      * Generated from protobuf field <code>optional uint32 priority = 445151652;</code>
      */
-    private $priority = null;
+    protected $priority = null;
     /**
      * [Output Only] URI of the region where the packetMirroring resides.
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
      */
-    private $region = null;
+    protected $region = null;
     /**
      * [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
-    private $self_link = null;
+    protected $self_link = null;
 
     /**
      * Constructor.

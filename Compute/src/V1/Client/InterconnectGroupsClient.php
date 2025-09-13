@@ -37,7 +37,6 @@ use Google\Cloud\Compute\V1\DeleteInterconnectGroupRequest;
 use Google\Cloud\Compute\V1\GetIamPolicyInterconnectGroupRequest;
 use Google\Cloud\Compute\V1\GetInterconnectGroupRequest;
 use Google\Cloud\Compute\V1\GetOperationalStatusInterconnectGroupRequest;
-use Google\Cloud\Compute\V1\GlobalOperationsClient;
 use Google\Cloud\Compute\V1\InsertInterconnectGroupRequest;
 use Google\Cloud\Compute\V1\InterconnectGroup;
 use Google\Cloud\Compute\V1\InterconnectGroupsGetOperationalStatusResponse;
@@ -115,7 +114,6 @@ final class InterconnectGroupsClient
                     'restClientConfigPath' => __DIR__ . '/../resources/interconnect_groups_rest_client_config.php',
                 ],
             ],
-            'operationsClientClass' => GlobalOperationsClient::class,
         ];
     }
 
@@ -128,9 +126,7 @@ final class InterconnectGroupsClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -147,9 +143,7 @@ final class InterconnectGroupsClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-            ],
+            'additionalArgumentMethods' => ['getProject'],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -177,10 +171,31 @@ final class InterconnectGroupsClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : $this->getDefaultOperationDescriptor();
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : $this->getDefaultOperationDescriptor();
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return GlobalOperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new GlobalOperationsClient($options);
     }
 
     /**
@@ -282,8 +297,10 @@ final class InterconnectGroupsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createMembers(CreateMembersInterconnectGroupRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createMembers(
+        CreateMembersInterconnectGroupRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateMembers', $request, $callOptions)->wait();
     }
 
@@ -387,8 +404,10 @@ final class InterconnectGroupsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getOperationalStatus(GetOperationalStatusInterconnectGroupRequest $request, array $callOptions = []): InterconnectGroupsGetOperationalStatusResponse
-    {
+    public function getOperationalStatus(
+        GetOperationalStatusInterconnectGroupRequest $request,
+        array $callOptions = []
+    ): InterconnectGroupsGetOperationalStatusResponse {
         return $this->startApiCall('GetOperationalStatus', $request, $callOptions)->wait();
     }
 
@@ -439,8 +458,10 @@ final class InterconnectGroupsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function list(ListInterconnectGroupsRequest $request, array $callOptions = []): InterconnectGroupsListResponse
-    {
+    public function list(
+        ListInterconnectGroupsRequest $request,
+        array $callOptions = []
+    ): InterconnectGroupsListResponse {
         return $this->startApiCall('List', $request, $callOptions)->wait();
     }
 
@@ -518,8 +539,10 @@ final class InterconnectGroupsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsInterconnectGroupRequest $request, array $callOptions = []): TestPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsInterconnectGroupRequest $request,
+        array $callOptions = []
+    ): TestPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

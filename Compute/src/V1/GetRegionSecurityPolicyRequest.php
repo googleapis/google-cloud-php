@@ -20,19 +20,19 @@ class GetRegionSecurityPolicyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * Name of the region scoping this request.
      *
      * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $region = '';
+    protected $region = '';
     /**
      * Name of the security policy to get.
      *
      * Generated from protobuf field <code>string security_policy = 171082513 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $security_policy = '';
+    protected $security_policy = '';
 
     /**
      * @param string $project        Project ID for this request.

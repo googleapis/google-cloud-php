@@ -20,25 +20,25 @@ class GetAssociationRegionNetworkFirewallPolicyRequest extends \Google\Protobuf\
      *
      * Generated from protobuf field <code>string firewall_policy = 498173265 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $firewall_policy = '';
+    protected $firewall_policy = '';
     /**
      * The name of the association to get from the firewall policy.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
     /**
      * Project ID for this request.
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * Name of the region scoping this request.
      *
      * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $region = '';
+    protected $region = '';
 
     /**
      * @param string $project        Project ID for this request.

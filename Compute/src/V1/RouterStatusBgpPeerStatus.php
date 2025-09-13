@@ -23,117 +23,117 @@ class RouterStatusBgpPeerStatus extends \Google\Protobuf\Internal\Message
     /**
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.BfdStatus bfd_status = 395631729;</code>
      */
-    private $bfd_status = null;
+    protected $bfd_status = null;
     /**
      * Enable IPv4 traffic over BGP Peer. It is enabled by default if the peerIpAddress is version 4.
      *
      * Generated from protobuf field <code>optional bool enable_ipv4 = 181467937;</code>
      */
-    private $enable_ipv4 = null;
+    protected $enable_ipv4 = null;
     /**
      * Enable IPv6 traffic over BGP Peer. It is enabled by default if the peerIpAddress is version 6.
      *
      * Generated from protobuf field <code>optional bool enable_ipv6 = 181467939;</code>
      */
-    private $enable_ipv6 = null;
+    protected $enable_ipv6 = null;
     /**
      * IP address of the local BGP interface.
      *
      * Generated from protobuf field <code>optional string ip_address = 406272220;</code>
      */
-    private $ip_address = null;
+    protected $ip_address = null;
     /**
      * IPv4 address of the local BGP interface.
      *
      * Generated from protobuf field <code>optional string ipv4_nexthop_address = 5703377;</code>
      */
-    private $ipv4_nexthop_address = null;
+    protected $ipv4_nexthop_address = null;
     /**
      * IPv6 address of the local BGP interface.
      *
      * Generated from protobuf field <code>optional string ipv6_nexthop_address = 27968211;</code>
      */
-    private $ipv6_nexthop_address = null;
+    protected $ipv6_nexthop_address = null;
     /**
      * URL of the VPN tunnel that this BGP peer controls.
      *
      * Generated from protobuf field <code>optional string linked_vpn_tunnel = 352296953;</code>
      */
-    private $linked_vpn_tunnel = null;
+    protected $linked_vpn_tunnel = null;
     /**
      * Informs whether MD5 authentication is enabled on this BGP peer.
      *
      * Generated from protobuf field <code>optional bool md5_auth_enabled = 451152075;</code>
      */
-    private $md5_auth_enabled = null;
+    protected $md5_auth_enabled = null;
     /**
      * Name of this BGP peer. Unique within the Routers resource.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
     /**
      * Number of routes learned from the remote BGP Peer.
      *
      * Generated from protobuf field <code>optional uint32 num_learned_routes = 135457535;</code>
      */
-    private $num_learned_routes = null;
+    protected $num_learned_routes = null;
     /**
      * IP address of the remote BGP interface.
      *
      * Generated from protobuf field <code>optional string peer_ip_address = 207735769;</code>
      */
-    private $peer_ip_address = null;
+    protected $peer_ip_address = null;
     /**
      * IPv4 address of the remote BGP interface.
      *
      * Generated from protobuf field <code>optional string peer_ipv4_nexthop_address = 469221774;</code>
      */
-    private $peer_ipv4_nexthop_address = null;
+    protected $peer_ipv4_nexthop_address = null;
     /**
      * IPv6 address of the remote BGP interface.
      *
      * Generated from protobuf field <code>optional string peer_ipv6_nexthop_address = 491486608;</code>
      */
-    private $peer_ipv6_nexthop_address = null;
+    protected $peer_ipv6_nexthop_address = null;
     /**
      * [Output only] URI of the VM instance that is used as third-party router appliances such as Next Gen Firewalls, Virtual Routers, or Router Appliances. The VM instance is the peer side of the BGP session.
      *
      * Generated from protobuf field <code>optional string router_appliance_instance = 468312989;</code>
      */
-    private $router_appliance_instance = null;
+    protected $router_appliance_instance = null;
     /**
      * The state of the BGP session. For a list of possible values for this field, see BGP session states.
      *
      * Generated from protobuf field <code>optional string state = 109757585;</code>
      */
-    private $state = null;
+    protected $state = null;
     /**
      * Status of the BGP peer: {UP, DOWN}
      * Check the Status enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>
      */
-    private $status = null;
+    protected $status = null;
     /**
      * Indicates why particular status was returned.
      * Check the StatusReason enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string status_reason = 342706993;</code>
      */
-    private $status_reason = null;
+    protected $status_reason = null;
     /**
      * Time this session has been up. Format: 14 years, 51 weeks, 6 days, 23 hours, 59 minutes, 59 seconds
      *
      * Generated from protobuf field <code>optional string uptime = 235379688;</code>
      */
-    private $uptime = null;
+    protected $uptime = null;
     /**
      * Time this session has been up, in seconds. Format: 145
      *
      * Generated from protobuf field <code>optional string uptime_seconds = 104736040;</code>
      */
-    private $uptime_seconds = null;
+    protected $uptime_seconds = null;
 
     /**
      * Constructor.

@@ -25,7 +25,7 @@ class NetworkEndpointGroupsScopedList extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warning warning = 50704284;</code>
      */
-    private $warning = null;
+    protected $warning = null;
 
     /**
      * Constructor.

@@ -20,38 +20,38 @@ class Commitment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional bool auto_renew = 495520765;</code>
      */
-    private $auto_renew = null;
+    protected $auto_renew = null;
     /**
      * The category of the commitment; specifies whether the commitment is for hardware or software resources. Category MACHINE specifies that you are committing to hardware machine resources such as VCPU or MEMORY, listed in resources. Category LICENSE specifies that you are committing to software licenses, listed in licenseResources. Note that if you specify MACHINE commitments, then you must also specify a type to indicate the machine series of the hardware resource that you are committing to.
      * Check the Category enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string category = 50511102;</code>
      */
-    private $category = null;
+    protected $category = null;
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
-    private $creation_timestamp = null;
+    protected $creation_timestamp = null;
     /**
      * [Input Only] Optional, specifies the requested commitment end time in RFC3339 text format. Use this option when the desired commitment's end date is later than the start date + term duration.
      *
      * Generated from protobuf field <code>optional string custom_end_timestamp = 181770852;</code>
      */
-    private $custom_end_timestamp = null;
+    protected $custom_end_timestamp = null;
     /**
      * An optional description of the commitment. You can provide this property when you create the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
-    private $description = null;
+    protected $description = null;
     /**
      * [Output Only] Commitment end time in RFC3339 text format.
      *
      * Generated from protobuf field <code>optional string end_timestamp = 468096690;</code>
      */
-    private $end_timestamp = null;
+    protected $end_timestamp = null;
     /**
      * Generated from protobuf field <code>repeated string existing_reservations = 493028443;</code>
      */
@@ -61,19 +61,19 @@ class Commitment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
-    private $id = null;
+    protected $id = null;
     /**
      * [Output Only] Type of the resource. Always compute#commitment for commitments.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
-    private $kind = null;
+    protected $kind = null;
     /**
      * The license specification required as part of a license commitment.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.LicenseResourceCommitment license_resource = 437955148;</code>
      */
-    private $license_resource = null;
+    protected $license_resource = null;
     /**
      * The list of source commitments that you are merging to create the new merged commitment. For more information, see Merging commitments.
      *
@@ -85,20 +85,20 @@ class Commitment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
     /**
      * The minimum time duration that you commit to purchasing resources. The plan that you choose determines the preset term length of the commitment (which is 1 year or 3 years) and affects the discount rate that you receive for your resources. Committing to a longer time duration typically gives you a higher discount rate. The supported values for this field are TWELVE_MONTH (1 year), and THIRTY_SIX_MONTH (3 years).
      * Check the Plan enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string plan = 3443497;</code>
      */
-    private $plan = null;
+    protected $plan = null;
     /**
      * [Output Only] URL of the region where the commitment and committed resources are located.
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
      */
-    private $region = null;
+    protected $region = null;
     /**
      * The list of new reservations that you want to create and attach to this commitment. You must attach reservations to your commitment if your commitment specifies any GPUs or Local SSD disks. For more information, see Attach reservations to resource-based commitments. Specify this property only if you want to create new reservations to attach. To attach existing reservations, specify the existingReservations property instead.
      *
@@ -110,7 +110,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.CommitmentResourceStatus resource_status = 249429315;</code>
      */
-    private $resource_status = null;
+    protected $resource_status = null;
     /**
      * The list of all the hardware resources, with their types and amounts, that you want to commit to. Specify as a separate entry in the list for each individual resource type.
      *
@@ -122,39 +122,39 @@ class Commitment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
-    private $self_link = null;
+    protected $self_link = null;
     /**
      * The source commitment from which you are transferring resources to create the new split commitment. For more information, see Split commitments.
      *
      * Generated from protobuf field <code>optional string split_source_commitment = 402611156;</code>
      */
-    private $split_source_commitment = null;
+    protected $split_source_commitment = null;
     /**
      * [Output Only] Commitment start time in RFC3339 text format.
      *
      * Generated from protobuf field <code>optional string start_timestamp = 83645817;</code>
      */
-    private $start_timestamp = null;
+    protected $start_timestamp = null;
     /**
      * [Output Only] Status of the commitment with regards to eventual expiration (each commitment has an end date defined). Status can be one of the following values: NOT_YET_ACTIVE, ACTIVE, or EXPIRED.
      * Check the Status enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>
      */
-    private $status = null;
+    protected $status = null;
     /**
      * [Output Only] An optional, human-readable explanation of the status.
      *
      * Generated from protobuf field <code>optional string status_message = 297428154;</code>
      */
-    private $status_message = null;
+    protected $status_message = null;
     /**
      * The type of commitment; specifies the machine series for which you want to commit to purchasing resources. The choice of machine series affects the discount rate and the eligible resource types. The type must be one of the following: ACCELERATOR_OPTIMIZED, ACCELERATOR_OPTIMIZED_A3, ACCELERATOR_OPTIMIZED_A3_MEGA, COMPUTE_OPTIMIZED, COMPUTE_OPTIMIZED_C2D, COMPUTE_OPTIMIZED_C3, COMPUTE_OPTIMIZED_C3D, COMPUTE_OPTIMIZED_H3, GENERAL_PURPOSE, GENERAL_PURPOSE_C4, GENERAL_PURPOSE_E2, GENERAL_PURPOSE_N2, GENERAL_PURPOSE_N2D, GENERAL_PURPOSE_N4, GENERAL_PURPOSE_T2D, GRAPHICS_OPTIMIZED, MEMORY_OPTIMIZED, MEMORY_OPTIMIZED_M3, MEMORY_OPTIMIZED_X4, STORAGE_OPTIMIZED_Z3. For example, type MEMORY_OPTIMIZED specifies a commitment that applies only to eligible resources of memory optimized M1 and M2 machine series. Type GENERAL_PURPOSE specifies a commitment that applies only to eligible resources of general purpose N1 machine series.
      * Check the Type enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string type = 3575610;</code>
      */
-    private $type = null;
+    protected $type = null;
 
     /**
      * Constructor.

@@ -20,19 +20,19 @@ class ConsistentHashLoadBalancerSettings extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ConsistentHashLoadBalancerSettingsHttpCookie http_cookie = 6673915;</code>
      */
-    private $http_cookie = null;
+    protected $http_cookie = null;
     /**
      * The hash based on the value of the specified header field. This field is applicable if the sessionAffinity is set to HEADER_FIELD.
      *
      * Generated from protobuf field <code>optional string http_header_name = 234798022;</code>
      */
-    private $http_header_name = null;
+    protected $http_header_name = null;
     /**
      * The minimum number of virtual nodes to use for the hash ring. Defaults to 1024. Larger ring sizes result in more granular load distributions. If the number of hosts in the load balancing pool is larger than the ring size, each host will be assigned a single virtual node.
      *
      * Generated from protobuf field <code>optional int64 minimum_ring_size = 234380735;</code>
      */
-    private $minimum_ring_size = null;
+    protected $minimum_ring_size = null;
 
     /**
      * Constructor.

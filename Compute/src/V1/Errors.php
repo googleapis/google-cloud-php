@@ -19,7 +19,7 @@ class Errors extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string code = 3059181;</code>
      */
-    private $code = null;
+    protected $code = null;
     /**
      * [Output Only] An optional list of messages that contain the error details. There is a set of defined message types to use for providing details.The syntax depends on the error code. For example, QuotaExceededInfo will have details when the error code is QUOTA_EXCEEDED.
      *
@@ -31,13 +31,13 @@ class Errors extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string location = 290430901;</code>
      */
-    private $location = null;
+    protected $location = null;
     /**
      * [Output Only] An optional, human-readable error message.
      *
      * Generated from protobuf field <code>optional string message = 418054151;</code>
      */
-    private $message = null;
+    protected $message = null;
 
     /**
      * Constructor.

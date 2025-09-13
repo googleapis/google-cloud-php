@@ -20,19 +20,19 @@ class InterconnectAttachmentPartnerMetadata extends \Google\Protobuf\Internal\Me
      *
      * Generated from protobuf field <code>optional string interconnect_name = 514963356;</code>
      */
-    private $interconnect_name = null;
+    protected $interconnect_name = null;
     /**
      * Plain text name of the Partner providing this attachment. This value may be validated to match approved Partner values.
      *
      * Generated from protobuf field <code>optional string partner_name = 161747874;</code>
      */
-    private $partner_name = null;
+    protected $partner_name = null;
     /**
      * URL of the Partner's portal for this Attachment. Partners may customise this to be a deep link to the specific resource on the Partner portal. This value may be validated to match approved Partner values.
      *
      * Generated from protobuf field <code>optional string portal_url = 269182748;</code>
      */
-    private $portal_url = null;
+    protected $portal_url = null;
 
     /**
      * Constructor.

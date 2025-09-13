@@ -20,20 +20,20 @@ class InterconnectGroupsOperationalStatus extends \Google\Protobuf\Internal\Mess
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectGroupConfigured configured = 295631422;</code>
      */
-    private $configured = null;
+    protected $configured = null;
     /**
      * Summarizes the status of the group.
      * Check the GroupStatus enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string group_status = 338778546;</code>
      */
-    private $group_status = null;
+    protected $group_status = null;
     /**
      * The intent of the resource, as returned by Get.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectGroupIntent intent = 426849948;</code>
      */
-    private $intent = null;
+    protected $intent = null;
     /**
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectGroupsOperationalStatusInterconnectStatus interconnect_statuses = 446756017;</code>
      */
@@ -43,7 +43,7 @@ class InterconnectGroupsOperationalStatus extends \Google\Protobuf\Internal\Mess
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectGroupConfigured operational = 129704914;</code>
      */
-    private $operational = null;
+    protected $operational = null;
 
     /**
      * Constructor.

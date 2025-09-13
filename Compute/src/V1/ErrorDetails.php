@@ -17,19 +17,19 @@ class ErrorDetails extends \Google\Protobuf\Internal\Message
     /**
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ErrorInfo error_info = 25251973;</code>
      */
-    private $error_info = null;
+    protected $error_info = null;
     /**
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Help help = 3198785;</code>
      */
-    private $help = null;
+    protected $help = null;
     /**
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.LocalizedMessage localized_message = 404537155;</code>
      */
-    private $localized_message = null;
+    protected $localized_message = null;
     /**
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.QuotaExceededInfo quota_info = 93923861;</code>
      */
-    private $quota_info = null;
+    protected $quota_info = null;
 
     /**
      * Constructor.

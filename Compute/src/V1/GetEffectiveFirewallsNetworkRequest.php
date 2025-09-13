@@ -20,13 +20,13 @@ class GetEffectiveFirewallsNetworkRequest extends \Google\Protobuf\Internal\Mess
      *
      * Generated from protobuf field <code>string network = 232872494 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $network = '';
+    protected $network = '';
     /**
      * Project ID for this request.
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project = '';
+    protected $project = '';
 
     /**
      * @param string $project Project ID for this request.

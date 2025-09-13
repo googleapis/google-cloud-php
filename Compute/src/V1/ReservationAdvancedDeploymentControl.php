@@ -21,7 +21,7 @@ class ReservationAdvancedDeploymentControl extends \Google\Protobuf\Internal\Mes
      *
      * Generated from protobuf field <code>optional string reservation_operational_mode = 499978755;</code>
      */
-    private $reservation_operational_mode = null;
+    protected $reservation_operational_mode = null;
 
     /**
      * Constructor.

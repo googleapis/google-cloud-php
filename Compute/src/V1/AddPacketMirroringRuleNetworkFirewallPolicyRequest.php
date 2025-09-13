@@ -20,37 +20,37 @@ class AddPacketMirroringRuleNetworkFirewallPolicyRequest extends \Google\Protobu
      *
      * Generated from protobuf field <code>string firewall_policy = 498173265 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $firewall_policy = '';
+    protected $firewall_policy = '';
     /**
      * The body resource for this request
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.FirewallPolicyRule firewall_policy_rule_resource = 250523523 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $firewall_policy_rule_resource = null;
+    protected $firewall_policy_rule_resource = null;
     /**
      * When rule.priority is not specified, auto choose a unused priority between minPriority and maxPriority>. This field is exclusive with rule.priority.
      *
      * Generated from protobuf field <code>optional int32 max_priority = 329635359;</code>
      */
-    private $max_priority = null;
+    protected $max_priority = null;
     /**
      * When rule.priority is not specified, auto choose a unused priority between minPriority and maxPriority>. This field is exclusive with rule.priority.
      *
      * Generated from protobuf field <code>optional int32 min_priority = 267190513;</code>
      */
-    private $min_priority = null;
+    protected $min_priority = null;
     /**
      * Project ID for this request.
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "project"];</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *
      * Generated from protobuf field <code>optional string request_id = 37109963;</code>
      */
-    private $request_id = null;
+    protected $request_id = null;
 
     /**
      * @param string                                      $project                    Project ID for this request.

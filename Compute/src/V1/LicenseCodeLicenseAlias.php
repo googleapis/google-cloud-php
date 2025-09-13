@@ -19,13 +19,13 @@ class LicenseCodeLicenseAlias extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
-    private $description = null;
+    protected $description = null;
     /**
      * [Output Only] URL of license corresponding to this License Code.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
-    private $self_link = null;
+    protected $self_link = null;
 
     /**
      * Constructor.

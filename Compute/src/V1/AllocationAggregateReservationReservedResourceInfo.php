@@ -19,7 +19,7 @@ class AllocationAggregateReservationReservedResourceInfo extends \Google\Protobu
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.AllocationAggregateReservationReservedResourceInfoAccelerator accelerator = 424338027;</code>
      */
-    private $accelerator = null;
+    protected $accelerator = null;
 
     /**
      * Constructor.

@@ -20,13 +20,13 @@ class Screenshot extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string contents = 506419994;</code>
      */
-    private $contents = null;
+    protected $contents = null;
     /**
      * [Output Only] Type of the resource. Always compute#screenshot for the screenshots.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
-    private $kind = null;
+    protected $kind = null;
 
     /**
      * Constructor.

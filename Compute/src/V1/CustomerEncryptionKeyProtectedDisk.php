@@ -19,13 +19,13 @@ class CustomerEncryptionKeyProtectedDisk extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.CustomerEncryptionKey disk_encryption_key = 271660677;</code>
      */
-    private $disk_encryption_key = null;
+    protected $disk_encryption_key = null;
     /**
      * Specifies a valid partial or full URL to an existing Persistent Disk resource. This field is only applicable for persistent disks. For example: "source": "/compute/v1/projects/project_id/zones/zone/disks/ disk_name 
      *
      * Generated from protobuf field <code>optional string source = 177235995;</code>
      */
-    private $source = null;
+    protected $source = null;
 
     /**
      * Constructor.

@@ -20,55 +20,55 @@ class AcceleratorType extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
-    private $creation_timestamp = null;
+    protected $creation_timestamp = null;
     /**
      * [Output Only] The deprecation status associated with this accelerator type.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.DeprecationStatus deprecated = 515138995;</code>
      */
-    private $deprecated = null;
+    protected $deprecated = null;
     /**
      * [Output Only] An optional textual description of the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
-    private $description = null;
+    protected $description = null;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
-    private $id = null;
+    protected $id = null;
     /**
      * [Output Only] The type of the resource. Always compute#acceleratorType for accelerator types.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
-    private $kind = null;
+    protected $kind = null;
     /**
      * [Output Only] Maximum number of accelerator cards allowed per instance.
      *
      * Generated from protobuf field <code>optional int32 maximum_cards_per_instance = 263814482;</code>
      */
-    private $maximum_cards_per_instance = null;
+    protected $maximum_cards_per_instance = null;
     /**
      * [Output Only] Name of the resource.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
     /**
      * [Output Only] Server-defined, fully qualified URL for this resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
-    private $self_link = null;
+    protected $self_link = null;
     /**
      * [Output Only] The name of the zone where the accelerator type resides, such as us-central1-a. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
      *
      * Generated from protobuf field <code>optional string zone = 3744684;</code>
      */
-    private $zone = null;
+    protected $zone = null;
 
     /**
      * Constructor.

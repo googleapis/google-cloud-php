@@ -25,14 +25,14 @@ class NodeGroupNode extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceConsumptionInfo consumed_resources = 334527118;</code>
      */
-    private $consumed_resources = null;
+    protected $consumed_resources = null;
     /**
      * CPU overcommit.
      * Check the CpuOvercommitType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string cpu_overcommit_type = 247727959;</code>
      */
-    private $cpu_overcommit_type = null;
+    protected $cpu_overcommit_type = null;
     /**
      * Local disk configurations.
      *
@@ -56,50 +56,50 @@ class NodeGroupNode extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
     /**
      * The type of this node.
      *
      * Generated from protobuf field <code>optional string node_type = 465832791;</code>
      */
-    private $node_type = null;
+    protected $node_type = null;
     /**
      * [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool satisfies_pzs = 480964267;</code>
      */
-    private $satisfies_pzs = null;
+    protected $satisfies_pzs = null;
     /**
      * Binding properties for the physical server.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ServerBinding server_binding = 208179593;</code>
      */
-    private $server_binding = null;
+    protected $server_binding = null;
     /**
      * Server ID associated with this node.
      *
      * Generated from protobuf field <code>optional string server_id = 339433367;</code>
      */
-    private $server_id = null;
+    protected $server_id = null;
     /**
      * 
      * Check the Status enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>
      */
-    private $status = null;
+    protected $status = null;
     /**
      * Total amount of available resources on the node.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceConsumptionInfo total_resources = 97406698;</code>
      */
-    private $total_resources = null;
+    protected $total_resources = null;
     /**
      * [Output Only] The information about an upcoming maintenance event.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.UpcomingMaintenance upcoming_maintenance = 227348592;</code>
      */
-    private $upcoming_maintenance = null;
+    protected $upcoming_maintenance = null;
 
     /**
      * Constructor.

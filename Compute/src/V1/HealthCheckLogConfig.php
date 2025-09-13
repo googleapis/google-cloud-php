@@ -20,7 +20,7 @@ class HealthCheckLogConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional bool enable = 311764355;</code>
      */
-    private $enable = null;
+    protected $enable = null;
 
     /**
      * Constructor.

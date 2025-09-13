@@ -20,19 +20,19 @@ class VpnGatewayStatusTunnel extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional uint32 local_gateway_interface = 158764330;</code>
      */
-    private $local_gateway_interface = null;
+    protected $local_gateway_interface = null;
     /**
      * The peer gateway interface this VPN tunnel is connected to, the peer gateway could either be an external VPN gateway or a Google Cloud VPN gateway.
      *
      * Generated from protobuf field <code>optional uint32 peer_gateway_interface = 214380385;</code>
      */
-    private $peer_gateway_interface = null;
+    protected $peer_gateway_interface = null;
     /**
      * URL reference to the VPN tunnel.
      *
      * Generated from protobuf field <code>optional string tunnel_url = 78975256;</code>
      */
-    private $tunnel_url = null;
+    protected $tunnel_url = null;
 
     /**
      * Constructor.

@@ -19,7 +19,7 @@ class ProjectsEnableXpnResourceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.XpnResourceId xpn_resource = 133384631;</code>
      */
-    private $xpn_resource = null;
+    protected $xpn_resource = null;
 
     /**
      * Constructor.

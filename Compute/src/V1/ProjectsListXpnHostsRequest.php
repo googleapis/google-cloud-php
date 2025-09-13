@@ -19,7 +19,7 @@ class ProjectsListXpnHostsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string organization = 105180467;</code>
      */
-    private $organization = null;
+    protected $organization = null;
 
     /**
      * Constructor.

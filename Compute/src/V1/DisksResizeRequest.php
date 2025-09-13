@@ -19,7 +19,7 @@ class DisksResizeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int64 size_gb = 494929369;</code>
      */
-    private $size_gb = null;
+    protected $size_gb = null;
 
     /**
      * Constructor.

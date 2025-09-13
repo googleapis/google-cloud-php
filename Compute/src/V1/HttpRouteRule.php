@@ -20,19 +20,19 @@ class HttpRouteRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.CustomErrorResponsePolicy custom_error_response_policy = 202816619;</code>
      */
-    private $custom_error_response_policy = null;
+    protected $custom_error_response_policy = null;
     /**
      * The short description conveying the intent of this routeRule. The description can have a maximum length of 1024 characters.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
-    private $description = null;
+    protected $description = null;
     /**
      * Specifies changes to request and response headers that need to take effect for the selected backendService. The headerAction value specified here is applied before the matching pathMatchers[].headerAction and after pathMatchers[].routeRules[].routeAction.weightedBackendService.backendServiceWeightAction[].headerAction HeaderAction is not supported for load balancers that have their loadBalancingScheme set to EXTERNAL. Not supported when the URL map is bound to a target gRPC proxy that has validateForProxyless field set to true.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.HttpHeaderAction header_action = 328077352;</code>
      */
-    private $header_action = null;
+    protected $header_action = null;
     /**
      * The list of criteria for matching attributes of a request to this routeRule. This list has OR semantics: the request matches this routeRule when any of the matchRules are satisfied. However predicates within a given matchRule have AND semantics. All predicates within a matchRule must match for the request to match the rule.
      *
@@ -44,25 +44,25 @@ class HttpRouteRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int32 priority = 445151652;</code>
      */
-    private $priority = null;
+    protected $priority = null;
     /**
      * In response to a matching matchRule, the load balancer performs advanced routing actions, such as URL rewrites and header transformations, before forwarding the request to the selected backend. Only one of urlRedirect, service or routeAction.weightedBackendService can be set. URL maps for classic Application Load Balancers only support the urlRewrite action within a route rule's routeAction.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.HttpRouteAction route_action = 424563948;</code>
      */
-    private $route_action = null;
+    protected $route_action = null;
     /**
      * The full or partial URL of the backend service resource to which traffic is directed if this rule is matched. If routeAction is also specified, advanced routing actions, such as URL rewrites, take effect before sending the request to the backend. Only one of urlRedirect, service or routeAction.weightedBackendService can be set.
      *
      * Generated from protobuf field <code>optional string service = 373540533;</code>
      */
-    private $service = null;
+    protected $service = null;
     /**
      * When this rule is matched, the request is redirected to a URL specified by urlRedirect. Only one of urlRedirect, service or routeAction.weightedBackendService can be set. Not supported when the URL map is bound to a target gRPC proxy.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.HttpRedirectAction url_redirect = 405147820;</code>
      */
-    private $url_redirect = null;
+    protected $url_redirect = null;
 
     /**
      * Constructor.

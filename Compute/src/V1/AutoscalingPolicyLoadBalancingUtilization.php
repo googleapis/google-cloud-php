@@ -20,7 +20,7 @@ class AutoscalingPolicyLoadBalancingUtilization extends \Google\Protobuf\Interna
      *
      * Generated from protobuf field <code>optional double utilization_target = 215905870;</code>
      */
-    private $utilization_target = null;
+    protected $utilization_target = null;
 
     /**
      * Constructor.

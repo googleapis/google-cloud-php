@@ -30,7 +30,7 @@ class AuditConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string service = 373540533;</code>
      */
-    private $service = null;
+    protected $service = null;
 
     /**
      * Constructor.

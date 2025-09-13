@@ -19,13 +19,13 @@ class InstanceGroupManagerResizeRequestStatus extends \Google\Protobuf\Internal\
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Error error = 96784904;</code>
      */
-    private $error = null;
+    protected $error = null;
     /**
      * [Output only] Information about the last attempt to fulfill the request. The value is temporary since the ResizeRequest can retry, as long as it's still active and the last attempt value can either be cleared or replaced with a different error. Since ResizeRequest retries infrequently, the value may be stale and no longer show an active problem. The value is cleared when ResizeRequest transitions to the final state (becomes inactive). If the final state is FAILED the error describing it will be storred in the "error" field only.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerResizeRequestStatusLastAttempt last_attempt = 434771492;</code>
      */
-    private $last_attempt = null;
+    protected $last_attempt = null;
 
     /**
      * Constructor.

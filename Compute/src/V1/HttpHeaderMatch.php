@@ -20,49 +20,49 @@ class HttpHeaderMatch extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string exact_match = 457641093;</code>
      */
-    private $exact_match = null;
+    protected $exact_match = null;
     /**
      * The name of the HTTP header to match. For matching against the HTTP request's authority, use a headerMatch with the header name ":authority". For matching a request's method, use the headerName ":method". When the URL map is bound to a target gRPC proxy that has the validateForProxyless field set to true, only non-binary user-specified custom metadata and the `content-type` header are supported. The following transport-level headers cannot be used in header matching rules: `:authority`, `:method`, `:path`, `:scheme`, `user-agent`, `accept-encoding`, `content-encoding`, `grpc-accept-encoding`, `grpc-encoding`, `grpc-previous-rpc-attempts`, `grpc-tags-bin`, `grpc-timeout` and `grpc-trace-bin`.
      *
      * Generated from protobuf field <code>optional string header_name = 110223613;</code>
      */
-    private $header_name = null;
+    protected $header_name = null;
     /**
      * If set to false, the headerMatch is considered a match if the preceding match criteria are met. If set to true, the headerMatch is considered a match if the preceding match criteria are NOT met. The default setting is false. 
      *
      * Generated from protobuf field <code>optional bool invert_match = 501130268;</code>
      */
-    private $invert_match = null;
+    protected $invert_match = null;
     /**
      * The value of the header must start with the contents of prefixMatch. Only one of exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set.
      *
      * Generated from protobuf field <code>optional string prefix_match = 257898968;</code>
      */
-    private $prefix_match = null;
+    protected $prefix_match = null;
     /**
      * A header with the contents of headerName must exist. The match takes place whether or not the request's header has a value. Only one of exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set.
      *
      * Generated from protobuf field <code>optional bool present_match = 67435841;</code>
      */
-    private $present_match = null;
+    protected $present_match = null;
     /**
      * The header value must be an integer and its value must be in the range specified in rangeMatch. If the header does not contain an integer, number or is empty, the match fails. For example for a range [-5, 0] - -3 will match. - 0 will not match. - 0.25 will not match. - -3someString will not match. Only one of exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set. rangeMatch is not supported for load balancers that have loadBalancingScheme set to EXTERNAL.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Int64RangeMatch range_match = 97244227;</code>
      */
-    private $range_match = null;
+    protected $range_match = null;
     /**
      * The value of the header must match the regular expression specified in regexMatch. For more information about regular expression syntax, see Syntax. For matching against a port specified in the HTTP request, use a headerMatch with headerName set to PORT and a regular expression that satisfies the RFC2616 Host header's port specifier. Only one of exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set. Regular expressions can only be used when the loadBalancingScheme is set to INTERNAL_SELF_MANAGED.
      *
      * Generated from protobuf field <code>optional string regex_match = 107387853;</code>
      */
-    private $regex_match = null;
+    protected $regex_match = null;
     /**
      * The value of the header must end with the contents of suffixMatch. Only one of exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set.
      *
      * Generated from protobuf field <code>optional string suffix_match = 426488663;</code>
      */
-    private $suffix_match = null;
+    protected $suffix_match = null;
 
     /**
      * Constructor.

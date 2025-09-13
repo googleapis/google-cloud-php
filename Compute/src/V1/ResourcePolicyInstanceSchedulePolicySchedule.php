@@ -20,7 +20,7 @@ class ResourcePolicyInstanceSchedulePolicySchedule extends \Google\Protobuf\Inte
      *
      * Generated from protobuf field <code>optional string schedule = 375820951;</code>
      */
-    private $schedule = null;
+    protected $schedule = null;
 
     /**
      * Constructor.

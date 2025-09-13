@@ -20,19 +20,19 @@ class ShieldedInstanceIdentity extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ShieldedInstanceIdentityEntry encryption_key = 488268707;</code>
      */
-    private $encryption_key = null;
+    protected $encryption_key = null;
     /**
      * [Output Only] Type of the resource. Always compute#shieldedInstanceIdentity for shielded Instance identity entry.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
-    private $kind = null;
+    protected $kind = null;
     /**
      * An Attestation Key (AK) made by the RSA 2048 algorithm issued to the Shielded Instance's vTPM.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ShieldedInstanceIdentityEntry signing_key = 320948261;</code>
      */
-    private $signing_key = null;
+    protected $signing_key = null;
 
     /**
      * Constructor.

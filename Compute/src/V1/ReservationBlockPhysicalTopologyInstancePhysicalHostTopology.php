@@ -20,13 +20,13 @@ class ReservationBlockPhysicalTopologyInstancePhysicalHostTopology extends \Goog
      *
      * Generated from protobuf field <code>optional string host = 3208616;</code>
      */
-    private $host = null;
+    protected $host = null;
     /**
      * Sub block hash for a given instance
      *
      * Generated from protobuf field <code>optional string sub_block = 478033358;</code>
      */
-    private $sub_block = null;
+    protected $sub_block = null;
 
     /**
      * Constructor.

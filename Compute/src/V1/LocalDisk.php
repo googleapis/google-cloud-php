@@ -19,19 +19,19 @@ class LocalDisk extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int32 disk_count = 182933485;</code>
      */
-    private $disk_count = null;
+    protected $disk_count = null;
     /**
      * Specifies the size of the disk in base-2 GB.
      *
      * Generated from protobuf field <code>optional int32 disk_size_gb = 316263735;</code>
      */
-    private $disk_size_gb = null;
+    protected $disk_size_gb = null;
     /**
      * Specifies the desired disk type on the node. This disk type must be a local storage type (e.g.: local-ssd). Note that for nodeTemplates, this should be the name of the disk type and not its URL.
      *
      * Generated from protobuf field <code>optional string disk_type = 93009052;</code>
      */
-    private $disk_type = null;
+    protected $disk_type = null;
 
     /**
      * Constructor.

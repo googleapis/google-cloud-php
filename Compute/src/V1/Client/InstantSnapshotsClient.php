@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -45,7 +45,6 @@ use Google\Cloud\Compute\V1\SetIamPolicyInstantSnapshotRequest;
 use Google\Cloud\Compute\V1\SetLabelsInstantSnapshotRequest;
 use Google\Cloud\Compute\V1\TestIamPermissionsInstantSnapshotRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
-use Google\Cloud\Compute\V1\ZoneOperationsClient;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
@@ -112,7 +111,6 @@ final class InstantSnapshotsClient
                     'restClientConfigPath' => __DIR__ . '/../resources/instant_snapshots_rest_client_config.php',
                 ],
             ],
-            'operationsClientClass' => ZoneOperationsClient::class,
         ];
     }
 
@@ -125,9 +123,7 @@ final class InstantSnapshotsClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -144,10 +140,7 @@ final class InstantSnapshotsClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-                'getZone',
-            ],
+            'additionalArgumentMethods' => ['getProject', 'getZone'],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -175,10 +168,31 @@ final class InstantSnapshotsClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : $this->getDefaultOperationDescriptor();
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : $this->getDefaultOperationDescriptor();
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return ZoneOperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new ZoneOperationsClient($options);
     }
 
     /**
@@ -280,8 +294,10 @@ final class InstantSnapshotsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function aggregatedList(AggregatedListInstantSnapshotsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function aggregatedList(
+        AggregatedListInstantSnapshotsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('AggregatedList', $request, $callOptions);
     }
 
@@ -488,8 +504,10 @@ final class InstantSnapshotsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsInstantSnapshotRequest $request, array $callOptions = []): TestPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsInstantSnapshotRequest $request,
+        array $callOptions = []
+    ): TestPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

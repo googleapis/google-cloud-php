@@ -20,20 +20,20 @@ class InterconnectLocationRegionInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int64 expected_rtt_ms = 422543866;</code>
      */
-    private $expected_rtt_ms = null;
+    protected $expected_rtt_ms = null;
     /**
      * Identifies the network presence of this location.
      * Check the LocationPresence enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string location_presence = 101517893;</code>
      */
-    private $location_presence = null;
+    protected $location_presence = null;
     /**
      * URL for the region of this location.
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
      */
-    private $region = null;
+    protected $region = null;
 
     /**
      * Constructor.

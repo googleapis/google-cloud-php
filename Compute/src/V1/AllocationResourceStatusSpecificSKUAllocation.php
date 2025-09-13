@@ -20,7 +20,7 @@ class AllocationResourceStatusSpecificSKUAllocation extends \Google\Protobuf\Int
      *
      * Generated from protobuf field <code>optional string source_instance_template_id = 111196154;</code>
      */
-    private $source_instance_template_id = null;
+    protected $source_instance_template_id = null;
     /**
      * Per service utilization breakdown. The Key is the Google Cloud managed service name.
      *

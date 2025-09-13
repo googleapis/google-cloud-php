@@ -20,19 +20,19 @@ class GetStoragePoolTypeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * Name of the storage pool type to return.
      *
      * Generated from protobuf field <code>string storage_pool_type = 285999289 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $storage_pool_type = '';
+    protected $storage_pool_type = '';
     /**
      * The name of the zone for this request.
      *
      * Generated from protobuf field <code>string zone = 3744684 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $zone = '';
+    protected $zone = '';
 
     /**
      * @param string $project         Project ID for this request.

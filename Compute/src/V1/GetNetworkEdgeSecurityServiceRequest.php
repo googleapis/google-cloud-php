@@ -20,19 +20,19 @@ class GetNetworkEdgeSecurityServiceRequest extends \Google\Protobuf\Internal\Mes
      *
      * Generated from protobuf field <code>string network_edge_security_service = 157011879 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $network_edge_security_service = '';
+    protected $network_edge_security_service = '';
     /**
      * Project ID for this request.
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * Name of the region scoping this request.
      *
      * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $region = '';
+    protected $region = '';
 
     /**
      * @param string $project                    Project ID for this request.

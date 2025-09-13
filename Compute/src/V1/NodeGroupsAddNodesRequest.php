@@ -19,7 +19,7 @@ class NodeGroupsAddNodesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int32 additional_node_count = 134997930;</code>
      */
-    private $additional_node_count = null;
+    protected $additional_node_count = null;
 
     /**
      * Constructor.

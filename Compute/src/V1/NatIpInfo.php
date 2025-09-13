@@ -26,7 +26,7 @@ class NatIpInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string nat_name = 425596649;</code>
      */
-    private $nat_name = null;
+    protected $nat_name = null;
 
     /**
      * Constructor.

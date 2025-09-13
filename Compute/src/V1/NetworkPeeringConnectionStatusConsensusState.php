@@ -21,14 +21,14 @@ class NetworkPeeringConnectionStatusConsensusState extends \Google\Protobuf\Inte
      *
      * Generated from protobuf field <code>optional string delete_status = 483434758;</code>
      */
-    private $delete_status = null;
+    protected $delete_status = null;
     /**
      * The status of the update request.
      * Check the UpdateStatus enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string update_status = 265998376;</code>
      */
-    private $update_status = null;
+    protected $update_status = null;
 
     /**
      * Constructor.

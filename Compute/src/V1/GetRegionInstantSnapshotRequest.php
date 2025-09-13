@@ -20,19 +20,19 @@ class GetRegionInstantSnapshotRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string instant_snapshot = 391638626 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $instant_snapshot = '';
+    protected $instant_snapshot = '';
     /**
      * Project ID for this request.
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * The name of the region for this request.
      *
      * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $region = '';
+    protected $region = '';
 
     /**
      * @param string $project         Project ID for this request.

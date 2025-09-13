@@ -19,7 +19,7 @@ class TargetHttpsProxiesSetCertificateMapRequest extends \Google\Protobuf\Intern
      *
      * Generated from protobuf field <code>optional string certificate_map = 156463796;</code>
      */
-    private $certificate_map = null;
+    protected $certificate_map = null;
 
     /**
      * Constructor.

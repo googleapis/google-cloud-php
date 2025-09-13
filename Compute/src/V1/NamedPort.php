@@ -20,13 +20,13 @@ class NamedPort extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
     /**
      * The port number, which can be a value between 1 and 65535.
      *
      * Generated from protobuf field <code>optional int32 port = 3446913;</code>
      */
-    private $port = null;
+    protected $port = null;
 
     /**
      * Constructor.

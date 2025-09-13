@@ -19,7 +19,7 @@ class InstanceGroupManagerStatusStatefulPerInstanceConfigs extends \Google\Proto
      *
      * Generated from protobuf field <code>optional bool all_effective = 516540553;</code>
      */
-    private $all_effective = null;
+    protected $all_effective = null;
 
     /**
      * Constructor.

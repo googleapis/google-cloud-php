@@ -17,7 +17,7 @@ class DiskAsyncReplicationList extends \Google\Protobuf\Internal\Message
     /**
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.DiskAsyncReplication async_replication_disk = 231794067;</code>
      */
-    private $async_replication_disk = null;
+    protected $async_replication_disk = null;
 
     /**
      * Constructor.

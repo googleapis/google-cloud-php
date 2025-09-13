@@ -26,142 +26,142 @@ class Route extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
-    private $creation_timestamp = null;
+    protected $creation_timestamp = null;
     /**
      * An optional description of this resource. Provide this field when you create the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
-    private $description = null;
+    protected $description = null;
     /**
      * The destination range of outgoing packets that this route applies to. Both IPv4 and IPv6 are supported. Must specify an IPv4 range (e.g. 192.0.2.0/24) or an IPv6 range in RFC 4291 format (e.g. 2001:db8::/32). IPv6 range will be displayed using RFC 5952 compressed format.
      *
      * Generated from protobuf field <code>optional string dest_range = 381327712;</code>
      */
-    private $dest_range = null;
+    protected $dest_range = null;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
-    private $id = null;
+    protected $id = null;
     /**
      * [Output Only] Type of this resource. Always compute#routes for Route resources.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
-    private $kind = null;
+    protected $kind = null;
     /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?`. The first character must be a lowercase letter, and all following characters (except for the last character) must be a dash, lowercase letter, or digit. The last character must be a lowercase letter or digit.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
     /**
      * Fully-qualified URL of the network that this route applies to.
      *
      * Generated from protobuf field <code>optional string network = 232872494;</code>
      */
-    private $network = null;
+    protected $network = null;
     /**
      * The URL to a gateway that should handle matching packets. You can only specify the internet gateway using a full or partial valid URL: projects/ project/global/gateways/default-internet-gateway
      *
      * Generated from protobuf field <code>optional string next_hop_gateway = 377175298;</code>
      */
-    private $next_hop_gateway = null;
+    protected $next_hop_gateway = null;
     /**
      * [Output Only] The full resource name of the Network Connectivity Center hub that will handle matching packets.
      *
      * Generated from protobuf field <code>optional string next_hop_hub = 198679219;</code>
      */
-    private $next_hop_hub = null;
+    protected $next_hop_hub = null;
     /**
      * The URL to a forwarding rule of type loadBalancingScheme=INTERNAL that should handle matching packets or the IP address of the forwarding Rule. For example, the following are all valid URLs: - https://www.googleapis.com/compute/v1/projects/project/regions/region /forwardingRules/forwardingRule - regions/region/forwardingRules/forwardingRule If an IP address is provided, must specify an IPv4 address in dot-decimal notation or an IPv6 address in RFC 4291 format. For example, the following are all valid IP addresses: - 10.128.0.56 - 2001:db8::2d9:51:0:0 - 2001:db8:0:0:2d9:51:0:0 IPv6 addresses will be displayed using RFC 5952 compressed format (e.g. 2001:db8::2d9:51:0:0). Should never be an IPv4-mapped IPv6 address.
      *
      * Generated from protobuf field <code>optional string next_hop_ilb = 198679901;</code>
      */
-    private $next_hop_ilb = null;
+    protected $next_hop_ilb = null;
     /**
      * The URL to an instance that should handle matching packets. You can specify this as a full or partial URL. For example: https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
      *
      * Generated from protobuf field <code>optional string next_hop_instance = 393508247;</code>
      */
-    private $next_hop_instance = null;
+    protected $next_hop_instance = null;
     /**
      * [Output only] Internal fixed region-to-region cost that Google Cloud calculates based on factors such as network performance, distance, and available bandwidth between regions.
      *
      * Generated from protobuf field <code>optional uint32 next_hop_inter_region_cost = 24442003;</code>
      */
-    private $next_hop_inter_region_cost = null;
+    protected $next_hop_inter_region_cost = null;
     /**
      * The network IP address of an instance that should handle matching packets. Both IPv6 address and IPv4 addresses are supported. Must specify an IPv4 address in dot-decimal notation (e.g. 192.0.2.99) or an IPv6 address in RFC 4291 format (e.g. 2001:db8::2d9:51:0:0 or 2001:db8:0:0:2d9:51:0:0). IPv6 addresses will be displayed using RFC 5952 compressed format (e.g. 2001:db8::2d9:51:0:0). Should never be an IPv4-mapped IPv6 address.
      *
      * Generated from protobuf field <code>optional string next_hop_ip = 110319529;</code>
      */
-    private $next_hop_ip = null;
+    protected $next_hop_ip = null;
     /**
      * [Output Only] Multi-Exit Discriminator, a BGP route metric that indicates the desirability of a particular route in a network.
      *
      * Generated from protobuf field <code>optional uint32 next_hop_med = 198683530;</code>
      */
-    private $next_hop_med = null;
+    protected $next_hop_med = null;
     /**
      * The URL of the local network if it should handle matching packets.
      *
      * Generated from protobuf field <code>optional string next_hop_network = 262295788;</code>
      */
-    private $next_hop_network = null;
+    protected $next_hop_network = null;
     /**
      * [Output Only] Indicates the origin of the route. Can be IGP (Interior Gateway Protocol), EGP (Exterior Gateway Protocol), or INCOMPLETE.
      * Check the NextHopOrigin enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string next_hop_origin = 48752808;</code>
      */
-    private $next_hop_origin = null;
+    protected $next_hop_origin = null;
     /**
      * [Output Only] The network peering name that should handle matching packets, which should conform to RFC1035.
      *
      * Generated from protobuf field <code>optional string next_hop_peering = 412682750;</code>
      */
-    private $next_hop_peering = null;
+    protected $next_hop_peering = null;
     /**
      * The URL to a VpnTunnel that should handle matching packets.
      *
      * Generated from protobuf field <code>optional string next_hop_vpn_tunnel = 519844501;</code>
      */
-    private $next_hop_vpn_tunnel = null;
+    protected $next_hop_vpn_tunnel = null;
     /**
      * Input only. [Input Only] Additional params passed with the request, but not persisted as part of resource payload.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.RouteParams params = 78313862;</code>
      */
-    private $params = null;
+    protected $params = null;
     /**
      * The priority of this route. Priority is used to break ties in cases where there is more than one matching route of equal prefix length. In cases where multiple routes have equal prefix length, the one with the lowest-numbered priority value wins. The default value is `1000`. The priority value must be from `0` to `65535`, inclusive.
      *
      * Generated from protobuf field <code>optional uint32 priority = 445151652;</code>
      */
-    private $priority = null;
+    protected $priority = null;
     /**
      * [Output only] The status of the route.
      * Check the RouteStatus enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string route_status = 418162344;</code>
      */
-    private $route_status = null;
+    protected $route_status = null;
     /**
      * [Output Only] The type of this route, which can be one of the following values: - 'TRANSIT' for a transit route that this router learned from another Cloud Router and will readvertise to one of its BGP peers - 'SUBNET' for a route from a subnet of the VPC - 'BGP' for a route learned from a BGP peer of this router - 'STATIC' for a static route
      * Check the RouteType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string route_type = 375888752;</code>
      */
-    private $route_type = null;
+    protected $route_type = null;
     /**
      * [Output Only] Server-defined fully-qualified URL for this resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
-    private $self_link = null;
+    protected $self_link = null;
     /**
      * A list of instance tags to which this route applies.
      *

@@ -19,13 +19,13 @@ class Accelerators extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int32 guest_accelerator_count = 479079316;</code>
      */
-    private $guest_accelerator_count = null;
+    protected $guest_accelerator_count = null;
     /**
      * The accelerator type resource name, not a full URL, e.g. nvidia-tesla-t4.
      *
      * Generated from protobuf field <code>optional string guest_accelerator_type = 293064725;</code>
      */
-    private $guest_accelerator_type = null;
+    protected $guest_accelerator_type = null;
 
     /**
      * Constructor.

@@ -19,20 +19,20 @@ class ScalingScheduleStatus extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string last_start_time = 34545107;</code>
      */
-    private $last_start_time = null;
+    protected $last_start_time = null;
     /**
      * [Output Only] The next time the scaling schedule is to become active. Note: this is a timestamp when a schedule is planned to run, but the actual time might be slightly different. The timestamp is in RFC3339 text format.
      *
      * Generated from protobuf field <code>optional string next_start_time = 97270102;</code>
      */
-    private $next_start_time = null;
+    protected $next_start_time = null;
     /**
      * [Output Only] The current state of a scaling schedule.
      * Check the State enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string state = 109757585;</code>
      */
-    private $state = null;
+    protected $state = null;
 
     /**
      * Constructor.

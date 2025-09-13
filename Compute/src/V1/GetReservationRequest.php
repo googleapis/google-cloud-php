@@ -20,19 +20,19 @@ class GetReservationRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * Name of the reservation to retrieve.
      *
      * Generated from protobuf field <code>string reservation = 47530956 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $reservation = '';
+    protected $reservation = '';
     /**
      * Name of the zone for this request.
      *
      * Generated from protobuf field <code>string zone = 3744684 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $zone = '';
+    protected $zone = '';
 
     /**
      * @param string $project     Project ID for this request.

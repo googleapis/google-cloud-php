@@ -20,25 +20,25 @@ class GetEffectiveFirewallsInstanceRequest extends \Google\Protobuf\Internal\Mes
      *
      * Generated from protobuf field <code>string instance = 18257045 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $instance = '';
+    protected $instance = '';
     /**
      * The name of the network interface to get the effective firewalls.
      *
      * Generated from protobuf field <code>string network_interface = 365387880 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $network_interface = '';
+    protected $network_interface = '';
     /**
      * Project ID for this request.
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * The name of the zone for this request.
      *
      * Generated from protobuf field <code>string zone = 3744684 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $zone = '';
+    protected $zone = '';
 
     /**
      * @param string $project          Project ID for this request.

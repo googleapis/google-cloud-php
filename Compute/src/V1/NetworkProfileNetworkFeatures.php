@@ -27,147 +27,147 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string allow_alias_ip_ranges = 457984201;</code>
      */
-    private $allow_alias_ip_ranges = null;
+    protected $allow_alias_ip_ranges = null;
     /**
      * Specifies whether auto mode subnet creation is allowed.
      * Check the AllowAutoModeSubnet enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string allow_auto_mode_subnet = 152191263;</code>
      */
-    private $allow_auto_mode_subnet = null;
+    protected $allow_auto_mode_subnet = null;
     /**
      * Specifies whether firewalls for Class D address ranges are supported.
      * Check the AllowClassDFirewalls enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string allow_class_d_firewalls = 131608987;</code>
      */
-    private $allow_class_d_firewalls = null;
+    protected $allow_class_d_firewalls = null;
     /**
      * Specifies whether cloud NAT creation is allowed.
      * Check the AllowCloudNat enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string allow_cloud_nat = 254831265;</code>
      */
-    private $allow_cloud_nat = null;
+    protected $allow_cloud_nat = null;
     /**
      * Specifies whether cloud router creation is allowed.
      * Check the AllowCloudRouter enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string allow_cloud_router = 451110345;</code>
      */
-    private $allow_cloud_router = null;
+    protected $allow_cloud_router = null;
     /**
      * Specifies whether default NIC attachment is allowed.
      * Check the AllowDefaultNicAttachment enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string allow_default_nic_attachment = 53917486;</code>
      */
-    private $allow_default_nic_attachment = null;
+    protected $allow_default_nic_attachment = null;
     /**
      * Specifies whether VMs are allowed to have external IP access on network interfaces connected to this VPC.
      * Check the AllowExternalIpAccess enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string allow_external_ip_access = 131538110;</code>
      */
-    private $allow_external_ip_access = null;
+    protected $allow_external_ip_access = null;
     /**
      * Specifies whether Cloud Interconnect creation is allowed.
      * Check the AllowInterconnect enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string allow_interconnect = 280512964;</code>
      */
-    private $allow_interconnect = null;
+    protected $allow_interconnect = null;
     /**
      * Specifies whether IP forwarding is allowed.
      * Check the AllowIpForwarding enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string allow_ip_forwarding = 500838047;</code>
      */
-    private $allow_ip_forwarding = null;
+    protected $allow_ip_forwarding = null;
     /**
      * Specifies whether cloud load balancing is allowed.
      * Check the AllowLoadBalancing enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string allow_load_balancing = 223366198;</code>
      */
-    private $allow_load_balancing = null;
+    protected $allow_load_balancing = null;
     /**
      * Specifies whether multi-nic in the same network is allowed.
      * Check the AllowMultiNicInSameNetwork enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string allow_multi_nic_in_same_network = 88251004;</code>
      */
-    private $allow_multi_nic_in_same_network = null;
+    protected $allow_multi_nic_in_same_network = null;
     /**
      * Specifies whether NCC is allowed.
      * Check the AllowNcc enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string allow_ncc = 372354904;</code>
      */
-    private $allow_ncc = null;
+    protected $allow_ncc = null;
     /**
      * Specifies whether VM network migration is allowed.
      * Check the AllowNetworkMigration enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string allow_network_migration = 239588231;</code>
      */
-    private $allow_network_migration = null;
+    protected $allow_network_migration = null;
     /**
      * Specifies whether Packet Mirroring 1.0 is supported.
      * Check the AllowPacketMirroring enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string allow_packet_mirroring = 512227074;</code>
      */
-    private $allow_packet_mirroring = null;
+    protected $allow_packet_mirroring = null;
     /**
      * Specifies whether private Google access is allowed.
      * Check the AllowPrivateGoogleAccess enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string allow_private_google_access = 374702072;</code>
      */
-    private $allow_private_google_access = null;
+    protected $allow_private_google_access = null;
     /**
      * Specifies whether PSC creation is allowed.
      * Check the AllowPsc enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string allow_psc = 372357322;</code>
      */
-    private $allow_psc = null;
+    protected $allow_psc = null;
     /**
      * Specifies whether unicast within the same network is allowed.
      * Check the AllowSameNetworkUnicast enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string allow_same_network_unicast = 167531643;</code>
      */
-    private $allow_same_network_unicast = null;
+    protected $allow_same_network_unicast = null;
     /**
      * Specifies whether static route creation is allowed.
      * Check the AllowStaticRoutes enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string allow_static_routes = 185257925;</code>
      */
-    private $allow_static_routes = null;
+    protected $allow_static_routes = null;
     /**
      * Specifies whether sub interfaces are allowed.
      * Check the AllowSubInterfaces enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string allow_sub_interfaces = 247208303;</code>
      */
-    private $allow_sub_interfaces = null;
+    protected $allow_sub_interfaces = null;
     /**
      * Specifies whether VPC peering is allowed.
      * Check the AllowVpcPeering enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string allow_vpc_peering = 115402228;</code>
      */
-    private $allow_vpc_peering = null;
+    protected $allow_vpc_peering = null;
     /**
      * Specifies whether VPN creation is allowed.
      * Check the AllowVpn enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string allow_vpn = 372363006;</code>
      */
-    private $allow_vpn = null;
+    protected $allow_vpn = null;
     /**
      * If set, limits the interface types that the network supports. If empty, all interface types are supported.
      * Check the InterfaceTypes enum for the list of possible values.
@@ -209,7 +209,7 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string unicast = 249841711;</code>
      */
-    private $unicast = null;
+    protected $unicast = null;
 
     /**
      * Constructor.

@@ -25,7 +25,7 @@ class InstanceGroupManagerInstanceFlexibilityPolicyInstanceSelection extends \Go
      *
      * Generated from protobuf field <code>optional int32 rank = 3492908;</code>
      */
-    private $rank = null;
+    protected $rank = null;
 
     /**
      * Constructor.

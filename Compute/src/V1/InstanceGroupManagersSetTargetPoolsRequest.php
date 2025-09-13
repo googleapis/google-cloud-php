@@ -19,7 +19,7 @@ class InstanceGroupManagersSetTargetPoolsRequest extends \Google\Protobuf\Intern
      *
      * Generated from protobuf field <code>optional string fingerprint = 234678500;</code>
      */
-    private $fingerprint = null;
+    protected $fingerprint = null;
     /**
      * The list of target pool URLs that instances in this managed instance group belong to. The managed instance group applies these target pools to all of the instances in the group. Existing instances and new instances in the group all receive these target pool settings.
      *

@@ -31,20 +31,20 @@ class BgpRoute extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.BgpRouteNetworkLayerReachabilityInformation destination = 180765710;</code>
      */
-    private $destination = null;
+    protected $destination = null;
     /**
      * [Output only] BGP multi-exit discriminator
      *
      * Generated from protobuf field <code>optional uint32 med = 107980;</code>
      */
-    private $med = null;
+    protected $med = null;
     /**
      * [Output only] BGP origin (EGP, IGP or INCOMPLETE)
      * Check the Origin enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string origin = 65122086;</code>
      */
-    private $origin = null;
+    protected $origin = null;
 
     /**
      * Constructor.

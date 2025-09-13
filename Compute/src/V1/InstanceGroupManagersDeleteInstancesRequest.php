@@ -25,7 +25,7 @@ class InstanceGroupManagersDeleteInstancesRequest extends \Google\Protobuf\Inter
      *
      * Generated from protobuf field <code>optional bool skip_instances_on_validation_error = 40631073;</code>
      */
-    private $skip_instances_on_validation_error = null;
+    protected $skip_instances_on_validation_error = null;
 
     /**
      * Constructor.

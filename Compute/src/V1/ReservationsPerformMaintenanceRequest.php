@@ -20,7 +20,7 @@ class ReservationsPerformMaintenanceRequest extends \Google\Protobuf\Internal\Me
      *
      * Generated from protobuf field <code>optional string maintenance_scope = 140687912;</code>
      */
-    private $maintenance_scope = null;
+    protected $maintenance_scope = null;
 
     /**
      * Constructor.

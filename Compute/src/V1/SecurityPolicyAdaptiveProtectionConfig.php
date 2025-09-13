@@ -20,7 +20,7 @@ class SecurityPolicyAdaptiveProtectionConfig extends \Google\Protobuf\Internal\M
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfig layer7_ddos_defense_config = 437316771;</code>
      */
-    private $layer7_ddos_defense_config = null;
+    protected $layer7_ddos_defense_config = null;
 
     /**
      * Constructor.

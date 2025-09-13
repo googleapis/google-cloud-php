@@ -18,7 +18,7 @@ class InterconnectAttachmentGroupConfigured extends \Google\Protobuf\Internal\Me
     /**
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectAttachmentGroupConfiguredAvailabilitySLA availability_sla = 472702020;</code>
      */
-    private $availability_sla = null;
+    protected $availability_sla = null;
 
     /**
      * Constructor.

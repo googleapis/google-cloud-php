@@ -21,26 +21,26 @@ class BackendServiceConnectionTrackingPolicy extends \Google\Protobuf\Internal\M
      *
      * Generated from protobuf field <code>optional string connection_persistence_on_unhealthy_backends = 152439033;</code>
      */
-    private $connection_persistence_on_unhealthy_backends = null;
+    protected $connection_persistence_on_unhealthy_backends = null;
     /**
      * Enable Strong Session Affinity for external passthrough Network Load Balancers. This option is not available publicly.
      *
      * Generated from protobuf field <code>optional bool enable_strong_affinity = 24539924;</code>
      */
-    private $enable_strong_affinity = null;
+    protected $enable_strong_affinity = null;
     /**
      * Specifies how long to keep a Connection Tracking entry while there is no matching traffic (in seconds). For internal passthrough Network Load Balancers: - The minimum (default) is 10 minutes and the maximum is 16 hours. - It can be set only if Connection Tracking is less than 5-tuple (i.e. Session Affinity is CLIENT_IP_NO_DESTINATION, CLIENT_IP or CLIENT_IP_PROTO, and Tracking Mode is PER_SESSION). For external passthrough Network Load Balancers the default is 60 seconds. This option is not available publicly.
      *
      * Generated from protobuf field <code>optional int32 idle_timeout_sec = 24977544;</code>
      */
-    private $idle_timeout_sec = null;
+    protected $idle_timeout_sec = null;
     /**
      * Specifies the key used for connection tracking. There are two options: - PER_CONNECTION: This is the default mode. The Connection Tracking is performed as per the Connection Key (default Hash Method) for the specific protocol. - PER_SESSION: The Connection Tracking is performed as per the configured Session Affinity. It matches the configured Session Affinity. For more details, see [Tracking Mode for Network Load Balancing](https://cloud.google.com/load-balancing/docs/network/networklb-backend-service#tracking-mode) and [Tracking Mode for Internal TCP/UDP Load Balancing](https://cloud.google.com/load-balancing/docs/internal#tracking-mode).
      * Check the TrackingMode enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string tracking_mode = 127757867;</code>
      */
-    private $tracking_mode = null;
+    protected $tracking_mode = null;
 
     /**
      * Constructor.

@@ -39,7 +39,7 @@ class RouterStatus extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string network = 232872494;</code>
      */
-    private $network = null;
+    protected $network = null;
 
     /**
      * Constructor.

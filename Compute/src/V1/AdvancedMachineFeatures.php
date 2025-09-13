@@ -20,38 +20,38 @@ class AdvancedMachineFeatures extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional bool enable_nested_virtualization = 16639365;</code>
      */
-    private $enable_nested_virtualization = null;
+    protected $enable_nested_virtualization = null;
     /**
      * Whether to enable UEFI networking for instance creation.
      *
      * Generated from protobuf field <code>optional bool enable_uefi_networking = 334485668;</code>
      */
-    private $enable_uefi_networking = null;
+    protected $enable_uefi_networking = null;
     /**
      * Type of Performance Monitoring Unit requested on instance.
      * Check the PerformanceMonitoringUnit enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string performance_monitoring_unit = 533618956;</code>
      */
-    private $performance_monitoring_unit = null;
+    protected $performance_monitoring_unit = null;
     /**
      * The number of threads per physical core. To disable simultaneous multithreading (SMT) set this to 1. If unset, the maximum number of threads supported per core by the underlying processor is assumed.
      *
      * Generated from protobuf field <code>optional int32 threads_per_core = 352611671;</code>
      */
-    private $threads_per_core = null;
+    protected $threads_per_core = null;
     /**
      * Turbo frequency mode to use for the instance. Supported modes include: * ALL_CORE_MAX Using empty string or not setting this field will use the platform-specific default turbo mode.
      *
      * Generated from protobuf field <code>optional string turbo_mode = 432965412;</code>
      */
-    private $turbo_mode = null;
+    protected $turbo_mode = null;
     /**
      * The number of physical cores to expose to an instance. Multiply by the number of threads per core to compute the total number of virtual CPUs to expose to the instance. If unset, the number of cores is inferred from the instance's nominal CPU count and the underlying platform's SMT width.
      *
      * Generated from protobuf field <code>optional int32 visible_core_count = 193198684;</code>
      */
-    private $visible_core_count = null;
+    protected $visible_core_count = null;
 
     /**
      * Constructor.

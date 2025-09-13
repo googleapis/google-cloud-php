@@ -20,92 +20,92 @@ class Network extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string I_pv4_range = 59234358;</code>
      */
-    private $I_pv4_range = null;
+    protected $I_pv4_range = null;
     /**
      * Must be set to create a VPC network. If not set, a legacy network is created. When set to true, the VPC network is created in auto mode. When set to false, the VPC network is created in custom mode. An auto mode VPC network starts with one subnet per region. Each subnet has a predetermined range as described in Auto mode VPC network IP ranges. For custom mode VPC networks, you can add subnets using the subnetworks insert method.
      *
      * Generated from protobuf field <code>optional bool auto_create_subnetworks = 256156690;</code>
      */
-    private $auto_create_subnetworks = null;
+    protected $auto_create_subnetworks = null;
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
-    private $creation_timestamp = null;
+    protected $creation_timestamp = null;
     /**
      * An optional description of this resource. Provide this field when you create the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
-    private $description = null;
+    protected $description = null;
     /**
      * Enable ULA internal ipv6 on this network. Enabling this feature will assign a /48 from google defined ULA prefix fd20::/20. .
      *
      * Generated from protobuf field <code>optional bool enable_ula_internal_ipv6 = 423757720;</code>
      */
-    private $enable_ula_internal_ipv6 = null;
+    protected $enable_ula_internal_ipv6 = null;
     /**
      * [Output Only] URL of the firewall policy the network is associated with.
      *
      * Generated from protobuf field <code>optional string firewall_policy = 498173265;</code>
      */
-    private $firewall_policy = null;
+    protected $firewall_policy = null;
     /**
      * [Output Only] The gateway address for default routing out of the network, selected by Google Cloud.
      *
      * Generated from protobuf field <code>optional string gateway_i_pv4 = 178678877;</code>
      */
-    private $gateway_i_pv4 = null;
+    protected $gateway_i_pv4 = null;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
-    private $id = null;
+    protected $id = null;
     /**
      * When enabling ula internal ipv6, caller optionally can specify the /48 range they want from the google defined ULA prefix fd20::/20. The input must be a valid /48 ULA IPv6 address and must be within the fd20::/20. Operation will fail if the speficied /48 is already in used by another resource. If the field is not speficied, then a /48 range will be randomly allocated from fd20::/20 and returned via this field. .
      *
      * Generated from protobuf field <code>optional string internal_ipv6_range = 277456807;</code>
      */
-    private $internal_ipv6_range = null;
+    protected $internal_ipv6_range = null;
     /**
      * [Output Only] Type of the resource. Always compute#network for networks.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
-    private $kind = null;
+    protected $kind = null;
     /**
      * Maximum Transmission Unit in bytes. The minimum value for this field is 1300 and the maximum value is 8896. The suggested value is 1500, which is the default MTU used on the Internet, or 8896 if you want to use Jumbo frames. If unspecified, the value defaults to 1460.
      *
      * Generated from protobuf field <code>optional int32 mtu = 108462;</code>
      */
-    private $mtu = null;
+    protected $mtu = null;
     /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?`. The first character must be a lowercase letter, and all following characters (except for the last character) must be a dash, lowercase letter, or digit. The last character must be a lowercase letter or digit.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
     /**
      * The network firewall policy enforcement order. Can be either AFTER_CLASSIC_FIREWALL or BEFORE_CLASSIC_FIREWALL. Defaults to AFTER_CLASSIC_FIREWALL if the field is not specified.
      * Check the NetworkFirewallPolicyEnforcementOrder enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string network_firewall_policy_enforcement_order = 6504784;</code>
      */
-    private $network_firewall_policy_enforcement_order = null;
+    protected $network_firewall_policy_enforcement_order = null;
     /**
      * A full or partial URL of the network profile to apply to this network. This field can be set only at resource creation time. For example, the following are valid URLs: - https://www.googleapis.com/compute/{api_version}/projects/{project_id}/global/networkProfiles/{network_profile_name} - projects/{project_id}/global/networkProfiles/{network_profile_name} 
      *
      * Generated from protobuf field <code>optional string network_profile = 173112472;</code>
      */
-    private $network_profile = null;
+    protected $network_profile = null;
     /**
      * Input only. [Input Only] Additional params passed with the request, but not persisted as part of resource payload.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkParams params = 78313862;</code>
      */
-    private $params = null;
+    protected $params = null;
     /**
      * [Output Only] A list of network peerings for the resource.
      *
@@ -117,19 +117,19 @@ class Network extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkRoutingConfig routing_config = 523556059;</code>
      */
-    private $routing_config = null;
+    protected $routing_config = null;
     /**
      * [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
-    private $self_link = null;
+    protected $self_link = null;
     /**
      * [Output Only] Server-defined URL for this resource with the resource id.
      *
      * Generated from protobuf field <code>optional string self_link_with_id = 44520962;</code>
      */
-    private $self_link_with_id = null;
+    protected $self_link_with_id = null;
     /**
      * [Output Only] Server-defined fully-qualified URLs for all subnetworks in this VPC network.
      *

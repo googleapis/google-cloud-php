@@ -20,7 +20,7 @@ class InterconnectAttachmentPrivateInfo extends \Google\Protobuf\Internal\Messag
      *
      * Generated from protobuf field <code>optional uint32 tag8021q = 271820992;</code>
      */
-    private $tag8021q = null;
+    protected $tag8021q = null;
 
     /**
      * Constructor.

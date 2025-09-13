@@ -19,31 +19,31 @@ class InstanceGroupManagerStatus extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerStatusAllInstancesConfig all_instances_config = 112596737;</code>
      */
-    private $all_instances_config = null;
+    protected $all_instances_config = null;
     /**
      * [Output Only] The URL of the Autoscaler that targets this instance group manager.
      *
      * Generated from protobuf field <code>optional string autoscaler = 517258967;</code>
      */
-    private $autoscaler = null;
+    protected $autoscaler = null;
     /**
      * [Output Only] A bit indicating whether the managed instance group is in a stable state. A stable state means that: none of the instances in the managed instance group is currently undergoing any type of change (for example, creation, restart, or deletion); no future changes are scheduled for instances in the managed instance group; and the managed instance group itself is not being modified.
      *
      * Generated from protobuf field <code>optional bool is_stable = 108410864;</code>
      */
-    private $is_stable = null;
+    protected $is_stable = null;
     /**
      * [Output Only] Stateful status of the given Instance Group Manager.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerStatusStateful stateful = 244462412;</code>
      */
-    private $stateful = null;
+    protected $stateful = null;
     /**
      * [Output Only] A status of consistency of Instances' versions with their target version specified by version field on Instance Group Manager.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerStatusVersionTarget version_target = 289386200;</code>
      */
-    private $version_target = null;
+    protected $version_target = null;
 
     /**
      * Constructor.

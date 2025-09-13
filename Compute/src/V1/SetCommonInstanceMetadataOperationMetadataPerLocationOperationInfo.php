@@ -19,14 +19,14 @@ class SetCommonInstanceMetadataOperationMetadataPerLocationOperationInfo extends
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Status error = 96784904;</code>
      */
-    private $error = null;
+    protected $error = null;
     /**
      * [Output Only] Status of the action, which can be one of the following: `PROPAGATING`, `PROPAGATED`, `ABANDONED`, `FAILED`, or `DONE`.
      * Check the State enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string state = 109757585;</code>
      */
-    private $state = null;
+    protected $state = null;
 
     /**
      * Constructor.

@@ -19,7 +19,7 @@ class ManagedInstanceLastAttempt extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ManagedInstanceLastAttemptErrors errors = 315977579;</code>
      */
-    private $errors = null;
+    protected $errors = null;
 
     /**
      * Constructor.

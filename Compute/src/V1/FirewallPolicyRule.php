@@ -20,68 +20,68 @@ class FirewallPolicyRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string action = 187661878;</code>
      */
-    private $action = null;
+    protected $action = null;
     /**
      * An optional description for this resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
-    private $description = null;
+    protected $description = null;
     /**
      * The direction in which this rule applies.
      * Check the Direction enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string direction = 111150975;</code>
      */
-    private $direction = null;
+    protected $direction = null;
     /**
      * Denotes whether the firewall policy rule is disabled. When set to true, the firewall policy rule is not enforced and traffic behaves as if it did not exist. If this is unspecified, the firewall policy rule will be enabled.
      *
      * Generated from protobuf field <code>optional bool disabled = 270940796;</code>
      */
-    private $disabled = null;
+    protected $disabled = null;
     /**
      * Denotes whether to enable logging for a particular rule. If logging is enabled, logs will be exported to the configured export destination in Stackdriver. Logs may be exported to BigQuery or Pub/Sub. Note: you cannot enable logging on "goto_next" rules.
      *
      * Generated from protobuf field <code>optional bool enable_logging = 295396515;</code>
      */
-    private $enable_logging = null;
+    protected $enable_logging = null;
     /**
      * [Output only] Type of the resource. Returns compute#firewallPolicyRule for firewall rules and compute#packetMirroringRule for packet mirroring rules.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
-    private $kind = null;
+    protected $kind = null;
     /**
      * A match condition that incoming traffic is evaluated against. If it evaluates to true, the corresponding 'action' is enforced.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.FirewallPolicyRuleMatcher match = 103668165;</code>
      */
-    private $match = null;
+    protected $match = null;
     /**
      * An integer indicating the priority of a rule in the list. The priority must be a positive value between 0 and 2147483647. Rules are evaluated from highest to lowest priority where 0 is the highest priority and 2147483647 is the lowest priority.
      *
      * Generated from protobuf field <code>optional int32 priority = 445151652;</code>
      */
-    private $priority = null;
+    protected $priority = null;
     /**
      * An optional name for the rule. This field is not a unique identifier and can be updated.
      *
      * Generated from protobuf field <code>optional string rule_name = 55286254;</code>
      */
-    private $rule_name = null;
+    protected $rule_name = null;
     /**
      * [Output Only] Calculation of the complexity of a single firewall policy rule.
      *
      * Generated from protobuf field <code>optional int32 rule_tuple_count = 388342037;</code>
      */
-    private $rule_tuple_count = null;
+    protected $rule_tuple_count = null;
     /**
      * A fully-qualified URL of a SecurityProfile resource instance. Example: https://networksecurity.googleapis.com/v1/projects/{project}/locations/{location}/securityProfileGroups/my-security-profile-group Must be specified if action is one of 'apply_security_profile_group' or 'mirror'. Cannot be specified for other actions.
      *
      * Generated from protobuf field <code>optional string security_profile_group = 207411626;</code>
      */
-    private $security_profile_group = null;
+    protected $security_profile_group = null;
     /**
      * A list of network resource URLs to which this rule applies. This field allows you to control which network's VMs get this rule. If this field is left blank, all VMs within the organization will receive the rule.
      *
@@ -105,7 +105,7 @@ class FirewallPolicyRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional bool tls_inspect = 43425488;</code>
      */
-    private $tls_inspect = null;
+    protected $tls_inspect = null;
 
     /**
      * Constructor.

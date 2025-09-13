@@ -19,99 +19,99 @@ class BfdPacket extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional bool authentication_present = 105974260;</code>
      */
-    private $authentication_present = null;
+    protected $authentication_present = null;
     /**
      * The Control Plane Independent bit of the BFD packet. This is specified in section 4.1 of RFC5880
      *
      * Generated from protobuf field <code>optional bool control_plane_independent = 62363573;</code>
      */
-    private $control_plane_independent = null;
+    protected $control_plane_independent = null;
     /**
      * The demand bit of the BFD packet. This is specified in section 4.1 of RFC5880
      *
      * Generated from protobuf field <code>optional bool demand = 275180107;</code>
      */
-    private $demand = null;
+    protected $demand = null;
     /**
      * The diagnostic code specifies the local system's reason for the last change in session state. This allows remote systems to determine the reason that the previous session failed, for example. These diagnostic codes are specified in section 4.1 of RFC5880
      * Check the Diagnostic enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string diagnostic = 62708647;</code>
      */
-    private $diagnostic = null;
+    protected $diagnostic = null;
     /**
      * The Final bit of the BFD packet. This is specified in section 4.1 of RFC5880
      *
      * Generated from protobuf field <code>optional bool final = 97436022;</code>
      */
-    private $final = null;
+    protected $final = null;
     /**
      * The length of the BFD Control packet in bytes. This is specified in section 4.1 of RFC5880
      *
      * Generated from protobuf field <code>optional uint32 length = 504249062;</code>
      */
-    private $length = null;
+    protected $length = null;
     /**
      * The Required Min Echo RX Interval value in the BFD packet. This is specified in section 4.1 of RFC5880
      *
      * Generated from protobuf field <code>optional uint32 min_echo_rx_interval_ms = 97286868;</code>
      */
-    private $min_echo_rx_interval_ms = null;
+    protected $min_echo_rx_interval_ms = null;
     /**
      * The Required Min RX Interval value in the BFD packet. This is specified in section 4.1 of RFC5880
      *
      * Generated from protobuf field <code>optional uint32 min_rx_interval_ms = 463399028;</code>
      */
-    private $min_rx_interval_ms = null;
+    protected $min_rx_interval_ms = null;
     /**
      * The Desired Min TX Interval value in the BFD packet. This is specified in section 4.1 of RFC5880
      *
      * Generated from protobuf field <code>optional uint32 min_tx_interval_ms = 526023602;</code>
      */
-    private $min_tx_interval_ms = null;
+    protected $min_tx_interval_ms = null;
     /**
      * The detection time multiplier of the BFD packet. This is specified in section 4.1 of RFC5880
      *
      * Generated from protobuf field <code>optional uint32 multiplier = 191331777;</code>
      */
-    private $multiplier = null;
+    protected $multiplier = null;
     /**
      * The multipoint bit of the BFD packet. This is specified in section 4.1 of RFC5880
      *
      * Generated from protobuf field <code>optional bool multipoint = 191421431;</code>
      */
-    private $multipoint = null;
+    protected $multipoint = null;
     /**
      * The My Discriminator value in the BFD packet. This is specified in section 4.1 of RFC5880
      *
      * Generated from protobuf field <code>optional uint32 my_discriminator = 76663113;</code>
      */
-    private $my_discriminator = null;
+    protected $my_discriminator = null;
     /**
      * The Poll bit of the BFD packet. This is specified in section 4.1 of RFC5880
      *
      * Generated from protobuf field <code>optional bool poll = 3446719;</code>
      */
-    private $poll = null;
+    protected $poll = null;
     /**
      * The current BFD session state as seen by the transmitting system. These states are specified in section 4.1 of RFC5880
      * Check the State enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string state = 109757585;</code>
      */
-    private $state = null;
+    protected $state = null;
     /**
      * The version number of the BFD protocol, as specified in section 4.1 of RFC5880.
      *
      * Generated from protobuf field <code>optional uint32 version = 351608024;</code>
      */
-    private $version = null;
+    protected $version = null;
     /**
      * The Your Discriminator value in the BFD packet. This is specified in section 4.1 of RFC5880
      *
      * Generated from protobuf field <code>optional uint32 your_discriminator = 515634064;</code>
      */
-    private $your_discriminator = null;
+    protected $your_discriminator = null;
 
     /**
      * Constructor.

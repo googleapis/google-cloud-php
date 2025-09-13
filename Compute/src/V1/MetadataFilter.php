@@ -27,7 +27,7 @@ class MetadataFilter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string filter_match_criteria = 239970368;</code>
      */
-    private $filter_match_criteria = null;
+    protected $filter_match_criteria = null;
 
     /**
      * Constructor.

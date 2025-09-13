@@ -26,110 +26,110 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkEndpointGroupAppEngine app_engine = 340788768;</code>
      */
-    private $app_engine = null;
+    protected $app_engine = null;
     /**
      * Optional. Only valid when networkEndpointType is SERVERLESS. Only one of cloudRun, appEngine or cloudFunction may be set.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkEndpointGroupCloudFunction cloud_function = 519893666;</code>
      */
-    private $cloud_function = null;
+    protected $cloud_function = null;
     /**
      * Optional. Only valid when networkEndpointType is SERVERLESS. Only one of cloudRun, appEngine or cloudFunction may be set.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkEndpointGroupCloudRun cloud_run = 111060353;</code>
      */
-    private $cloud_run = null;
+    protected $cloud_run = null;
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
-    private $creation_timestamp = null;
+    protected $creation_timestamp = null;
     /**
      * The default port used if the port number is not specified in the network endpoint. Optional. If the network endpoint type is either GCE_VM_IP, SERVERLESS or PRIVATE_SERVICE_CONNECT, this field must not be specified.
      *
      * Generated from protobuf field <code>optional int32 default_port = 423377855;</code>
      */
-    private $default_port = null;
+    protected $default_port = null;
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
-    private $description = null;
+    protected $description = null;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
-    private $id = null;
+    protected $id = null;
     /**
      * [Output Only] Type of the resource. Always compute#networkEndpointGroup for network endpoint group.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
-    private $kind = null;
+    protected $kind = null;
     /**
      * Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
     /**
      * The URL of the network to which all network endpoints in the NEG belong. Uses default project network if unspecified.
      *
      * Generated from protobuf field <code>optional string network = 232872494;</code>
      */
-    private $network = null;
+    protected $network = null;
     /**
      * Type of network endpoints in this network endpoint group. Can be one of GCE_VM_IP, GCE_VM_IP_PORT, NON_GCP_PRIVATE_IP_PORT, INTERNET_FQDN_PORT, INTERNET_IP_PORT, SERVERLESS, PRIVATE_SERVICE_CONNECT, GCE_VM_IP_PORTMAP.
      * Check the NetworkEndpointType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string network_endpoint_type = 118301523;</code>
      */
-    private $network_endpoint_type = null;
+    protected $network_endpoint_type = null;
     /**
      * Optional. Only valid when networkEndpointType is PRIVATE_SERVICE_CONNECT.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkEndpointGroupPscData psc_data = 71937481;</code>
      */
-    private $psc_data = null;
+    protected $psc_data = null;
     /**
      * The target service url used to set up private service connection to a Google API or a PSC Producer Service Attachment. An example value is: asia-northeast3-cloudkms.googleapis.com. Optional. Only valid when networkEndpointType is PRIVATE_SERVICE_CONNECT.
      *
      * Generated from protobuf field <code>optional string psc_target_service = 269132134;</code>
      */
-    private $psc_target_service = null;
+    protected $psc_target_service = null;
     /**
      * [Output Only] The URL of the region where the network endpoint group is located.
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
      */
-    private $region = null;
+    protected $region = null;
     /**
      * [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
-    private $self_link = null;
+    protected $self_link = null;
     /**
      * [Output only] Number of network endpoints in the network endpoint group.
      *
      * Generated from protobuf field <code>optional int32 size = 3530753;</code>
      */
-    private $size = null;
+    protected $size = null;
     /**
      * Optional URL of the subnetwork to which all network endpoints in the NEG belong.
      *
      * Generated from protobuf field <code>optional string subnetwork = 307827694;</code>
      */
-    private $subnetwork = null;
+    protected $subnetwork = null;
     /**
      * [Output Only] The URL of the zone where the network endpoint group is located.
      *
      * Generated from protobuf field <code>optional string zone = 3744684;</code>
      */
-    private $zone = null;
+    protected $zone = null;
 
     /**
      * Constructor.

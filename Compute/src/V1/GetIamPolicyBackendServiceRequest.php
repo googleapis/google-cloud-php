@@ -20,19 +20,19 @@ class GetIamPolicyBackendServiceRequest extends \Google\Protobuf\Internal\Messag
      *
      * Generated from protobuf field <code>optional int32 options_requested_policy_version = 499220029;</code>
      */
-    private $options_requested_policy_version = null;
+    protected $options_requested_policy_version = null;
     /**
      * Project ID for this request.
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * Name or id of the resource for this request.
      *
      * Generated from protobuf field <code>string resource = 195806222 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $resource = '';
+    protected $resource = '';
 
     /**
      * @param string $project  Project ID for this request.

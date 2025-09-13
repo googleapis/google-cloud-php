@@ -21,14 +21,14 @@ class VpnGatewayStatusHighAvailabilityRequirementState extends \Google\Protobuf\
      *
      * Generated from protobuf field <code>optional string state = 109757585;</code>
      */
-    private $state = null;
+    protected $state = null;
     /**
      * Indicates the reason why the VPN connection does not meet the high availability redundancy criteria/requirement. Valid values is INCOMPLETE_TUNNELS_COVERAGE.
      * Check the UnsatisfiedReason enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string unsatisfied_reason = 55016330;</code>
      */
-    private $unsatisfied_reason = null;
+    protected $unsatisfied_reason = null;
 
     /**
      * Constructor.

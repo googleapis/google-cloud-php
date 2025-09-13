@@ -20,13 +20,13 @@ class GetSslCertificateRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * Name of the SslCertificate resource to return.
      *
      * Generated from protobuf field <code>string ssl_certificate = 46443492 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $ssl_certificate = '';
+    protected $ssl_certificate = '';
 
     /**
      * @param string $project        Project ID for this request.

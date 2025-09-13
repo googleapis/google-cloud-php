@@ -20,43 +20,43 @@ class PatchRuleRegionSecurityPolicyRequest extends \Google\Protobuf\Internal\Mes
      *
      * Generated from protobuf field <code>optional int32 priority = 445151652;</code>
      */
-    private $priority = null;
+    protected $priority = null;
     /**
      * Project ID for this request.
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "project"];</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * Name of the region scoping this request.
      *
      * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "region"];</code>
      */
-    private $region = '';
+    protected $region = '';
     /**
      * Name of the security policy to update.
      *
      * Generated from protobuf field <code>string security_policy = 171082513 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $security_policy = '';
+    protected $security_policy = '';
     /**
      * The body resource for this request
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.SecurityPolicyRule security_policy_rule_resource = 402693443 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $security_policy_rule_resource = null;
+    protected $security_policy_rule_resource = null;
     /**
      * Indicates fields to be cleared as part of this request.
      *
      * Generated from protobuf field <code>optional string update_mask = 500079778;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * If true, the request will not be committed.
      *
      * Generated from protobuf field <code>optional bool validate_only = 242744629;</code>
      */
-    private $validate_only = null;
+    protected $validate_only = null;
 
     /**
      * @param string                                      $project                    Project ID for this request.

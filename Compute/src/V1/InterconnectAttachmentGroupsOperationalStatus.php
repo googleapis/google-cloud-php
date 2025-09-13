@@ -21,24 +21,24 @@ class InterconnectAttachmentGroupsOperationalStatus extends \Google\Protobuf\Int
     /**
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectAttachmentGroupConfigured configured = 295631422;</code>
      */
-    private $configured = null;
+    protected $configured = null;
     /**
      * Summarizes the status of the group.
      * Check the GroupStatus enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string group_status = 338778546;</code>
      */
-    private $group_status = null;
+    protected $group_status = null;
     /**
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectAttachmentGroupIntent intent = 426849948;</code>
      */
-    private $intent = null;
+    protected $intent = null;
     /**
      * The operational state of the group, including only active Attachments.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectAttachmentGroupConfigured operational = 129704914;</code>
      */
-    private $operational = null;
+    protected $operational = null;
 
     /**
      * Constructor.

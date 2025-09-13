@@ -19,32 +19,32 @@ class BulkInsertOperationStatus extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int32 created_vm_count = 396924158;</code>
      */
-    private $created_vm_count = null;
+    protected $created_vm_count = null;
     /**
      * [Output Only] Count of VMs that got deleted during rollback.
      *
      * Generated from protobuf field <code>optional int32 deleted_vm_count = 271756013;</code>
      */
-    private $deleted_vm_count = null;
+    protected $deleted_vm_count = null;
     /**
      * [Output Only] Count of VMs that started creating but encountered an error.
      *
      * Generated from protobuf field <code>optional int32 failed_to_create_vm_count = 58384104;</code>
      */
-    private $failed_to_create_vm_count = null;
+    protected $failed_to_create_vm_count = null;
     /**
      * [Output Only] Creation status of BulkInsert operation - information if the flow is rolling forward or rolling back.
      * Check the Status enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>
      */
-    private $status = null;
+    protected $status = null;
     /**
      * [Output Only] Count of VMs originally planned to be created.
      *
      * Generated from protobuf field <code>optional int32 target_vm_count = 532975733;</code>
      */
-    private $target_vm_count = null;
+    protected $target_vm_count = null;
 
     /**
      * Constructor.

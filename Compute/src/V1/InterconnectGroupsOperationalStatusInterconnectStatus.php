@@ -20,26 +20,26 @@ class InterconnectGroupsOperationalStatusInterconnectStatus extends \Google\Prot
      *
      * Generated from protobuf field <code>optional bool admin_enabled = 445675089;</code>
      */
-    private $admin_enabled = null;
+    protected $admin_enabled = null;
     /**
      * The diagnostics of the Interconnect, as returned by the existing get-diagnostics method.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectDiagnostics diagnostics = 333355436;</code>
      */
-    private $diagnostics = null;
+    protected $diagnostics = null;
     /**
      * The URL of the Interconnect being described.
      *
      * Generated from protobuf field <code>optional string interconnect = 224601230;</code>
      */
-    private $interconnect = null;
+    protected $interconnect = null;
     /**
      * Whether this interconnect is participating in the redundant configuration.
      * Check the IsActive enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string is_active = 114830267;</code>
      */
-    private $is_active = null;
+    protected $is_active = null;
 
     /**
      * Constructor.

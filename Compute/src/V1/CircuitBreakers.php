@@ -20,31 +20,31 @@ class CircuitBreakers extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int32 max_connections = 110652154;</code>
      */
-    private $max_connections = null;
+    protected $max_connections = null;
     /**
      * The maximum number of pending requests allowed to the backend service. If not specified, there is no limit. Not supported when the backend service is referenced by a URL map that is bound to target gRPC proxy that has validateForProxyless field set to true.
      *
      * Generated from protobuf field <code>optional int32 max_pending_requests = 375558887;</code>
      */
-    private $max_pending_requests = null;
+    protected $max_pending_requests = null;
     /**
      * The maximum number of parallel requests that allowed to the backend service. If not specified, there is no limit.
      *
      * Generated from protobuf field <code>optional int32 max_requests = 28097599;</code>
      */
-    private $max_requests = null;
+    protected $max_requests = null;
     /**
      * Maximum requests for a single connection to the backend service. This parameter is respected by both the HTTP/1.1 and HTTP/2 implementations. If not specified, there is no limit. Setting this parameter to 1 will effectively disable keep alive. Not supported when the backend service is referenced by a URL map that is bound to target gRPC proxy that has validateForProxyless field set to true.
      *
      * Generated from protobuf field <code>optional int32 max_requests_per_connection = 361630528;</code>
      */
-    private $max_requests_per_connection = null;
+    protected $max_requests_per_connection = null;
     /**
      * The maximum number of parallel retries allowed to the backend cluster. If not specified, the default is 1. Not supported when the backend service is referenced by a URL map that is bound to target gRPC proxy that has validateForProxyless field set to true.
      *
      * Generated from protobuf field <code>optional int32 max_retries = 55546219;</code>
      */
-    private $max_retries = null;
+    protected $max_retries = null;
 
     /**
      * Constructor.

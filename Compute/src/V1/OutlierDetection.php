@@ -20,67 +20,67 @@ class OutlierDetection extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Duration base_ejection_time = 80997255;</code>
      */
-    private $base_ejection_time = null;
+    protected $base_ejection_time = null;
     /**
      * Number of consecutive errors before a backend endpoint is ejected from the load balancing pool. When the backend endpoint is accessed over HTTP, a 5xx return code qualifies as an error. Defaults to 5.
      *
      * Generated from protobuf field <code>optional int32 consecutive_errors = 387193248;</code>
      */
-    private $consecutive_errors = null;
+    protected $consecutive_errors = null;
     /**
      * The number of consecutive gateway failures (502, 503, 504 status or connection errors that are mapped to one of those status codes) before a consecutive gateway failure ejection occurs. Defaults to 3.
      *
      * Generated from protobuf field <code>optional int32 consecutive_gateway_failure = 417504250;</code>
      */
-    private $consecutive_gateway_failure = null;
+    protected $consecutive_gateway_failure = null;
     /**
      * The percentage chance that a backend endpoint will be ejected when an outlier status is detected through consecutive 5xx. This setting can be used to disable ejection or to ramp it up slowly. Defaults to 0.
      *
      * Generated from protobuf field <code>optional int32 enforcing_consecutive_errors = 213133760;</code>
      */
-    private $enforcing_consecutive_errors = null;
+    protected $enforcing_consecutive_errors = null;
     /**
      * The percentage chance that a backend endpoint will be ejected when an outlier status is detected through consecutive gateway failures. This setting can be used to disable ejection or to ramp it up slowly. Defaults to 100.
      *
      * Generated from protobuf field <code>optional int32 enforcing_consecutive_gateway_failure = 394440666;</code>
      */
-    private $enforcing_consecutive_gateway_failure = null;
+    protected $enforcing_consecutive_gateway_failure = null;
     /**
      * The percentage chance that a backend endpoint will be ejected when an outlier status is detected through success rate statistics. This setting can be used to disable ejection or to ramp it up slowly. Defaults to 100. Not supported when the backend service uses Serverless NEG.
      *
      * Generated from protobuf field <code>optional int32 enforcing_success_rate = 194508732;</code>
      */
-    private $enforcing_success_rate = null;
+    protected $enforcing_success_rate = null;
     /**
      * Time interval between ejection analysis sweeps. This can result in both new ejections and backend endpoints being returned to service. The interval is equal to the number of seconds as defined in outlierDetection.interval.seconds plus the number of nanoseconds as defined in outlierDetection.interval.nanos. Defaults to 1 second.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Duration interval = 33547461;</code>
      */
-    private $interval = null;
+    protected $interval = null;
     /**
      * Maximum percentage of backend endpoints in the load balancing pool for the backend service that can be ejected if the ejection conditions are met. Defaults to 50%.
      *
      * Generated from protobuf field <code>optional int32 max_ejection_percent = 18436888;</code>
      */
-    private $max_ejection_percent = null;
+    protected $max_ejection_percent = null;
     /**
      * The number of backend endpoints in the load balancing pool that must have enough request volume to detect success rate outliers. If the number of backend endpoints is fewer than this setting, outlier detection via success rate statistics is not performed for any backend endpoint in the load balancing pool. Defaults to 5. Not supported when the backend service uses Serverless NEG.
      *
      * Generated from protobuf field <code>optional int32 success_rate_minimum_hosts = 525766903;</code>
      */
-    private $success_rate_minimum_hosts = null;
+    protected $success_rate_minimum_hosts = null;
     /**
      * The minimum number of total requests that must be collected in one interval (as defined by the interval duration above) to include this backend endpoint in success rate based outlier detection. If the volume is lower than this setting, outlier detection via success rate statistics is not performed for that backend endpoint. Defaults to 100. Not supported when the backend service uses Serverless NEG.
      *
      * Generated from protobuf field <code>optional int32 success_rate_request_volume = 281425357;</code>
      */
-    private $success_rate_request_volume = null;
+    protected $success_rate_request_volume = null;
     /**
      * This factor is used to determine the ejection threshold for success rate outlier ejection. The ejection threshold is the difference between the mean success rate, and the product of this factor and the standard deviation of the mean success rate: mean - (stdev * successRateStdevFactor). This factor is divided by a thousand to get a double. That is, if the desired factor is 1.9, the runtime value should be 1900. Defaults to 1900. Not supported when the backend service uses Serverless NEG.
      *
      * Generated from protobuf field <code>optional int32 success_rate_stdev_factor = 174735773;</code>
      */
-    private $success_rate_stdev_factor = null;
+    protected $success_rate_stdev_factor = null;
 
     /**
      * Constructor.

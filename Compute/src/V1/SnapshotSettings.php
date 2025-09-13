@@ -19,7 +19,7 @@ class SnapshotSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.SnapshotSettingsStorageLocationSettings storage_location = 460859641;</code>
      */
-    private $storage_location = null;
+    protected $storage_location = null;
 
     /**
      * Constructor.

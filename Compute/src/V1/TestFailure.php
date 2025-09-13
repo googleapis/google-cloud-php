@@ -19,37 +19,37 @@ class TestFailure extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string actual_output_url = 287075458;</code>
      */
-    private $actual_output_url = null;
+    protected $actual_output_url = null;
     /**
      * Actual HTTP status code for rule with `urlRedirect` calculated by load balancer
      *
      * Generated from protobuf field <code>optional int32 actual_redirect_response_code = 42926553;</code>
      */
-    private $actual_redirect_response_code = null;
+    protected $actual_redirect_response_code = null;
     /**
      * BackendService or BackendBucket returned by load balancer.
      *
      * Generated from protobuf field <code>optional string actual_service = 440379652;</code>
      */
-    private $actual_service = null;
+    protected $actual_service = null;
     /**
      * The expected output URL evaluated by a load balancer containing the scheme, host, path and query parameters.
      *
      * Generated from protobuf field <code>optional string expected_output_url = 433967384;</code>
      */
-    private $expected_output_url = null;
+    protected $expected_output_url = null;
     /**
      * Expected HTTP status code for rule with `urlRedirect` calculated by load balancer
      *
      * Generated from protobuf field <code>optional int32 expected_redirect_response_code = 18888047;</code>
      */
-    private $expected_redirect_response_code = null;
+    protected $expected_redirect_response_code = null;
     /**
      * Expected BackendService or BackendBucket resource the given URL should be mapped to.
      *
      * Generated from protobuf field <code>optional string expected_service = 133987374;</code>
      */
-    private $expected_service = null;
+    protected $expected_service = null;
     /**
      * HTTP headers of the request.
      *
@@ -61,13 +61,13 @@ class TestFailure extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string host = 3208616;</code>
      */
-    private $host = null;
+    protected $host = null;
     /**
      * Path portion including query parameters in the URL.
      *
      * Generated from protobuf field <code>optional string path = 3433509;</code>
      */
-    private $path = null;
+    protected $path = null;
 
     /**
      * Constructor.

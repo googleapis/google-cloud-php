@@ -19,13 +19,13 @@ class RouterMd5AuthenticationKey extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string key = 106079;</code>
      */
-    private $key = null;
+    protected $key = null;
     /**
      * Name used to identify the key. Must be unique within a router. Must be referenced by exactly one bgpPeer. Must comply with RFC1035.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
 
     /**
      * Constructor.

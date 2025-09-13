@@ -20,19 +20,19 @@ class GetRegionTargetHttpProxyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * Name of the region scoping this request.
      *
      * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $region = '';
+    protected $region = '';
     /**
      * Name of the TargetHttpProxy resource to return.
      *
      * Generated from protobuf field <code>string target_http_proxy = 206872421 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $target_http_proxy = '';
+    protected $target_http_proxy = '';
 
     /**
      * @param string $project         Project ID for this request.

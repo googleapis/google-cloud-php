@@ -20,7 +20,7 @@ class InstancesReportHostAsFaultyRequest extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>optional string disruption_schedule = 95871619;</code>
      */
-    private $disruption_schedule = null;
+    protected $disruption_schedule = null;
     /**
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InstancesReportHostAsFaultyRequestFaultReason fault_reasons = 168056210;</code>
      */

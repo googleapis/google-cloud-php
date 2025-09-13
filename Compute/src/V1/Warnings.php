@@ -20,7 +20,7 @@ class Warnings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string code = 3059181;</code>
      */
-    private $code = null;
+    protected $code = null;
     /**
      * [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" } 
      *
@@ -32,7 +32,7 @@ class Warnings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string message = 418054151;</code>
      */
-    private $message = null;
+    protected $message = null;
 
     /**
      * Constructor.

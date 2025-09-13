@@ -20,20 +20,20 @@ class ReservationBlockHealthInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int32 degraded_sub_block_count = 458044493;</code>
      */
-    private $degraded_sub_block_count = null;
+    protected $degraded_sub_block_count = null;
     /**
      * The health status of the reservation block.
      * Check the HealthStatus enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string health_status = 380545845;</code>
      */
-    private $health_status = null;
+    protected $health_status = null;
     /**
      * The number of subBlocks that are healthy.
      *
      * Generated from protobuf field <code>optional int32 healthy_sub_block_count = 5348540;</code>
      */
-    private $healthy_sub_block_count = null;
+    protected $healthy_sub_block_count = null;
 
     /**
      * Constructor.

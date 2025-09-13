@@ -20,20 +20,20 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional bool admin_enabled = 445675089;</code>
      */
-    private $admin_enabled = null;
+    protected $admin_enabled = null;
     /**
      * [Output Only] URL of the AttachmentGroup that includes this Attachment.
      *
      * Generated from protobuf field <code>optional string attachment_group = 63442019;</code>
      */
-    private $attachment_group = null;
+    protected $attachment_group = null;
     /**
      * Provisioned bandwidth capacity for the interconnect attachment. For attachments of type DEDICATED, the user can set the bandwidth. For attachments of type PARTNER, the Google Partner that is operating the interconnect must set the bandwidth. Output only for PARTNER type, mutable for PARTNER_PROVIDER and DEDICATED, and can take one of the following values: - BPS_50M: 50 Mbit/s - BPS_100M: 100 Mbit/s - BPS_200M: 200 Mbit/s - BPS_300M: 300 Mbit/s - BPS_400M: 400 Mbit/s - BPS_500M: 500 Mbit/s - BPS_1G: 1 Gbit/s - BPS_2G: 2 Gbit/s - BPS_5G: 5 Gbit/s - BPS_10G: 10 Gbit/s - BPS_20G: 20 Gbit/s - BPS_50G: 50 Gbit/s - BPS_100G: 100 Gbit/s
      * Check the Bandwidth enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string bandwidth = 181715121;</code>
      */
-    private $bandwidth = null;
+    protected $bandwidth = null;
     /**
      * This field is not available.
      *
@@ -51,93 +51,93 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string cloud_router_ip_address = 287392776;</code>
      */
-    private $cloud_router_ip_address = null;
+    protected $cloud_router_ip_address = null;
     /**
      * [Output Only] IPv6 address + prefix length to be configured on Cloud Router Interface for this interconnect attachment.
      *
      * Generated from protobuf field <code>optional string cloud_router_ipv6_address = 451922376;</code>
      */
-    private $cloud_router_ipv6_address = null;
+    protected $cloud_router_ipv6_address = null;
     /**
      * This field is not available.
      *
      * Generated from protobuf field <code>optional string cloud_router_ipv6_interface_id = 521282701;</code>
      */
-    private $cloud_router_ipv6_interface_id = null;
+    protected $cloud_router_ipv6_interface_id = null;
     /**
      * [Output Only] Constraints for this attachment, if any. The attachment does not work if these constraints are not met.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectAttachmentConfigurationConstraints configuration_constraints = 179681389;</code>
      */
-    private $configuration_constraints = null;
+    protected $configuration_constraints = null;
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
-    private $creation_timestamp = null;
+    protected $creation_timestamp = null;
     /**
      * [Output Only] IPv4 address + prefix length to be configured on the customer router subinterface for this interconnect attachment.
      *
      * Generated from protobuf field <code>optional string customer_router_ip_address = 332475761;</code>
      */
-    private $customer_router_ip_address = null;
+    protected $customer_router_ip_address = null;
     /**
      * [Output Only] IPv6 address + prefix length to be configured on the customer router subinterface for this interconnect attachment.
      *
      * Generated from protobuf field <code>optional string customer_router_ipv6_address = 290127089;</code>
      */
-    private $customer_router_ipv6_address = null;
+    protected $customer_router_ipv6_address = null;
     /**
      * This field is not available.
      *
      * Generated from protobuf field <code>optional string customer_router_ipv6_interface_id = 380994308;</code>
      */
-    private $customer_router_ipv6_interface_id = null;
+    protected $customer_router_ipv6_interface_id = null;
     /**
      * [Output Only] Dataplane version for this InterconnectAttachment. This field is only present for Dataplane version 2 and higher. Absence of this field in the API output indicates that the Dataplane is version 1.
      *
      * Generated from protobuf field <code>optional int32 dataplane_version = 34920075;</code>
      */
-    private $dataplane_version = null;
+    protected $dataplane_version = null;
     /**
      * An optional description of this resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
-    private $description = null;
+    protected $description = null;
     /**
      * Input only. Desired availability domain for the attachment. Only available for type PARTNER, at creation time, and can take one of the following values: - AVAILABILITY_DOMAIN_ANY - AVAILABILITY_DOMAIN_1 - AVAILABILITY_DOMAIN_2 For improved reliability, customers should configure a pair of attachments, one per availability domain. The selected availability domain will be provided to the Partner via the pairing key, so that the provisioned circuit will lie in the specified domain. If not specified, the value will default to AVAILABILITY_DOMAIN_ANY.
      * Check the EdgeAvailabilityDomain enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string edge_availability_domain = 71289510;</code>
      */
-    private $edge_availability_domain = null;
+    protected $edge_availability_domain = null;
     /**
      * Indicates the user-supplied encryption option of this VLAN attachment (interconnectAttachment). Can only be specified at attachment creation for PARTNER or DEDICATED attachments. Possible values are: - NONE - This is the default value, which means that the VLAN attachment carries unencrypted traffic. VMs are able to send traffic to, or receive traffic from, such a VLAN attachment. - IPSEC - The VLAN attachment carries only encrypted traffic that is encrypted by an IPsec device, such as an HA VPN gateway or third-party IPsec VPN. VMs cannot directly send traffic to, or receive traffic from, such a VLAN attachment. To use *HA VPN over Cloud Interconnect*, the VLAN attachment must be created with this option.
      * Check the Encryption enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string encryption = 97980291;</code>
      */
-    private $encryption = null;
+    protected $encryption = null;
     /**
      * [Output Only] Google reference ID, to be used when raising support tickets with Google or otherwise to debug backend connectivity issues. [Deprecated] This field is not used.
      *
      * Generated from protobuf field <code>optional string google_reference_id = 534944469;</code>
      */
-    private $google_reference_id = null;
+    protected $google_reference_id = null;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
-    private $id = null;
+    protected $id = null;
     /**
      * URL of the underlying Interconnect object that this attachment's traffic will traverse through.
      *
      * Generated from protobuf field <code>optional string interconnect = 224601230;</code>
      */
-    private $interconnect = null;
+    protected $interconnect = null;
     /**
      * A list of URLs of addresses that have been reserved for the VLAN attachment. Used only for the VLAN attachment that has the encryption option as IPSEC. The addresses must be regional internal IP address ranges. When creating an HA VPN gateway over the VLAN attachment, if the attachment is configured to use a regional internal IP address, then the VPN gateway's IP address is allocated from the IP address range specified here. For example, if the HA VPN gateway's interface 0 is paired to this VLAN attachment, then a regional internal IP address for the VPN gateway interface 0 will be allocated from the IP address specified for this VLAN attachment. If this field is not specified when creating the VLAN attachment, then later on when creating an HA VPN gateway on this VLAN attachment, the HA VPN gateway's IP address is allocated from the regional external IP address pool.
      *
@@ -149,13 +149,13 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
-    private $kind = null;
+    protected $kind = null;
     /**
      * A fingerprint for the labels being applied to this InterconnectAttachment, which is essentially a hash of the labels set used for optimistic locking. The fingerprint is initially generated by Compute Engine and changes after every request to modify or update labels. You must always provide an up-to-date fingerprint hash in order to update or change labels, otherwise the request will fail with error 412 conditionNotMet. To see the latest fingerprint, make a get() request to retrieve an InterconnectAttachment.
      *
      * Generated from protobuf field <code>optional string label_fingerprint = 178124825;</code>
      */
-    private $label_fingerprint = null;
+    protected $label_fingerprint = null;
     /**
      * Labels for this resource. These can only be added or modified by the setLabels method. Each label key/value pair must comply with RFC1035. Label values may be empty.
      *
@@ -167,107 +167,107 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int32 mtu = 108462;</code>
      */
-    private $mtu = null;
+    protected $mtu = null;
     /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
     /**
      * [Output Only] The current status of whether or not this interconnect attachment is functional, which can take one of the following values: - OS_ACTIVE: The attachment has been turned up and is ready to use. - OS_UNPROVISIONED: The attachment is not ready to use yet, because turnup is not complete.
      * Check the OperationalStatus enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string operational_status = 201070847;</code>
      */
-    private $operational_status = null;
+    protected $operational_status = null;
     /**
      * [Output only for type PARTNER. Input only for PARTNER_PROVIDER. Not present for DEDICATED]. The opaque identifier of a PARTNER attachment used to initiate provisioning with a selected partner. Of the form "XXXXX/region/domain"
      *
      * Generated from protobuf field <code>optional string pairing_key = 439695464;</code>
      */
-    private $pairing_key = null;
+    protected $pairing_key = null;
     /**
      * Optional BGP ASN for the router supplied by a Layer 3 Partner if they configured BGP on behalf of the customer. Output only for PARTNER type, input only for PARTNER_PROVIDER, not available for DEDICATED.
      *
      * Generated from protobuf field <code>optional int64 partner_asn = 438166149;</code>
      */
-    private $partner_asn = null;
+    protected $partner_asn = null;
     /**
      * Informational metadata about Partner attachments from Partners to display to customers. Output only for PARTNER type, mutable for PARTNER_PROVIDER, not available for DEDICATED.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectAttachmentPartnerMetadata partner_metadata = 65908934;</code>
      */
-    private $partner_metadata = null;
+    protected $partner_metadata = null;
     /**
      * [Output Only] Information specific to an InterconnectAttachment. This property is populated if the interconnect that this is attached to is of type DEDICATED.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectAttachmentPrivateInfo private_interconnect_info = 237270531;</code>
      */
-    private $private_interconnect_info = null;
+    protected $private_interconnect_info = null;
     /**
      * [Output Only] URL of the region where the regional interconnect attachment resides. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
      */
-    private $region = null;
+    protected $region = null;
     /**
      * [Output Only] If the attachment is on a Cross-Cloud Interconnect connection, this field contains the interconnect's remote location service provider. Example values: "Amazon Web Services" "Microsoft Azure". The field is set only for attachments on Cross-Cloud Interconnect connections. Its value is copied from the InterconnectRemoteLocation remoteService field.
      *
      * Generated from protobuf field <code>optional string remote_service = 391954364;</code>
      */
-    private $remote_service = null;
+    protected $remote_service = null;
     /**
      * URL of the Cloud Router to be used for dynamic routing. This router must be in the same region as this InterconnectAttachment. The InterconnectAttachment will automatically connect the Interconnect to the network & region within which the Cloud Router is configured.
      *
      * Generated from protobuf field <code>optional string router = 148608841;</code>
      */
-    private $router = null;
+    protected $router = null;
     /**
      * [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool satisfies_pzs = 480964267;</code>
      */
-    private $satisfies_pzs = null;
+    protected $satisfies_pzs = null;
     /**
      * [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
-    private $self_link = null;
+    protected $self_link = null;
     /**
      * The stack type for this interconnect attachment to identify whether the IPv6 feature is enabled or not. If not specified, IPV4_ONLY will be used. This field can be both set at interconnect attachments creation and update interconnect attachment operations.
      * Check the StackType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string stack_type = 425908881;</code>
      */
-    private $stack_type = null;
+    protected $stack_type = null;
     /**
      * [Output Only] The current state of this attachment's functionality. Enum values ACTIVE and UNPROVISIONED are shared by DEDICATED/PRIVATE, PARTNER, and PARTNER_PROVIDER interconnect attachments, while enum values PENDING_PARTNER, PARTNER_REQUEST_RECEIVED, and PENDING_CUSTOMER are used for only PARTNER and PARTNER_PROVIDER interconnect attachments. This state can take one of the following values: - ACTIVE: The attachment has been turned up and is ready to use. - UNPROVISIONED: The attachment is not ready to use yet, because turnup is not complete. - PENDING_PARTNER: A newly-created PARTNER attachment that has not yet been configured on the Partner side. - PARTNER_REQUEST_RECEIVED: A PARTNER attachment is in the process of provisioning after a PARTNER_PROVIDER attachment was created that references it. - PENDING_CUSTOMER: A PARTNER or PARTNER_PROVIDER attachment that is waiting for a customer to activate it. - DEFUNCT: The attachment was deleted externally and is no longer functional. This could be because the associated Interconnect was removed, or because the other side of a Partner attachment was deleted.
      * Check the State enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string state = 109757585;</code>
      */
-    private $state = null;
+    protected $state = null;
     /**
      * Input only. Length of the IPv4 subnet mask. Allowed values: - 29 (default) - 30 The default value is 29, except for Cross-Cloud Interconnect connections that use an InterconnectRemoteLocation with a constraints.subnetLengthRange.min equal to 30. For example, connections that use an Azure remote location fall into this category. In these cases, the default value is 30, and requesting 29 returns an error. Where both 29 and 30 are allowed, 29 is preferred, because it gives Google Cloud Support more debugging visibility. 
      *
      * Generated from protobuf field <code>optional int32 subnet_length = 279831048;</code>
      */
-    private $subnet_length = null;
+    protected $subnet_length = null;
     /**
      * The type of interconnect attachment this is, which can take one of the following values: - DEDICATED: an attachment to a Dedicated Interconnect. - PARTNER: an attachment to a Partner Interconnect, created by the customer. - PARTNER_PROVIDER: an attachment to a Partner Interconnect, created by the partner.
      * Check the Type enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string type = 3575610;</code>
      */
-    private $type = null;
+    protected $type = null;
     /**
      * The IEEE 802.1Q VLAN tag for this attachment, in the range 2-4093. Only specified at creation time.
      *
      * Generated from protobuf field <code>optional int32 vlan_tag8021q = 119927836;</code>
      */
-    private $vlan_tag8021q = null;
+    protected $vlan_tag8021q = null;
 
     /**
      * Constructor.

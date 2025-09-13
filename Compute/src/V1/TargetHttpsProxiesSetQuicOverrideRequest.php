@@ -20,7 +20,7 @@ class TargetHttpsProxiesSetQuicOverrideRequest extends \Google\Protobuf\Internal
      *
      * Generated from protobuf field <code>optional string quic_override = 456577197;</code>
      */
-    private $quic_override = null;
+    protected $quic_override = null;
 
     /**
      * Constructor.

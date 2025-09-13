@@ -20,49 +20,49 @@ class ResourceStatusEffectiveInstanceMetadata extends \Google\Protobuf\Internal\
      *
      * Generated from protobuf field <code>optional bool block_project_ssh_keys_metadata_value = 338623101;</code>
      */
-    private $block_project_ssh_keys_metadata_value = null;
+    protected $block_project_ssh_keys_metadata_value = null;
     /**
      * Effective enable-guest-attributes value at Instance level.
      *
      * Generated from protobuf field <code>optional bool enable_guest_attributes_metadata_value = 420155878;</code>
      */
-    private $enable_guest_attributes_metadata_value = null;
+    protected $enable_guest_attributes_metadata_value = null;
     /**
      * Effective enable-os-inventory value at Instance level.
      *
      * Generated from protobuf field <code>optional bool enable_os_inventory_metadata_value = 371752675;</code>
      */
-    private $enable_os_inventory_metadata_value = null;
+    protected $enable_os_inventory_metadata_value = null;
     /**
      * Effective enable-osconfig value at Instance level.
      *
      * Generated from protobuf field <code>optional bool enable_osconfig_metadata_value = 502966494;</code>
      */
-    private $enable_osconfig_metadata_value = null;
+    protected $enable_osconfig_metadata_value = null;
     /**
      * Effective enable-oslogin value at Instance level.
      *
      * Generated from protobuf field <code>optional bool enable_oslogin_metadata_value = 216603159;</code>
      */
-    private $enable_oslogin_metadata_value = null;
+    protected $enable_oslogin_metadata_value = null;
     /**
      * Effective serial-port-enable value at Instance level.
      *
      * Generated from protobuf field <code>optional bool serial_port_enable_metadata_value = 430536330;</code>
      */
-    private $serial_port_enable_metadata_value = null;
+    protected $serial_port_enable_metadata_value = null;
     /**
      * Effective serial-port-logging-enable value at Instance level.
      *
      * Generated from protobuf field <code>optional bool serial_port_logging_enable_metadata_value = 311813290;</code>
      */
-    private $serial_port_logging_enable_metadata_value = null;
+    protected $serial_port_logging_enable_metadata_value = null;
     /**
      * Effective VM DNS setting at Instance level.
      *
      * Generated from protobuf field <code>optional string vm_dns_setting_metadata_value = 411127950;</code>
      */
-    private $vm_dns_setting_metadata_value = null;
+    protected $vm_dns_setting_metadata_value = null;
 
     /**
      * Constructor.

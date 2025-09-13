@@ -20,37 +20,37 @@ class InsertInstanceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Instance instance_resource = 215988344 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $instance_resource = null;
+    protected $instance_resource = null;
     /**
      * Project ID for this request.
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "project"];</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *
      * Generated from protobuf field <code>optional string request_id = 37109963;</code>
      */
-    private $request_id = null;
+    protected $request_id = null;
     /**
      * Specifies instance template to create the instance. This field is optional. It can be a full or partial URL. For example, the following are all valid URLs to an instance template: - https://www.googleapis.com/compute/v1/projects/project /global/instanceTemplates/instanceTemplate - projects/project/global/instanceTemplates/instanceTemplate - global/instanceTemplates/instanceTemplate 
      *
      * Generated from protobuf field <code>optional string source_instance_template = 332423616;</code>
      */
-    private $source_instance_template = null;
+    protected $source_instance_template = null;
     /**
      * Specifies the machine image to use to create the instance. This field is optional. It can be a full or partial URL. For example, the following are all valid URLs to a machine image: - https://www.googleapis.com/compute/v1/projects/project/global/global /machineImages/machineImage - projects/project/global/global/machineImages/machineImage - global/machineImages/machineImage 
      *
      * Generated from protobuf field <code>optional string source_machine_image = 21769791;</code>
      */
-    private $source_machine_image = null;
+    protected $source_machine_image = null;
     /**
      * The name of the zone for this request.
      *
      * Generated from protobuf field <code>string zone = 3744684 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "zone"];</code>
      */
-    private $zone = '';
+    protected $zone = '';
 
     /**
      * @param string                            $project          Project ID for this request.

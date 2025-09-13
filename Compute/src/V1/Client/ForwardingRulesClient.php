@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -40,7 +40,6 @@ use Google\Cloud\Compute\V1\GetForwardingRuleRequest;
 use Google\Cloud\Compute\V1\InsertForwardingRuleRequest;
 use Google\Cloud\Compute\V1\ListForwardingRulesRequest;
 use Google\Cloud\Compute\V1\PatchForwardingRuleRequest;
-use Google\Cloud\Compute\V1\RegionOperationsClient;
 use Google\Cloud\Compute\V1\SetLabelsForwardingRuleRequest;
 use Google\Cloud\Compute\V1\SetTargetForwardingRuleRequest;
 use GuzzleHttp\Promise\PromiseInterface;
@@ -108,7 +107,6 @@ final class ForwardingRulesClient
                     'restClientConfigPath' => __DIR__ . '/../resources/forwarding_rules_rest_client_config.php',
                 ],
             ],
-            'operationsClientClass' => RegionOperationsClient::class,
         ];
     }
 
@@ -121,9 +119,7 @@ final class ForwardingRulesClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -140,10 +136,7 @@ final class ForwardingRulesClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-                'getRegion',
-            ],
+            'additionalArgumentMethods' => ['getProject', 'getRegion'],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -171,10 +164,31 @@ final class ForwardingRulesClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : $this->getDefaultOperationDescriptor();
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : $this->getDefaultOperationDescriptor();
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return RegionOperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new RegionOperationsClient($options);
     }
 
     /**
@@ -276,8 +290,10 @@ final class ForwardingRulesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function aggregatedList(AggregatedListForwardingRulesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function aggregatedList(
+        AggregatedListForwardingRulesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('AggregatedList', $request, $callOptions);
     }
 

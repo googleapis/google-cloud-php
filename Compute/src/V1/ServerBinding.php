@@ -20,7 +20,7 @@ class ServerBinding extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string type = 3575610;</code>
      */
-    private $type = null;
+    protected $type = null;
 
     /**
      * Constructor.

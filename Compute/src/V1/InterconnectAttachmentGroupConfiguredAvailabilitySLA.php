@@ -21,7 +21,7 @@ class InterconnectAttachmentGroupConfiguredAvailabilitySLA extends \Google\Proto
      *
      * Generated from protobuf field <code>optional string effective_sla = 144173712;</code>
      */
-    private $effective_sla = null;
+    protected $effective_sla = null;
     /**
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectAttachmentGroupConfiguredAvailabilitySLAIntendedSlaBlockers intended_sla_blockers = 448370308;</code>
      */

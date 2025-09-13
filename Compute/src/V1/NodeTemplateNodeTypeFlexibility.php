@@ -17,15 +17,15 @@ class NodeTemplateNodeTypeFlexibility extends \Google\Protobuf\Internal\Message
     /**
      * Generated from protobuf field <code>optional string cpus = 3060683;</code>
      */
-    private $cpus = null;
+    protected $cpus = null;
     /**
      * Generated from protobuf field <code>optional string local_ssd = 405741360;</code>
      */
-    private $local_ssd = null;
+    protected $local_ssd = null;
     /**
      * Generated from protobuf field <code>optional string memory = 532856065;</code>
      */
-    private $memory = null;
+    protected $memory = null;
 
     /**
      * Constructor.

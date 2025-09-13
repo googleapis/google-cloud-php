@@ -19,14 +19,14 @@ class InstanceGroupManagerStandbyPolicy extends \Google\Protobuf\Internal\Messag
      *
      * Generated from protobuf field <code>optional int32 initial_delay_sec = 263207002;</code>
      */
-    private $initial_delay_sec = null;
+    protected $initial_delay_sec = null;
     /**
      * Defines how a MIG resumes or starts VMs from a standby pool when the group scales out. The default mode is `MANUAL`.
      * Check the Mode enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string mode = 3357091;</code>
      */
-    private $mode = null;
+    protected $mode = null;
 
     /**
      * Constructor.

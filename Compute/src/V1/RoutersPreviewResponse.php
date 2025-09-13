@@ -19,7 +19,7 @@ class RoutersPreviewResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Router resource = 195806222;</code>
      */
-    private $resource = null;
+    protected $resource = null;
 
     /**
      * Constructor.

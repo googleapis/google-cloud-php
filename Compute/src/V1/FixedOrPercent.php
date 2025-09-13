@@ -20,19 +20,19 @@ class FixedOrPercent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int32 calculated = 472082878;</code>
      */
-    private $calculated = null;
+    protected $calculated = null;
     /**
      * Specifies a fixed number of VM instances. This must be a positive integer.
      *
      * Generated from protobuf field <code>optional int32 fixed = 97445748;</code>
      */
-    private $fixed = null;
+    protected $fixed = null;
     /**
      * Specifies a percentage of instances between 0 to 100%, inclusive. For example, specify 80 for 80%.
      *
      * Generated from protobuf field <code>optional int32 percent = 394814533;</code>
      */
-    private $percent = null;
+    protected $percent = null;
 
     /**
      * Constructor.

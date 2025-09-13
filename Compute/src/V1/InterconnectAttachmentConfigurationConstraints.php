@@ -20,7 +20,7 @@ class InterconnectAttachmentConfigurationConstraints extends \Google\Protobuf\In
      *
      * Generated from protobuf field <code>optional string bgp_md5 = 373093386;</code>
      */
-    private $bgp_md5 = null;
+    protected $bgp_md5 = null;
     /**
      * [Output Only] List of ASN ranges that the remote location is known to support. Formatted as an array of inclusive ranges {min: min-value, max: max-value}. For example, [{min: 123, max: 123}, {min: 64512, max: 65534}] allows the peer ASN to be 123 or anything in the range 64512-65534. This field is only advisory. Although the API accepts other ranges, these are the ranges that we recommend.
      *

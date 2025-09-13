@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -39,7 +39,6 @@ use Google\Cloud\Compute\V1\DeleteBackendBucketRequest;
 use Google\Cloud\Compute\V1\DeleteSignedUrlKeyBackendBucketRequest;
 use Google\Cloud\Compute\V1\GetBackendBucketRequest;
 use Google\Cloud\Compute\V1\GetIamPolicyBackendBucketRequest;
-use Google\Cloud\Compute\V1\GlobalOperationsClient;
 use Google\Cloud\Compute\V1\InsertBackendBucketRequest;
 use Google\Cloud\Compute\V1\ListBackendBucketsRequest;
 use Google\Cloud\Compute\V1\PatchBackendBucketRequest;
@@ -118,7 +117,6 @@ final class BackendBucketsClient
                     'restClientConfigPath' => __DIR__ . '/../resources/backend_buckets_rest_client_config.php',
                 ],
             ],
-            'operationsClientClass' => GlobalOperationsClient::class,
         ];
     }
 
@@ -131,9 +129,7 @@ final class BackendBucketsClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -150,9 +146,7 @@ final class BackendBucketsClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-            ],
+            'additionalArgumentMethods' => ['getProject'],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -180,10 +174,31 @@ final class BackendBucketsClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : $this->getDefaultOperationDescriptor();
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : $this->getDefaultOperationDescriptor();
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return GlobalOperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new GlobalOperationsClient($options);
     }
 
     /**
@@ -285,8 +300,10 @@ final class BackendBucketsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function addSignedUrlKey(AddSignedUrlKeyBackendBucketRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function addSignedUrlKey(
+        AddSignedUrlKeyBackendBucketRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('AddSignedUrlKey', $request, $callOptions)->wait();
     }
 
@@ -337,8 +354,10 @@ final class BackendBucketsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteSignedUrlKey(DeleteSignedUrlKeyBackendBucketRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteSignedUrlKey(
+        DeleteSignedUrlKeyBackendBucketRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteSignedUrlKey', $request, $callOptions)->wait();
     }
 
@@ -493,8 +512,10 @@ final class BackendBucketsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setEdgeSecurityPolicy(SetEdgeSecurityPolicyBackendBucketRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function setEdgeSecurityPolicy(
+        SetEdgeSecurityPolicyBackendBucketRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SetEdgeSecurityPolicy', $request, $callOptions)->wait();
     }
 
@@ -545,8 +566,10 @@ final class BackendBucketsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsBackendBucketRequest $request, array $callOptions = []): TestPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsBackendBucketRequest $request,
+        array $callOptions = []
+    ): TestPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 

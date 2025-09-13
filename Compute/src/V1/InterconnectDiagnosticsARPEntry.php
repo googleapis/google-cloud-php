@@ -20,13 +20,13 @@ class InterconnectDiagnosticsARPEntry extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string ip_address = 406272220;</code>
      */
-    private $ip_address = null;
+    protected $ip_address = null;
     /**
      * The MAC address of this ARP neighbor.
      *
      * Generated from protobuf field <code>optional string mac_address = 332540164;</code>
      */
-    private $mac_address = null;
+    protected $mac_address = null;
 
     /**
      * Constructor.

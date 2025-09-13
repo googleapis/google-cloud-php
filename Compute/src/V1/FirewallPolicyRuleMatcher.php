@@ -39,7 +39,7 @@ class FirewallPolicyRuleMatcher extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string dest_network_type = 409853224;</code>
      */
-    private $dest_network_type = null;
+    protected $dest_network_type = null;
     /**
      * Region codes whose IP addresses will be used to match for destination of traffic. Should be specified as 2 letter country code defined as per ISO 3166 alpha-2 country codes. ex."US" Maximum number of dest region codes allowed is 5000.
      *
@@ -82,7 +82,7 @@ class FirewallPolicyRuleMatcher extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string src_network_type = 309819686;</code>
      */
-    private $src_network_type = null;
+    protected $src_network_type = null;
     /**
      * Networks of the traffic source. It can be either a full or partial url.
      *

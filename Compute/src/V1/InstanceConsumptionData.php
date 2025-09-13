@@ -19,13 +19,13 @@ class InstanceConsumptionData extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceConsumptionInfo consumption_info = 146354898;</code>
      */
-    private $consumption_info = null;
+    protected $consumption_info = null;
     /**
      * Server-defined URL for the instance.
      *
      * Generated from protobuf field <code>optional string instance = 18257045;</code>
      */
-    private $instance = null;
+    protected $instance = null;
 
     /**
      * Constructor.

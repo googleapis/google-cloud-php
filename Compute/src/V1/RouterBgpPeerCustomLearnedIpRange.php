@@ -19,7 +19,7 @@ class RouterBgpPeerCustomLearnedIpRange extends \Google\Protobuf\Internal\Messag
      *
      * Generated from protobuf field <code>optional string range = 108280125;</code>
      */
-    private $range = null;
+    protected $range = null;
 
     /**
      * Constructor.

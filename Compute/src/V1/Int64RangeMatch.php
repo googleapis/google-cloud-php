@@ -20,13 +20,13 @@ class Int64RangeMatch extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int64 range_end = 322439897;</code>
      */
-    private $range_end = null;
+    protected $range_end = null;
     /**
      * The start of the range (inclusive) in signed long integer format.
      *
      * Generated from protobuf field <code>optional int64 range_start = 103333600;</code>
      */
-    private $range_start = null;
+    protected $range_start = null;
 
     /**
      * Constructor.

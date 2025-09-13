@@ -20,61 +20,61 @@ class StoragePoolResourceStatus extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int64 disk_count = 182933485;</code>
      */
-    private $disk_count = null;
+    protected $disk_count = null;
     /**
      * [Output Only] Timestamp of the last successful resize in RFC3339 text format.
      *
      * Generated from protobuf field <code>optional string last_resize_timestamp = 500825556;</code>
      */
-    private $last_resize_timestamp = null;
+    protected $last_resize_timestamp = null;
     /**
      * [Output Only] Maximum allowed aggregate disk size in GiB.
      *
      * Generated from protobuf field <code>optional int64 max_total_provisioned_disk_capacity_gb = 165818207;</code>
      */
-    private $max_total_provisioned_disk_capacity_gb = null;
+    protected $max_total_provisioned_disk_capacity_gb = null;
     /**
      * [Output Only] Space used by data stored in disks within the storage pool (in bytes). This will reflect the total number of bytes written to the disks in the pool, in contrast to the capacity of those disks.
      *
      * Generated from protobuf field <code>optional int64 pool_used_capacity_bytes = 510407877;</code>
      */
-    private $pool_used_capacity_bytes = null;
+    protected $pool_used_capacity_bytes = null;
     /**
      * [Output Only] Sum of all the disks' provisioned IOPS, minus some amount that is allowed per disk that is not counted towards pool's IOPS capacity. For more information, see https://cloud.google.com/compute/docs/disks/storage-pools.
      *
      * Generated from protobuf field <code>optional int64 pool_used_iops = 99558536;</code>
      */
-    private $pool_used_iops = null;
+    protected $pool_used_iops = null;
     /**
      * [Output Only] Sum of all the disks' provisioned throughput in MiB/s.
      *
      * Generated from protobuf field <code>optional int64 pool_used_throughput = 206130633;</code>
      */
-    private $pool_used_throughput = null;
+    protected $pool_used_throughput = null;
     /**
      * [Output Only] Amount of data written into the pool, before it is compacted.
      *
      * Generated from protobuf field <code>optional int64 pool_user_written_bytes = 228964050;</code>
      */
-    private $pool_user_written_bytes = null;
+    protected $pool_user_written_bytes = null;
     /**
      * [Output Only] Sum of all the disks' provisioned capacity (in GiB) in this storage pool. A disk's provisioned capacity is the same as its total capacity.
      *
      * Generated from protobuf field <code>optional int64 total_provisioned_disk_capacity_gb = 520930980;</code>
      */
-    private $total_provisioned_disk_capacity_gb = null;
+    protected $total_provisioned_disk_capacity_gb = null;
     /**
      * [Output Only] Sum of all the disks' provisioned IOPS.
      *
      * Generated from protobuf field <code>optional int64 total_provisioned_disk_iops = 32812549;</code>
      */
-    private $total_provisioned_disk_iops = null;
+    protected $total_provisioned_disk_iops = null;
     /**
      * [Output Only] Sum of all the disks' provisioned throughput in MiB/s, minus some amount that is allowed per disk that is not counted towards pool's throughput capacity.
      *
      * Generated from protobuf field <code>optional int64 total_provisioned_disk_throughput = 447677830;</code>
      */
-    private $total_provisioned_disk_throughput = null;
+    protected $total_provisioned_disk_throughput = null;
 
     /**
      * Constructor.

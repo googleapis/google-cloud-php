@@ -20,7 +20,7 @@ class GetFirewallPolicyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string firewall_policy = 498173265 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $firewall_policy = '';
+    protected $firewall_policy = '';
 
     /**
      * @param string $firewallPolicy Name of the firewall policy to get.

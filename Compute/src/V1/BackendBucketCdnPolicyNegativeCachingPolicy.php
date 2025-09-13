@@ -20,13 +20,13 @@ class BackendBucketCdnPolicyNegativeCachingPolicy extends \Google\Protobuf\Inter
      *
      * Generated from protobuf field <code>optional int32 code = 3059181;</code>
      */
-    private $code = null;
+    protected $code = null;
     /**
      * The TTL (in seconds) for which to cache responses with the corresponding status code. The maximum allowed value is 1800s (30 minutes), noting that infrequently accessed objects may be evicted from the cache before the defined TTL.
      *
      * Generated from protobuf field <code>optional int32 ttl = 115180;</code>
      */
-    private $ttl = null;
+    protected $ttl = null;
 
     /**
      * Constructor.

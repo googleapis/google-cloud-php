@@ -26,7 +26,7 @@ class InterconnectGroupPhysicalStructureMetrosFacilitiesZones extends \Google\Pr
      *
      * Generated from protobuf field <code>optional string zone = 3744684;</code>
      */
-    private $zone = null;
+    protected $zone = null;
 
     /**
      * Constructor.

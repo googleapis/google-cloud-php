@@ -19,26 +19,26 @@ class SecurityPolicyRuleRateLimitOptions extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>optional int32 ban_duration_sec = 42896726;</code>
      */
-    private $ban_duration_sec = null;
+    protected $ban_duration_sec = null;
     /**
      * Can only be specified if the action for the rule is "rate_based_ban". If specified, the key will be banned for the configured 'ban_duration_sec' when the number of requests that exceed the 'rate_limit_threshold' also exceed this 'ban_threshold'.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPolicyRuleRateLimitOptionsThreshold ban_threshold = 501208123;</code>
      */
-    private $ban_threshold = null;
+    protected $ban_threshold = null;
     /**
      * Action to take for requests that are under the configured rate limit threshold. Valid option is "allow" only.
      *
      * Generated from protobuf field <code>optional string conform_action = 517612367;</code>
      */
-    private $conform_action = null;
+    protected $conform_action = null;
     /**
      * Determines the key to enforce the rate_limit_threshold on. Possible values are: - ALL: A single rate limit threshold is applied to all the requests matching this rule. This is the default value if "enforceOnKey" is not configured. - IP: The source IP address of the request is the key. Each IP has this limit enforced separately. - HTTP_HEADER: The value of the HTTP header whose name is configured under "enforceOnKeyName". The key value is truncated to the first 128 bytes of the header value. If no such header is present in the request, the key type defaults to ALL. - XFF_IP: The first IP address (i.e. the originating client IP address) specified in the list of IPs under X-Forwarded-For HTTP header. If no such header is present or the value is not a valid IP, the key defaults to the source IP address of the request i.e. key type IP. - HTTP_COOKIE: The value of the HTTP cookie whose name is configured under "enforceOnKeyName". The key value is truncated to the first 128 bytes of the cookie value. If no such cookie is present in the request, the key type defaults to ALL. - HTTP_PATH: The URL path of the HTTP request. The key value is truncated to the first 128 bytes. - SNI: Server name indication in the TLS session of the HTTPS request. The key value is truncated to the first 128 bytes. The key type defaults to ALL on a HTTP session. - REGION_CODE: The country/region from which the request originates. - TLS_JA3_FINGERPRINT: JA3 TLS/SSL fingerprint if the client connects using HTTPS, HTTP/2 or HTTP/3. If not available, the key type defaults to ALL. - USER_IP: The IP address of the originating client, which is resolved based on "userIpRequestHeaders" configured with the security policy. If there is no "userIpRequestHeaders" configuration or an IP address cannot be resolved from it, the key type defaults to IP. - TLS_JA4_FINGERPRINT: JA4 TLS/SSL fingerprint if the client connects using HTTPS, HTTP/2 or HTTP/3. If not available, the key type defaults to ALL. For "fairshare" action, this value is limited to ALL i.e. a single rate limit threshold is enforced for all the requests matching the rule.
      * Check the EnforceOnKey enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string enforce_on_key = 416648956;</code>
      */
-    private $enforce_on_key = null;
+    protected $enforce_on_key = null;
     /**
      * If specified, any combination of values of enforce_on_key_type/enforce_on_key_name is treated as the key on which ratelimit threshold/action is enforced. You can specify up to 3 enforce_on_key_configs. If enforce_on_key_configs is specified, enforce_on_key must not be specified.
      *
@@ -50,25 +50,25 @@ class SecurityPolicyRuleRateLimitOptions extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>optional string enforce_on_key_name = 132555246;</code>
      */
-    private $enforce_on_key_name = null;
+    protected $enforce_on_key_name = null;
     /**
      * Action to take for requests that are above the configured rate limit threshold, to either deny with a specified HTTP response code, or redirect to a different endpoint. Valid options are `deny(STATUS)`, where valid values for `STATUS` are 403, 404, 429, and 502, and `redirect`, where the redirect parameters come from `exceedRedirectOptions` below. The `redirect` action is only supported in Global Security Policies of type CLOUD_ARMOR.
      *
      * Generated from protobuf field <code>optional string exceed_action = 167159073;</code>
      */
-    private $exceed_action = null;
+    protected $exceed_action = null;
     /**
      * Parameters defining the redirect action that is used as the exceed action. Cannot be specified if the exceed action is not redirect. This field is only supported in Global Security Policies of type CLOUD_ARMOR.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPolicyRuleRedirectOptions exceed_redirect_options = 473646694;</code>
      */
-    private $exceed_redirect_options = null;
+    protected $exceed_redirect_options = null;
     /**
      * Threshold at which to begin ratelimiting.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPolicyRuleRateLimitOptionsThreshold rate_limit_threshold = 315875208;</code>
      */
-    private $rate_limit_threshold = null;
+    protected $rate_limit_threshold = null;
 
     /**
      * Constructor.

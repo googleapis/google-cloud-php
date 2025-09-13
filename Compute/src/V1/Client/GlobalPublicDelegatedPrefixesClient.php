@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,7 +35,6 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Compute\V1\DeleteGlobalPublicDelegatedPrefixeRequest;
 use Google\Cloud\Compute\V1\GetGlobalPublicDelegatedPrefixeRequest;
-use Google\Cloud\Compute\V1\GlobalOperationsClient;
 use Google\Cloud\Compute\V1\InsertGlobalPublicDelegatedPrefixeRequest;
 use Google\Cloud\Compute\V1\ListGlobalPublicDelegatedPrefixesRequest;
 use Google\Cloud\Compute\V1\PatchGlobalPublicDelegatedPrefixeRequest;
@@ -99,10 +98,10 @@ final class GlobalPublicDelegatedPrefixesClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/global_public_delegated_prefixes_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/global_public_delegated_prefixes_rest_client_config.php',
                 ],
             ],
-            'operationsClientClass' => GlobalOperationsClient::class,
         ];
     }
 
@@ -115,9 +114,7 @@ final class GlobalPublicDelegatedPrefixesClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -134,9 +131,7 @@ final class GlobalPublicDelegatedPrefixesClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-            ],
+            'additionalArgumentMethods' => ['getProject'],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -164,10 +159,31 @@ final class GlobalPublicDelegatedPrefixesClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : $this->getDefaultOperationDescriptor();
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : $this->getDefaultOperationDescriptor();
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return GlobalOperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new GlobalOperationsClient($options);
     }
 
     /**
@@ -269,8 +285,10 @@ final class GlobalPublicDelegatedPrefixesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function delete(DeleteGlobalPublicDelegatedPrefixeRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function delete(
+        DeleteGlobalPublicDelegatedPrefixeRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('Delete', $request, $callOptions)->wait();
     }
 
@@ -321,8 +339,10 @@ final class GlobalPublicDelegatedPrefixesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function insert(InsertGlobalPublicDelegatedPrefixeRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function insert(
+        InsertGlobalPublicDelegatedPrefixeRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('Insert', $request, $callOptions)->wait();
     }
 

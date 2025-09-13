@@ -20,13 +20,13 @@ class InterconnectMacsecPreSharedKey extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
     /**
      * A RFC3339 timestamp on or after which the key is valid. startTime can be in the future. If the keychain has a single key, startTime can be omitted. If the keychain has multiple keys, startTime is mandatory for each key. The start times of keys must be in increasing order. The start times of two consecutive keys must be at least 6 hours apart.
      *
      * Generated from protobuf field <code>optional string start_time = 37467274;</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
 
     /**
      * Constructor.

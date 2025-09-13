@@ -19,13 +19,13 @@ class InstanceGroupManagerStatusAllInstancesConfig extends \Google\Protobuf\Inte
      *
      * Generated from protobuf field <code>optional string current_revision = 38355937;</code>
      */
-    private $current_revision = null;
+    protected $current_revision = null;
     /**
      * [Output Only] A bit indicating whether this configuration has been applied to all managed instances in the group.
      *
      * Generated from protobuf field <code>optional bool effective = 141961639;</code>
      */
-    private $effective = null;
+    protected $effective = null;
 
     /**
      * Constructor.

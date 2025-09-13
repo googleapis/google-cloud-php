@@ -19,7 +19,7 @@ class SubnetworksExpandIpCidrRangeRequest extends \Google\Protobuf\Internal\Mess
      *
      * Generated from protobuf field <code>optional string ip_cidr_range = 98117322;</code>
      */
-    private $ip_cidr_range = null;
+    protected $ip_cidr_range = null;
 
     /**
      * Constructor.

@@ -20,19 +20,19 @@ class SourceInstanceProperties extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional bool can_ip_forward = 467731324;</code>
      */
-    private $can_ip_forward = null;
+    protected $can_ip_forward = null;
     /**
      * Whether the instance created from this machine image should be protected against deletion.
      *
      * Generated from protobuf field <code>optional bool deletion_protection = 458014698;</code>
      */
-    private $deletion_protection = null;
+    protected $deletion_protection = null;
     /**
      * An optional text description for the instances that are created from this machine image.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
-    private $description = null;
+    protected $description = null;
     /**
      * An array of disks that are associated with the instances that are created from this machine image.
      *
@@ -51,7 +51,7 @@ class SourceInstanceProperties extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string key_revocation_action_type = 235941474;</code>
      */
-    private $key_revocation_action_type = null;
+    protected $key_revocation_action_type = null;
     /**
      * Labels to apply to instances that are created from this machine image.
      *
@@ -63,19 +63,19 @@ class SourceInstanceProperties extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string machine_type = 227711026;</code>
      */
-    private $machine_type = null;
+    protected $machine_type = null;
     /**
      * The metadata key/value pairs to assign to instances that are created from this machine image. These pairs can consist of custom metadata or predefined keys. See Project and instance metadata for more information.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Metadata metadata = 86866735;</code>
      */
-    private $metadata = null;
+    protected $metadata = null;
     /**
      * Minimum cpu/platform to be used by instances created from this machine image. The instance may be scheduled on the specified or newer cpu/platform. Applicable values are the friendly names of CPU platforms, such as minCpuPlatform: "Intel Haswell" or minCpuPlatform: "Intel Sandy Bridge". For more information, read Specifying a Minimum CPU Platform.
      *
      * Generated from protobuf field <code>optional string min_cpu_platform = 242912759;</code>
      */
-    private $min_cpu_platform = null;
+    protected $min_cpu_platform = null;
     /**
      * An array of network access configurations for this interface.
      *
@@ -87,7 +87,7 @@ class SourceInstanceProperties extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Scheduling scheduling = 386688404;</code>
      */
-    private $scheduling = null;
+    protected $scheduling = null;
     /**
      * A list of service accounts with specified scopes. Access tokens for these service accounts are available to the instances that are created from this machine image. Use metadata queries to obtain the access tokens for these instances.
      *
@@ -99,7 +99,7 @@ class SourceInstanceProperties extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Tags tags = 3552281;</code>
      */
-    private $tags = null;
+    protected $tags = null;
 
     /**
      * Constructor.

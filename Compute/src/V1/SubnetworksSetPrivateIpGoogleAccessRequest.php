@@ -17,7 +17,7 @@ class SubnetworksSetPrivateIpGoogleAccessRequest extends \Google\Protobuf\Intern
     /**
      * Generated from protobuf field <code>optional bool private_ip_google_access = 421491790;</code>
      */
-    private $private_ip_google_access = null;
+    protected $private_ip_google_access = null;
 
     /**
      * Constructor.

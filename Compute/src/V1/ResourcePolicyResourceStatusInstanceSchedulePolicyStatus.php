@@ -19,13 +19,13 @@ class ResourcePolicyResourceStatusInstanceSchedulePolicyStatus extends \Google\P
      *
      * Generated from protobuf field <code>optional string last_run_start_time = 303069063;</code>
      */
-    private $last_run_start_time = null;
+    protected $last_run_start_time = null;
     /**
      * [Output Only] The next time the schedule is planned to run. The actual time might be slightly different. The timestamp is an RFC3339 string.
      *
      * Generated from protobuf field <code>optional string next_run_start_time = 318642570;</code>
      */
-    private $next_run_start_time = null;
+    protected $next_run_start_time = null;
 
     /**
      * Constructor.

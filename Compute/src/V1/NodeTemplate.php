@@ -25,19 +25,19 @@ class NodeTemplate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string cpu_overcommit_type = 247727959;</code>
      */
-    private $cpu_overcommit_type = null;
+    protected $cpu_overcommit_type = null;
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
-    private $creation_timestamp = null;
+    protected $creation_timestamp = null;
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
-    private $description = null;
+    protected $description = null;
     /**
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.LocalDisk disks = 95594102;</code>
      */
@@ -47,19 +47,19 @@ class NodeTemplate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
-    private $id = null;
+    protected $id = null;
     /**
      * [Output Only] The type of the resource. Always compute#nodeTemplate for node templates.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
-    private $kind = null;
+    protected $kind = null;
     /**
      * The name of the resource, provided by the client when initially creating the resource. The resource name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
     /**
      * Labels to use for node affinity, which will be used in instance scheduling.
      *
@@ -71,44 +71,44 @@ class NodeTemplate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string node_type = 465832791;</code>
      */
-    private $node_type = null;
+    protected $node_type = null;
     /**
      * Do not use. Instead, use the node_type property.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.NodeTemplateNodeTypeFlexibility node_type_flexibility = 315257905;</code>
      */
-    private $node_type_flexibility = null;
+    protected $node_type_flexibility = null;
     /**
      * [Output Only] The name of the region where the node template resides, such as us-central1.
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
      */
-    private $region = null;
+    protected $region = null;
     /**
      * [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
-    private $self_link = null;
+    protected $self_link = null;
     /**
      * Sets the binding properties for the physical server. Valid values include: - *[Default]* RESTART_NODE_ON_ANY_SERVER: Restarts VMs on any available physical server - RESTART_NODE_ON_MINIMAL_SERVER: Restarts VMs on the same physical server whenever possible See Sole-tenant node options for more information.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ServerBinding server_binding = 208179593;</code>
      */
-    private $server_binding = null;
+    protected $server_binding = null;
     /**
      * [Output Only] The status of the node template. One of the following values: CREATING, READY, and DELETING.
      * Check the Status enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>
      */
-    private $status = null;
+    protected $status = null;
     /**
      * [Output Only] An optional, human-readable explanation of the status.
      *
      * Generated from protobuf field <code>optional string status_message = 297428154;</code>
      */
-    private $status_message = null;
+    protected $status_message = null;
 
     /**
      * Constructor.

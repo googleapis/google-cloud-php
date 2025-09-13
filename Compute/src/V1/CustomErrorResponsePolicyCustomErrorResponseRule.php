@@ -26,13 +26,13 @@ class CustomErrorResponsePolicyCustomErrorResponseRule extends \Google\Protobuf\
      *
      * Generated from protobuf field <code>optional int32 override_response_code = 530328568;</code>
      */
-    private $override_response_code = null;
+    protected $override_response_code = null;
     /**
      * The full path to a file within backendBucket . For example: /errors/defaultError.html path must start with a leading slash. path cannot have trailing slashes. If the file is not available in backendBucket or the load balancer cannot reach the BackendBucket, a simple Not Found Error is returned to the client. The value must be from 1 to 1024 characters
      *
      * Generated from protobuf field <code>optional string path = 3433509;</code>
      */
-    private $path = null;
+    protected $path = null;
 
     /**
      * Constructor.

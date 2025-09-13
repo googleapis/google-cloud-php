@@ -20,13 +20,13 @@ class ShieldedInstanceIdentityEntry extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string ek_cert = 450178589;</code>
      */
-    private $ek_cert = null;
+    protected $ek_cert = null;
     /**
      * A PEM-encoded public key.
      *
      * Generated from protobuf field <code>optional string ek_pub = 308947940;</code>
      */
-    private $ek_pub = null;
+    protected $ek_pub = null;
 
     /**
      * Constructor.

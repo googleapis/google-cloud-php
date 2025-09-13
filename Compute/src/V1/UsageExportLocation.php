@@ -20,13 +20,13 @@ class UsageExportLocation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string bucket_name = 283610048;</code>
      */
-    private $bucket_name = null;
+    protected $bucket_name = null;
     /**
      * An optional prefix for the name of the usage report object stored in bucketName. If not supplied, defaults to usage_gce. The report is stored as a CSV file named report_name_prefix_gce_YYYYMMDD.csv where YYYYMMDD is the day of the usage according to Pacific Time. If you supply a prefix, it should conform to Cloud Storage object naming conventions.
      *
      * Generated from protobuf field <code>optional string report_name_prefix = 320198715;</code>
      */
-    private $report_name_prefix = null;
+    protected $report_name_prefix = null;
 
     /**
      * Constructor.

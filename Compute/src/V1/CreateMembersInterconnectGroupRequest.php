@@ -20,19 +20,19 @@ class CreateMembersInterconnectGroupRequest extends \Google\Protobuf\Internal\Me
      *
      * Generated from protobuf field <code>string interconnect_group = 388651918 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $interconnect_group = '';
+    protected $interconnect_group = '';
     /**
      * The body resource for this request
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectGroupsCreateMembersRequest interconnect_groups_create_members_request_resource = 348323437 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $interconnect_groups_create_members_request_resource = null;
+    protected $interconnect_groups_create_members_request_resource = null;
     /**
      * Project ID for this request.
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "project"];</code>
      */
-    private $project = '';
+    protected $project = '';
 
     /**
      * @param string                                                          $project                                        Project ID for this request.

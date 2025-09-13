@@ -20,13 +20,13 @@ class HttpFaultInjection extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.HttpFaultAbort abort = 92611376;</code>
      */
-    private $abort = null;
+    protected $abort = null;
     /**
      * The specification for how client requests are delayed as part of fault injection, before being sent to a backend service.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.HttpFaultDelay delay = 95467907;</code>
      */
-    private $delay = null;
+    protected $delay = null;
 
     /**
      * Constructor.

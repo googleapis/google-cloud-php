@@ -20,13 +20,13 @@ class GetGlobalOrganizationOperationRequest extends \Google\Protobuf\Internal\Me
      *
      * Generated from protobuf field <code>string operation = 52090215 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_response_field) = "name"];</code>
      */
-    private $operation = '';
+    protected $operation = '';
     /**
      * Parent ID for this request. Not used. Parent is derived from resource_id.
      *
      * Generated from protobuf field <code>optional string parent_id = 459714768;</code>
      */
-    private $parent_id = null;
+    protected $parent_id = null;
 
     /**
      * @param string $operation Name of the Operations resource to return. Parent is derived from this field.

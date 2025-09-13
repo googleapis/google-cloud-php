@@ -20,13 +20,13 @@ class BackendServiceHAPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string fast_i_p_move = 222633817;</code>
      */
-    private $fast_i_p_move = null;
+    protected $fast_i_p_move = null;
     /**
      * Selects one of the network endpoints attached to the backend NEGs of this service as the active endpoint (the leader) that receives all traffic. When the leader changes, there is no connection draining to persist existing connections on the old leader. You are responsible for selecting a suitable endpoint as the leader. For example, preferring a healthy endpoint over unhealthy ones. Note that this service does not track backend endpoint health, and selects the configured leader unconditionally.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.BackendServiceHAPolicyLeader leader = 503858441;</code>
      */
-    private $leader = null;
+    protected $leader = null;
 
     /**
      * Constructor.

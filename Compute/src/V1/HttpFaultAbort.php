@@ -20,13 +20,13 @@ class HttpFaultAbort extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional uint32 http_status = 468949897;</code>
      */
-    private $http_status = null;
+    protected $http_status = null;
     /**
      * The percentage of traffic for connections, operations, or requests that is aborted as part of fault injection. The value must be from 0.0 to 100.0 inclusive.
      *
      * Generated from protobuf field <code>optional double percentage = 151909018;</code>
      */
-    private $percentage = null;
+    protected $percentage = null;
 
     /**
      * Constructor.

@@ -21,13 +21,13 @@ class Backend extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string balancing_mode = 430286217;</code>
      */
-    private $balancing_mode = null;
+    protected $balancing_mode = null;
     /**
      * A multiplier applied to the backend's target capacity of its balancing mode. The default value is 1, which means the group serves up to 100% of its configured capacity (depending on balancingMode). A setting of 0 means the group is completely drained, offering 0% of its available capacity. The valid ranges are 0.0 and [0.1,1.0]. You cannot configure a setting larger than 0 and smaller than 0.1. You cannot configure a setting of 0 when there is only one backend attached to the backend service. Not available with backends that don't support using a balancingMode. This includes backends such as global internet NEGs, regional serverless NEGs, and PSC NEGs.
      *
      * Generated from protobuf field <code>optional float capacity_scaler = 315958157;</code>
      */
-    private $capacity_scaler = null;
+    protected $capacity_scaler = null;
     /**
      * List of custom metrics that are used for CUSTOM_METRICS BalancingMode.
      *
@@ -39,68 +39,68 @@ class Backend extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
-    private $description = null;
+    protected $description = null;
     /**
      * This field designates whether this is a failover backend. More than one failover backend can be configured for a given BackendService.
      *
      * Generated from protobuf field <code>optional bool failover = 138892530;</code>
      */
-    private $failover = null;
+    protected $failover = null;
     /**
      * The fully-qualified URL of an instance group or network endpoint group (NEG) resource. To determine what types of backends a load balancer supports, see the [Backend services overview](https://cloud.google.com/load-balancing/docs/backend-service#backends). You must use the *fully-qualified* URL (starting with https://www.googleapis.com/) to specify the instance group or NEG. Partial URLs are not supported. If haPolicy is specified, backends must refer to NEG resources of type GCE_VM_IP.
      *
      * Generated from protobuf field <code>optional string group = 98629247;</code>
      */
-    private $group = null;
+    protected $group = null;
     /**
      * Defines a target maximum number of simultaneous connections. For usage guidelines, see Connection balancing mode and Utilization balancing mode. Not available if the backend's balancingMode is RATE.
      *
      * Generated from protobuf field <code>optional int32 max_connections = 110652154;</code>
      */
-    private $max_connections = null;
+    protected $max_connections = null;
     /**
      * Defines a target maximum number of simultaneous connections. For usage guidelines, see Connection balancing mode and Utilization balancing mode. Not available if the backend's balancingMode is RATE.
      *
      * Generated from protobuf field <code>optional int32 max_connections_per_endpoint = 216904604;</code>
      */
-    private $max_connections_per_endpoint = null;
+    protected $max_connections_per_endpoint = null;
     /**
      * Defines a target maximum number of simultaneous connections. For usage guidelines, see Connection balancing mode and Utilization balancing mode. Not available if the backend's balancingMode is RATE.
      *
      * Generated from protobuf field <code>optional int32 max_connections_per_instance = 104671900;</code>
      */
-    private $max_connections_per_instance = null;
+    protected $max_connections_per_instance = null;
     /**
      * Defines a maximum number of HTTP requests per second (RPS). For usage guidelines, see Rate balancing mode and Utilization balancing mode. Not available if the backend's balancingMode is CONNECTION.
      *
      * Generated from protobuf field <code>optional int32 max_rate = 408035035;</code>
      */
-    private $max_rate = null;
+    protected $max_rate = null;
     /**
      * Defines a maximum target for requests per second (RPS). For usage guidelines, see Rate balancing mode and Utilization balancing mode. Not available if the backend's balancingMode is CONNECTION.
      *
      * Generated from protobuf field <code>optional float max_rate_per_endpoint = 129832283;</code>
      */
-    private $max_rate_per_endpoint = null;
+    protected $max_rate_per_endpoint = null;
     /**
      * Defines a maximum target for requests per second (RPS). For usage guidelines, see Rate balancing mode and Utilization balancing mode. Not available if the backend's balancingMode is CONNECTION.
      *
      * Generated from protobuf field <code>optional float max_rate_per_instance = 17599579;</code>
      */
-    private $max_rate_per_instance = null;
+    protected $max_rate_per_instance = null;
     /**
      * Optional parameter to define a target capacity for the UTILIZATION balancing mode. The valid range is [0.0, 1.0]. For usage guidelines, see Utilization balancing mode.
      *
      * Generated from protobuf field <code>optional float max_utilization = 148192199;</code>
      */
-    private $max_utilization = null;
+    protected $max_utilization = null;
     /**
      * This field indicates whether this backend should be fully utilized before sending traffic to backends with default preference. The possible values are: - PREFERRED: Backends with this preference level will be filled up to their capacity limits first, based on RTT. - DEFAULT: If preferred backends don't have enough capacity, backends in this layer would be used and traffic would be assigned based on the load balancing algorithm you use. This is the default
      * Check the Preference enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string preference = 150781147;</code>
      */
-    private $preference = null;
+    protected $preference = null;
 
     /**
      * Constructor.

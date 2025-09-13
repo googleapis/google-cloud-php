@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,7 +36,6 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Compute\V1\AggregatedListTargetHttpProxiesRequest;
 use Google\Cloud\Compute\V1\DeleteTargetHttpProxyRequest;
 use Google\Cloud\Compute\V1\GetTargetHttpProxyRequest;
-use Google\Cloud\Compute\V1\GlobalOperationsClient;
 use Google\Cloud\Compute\V1\InsertTargetHttpProxyRequest;
 use Google\Cloud\Compute\V1\ListTargetHttpProxiesRequest;
 use Google\Cloud\Compute\V1\PatchTargetHttpProxyRequest;
@@ -106,7 +105,6 @@ final class TargetHttpProxiesClient
                     'restClientConfigPath' => __DIR__ . '/../resources/target_http_proxies_rest_client_config.php',
                 ],
             ],
-            'operationsClientClass' => GlobalOperationsClient::class,
         ];
     }
 
@@ -119,9 +117,7 @@ final class TargetHttpProxiesClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -138,9 +134,7 @@ final class TargetHttpProxiesClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-            ],
+            'additionalArgumentMethods' => ['getProject'],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -168,10 +162,31 @@ final class TargetHttpProxiesClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : $this->getDefaultOperationDescriptor();
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : $this->getDefaultOperationDescriptor();
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return GlobalOperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new GlobalOperationsClient($options);
     }
 
     /**
@@ -273,8 +288,10 @@ final class TargetHttpProxiesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function aggregatedList(AggregatedListTargetHttpProxiesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function aggregatedList(
+        AggregatedListTargetHttpProxiesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('AggregatedList', $request, $callOptions);
     }
 

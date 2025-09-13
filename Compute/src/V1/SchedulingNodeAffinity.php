@@ -20,14 +20,14 @@ class SchedulingNodeAffinity extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string key = 106079;</code>
      */
-    private $key = null;
+    protected $key = null;
     /**
      * Defines the operation of node selection. Valid operators are IN for affinity and NOT_IN for anti-affinity.
      * Check the Operator enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string operator = 36317348;</code>
      */
-    private $operator = null;
+    protected $operator = null;
     /**
      * Corresponds to the label values of Node resource.
      *

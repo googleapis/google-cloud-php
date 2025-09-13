@@ -19,7 +19,7 @@ class NetworksRequestRemovePeeringRequest extends \Google\Protobuf\Internal\Mess
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
 
     /**
      * Constructor.

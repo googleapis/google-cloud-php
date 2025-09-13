@@ -25,7 +25,7 @@ class InterconnectGroupConfiguredTopologyCapability extends \Google\Protobuf\Int
      *
      * Generated from protobuf field <code>optional string supported_sla = 59292183;</code>
      */
-    private $supported_sla = null;
+    protected $supported_sla = null;
 
     /**
      * Constructor.

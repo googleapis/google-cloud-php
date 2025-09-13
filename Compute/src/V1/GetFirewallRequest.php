@@ -20,13 +20,13 @@ class GetFirewallRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string firewall = 511016192 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $firewall = '';
+    protected $firewall = '';
     /**
      * Project ID for this request.
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project = '';
+    protected $project = '';
 
     /**
      * @param string $project  Project ID for this request.

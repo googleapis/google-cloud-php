@@ -20,25 +20,25 @@ class GetNatIpInfoRouterRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string nat_name = 425596649;</code>
      */
-    private $nat_name = null;
+    protected $nat_name = null;
     /**
      * Project ID for this request.
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * Name of the region for this request.
      *
      * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $region = '';
+    protected $region = '';
     /**
      * Name of the Router resource to query for Nat IP information. The name should conform to RFC1035.
      *
      * Generated from protobuf field <code>string router = 148608841 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $router = '';
+    protected $router = '';
 
     /**
      * @param string $project Project ID for this request.

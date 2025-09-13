@@ -20,19 +20,19 @@ class GetTargetVpnGatewayRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * Name of the region for this request.
      *
      * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $region = '';
+    protected $region = '';
     /**
      * Name of the target VPN gateway to return.
      *
      * Generated from protobuf field <code>string target_vpn_gateway = 532512843 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $target_vpn_gateway = '';
+    protected $target_vpn_gateway = '';
 
     /**
      * @param string $project          Project ID for this request.

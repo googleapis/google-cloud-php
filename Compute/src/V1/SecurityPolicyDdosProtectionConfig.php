@@ -20,7 +20,7 @@ class SecurityPolicyDdosProtectionConfig extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>optional string ddos_protection = 275173268;</code>
      */
-    private $ddos_protection = null;
+    protected $ddos_protection = null;
 
     /**
      * Constructor.

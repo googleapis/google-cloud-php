@@ -19,7 +19,7 @@ class InstanceGroupManagerAllInstancesConfig extends \Google\Protobuf\Internal\M
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstancePropertiesPatch properties = 147688755;</code>
      */
-    private $properties = null;
+    protected $properties = null;
 
     /**
      * Constructor.

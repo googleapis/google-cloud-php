@@ -20,13 +20,13 @@ class ResourcePolicySnapshotSchedulePolicySnapshotProperties extends \Google\Pro
      *
      * Generated from protobuf field <code>optional string chain_name = 68644169;</code>
      */
-    private $chain_name = null;
+    protected $chain_name = null;
     /**
      * Indication to perform a 'guest aware' snapshot.
      *
      * Generated from protobuf field <code>optional bool guest_flush = 385550813;</code>
      */
-    private $guest_flush = null;
+    protected $guest_flush = null;
     /**
      * Labels to apply to scheduled snapshots. These can be later modified by the setLabels method. Label values may be empty.
      *

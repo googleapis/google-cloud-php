@@ -20,7 +20,7 @@ class InterconnectMacsec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional bool fail_open = 532597451;</code>
      */
-    private $fail_open = null;
+    protected $fail_open = null;
     /**
      * Required. A keychain placeholder describing a set of named key objects along with their start times. A MACsec CKN/CAK is generated for each key in the key chain. Google router automatically picks the key with the most recent startTime when establishing or re-establishing a MACsec secure link.
      *

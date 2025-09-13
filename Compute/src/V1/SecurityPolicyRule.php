@@ -20,67 +20,67 @@ class SecurityPolicyRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string action = 187661878;</code>
      */
-    private $action = null;
+    protected $action = null;
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
-    private $description = null;
+    protected $description = null;
     /**
      * Optional, additional actions that are performed on headers. This field is only supported in Global Security Policies of type CLOUD_ARMOR.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPolicyRuleHttpHeaderAction header_action = 328077352;</code>
      */
-    private $header_action = null;
+    protected $header_action = null;
     /**
      * [Output only] Type of the resource. Always compute#securityPolicyRule for security policy rules
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
-    private $kind = null;
+    protected $kind = null;
     /**
      * A match condition that incoming traffic is evaluated against. If it evaluates to true, the corresponding 'action' is enforced.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPolicyRuleMatcher match = 103668165;</code>
      */
-    private $match = null;
+    protected $match = null;
     /**
      * A match condition that incoming packets are evaluated against for CLOUD_ARMOR_NETWORK security policies. If it matches, the corresponding 'action' is enforced. The match criteria for a rule consists of built-in match fields (like 'srcIpRanges') and potentially multiple user-defined match fields ('userDefinedFields'). Field values may be extracted directly from the packet or derived from it (e.g. 'srcRegionCodes'). Some fields may not be present in every packet (e.g. 'srcPorts'). A user-defined field is only present if the base header is found in the packet and the entire field is in bounds. Each match field may specify which values can match it, listing one or more ranges, prefixes, or exact values that are considered a match for the field. A field value must be present in order to match a specified match field. If no match values are specified for a match field, then any field value is considered to match it, and it's not required to be present. For strings specifying '*' is also equivalent to match all. For a packet to match a rule, all specified match fields must match the corresponding field values derived from the packet. Example: networkMatch: srcIpRanges: - "192.0.2.0/24" - "198.51.100.0/24" userDefinedFields: - name: "ipv4_fragment_offset" values: - "1-0x1fff" The above match condition matches packets with a source IP in 192.0.2.0/24 or 198.51.100.0/24 and a user-defined field named "ipv4_fragment_offset" with a value between 1 and 0x1fff inclusive.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPolicyRuleNetworkMatcher network_match = 463387764;</code>
      */
-    private $network_match = null;
+    protected $network_match = null;
     /**
      * Preconfigured WAF configuration to be applied for the rule. If the rule does not evaluate preconfigured WAF rules, i.e., if evaluatePreconfiguredWaf() is not used, this field will have no effect.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPolicyRulePreconfiguredWafConfig preconfigured_waf_config = 117805027;</code>
      */
-    private $preconfigured_waf_config = null;
+    protected $preconfigured_waf_config = null;
     /**
      * If set to true, the specified action is not enforced.
      *
      * Generated from protobuf field <code>optional bool preview = 218686408;</code>
      */
-    private $preview = null;
+    protected $preview = null;
     /**
      * An integer indicating the priority of a rule in the list. The priority must be a positive value between 0 and 2147483647. Rules are evaluated from highest to lowest priority where 0 is the highest priority and 2147483647 is the lowest priority.
      *
      * Generated from protobuf field <code>optional int32 priority = 445151652;</code>
      */
-    private $priority = null;
+    protected $priority = null;
     /**
      * Must be specified if the action is "rate_based_ban" or "throttle" or "fairshare". Cannot be specified for any other actions.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPolicyRuleRateLimitOptions rate_limit_options = 67544315;</code>
      */
-    private $rate_limit_options = null;
+    protected $rate_limit_options = null;
     /**
      * Parameters defining the redirect action. Cannot be specified for any other actions. This field is only supported in Global Security Policies of type CLOUD_ARMOR.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPolicyRuleRedirectOptions redirect_options = 163285307;</code>
      */
-    private $redirect_options = null;
+    protected $redirect_options = null;
 
     /**
      * Constructor.

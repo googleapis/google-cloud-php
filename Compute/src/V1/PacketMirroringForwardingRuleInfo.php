@@ -19,13 +19,13 @@ class PacketMirroringForwardingRuleInfo extends \Google\Protobuf\Internal\Messag
      *
      * Generated from protobuf field <code>optional string canonical_url = 512294820;</code>
      */
-    private $canonical_url = null;
+    protected $canonical_url = null;
     /**
      * Resource URL to the forwarding rule representing the ILB configured as destination of the mirrored traffic.
      *
      * Generated from protobuf field <code>optional string url = 116079;</code>
      */
-    private $url = null;
+    protected $url = null;
 
     /**
      * Constructor.

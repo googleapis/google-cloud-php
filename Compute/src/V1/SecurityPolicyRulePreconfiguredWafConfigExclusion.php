@@ -49,7 +49,7 @@ class SecurityPolicyRulePreconfiguredWafConfigExclusion extends \Google\Protobuf
      *
      * Generated from protobuf field <code>optional string target_rule_set = 498440077;</code>
      */
-    private $target_rule_set = null;
+    protected $target_rule_set = null;
 
     /**
      * Constructor.

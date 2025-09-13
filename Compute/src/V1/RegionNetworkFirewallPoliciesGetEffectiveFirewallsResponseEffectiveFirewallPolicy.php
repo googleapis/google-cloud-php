@@ -19,13 +19,13 @@ class RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponseEffectiveFirewal
      *
      * Generated from protobuf field <code>optional string display_name = 4473832;</code>
      */
-    private $display_name = null;
+    protected $display_name = null;
     /**
      * [Output Only] The name of the firewall policy.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
     /**
      * [Output only] The packet mirroring rules that apply to the network.
      *
@@ -37,7 +37,7 @@ class RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponseEffectiveFirewal
      *
      * Generated from protobuf field <code>optional int32 priority = 445151652;</code>
      */
-    private $priority = null;
+    protected $priority = null;
     /**
      * [Output only] The rules that apply to the network.
      *
@@ -50,7 +50,7 @@ class RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponseEffectiveFirewal
      *
      * Generated from protobuf field <code>optional string type = 3575610;</code>
      */
-    private $type = null;
+    protected $type = null;
 
     /**
      * Constructor.

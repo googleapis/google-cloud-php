@@ -17,7 +17,7 @@ class VpnGatewaysGetStatusResponse extends \Google\Protobuf\Internal\Message
     /**
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.VpnGatewayStatus result = 139315229;</code>
      */
-    private $result = null;
+    protected $result = null;
 
     /**
      * Constructor.

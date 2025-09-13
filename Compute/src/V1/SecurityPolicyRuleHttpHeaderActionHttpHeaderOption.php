@@ -19,13 +19,13 @@ class SecurityPolicyRuleHttpHeaderActionHttpHeaderOption extends \Google\Protobu
      *
      * Generated from protobuf field <code>optional string header_name = 110223613;</code>
      */
-    private $header_name = null;
+    protected $header_name = null;
     /**
      * The value to set the named header to.
      *
      * Generated from protobuf field <code>optional string header_value = 203094335;</code>
      */
-    private $header_value = null;
+    protected $header_value = null;
 
     /**
      * Constructor.

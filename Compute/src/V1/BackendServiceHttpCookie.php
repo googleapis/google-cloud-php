@@ -20,19 +20,19 @@ class BackendServiceHttpCookie extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
     /**
      * Path to set for the cookie.
      *
      * Generated from protobuf field <code>optional string path = 3433509;</code>
      */
-    private $path = null;
+    protected $path = null;
     /**
      * Lifetime of the cookie.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Duration ttl = 115180;</code>
      */
-    private $ttl = null;
+    protected $ttl = null;
 
     /**
      * Constructor.

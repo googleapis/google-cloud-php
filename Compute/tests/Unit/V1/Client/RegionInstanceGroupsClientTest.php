@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,6 +27,7 @@ use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Compute\V1\Client\RegionInstanceGroupsClient;
+use Google\Cloud\Compute\V1\Client\RegionOperationsClient;
 use Google\Cloud\Compute\V1\GetRegionInstanceGroupRequest;
 use Google\Cloud\Compute\V1\GetRegionOperationRequest;
 use Google\Cloud\Compute\V1\InstanceGroup;
@@ -39,7 +40,6 @@ use Google\Cloud\Compute\V1\RegionInstanceGroupList;
 use Google\Cloud\Compute\V1\RegionInstanceGroupsListInstances;
 use Google\Cloud\Compute\V1\RegionInstanceGroupsListInstancesRequest;
 use Google\Cloud\Compute\V1\RegionInstanceGroupsSetNamedPortsRequest;
-use Google\Cloud\Compute\V1\RegionOperationsClient;
 use Google\Cloud\Compute\V1\SetNamedPortsRegionInstanceGroupRequest;
 use Google\Rpc\Code;
 use stdClass;
@@ -60,7 +60,9 @@ class RegionInstanceGroupsClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return RegionInstanceGroupsClient */
@@ -142,12 +144,15 @@ class RegionInstanceGroupsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $instanceGroup = 'instanceGroup81095253';
@@ -184,9 +189,7 @@ class RegionInstanceGroupsClientTest extends GeneratedTest
         $nextPageToken = '';
         $selfLink = 'selfLink-1691268851';
         $itemsElement = new InstanceGroup();
-        $items = [
-            $itemsElement,
-        ];
+        $items = [$itemsElement];
         $expectedResponse = new RegionInstanceGroupList();
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
@@ -197,9 +200,7 @@ class RegionInstanceGroupsClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $request = (new ListRegionInstanceGroupsRequest())
-            ->setProject($project)
-            ->setRegion($region);
+        $request = (new ListRegionInstanceGroupsRequest())->setProject($project)->setRegion($region);
         $response = $gapicClient->list($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -228,19 +229,20 @@ class RegionInstanceGroupsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $request = (new ListRegionInstanceGroupsRequest())
-            ->setProject($project)
-            ->setRegion($region);
+        $request = (new ListRegionInstanceGroupsRequest())->setProject($project)->setRegion($region);
         try {
             $gapicClient->list($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -268,9 +270,7 @@ class RegionInstanceGroupsClientTest extends GeneratedTest
         $nextPageToken = '';
         $selfLink = 'selfLink-1691268851';
         $itemsElement = new InstanceWithNamedPorts();
-        $items = [
-            $itemsElement,
-        ];
+        $items = [$itemsElement];
         $expectedResponse = new RegionInstanceGroupsListInstances();
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
@@ -320,12 +320,15 @@ class RegionInstanceGroupsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $instanceGroup = 'instanceGroup81095253';
@@ -446,12 +449,15 @@ class RegionInstanceGroupsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $instanceGroup = 'instanceGroup81095253';

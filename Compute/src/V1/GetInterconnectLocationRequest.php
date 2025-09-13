@@ -20,13 +20,13 @@ class GetInterconnectLocationRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string interconnect_location = 492235846 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $interconnect_location = '';
+    protected $interconnect_location = '';
     /**
      * Project ID for this request.
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project = '';
+    protected $project = '';
 
     /**
      * @param string $project              Project ID for this request.

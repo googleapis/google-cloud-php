@@ -19,32 +19,32 @@ class ExchangedPeeringRoute extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string dest_range = 381327712;</code>
      */
-    private $dest_range = null;
+    protected $dest_range = null;
     /**
      * True if the peering route has been imported from a peer. The actual import happens if the field networkPeering.importCustomRoutes is true for this network, and networkPeering.exportCustomRoutes is true for the peer network, and the import does not result in a route conflict.
      *
      * Generated from protobuf field <code>optional bool imported = 114502404;</code>
      */
-    private $imported = null;
+    protected $imported = null;
     /**
      * The region of peering route next hop, only applies to dynamic routes.
      *
      * Generated from protobuf field <code>optional string next_hop_region = 122577014;</code>
      */
-    private $next_hop_region = null;
+    protected $next_hop_region = null;
     /**
      * The priority of the peering route.
      *
      * Generated from protobuf field <code>optional uint32 priority = 445151652;</code>
      */
-    private $priority = null;
+    protected $priority = null;
     /**
      * The type of the peering route.
      * Check the Type enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string type = 3575610;</code>
      */
-    private $type = null;
+    protected $type = null;
 
     /**
      * Constructor.

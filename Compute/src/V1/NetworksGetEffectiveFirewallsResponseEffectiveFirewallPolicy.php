@@ -19,13 +19,13 @@ class NetworksGetEffectiveFirewallsResponseEffectiveFirewallPolicy extends \Goog
      *
      * Generated from protobuf field <code>optional string display_name = 4473832;</code>
      */
-    private $display_name = null;
+    protected $display_name = null;
     /**
      * [Output Only] The name of the firewall policy.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
     /**
      * [Output Only] The packet mirroring rules that apply to the network.
      *
@@ -37,7 +37,7 @@ class NetworksGetEffectiveFirewallsResponseEffectiveFirewallPolicy extends \Goog
      *
      * Generated from protobuf field <code>optional int32 priority = 445151652;</code>
      */
-    private $priority = null;
+    protected $priority = null;
     /**
      * [Output Only] The rules that apply to the network.
      *
@@ -49,14 +49,14 @@ class NetworksGetEffectiveFirewallsResponseEffectiveFirewallPolicy extends \Goog
      *
      * Generated from protobuf field <code>optional string short_name = 492051566;</code>
      */
-    private $short_name = null;
+    protected $short_name = null;
     /**
      * [Output Only] The type of the firewall policy.
      * Check the Type enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string type = 3575610;</code>
      */
-    private $type = null;
+    protected $type = null;
 
     /**
      * Constructor.

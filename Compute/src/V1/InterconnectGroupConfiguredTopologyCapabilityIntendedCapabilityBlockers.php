@@ -21,19 +21,19 @@ class InterconnectGroupConfiguredTopologyCapabilityIntendedCapabilityBlockers ex
      *
      * Generated from protobuf field <code>optional string blocker_type = 381194847;</code>
      */
-    private $blocker_type = null;
+    protected $blocker_type = null;
     /**
      * [Output Only] The url of Google Cloud public documentation explaining this requirement. This is set for every type of requirement.
      *
      * Generated from protobuf field <code>optional string documentation_link = 93465183;</code>
      */
-    private $documentation_link = null;
+    protected $documentation_link = null;
     /**
      * [Output Only] A human-readable explanation of this requirement and why it's not met. This is set for every type of requirement.
      *
      * Generated from protobuf field <code>optional string explanation = 504745497;</code>
      */
-    private $explanation = null;
+    protected $explanation = null;
     /**
      * [Output Only] Facilities used to explain this blocker in more detail. Like physicalStructure.metros.facilities.facility, this is a numeric string like "5467".
      *

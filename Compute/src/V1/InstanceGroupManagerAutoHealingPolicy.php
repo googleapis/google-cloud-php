@@ -19,13 +19,13 @@ class InstanceGroupManagerAutoHealingPolicy extends \Google\Protobuf\Internal\Me
      *
      * Generated from protobuf field <code>optional string health_check = 308876645;</code>
      */
-    private $health_check = null;
+    protected $health_check = null;
     /**
      * The initial delay is the number of seconds that a new VM takes to initialize and run its startup script. During a VM's initial delay period, the MIG ignores unsuccessful health checks because the VM might be in the startup process. This prevents the MIG from prematurely recreating a VM. If the health check receives a healthy response during the initial delay, it indicates that the startup process is complete and the VM is ready. The value of initial delay must be between 0 and 3600 seconds. The default value is 0.
      *
      * Generated from protobuf field <code>optional int32 initial_delay_sec = 263207002;</code>
      */
-    private $initial_delay_sec = null;
+    protected $initial_delay_sec = null;
 
     /**
      * Constructor.

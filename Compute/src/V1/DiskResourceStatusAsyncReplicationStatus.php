@@ -20,7 +20,7 @@ class DiskResourceStatusAsyncReplicationStatus extends \Google\Protobuf\Internal
      *
      * Generated from protobuf field <code>optional string state = 109757585;</code>
      */
-    private $state = null;
+    protected $state = null;
 
     /**
      * Constructor.

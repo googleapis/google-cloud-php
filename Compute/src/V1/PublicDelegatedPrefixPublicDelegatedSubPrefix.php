@@ -20,57 +20,57 @@ class PublicDelegatedPrefixPublicDelegatedSubPrefix extends \Google\Protobuf\Int
      *
      * Generated from protobuf field <code>optional int32 allocatable_prefix_length = 38427446;</code>
      */
-    private $allocatable_prefix_length = null;
+    protected $allocatable_prefix_length = null;
     /**
      * Name of the project scoping this PublicDelegatedSubPrefix.
      *
      * Generated from protobuf field <code>optional string delegatee_project = 414860634;</code>
      */
-    private $delegatee_project = null;
+    protected $delegatee_project = null;
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
-    private $description = null;
+    protected $description = null;
     /**
      * The IP address range, in CIDR format, represented by this sub public delegated prefix.
      *
      * Generated from protobuf field <code>optional string ip_cidr_range = 98117322;</code>
      */
-    private $ip_cidr_range = null;
+    protected $ip_cidr_range = null;
     /**
      * Whether the sub prefix is delegated to create Address resources in the delegatee project.
      *
      * Generated from protobuf field <code>optional bool is_address = 352617951;</code>
      */
-    private $is_address = null;
+    protected $is_address = null;
     /**
      * The PublicDelegatedSubPrefix mode for IPv6 only.
      * Check the Mode enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string mode = 3357091;</code>
      */
-    private $mode = null;
+    protected $mode = null;
     /**
      * The name of the sub public delegated prefix.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
     /**
      * [Output Only] The region of the sub public delegated prefix if it is regional. If absent, the sub prefix is global.
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
      */
-    private $region = null;
+    protected $region = null;
     /**
      * [Output Only] The status of the sub public delegated prefix.
      * Check the Status enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>
      */
-    private $status = null;
+    protected $status = null;
 
     /**
      * Constructor.

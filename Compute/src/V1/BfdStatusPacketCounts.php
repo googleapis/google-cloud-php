@@ -19,25 +19,25 @@ class BfdStatusPacketCounts extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional uint32 num_rx = 39375263;</code>
      */
-    private $num_rx = null;
+    protected $num_rx = null;
     /**
      * Number of packets received that were rejected because of errors since the beginning of the current BFD session.
      *
      * Generated from protobuf field <code>optional uint32 num_rx_rejected = 281007902;</code>
      */
-    private $num_rx_rejected = null;
+    protected $num_rx_rejected = null;
     /**
      * Number of packets received that were successfully processed since the beginning of the current BFD session.
      *
      * Generated from protobuf field <code>optional uint32 num_rx_successful = 455361850;</code>
      */
-    private $num_rx_successful = null;
+    protected $num_rx_successful = null;
     /**
      * Number of packets transmitted since the beginning of the current BFD session.
      *
      * Generated from protobuf field <code>optional uint32 num_tx = 39375325;</code>
      */
-    private $num_tx = null;
+    protected $num_tx = null;
 
     /**
      * Constructor.

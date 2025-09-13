@@ -19,13 +19,13 @@ class DiskMoveRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string destination_zone = 131854653;</code>
      */
-    private $destination_zone = null;
+    protected $destination_zone = null;
     /**
      * The URL of the target disk to move. This can be a full or partial URL. For example, the following are all valid URLs to a disk: - https://www.googleapis.com/compute/v1/projects/project/zones/zone /disks/disk - projects/project/zones/zone/disks/disk - zones/zone/disks/disk 
      *
      * Generated from protobuf field <code>optional string target_disk = 62433163;</code>
      */
-    private $target_disk = null;
+    protected $target_disk = null;
 
     /**
      * Constructor.

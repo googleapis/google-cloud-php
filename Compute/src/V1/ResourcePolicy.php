@@ -20,82 +20,82 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
-    private $creation_timestamp = null;
+    protected $creation_timestamp = null;
     /**
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
-    private $description = null;
+    protected $description = null;
     /**
      * Resource policy for disk consistency groups.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourcePolicyDiskConsistencyGroupPolicy disk_consistency_group_policy = 473727515;</code>
      */
-    private $disk_consistency_group_policy = null;
+    protected $disk_consistency_group_policy = null;
     /**
      * Resource policy for instances for placement configuration.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourcePolicyGroupPlacementPolicy group_placement_policy = 10931596;</code>
      */
-    private $group_placement_policy = null;
+    protected $group_placement_policy = null;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
-    private $id = null;
+    protected $id = null;
     /**
      * Resource policy for scheduling instance operations.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourcePolicyInstanceSchedulePolicy instance_schedule_policy = 344877104;</code>
      */
-    private $instance_schedule_policy = null;
+    protected $instance_schedule_policy = null;
     /**
      * [Output Only] Type of the resource. Always compute#resource_policies for resource policies.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
-    private $kind = null;
+    protected $kind = null;
     /**
      * The name of the resource, provided by the client when initially creating the resource. The resource name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
     /**
      * Generated from protobuf field <code>optional string region = 138946292;</code>
      */
-    private $region = null;
+    protected $region = null;
     /**
      * [Output Only] The system status of the resource policy.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourcePolicyResourceStatus resource_status = 249429315;</code>
      */
-    private $resource_status = null;
+    protected $resource_status = null;
     /**
      * [Output Only] Server-defined fully-qualified URL for this resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
-    private $self_link = null;
+    protected $self_link = null;
     /**
      * Resource policy for persistent disks for creating snapshots.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourcePolicySnapshotSchedulePolicy snapshot_schedule_policy = 218131295;</code>
      */
-    private $snapshot_schedule_policy = null;
+    protected $snapshot_schedule_policy = null;
     /**
      * [Output Only] The status of resource policy creation.
      * Check the Status enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>
      */
-    private $status = null;
+    protected $status = null;
     /**
      * Resource policy for defining instance placement for MIGs.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourcePolicyWorkloadPolicy workload_policy = 114721530;</code>
      */
-    private $workload_policy = null;
+    protected $workload_policy = null;
 
     /**
      * Constructor.

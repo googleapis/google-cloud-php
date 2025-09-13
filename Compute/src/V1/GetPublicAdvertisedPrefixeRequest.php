@@ -20,13 +20,13 @@ class GetPublicAdvertisedPrefixeRequest extends \Google\Protobuf\Internal\Messag
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * Name of the PublicAdvertisedPrefix resource to return.
      *
      * Generated from protobuf field <code>string public_advertised_prefix = 101874590 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $public_advertised_prefix = '';
+    protected $public_advertised_prefix = '';
 
     /**
      * @param string $project                Project ID for this request.

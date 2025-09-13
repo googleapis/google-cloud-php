@@ -20,27 +20,27 @@ class ResourceStatus extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourceStatusEffectiveInstanceMetadata effective_instance_metadata = 55052033;</code>
      */
-    private $effective_instance_metadata = null;
+    protected $effective_instance_metadata = null;
     /**
      * [Output Only] The precise location of your instance within the zone's data center, including the block, sub-block, and host. The field is formatted as follows: blockId/subBlockId/hostId.
      *
      * Generated from protobuf field <code>optional string physical_host = 464370704;</code>
      */
-    private $physical_host = null;
+    protected $physical_host = null;
     /**
      * [Output Only] A series of fields containing the global name of the Compute Engine cluster, as well as the ID of the block, sub-block, and host on which the running instance is located.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourceStatusPhysicalHostTopology physical_host_topology = 390842814;</code>
      */
-    private $physical_host_topology = null;
+    protected $physical_host_topology = null;
     /**
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourceStatusScheduling scheduling = 386688404;</code>
      */
-    private $scheduling = null;
+    protected $scheduling = null;
     /**
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.UpcomingMaintenance upcoming_maintenance = 227348592;</code>
      */
-    private $upcoming_maintenance = null;
+    protected $upcoming_maintenance = null;
 
     /**
      * Constructor.

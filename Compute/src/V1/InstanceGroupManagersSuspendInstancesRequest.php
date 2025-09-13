@@ -19,7 +19,7 @@ class InstanceGroupManagersSuspendInstancesRequest extends \Google\Protobuf\Inte
      *
      * Generated from protobuf field <code>optional bool force_suspend = 27637480;</code>
      */
-    private $force_suspend = null;
+    protected $force_suspend = null;
     /**
      * The URLs of one or more instances to suspend. This can be a full URL or a partial URL, such as zones/[ZONE]/instances/[INSTANCE_NAME].
      *

@@ -20,13 +20,13 @@ class GetRuleFirewallPolicyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string firewall_policy = 498173265 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $firewall_policy = '';
+    protected $firewall_policy = '';
     /**
      * The priority of the rule to get from the firewall policy.
      *
      * Generated from protobuf field <code>optional int32 priority = 445151652;</code>
      */
-    private $priority = null;
+    protected $priority = null;
 
     /**
      * @param string $firewallPolicy Name of the firewall policy to which the queried rule belongs.

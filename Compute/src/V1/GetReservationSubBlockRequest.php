@@ -20,25 +20,25 @@ class GetReservationSubBlockRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent_name = 478151936 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $parent_name = '';
+    protected $parent_name = '';
     /**
      * Project ID for this request.
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * The name of the reservation subBlock. Name should conform to RFC1035 or be a resource ID.
      *
      * Generated from protobuf field <code>string reservation_sub_block = 22750491 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $reservation_sub_block = '';
+    protected $reservation_sub_block = '';
     /**
      * Name of the zone for this request. Zone name should conform to RFC1035.
      *
      * Generated from protobuf field <code>string zone = 3744684 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $zone = '';
+    protected $zone = '';
 
     /**
      * @param string $project             Project ID for this request.

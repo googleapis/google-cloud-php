@@ -20,13 +20,13 @@ class LocalizedMessage extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string locale = 513150554;</code>
      */
-    private $locale = null;
+    protected $locale = null;
     /**
      * The localized error message in the above locale.
      *
      * Generated from protobuf field <code>optional string message = 418054151;</code>
      */
-    private $message = null;
+    protected $message = null;
 
     /**
      * Constructor.

@@ -32,19 +32,19 @@ class VmEndpointNatMappingsInterfaceNatMappingsNatRuleMappings extends \Google\P
      *
      * Generated from protobuf field <code>optional int32 num_total_drain_nat_ports = 335532793;</code>
      */
-    private $num_total_drain_nat_ports = null;
+    protected $num_total_drain_nat_ports = null;
     /**
      * Total number of ports across all NAT IPs allocated to this interface by this rule. It equals the aggregated port number in the field nat_ip_port_ranges.
      *
      * Generated from protobuf field <code>optional int32 num_total_nat_ports = 299904384;</code>
      */
-    private $num_total_nat_ports = null;
+    protected $num_total_nat_ports = null;
     /**
      * Rule number of the NAT Rule.
      *
      * Generated from protobuf field <code>optional int32 rule_number = 535211500;</code>
      */
-    private $rule_number = null;
+    protected $rule_number = null;
 
     /**
      * Constructor.

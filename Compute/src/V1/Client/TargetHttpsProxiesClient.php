@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,7 +36,6 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Compute\V1\AggregatedListTargetHttpsProxiesRequest;
 use Google\Cloud\Compute\V1\DeleteTargetHttpsProxyRequest;
 use Google\Cloud\Compute\V1\GetTargetHttpsProxyRequest;
-use Google\Cloud\Compute\V1\GlobalOperationsClient;
 use Google\Cloud\Compute\V1\InsertTargetHttpsProxyRequest;
 use Google\Cloud\Compute\V1\ListTargetHttpsProxiesRequest;
 use Google\Cloud\Compute\V1\PatchTargetHttpsProxyRequest;
@@ -114,7 +113,6 @@ final class TargetHttpsProxiesClient
                     'restClientConfigPath' => __DIR__ . '/../resources/target_https_proxies_rest_client_config.php',
                 ],
             ],
-            'operationsClientClass' => GlobalOperationsClient::class,
         ];
     }
 
@@ -127,9 +125,7 @@ final class TargetHttpsProxiesClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -146,9 +142,7 @@ final class TargetHttpsProxiesClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-            ],
+            'additionalArgumentMethods' => ['getProject'],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -176,10 +170,31 @@ final class TargetHttpsProxiesClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : $this->getDefaultOperationDescriptor();
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : $this->getDefaultOperationDescriptor();
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return GlobalOperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new GlobalOperationsClient($options);
     }
 
     /**
@@ -281,8 +296,10 @@ final class TargetHttpsProxiesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function aggregatedList(AggregatedListTargetHttpsProxiesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function aggregatedList(
+        AggregatedListTargetHttpsProxiesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('AggregatedList', $request, $callOptions);
     }
 
@@ -437,8 +454,10 @@ final class TargetHttpsProxiesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setCertificateMap(SetCertificateMapTargetHttpsProxyRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function setCertificateMap(
+        SetCertificateMapTargetHttpsProxyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SetCertificateMap', $request, $callOptions)->wait();
     }
 
@@ -463,8 +482,10 @@ final class TargetHttpsProxiesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setQuicOverride(SetQuicOverrideTargetHttpsProxyRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function setQuicOverride(
+        SetQuicOverrideTargetHttpsProxyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SetQuicOverride', $request, $callOptions)->wait();
     }
 
@@ -490,8 +511,10 @@ final class TargetHttpsProxiesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setSslCertificates(SetSslCertificatesTargetHttpsProxyRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function setSslCertificates(
+        SetSslCertificatesTargetHttpsProxyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SetSslCertificates', $request, $callOptions)->wait();
     }
 
@@ -516,8 +539,10 @@ final class TargetHttpsProxiesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setSslPolicy(SetSslPolicyTargetHttpsProxyRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function setSslPolicy(
+        SetSslPolicyTargetHttpsProxyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SetSslPolicy', $request, $callOptions)->wait();
     }
 

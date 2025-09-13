@@ -21,37 +21,37 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string architecture = 302803283;</code>
      */
-    private $architecture = null;
+    protected $architecture = null;
     /**
      * An optional description. Provide this property when creating the disk.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
-    private $description = null;
+    protected $description = null;
     /**
      * Specifies the disk name. If not specified, the default is to use the name of the instance. If a disk with the same name already exists in the given region, the existing disk is attached to the new instance and the new disk is not created.
      *
      * Generated from protobuf field <code>optional string disk_name = 92807149;</code>
      */
-    private $disk_name = null;
+    protected $disk_name = null;
     /**
      * Specifies the size of the disk in base-2 GB. The size must be at least 10 GB. If you specify a sourceImage, which is required for boot disks, the default size is the size of the sourceImage. If you do not specify a sourceImage, the default disk size is 500 GB.
      *
      * Generated from protobuf field <code>optional int64 disk_size_gb = 316263735;</code>
      */
-    private $disk_size_gb = null;
+    protected $disk_size_gb = null;
     /**
      * Specifies the disk type to use to create the instance. If not specified, the default is pd-standard, specified using the full URL. For example: https://www.googleapis.com/compute/v1/projects/project/zones/zone /diskTypes/pd-standard For a full list of acceptable values, see Persistent disk types. If you specify this field when creating a VM, you can provide either the full or partial URL. For example, the following values are valid: - https://www.googleapis.com/compute/v1/projects/project/zones/zone /diskTypes/diskType - projects/project/zones/zone/diskTypes/diskType - zones/zone/diskTypes/diskType If you specify this field when creating or updating an instance template or all-instances configuration, specify the type of the disk, not the URL. For example: pd-standard.
      *
      * Generated from protobuf field <code>optional string disk_type = 93009052;</code>
      */
-    private $disk_type = null;
+    protected $disk_type = null;
     /**
      * Whether this disk is using confidential compute mode.
      *
      * Generated from protobuf field <code>optional bool enable_confidential_compute = 102135228;</code>
      */
-    private $enable_confidential_compute = null;
+    protected $enable_confidential_compute = null;
     /**
      * Labels to apply to this disk. These can be later modified by the disks.setLabels method. This field is only applicable for persistent disks.
      *
@@ -70,19 +70,19 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string on_update_action = 202451980;</code>
      */
-    private $on_update_action = null;
+    protected $on_update_action = null;
     /**
      * Indicates how many IOPS to provision for the disk. This sets the number of I/O operations per second that the disk can handle. Values must be between 10,000 and 120,000. For more details, see the Extreme persistent disk documentation.
      *
      * Generated from protobuf field <code>optional int64 provisioned_iops = 186769108;</code>
      */
-    private $provisioned_iops = null;
+    protected $provisioned_iops = null;
     /**
      * Indicates how much throughput to provision for the disk. This sets the number of throughput mb per second that the disk can handle. Values must greater than or equal to 1.
      *
      * Generated from protobuf field <code>optional int64 provisioned_throughput = 526524181;</code>
      */
-    private $provisioned_throughput = null;
+    protected $provisioned_throughput = null;
     /**
      * Required for each regional disk associated with the instance. Specify the URLs of the zones where the disk should be replicated to. You must provide exactly two replica zones, and one zone must be the same as the instance zone.
      *
@@ -106,31 +106,31 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string source_image = 50443319;</code>
      */
-    private $source_image = null;
+    protected $source_image = null;
     /**
      * The customer-supplied encryption key of the source image. Required if the source image is protected by a customer-supplied encryption key. InstanceTemplate and InstancePropertiesPatch do not store customer-supplied encryption keys, so you cannot create disks for instances in a managed instance group if the source images are encrypted with your own keys.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.CustomerEncryptionKey source_image_encryption_key = 381503659;</code>
      */
-    private $source_image_encryption_key = null;
+    protected $source_image_encryption_key = null;
     /**
      * The source snapshot to create this disk. When creating a new instance boot disk, one of initializeParams.sourceSnapshot or initializeParams.sourceImage or disks.source is required. To create a disk with a snapshot that you created, specify the snapshot name in the following format: global/snapshots/my-backup If the source snapshot is deleted later, this field will not be set. Note: You cannot create VMs in bulk using a snapshot as the source. Use an image instead when you create VMs using the bulk insert method.
      *
      * Generated from protobuf field <code>optional string source_snapshot = 126061928;</code>
      */
-    private $source_snapshot = null;
+    protected $source_snapshot = null;
     /**
      * The customer-supplied encryption key of the source snapshot.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.CustomerEncryptionKey source_snapshot_encryption_key = 303679322;</code>
      */
-    private $source_snapshot_encryption_key = null;
+    protected $source_snapshot_encryption_key = null;
     /**
      * The storage pool in which the new disk is created. You can provide this as a partial or full URL to the resource. For example, the following are valid values: - https://www.googleapis.com/compute/v1/projects/project/zones/zone /storagePools/storagePool - projects/project/zones/zone/storagePools/storagePool - zones/zone/storagePools/storagePool 
      *
      * Generated from protobuf field <code>optional string storage_pool = 360473440;</code>
      */
-    private $storage_pool = null;
+    protected $storage_pool = null;
 
     /**
      * Constructor.

@@ -33,14 +33,14 @@ class AllocationAggregateReservation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string vm_family = 125017580;</code>
      */
-    private $vm_family = null;
+    protected $vm_family = null;
     /**
      * The workload type of the instances that will target this reservation.
      * Check the WorkloadType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string workload_type = 273432322;</code>
      */
-    private $workload_type = null;
+    protected $workload_type = null;
 
     /**
      * Constructor.

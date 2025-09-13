@@ -21,32 +21,32 @@ class SubnetworkLogConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string aggregation_interval = 174919042;</code>
      */
-    private $aggregation_interval = null;
+    protected $aggregation_interval = null;
     /**
      * Whether to enable flow logging for this subnetwork. If this field is not explicitly set, it will not appear in get listings. If not set the default behavior is determined by the org policy, if there is no org policy specified, then it will default to disabled. Flow logging isn't supported if the subnet purpose field is set to REGIONAL_MANAGED_PROXY.
      *
      * Generated from protobuf field <code>optional bool enable = 311764355;</code>
      */
-    private $enable = null;
+    protected $enable = null;
     /**
      * Can only be specified if VPC flow logs for this subnetwork is enabled. The filter expression is used to define which VPC flow logs should be exported to Cloud Logging.
      *
      * Generated from protobuf field <code>optional string filter_expr = 183374428;</code>
      */
-    private $filter_expr = null;
+    protected $filter_expr = null;
     /**
      * Can only be specified if VPC flow logging for this subnetwork is enabled. The value of the field must be in [0, 1]. Set the sampling rate of VPC flow logs within the subnetwork where 1.0 means all collected logs are reported and 0.0 means no logs are reported. Default is 0.5 unless otherwise specified by the org policy, which means half of all collected logs are reported.
      *
      * Generated from protobuf field <code>optional float flow_sampling = 530150360;</code>
      */
-    private $flow_sampling = null;
+    protected $flow_sampling = null;
     /**
      * Can only be specified if VPC flow logs for this subnetwork is enabled. Configures whether all, none or a subset of metadata fields should be added to the reported VPC flow logs. Default is EXCLUDE_ALL_METADATA.
      * Check the Metadata enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string metadata = 86866735;</code>
      */
-    private $metadata = null;
+    protected $metadata = null;
     /**
      * Can only be specified if VPC flow logs for this subnetwork is enabled and "metadata" was set to CUSTOM_METADATA.
      *

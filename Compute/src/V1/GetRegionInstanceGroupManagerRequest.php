@@ -20,19 +20,19 @@ class GetRegionInstanceGroupManagerRequest extends \Google\Protobuf\Internal\Mes
      *
      * Generated from protobuf field <code>string instance_group_manager = 249363395 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $instance_group_manager = '';
+    protected $instance_group_manager = '';
     /**
      * Project ID for this request.
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * Name of the region scoping this request.
      *
      * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $region = '';
+    protected $region = '';
 
     /**
      * @param string $project              Project ID for this request.

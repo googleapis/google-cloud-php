@@ -17,14 +17,14 @@ class NetworkProfileLocation extends \Google\Protobuf\Internal\Message
     /**
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
     /**
      * 
      * Check the Scope enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string scope = 109264468;</code>
      */
-    private $scope = null;
+    protected $scope = null;
 
     /**
      * Constructor.

@@ -19,21 +19,21 @@ class SecurityPolicyAdvancedOptionsConfig extends \Google\Protobuf\Internal\Mess
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPolicyAdvancedOptionsConfigJsonCustomConfig json_custom_config = 111570105;</code>
      */
-    private $json_custom_config = null;
+    protected $json_custom_config = null;
     /**
      * 
      * Check the JsonParsing enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string json_parsing = 282493529;</code>
      */
-    private $json_parsing = null;
+    protected $json_parsing = null;
     /**
      * 
      * Check the LogLevel enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string log_level = 140582601;</code>
      */
-    private $log_level = null;
+    protected $log_level = null;
     /**
      * An optional list of case-insensitive request header names to use for resolving the callers client IP address.
      *

@@ -20,14 +20,14 @@ class SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfig extends \Goo
      *
      * Generated from protobuf field <code>optional bool enable = 311764355;</code>
      */
-    private $enable = null;
+    protected $enable = null;
     /**
      * Rule visibility can be one of the following: STANDARD - opaque rules. (default) PREMIUM - transparent rules. This field is only supported in Global Security Policies of type CLOUD_ARMOR.
      * Check the RuleVisibility enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string rule_visibility = 453258293;</code>
      */
-    private $rule_visibility = null;
+    protected $rule_visibility = null;
     /**
      * Configuration options for layer7 adaptive protection for various customizable thresholds.
      *

@@ -19,7 +19,7 @@ class InstancesSetMinCpuPlatformRequest extends \Google\Protobuf\Internal\Messag
      *
      * Generated from protobuf field <code>optional string min_cpu_platform = 242912759;</code>
      */
-    private $min_cpu_platform = null;
+    protected $min_cpu_platform = null;
 
     /**
      * Constructor.
