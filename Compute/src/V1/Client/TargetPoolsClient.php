@@ -48,6 +48,8 @@ use Google\Cloud\Compute\V1\SetBackupTargetPoolRequest;
 use Google\Cloud\Compute\V1\SetSecurityPolicyTargetPoolRequest;
 use Google\Cloud\Compute\V1\TargetPool;
 use Google\Cloud\Compute\V1\TargetPoolInstanceHealth;
+use Google\Cloud\Compute\V1\TestIamPermissionsTargetPoolRequest;
+use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
@@ -69,6 +71,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<OperationResponse> removeInstanceAsync(RemoveInstanceTargetPoolRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> setBackupAsync(SetBackupTargetPoolRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> setSecurityPolicyAsync(SetSecurityPolicyTargetPoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsTargetPoolRequest $request, array $optionalArgs = [])
  */
 final class TargetPoolsClient
 {
@@ -574,5 +577,31 @@ final class TargetPoolsClient
     public function setSecurityPolicy(SetSecurityPolicyTargetPoolRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('SetSecurityPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Returns permissions that a caller has on the specified resource.
+     *
+     * The async variant is {@see TargetPoolsClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/TargetPoolsClient/test_iam_permissions.php
+     *
+     * @param TestIamPermissionsTargetPoolRequest $request     A request to house fields associated with the call.
+     * @param array                               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return TestPermissionsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function testIamPermissions(TestIamPermissionsTargetPoolRequest $request, array $callOptions = []): TestPermissionsResponse
+    {
+        return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

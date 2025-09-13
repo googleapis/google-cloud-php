@@ -43,6 +43,8 @@ use Google\Cloud\Compute\V1\ListInstanceGroupsRequest;
 use Google\Cloud\Compute\V1\ListInstancesInstanceGroupsRequest;
 use Google\Cloud\Compute\V1\RemoveInstancesInstanceGroupRequest;
 use Google\Cloud\Compute\V1\SetNamedPortsInstanceGroupRequest;
+use Google\Cloud\Compute\V1\TestIamPermissionsInstanceGroupRequest;
+use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use Google\Cloud\Compute\V1\ZoneOperationsClient;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
@@ -62,6 +64,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<PagedListResponse> listInstancesAsync(ListInstancesInstanceGroupsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> removeInstancesAsync(RemoveInstancesInstanceGroupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> setNamedPortsAsync(SetNamedPortsInstanceGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsInstanceGroupRequest $request, array $optionalArgs = [])
  */
 final class InstanceGroupsClient
 {
@@ -489,5 +492,31 @@ final class InstanceGroupsClient
     public function setNamedPorts(SetNamedPortsInstanceGroupRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('SetNamedPorts', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Returns permissions that a caller has on the specified resource.
+     *
+     * The async variant is {@see InstanceGroupsClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/InstanceGroupsClient/test_iam_permissions.php
+     *
+     * @param TestIamPermissionsInstanceGroupRequest $request     A request to house fields associated with the call.
+     * @param array                                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return TestPermissionsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function testIamPermissions(TestIamPermissionsInstanceGroupRequest $request, array $callOptions = []): TestPermissionsResponse
+    {
+        return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }
