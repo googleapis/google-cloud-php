@@ -32,6 +32,8 @@ class ProvisioningModel
 {
     const UNDEFINED_PROVISIONING_MODEL = 'UNDEFINED_PROVISIONING_MODEL';
 
+    const FLEX_START = 'FLEX_START';
+
     const RESERVATION_BOUND = 'RESERVATION_BOUND';
 
     const SPOT = 'SPOT';

@@ -41,6 +41,8 @@ use Google\Cloud\Compute\V1\InsertGlobalAddressRequest;
 use Google\Cloud\Compute\V1\ListGlobalAddressesRequest;
 use Google\Cloud\Compute\V1\MoveGlobalAddressRequest;
 use Google\Cloud\Compute\V1\SetLabelsGlobalAddressRequest;
+use Google\Cloud\Compute\V1\TestIamPermissionsGlobalAddressRequest;
+use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
@@ -56,6 +58,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<PagedListResponse> listAsync(ListGlobalAddressesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> moveAsync(MoveGlobalAddressRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> setLabelsAsync(SetLabelsGlobalAddressRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsGlobalAddressRequest $request, array $optionalArgs = [])
  */
 final class GlobalAddressesClient
 {
@@ -404,5 +407,31 @@ final class GlobalAddressesClient
     public function setLabels(SetLabelsGlobalAddressRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('SetLabels', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Returns permissions that a caller has on the specified resource.
+     *
+     * The async variant is {@see GlobalAddressesClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/GlobalAddressesClient/test_iam_permissions.php
+     *
+     * @param TestIamPermissionsGlobalAddressRequest $request     A request to house fields associated with the call.
+     * @param array                                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return TestPermissionsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function testIamPermissions(TestIamPermissionsGlobalAddressRequest $request, array $callOptions = []): TestPermissionsResponse
+    {
+        return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

@@ -68,6 +68,11 @@
                             "methods": [
                                 "setLabels"
                             ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
                         }
                     }
                 }
@@ -663,6 +668,11 @@
                             "methods": [
                                 "setLabels"
                             ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
                         }
                     }
                 }
@@ -1182,6 +1192,11 @@
                             "methods": [
                                 "setNamedPorts"
                             ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
                         }
                     }
                 }
@@ -1265,6 +1280,11 @@
                                 "addAccessConfig"
                             ]
                         },
+                        "AddNetworkInterface": {
+                            "methods": [
+                                "addNetworkInterface"
+                            ]
+                        },
                         "AddResourcePolicies": {
                             "methods": [
                                 "addResourcePolicies"
@@ -1293,6 +1313,11 @@
                         "DeleteAccessConfig": {
                             "methods": [
                                 "deleteAccessConfig"
+                            ]
+                        },
+                        "DeleteNetworkInterface": {
+                            "methods": [
+                                "deleteNetworkInterface"
                             ]
                         },
                         "DetachDisk": {
@@ -3141,6 +3166,11 @@
                             "methods": [
                                 "setNamedPorts"
                             ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
                         }
                     }
                 }
@@ -4631,6 +4661,11 @@
                             "methods": [
                                 "setSecurityPolicy"
                             ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
                         }
                     }
                 }
@@ -4699,6 +4734,11 @@
                         "SetSecurityPolicy": {
                             "methods": [
                                 "setSecurityPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
                             ]
                         }
                     }

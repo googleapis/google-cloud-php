@@ -16,6 +16,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class VpnTunnel extends \Google\Protobuf\Internal\Message
 {
     /**
+     * User specified list of ciphers to use for the phase 1 and phase 2 of the IKE protocol.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.VpnTunnelCipherSuite cipher_suite = 443788228;</code>
+     */
+    private $cipher_suite = null;
+    /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -167,6 +173,8 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type \Google\Cloud\Compute\V1\VpnTunnelCipherSuite $cipher_suite
+     *           User specified list of ciphers to use for the phase 1 and phase 2 of the IKE protocol.
      *     @type string $creation_timestamp
      *           [Output Only] Creation timestamp in RFC3339 text format.
      *     @type string $description
@@ -221,6 +229,42 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Compute\V1\Compute::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * User specified list of ciphers to use for the phase 1 and phase 2 of the IKE protocol.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.VpnTunnelCipherSuite cipher_suite = 443788228;</code>
+     * @return \Google\Cloud\Compute\V1\VpnTunnelCipherSuite|null
+     */
+    public function getCipherSuite()
+    {
+        return $this->cipher_suite;
+    }
+
+    public function hasCipherSuite()
+    {
+        return isset($this->cipher_suite);
+    }
+
+    public function clearCipherSuite()
+    {
+        unset($this->cipher_suite);
+    }
+
+    /**
+     * User specified list of ciphers to use for the phase 1 and phase 2 of the IKE protocol.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.VpnTunnelCipherSuite cipher_suite = 443788228;</code>
+     * @param \Google\Cloud\Compute\V1\VpnTunnelCipherSuite $var
+     * @return $this
+     */
+    public function setCipherSuite($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\VpnTunnelCipherSuite::class);
+        $this->cipher_suite = $var;
+
+        return $this;
     }
 
     /**

@@ -95,6 +95,12 @@ class Scheduling extends \Google\Protobuf\Internal\Message
      */
     private $provisioning_model = null;
     /**
+     * Default is false and there will be 120 seconds between GCE ACPI G2 Soft Off and ACPI G3 Mechanical Off for Standard VMs and 30 seconds for Spot VMs.
+     *
+     * Generated from protobuf field <code>optional bool skip_guest_os_shutdown = 201662378;</code>
+     */
+    private $skip_guest_os_shutdown = null;
+    /**
      * Specifies the timestamp, when the instance will be terminated, in RFC3339 text format. If specified, the instance termination action will be performed at the termination time.
      *
      * Generated from protobuf field <code>optional string termination_time = 428082984;</code>
@@ -135,6 +141,8 @@ class Scheduling extends \Google\Protobuf\Internal\Message
      *     @type string $provisioning_model
      *           Specifies the provisioning model of the instance.
      *           Check the ProvisioningModel enum for the list of possible values.
+     *     @type bool $skip_guest_os_shutdown
+     *           Default is false and there will be 120 seconds between GCE ACPI G2 Soft Off and ACPI G3 Mechanical Off for Standard VMs and 30 seconds for Spot VMs.
      *     @type string $termination_time
      *           Specifies the timestamp, when the instance will be terminated, in RFC3339 text format. If specified, the instance termination action will be performed at the termination time.
      * }
@@ -600,6 +608,42 @@ class Scheduling extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->provisioning_model = $var;
+
+        return $this;
+    }
+
+    /**
+     * Default is false and there will be 120 seconds between GCE ACPI G2 Soft Off and ACPI G3 Mechanical Off for Standard VMs and 30 seconds for Spot VMs.
+     *
+     * Generated from protobuf field <code>optional bool skip_guest_os_shutdown = 201662378;</code>
+     * @return bool
+     */
+    public function getSkipGuestOsShutdown()
+    {
+        return isset($this->skip_guest_os_shutdown) ? $this->skip_guest_os_shutdown : false;
+    }
+
+    public function hasSkipGuestOsShutdown()
+    {
+        return isset($this->skip_guest_os_shutdown);
+    }
+
+    public function clearSkipGuestOsShutdown()
+    {
+        unset($this->skip_guest_os_shutdown);
+    }
+
+    /**
+     * Default is false and there will be 120 seconds between GCE ACPI G2 Soft Off and ACPI G3 Mechanical Off for Standard VMs and 30 seconds for Spot VMs.
+     *
+     * Generated from protobuf field <code>optional bool skip_guest_os_shutdown = 201662378;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSkipGuestOsShutdown($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->skip_guest_os_shutdown = $var;
 
         return $this;
     }

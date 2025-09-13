@@ -29,6 +29,12 @@ class InstanceStatus
      */
     const DEPROVISIONING = 428935662;
     /**
+     * For Flex Start provisioning instance is waiting for available capacity from Dynamic Workload Scheduler (DWS).
+     *
+     * Generated from protobuf enum <code>PENDING = 35394935;</code>
+     */
+    const PENDING = 35394935;
+    /**
      * Resources are being allocated for the instance.
      *
      * Generated from protobuf enum <code>PROVISIONING = 290896621;</code>
@@ -82,6 +88,7 @@ class InstanceStatus
     private static $valueToName = [
         self::UNDEFINED_INSTANCE_STATUS => 'UNDEFINED_INSTANCE_STATUS',
         self::DEPROVISIONING => 'DEPROVISIONING',
+        self::PENDING => 'PENDING',
         self::PROVISIONING => 'PROVISIONING',
         self::REPAIRING => 'REPAIRING',
         self::RUNNING => 'RUNNING',
