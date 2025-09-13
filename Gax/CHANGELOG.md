@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.37.0](https://github.com/googleapis/gax-php/compare/v1.36.1...v1.37.0) (2025-09-10)
+
+
+### Features
+
+* Support client options in ClientOptionsTrait::buildClientOptions ([#621](https://github.com/googleapis/gax-php/issues/621)) ([68e2336](https://github.com/googleapis/gax-php/commit/68e23369657b1740fffe480f96d9d7b04e3e38c2))
+
+
+### Bug Fixes
+
+* Ensure compute request build parameters have the operation ID last ([#625](https://github.com/googleapis/gax-php/issues/625)) ([f90ab28](https://github.com/googleapis/gax-php/commit/f90ab28cea6bbbd00f2a652a6d77babb69b2ada8))
+
 ## [1.36.1](https://github.com/googleapis/gax-php/compare/v1.36.0...v1.36.1) (2025-05-20)
 
 
