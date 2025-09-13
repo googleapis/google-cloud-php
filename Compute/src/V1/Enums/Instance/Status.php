@@ -34,6 +34,8 @@ class Status
 
     const DEPROVISIONING = 'DEPROVISIONING';
 
+    const PENDING = 'PENDING';
+
     const PROVISIONING = 'PROVISIONING';
 
     const REPAIRING = 'REPAIRING';

@@ -28,6 +28,12 @@ class ServiceAttachmentConnectedEndpoint extends \Google\Protobuf\Internal\Messa
      */
     private $endpoint = null;
     /**
+     * NAT IPs of the connected PSC endpoint and those of other endpoints propagated from it.
+     *
+     * Generated from protobuf field <code>repeated string nat_ips = 117635086;</code>
+     */
+    private $nat_ips;
+    /**
      * The number of consumer Network Connectivity Center spokes that the connected Private Service Connect endpoint has propagated to.
      *
      * Generated from protobuf field <code>optional uint32 propagated_connection_count = 324594130;</code>
@@ -57,6 +63,8 @@ class ServiceAttachmentConnectedEndpoint extends \Google\Protobuf\Internal\Messa
      *           The url of the consumer network.
      *     @type string $endpoint
      *           The url of a connected endpoint.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $nat_ips
+     *           NAT IPs of the connected PSC endpoint and those of other endpoints propagated from it.
      *     @type int $propagated_connection_count
      *           The number of consumer Network Connectivity Center spokes that the connected Private Service Connect endpoint has propagated to.
      *     @type int|string $psc_connection_id
@@ -139,6 +147,32 @@ class ServiceAttachmentConnectedEndpoint extends \Google\Protobuf\Internal\Messa
     {
         GPBUtil::checkString($var, True);
         $this->endpoint = $var;
+
+        return $this;
+    }
+
+    /**
+     * NAT IPs of the connected PSC endpoint and those of other endpoints propagated from it.
+     *
+     * Generated from protobuf field <code>repeated string nat_ips = 117635086;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getNatIps()
+    {
+        return $this->nat_ips;
+    }
+
+    /**
+     * NAT IPs of the connected PSC endpoint and those of other endpoints propagated from it.
+     *
+     * Generated from protobuf field <code>repeated string nat_ips = 117635086;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setNatIps($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->nat_ips = $arr;
 
         return $this;
     }

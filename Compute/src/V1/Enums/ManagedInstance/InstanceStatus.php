@@ -34,6 +34,8 @@ class InstanceStatus
 
     const DEPROVISIONING = 'DEPROVISIONING';
 
+    const PENDING = 'PENDING';
+
     const PROVISIONING = 'PROVISIONING';
 
     const REPAIRING = 'REPAIRING';

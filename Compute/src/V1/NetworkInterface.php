@@ -96,6 +96,12 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
      */
     private $nic_type = null;
     /**
+     * Name of the parent network interface of a dynamic network interface.
+     *
+     * Generated from protobuf field <code>optional string parent_nic_name = 418764375;</code>
+     */
+    private $parent_nic_name = null;
+    /**
      * The networking queue count that's specified by users for the network interface. Both Rx and Tx queues will be set to this number. It'll be empty if not specified by the users.
      *
      * Generated from protobuf field <code>optional int32 queue_count = 503708769;</code>
@@ -114,6 +120,12 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string subnetwork = 307827694;</code>
      */
     private $subnetwork = null;
+    /**
+     * VLAN tag of a dynamic network interface, must be an integer in the range from 2 to 255 inclusively.
+     *
+     * Generated from protobuf field <code>optional int32 vlan = 3622243;</code>
+     */
+    private $vlan = null;
 
     /**
      * Constructor.
@@ -149,6 +161,8 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
      *     @type string $nic_type
      *           The type of vNIC to be used on this interface. This may be gVNIC or VirtioNet.
      *           Check the NicType enum for the list of possible values.
+     *     @type string $parent_nic_name
+     *           Name of the parent network interface of a dynamic network interface.
      *     @type int $queue_count
      *           The networking queue count that's specified by users for the network interface. Both Rx and Tx queues will be set to this number. It'll be empty if not specified by the users.
      *     @type string $stack_type
@@ -156,6 +170,8 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
      *           Check the StackType enum for the list of possible values.
      *     @type string $subnetwork
      *           The URL of the Subnetwork resource for this instance. If the network resource is in legacy mode, do not specify this field. If the network is in auto subnet mode, specifying the subnetwork is optional. If the network is in custom subnet mode, specifying the subnetwork is required. If you specify this field, you can specify the subnetwork as a full or partial URL. For example, the following are all valid URLs: - https://www.googleapis.com/compute/v1/projects/project/regions/region /subnetworks/subnetwork - regions/region/subnetworks/subnetwork 
+     *     @type int $vlan
+     *           VLAN tag of a dynamic network interface, must be an integer in the range from 2 to 255 inclusively.
      * }
      */
     public function __construct($data = NULL) {
@@ -606,6 +622,42 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Name of the parent network interface of a dynamic network interface.
+     *
+     * Generated from protobuf field <code>optional string parent_nic_name = 418764375;</code>
+     * @return string
+     */
+    public function getParentNicName()
+    {
+        return isset($this->parent_nic_name) ? $this->parent_nic_name : '';
+    }
+
+    public function hasParentNicName()
+    {
+        return isset($this->parent_nic_name);
+    }
+
+    public function clearParentNicName()
+    {
+        unset($this->parent_nic_name);
+    }
+
+    /**
+     * Name of the parent network interface of a dynamic network interface.
+     *
+     * Generated from protobuf field <code>optional string parent_nic_name = 418764375;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setParentNicName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->parent_nic_name = $var;
+
+        return $this;
+    }
+
+    /**
      * The networking queue count that's specified by users for the network interface. Both Rx and Tx queues will be set to this number. It'll be empty if not specified by the users.
      *
      * Generated from protobuf field <code>optional int32 queue_count = 503708769;</code>
@@ -711,6 +763,42 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->subnetwork = $var;
+
+        return $this;
+    }
+
+    /**
+     * VLAN tag of a dynamic network interface, must be an integer in the range from 2 to 255 inclusively.
+     *
+     * Generated from protobuf field <code>optional int32 vlan = 3622243;</code>
+     * @return int
+     */
+    public function getVlan()
+    {
+        return isset($this->vlan) ? $this->vlan : 0;
+    }
+
+    public function hasVlan()
+    {
+        return isset($this->vlan);
+    }
+
+    public function clearVlan()
+    {
+        unset($this->vlan);
+    }
+
+    /**
+     * VLAN tag of a dynamic network interface, must be an integer in the range from 2 to 255 inclusively.
+     *
+     * Generated from protobuf field <code>optional int32 vlan = 3622243;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setVlan($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->vlan = $var;
 
         return $this;
     }

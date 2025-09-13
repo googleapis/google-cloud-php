@@ -20,6 +20,12 @@ class ProvisioningModel
      */
     const UNDEFINED_PROVISIONING_MODEL = 0;
     /**
+     * Instance is provisioned using the Flex Start provisioning model and has a limited runtime.
+     *
+     * Generated from protobuf enum <code>FLEX_START = 101746812;</code>
+     */
+    const FLEX_START = 101746812;
+    /**
      * Bound to the lifecycle of the reservation in which it is provisioned.
      *
      * Generated from protobuf enum <code>RESERVATION_BOUND = 293538571;</code>
@@ -40,6 +46,7 @@ class ProvisioningModel
 
     private static $valueToName = [
         self::UNDEFINED_PROVISIONING_MODEL => 'UNDEFINED_PROVISIONING_MODEL',
+        self::FLEX_START => 'FLEX_START',
         self::RESERVATION_BOUND => 'RESERVATION_BOUND',
         self::SPOT => 'SPOT',
         self::STANDARD => 'STANDARD',

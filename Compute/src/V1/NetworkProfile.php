@@ -58,6 +58,12 @@ class NetworkProfile extends \Google\Protobuf\Internal\Message
      */
     private $name = null;
     /**
+     * [Output Only] Type of the network profile.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkProfileProfileType profile_type = 150167568;</code>
+     */
+    private $profile_type = null;
+    /**
      * [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
@@ -94,6 +100,8 @@ class NetworkProfile extends \Google\Protobuf\Internal\Message
      *           [Output Only] Location to which the network is restricted.
      *     @type string $name
      *           [Output Only] Name of the resource.
+     *     @type \Google\Cloud\Compute\V1\NetworkProfileProfileType $profile_type
+     *           [Output Only] Type of the network profile.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
      *     @type string $self_link_with_id
@@ -354,6 +362,42 @@ class NetworkProfile extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] Type of the network profile.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkProfileProfileType profile_type = 150167568;</code>
+     * @return \Google\Cloud\Compute\V1\NetworkProfileProfileType|null
+     */
+    public function getProfileType()
+    {
+        return $this->profile_type;
+    }
+
+    public function hasProfileType()
+    {
+        return isset($this->profile_type);
+    }
+
+    public function clearProfileType()
+    {
+        unset($this->profile_type);
+    }
+
+    /**
+     * [Output Only] Type of the network profile.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkProfileProfileType profile_type = 150167568;</code>
+     * @param \Google\Cloud\Compute\V1\NetworkProfileProfileType $var
+     * @return $this
+     */
+    public function setProfileType($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\NetworkProfileProfileType::class);
+        $this->profile_type = $var;
 
         return $this;
     }

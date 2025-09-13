@@ -88,6 +88,12 @@ class Router extends \Google\Protobuf\Internal\Message
      */
     private $network = null;
     /**
+     * Input only. [Input Only] Additional params passed with the request, but not persisted as part of resource payload.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.RouterParams params = 78313862;</code>
+     */
+    private $params = null;
+    /**
      * [Output Only] URI of the region where the router resides. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
@@ -130,6 +136,8 @@ class Router extends \Google\Protobuf\Internal\Message
      *           A list of NAT services created in this router.
      *     @type string $network
      *           URI of the network to which this router belongs.
+     *     @type \Google\Cloud\Compute\V1\RouterParams $params
+     *           Input only. [Input Only] Additional params passed with the request, but not persisted as part of resource payload.
      *     @type string $region
      *           [Output Only] URI of the region where the router resides. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
      *     @type string $self_link
@@ -529,6 +537,42 @@ class Router extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->network = $var;
+
+        return $this;
+    }
+
+    /**
+     * Input only. [Input Only] Additional params passed with the request, but not persisted as part of resource payload.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.RouterParams params = 78313862;</code>
+     * @return \Google\Cloud\Compute\V1\RouterParams|null
+     */
+    public function getParams()
+    {
+        return $this->params;
+    }
+
+    public function hasParams()
+    {
+        return isset($this->params);
+    }
+
+    public function clearParams()
+    {
+        unset($this->params);
+    }
+
+    /**
+     * Input only. [Input Only] Additional params passed with the request, but not persisted as part of resource payload.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.RouterParams params = 78313862;</code>
+     * @param \Google\Cloud\Compute\V1\RouterParams $var
+     * @return $this
+     */
+    public function setParams($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\RouterParams::class);
+        $this->params = $var;
 
         return $this;
     }

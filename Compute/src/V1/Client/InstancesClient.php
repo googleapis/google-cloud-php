@@ -34,12 +34,14 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Compute\V1\AddAccessConfigInstanceRequest;
+use Google\Cloud\Compute\V1\AddNetworkInterfaceInstanceRequest;
 use Google\Cloud\Compute\V1\AddResourcePoliciesInstanceRequest;
 use Google\Cloud\Compute\V1\AggregatedListInstancesRequest;
 use Google\Cloud\Compute\V1\AttachDiskInstanceRequest;
 use Google\Cloud\Compute\V1\BulkInsertInstanceRequest;
 use Google\Cloud\Compute\V1\DeleteAccessConfigInstanceRequest;
 use Google\Cloud\Compute\V1\DeleteInstanceRequest;
+use Google\Cloud\Compute\V1\DeleteNetworkInterfaceInstanceRequest;
 use Google\Cloud\Compute\V1\DetachDiskInstanceRequest;
 use Google\Cloud\Compute\V1\GetEffectiveFirewallsInstanceRequest;
 use Google\Cloud\Compute\V1\GetGuestAttributesInstanceRequest;
@@ -102,12 +104,14 @@ use Psr\Log\LoggerInterface;
  * calls that map to API methods.
  *
  * @method PromiseInterface<OperationResponse> addAccessConfigAsync(AddAccessConfigInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> addNetworkInterfaceAsync(AddNetworkInterfaceInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> addResourcePoliciesAsync(AddResourcePoliciesInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListInstancesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> attachDiskAsync(AttachDiskInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> bulkInsertAsync(BulkInsertInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteAsync(DeleteInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteAccessConfigAsync(DeleteAccessConfigInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteNetworkInterfaceAsync(DeleteNetworkInterfaceInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> detachDiskAsync(DetachDiskInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Instance> getAsync(GetInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<InstancesGetEffectiveFirewallsResponse> getEffectiveFirewallsAsync(GetEffectiveFirewallsInstanceRequest $request, array $optionalArgs = [])
@@ -372,6 +376,32 @@ final class InstancesClient
     }
 
     /**
+     * Adds one dynamic network interface to an active instance.
+     *
+     * The async variant is {@see InstancesClient::addNetworkInterfaceAsync()} .
+     *
+     * @example samples/V1/InstancesClient/add_network_interface.php
+     *
+     * @param AddNetworkInterfaceInstanceRequest $request     A request to house fields associated with the call.
+     * @param array                              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function addNetworkInterface(AddNetworkInterfaceInstanceRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('AddNetworkInterface', $request, $callOptions)->wait();
+    }
+
+    /**
      * Adds existing resource policies to an instance. You can only add one policy right now which will be applied to this instance for scheduling live migrations.
      *
      * The async variant is {@see InstancesClient::addResourcePoliciesAsync()} .
@@ -525,6 +555,32 @@ final class InstancesClient
     public function deleteAccessConfig(DeleteAccessConfigInstanceRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('DeleteAccessConfig', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes one dynamic network interface from an active instance. InstancesDeleteNetworkInterfaceRequest indicates: - instance from which to delete, using project+zone+resource_id fields; - dynamic network interface to be deleted, using network_interface_name field;
+     *
+     * The async variant is {@see InstancesClient::deleteNetworkInterfaceAsync()} .
+     *
+     * @example samples/V1/InstancesClient/delete_network_interface.php
+     *
+     * @param DeleteNetworkInterfaceInstanceRequest $request     A request to house fields associated with the call.
+     * @param array                                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteNetworkInterface(DeleteNetworkInterfaceInstanceRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeleteNetworkInterface', $request, $callOptions)->wait();
     }
 
     /**

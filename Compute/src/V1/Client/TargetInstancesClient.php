@@ -40,6 +40,8 @@ use Google\Cloud\Compute\V1\InsertTargetInstanceRequest;
 use Google\Cloud\Compute\V1\ListTargetInstancesRequest;
 use Google\Cloud\Compute\V1\SetSecurityPolicyTargetInstanceRequest;
 use Google\Cloud\Compute\V1\TargetInstance;
+use Google\Cloud\Compute\V1\TestIamPermissionsTargetInstanceRequest;
+use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use Google\Cloud\Compute\V1\ZoneOperationsClient;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
@@ -56,6 +58,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<OperationResponse> insertAsync(InsertTargetInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listAsync(ListTargetInstancesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> setSecurityPolicyAsync(SetSecurityPolicyTargetInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsTargetInstanceRequest $request, array $optionalArgs = [])
  */
 final class TargetInstancesClient
 {
@@ -405,5 +408,31 @@ final class TargetInstancesClient
     public function setSecurityPolicy(SetSecurityPolicyTargetInstanceRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('SetSecurityPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Returns permissions that a caller has on the specified resource.
+     *
+     * The async variant is {@see TargetInstancesClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/TargetInstancesClient/test_iam_permissions.php
+     *
+     * @param TestIamPermissionsTargetInstanceRequest $request     A request to house fields associated with the call.
+     * @param array                                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return TestPermissionsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function testIamPermissions(TestIamPermissionsTargetInstanceRequest $request, array $callOptions = []): TestPermissionsResponse
+    {
+        return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

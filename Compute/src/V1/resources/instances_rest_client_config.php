@@ -48,6 +48,28 @@ return [
                     'network_interface',
                 ],
             ],
+            'AddNetworkInterface' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/addNetworkInterface',
+                'body' => 'network_interface_resource',
+                'placeholders' => [
+                    'instance' => [
+                        'getters' => [
+                            'getInstance',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
+                        ],
+                    ],
+                ],
+            ],
             'AddResourcePolicies' => [
                 'method' => 'post',
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/addResourcePolicies',
@@ -164,6 +186,30 @@ return [
                 'queryParams' => [
                     'access_config',
                     'network_interface',
+                ],
+            ],
+            'DeleteNetworkInterface' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/deleteNetworkInterface',
+                'placeholders' => [
+                    'instance' => [
+                        'getters' => [
+                            'getInstance',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'network_interface_name',
                 ],
             ],
             'DetachDisk' => [
