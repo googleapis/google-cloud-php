@@ -33,6 +33,12 @@ class GetServiceAttachmentRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string service_attachment = 338957549 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $service_attachment = '';
+    /**
+     * Indicates whether NAT IPs should be included in the response.
+     *
+     * Generated from protobuf field <code>optional bool show_nat_ips = 485502156;</code>
+     */
+    private $show_nat_ips = null;
 
     /**
      * @param string $project           Project ID for this request.
@@ -63,6 +69,8 @@ class GetServiceAttachmentRequest extends \Google\Protobuf\Internal\Message
      *           Name of the region of this request.
      *     @type string $service_attachment
      *           Name of the ServiceAttachment resource to return.
+     *     @type bool $show_nat_ips
+     *           Indicates whether NAT IPs should be included in the response.
      * }
      */
     public function __construct($data = NULL) {
@@ -144,6 +152,42 @@ class GetServiceAttachmentRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->service_attachment = $var;
+
+        return $this;
+    }
+
+    /**
+     * Indicates whether NAT IPs should be included in the response.
+     *
+     * Generated from protobuf field <code>optional bool show_nat_ips = 485502156;</code>
+     * @return bool
+     */
+    public function getShowNatIps()
+    {
+        return isset($this->show_nat_ips) ? $this->show_nat_ips : false;
+    }
+
+    public function hasShowNatIps()
+    {
+        return isset($this->show_nat_ips);
+    }
+
+    public function clearShowNatIps()
+    {
+        unset($this->show_nat_ips);
+    }
+
+    /**
+     * Indicates whether NAT IPs should be included in the response.
+     *
+     * Generated from protobuf field <code>optional bool show_nat_ips = 485502156;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setShowNatIps($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->show_nat_ips = $var;
 
         return $this;
     }
