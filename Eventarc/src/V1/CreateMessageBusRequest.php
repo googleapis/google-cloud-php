@@ -29,7 +29,7 @@ class CreateMessageBusRequest extends \Google\Protobuf\Internal\Message
     protected $message_bus = null;
     /**
      * Required. The user-provided ID to be assigned to the MessageBus. It should
-     * match the format (^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$)
+     * match the format `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`.
      *
      * Generated from protobuf field <code>string message_bus_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -47,7 +47,7 @@ class CreateMessageBusRequest extends \Google\Protobuf\Internal\Message
      *                                                           {@see EventarcClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\Eventarc\V1\MessageBus $messageBus   Required. The message bus to create.
      * @param string                               $messageBusId Required. The user-provided ID to be assigned to the MessageBus. It should
-     *                                                           match the format (^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$)
+     *                                                           match the format `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`.
      *
      * @return \Google\Cloud\Eventarc\V1\CreateMessageBusRequest
      *
@@ -73,7 +73,7 @@ class CreateMessageBusRequest extends \Google\Protobuf\Internal\Message
      *           Required. The message bus to create.
      *     @type string $message_bus_id
      *           Required. The user-provided ID to be assigned to the MessageBus. It should
-     *           match the format (^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$)
+     *           match the format `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`.
      *     @type bool $validate_only
      *           Optional. If set, validate the request and preview the review, but do not
      *           post it.
@@ -148,7 +148,7 @@ class CreateMessageBusRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The user-provided ID to be assigned to the MessageBus. It should
-     * match the format (^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$)
+     * match the format `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`.
      *
      * Generated from protobuf field <code>string message_bus_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -160,7 +160,7 @@ class CreateMessageBusRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The user-provided ID to be assigned to the MessageBus. It should
-     * match the format (^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$)
+     * match the format `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`.
      *
      * Generated from protobuf field <code>string message_bus_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

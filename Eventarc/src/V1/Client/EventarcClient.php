@@ -1147,7 +1147,9 @@ final class EventarcClient
     }
 
     /**
-     * Get a GoogleChannelConfig
+     * Get a GoogleChannelConfig.
+     * The name of the GoogleChannelConfig in the response is ALWAYS coded with
+     * projectID.
      *
      * The async variant is {@see EventarcClient::getGoogleChannelConfigAsync()} .
      *

@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class HttpEndpoint extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The URI of the HTTP enpdoint.
+     * Required. The URI of the HTTP endpoint.
      * The value must be a RFC2396 URI string.
      * Examples: `http://10.10.10.8:80/route`,
      * `http://svc.us-central1.p.local:8080/`.
@@ -35,7 +35,7 @@ class HttpEndpoint extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $uri
-     *           Required. The URI of the HTTP enpdoint.
+     *           Required. The URI of the HTTP endpoint.
      *           The value must be a RFC2396 URI string.
      *           Examples: `http://10.10.10.8:80/route`,
      *           `http://svc.us-central1.p.local:8080/`.
@@ -50,7 +50,7 @@ class HttpEndpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The URI of the HTTP enpdoint.
+     * Required. The URI of the HTTP endpoint.
      * The value must be a RFC2396 URI string.
      * Examples: `http://10.10.10.8:80/route`,
      * `http://svc.us-central1.p.local:8080/`.
@@ -67,7 +67,7 @@ class HttpEndpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The URI of the HTTP enpdoint.
+     * Required. The URI of the HTTP endpoint.
      * The value must be a RFC2396 URI string.
      * Examples: `http://10.10.10.8:80/route`,
      * `http://svc.us-central1.p.local:8080/`.

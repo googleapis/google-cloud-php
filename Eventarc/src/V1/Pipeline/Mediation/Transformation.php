@@ -87,7 +87,7 @@ class Transformation extends \Google\Protobuf\Internal\Message
      *     datacontenttype on the CloudEvent if present, else leave
      *     datacontenttype absent.
      *     - This function expects that the content of the message will
-     *     adhere to the standard CloudEvent format. If it doesn’t then this
+     *     adhere to the standard CloudEvent format. If it doesn't then this
      *     function will fail.
      *     - The result is a CEL map that corresponds to the JSON
      *     representation of the CloudEvent. To convert that data to a JSON
@@ -175,7 +175,7 @@ class Transformation extends \Google\Protobuf\Internal\Message
      *               datacontenttype on the CloudEvent if present, else leave
      *               datacontenttype absent.
      *               - This function expects that the content of the message will
-     *               adhere to the standard CloudEvent format. If it doesn’t then this
+     *               adhere to the standard CloudEvent format. If it doesn't then this
      *               function will fail.
      *               - The result is a CEL map that corresponds to the JSON
      *               representation of the CloudEvent. To convert that data to a JSON
@@ -259,7 +259,7 @@ class Transformation extends \Google\Protobuf\Internal\Message
      *     datacontenttype on the CloudEvent if present, else leave
      *     datacontenttype absent.
      *     - This function expects that the content of the message will
-     *     adhere to the standard CloudEvent format. If it doesn’t then this
+     *     adhere to the standard CloudEvent format. If it doesn't then this
      *     function will fail.
      *     - The result is a CEL map that corresponds to the JSON
      *     representation of the CloudEvent. To convert that data to a JSON
@@ -345,7 +345,7 @@ class Transformation extends \Google\Protobuf\Internal\Message
      *     datacontenttype on the CloudEvent if present, else leave
      *     datacontenttype absent.
      *     - This function expects that the content of the message will
-     *     adhere to the standard CloudEvent format. If it doesn’t then this
+     *     adhere to the standard CloudEvent format. If it doesn't then this
      *     function will fail.
      *     - The result is a CEL map that corresponds to the JSON
      *     representation of the CloudEvent. To convert that data to a JSON

@@ -19,14 +19,18 @@ class GoogleChannelConfig
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ñ
-4google/cloud/eventarc/v1/google_channel_config.protogoogle.cloud.eventarc.v1google/api/resource.protogoogle/protobuf/timestamp.proto"ß
+ö
+4google/cloud/eventarc/v1/google_channel_config.protogoogle.cloud.eventarc.v1google/api/resource.protogoogle/protobuf/timestamp.proto"Ω
 GoogleChannelConfig
 name (	B‡A4
 update_time (2.google.protobuf.TimestampB‡AB
 crypto_key_name (	B)‡A˙A#
-!cloudkms.googleapis.com/CryptoKey:ÇÍA
-+eventarc.googleapis.com/GoogleChannelConfig;projects/{project}/locations/{location}/googleChannelConfig2googleChannelConfigB√
+!cloudkms.googleapis.com/CryptoKeyN
+labels (29.google.cloud.eventarc.v1.GoogleChannelConfig.LabelsEntryB‡A-
+LabelsEntry
+key (	
+value (	:8:ôÍAï
++eventarc.googleapis.com/GoogleChannelConfig;projects/{project}/locations/{location}/googleChannelConfig*googleChannelConfigs2googleChannelConfigB√
 com.google.cloud.eventarc.v1BGoogleChannelConfigProtoPZ8cloud.google.com/go/eventarc/apiv1/eventarcpb;eventarcpb™Google.Cloud.Eventarc.V1 Google\\Cloud\\Eventarc\\V1ÍGoogle::Cloud::Eventarc::V1ÍAx
 !cloudkms.googleapis.com/CryptoKeySprojects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}bproto3'
         , true);

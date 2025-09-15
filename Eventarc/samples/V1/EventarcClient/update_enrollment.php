@@ -35,8 +35,8 @@ use Google\Rpc\Status;
  *
  * @param string $enrollmentCelMatch            A CEL expression identifying which messages this enrollment
  *                                              applies to.
- * @param string $formattedEnrollmentMessageBus Resource name of the message bus identifying the source of the
- *                                              messages. It matches the form
+ * @param string $formattedEnrollmentMessageBus Immutable. Resource name of the message bus identifying the
+ *                                              source of the messages. It matches the form
  *                                              projects/{project}/locations/{location}/messageBuses/{messageBus}. Please see
  *                                              {@see EventarcClient::messageBusName()} for help formatting this field.
  * @param string $enrollmentDestination         Destination is the Pipeline that the Enrollment is delivering to.

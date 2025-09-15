@@ -29,7 +29,9 @@ use Google\Cloud\Eventarc\V1\GetGoogleChannelConfigRequest;
 use Google\Cloud\Eventarc\V1\GoogleChannelConfig;
 
 /**
- * Get a GoogleChannelConfig
+ * Get a GoogleChannelConfig.
+ * The name of the GoogleChannelConfig in the response is ALWAYS coded with
+ * projectID.
  *
  * @param string $formattedName The name of the config to get. Please see
  *                              {@see EventarcClient::googleChannelConfigName()} for help formatting this field.

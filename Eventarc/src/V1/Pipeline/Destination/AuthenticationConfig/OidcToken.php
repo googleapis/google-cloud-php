@@ -10,9 +10,9 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Represents a config used to authenticate with a Google OIDC token using
- * a GCP service account. Use this authentication method to invoke your
- * Cloud Run and Cloud Functions destinations or HTTP endpoints that
- * support Google OIDC.
+ * a Google Cloud service account. Use this authentication method to
+ * invoke your Cloud Run and Cloud Functions destinations or HTTP
+ * endpoints that support Google OIDC.
  *
  * Generated from protobuf message <code>google.cloud.eventarc.v1.Pipeline.Destination.AuthenticationConfig.OidcToken</code>
  */
@@ -22,7 +22,7 @@ class OidcToken extends \Google\Protobuf\Internal\Message
      * Required. Service account email used to generate the OIDC Token.
      * The principal who calls this API must have
      * iam.serviceAccounts.actAs permission in the service account. See
-     * https://cloud.google.com/iam/docs/understanding-service-accounts?hl=en#sa_common
+     * https://cloud.google.com/iam/docs/understanding-service-accounts
      * for more information. Eventarc service agents must have
      * roles/roles/iam.serviceAccountTokenCreator role to allow the
      * Pipeline to create OpenID tokens for authenticated requests.
@@ -49,7 +49,7 @@ class OidcToken extends \Google\Protobuf\Internal\Message
      *           Required. Service account email used to generate the OIDC Token.
      *           The principal who calls this API must have
      *           iam.serviceAccounts.actAs permission in the service account. See
-     *           https://cloud.google.com/iam/docs/understanding-service-accounts?hl=en#sa_common
+     *           https://cloud.google.com/iam/docs/understanding-service-accounts
      *           for more information. Eventarc service agents must have
      *           roles/roles/iam.serviceAccountTokenCreator role to allow the
      *           Pipeline to create OpenID tokens for authenticated requests.
@@ -68,7 +68,7 @@ class OidcToken extends \Google\Protobuf\Internal\Message
      * Required. Service account email used to generate the OIDC Token.
      * The principal who calls this API must have
      * iam.serviceAccounts.actAs permission in the service account. See
-     * https://cloud.google.com/iam/docs/understanding-service-accounts?hl=en#sa_common
+     * https://cloud.google.com/iam/docs/understanding-service-accounts
      * for more information. Eventarc service agents must have
      * roles/roles/iam.serviceAccountTokenCreator role to allow the
      * Pipeline to create OpenID tokens for authenticated requests.
@@ -85,7 +85,7 @@ class OidcToken extends \Google\Protobuf\Internal\Message
      * Required. Service account email used to generate the OIDC Token.
      * The principal who calls this API must have
      * iam.serviceAccounts.actAs permission in the service account. See
-     * https://cloud.google.com/iam/docs/understanding-service-accounts?hl=en#sa_common
+     * https://cloud.google.com/iam/docs/understanding-service-accounts
      * for more information. Eventarc service agents must have
      * roles/roles/iam.serviceAccountTokenCreator role to allow the
      * Pipeline to create OpenID tokens for authenticated requests.

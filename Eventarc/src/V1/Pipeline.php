@@ -123,9 +123,16 @@ class Pipeline extends \Google\Protobuf\Internal\Message
      * other fields, and might be sent only on create requests to ensure that the
      * client has an up-to-date value before proceeding.
      *
-     * Generated from protobuf field <code>string etag = 99;</code>
+     * Generated from protobuf field <code>string etag = 99 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $etag = '';
+    /**
+     * Output only. Whether or not this Pipeline satisfies the requirements of
+     * physical zone separation
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $satisfies_pzs = false;
 
     /**
      * Constructor.
@@ -188,6 +195,9 @@ class Pipeline extends \Google\Protobuf\Internal\Message
      *           Output only. This checksum is computed by the server based on the value of
      *           other fields, and might be sent only on create requests to ensure that the
      *           client has an up-to-date value before proceeding.
+     *     @type bool $satisfies_pzs
+     *           Output only. Whether or not this Pipeline satisfies the requirements of
+     *           physical zone separation
      * }
      */
     public function __construct($data = NULL) {
@@ -638,7 +648,7 @@ class Pipeline extends \Google\Protobuf\Internal\Message
      * other fields, and might be sent only on create requests to ensure that the
      * client has an up-to-date value before proceeding.
      *
-     * Generated from protobuf field <code>string etag = 99;</code>
+     * Generated from protobuf field <code>string etag = 99 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getEtag()
@@ -651,7 +661,7 @@ class Pipeline extends \Google\Protobuf\Internal\Message
      * other fields, and might be sent only on create requests to ensure that the
      * client has an up-to-date value before proceeding.
      *
-     * Generated from protobuf field <code>string etag = 99;</code>
+     * Generated from protobuf field <code>string etag = 99 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -659,6 +669,34 @@ class Pipeline extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->etag = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Whether or not this Pipeline satisfies the requirements of
+     * physical zone separation
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzs()
+    {
+        return $this->satisfies_pzs;
+    }
+
+    /**
+     * Output only. Whether or not this Pipeline satisfies the requirements of
+     * physical zone separation
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzs($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzs = $var;
 
         return $this;
     }
