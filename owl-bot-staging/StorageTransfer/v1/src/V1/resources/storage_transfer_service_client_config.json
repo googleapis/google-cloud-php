@@ -1,0 +1,114 @@
+{
+    "interfaces": {
+        "google.storagetransfer.v1.StorageTransferService": {
+            "retry_codes": {
+                "no_retry_codes": [],
+                "retry_policy_1_codes": [
+                    "UNAVAILABLE"
+                ],
+                "no_retry_1_codes": []
+            },
+            "retry_params": {
+                "no_retry_params": {
+                    "initial_retry_delay_millis": 0,
+                    "retry_delay_multiplier": 0.0,
+                    "max_retry_delay_millis": 0,
+                    "initial_rpc_timeout_millis": 0,
+                    "rpc_timeout_multiplier": 1.0,
+                    "max_rpc_timeout_millis": 0,
+                    "total_timeout_millis": 0
+                },
+                "retry_policy_1_params": {
+                    "initial_retry_delay_millis": 1000,
+                    "retry_delay_multiplier": 2.0,
+                    "max_retry_delay_millis": 60000,
+                    "initial_rpc_timeout_millis": 60000,
+                    "rpc_timeout_multiplier": 1.0,
+                    "max_rpc_timeout_millis": 60000,
+                    "total_timeout_millis": 60000
+                },
+                "no_retry_1_params": {
+                    "initial_retry_delay_millis": 0,
+                    "retry_delay_multiplier": 0.0,
+                    "max_retry_delay_millis": 0,
+                    "initial_rpc_timeout_millis": 60000,
+                    "rpc_timeout_multiplier": 1.0,
+                    "max_rpc_timeout_millis": 60000,
+                    "total_timeout_millis": 60000
+                }
+            },
+            "methods": {
+                "CreateAgentPool": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "CreateTransferJob": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
+                "DeleteAgentPool": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "DeleteTransferJob": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "GetAgentPool": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "GetGoogleServiceAccount": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "GetTransferJob": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "ListAgentPools": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "ListTransferJobs": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "PauseTransferOperation": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "ResumeTransferOperation": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "RunTransferJob": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "UpdateAgentPool": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "UpdateTransferJob": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                }
+            }
+        }
+    }
+}
