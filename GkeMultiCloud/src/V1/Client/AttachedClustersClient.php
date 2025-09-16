@@ -28,6 +28,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -100,7 +101,9 @@ final class AttachedClustersClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+    ];
 
     private $operationsClient;
 
@@ -146,9 +149,7 @@ final class AttachedClustersClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning'])
-            ? $this->descriptors[$methodName]['longRunning']
-            : [];
+        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -255,7 +256,7 @@ final class AttachedClustersClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
@@ -311,11 +312,13 @@ final class AttachedClustersClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -357,14 +360,12 @@ final class AttachedClustersClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<AttachedCluster>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createAttachedCluster(
-        CreateAttachedClusterRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function createAttachedCluster(CreateAttachedClusterRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('CreateAttachedCluster', $request, $callOptions)->wait();
     }
 
@@ -391,14 +392,12 @@ final class AttachedClustersClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteAttachedCluster(
-        DeleteAttachedClusterRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function deleteAttachedCluster(DeleteAttachedClusterRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('DeleteAttachedCluster', $request, $callOptions)->wait();
     }
 
@@ -424,10 +423,8 @@ final class AttachedClustersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function generateAttachedClusterAgentToken(
-        GenerateAttachedClusterAgentTokenRequest $request,
-        array $callOptions = []
-    ): GenerateAttachedClusterAgentTokenResponse {
+    public function generateAttachedClusterAgentToken(GenerateAttachedClusterAgentTokenRequest $request, array $callOptions = []): GenerateAttachedClusterAgentTokenResponse
+    {
         return $this->startApiCall('GenerateAttachedClusterAgentToken', $request, $callOptions)->wait();
     }
 
@@ -453,10 +450,8 @@ final class AttachedClustersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function generateAttachedClusterInstallManifest(
-        GenerateAttachedClusterInstallManifestRequest $request,
-        array $callOptions = []
-    ): GenerateAttachedClusterInstallManifestResponse {
+    public function generateAttachedClusterInstallManifest(GenerateAttachedClusterInstallManifestRequest $request, array $callOptions = []): GenerateAttachedClusterInstallManifestResponse
+    {
         return $this->startApiCall('GenerateAttachedClusterInstallManifest', $request, $callOptions)->wait();
     }
 
@@ -510,10 +505,8 @@ final class AttachedClustersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getAttachedServerConfig(
-        GetAttachedServerConfigRequest $request,
-        array $callOptions = []
-    ): AttachedServerConfig {
+    public function getAttachedServerConfig(GetAttachedServerConfigRequest $request, array $callOptions = []): AttachedServerConfig
+    {
         return $this->startApiCall('GetAttachedServerConfig', $request, $callOptions)->wait();
     }
 
@@ -544,14 +537,12 @@ final class AttachedClustersClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<AttachedCluster>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function importAttachedCluster(
-        ImportAttachedClusterRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function importAttachedCluster(ImportAttachedClusterRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('ImportAttachedCluster', $request, $callOptions)->wait();
     }
 
@@ -578,10 +569,8 @@ final class AttachedClustersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listAttachedClusters(
-        ListAttachedClustersRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listAttachedClusters(ListAttachedClustersRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListAttachedClusters', $request, $callOptions);
     }
 
@@ -604,14 +593,12 @@ final class AttachedClustersClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<AttachedCluster>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateAttachedCluster(
-        UpdateAttachedClusterRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function updateAttachedCluster(UpdateAttachedClusterRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('UpdateAttachedCluster', $request, $callOptions)->wait();
     }
 }

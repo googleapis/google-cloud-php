@@ -27,6 +27,7 @@ namespace Google\Cloud\Kms\Inventory\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -79,7 +80,9 @@ final class KeyTrackingServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+    ];
 
     private static function getClientDefaults()
     {
@@ -128,16 +131,9 @@ final class KeyTrackingServiceClient
      *
      * @return string The formatted project_location_key_ring_crypto_key_crypto_key_version_protectedResourcesSummary resource.
      */
-    public static function projectLocationKeyRingCryptoKeyCryptoKeyVersionProtectedResourcesSummaryName(
-        string $project,
-        string $location,
-        string $keyRing,
-        string $cryptoKey,
-        string $cryptoKeyVersion
-    ): string {
-        return self::getPathTemplate(
-            'projectLocationKeyRingCryptoKeyCryptoKeyVersionProtectedResourcesSummary'
-        )->render([
+    public static function projectLocationKeyRingCryptoKeyCryptoKeyVersionProtectedResourcesSummaryName(string $project, string $location, string $keyRing, string $cryptoKey, string $cryptoKeyVersion): string
+    {
+        return self::getPathTemplate('projectLocationKeyRingCryptoKeyCryptoKeyVersionProtectedResourcesSummary')->render([
             'project' => $project,
             'location' => $location,
             'key_ring' => $keyRing,
@@ -157,12 +153,8 @@ final class KeyTrackingServiceClient
      *
      * @return string The formatted project_location_key_ring_crypto_key_protectedResourcesSummary resource.
      */
-    public static function projectLocationKeyRingCryptoKeyProtectedResourcesSummaryName(
-        string $project,
-        string $location,
-        string $keyRing,
-        string $cryptoKey
-    ): string {
+    public static function projectLocationKeyRingCryptoKeyProtectedResourcesSummaryName(string $project, string $location, string $keyRing, string $cryptoKey): string
+    {
         return self::getPathTemplate('projectLocationKeyRingCryptoKeyProtectedResourcesSummary')->render([
             'project' => $project,
             'location' => $location,
@@ -182,12 +174,8 @@ final class KeyTrackingServiceClient
      *
      * @return string The formatted protected_resources_summary resource.
      */
-    public static function protectedResourcesSummaryName(
-        string $project,
-        string $location,
-        string $keyRing,
-        string $cryptoKey
-    ): string {
+    public static function protectedResourcesSummaryName(string $project, string $location, string $keyRing, string $cryptoKey): string
+    {
         return self::getPathTemplate('protectedResourcesSummary')->render([
             'project' => $project,
             'location' => $location,
@@ -226,7 +214,7 @@ final class KeyTrackingServiceClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
@@ -282,11 +270,13 @@ final class KeyTrackingServiceClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -329,10 +319,8 @@ final class KeyTrackingServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getProtectedResourcesSummary(
-        GetProtectedResourcesSummaryRequest $request,
-        array $callOptions = []
-    ): ProtectedResourcesSummary {
+    public function getProtectedResourcesSummary(GetProtectedResourcesSummaryRequest $request, array $callOptions = []): ProtectedResourcesSummary
+    {
         return $this->startApiCall('GetProtectedResourcesSummary', $request, $callOptions)->wait();
     }
 
@@ -359,10 +347,8 @@ final class KeyTrackingServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function searchProtectedResources(
-        SearchProtectedResourcesRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function searchProtectedResources(SearchProtectedResourcesRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('SearchProtectedResources', $request, $callOptions);
     }
 }

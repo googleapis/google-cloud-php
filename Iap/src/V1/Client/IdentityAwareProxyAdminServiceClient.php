@@ -27,6 +27,7 @@ namespace Google\Cloud\Iap\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -100,7 +101,9 @@ final class IdentityAwareProxyAdminServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+    ];
 
     private static function getClientDefaults()
     {
@@ -108,16 +111,14 @@ final class IdentityAwareProxyAdminServiceClient
             'serviceName' => self::SERVICE_NAME,
             'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__ . '/../resources/identity_aware_proxy_admin_service_client_config.json',
-            'descriptorsConfigPath' =>
-                __DIR__ . '/../resources/identity_aware_proxy_admin_service_descriptor_config.php',
+            'descriptorsConfigPath' => __DIR__ . '/../resources/identity_aware_proxy_admin_service_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__ . '/../resources/identity_aware_proxy_admin_service_grpc_config.json',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' =>
-                        __DIR__ . '/../resources/identity_aware_proxy_admin_service_rest_client_config.php',
+                    'restClientConfigPath' => __DIR__ . '/../resources/identity_aware_proxy_admin_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -187,7 +188,7 @@ final class IdentityAwareProxyAdminServiceClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
@@ -243,11 +244,13 @@ final class IdentityAwareProxyAdminServiceClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -286,10 +289,8 @@ final class IdentityAwareProxyAdminServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createTunnelDestGroup(
-        CreateTunnelDestGroupRequest $request,
-        array $callOptions = []
-    ): TunnelDestGroup {
+    public function createTunnelDestGroup(CreateTunnelDestGroupRequest $request, array $callOptions = []): TunnelDestGroup
+    {
         return $this->startApiCall('CreateTunnelDestGroup', $request, $callOptions)->wait();
     }
 
@@ -426,10 +427,8 @@ final class IdentityAwareProxyAdminServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listTunnelDestGroups(
-        ListTunnelDestGroupsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listTunnelDestGroups(ListTunnelDestGroupsRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListTunnelDestGroups', $request, $callOptions);
     }
 
@@ -488,10 +487,8 @@ final class IdentityAwareProxyAdminServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(
-        TestIamPermissionsRequest $request,
-        array $callOptions = []
-    ): TestIamPermissionsResponse {
+    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
+    {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 
@@ -545,10 +542,8 @@ final class IdentityAwareProxyAdminServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateTunnelDestGroup(
-        UpdateTunnelDestGroupRequest $request,
-        array $callOptions = []
-    ): TunnelDestGroup {
+    public function updateTunnelDestGroup(UpdateTunnelDestGroupRequest $request, array $callOptions = []): TunnelDestGroup
+    {
         return $this->startApiCall('UpdateTunnelDestGroup', $request, $callOptions)->wait();
     }
 
@@ -575,10 +570,8 @@ final class IdentityAwareProxyAdminServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function validateIapAttributeExpression(
-        ValidateIapAttributeExpressionRequest $request,
-        array $callOptions = []
-    ): ValidateIapAttributeExpressionResponse {
+    public function validateIapAttributeExpression(ValidateIapAttributeExpressionRequest $request, array $callOptions = []): ValidateIapAttributeExpressionResponse
+    {
         return $this->startApiCall('ValidateIapAttributeExpression', $request, $callOptions)->wait();
     }
 }

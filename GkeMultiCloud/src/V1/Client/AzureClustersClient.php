@@ -28,6 +28,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -123,7 +124,9 @@ final class AzureClustersClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+    ];
 
     private $operationsClient;
 
@@ -169,9 +172,7 @@ final class AzureClustersClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning'])
-            ? $this->descriptors[$methodName]['longRunning']
-            : [];
+        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -245,12 +246,8 @@ final class AzureClustersClient
      *
      * @return string The formatted azure_node_pool resource.
      */
-    public static function azureNodePoolName(
-        string $project,
-        string $location,
-        string $azureCluster,
-        string $azureNodePool
-    ): string {
+    public static function azureNodePoolName(string $project, string $location, string $azureCluster, string $azureNodePool): string
+    {
         return self::getPathTemplate('azureNodePool')->render([
             'project' => $project,
             'location' => $location,
@@ -324,7 +321,7 @@ final class AzureClustersClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
@@ -380,11 +377,13 @@ final class AzureClustersClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -428,7 +427,7 @@ final class AzureClustersClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<AzureClient>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -459,7 +458,7 @@ final class AzureClustersClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<AzureCluster>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -491,7 +490,7 @@ final class AzureClustersClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<AzureNodePool>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -525,7 +524,7 @@ final class AzureClustersClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -559,7 +558,7 @@ final class AzureClustersClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -590,7 +589,7 @@ final class AzureClustersClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -622,10 +621,8 @@ final class AzureClustersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function generateAzureAccessToken(
-        GenerateAzureAccessTokenRequest $request,
-        array $callOptions = []
-    ): GenerateAzureAccessTokenResponse {
+    public function generateAzureAccessToken(GenerateAzureAccessTokenRequest $request, array $callOptions = []): GenerateAzureAccessTokenResponse
+    {
         return $this->startApiCall('GenerateAzureAccessToken', $request, $callOptions)->wait();
     }
 
@@ -651,10 +648,8 @@ final class AzureClustersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function generateAzureClusterAgentToken(
-        GenerateAzureClusterAgentTokenRequest $request,
-        array $callOptions = []
-    ): GenerateAzureClusterAgentTokenResponse {
+    public function generateAzureClusterAgentToken(GenerateAzureClusterAgentTokenRequest $request, array $callOptions = []): GenerateAzureClusterAgentTokenResponse
+    {
         return $this->startApiCall('GenerateAzureClusterAgentToken', $request, $callOptions)->wait();
     }
 
@@ -791,10 +786,8 @@ final class AzureClustersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getAzureOpenIdConfig(
-        GetAzureOpenIdConfigRequest $request,
-        array $callOptions = []
-    ): AzureOpenIdConfig {
+    public function getAzureOpenIdConfig(GetAzureOpenIdConfigRequest $request, array $callOptions = []): AzureOpenIdConfig
+    {
         return $this->startApiCall('GetAzureOpenIdConfig', $request, $callOptions)->wait();
     }
 
@@ -820,10 +813,8 @@ final class AzureClustersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getAzureServerConfig(
-        GetAzureServerConfigRequest $request,
-        array $callOptions = []
-    ): AzureServerConfig {
+    public function getAzureServerConfig(GetAzureServerConfigRequest $request, array $callOptions = []): AzureServerConfig
+    {
         return $this->startApiCall('GetAzureServerConfig', $request, $callOptions)->wait();
     }
 
@@ -926,7 +917,7 @@ final class AzureClustersClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<AzureCluster>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -952,7 +943,7 @@ final class AzureClustersClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<AzureNodePool>
      *
      * @throws ApiException Thrown if the API call fails.
      */

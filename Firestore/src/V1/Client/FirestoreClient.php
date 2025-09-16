@@ -28,6 +28,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\BidiStream;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\ServerStream;
@@ -35,6 +36,7 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Firestore\V1\BatchGetDocumentsRequest;
+use Google\Cloud\Firestore\V1\BatchGetDocumentsResponse;
 use Google\Cloud\Firestore\V1\BatchWriteRequest;
 use Google\Cloud\Firestore\V1\BatchWriteResponse;
 use Google\Cloud\Firestore\V1\BeginTransactionRequest;
@@ -50,7 +52,9 @@ use Google\Cloud\Firestore\V1\ListDocumentsRequest;
 use Google\Cloud\Firestore\V1\PartitionQueryRequest;
 use Google\Cloud\Firestore\V1\RollbackRequest;
 use Google\Cloud\Firestore\V1\RunAggregationQueryRequest;
+use Google\Cloud\Firestore\V1\RunAggregationQueryResponse;
 use Google\Cloud\Firestore\V1\RunQueryRequest;
+use Google\Cloud\Firestore\V1\RunQueryResponse;
 use Google\Cloud\Firestore\V1\UpdateDocumentRequest;
 use Google\Cloud\Firestore\V1\Write;
 use GuzzleHttp\Promise\PromiseInterface;
@@ -132,7 +136,7 @@ final class FirestoreClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
@@ -188,11 +192,13 @@ final class FirestoreClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -225,7 +231,7 @@ final class FirestoreClient
      *           Timeout to use for this call.
      * }
      *
-     * @return ServerStream
+     * @return ServerStream<BatchGetDocumentsResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -548,7 +554,7 @@ final class FirestoreClient
      *           Timeout to use for this call.
      * }
      *
-     * @return ServerStream
+     * @return ServerStream<RunAggregationQueryResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -570,7 +576,7 @@ final class FirestoreClient
      *           Timeout to use for this call.
      * }
      *
-     * @return ServerStream
+     * @return ServerStream<RunQueryResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
