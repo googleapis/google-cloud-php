@@ -81,30 +81,45 @@ class GrpcFallbackTransportOptions implements ArrayAccess, OptionsInterface
         $this->setLogger($arr['logger'] ?? null);
     }
 
-    public function setHttpHandler(?callable $httpHandler)
+    /**
+     * @param ?callable $httpHandler
+     *
+     * @return $this
+     */
+    public function setHttpHandler(?callable $httpHandler): self
     {
         if (!is_null($httpHandler)) {
             $httpHandler = Closure::fromCallable($httpHandler);
         }
         $this->httpHandler = $httpHandler;
+
+        return $this;
     }
 
     /**
      * @param ?callable $clientCertSource
+     *
+     * @return $this
      */
-    public function setClientCertSource(?callable $clientCertSource)
+    public function setClientCertSource(?callable $clientCertSource): self
     {
         if (!is_null($clientCertSource)) {
             $clientCertSource = Closure::fromCallable($clientCertSource);
         }
         $this->clientCertSource = $clientCertSource;
+
+        return $this;
     }
 
     /**
      * @param null|false|LoggerInterface $logger
+     *
+     * @return $this
      */
-    public function setLogger(null|false|LoggerInterface $logger)
+    public function setLogger(null|false|LoggerInterface $logger): self
     {
         $this->logger = $logger;
+
+        return $this;
     }
 }

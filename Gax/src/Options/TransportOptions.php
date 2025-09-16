@@ -73,18 +73,39 @@ class TransportOptions implements ArrayAccess, OptionsInterface
         $this->setRest(new RestTransportOptions($arr['rest'] ?? []));
     }
 
-    public function setGrpc(GrpcTransportOptions $grpc): void
+    /**
+     * @param GrpcTransportOptions $grpc
+     *
+     * @return $this
+     */
+    public function setGrpc(GrpcTransportOptions $grpc): self
     {
         $this->grpc = $grpc;
+
+        return $this;
     }
 
-    public function setGrpcFallback(GrpcFallbackTransportOptions $grpcFallback): void
+    /**
+     * @param GrpcFallbackTransportOptions $grpcFallback
+     *
+     * @return $this
+     */
+    public function setGrpcFallback(GrpcFallbackTransportOptions $grpcFallback): self
     {
         $this->grpcFallback = $grpcFallback;
+
+        return $this;
     }
 
-    public function setRest(RestTransportOptions $rest): void
+    /**
+     * @param RestTransportOptions $rest
+     *
+     * @return $this
+     */
+    public function setRest(RestTransportOptions $rest): self
     {
         $this->rest = $rest;
+
+        return $this;
     }
 }
