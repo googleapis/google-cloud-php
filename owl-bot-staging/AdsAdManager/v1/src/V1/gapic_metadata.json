@@ -1,0 +1,502 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.ads.admanager.v1",
+    "libraryPackage": "Google\\Ads\\AdManager\\V1",
+    "services": {
+        "AdBreakService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "AdBreakServiceGapicClient",
+                    "rpcs": {
+                        "CreateAdBreak": {
+                            "methods": [
+                                "createAdBreak"
+                            ]
+                        },
+                        "DeleteAdBreak": {
+                            "methods": [
+                                "deleteAdBreak"
+                            ]
+                        },
+                        "GetAdBreak": {
+                            "methods": [
+                                "getAdBreak"
+                            ]
+                        },
+                        "ListAdBreaks": {
+                            "methods": [
+                                "listAdBreaks"
+                            ]
+                        },
+                        "UpdateAdBreak": {
+                            "methods": [
+                                "updateAdBreak"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "AdUnitService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "AdUnitServiceGapicClient",
+                    "rpcs": {
+                        "GetAdUnit": {
+                            "methods": [
+                                "getAdUnit"
+                            ]
+                        },
+                        "ListAdUnitSizes": {
+                            "methods": [
+                                "listAdUnitSizes"
+                            ]
+                        },
+                        "ListAdUnits": {
+                            "methods": [
+                                "listAdUnits"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "BandwidthGroupService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "BandwidthGroupServiceGapicClient",
+                    "rpcs": {
+                        "GetBandwidthGroup": {
+                            "methods": [
+                                "getBandwidthGroup"
+                            ]
+                        },
+                        "ListBandwidthGroups": {
+                            "methods": [
+                                "listBandwidthGroups"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "CompanyService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "CompanyServiceGapicClient",
+                    "rpcs": {
+                        "GetCompany": {
+                            "methods": [
+                                "getCompany"
+                            ]
+                        },
+                        "ListCompanies": {
+                            "methods": [
+                                "listCompanies"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "CustomFieldService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "CustomFieldServiceGapicClient",
+                    "rpcs": {
+                        "GetCustomField": {
+                            "methods": [
+                                "getCustomField"
+                            ]
+                        },
+                        "ListCustomFields": {
+                            "methods": [
+                                "listCustomFields"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "CustomTargetingKeyService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "CustomTargetingKeyServiceGapicClient",
+                    "rpcs": {
+                        "GetCustomTargetingKey": {
+                            "methods": [
+                                "getCustomTargetingKey"
+                            ]
+                        },
+                        "ListCustomTargetingKeys": {
+                            "methods": [
+                                "listCustomTargetingKeys"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "CustomTargetingValueService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "CustomTargetingValueServiceGapicClient",
+                    "rpcs": {
+                        "GetCustomTargetingValue": {
+                            "methods": [
+                                "getCustomTargetingValue"
+                            ]
+                        },
+                        "ListCustomTargetingValues": {
+                            "methods": [
+                                "listCustomTargetingValues"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "DeviceCategoryService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "DeviceCategoryServiceGapicClient",
+                    "rpcs": {
+                        "GetDeviceCategory": {
+                            "methods": [
+                                "getDeviceCategory"
+                            ]
+                        },
+                        "ListDeviceCategories": {
+                            "methods": [
+                                "listDeviceCategories"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "EntitySignalsMappingService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "EntitySignalsMappingServiceGapicClient",
+                    "rpcs": {
+                        "BatchCreateEntitySignalsMappings": {
+                            "methods": [
+                                "batchCreateEntitySignalsMappings"
+                            ]
+                        },
+                        "BatchUpdateEntitySignalsMappings": {
+                            "methods": [
+                                "batchUpdateEntitySignalsMappings"
+                            ]
+                        },
+                        "CreateEntitySignalsMapping": {
+                            "methods": [
+                                "createEntitySignalsMapping"
+                            ]
+                        },
+                        "GetEntitySignalsMapping": {
+                            "methods": [
+                                "getEntitySignalsMapping"
+                            ]
+                        },
+                        "ListEntitySignalsMappings": {
+                            "methods": [
+                                "listEntitySignalsMappings"
+                            ]
+                        },
+                        "UpdateEntitySignalsMapping": {
+                            "methods": [
+                                "updateEntitySignalsMapping"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "GeoTargetService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "GeoTargetServiceGapicClient",
+                    "rpcs": {
+                        "GetGeoTarget": {
+                            "methods": [
+                                "getGeoTarget"
+                            ]
+                        },
+                        "ListGeoTargets": {
+                            "methods": [
+                                "listGeoTargets"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "NetworkService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "NetworkServiceGapicClient",
+                    "rpcs": {
+                        "GetNetwork": {
+                            "methods": [
+                                "getNetwork"
+                            ]
+                        },
+                        "ListNetworks": {
+                            "methods": [
+                                "listNetworks"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "OperatingSystemService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "OperatingSystemServiceGapicClient",
+                    "rpcs": {
+                        "GetOperatingSystem": {
+                            "methods": [
+                                "getOperatingSystem"
+                            ]
+                        },
+                        "ListOperatingSystems": {
+                            "methods": [
+                                "listOperatingSystems"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "OperatingSystemVersionService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "OperatingSystemVersionServiceGapicClient",
+                    "rpcs": {
+                        "GetOperatingSystemVersion": {
+                            "methods": [
+                                "getOperatingSystemVersion"
+                            ]
+                        },
+                        "ListOperatingSystemVersions": {
+                            "methods": [
+                                "listOperatingSystemVersions"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "OrderService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "OrderServiceGapicClient",
+                    "rpcs": {
+                        "GetOrder": {
+                            "methods": [
+                                "getOrder"
+                            ]
+                        },
+                        "ListOrders": {
+                            "methods": [
+                                "listOrders"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "PlacementService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "PlacementServiceGapicClient",
+                    "rpcs": {
+                        "GetPlacement": {
+                            "methods": [
+                                "getPlacement"
+                            ]
+                        },
+                        "ListPlacements": {
+                            "methods": [
+                                "listPlacements"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "PrivateAuctionDealService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "PrivateAuctionDealServiceGapicClient",
+                    "rpcs": {
+                        "CreatePrivateAuctionDeal": {
+                            "methods": [
+                                "createPrivateAuctionDeal"
+                            ]
+                        },
+                        "GetPrivateAuctionDeal": {
+                            "methods": [
+                                "getPrivateAuctionDeal"
+                            ]
+                        },
+                        "ListPrivateAuctionDeals": {
+                            "methods": [
+                                "listPrivateAuctionDeals"
+                            ]
+                        },
+                        "UpdatePrivateAuctionDeal": {
+                            "methods": [
+                                "updatePrivateAuctionDeal"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "PrivateAuctionService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "PrivateAuctionServiceGapicClient",
+                    "rpcs": {
+                        "CreatePrivateAuction": {
+                            "methods": [
+                                "createPrivateAuction"
+                            ]
+                        },
+                        "GetPrivateAuction": {
+                            "methods": [
+                                "getPrivateAuction"
+                            ]
+                        },
+                        "ListPrivateAuctions": {
+                            "methods": [
+                                "listPrivateAuctions"
+                            ]
+                        },
+                        "UpdatePrivateAuction": {
+                            "methods": [
+                                "updatePrivateAuction"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "ProgrammaticBuyerService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ProgrammaticBuyerServiceGapicClient",
+                    "rpcs": {
+                        "GetProgrammaticBuyer": {
+                            "methods": [
+                                "getProgrammaticBuyer"
+                            ]
+                        },
+                        "ListProgrammaticBuyers": {
+                            "methods": [
+                                "listProgrammaticBuyers"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "ReportService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ReportServiceGapicClient",
+                    "rpcs": {
+                        "CreateReport": {
+                            "methods": [
+                                "createReport"
+                            ]
+                        },
+                        "FetchReportResultRows": {
+                            "methods": [
+                                "fetchReportResultRows"
+                            ]
+                        },
+                        "GetReport": {
+                            "methods": [
+                                "getReport"
+                            ]
+                        },
+                        "ListReports": {
+                            "methods": [
+                                "listReports"
+                            ]
+                        },
+                        "RunReport": {
+                            "methods": [
+                                "runReport"
+                            ]
+                        },
+                        "UpdateReport": {
+                            "methods": [
+                                "updateReport"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "RoleService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "RoleServiceGapicClient",
+                    "rpcs": {
+                        "GetRole": {
+                            "methods": [
+                                "getRole"
+                            ]
+                        },
+                        "ListRoles": {
+                            "methods": [
+                                "listRoles"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "TaxonomyCategoryService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "TaxonomyCategoryServiceGapicClient",
+                    "rpcs": {
+                        "GetTaxonomyCategory": {
+                            "methods": [
+                                "getTaxonomyCategory"
+                            ]
+                        },
+                        "ListTaxonomyCategories": {
+                            "methods": [
+                                "listTaxonomyCategories"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "UserService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "UserServiceGapicClient",
+                    "rpcs": {
+                        "GetUser": {
+                            "methods": [
+                                "getUser"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
