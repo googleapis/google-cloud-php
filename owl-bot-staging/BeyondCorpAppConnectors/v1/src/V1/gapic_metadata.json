@@ -1,0 +1,73 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.beyondcorp.appconnectors.v1",
+    "libraryPackage": "Google\\Cloud\\BeyondCorp\\AppConnectors\\V1",
+    "services": {
+        "AppConnectorsService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "AppConnectorsServiceGapicClient",
+                    "rpcs": {
+                        "CreateAppConnector": {
+                            "methods": [
+                                "createAppConnector"
+                            ]
+                        },
+                        "DeleteAppConnector": {
+                            "methods": [
+                                "deleteAppConnector"
+                            ]
+                        },
+                        "GetAppConnector": {
+                            "methods": [
+                                "getAppConnector"
+                            ]
+                        },
+                        "ListAppConnectors": {
+                            "methods": [
+                                "listAppConnectors"
+                            ]
+                        },
+                        "ReportStatus": {
+                            "methods": [
+                                "reportStatus"
+                            ]
+                        },
+                        "UpdateAppConnector": {
+                            "methods": [
+                                "updateAppConnector"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
