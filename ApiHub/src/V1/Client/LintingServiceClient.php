@@ -27,6 +27,7 @@ namespace Google\Cloud\ApiHub\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -88,7 +89,9 @@ final class LintingServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+    ];
 
     private static function getClientDefaults()
     {
@@ -118,7 +121,9 @@ final class LintingServiceClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return ['rest'];
+        return [
+            'rest',
+        ];
     }
 
     /**
@@ -133,13 +138,8 @@ final class LintingServiceClient
      *
      * @return string The formatted spec resource.
      */
-    public static function specName(
-        string $project,
-        string $location,
-        string $api,
-        string $version,
-        string $spec
-    ): string {
+    public static function specName(string $project, string $location, string $api, string $version, string $spec): string
+    {
         return self::getPathTemplate('spec')->render([
             'project' => $project,
             'location' => $location,
@@ -196,7 +196,7 @@ final class LintingServiceClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
@@ -249,11 +249,13 @@ final class LintingServiceClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -317,10 +319,8 @@ final class LintingServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getStyleGuideContents(
-        GetStyleGuideContentsRequest $request,
-        array $callOptions = []
-    ): StyleGuideContents {
+    public function getStyleGuideContents(GetStyleGuideContentsRequest $request, array $callOptions = []): StyleGuideContents
+    {
         return $this->startApiCall('GetStyleGuideContents', $request, $callOptions)->wait();
     }
 

@@ -228,6 +228,7 @@ use Google\Analytics\Admin\V1alpha\UpdateSubpropertySyncConfigRequest;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -763,10 +764,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public static function displayVideo360AdvertiserLinkName(
-        string $property,
-        string $displayVideo360AdvertiserLink
-    ): string {
+    public static function displayVideo360AdvertiserLinkName(string $property, string $displayVideo360AdvertiserLink): string
+    {
         return self::getPathTemplate('displayVideo360AdvertiserLink')->render([
             'property' => $property,
             'display_video_360_advertiser_link' => $displayVideo360AdvertiserLink,
@@ -784,10 +783,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public static function displayVideo360AdvertiserLinkProposalName(
-        string $property,
-        string $displayVideo360AdvertiserLinkProposal
-    ): string {
+    public static function displayVideo360AdvertiserLinkProposalName(string $property, string $displayVideo360AdvertiserLinkProposal): string
+    {
         return self::getPathTemplate('displayVideo360AdvertiserLinkProposal')->render([
             'property' => $property,
             'display_video_360_advertiser_link_proposal' => $displayVideo360AdvertiserLinkProposal,
@@ -979,11 +976,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public static function measurementProtocolSecretName(
-        string $property,
-        string $dataStream,
-        string $measurementProtocolSecret
-    ): string {
+    public static function measurementProtocolSecretName(string $property, string $dataStream, string $measurementProtocolSecret): string
+    {
         return self::getPathTemplate('measurementProtocolSecret')->render([
             'property' => $property,
             'data_stream' => $dataStream,
@@ -1111,11 +1105,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public static function sKAdNetworkConversionValueSchemaName(
-        string $property,
-        string $dataStream,
-        string $skadnetworkConversionValueSchema
-    ): string {
+    public static function sKAdNetworkConversionValueSchemaName(string $property, string $dataStream, string $skadnetworkConversionValueSchema): string
+    {
         return self::getPathTemplate('sKAdNetworkConversionValueSchema')->render([
             'property' => $property,
             'data_stream' => $dataStream,
@@ -1246,7 +1237,7 @@ final class AnalyticsAdminServiceClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
@@ -1302,13 +1293,15 @@ final class AnalyticsAdminServiceClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      *
      * @experimental
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -1353,10 +1346,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function acknowledgeUserDataCollection(
-        AcknowledgeUserDataCollectionRequest $request,
-        array $callOptions = []
-    ): AcknowledgeUserDataCollectionResponse {
+    public function acknowledgeUserDataCollection(AcknowledgeUserDataCollectionRequest $request, array $callOptions = []): AcknowledgeUserDataCollectionResponse
+    {
         return $this->startApiCall('AcknowledgeUserDataCollection', $request, $callOptions)->wait();
     }
 
@@ -1387,10 +1378,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function approveDisplayVideo360AdvertiserLinkProposal(
-        ApproveDisplayVideo360AdvertiserLinkProposalRequest $request,
-        array $callOptions = []
-    ): ApproveDisplayVideo360AdvertiserLinkProposalResponse {
+    public function approveDisplayVideo360AdvertiserLinkProposal(ApproveDisplayVideo360AdvertiserLinkProposalRequest $request, array $callOptions = []): ApproveDisplayVideo360AdvertiserLinkProposalResponse
+    {
         return $this->startApiCall('ApproveDisplayVideo360AdvertiserLinkProposal', $request, $callOptions)->wait();
     }
 
@@ -1503,10 +1492,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function batchCreateAccessBindings(
-        BatchCreateAccessBindingsRequest $request,
-        array $callOptions = []
-    ): BatchCreateAccessBindingsResponse {
+    public function batchCreateAccessBindings(BatchCreateAccessBindingsRequest $request, array $callOptions = []): BatchCreateAccessBindingsResponse
+    {
         return $this->startApiCall('BatchCreateAccessBindings', $request, $callOptions)->wait();
     }
 
@@ -1561,10 +1548,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function batchGetAccessBindings(
-        BatchGetAccessBindingsRequest $request,
-        array $callOptions = []
-    ): BatchGetAccessBindingsResponse {
+    public function batchGetAccessBindings(BatchGetAccessBindingsRequest $request, array $callOptions = []): BatchGetAccessBindingsResponse
+    {
         return $this->startApiCall('BatchGetAccessBindings', $request, $callOptions)->wait();
     }
 
@@ -1593,10 +1578,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function batchUpdateAccessBindings(
-        BatchUpdateAccessBindingsRequest $request,
-        array $callOptions = []
-    ): BatchUpdateAccessBindingsResponse {
+    public function batchUpdateAccessBindings(BatchUpdateAccessBindingsRequest $request, array $callOptions = []): BatchUpdateAccessBindingsResponse
+    {
         return $this->startApiCall('BatchUpdateAccessBindings', $request, $callOptions)->wait();
     }
 
@@ -1629,10 +1612,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function cancelDisplayVideo360AdvertiserLinkProposal(
-        CancelDisplayVideo360AdvertiserLinkProposalRequest $request,
-        array $callOptions = []
-    ): DisplayVideo360AdvertiserLinkProposal {
+    public function cancelDisplayVideo360AdvertiserLinkProposal(CancelDisplayVideo360AdvertiserLinkProposalRequest $request, array $callOptions = []): DisplayVideo360AdvertiserLinkProposal
+    {
         return $this->startApiCall('CancelDisplayVideo360AdvertiserLinkProposal', $request, $callOptions)->wait();
     }
 
@@ -1775,10 +1756,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function createCalculatedMetric(
-        CreateCalculatedMetricRequest $request,
-        array $callOptions = []
-    ): CalculatedMetric {
+    public function createCalculatedMetric(CreateCalculatedMetricRequest $request, array $callOptions = []): CalculatedMetric
+    {
         return $this->startApiCall('CreateCalculatedMetric', $request, $callOptions)->wait();
     }
 
@@ -1838,10 +1817,8 @@ final class AnalyticsAdminServiceClient
      *
      * @deprecated This method will be removed in the next major version update.
      */
-    public function createConversionEvent(
-        CreateConversionEventRequest $request,
-        array $callOptions = []
-    ): ConversionEvent {
+    public function createConversionEvent(CreateConversionEventRequest $request, array $callOptions = []): ConversionEvent
+    {
         return $this->startApiCall('CreateConversionEvent', $request, $callOptions)->wait();
     }
 
@@ -1869,10 +1846,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function createCustomDimension(
-        CreateCustomDimensionRequest $request,
-        array $callOptions = []
-    ): CustomDimension {
+    public function createCustomDimension(CreateCustomDimensionRequest $request, array $callOptions = []): CustomDimension
+    {
         return $this->startApiCall('CreateCustomDimension', $request, $callOptions)->wait();
     }
 
@@ -1962,10 +1937,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function createDisplayVideo360AdvertiserLink(
-        CreateDisplayVideo360AdvertiserLinkRequest $request,
-        array $callOptions = []
-    ): DisplayVideo360AdvertiserLink {
+    public function createDisplayVideo360AdvertiserLink(CreateDisplayVideo360AdvertiserLinkRequest $request, array $callOptions = []): DisplayVideo360AdvertiserLink
+    {
         return $this->startApiCall('CreateDisplayVideo360AdvertiserLink', $request, $callOptions)->wait();
     }
 
@@ -1994,10 +1967,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function createDisplayVideo360AdvertiserLinkProposal(
-        CreateDisplayVideo360AdvertiserLinkProposalRequest $request,
-        array $callOptions = []
-    ): DisplayVideo360AdvertiserLinkProposal {
+    public function createDisplayVideo360AdvertiserLinkProposal(CreateDisplayVideo360AdvertiserLinkProposalRequest $request, array $callOptions = []): DisplayVideo360AdvertiserLinkProposal
+    {
         return $this->startApiCall('CreateDisplayVideo360AdvertiserLinkProposal', $request, $callOptions)->wait();
     }
 
@@ -2025,10 +1996,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function createEventCreateRule(
-        CreateEventCreateRuleRequest $request,
-        array $callOptions = []
-    ): EventCreateRule {
+    public function createEventCreateRule(CreateEventCreateRuleRequest $request, array $callOptions = []): EventCreateRule
+    {
         return $this->startApiCall('CreateEventCreateRule', $request, $callOptions)->wait();
     }
 
@@ -2085,10 +2054,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function createExpandedDataSet(
-        CreateExpandedDataSetRequest $request,
-        array $callOptions = []
-    ): ExpandedDataSet {
+    public function createExpandedDataSet(CreateExpandedDataSetRequest $request, array $callOptions = []): ExpandedDataSet
+    {
         return $this->startApiCall('CreateExpandedDataSet', $request, $callOptions)->wait();
     }
 
@@ -2204,10 +2171,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function createMeasurementProtocolSecret(
-        CreateMeasurementProtocolSecretRequest $request,
-        array $callOptions = []
-    ): MeasurementProtocolSecret {
+    public function createMeasurementProtocolSecret(CreateMeasurementProtocolSecretRequest $request, array $callOptions = []): MeasurementProtocolSecret
+    {
         return $this->startApiCall('CreateMeasurementProtocolSecret', $request, $callOptions)->wait();
     }
 
@@ -2264,10 +2229,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function createReportingDataAnnotation(
-        CreateReportingDataAnnotationRequest $request,
-        array $callOptions = []
-    ): ReportingDataAnnotation {
+    public function createReportingDataAnnotation(CreateReportingDataAnnotationRequest $request, array $callOptions = []): ReportingDataAnnotation
+    {
         return $this->startApiCall('CreateReportingDataAnnotation', $request, $callOptions)->wait();
     }
 
@@ -2295,10 +2258,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function createRollupProperty(
-        CreateRollupPropertyRequest $request,
-        array $callOptions = []
-    ): CreateRollupPropertyResponse {
+    public function createRollupProperty(CreateRollupPropertyRequest $request, array $callOptions = []): CreateRollupPropertyResponse
+    {
         return $this->startApiCall('CreateRollupProperty', $request, $callOptions)->wait();
     }
 
@@ -2328,10 +2289,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function createRollupPropertySourceLink(
-        CreateRollupPropertySourceLinkRequest $request,
-        array $callOptions = []
-    ): RollupPropertySourceLink {
+    public function createRollupPropertySourceLink(CreateRollupPropertySourceLinkRequest $request, array $callOptions = []): RollupPropertySourceLink
+    {
         return $this->startApiCall('CreateRollupPropertySourceLink', $request, $callOptions)->wait();
     }
 
@@ -2360,10 +2319,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function createSKAdNetworkConversionValueSchema(
-        CreateSKAdNetworkConversionValueSchemaRequest $request,
-        array $callOptions = []
-    ): SKAdNetworkConversionValueSchema {
+    public function createSKAdNetworkConversionValueSchema(CreateSKAdNetworkConversionValueSchemaRequest $request, array $callOptions = []): SKAdNetworkConversionValueSchema
+    {
         return $this->startApiCall('CreateSKAdNetworkConversionValueSchema', $request, $callOptions)->wait();
     }
 
@@ -2391,10 +2348,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function createSearchAds360Link(
-        CreateSearchAds360LinkRequest $request,
-        array $callOptions = []
-    ): SearchAds360Link {
+    public function createSearchAds360Link(CreateSearchAds360LinkRequest $request, array $callOptions = []): SearchAds360Link
+    {
         return $this->startApiCall('CreateSearchAds360Link', $request, $callOptions)->wait();
     }
 
@@ -2422,10 +2377,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function createSubpropertyEventFilter(
-        CreateSubpropertyEventFilterRequest $request,
-        array $callOptions = []
-    ): SubpropertyEventFilter {
+    public function createSubpropertyEventFilter(CreateSubpropertyEventFilterRequest $request, array $callOptions = []): SubpropertyEventFilter
+    {
         return $this->startApiCall('CreateSubpropertyEventFilter', $request, $callOptions)->wait();
     }
 
@@ -2679,10 +2632,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function deleteDisplayVideo360AdvertiserLink(
-        DeleteDisplayVideo360AdvertiserLinkRequest $request,
-        array $callOptions = []
-    ): void {
+    public function deleteDisplayVideo360AdvertiserLink(DeleteDisplayVideo360AdvertiserLinkRequest $request, array $callOptions = []): void
+    {
         $this->startApiCall('DeleteDisplayVideo360AdvertiserLink', $request, $callOptions)->wait();
     }
 
@@ -2710,10 +2661,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function deleteDisplayVideo360AdvertiserLinkProposal(
-        DeleteDisplayVideo360AdvertiserLinkProposalRequest $request,
-        array $callOptions = []
-    ): void {
+    public function deleteDisplayVideo360AdvertiserLinkProposal(DeleteDisplayVideo360AdvertiserLinkProposalRequest $request, array $callOptions = []): void
+    {
         $this->startApiCall('DeleteDisplayVideo360AdvertiserLinkProposal', $request, $callOptions)->wait();
     }
 
@@ -2900,10 +2849,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function deleteMeasurementProtocolSecret(
-        DeleteMeasurementProtocolSecretRequest $request,
-        array $callOptions = []
-    ): void {
+    public function deleteMeasurementProtocolSecret(DeleteMeasurementProtocolSecretRequest $request, array $callOptions = []): void
+    {
         $this->startApiCall('DeleteMeasurementProtocolSecret', $request, $callOptions)->wait();
     }
 
@@ -2967,10 +2914,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function deleteReportingDataAnnotation(
-        DeleteReportingDataAnnotationRequest $request,
-        array $callOptions = []
-    ): void {
+    public function deleteReportingDataAnnotation(DeleteReportingDataAnnotationRequest $request, array $callOptions = []): void
+    {
         $this->startApiCall('DeleteReportingDataAnnotation', $request, $callOptions)->wait();
     }
 
@@ -2998,10 +2943,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function deleteRollupPropertySourceLink(
-        DeleteRollupPropertySourceLinkRequest $request,
-        array $callOptions = []
-    ): void {
+    public function deleteRollupPropertySourceLink(DeleteRollupPropertySourceLinkRequest $request, array $callOptions = []): void
+    {
         $this->startApiCall('DeleteRollupPropertySourceLink', $request, $callOptions)->wait();
     }
 
@@ -3028,10 +2971,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function deleteSKAdNetworkConversionValueSchema(
-        DeleteSKAdNetworkConversionValueSchemaRequest $request,
-        array $callOptions = []
-    ): void {
+    public function deleteSKAdNetworkConversionValueSchema(DeleteSKAdNetworkConversionValueSchemaRequest $request, array $callOptions = []): void
+    {
         $this->startApiCall('DeleteSKAdNetworkConversionValueSchema', $request, $callOptions)->wait();
     }
 
@@ -3084,10 +3025,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function deleteSubpropertyEventFilter(
-        DeleteSubpropertyEventFilterRequest $request,
-        array $callOptions = []
-    ): void {
+    public function deleteSubpropertyEventFilter(DeleteSubpropertyEventFilterRequest $request, array $callOptions = []): void
+    {
         $this->startApiCall('DeleteSubpropertyEventFilter', $request, $callOptions)->wait();
     }
 
@@ -3200,10 +3139,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function getAttributionSettings(
-        GetAttributionSettingsRequest $request,
-        array $callOptions = []
-    ): AttributionSettings {
+    public function getAttributionSettings(GetAttributionSettingsRequest $request, array $callOptions = []): AttributionSettings
+    {
         return $this->startApiCall('GetAttributionSettings', $request, $callOptions)->wait();
     }
 
@@ -3438,10 +3375,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function getDataRedactionSettings(
-        GetDataRedactionSettingsRequest $request,
-        array $callOptions = []
-    ): DataRedactionSettings {
+    public function getDataRedactionSettings(GetDataRedactionSettingsRequest $request, array $callOptions = []): DataRedactionSettings
+    {
         return $this->startApiCall('GetDataRedactionSettings', $request, $callOptions)->wait();
     }
 
@@ -3469,10 +3404,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function getDataRetentionSettings(
-        GetDataRetentionSettingsRequest $request,
-        array $callOptions = []
-    ): DataRetentionSettings {
+    public function getDataRetentionSettings(GetDataRetentionSettingsRequest $request, array $callOptions = []): DataRetentionSettings
+    {
         return $this->startApiCall('GetDataRetentionSettings', $request, $callOptions)->wait();
     }
 
@@ -3501,10 +3434,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function getDataSharingSettings(
-        GetDataSharingSettingsRequest $request,
-        array $callOptions = []
-    ): DataSharingSettings {
+    public function getDataSharingSettings(GetDataSharingSettingsRequest $request, array $callOptions = []): DataSharingSettings
+    {
         return $this->startApiCall('GetDataSharingSettings', $request, $callOptions)->wait();
     }
 
@@ -3560,10 +3491,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function getDisplayVideo360AdvertiserLink(
-        GetDisplayVideo360AdvertiserLinkRequest $request,
-        array $callOptions = []
-    ): DisplayVideo360AdvertiserLink {
+    public function getDisplayVideo360AdvertiserLink(GetDisplayVideo360AdvertiserLinkRequest $request, array $callOptions = []): DisplayVideo360AdvertiserLink
+    {
         return $this->startApiCall('GetDisplayVideo360AdvertiserLink', $request, $callOptions)->wait();
     }
 
@@ -3592,10 +3521,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function getDisplayVideo360AdvertiserLinkProposal(
-        GetDisplayVideo360AdvertiserLinkProposalRequest $request,
-        array $callOptions = []
-    ): DisplayVideo360AdvertiserLinkProposal {
+    public function getDisplayVideo360AdvertiserLinkProposal(GetDisplayVideo360AdvertiserLinkProposalRequest $request, array $callOptions = []): DisplayVideo360AdvertiserLinkProposal
+    {
         return $this->startApiCall('GetDisplayVideo360AdvertiserLinkProposal', $request, $callOptions)->wait();
     }
 
@@ -3625,10 +3552,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function getEnhancedMeasurementSettings(
-        GetEnhancedMeasurementSettingsRequest $request,
-        array $callOptions = []
-    ): EnhancedMeasurementSettings {
+    public function getEnhancedMeasurementSettings(GetEnhancedMeasurementSettingsRequest $request, array $callOptions = []): EnhancedMeasurementSettings
+    {
         return $this->startApiCall('GetEnhancedMeasurementSettings', $request, $callOptions)->wait();
     }
 
@@ -3773,10 +3698,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function getGoogleSignalsSettings(
-        GetGoogleSignalsSettingsRequest $request,
-        array $callOptions = []
-    ): GoogleSignalsSettings {
+    public function getGoogleSignalsSettings(GetGoogleSignalsSettingsRequest $request, array $callOptions = []): GoogleSignalsSettings
+    {
         return $this->startApiCall('GetGoogleSignalsSettings', $request, $callOptions)->wait();
     }
 
@@ -3832,10 +3755,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function getMeasurementProtocolSecret(
-        GetMeasurementProtocolSecretRequest $request,
-        array $callOptions = []
-    ): MeasurementProtocolSecret {
+    public function getMeasurementProtocolSecret(GetMeasurementProtocolSecretRequest $request, array $callOptions = []): MeasurementProtocolSecret
+    {
         return $this->startApiCall('GetMeasurementProtocolSecret', $request, $callOptions)->wait();
     }
 
@@ -3891,10 +3812,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function getReportingDataAnnotation(
-        GetReportingDataAnnotationRequest $request,
-        array $callOptions = []
-    ): ReportingDataAnnotation {
+    public function getReportingDataAnnotation(GetReportingDataAnnotationRequest $request, array $callOptions = []): ReportingDataAnnotation
+    {
         return $this->startApiCall('GetReportingDataAnnotation', $request, $callOptions)->wait();
     }
 
@@ -3922,10 +3841,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function getReportingIdentitySettings(
-        GetReportingIdentitySettingsRequest $request,
-        array $callOptions = []
-    ): ReportingIdentitySettings {
+    public function getReportingIdentitySettings(GetReportingIdentitySettingsRequest $request, array $callOptions = []): ReportingIdentitySettings
+    {
         return $this->startApiCall('GetReportingIdentitySettings', $request, $callOptions)->wait();
     }
 
@@ -3955,10 +3872,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function getRollupPropertySourceLink(
-        GetRollupPropertySourceLinkRequest $request,
-        array $callOptions = []
-    ): RollupPropertySourceLink {
+    public function getRollupPropertySourceLink(GetRollupPropertySourceLinkRequest $request, array $callOptions = []): RollupPropertySourceLink
+    {
         return $this->startApiCall('GetRollupPropertySourceLink', $request, $callOptions)->wait();
     }
 
@@ -3986,10 +3901,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function getSKAdNetworkConversionValueSchema(
-        GetSKAdNetworkConversionValueSchemaRequest $request,
-        array $callOptions = []
-    ): SKAdNetworkConversionValueSchema {
+    public function getSKAdNetworkConversionValueSchema(GetSKAdNetworkConversionValueSchemaRequest $request, array $callOptions = []): SKAdNetworkConversionValueSchema
+    {
         return $this->startApiCall('GetSKAdNetworkConversionValueSchema', $request, $callOptions)->wait();
     }
 
@@ -4046,10 +3959,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function getSubpropertyEventFilter(
-        GetSubpropertyEventFilterRequest $request,
-        array $callOptions = []
-    ): SubpropertyEventFilter {
+    public function getSubpropertyEventFilter(GetSubpropertyEventFilterRequest $request, array $callOptions = []): SubpropertyEventFilter
+    {
         return $this->startApiCall('GetSubpropertyEventFilter', $request, $callOptions)->wait();
     }
 
@@ -4077,10 +3988,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function getSubpropertySyncConfig(
-        GetSubpropertySyncConfigRequest $request,
-        array $callOptions = []
-    ): SubpropertySyncConfig {
+    public function getSubpropertySyncConfig(GetSubpropertySyncConfigRequest $request, array $callOptions = []): SubpropertySyncConfig
+    {
         return $this->startApiCall('GetSubpropertySyncConfig', $request, $callOptions)->wait();
     }
 
@@ -4137,10 +4046,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function listAccountSummaries(
-        ListAccountSummariesRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listAccountSummaries(ListAccountSummariesRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListAccountSummaries', $request, $callOptions);
     }
 
@@ -4288,10 +4195,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function listCalculatedMetrics(
-        ListCalculatedMetricsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listCalculatedMetrics(ListCalculatedMetricsRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListCalculatedMetrics', $request, $callOptions);
     }
 
@@ -4353,10 +4258,8 @@ final class AnalyticsAdminServiceClient
      *
      * @deprecated This method will be removed in the next major version update.
      */
-    public function listConversionEvents(
-        ListConversionEventsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listConversionEvents(ListConversionEventsRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListConversionEvents', $request, $callOptions);
     }
 
@@ -4384,10 +4287,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function listCustomDimensions(
-        ListCustomDimensionsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listCustomDimensions(ListCustomDimensionsRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListCustomDimensions', $request, $callOptions);
     }
 
@@ -4474,10 +4375,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function listDisplayVideo360AdvertiserLinkProposals(
-        ListDisplayVideo360AdvertiserLinkProposalsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listDisplayVideo360AdvertiserLinkProposals(ListDisplayVideo360AdvertiserLinkProposalsRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListDisplayVideo360AdvertiserLinkProposals', $request, $callOptions);
     }
 
@@ -4505,10 +4404,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function listDisplayVideo360AdvertiserLinks(
-        ListDisplayVideo360AdvertiserLinksRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listDisplayVideo360AdvertiserLinks(ListDisplayVideo360AdvertiserLinksRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListDisplayVideo360AdvertiserLinks', $request, $callOptions);
     }
 
@@ -4536,10 +4433,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function listEventCreateRules(
-        ListEventCreateRulesRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listEventCreateRules(ListEventCreateRulesRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListEventCreateRules', $request, $callOptions);
     }
 
@@ -4596,10 +4491,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function listExpandedDataSets(
-        ListExpandedDataSetsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listExpandedDataSets(ListExpandedDataSetsRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListExpandedDataSets', $request, $callOptions);
     }
 
@@ -4716,10 +4609,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function listMeasurementProtocolSecrets(
-        ListMeasurementProtocolSecretsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listMeasurementProtocolSecrets(ListMeasurementProtocolSecretsRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListMeasurementProtocolSecrets', $request, $callOptions);
     }
 
@@ -4779,10 +4670,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function listReportingDataAnnotations(
-        ListReportingDataAnnotationsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listReportingDataAnnotations(ListReportingDataAnnotationsRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListReportingDataAnnotations', $request, $callOptions);
     }
 
@@ -4812,10 +4701,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function listRollupPropertySourceLinks(
-        ListRollupPropertySourceLinksRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listRollupPropertySourceLinks(ListRollupPropertySourceLinksRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListRollupPropertySourceLinks', $request, $callOptions);
     }
 
@@ -4845,10 +4732,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function listSKAdNetworkConversionValueSchemas(
-        ListSKAdNetworkConversionValueSchemasRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listSKAdNetworkConversionValueSchemas(ListSKAdNetworkConversionValueSchemasRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListSKAdNetworkConversionValueSchemas', $request, $callOptions);
     }
 
@@ -4876,10 +4761,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function listSearchAds360Links(
-        ListSearchAds360LinksRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listSearchAds360Links(ListSearchAds360LinksRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListSearchAds360Links', $request, $callOptions);
     }
 
@@ -4907,10 +4790,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function listSubpropertyEventFilters(
-        ListSubpropertyEventFiltersRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listSubpropertyEventFilters(ListSubpropertyEventFiltersRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListSubpropertyEventFilters', $request, $callOptions);
     }
 
@@ -4938,10 +4819,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function listSubpropertySyncConfigs(
-        ListSubpropertySyncConfigsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listSubpropertySyncConfigs(ListSubpropertySyncConfigsRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListSubpropertySyncConfigs', $request, $callOptions);
     }
 
@@ -4969,10 +4848,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function provisionAccountTicket(
-        ProvisionAccountTicketRequest $request,
-        array $callOptions = []
-    ): ProvisionAccountTicketResponse {
+    public function provisionAccountTicket(ProvisionAccountTicketRequest $request, array $callOptions = []): ProvisionAccountTicketResponse
+    {
         return $this->startApiCall('ProvisionAccountTicket', $request, $callOptions)->wait();
     }
 
@@ -5001,10 +4878,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function provisionSubproperty(
-        ProvisionSubpropertyRequest $request,
-        array $callOptions = []
-    ): ProvisionSubpropertyResponse {
+    public function provisionSubproperty(ProvisionSubpropertyRequest $request, array $callOptions = []): ProvisionSubpropertyResponse
+    {
         return $this->startApiCall('ProvisionSubproperty', $request, $callOptions)->wait();
     }
 
@@ -5111,10 +4986,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function searchChangeHistoryEvents(
-        SearchChangeHistoryEventsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function searchChangeHistoryEvents(SearchChangeHistoryEventsRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('SearchChangeHistoryEvents', $request, $callOptions);
     }
 
@@ -5142,10 +5015,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function submitUserDeletion(
-        SubmitUserDeletionRequest $request,
-        array $callOptions = []
-    ): SubmitUserDeletionResponse {
+    public function submitUserDeletion(SubmitUserDeletionRequest $request, array $callOptions = []): SubmitUserDeletionResponse
+    {
         return $this->startApiCall('SubmitUserDeletion', $request, $callOptions)->wait();
     }
 
@@ -5230,10 +5101,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function updateAttributionSettings(
-        UpdateAttributionSettingsRequest $request,
-        array $callOptions = []
-    ): AttributionSettings {
+    public function updateAttributionSettings(UpdateAttributionSettingsRequest $request, array $callOptions = []): AttributionSettings
+    {
         return $this->startApiCall('UpdateAttributionSettings', $request, $callOptions)->wait();
     }
 
@@ -5318,10 +5187,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function updateCalculatedMetric(
-        UpdateCalculatedMetricRequest $request,
-        array $callOptions = []
-    ): CalculatedMetric {
+    public function updateCalculatedMetric(UpdateCalculatedMetricRequest $request, array $callOptions = []): CalculatedMetric
+    {
         return $this->startApiCall('UpdateCalculatedMetric', $request, $callOptions)->wait();
     }
 
@@ -5381,10 +5248,8 @@ final class AnalyticsAdminServiceClient
      *
      * @deprecated This method will be removed in the next major version update.
      */
-    public function updateConversionEvent(
-        UpdateConversionEventRequest $request,
-        array $callOptions = []
-    ): ConversionEvent {
+    public function updateConversionEvent(UpdateConversionEventRequest $request, array $callOptions = []): ConversionEvent
+    {
         return $this->startApiCall('UpdateConversionEvent', $request, $callOptions)->wait();
     }
 
@@ -5412,10 +5277,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function updateCustomDimension(
-        UpdateCustomDimensionRequest $request,
-        array $callOptions = []
-    ): CustomDimension {
+    public function updateCustomDimension(UpdateCustomDimensionRequest $request, array $callOptions = []): CustomDimension
+    {
         return $this->startApiCall('UpdateCustomDimension', $request, $callOptions)->wait();
     }
 
@@ -5472,10 +5335,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function updateDataRedactionSettings(
-        UpdateDataRedactionSettingsRequest $request,
-        array $callOptions = []
-    ): DataRedactionSettings {
+    public function updateDataRedactionSettings(UpdateDataRedactionSettingsRequest $request, array $callOptions = []): DataRedactionSettings
+    {
         return $this->startApiCall('UpdateDataRedactionSettings', $request, $callOptions)->wait();
     }
 
@@ -5503,10 +5364,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function updateDataRetentionSettings(
-        UpdateDataRetentionSettingsRequest $request,
-        array $callOptions = []
-    ): DataRetentionSettings {
+    public function updateDataRetentionSettings(UpdateDataRetentionSettingsRequest $request, array $callOptions = []): DataRetentionSettings
+    {
         return $this->startApiCall('UpdateDataRetentionSettings', $request, $callOptions)->wait();
     }
 
@@ -5563,10 +5422,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function updateDisplayVideo360AdvertiserLink(
-        UpdateDisplayVideo360AdvertiserLinkRequest $request,
-        array $callOptions = []
-    ): DisplayVideo360AdvertiserLink {
+    public function updateDisplayVideo360AdvertiserLink(UpdateDisplayVideo360AdvertiserLinkRequest $request, array $callOptions = []): DisplayVideo360AdvertiserLink
+    {
         return $this->startApiCall('UpdateDisplayVideo360AdvertiserLink', $request, $callOptions)->wait();
     }
 
@@ -5596,10 +5453,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function updateEnhancedMeasurementSettings(
-        UpdateEnhancedMeasurementSettingsRequest $request,
-        array $callOptions = []
-    ): EnhancedMeasurementSettings {
+    public function updateEnhancedMeasurementSettings(UpdateEnhancedMeasurementSettingsRequest $request, array $callOptions = []): EnhancedMeasurementSettings
+    {
         return $this->startApiCall('UpdateEnhancedMeasurementSettings', $request, $callOptions)->wait();
     }
 
@@ -5627,10 +5482,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function updateEventCreateRule(
-        UpdateEventCreateRuleRequest $request,
-        array $callOptions = []
-    ): EventCreateRule {
+    public function updateEventCreateRule(UpdateEventCreateRuleRequest $request, array $callOptions = []): EventCreateRule
+    {
         return $this->startApiCall('UpdateEventCreateRule', $request, $callOptions)->wait();
     }
 
@@ -5687,10 +5540,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function updateExpandedDataSet(
-        UpdateExpandedDataSetRequest $request,
-        array $callOptions = []
-    ): ExpandedDataSet {
+    public function updateExpandedDataSet(UpdateExpandedDataSetRequest $request, array $callOptions = []): ExpandedDataSet
+    {
         return $this->startApiCall('UpdateExpandedDataSet', $request, $callOptions)->wait();
     }
 
@@ -5747,10 +5598,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function updateGoogleSignalsSettings(
-        UpdateGoogleSignalsSettingsRequest $request,
-        array $callOptions = []
-    ): GoogleSignalsSettings {
+    public function updateGoogleSignalsSettings(UpdateGoogleSignalsSettingsRequest $request, array $callOptions = []): GoogleSignalsSettings
+    {
         return $this->startApiCall('UpdateGoogleSignalsSettings', $request, $callOptions)->wait();
     }
 
@@ -5806,10 +5655,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function updateMeasurementProtocolSecret(
-        UpdateMeasurementProtocolSecretRequest $request,
-        array $callOptions = []
-    ): MeasurementProtocolSecret {
+    public function updateMeasurementProtocolSecret(UpdateMeasurementProtocolSecretRequest $request, array $callOptions = []): MeasurementProtocolSecret
+    {
         return $this->startApiCall('UpdateMeasurementProtocolSecret', $request, $callOptions)->wait();
     }
 
@@ -5865,10 +5712,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function updateReportingDataAnnotation(
-        UpdateReportingDataAnnotationRequest $request,
-        array $callOptions = []
-    ): ReportingDataAnnotation {
+    public function updateReportingDataAnnotation(UpdateReportingDataAnnotationRequest $request, array $callOptions = []): ReportingDataAnnotation
+    {
         return $this->startApiCall('UpdateReportingDataAnnotation', $request, $callOptions)->wait();
     }
 
@@ -5897,10 +5742,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function updateSKAdNetworkConversionValueSchema(
-        UpdateSKAdNetworkConversionValueSchemaRequest $request,
-        array $callOptions = []
-    ): SKAdNetworkConversionValueSchema {
+    public function updateSKAdNetworkConversionValueSchema(UpdateSKAdNetworkConversionValueSchemaRequest $request, array $callOptions = []): SKAdNetworkConversionValueSchema
+    {
         return $this->startApiCall('UpdateSKAdNetworkConversionValueSchema', $request, $callOptions)->wait();
     }
 
@@ -5928,10 +5771,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function updateSearchAds360Link(
-        UpdateSearchAds360LinkRequest $request,
-        array $callOptions = []
-    ): SearchAds360Link {
+    public function updateSearchAds360Link(UpdateSearchAds360LinkRequest $request, array $callOptions = []): SearchAds360Link
+    {
         return $this->startApiCall('UpdateSearchAds360Link', $request, $callOptions)->wait();
     }
 
@@ -5959,10 +5800,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function updateSubpropertyEventFilter(
-        UpdateSubpropertyEventFilterRequest $request,
-        array $callOptions = []
-    ): SubpropertyEventFilter {
+    public function updateSubpropertyEventFilter(UpdateSubpropertyEventFilterRequest $request, array $callOptions = []): SubpropertyEventFilter
+    {
         return $this->startApiCall('UpdateSubpropertyEventFilter', $request, $callOptions)->wait();
     }
 
@@ -5990,10 +5829,8 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function updateSubpropertySyncConfig(
-        UpdateSubpropertySyncConfigRequest $request,
-        array $callOptions = []
-    ): SubpropertySyncConfig {
+    public function updateSubpropertySyncConfig(UpdateSubpropertySyncConfigRequest $request, array $callOptions = []): SubpropertySyncConfig
+    {
         return $this->startApiCall('UpdateSubpropertySyncConfig', $request, $callOptions)->wait();
     }
 }

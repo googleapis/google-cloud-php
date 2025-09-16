@@ -27,6 +27,7 @@ namespace Google\Cloud\ApiHub\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -85,7 +86,9 @@ final class HostProjectRegistrationServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+    ];
 
     private static function getClientDefaults()
     {
@@ -93,16 +96,14 @@ final class HostProjectRegistrationServiceClient
             'serviceName' => self::SERVICE_NAME,
             'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__ . '/../resources/host_project_registration_service_client_config.json',
-            'descriptorsConfigPath' =>
-                __DIR__ . '/../resources/host_project_registration_service_descriptor_config.php',
+            'descriptorsConfigPath' => __DIR__ . '/../resources/host_project_registration_service_descriptor_config.php',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
                 'useJwtAccessWithScope' => false,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' =>
-                        __DIR__ . '/../resources/host_project_registration_service_rest_client_config.php',
+                    'restClientConfigPath' => __DIR__ . '/../resources/host_project_registration_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -117,7 +118,9 @@ final class HostProjectRegistrationServiceClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return ['rest'];
+        return [
+            'rest',
+        ];
     }
 
     /**
@@ -130,11 +133,8 @@ final class HostProjectRegistrationServiceClient
      *
      * @return string The formatted host_project_registration resource.
      */
-    public static function hostProjectRegistrationName(
-        string $project,
-        string $location,
-        string $hostProjectRegistration
-    ): string {
+    public static function hostProjectRegistrationName(string $project, string $location, string $hostProjectRegistration): string
+    {
         return self::getPathTemplate('hostProjectRegistration')->render([
             'project' => $project,
             'location' => $location,
@@ -203,7 +203,7 @@ final class HostProjectRegistrationServiceClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
@@ -256,11 +256,13 @@ final class HostProjectRegistrationServiceClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -304,10 +306,8 @@ final class HostProjectRegistrationServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createHostProjectRegistration(
-        CreateHostProjectRegistrationRequest $request,
-        array $callOptions = []
-    ): HostProjectRegistration {
+    public function createHostProjectRegistration(CreateHostProjectRegistrationRequest $request, array $callOptions = []): HostProjectRegistration
+    {
         return $this->startApiCall('CreateHostProjectRegistration', $request, $callOptions)->wait();
     }
 
@@ -333,10 +333,8 @@ final class HostProjectRegistrationServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getHostProjectRegistration(
-        GetHostProjectRegistrationRequest $request,
-        array $callOptions = []
-    ): HostProjectRegistration {
+    public function getHostProjectRegistration(GetHostProjectRegistrationRequest $request, array $callOptions = []): HostProjectRegistration
+    {
         return $this->startApiCall('GetHostProjectRegistration', $request, $callOptions)->wait();
     }
 
@@ -363,10 +361,8 @@ final class HostProjectRegistrationServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listHostProjectRegistrations(
-        ListHostProjectRegistrationsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listHostProjectRegistrations(ListHostProjectRegistrationsRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListHostProjectRegistrations', $request, $callOptions);
     }
 

@@ -27,6 +27,7 @@ namespace Google\Cloud\ApiHub\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -90,7 +91,9 @@ final class RuntimeProjectAttachmentServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+    ];
 
     private static function getClientDefaults()
     {
@@ -98,16 +101,14 @@ final class RuntimeProjectAttachmentServiceClient
             'serviceName' => self::SERVICE_NAME,
             'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__ . '/../resources/runtime_project_attachment_service_client_config.json',
-            'descriptorsConfigPath' =>
-                __DIR__ . '/../resources/runtime_project_attachment_service_descriptor_config.php',
+            'descriptorsConfigPath' => __DIR__ . '/../resources/runtime_project_attachment_service_descriptor_config.php',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
                 'useJwtAccessWithScope' => false,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' =>
-                        __DIR__ . '/../resources/runtime_project_attachment_service_rest_client_config.php',
+                    'restClientConfigPath' => __DIR__ . '/../resources/runtime_project_attachment_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -122,7 +123,9 @@ final class RuntimeProjectAttachmentServiceClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return ['rest'];
+        return [
+            'rest',
+        ];
     }
 
     /**
@@ -167,11 +170,8 @@ final class RuntimeProjectAttachmentServiceClient
      *
      * @return string The formatted runtime_project_attachment resource.
      */
-    public static function runtimeProjectAttachmentName(
-        string $project,
-        string $location,
-        string $runtimeProjectAttachment
-    ): string {
+    public static function runtimeProjectAttachmentName(string $project, string $location, string $runtimeProjectAttachment): string
+    {
         return self::getPathTemplate('runtimeProjectAttachment')->render([
             'project' => $project,
             'location' => $location,
@@ -208,7 +208,7 @@ final class RuntimeProjectAttachmentServiceClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
@@ -261,11 +261,13 @@ final class RuntimeProjectAttachmentServiceClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -305,10 +307,8 @@ final class RuntimeProjectAttachmentServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createRuntimeProjectAttachment(
-        CreateRuntimeProjectAttachmentRequest $request,
-        array $callOptions = []
-    ): RuntimeProjectAttachment {
+    public function createRuntimeProjectAttachment(CreateRuntimeProjectAttachmentRequest $request, array $callOptions = []): RuntimeProjectAttachment
+    {
         return $this->startApiCall('CreateRuntimeProjectAttachment', $request, $callOptions)->wait();
     }
 
@@ -334,10 +334,8 @@ final class RuntimeProjectAttachmentServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteRuntimeProjectAttachment(
-        DeleteRuntimeProjectAttachmentRequest $request,
-        array $callOptions = []
-    ): void {
+    public function deleteRuntimeProjectAttachment(DeleteRuntimeProjectAttachmentRequest $request, array $callOptions = []): void
+    {
         $this->startApiCall('DeleteRuntimeProjectAttachment', $request, $callOptions)->wait();
     }
 
@@ -364,10 +362,8 @@ final class RuntimeProjectAttachmentServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getRuntimeProjectAttachment(
-        GetRuntimeProjectAttachmentRequest $request,
-        array $callOptions = []
-    ): RuntimeProjectAttachment {
+    public function getRuntimeProjectAttachment(GetRuntimeProjectAttachmentRequest $request, array $callOptions = []): RuntimeProjectAttachment
+    {
         return $this->startApiCall('GetRuntimeProjectAttachment', $request, $callOptions)->wait();
     }
 
@@ -394,10 +390,8 @@ final class RuntimeProjectAttachmentServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listRuntimeProjectAttachments(
-        ListRuntimeProjectAttachmentsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listRuntimeProjectAttachments(ListRuntimeProjectAttachmentsRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListRuntimeProjectAttachments', $request, $callOptions);
     }
 
@@ -425,10 +419,8 @@ final class RuntimeProjectAttachmentServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function lookupRuntimeProjectAttachment(
-        LookupRuntimeProjectAttachmentRequest $request,
-        array $callOptions = []
-    ): LookupRuntimeProjectAttachmentResponse {
+    public function lookupRuntimeProjectAttachment(LookupRuntimeProjectAttachmentRequest $request, array $callOptions = []): LookupRuntimeProjectAttachmentResponse
+    {
         return $this->startApiCall('LookupRuntimeProjectAttachment', $request, $callOptions)->wait();
     }
 

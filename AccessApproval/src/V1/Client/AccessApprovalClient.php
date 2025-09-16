@@ -27,6 +27,7 @@ namespace Google\Cloud\AccessApproval\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -126,7 +127,9 @@ final class AccessApprovalClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+    ];
 
     private static function getClientDefaults()
     {
@@ -357,7 +360,7 @@ final class AccessApprovalClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
@@ -413,11 +416,13 @@ final class AccessApprovalClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -459,10 +464,8 @@ final class AccessApprovalClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function approveApprovalRequest(
-        ApproveApprovalRequestMessage $request,
-        array $callOptions = []
-    ): ApprovalRequest {
+    public function approveApprovalRequest(ApproveApprovalRequestMessage $request, array $callOptions = []): ApprovalRequest
+    {
         return $this->startApiCall('ApproveApprovalRequest', $request, $callOptions)->wait();
     }
 
@@ -491,10 +494,8 @@ final class AccessApprovalClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteAccessApprovalSettings(
-        DeleteAccessApprovalSettingsMessage $request,
-        array $callOptions = []
-    ): void {
+    public function deleteAccessApprovalSettings(DeleteAccessApprovalSettingsMessage $request, array $callOptions = []): void
+    {
         $this->startApiCall('DeleteAccessApprovalSettings', $request, $callOptions)->wait();
     }
 
@@ -529,10 +530,8 @@ final class AccessApprovalClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function dismissApprovalRequest(
-        DismissApprovalRequestMessage $request,
-        array $callOptions = []
-    ): ApprovalRequest {
+    public function dismissApprovalRequest(DismissApprovalRequestMessage $request, array $callOptions = []): ApprovalRequest
+    {
         return $this->startApiCall('DismissApprovalRequest', $request, $callOptions)->wait();
     }
 
@@ -559,10 +558,8 @@ final class AccessApprovalClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getAccessApprovalServiceAccount(
-        GetAccessApprovalServiceAccountMessage $request,
-        array $callOptions = []
-    ): AccessApprovalServiceAccount {
+    public function getAccessApprovalServiceAccount(GetAccessApprovalServiceAccountMessage $request, array $callOptions = []): AccessApprovalServiceAccount
+    {
         return $this->startApiCall('GetAccessApprovalServiceAccount', $request, $callOptions)->wait();
     }
 
@@ -588,10 +585,8 @@ final class AccessApprovalClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getAccessApprovalSettings(
-        GetAccessApprovalSettingsMessage $request,
-        array $callOptions = []
-    ): AccessApprovalSettings {
+    public function getAccessApprovalSettings(GetAccessApprovalSettingsMessage $request, array $callOptions = []): AccessApprovalSettings
+    {
         return $this->startApiCall('GetAccessApprovalSettings', $request, $callOptions)->wait();
     }
 
@@ -650,10 +645,8 @@ final class AccessApprovalClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function invalidateApprovalRequest(
-        InvalidateApprovalRequestMessage $request,
-        array $callOptions = []
-    ): ApprovalRequest {
+    public function invalidateApprovalRequest(InvalidateApprovalRequestMessage $request, array $callOptions = []): ApprovalRequest
+    {
         return $this->startApiCall('InvalidateApprovalRequest', $request, $callOptions)->wait();
     }
 
@@ -680,10 +673,8 @@ final class AccessApprovalClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listApprovalRequests(
-        ListApprovalRequestsMessage $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listApprovalRequests(ListApprovalRequestsMessage $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListApprovalRequests', $request, $callOptions);
     }
 
@@ -710,10 +701,8 @@ final class AccessApprovalClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateAccessApprovalSettings(
-        UpdateAccessApprovalSettingsMessage $request,
-        array $callOptions = []
-    ): AccessApprovalSettings {
+    public function updateAccessApprovalSettings(UpdateAccessApprovalSettingsMessage $request, array $callOptions = []): AccessApprovalSettings
+    {
         return $this->startApiCall('UpdateAccessApprovalSettings', $request, $callOptions)->wait();
     }
 }

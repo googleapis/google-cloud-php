@@ -27,6 +27,7 @@ namespace Google\Apps\Chat\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -285,11 +286,8 @@ final class ChatServiceClient
      *
      * @return string The formatted quoted_message_metadata resource.
      */
-    public static function quotedMessageMetadataName(
-        string $space,
-        string $message,
-        string $quotedMessageMetadata
-    ): string {
+    public static function quotedMessageMetadataName(string $space, string $message, string $quotedMessageMetadata): string
+    {
         return self::getPathTemplate('quotedMessageMetadata')->render([
             'space' => $space,
             'message' => $message,
@@ -456,7 +454,7 @@ final class ChatServiceClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
@@ -512,11 +510,13 @@ final class ChatServiceClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -567,10 +567,8 @@ final class ChatServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function completeImportSpace(
-        CompleteImportSpaceRequest $request,
-        array $callOptions = []
-    ): CompleteImportSpaceResponse {
+    public function completeImportSpace(CompleteImportSpaceRequest $request, array $callOptions = []): CompleteImportSpaceResponse
+    {
         return $this->startApiCall('CompleteImportSpace', $request, $callOptions)->wait();
     }
 
@@ -1456,10 +1454,8 @@ final class ChatServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getSpaceNotificationSetting(
-        GetSpaceNotificationSettingRequest $request,
-        array $callOptions = []
-    ): SpaceNotificationSetting {
+    public function getSpaceNotificationSetting(GetSpaceNotificationSettingRequest $request, array $callOptions = []): SpaceNotificationSetting
+    {
         return $this->startApiCall('GetSpaceNotificationSetting', $request, $callOptions)->wait();
     }
 
@@ -2123,10 +2119,8 @@ final class ChatServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateSpaceNotificationSetting(
-        UpdateSpaceNotificationSettingRequest $request,
-        array $callOptions = []
-    ): SpaceNotificationSetting {
+    public function updateSpaceNotificationSetting(UpdateSpaceNotificationSettingRequest $request, array $callOptions = []): SpaceNotificationSetting
+    {
         return $this->startApiCall('UpdateSpaceNotificationSetting', $request, $callOptions)->wait();
     }
 
@@ -2201,10 +2195,8 @@ final class ChatServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function uploadAttachment(
-        UploadAttachmentRequest $request,
-        array $callOptions = []
-    ): UploadAttachmentResponse {
+    public function uploadAttachment(UploadAttachmentRequest $request, array $callOptions = []): UploadAttachmentResponse
+    {
         return $this->startApiCall('UploadAttachment', $request, $callOptions)->wait();
     }
 }

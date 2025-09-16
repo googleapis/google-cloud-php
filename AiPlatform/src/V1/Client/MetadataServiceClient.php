@@ -28,6 +28,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -67,8 +68,11 @@ use Google\Cloud\AIPlatform\V1\ListMetadataStoresRequest;
 use Google\Cloud\AIPlatform\V1\MetadataSchema;
 use Google\Cloud\AIPlatform\V1\MetadataStore;
 use Google\Cloud\AIPlatform\V1\PurgeArtifactsRequest;
+use Google\Cloud\AIPlatform\V1\PurgeArtifactsResponse;
 use Google\Cloud\AIPlatform\V1\PurgeContextsRequest;
+use Google\Cloud\AIPlatform\V1\PurgeContextsResponse;
 use Google\Cloud\AIPlatform\V1\PurgeExecutionsRequest;
+use Google\Cloud\AIPlatform\V1\PurgeExecutionsResponse;
 use Google\Cloud\AIPlatform\V1\QueryArtifactLineageSubgraphRequest;
 use Google\Cloud\AIPlatform\V1\QueryContextLineageSubgraphRequest;
 use Google\Cloud\AIPlatform\V1\QueryExecutionInputsAndOutputsRequest;
@@ -164,7 +168,9 @@ final class MetadataServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+    ];
 
     private $operationsClient;
 
@@ -210,9 +216,7 @@ final class MetadataServiceClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning'])
-            ? $this->descriptors[$methodName]['longRunning']
-            : [];
+        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -248,12 +252,8 @@ final class MetadataServiceClient
      *
      * @return string The formatted artifact resource.
      */
-    public static function artifactName(
-        string $project,
-        string $location,
-        string $metadataStore,
-        string $artifact
-    ): string {
+    public static function artifactName(string $project, string $location, string $metadataStore, string $artifact): string
+    {
         return self::getPathTemplate('artifact')->render([
             'project' => $project,
             'location' => $location,
@@ -273,12 +273,8 @@ final class MetadataServiceClient
      *
      * @return string The formatted context resource.
      */
-    public static function contextName(
-        string $project,
-        string $location,
-        string $metadataStore,
-        string $context
-    ): string {
+    public static function contextName(string $project, string $location, string $metadataStore, string $context): string
+    {
         return self::getPathTemplate('context')->render([
             'project' => $project,
             'location' => $location,
@@ -298,12 +294,8 @@ final class MetadataServiceClient
      *
      * @return string The formatted execution resource.
      */
-    public static function executionName(
-        string $project,
-        string $location,
-        string $metadataStore,
-        string $execution
-    ): string {
+    public static function executionName(string $project, string $location, string $metadataStore, string $execution): string
+    {
         return self::getPathTemplate('execution')->render([
             'project' => $project,
             'location' => $location,
@@ -340,12 +332,8 @@ final class MetadataServiceClient
      *
      * @return string The formatted metadata_schema resource.
      */
-    public static function metadataSchemaName(
-        string $project,
-        string $location,
-        string $metadataStore,
-        string $metadataSchema
-    ): string {
+    public static function metadataSchemaName(string $project, string $location, string $metadataStore, string $metadataSchema): string
+    {
         return self::getPathTemplate('metadataSchema')->render([
             'project' => $project,
             'location' => $location,
@@ -405,7 +393,7 @@ final class MetadataServiceClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
@@ -461,11 +449,13 @@ final class MetadataServiceClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -507,10 +497,8 @@ final class MetadataServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function addContextArtifactsAndExecutions(
-        AddContextArtifactsAndExecutionsRequest $request,
-        array $callOptions = []
-    ): AddContextArtifactsAndExecutionsResponse {
+    public function addContextArtifactsAndExecutions(AddContextArtifactsAndExecutionsRequest $request, array $callOptions = []): AddContextArtifactsAndExecutionsResponse
+    {
         return $this->startApiCall('AddContextArtifactsAndExecutions', $request, $callOptions)->wait();
     }
 
@@ -539,10 +527,8 @@ final class MetadataServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function addContextChildren(
-        AddContextChildrenRequest $request,
-        array $callOptions = []
-    ): AddContextChildrenResponse {
+    public function addContextChildren(AddContextChildrenRequest $request, array $callOptions = []): AddContextChildrenResponse
+    {
         return $this->startApiCall('AddContextChildren', $request, $callOptions)->wait();
     }
 
@@ -570,10 +556,8 @@ final class MetadataServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function addExecutionEvents(
-        AddExecutionEventsRequest $request,
-        array $callOptions = []
-    ): AddExecutionEventsResponse {
+    public function addExecutionEvents(AddExecutionEventsRequest $request, array $callOptions = []): AddExecutionEventsResponse
+    {
         return $this->startApiCall('AddExecutionEvents', $request, $callOptions)->wait();
     }
 
@@ -698,7 +682,7 @@ final class MetadataServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<MetadataStore>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -724,7 +708,7 @@ final class MetadataServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -750,7 +734,7 @@ final class MetadataServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -776,7 +760,7 @@ final class MetadataServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -803,7 +787,7 @@ final class MetadataServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1089,7 +1073,7 @@ final class MetadataServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<PurgeArtifactsResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1115,7 +1099,7 @@ final class MetadataServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<PurgeContextsResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1141,7 +1125,7 @@ final class MetadataServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<PurgeExecutionsResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1173,10 +1157,8 @@ final class MetadataServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function queryArtifactLineageSubgraph(
-        QueryArtifactLineageSubgraphRequest $request,
-        array $callOptions = []
-    ): LineageSubgraph {
+    public function queryArtifactLineageSubgraph(QueryArtifactLineageSubgraphRequest $request, array $callOptions = []): LineageSubgraph
+    {
         return $this->startApiCall('QueryArtifactLineageSubgraph', $request, $callOptions)->wait();
     }
 
@@ -1203,10 +1185,8 @@ final class MetadataServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function queryContextLineageSubgraph(
-        QueryContextLineageSubgraphRequest $request,
-        array $callOptions = []
-    ): LineageSubgraph {
+    public function queryContextLineageSubgraph(QueryContextLineageSubgraphRequest $request, array $callOptions = []): LineageSubgraph
+    {
         return $this->startApiCall('QueryContextLineageSubgraph', $request, $callOptions)->wait();
     }
 
@@ -1234,10 +1214,8 @@ final class MetadataServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function queryExecutionInputsAndOutputs(
-        QueryExecutionInputsAndOutputsRequest $request,
-        array $callOptions = []
-    ): LineageSubgraph {
+    public function queryExecutionInputsAndOutputs(QueryExecutionInputsAndOutputsRequest $request, array $callOptions = []): LineageSubgraph
+    {
         return $this->startApiCall('QueryExecutionInputsAndOutputs', $request, $callOptions)->wait();
     }
 
@@ -1265,10 +1243,8 @@ final class MetadataServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function removeContextChildren(
-        RemoveContextChildrenRequest $request,
-        array $callOptions = []
-    ): RemoveContextChildrenResponse {
+    public function removeContextChildren(RemoveContextChildrenRequest $request, array $callOptions = []): RemoveContextChildrenResponse
+    {
         return $this->startApiCall('RemoveContextChildren', $request, $callOptions)->wait();
     }
 
@@ -1486,10 +1462,8 @@ final class MetadataServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(
-        TestIamPermissionsRequest $request,
-        array $callOptions = []
-    ): TestIamPermissionsResponse {
+    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
+    {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }
