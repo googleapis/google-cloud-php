@@ -28,6 +28,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -102,7 +103,9 @@ final class VpcFlowLogsServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+    ];
 
     private $operationsClient;
 
@@ -148,9 +151,7 @@ final class VpcFlowLogsServiceClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning'])
-            ? $this->descriptors[$methodName]['longRunning']
-            : [];
+        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -239,7 +240,7 @@ final class VpcFlowLogsServiceClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
@@ -295,11 +296,13 @@ final class VpcFlowLogsServiceClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -349,14 +352,12 @@ final class VpcFlowLogsServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<VpcFlowLogsConfig>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createVpcFlowLogsConfig(
-        CreateVpcFlowLogsConfigRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function createVpcFlowLogsConfig(CreateVpcFlowLogsConfigRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('CreateVpcFlowLogsConfig', $request, $callOptions)->wait();
     }
 
@@ -378,14 +379,12 @@ final class VpcFlowLogsServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteVpcFlowLogsConfig(
-        DeleteVpcFlowLogsConfigRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function deleteVpcFlowLogsConfig(DeleteVpcFlowLogsConfigRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('DeleteVpcFlowLogsConfig', $request, $callOptions)->wait();
     }
 
@@ -411,10 +410,8 @@ final class VpcFlowLogsServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getVpcFlowLogsConfig(
-        GetVpcFlowLogsConfigRequest $request,
-        array $callOptions = []
-    ): VpcFlowLogsConfig {
+    public function getVpcFlowLogsConfig(GetVpcFlowLogsConfigRequest $request, array $callOptions = []): VpcFlowLogsConfig
+    {
         return $this->startApiCall('GetVpcFlowLogsConfig', $request, $callOptions)->wait();
     }
 
@@ -440,10 +437,8 @@ final class VpcFlowLogsServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listVpcFlowLogsConfigs(
-        ListVpcFlowLogsConfigsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listVpcFlowLogsConfigs(ListVpcFlowLogsConfigsRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListVpcFlowLogsConfigs', $request, $callOptions);
     }
 
@@ -479,14 +474,12 @@ final class VpcFlowLogsServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<VpcFlowLogsConfig>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateVpcFlowLogsConfig(
-        UpdateVpcFlowLogsConfigRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function updateVpcFlowLogsConfig(UpdateVpcFlowLogsConfigRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('UpdateVpcFlowLogsConfig', $request, $callOptions)->wait();
     }
 
@@ -627,10 +620,8 @@ final class VpcFlowLogsServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(
-        TestIamPermissionsRequest $request,
-        array $callOptions = []
-    ): TestIamPermissionsResponse {
+    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
+    {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

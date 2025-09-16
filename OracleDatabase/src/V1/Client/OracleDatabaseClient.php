@@ -28,6 +28,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -135,7 +136,9 @@ final class OracleDatabaseClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+    ];
 
     private $operationsClient;
 
@@ -181,9 +184,7 @@ final class OracleDatabaseClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning'])
-            ? $this->descriptors[$methodName]['longRunning']
-            : [];
+        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -237,11 +238,8 @@ final class OracleDatabaseClient
      *
      * @return string The formatted cloud_exadata_infrastructure resource.
      */
-    public static function cloudExadataInfrastructureName(
-        string $project,
-        string $location,
-        string $cloudExadataInfrastructure
-    ): string {
+    public static function cloudExadataInfrastructureName(string $project, string $location, string $cloudExadataInfrastructure): string
+    {
         return self::getPathTemplate('cloudExadataInfrastructure')->render([
             'project' => $project,
             'location' => $location,
@@ -333,7 +331,7 @@ final class OracleDatabaseClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
@@ -389,11 +387,13 @@ final class OracleDatabaseClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -429,14 +429,12 @@ final class OracleDatabaseClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<AutonomousDatabase>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createAutonomousDatabase(
-        CreateAutonomousDatabaseRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function createAutonomousDatabase(CreateAutonomousDatabaseRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('CreateAutonomousDatabase', $request, $callOptions)->wait();
     }
 
@@ -458,14 +456,12 @@ final class OracleDatabaseClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<CloudExadataInfrastructure>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createCloudExadataInfrastructure(
-        CreateCloudExadataInfrastructureRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function createCloudExadataInfrastructure(CreateCloudExadataInfrastructureRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('CreateCloudExadataInfrastructure', $request, $callOptions)->wait();
     }
 
@@ -486,14 +482,12 @@ final class OracleDatabaseClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<CloudVmCluster>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createCloudVmCluster(
-        CreateCloudVmClusterRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function createCloudVmCluster(CreateCloudVmClusterRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('CreateCloudVmCluster', $request, $callOptions)->wait();
     }
 
@@ -515,14 +509,12 @@ final class OracleDatabaseClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteAutonomousDatabase(
-        DeleteAutonomousDatabaseRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function deleteAutonomousDatabase(DeleteAutonomousDatabaseRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('DeleteAutonomousDatabase', $request, $callOptions)->wait();
     }
 
@@ -544,14 +536,12 @@ final class OracleDatabaseClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteCloudExadataInfrastructure(
-        DeleteCloudExadataInfrastructureRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function deleteCloudExadataInfrastructure(DeleteCloudExadataInfrastructureRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('DeleteCloudExadataInfrastructure', $request, $callOptions)->wait();
     }
 
@@ -572,14 +562,12 @@ final class OracleDatabaseClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteCloudVmCluster(
-        DeleteCloudVmClusterRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function deleteCloudVmCluster(DeleteCloudVmClusterRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('DeleteCloudVmCluster', $request, $callOptions)->wait();
     }
 
@@ -605,10 +593,8 @@ final class OracleDatabaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function generateAutonomousDatabaseWallet(
-        GenerateAutonomousDatabaseWalletRequest $request,
-        array $callOptions = []
-    ): GenerateAutonomousDatabaseWalletResponse {
+    public function generateAutonomousDatabaseWallet(GenerateAutonomousDatabaseWalletRequest $request, array $callOptions = []): GenerateAutonomousDatabaseWalletResponse
+    {
         return $this->startApiCall('GenerateAutonomousDatabaseWallet', $request, $callOptions)->wait();
     }
 
@@ -633,10 +619,8 @@ final class OracleDatabaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getAutonomousDatabase(
-        GetAutonomousDatabaseRequest $request,
-        array $callOptions = []
-    ): AutonomousDatabase {
+    public function getAutonomousDatabase(GetAutonomousDatabaseRequest $request, array $callOptions = []): AutonomousDatabase
+    {
         return $this->startApiCall('GetAutonomousDatabase', $request, $callOptions)->wait();
     }
 
@@ -662,10 +646,8 @@ final class OracleDatabaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getCloudExadataInfrastructure(
-        GetCloudExadataInfrastructureRequest $request,
-        array $callOptions = []
-    ): CloudExadataInfrastructure {
+    public function getCloudExadataInfrastructure(GetCloudExadataInfrastructureRequest $request, array $callOptions = []): CloudExadataInfrastructure
+    {
         return $this->startApiCall('GetCloudExadataInfrastructure', $request, $callOptions)->wait();
     }
 
@@ -717,10 +699,8 @@ final class OracleDatabaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listAutonomousDatabaseBackups(
-        ListAutonomousDatabaseBackupsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listAutonomousDatabaseBackups(ListAutonomousDatabaseBackupsRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListAutonomousDatabaseBackups', $request, $callOptions);
     }
 
@@ -746,10 +726,8 @@ final class OracleDatabaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listAutonomousDatabaseCharacterSets(
-        ListAutonomousDatabaseCharacterSetsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listAutonomousDatabaseCharacterSets(ListAutonomousDatabaseCharacterSetsRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListAutonomousDatabaseCharacterSets', $request, $callOptions);
     }
 
@@ -775,10 +753,8 @@ final class OracleDatabaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listAutonomousDatabases(
-        ListAutonomousDatabasesRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listAutonomousDatabases(ListAutonomousDatabasesRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListAutonomousDatabases', $request, $callOptions);
     }
 
@@ -805,10 +781,8 @@ final class OracleDatabaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listAutonomousDbVersions(
-        ListAutonomousDbVersionsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listAutonomousDbVersions(ListAutonomousDbVersionsRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListAutonomousDbVersions', $request, $callOptions);
     }
 
@@ -834,10 +808,8 @@ final class OracleDatabaseClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listCloudExadataInfrastructures(
-        ListCloudExadataInfrastructuresRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listCloudExadataInfrastructures(ListCloudExadataInfrastructuresRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListCloudExadataInfrastructures', $request, $callOptions);
     }
 
@@ -1016,14 +988,12 @@ final class OracleDatabaseClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<AutonomousDatabase>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function restartAutonomousDatabase(
-        RestartAutonomousDatabaseRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function restartAutonomousDatabase(RestartAutonomousDatabaseRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('RestartAutonomousDatabase', $request, $callOptions)->wait();
     }
 
@@ -1045,14 +1015,12 @@ final class OracleDatabaseClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<AutonomousDatabase>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function restoreAutonomousDatabase(
-        RestoreAutonomousDatabaseRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function restoreAutonomousDatabase(RestoreAutonomousDatabaseRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('RestoreAutonomousDatabase', $request, $callOptions)->wait();
     }
 
@@ -1074,14 +1042,12 @@ final class OracleDatabaseClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<AutonomousDatabase>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function startAutonomousDatabase(
-        StartAutonomousDatabaseRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function startAutonomousDatabase(StartAutonomousDatabaseRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('StartAutonomousDatabase', $request, $callOptions)->wait();
     }
 
@@ -1103,14 +1069,12 @@ final class OracleDatabaseClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<AutonomousDatabase>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function stopAutonomousDatabase(
-        StopAutonomousDatabaseRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function stopAutonomousDatabase(StopAutonomousDatabaseRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('StopAutonomousDatabase', $request, $callOptions)->wait();
     }
 

@@ -28,6 +28,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -124,7 +125,9 @@ final class NetworkSecurityClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+    ];
 
     private $operationsClient;
 
@@ -170,9 +173,7 @@ final class NetworkSecurityClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning'])
-            ? $this->descriptors[$methodName]['longRunning']
-            : [];
+        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -207,11 +208,8 @@ final class NetworkSecurityClient
      *
      * @return string The formatted authorization_policy resource.
      */
-    public static function authorizationPolicyName(
-        string $project,
-        string $location,
-        string $authorizationPolicy
-    ): string {
+    public static function authorizationPolicyName(string $project, string $location, string $authorizationPolicy): string
+    {
         return self::getPathTemplate('authorizationPolicy')->render([
             'project' => $project,
             'location' => $location,
@@ -304,7 +302,7 @@ final class NetworkSecurityClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
@@ -360,11 +358,13 @@ final class NetworkSecurityClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -400,14 +400,12 @@ final class NetworkSecurityClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<AuthorizationPolicy>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createAuthorizationPolicy(
-        CreateAuthorizationPolicyRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function createAuthorizationPolicy(CreateAuthorizationPolicyRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('CreateAuthorizationPolicy', $request, $callOptions)->wait();
     }
 
@@ -429,14 +427,12 @@ final class NetworkSecurityClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<ClientTlsPolicy>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createClientTlsPolicy(
-        CreateClientTlsPolicyRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function createClientTlsPolicy(CreateClientTlsPolicyRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('CreateClientTlsPolicy', $request, $callOptions)->wait();
     }
 
@@ -458,14 +454,12 @@ final class NetworkSecurityClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<ServerTlsPolicy>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createServerTlsPolicy(
-        CreateServerTlsPolicyRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function createServerTlsPolicy(CreateServerTlsPolicyRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('CreateServerTlsPolicy', $request, $callOptions)->wait();
     }
 
@@ -487,14 +481,12 @@ final class NetworkSecurityClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteAuthorizationPolicy(
-        DeleteAuthorizationPolicyRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function deleteAuthorizationPolicy(DeleteAuthorizationPolicyRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('DeleteAuthorizationPolicy', $request, $callOptions)->wait();
     }
 
@@ -516,14 +508,12 @@ final class NetworkSecurityClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteClientTlsPolicy(
-        DeleteClientTlsPolicyRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function deleteClientTlsPolicy(DeleteClientTlsPolicyRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('DeleteClientTlsPolicy', $request, $callOptions)->wait();
     }
 
@@ -545,14 +535,12 @@ final class NetworkSecurityClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteServerTlsPolicy(
-        DeleteServerTlsPolicyRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function deleteServerTlsPolicy(DeleteServerTlsPolicyRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('DeleteServerTlsPolicy', $request, $callOptions)->wait();
     }
 
@@ -578,10 +566,8 @@ final class NetworkSecurityClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getAuthorizationPolicy(
-        GetAuthorizationPolicyRequest $request,
-        array $callOptions = []
-    ): AuthorizationPolicy {
+    public function getAuthorizationPolicy(GetAuthorizationPolicyRequest $request, array $callOptions = []): AuthorizationPolicy
+    {
         return $this->startApiCall('GetAuthorizationPolicy', $request, $callOptions)->wait();
     }
 
@@ -659,10 +645,8 @@ final class NetworkSecurityClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listAuthorizationPolicies(
-        ListAuthorizationPoliciesRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listAuthorizationPolicies(ListAuthorizationPoliciesRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListAuthorizationPolicies', $request, $callOptions);
     }
 
@@ -688,10 +672,8 @@ final class NetworkSecurityClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listClientTlsPolicies(
-        ListClientTlsPoliciesRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listClientTlsPolicies(ListClientTlsPoliciesRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListClientTlsPolicies', $request, $callOptions);
     }
 
@@ -717,10 +699,8 @@ final class NetworkSecurityClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listServerTlsPolicies(
-        ListServerTlsPoliciesRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listServerTlsPolicies(ListServerTlsPoliciesRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListServerTlsPolicies', $request, $callOptions);
     }
 
@@ -742,14 +722,12 @@ final class NetworkSecurityClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<AuthorizationPolicy>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateAuthorizationPolicy(
-        UpdateAuthorizationPolicyRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function updateAuthorizationPolicy(UpdateAuthorizationPolicyRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('UpdateAuthorizationPolicy', $request, $callOptions)->wait();
     }
 
@@ -771,14 +749,12 @@ final class NetworkSecurityClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<ClientTlsPolicy>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateClientTlsPolicy(
-        UpdateClientTlsPolicyRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function updateClientTlsPolicy(UpdateClientTlsPolicyRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('UpdateClientTlsPolicy', $request, $callOptions)->wait();
     }
 
@@ -800,14 +776,12 @@ final class NetworkSecurityClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<ServerTlsPolicy>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateServerTlsPolicy(
-        UpdateServerTlsPolicyRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function updateServerTlsPolicy(UpdateServerTlsPolicyRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('UpdateServerTlsPolicy', $request, $callOptions)->wait();
     }
 
@@ -947,10 +921,8 @@ final class NetworkSecurityClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(
-        TestIamPermissionsRequest $request,
-        array $callOptions = []
-    ): TestIamPermissionsResponse {
+    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
+    {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

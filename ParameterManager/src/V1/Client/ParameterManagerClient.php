@@ -27,6 +27,7 @@ namespace Google\Cloud\ParameterManager\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -103,7 +104,9 @@ final class ParameterManagerClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+    ];
 
     private static function getClientDefaults()
     {
@@ -192,12 +195,8 @@ final class ParameterManagerClient
      *
      * @return string The formatted parameter_version resource.
      */
-    public static function parameterVersionName(
-        string $project,
-        string $location,
-        string $parameter,
-        string $parameterVersion
-    ): string {
+    public static function parameterVersionName(string $project, string $location, string $parameter, string $parameterVersion): string
+    {
         return self::getPathTemplate('parameterVersion')->render([
             'project' => $project,
             'location' => $location,
@@ -236,7 +235,7 @@ final class ParameterManagerClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
@@ -292,11 +291,13 @@ final class ParameterManagerClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -361,10 +362,8 @@ final class ParameterManagerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createParameterVersion(
-        CreateParameterVersionRequest $request,
-        array $callOptions = []
-    ): ParameterVersion {
+    public function createParameterVersion(CreateParameterVersionRequest $request, array $callOptions = []): ParameterVersion
+    {
         return $this->startApiCall('CreateParameterVersion', $request, $callOptions)->wait();
     }
 
@@ -491,10 +490,8 @@ final class ParameterManagerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listParameterVersions(
-        ListParameterVersionsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listParameterVersions(ListParameterVersionsRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListParameterVersions', $request, $callOptions);
     }
 
@@ -546,10 +543,8 @@ final class ParameterManagerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function renderParameterVersion(
-        RenderParameterVersionRequest $request,
-        array $callOptions = []
-    ): RenderParameterVersionResponse {
+    public function renderParameterVersion(RenderParameterVersionRequest $request, array $callOptions = []): RenderParameterVersionResponse
+    {
         return $this->startApiCall('RenderParameterVersion', $request, $callOptions)->wait();
     }
 
@@ -601,10 +596,8 @@ final class ParameterManagerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateParameterVersion(
-        UpdateParameterVersionRequest $request,
-        array $callOptions = []
-    ): ParameterVersion {
+    public function updateParameterVersion(UpdateParameterVersionRequest $request, array $callOptions = []): ParameterVersion
+    {
         return $this->startApiCall('UpdateParameterVersion', $request, $callOptions)->wait();
     }
 

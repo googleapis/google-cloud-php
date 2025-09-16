@@ -28,6 +28,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -131,7 +132,9 @@ final class PrivilegedAccessManagerClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+    ];
 
     private $operationsClient;
 
@@ -148,8 +151,7 @@ final class PrivilegedAccessManagerClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' =>
-                        __DIR__ . '/../resources/privileged_access_manager_rest_client_config.php',
+                    'restClientConfigPath' => __DIR__ . '/../resources/privileged_access_manager_rest_client_config.php',
                 ],
             ],
         ];
@@ -178,9 +180,7 @@ final class PrivilegedAccessManagerClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning'])
-            ? $this->descriptors[$methodName]['longRunning']
-            : [];
+        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -271,12 +271,8 @@ final class PrivilegedAccessManagerClient
      *
      * @return string The formatted folder_location_entitlement_grant resource.
      */
-    public static function folderLocationEntitlementGrantName(
-        string $folder,
-        string $location,
-        string $entitlement,
-        string $grant
-    ): string {
+    public static function folderLocationEntitlementGrantName(string $folder, string $location, string $entitlement, string $grant): string
+    {
         return self::getPathTemplate('folderLocationEntitlementGrant')->render([
             'folder' => $folder,
             'location' => $location,
@@ -350,11 +346,8 @@ final class PrivilegedAccessManagerClient
      *
      * @return string The formatted organization_location_entitlement resource.
      */
-    public static function organizationLocationEntitlementName(
-        string $organization,
-        string $location,
-        string $entitlement
-    ): string {
+    public static function organizationLocationEntitlementName(string $organization, string $location, string $entitlement): string
+    {
         return self::getPathTemplate('organizationLocationEntitlement')->render([
             'organization' => $organization,
             'location' => $location,
@@ -373,12 +366,8 @@ final class PrivilegedAccessManagerClient
      *
      * @return string The formatted organization_location_entitlement_grant resource.
      */
-    public static function organizationLocationEntitlementGrantName(
-        string $organization,
-        string $location,
-        string $entitlement,
-        string $grant
-    ): string {
+    public static function organizationLocationEntitlementGrantName(string $organization, string $location, string $entitlement, string $grant): string
+    {
         return self::getPathTemplate('organizationLocationEntitlementGrant')->render([
             'organization' => $organization,
             'location' => $location,
@@ -397,11 +386,8 @@ final class PrivilegedAccessManagerClient
      *
      * @return string The formatted project_location_entitlement resource.
      */
-    public static function projectLocationEntitlementName(
-        string $project,
-        string $location,
-        string $entitlement
-    ): string {
+    public static function projectLocationEntitlementName(string $project, string $location, string $entitlement): string
+    {
         return self::getPathTemplate('projectLocationEntitlement')->render([
             'project' => $project,
             'location' => $location,
@@ -420,12 +406,8 @@ final class PrivilegedAccessManagerClient
      *
      * @return string The formatted project_location_entitlement_grant resource.
      */
-    public static function projectLocationEntitlementGrantName(
-        string $project,
-        string $location,
-        string $entitlement,
-        string $grant
-    ): string {
+    public static function projectLocationEntitlementGrantName(string $project, string $location, string $entitlement, string $grant): string
+    {
         return self::getPathTemplate('projectLocationEntitlementGrant')->render([
             'project' => $project,
             'location' => $location,
@@ -471,7 +453,7 @@ final class PrivilegedAccessManagerClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
@@ -527,11 +509,13 @@ final class PrivilegedAccessManagerClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -601,10 +585,8 @@ final class PrivilegedAccessManagerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function checkOnboardingStatus(
-        CheckOnboardingStatusRequest $request,
-        array $callOptions = []
-    ): CheckOnboardingStatusResponse {
+    public function checkOnboardingStatus(CheckOnboardingStatusRequest $request, array $callOptions = []): CheckOnboardingStatusResponse
+    {
         return $this->startApiCall('CheckOnboardingStatus', $request, $callOptions)->wait();
     }
 
@@ -627,7 +609,7 @@ final class PrivilegedAccessManagerClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Entitlement>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -683,7 +665,7 @@ final class PrivilegedAccessManagerClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Entitlement>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -844,7 +826,7 @@ final class PrivilegedAccessManagerClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Grant>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -945,7 +927,7 @@ final class PrivilegedAccessManagerClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Entitlement>
      *
      * @throws ApiException Thrown if the API call fails.
      */
