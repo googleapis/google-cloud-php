@@ -28,6 +28,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -177,7 +178,9 @@ final class EventarcClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+    ];
 
     private $operationsClient;
 
@@ -223,9 +226,7 @@ final class EventarcClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning'])
-            ? $this->descriptors[$methodName]['longRunning']
-            : [];
+        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -590,7 +591,7 @@ final class EventarcClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
@@ -646,11 +647,13 @@ final class EventarcClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -685,7 +688,7 @@ final class EventarcClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Channel>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -711,14 +714,12 @@ final class EventarcClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<ChannelConnection>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createChannelConnection(
-        CreateChannelConnectionRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function createChannelConnection(CreateChannelConnectionRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('CreateChannelConnection', $request, $callOptions)->wait();
     }
 
@@ -739,7 +740,7 @@ final class EventarcClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Enrollment>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -765,14 +766,12 @@ final class EventarcClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<GoogleApiSource>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createGoogleApiSource(
-        CreateGoogleApiSourceRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function createGoogleApiSource(CreateGoogleApiSourceRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('CreateGoogleApiSource', $request, $callOptions)->wait();
     }
 
@@ -793,7 +792,7 @@ final class EventarcClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<MessageBus>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -819,7 +818,7 @@ final class EventarcClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Pipeline>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -845,7 +844,7 @@ final class EventarcClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Trigger>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -871,7 +870,7 @@ final class EventarcClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Channel>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -897,14 +896,12 @@ final class EventarcClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<ChannelConnection>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteChannelConnection(
-        DeleteChannelConnectionRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function deleteChannelConnection(DeleteChannelConnectionRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('DeleteChannelConnection', $request, $callOptions)->wait();
     }
 
@@ -925,7 +922,7 @@ final class EventarcClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Enrollment>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -951,14 +948,12 @@ final class EventarcClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<GoogleApiSource>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteGoogleApiSource(
-        DeleteGoogleApiSourceRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function deleteGoogleApiSource(DeleteGoogleApiSourceRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('DeleteGoogleApiSource', $request, $callOptions)->wait();
     }
 
@@ -979,7 +974,7 @@ final class EventarcClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<MessageBus>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1005,7 +1000,7 @@ final class EventarcClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Pipeline>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1031,7 +1026,7 @@ final class EventarcClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Trigger>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1087,10 +1082,8 @@ final class EventarcClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getChannelConnection(
-        GetChannelConnectionRequest $request,
-        array $callOptions = []
-    ): ChannelConnection {
+    public function getChannelConnection(GetChannelConnectionRequest $request, array $callOptions = []): ChannelConnection
+    {
         return $this->startApiCall('GetChannelConnection', $request, $callOptions)->wait();
     }
 
@@ -1169,10 +1162,8 @@ final class EventarcClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getGoogleChannelConfig(
-        GetGoogleChannelConfigRequest $request,
-        array $callOptions = []
-    ): GoogleChannelConfig {
+    public function getGoogleChannelConfig(GetGoogleChannelConfigRequest $request, array $callOptions = []): GoogleChannelConfig
+    {
         return $this->startApiCall('GetGoogleChannelConfig', $request, $callOptions)->wait();
     }
 
@@ -1301,10 +1292,8 @@ final class EventarcClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listChannelConnections(
-        ListChannelConnectionsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listChannelConnections(ListChannelConnectionsRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListChannelConnections', $request, $callOptions);
     }
 
@@ -1381,10 +1370,8 @@ final class EventarcClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listGoogleApiSources(
-        ListGoogleApiSourcesRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listGoogleApiSources(ListGoogleApiSourcesRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListGoogleApiSources', $request, $callOptions);
     }
 
@@ -1409,10 +1396,8 @@ final class EventarcClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listMessageBusEnrollments(
-        ListMessageBusEnrollmentsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listMessageBusEnrollments(ListMessageBusEnrollmentsRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListMessageBusEnrollments', $request, $callOptions);
     }
 
@@ -1537,7 +1522,7 @@ final class EventarcClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Channel>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1563,7 +1548,7 @@ final class EventarcClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Enrollment>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1589,14 +1574,12 @@ final class EventarcClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<GoogleApiSource>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateGoogleApiSource(
-        UpdateGoogleApiSourceRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function updateGoogleApiSource(UpdateGoogleApiSourceRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('UpdateGoogleApiSource', $request, $callOptions)->wait();
     }
 
@@ -1621,10 +1604,8 @@ final class EventarcClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateGoogleChannelConfig(
-        UpdateGoogleChannelConfigRequest $request,
-        array $callOptions = []
-    ): GoogleChannelConfig {
+    public function updateGoogleChannelConfig(UpdateGoogleChannelConfigRequest $request, array $callOptions = []): GoogleChannelConfig
+    {
         return $this->startApiCall('UpdateGoogleChannelConfig', $request, $callOptions)->wait();
     }
 
@@ -1645,7 +1626,7 @@ final class EventarcClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<MessageBus>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1671,7 +1652,7 @@ final class EventarcClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Pipeline>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1697,7 +1678,7 @@ final class EventarcClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Trigger>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1842,10 +1823,8 @@ final class EventarcClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(
-        TestIamPermissionsRequest $request,
-        array $callOptions = []
-    ): TestIamPermissionsResponse {
+    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
+    {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }
