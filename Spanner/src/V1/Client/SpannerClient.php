@@ -28,6 +28,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\InsecureCredentialsWrapper;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -38,6 +39,7 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Spanner\V1\BatchCreateSessionsRequest;
 use Google\Cloud\Spanner\V1\BatchCreateSessionsResponse;
 use Google\Cloud\Spanner\V1\BatchWriteRequest;
+use Google\Cloud\Spanner\V1\BatchWriteResponse;
 use Google\Cloud\Spanner\V1\BeginTransactionRequest;
 use Google\Cloud\Spanner\V1\CommitRequest;
 use Google\Cloud\Spanner\V1\CommitResponse;
@@ -50,6 +52,7 @@ use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
 use Google\Cloud\Spanner\V1\GetSessionRequest;
 use Google\Cloud\Spanner\V1\ListSessionsRequest;
 use Google\Cloud\Spanner\V1\Mutation;
+use Google\Cloud\Spanner\V1\PartialResultSet;
 use Google\Cloud\Spanner\V1\PartitionQueryRequest;
 use Google\Cloud\Spanner\V1\PartitionReadRequest;
 use Google\Cloud\Spanner\V1\PartitionResponse;
@@ -211,7 +214,7 @@ final class SpannerClient
      * the API Endpoint to the value specified in the variable, as well as ensure that
      * empty credentials are used in the transport layer.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
@@ -267,11 +270,13 @@ final class SpannerClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $options = $this->setDefaultEmulatorConfig($options);
         $clientOptions = $this->buildClientOptions($options);
@@ -345,7 +350,7 @@ final class SpannerClient
      *           Timeout to use for this call.
      * }
      *
-     * @return ServerStream
+     * @return ServerStream<BatchWriteResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -591,7 +596,7 @@ final class SpannerClient
      *           Timeout to use for this call.
      * }
      *
-     * @return ServerStream
+     * @return ServerStream<PartialResultSet>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -818,7 +823,7 @@ final class SpannerClient
      *           Timeout to use for this call.
      * }
      *
-     * @return ServerStream
+     * @return ServerStream<PartialResultSet>
      *
      * @throws ApiException Thrown if the API call fails.
      */

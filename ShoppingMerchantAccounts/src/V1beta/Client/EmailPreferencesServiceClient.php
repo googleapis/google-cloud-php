@@ -29,6 +29,7 @@ namespace Google\Shopping\Merchant\Accounts\V1beta\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
@@ -84,7 +85,9 @@ final class EmailPreferencesServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/content'];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/content',
+    ];
 
     private static function getClientDefaults()
     {
@@ -99,8 +102,7 @@ final class EmailPreferencesServiceClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' =>
-                        __DIR__ . '/../resources/email_preferences_service_rest_client_config.php',
+                    'restClientConfigPath' => __DIR__ . '/../resources/email_preferences_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -154,7 +156,7 @@ final class EmailPreferencesServiceClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
@@ -210,13 +212,15 @@ final class EmailPreferencesServiceClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      *
      * @experimental
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -299,10 +303,8 @@ final class EmailPreferencesServiceClient
      *
      * @experimental
      */
-    public function updateEmailPreferences(
-        UpdateEmailPreferencesRequest $request,
-        array $callOptions = []
-    ): EmailPreferences {
+    public function updateEmailPreferences(UpdateEmailPreferencesRequest $request, array $callOptions = []): EmailPreferences
+    {
         return $this->startApiCall('UpdateEmailPreferences', $request, $callOptions)->wait();
     }
 }

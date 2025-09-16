@@ -27,6 +27,7 @@ namespace Google\Shopping\Merchant\Conversions\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -86,7 +87,9 @@ final class ConversionSourcesServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/content'];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/content',
+    ];
 
     private static function getClientDefaults()
     {
@@ -101,8 +104,7 @@ final class ConversionSourcesServiceClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' =>
-                        __DIR__ . '/../resources/conversion_sources_service_rest_client_config.php',
+                    'restClientConfigPath' => __DIR__ . '/../resources/conversion_sources_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -168,7 +170,7 @@ final class ConversionSourcesServiceClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
@@ -224,11 +226,13 @@ final class ConversionSourcesServiceClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -267,10 +271,8 @@ final class ConversionSourcesServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createConversionSource(
-        CreateConversionSourceRequest $request,
-        array $callOptions = []
-    ): ConversionSource {
+    public function createConversionSource(CreateConversionSourceRequest $request, array $callOptions = []): ConversionSource
+    {
         return $this->startApiCall('CreateConversionSource', $request, $callOptions)->wait();
     }
 
@@ -351,10 +353,8 @@ final class ConversionSourcesServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listConversionSources(
-        ListConversionSourcesRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listConversionSources(ListConversionSourcesRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListConversionSources', $request, $callOptions);
     }
 
@@ -381,10 +381,8 @@ final class ConversionSourcesServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function undeleteConversionSource(
-        UndeleteConversionSourceRequest $request,
-        array $callOptions = []
-    ): ConversionSource {
+    public function undeleteConversionSource(UndeleteConversionSourceRequest $request, array $callOptions = []): ConversionSource
+    {
         return $this->startApiCall('UndeleteConversionSource', $request, $callOptions)->wait();
     }
 
@@ -411,10 +409,8 @@ final class ConversionSourcesServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateConversionSource(
-        UpdateConversionSourceRequest $request,
-        array $callOptions = []
-    ): ConversionSource {
+    public function updateConversionSource(UpdateConversionSourceRequest $request, array $callOptions = []): ConversionSource
+    {
         return $this->startApiCall('UpdateConversionSource', $request, $callOptions)->wait();
     }
 }

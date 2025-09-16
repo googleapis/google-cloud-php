@@ -29,6 +29,7 @@ namespace Google\Shopping\Merchant\Accounts\V1beta\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -92,7 +93,9 @@ final class OnlineReturnPolicyServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/content'];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/content',
+    ];
 
     private static function getClientDefaults()
     {
@@ -107,8 +110,7 @@ final class OnlineReturnPolicyServiceClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' =>
-                        __DIR__ . '/../resources/online_return_policy_service_rest_client_config.php',
+                    'restClientConfigPath' => __DIR__ . '/../resources/online_return_policy_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -180,7 +182,7 @@ final class OnlineReturnPolicyServiceClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
@@ -236,13 +238,15 @@ final class OnlineReturnPolicyServiceClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      *
      * @experimental
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -283,10 +287,8 @@ final class OnlineReturnPolicyServiceClient
      *
      * @experimental
      */
-    public function createOnlineReturnPolicy(
-        CreateOnlineReturnPolicyRequest $request,
-        array $callOptions = []
-    ): OnlineReturnPolicy {
+    public function createOnlineReturnPolicy(CreateOnlineReturnPolicyRequest $request, array $callOptions = []): OnlineReturnPolicy
+    {
         return $this->startApiCall('CreateOnlineReturnPolicy', $request, $callOptions)->wait();
     }
 
@@ -341,10 +343,8 @@ final class OnlineReturnPolicyServiceClient
      *
      * @experimental
      */
-    public function getOnlineReturnPolicy(
-        GetOnlineReturnPolicyRequest $request,
-        array $callOptions = []
-    ): OnlineReturnPolicy {
+    public function getOnlineReturnPolicy(GetOnlineReturnPolicyRequest $request, array $callOptions = []): OnlineReturnPolicy
+    {
         return $this->startApiCall('GetOnlineReturnPolicy', $request, $callOptions)->wait();
     }
 
@@ -372,10 +372,8 @@ final class OnlineReturnPolicyServiceClient
      *
      * @experimental
      */
-    public function listOnlineReturnPolicies(
-        ListOnlineReturnPoliciesRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listOnlineReturnPolicies(ListOnlineReturnPoliciesRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListOnlineReturnPolicies', $request, $callOptions);
     }
 
@@ -403,10 +401,8 @@ final class OnlineReturnPolicyServiceClient
      *
      * @experimental
      */
-    public function updateOnlineReturnPolicy(
-        UpdateOnlineReturnPolicyRequest $request,
-        array $callOptions = []
-    ): OnlineReturnPolicy {
+    public function updateOnlineReturnPolicy(UpdateOnlineReturnPolicyRequest $request, array $callOptions = []): OnlineReturnPolicy
+    {
         return $this->startApiCall('UpdateOnlineReturnPolicy', $request, $callOptions)->wait();
     }
 }

@@ -27,6 +27,7 @@ namespace Google\Shopping\Merchant\Accounts\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
@@ -77,7 +78,9 @@ final class TermsOfServiceAgreementStateServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/content'];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/content',
+    ];
 
     private static function getClientDefaults()
     {
@@ -85,16 +88,14 @@ final class TermsOfServiceAgreementStateServiceClient
             'serviceName' => self::SERVICE_NAME,
             'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__ . '/../resources/terms_of_service_agreement_state_service_client_config.json',
-            'descriptorsConfigPath' =>
-                __DIR__ . '/../resources/terms_of_service_agreement_state_service_descriptor_config.php',
+            'descriptorsConfigPath' => __DIR__ . '/../resources/terms_of_service_agreement_state_service_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__ . '/../resources/terms_of_service_agreement_state_service_grpc_config.json',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' =>
-                        __DIR__ . '/../resources/terms_of_service_agreement_state_service_rest_client_config.php',
+                    'restClientConfigPath' => __DIR__ . '/../resources/terms_of_service_agreement_state_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -160,7 +161,7 @@ final class TermsOfServiceAgreementStateServiceClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
@@ -216,11 +217,13 @@ final class TermsOfServiceAgreementStateServiceClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -260,10 +263,8 @@ final class TermsOfServiceAgreementStateServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getTermsOfServiceAgreementState(
-        GetTermsOfServiceAgreementStateRequest $request,
-        array $callOptions = []
-    ): TermsOfServiceAgreementState {
+    public function getTermsOfServiceAgreementState(GetTermsOfServiceAgreementStateRequest $request, array $callOptions = []): TermsOfServiceAgreementState
+    {
         return $this->startApiCall('GetTermsOfServiceAgreementState', $request, $callOptions)->wait();
     }
 
@@ -294,14 +295,8 @@ final class TermsOfServiceAgreementStateServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function retrieveForApplicationTermsOfServiceAgreementState(
-        RetrieveForApplicationTermsOfServiceAgreementStateRequest $request,
-        array $callOptions = []
-    ): TermsOfServiceAgreementState {
-        return $this->startApiCall(
-            'RetrieveForApplicationTermsOfServiceAgreementState',
-            $request,
-            $callOptions
-        )->wait();
+    public function retrieveForApplicationTermsOfServiceAgreementState(RetrieveForApplicationTermsOfServiceAgreementStateRequest $request, array $callOptions = []): TermsOfServiceAgreementState
+    {
+        return $this->startApiCall('RetrieveForApplicationTermsOfServiceAgreementState', $request, $callOptions)->wait();
     }
 }
