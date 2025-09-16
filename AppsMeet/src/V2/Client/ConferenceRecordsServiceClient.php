@@ -27,6 +27,7 @@ namespace Google\Apps\Meet\V2\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -121,8 +122,7 @@ final class ConferenceRecordsServiceClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' =>
-                        __DIR__ . '/../resources/conference_records_service_rest_client_config.php',
+                    'restClientConfigPath' => __DIR__ . '/../resources/conference_records_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -170,11 +170,8 @@ final class ConferenceRecordsServiceClient
      *
      * @return string The formatted participant_session resource.
      */
-    public static function participantSessionName(
-        string $conferenceRecord,
-        string $participant,
-        string $participantSession
-    ): string {
+    public static function participantSessionName(string $conferenceRecord, string $participant, string $participantSession): string
+    {
         return self::getPathTemplate('participantSession')->render([
             'conference_record' => $conferenceRecord,
             'participant' => $participant,
@@ -267,7 +264,7 @@ final class ConferenceRecordsServiceClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
@@ -323,11 +320,13 @@ final class ConferenceRecordsServiceClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -420,10 +419,8 @@ final class ConferenceRecordsServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getParticipantSession(
-        GetParticipantSessionRequest $request,
-        array $callOptions = []
-    ): ParticipantSession {
+    public function getParticipantSession(GetParticipantSessionRequest $request, array $callOptions = []): ParticipantSession
+    {
         return $this->startApiCall('GetParticipantSession', $request, $callOptions)->wait();
     }
 
@@ -535,10 +532,8 @@ final class ConferenceRecordsServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listConferenceRecords(
-        ListConferenceRecordsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listConferenceRecords(ListConferenceRecordsRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListConferenceRecords', $request, $callOptions);
     }
 
@@ -568,10 +563,8 @@ final class ConferenceRecordsServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listParticipantSessions(
-        ListParticipantSessionsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listParticipantSessions(ListParticipantSessionsRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListParticipantSessions', $request, $callOptions);
     }
 
@@ -661,10 +654,8 @@ final class ConferenceRecordsServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listTranscriptEntries(
-        ListTranscriptEntriesRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listTranscriptEntries(ListTranscriptEntriesRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListTranscriptEntries', $request, $callOptions);
     }
 

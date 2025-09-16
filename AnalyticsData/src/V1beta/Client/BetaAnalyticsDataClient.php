@@ -52,6 +52,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -166,9 +167,7 @@ final class BetaAnalyticsDataClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning'])
-            ? $this->descriptors[$methodName]['longRunning']
-            : [];
+        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -277,7 +276,7 @@ final class BetaAnalyticsDataClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
@@ -333,13 +332,15 @@ final class BetaAnalyticsDataClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      *
      * @experimental
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -382,10 +383,8 @@ final class BetaAnalyticsDataClient
      *
      * @experimental
      */
-    public function batchRunPivotReports(
-        BatchRunPivotReportsRequest $request,
-        array $callOptions = []
-    ): BatchRunPivotReportsResponse {
+    public function batchRunPivotReports(BatchRunPivotReportsRequest $request, array $callOptions = []): BatchRunPivotReportsResponse
+    {
         return $this->startApiCall('BatchRunPivotReports', $request, $callOptions)->wait();
     }
 
@@ -450,10 +449,8 @@ final class BetaAnalyticsDataClient
      *
      * @experimental
      */
-    public function checkCompatibility(
-        CheckCompatibilityRequest $request,
-        array $callOptions = []
-    ): CheckCompatibilityResponse {
+    public function checkCompatibility(CheckCompatibilityRequest $request, array $callOptions = []): CheckCompatibilityResponse
+    {
         return $this->startApiCall('CheckCompatibility', $request, $callOptions)->wait();
     }
 
@@ -499,16 +496,14 @@ final class BetaAnalyticsDataClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<AudienceExport>
      *
      * @throws ApiException Thrown if the API call fails.
      *
      * @experimental
      */
-    public function createAudienceExport(
-        CreateAudienceExportRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function createAudienceExport(CreateAudienceExportRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('CreateAudienceExport', $request, $callOptions)->wait();
     }
 
@@ -673,10 +668,8 @@ final class BetaAnalyticsDataClient
      *
      * @experimental
      */
-    public function queryAudienceExport(
-        QueryAudienceExportRequest $request,
-        array $callOptions = []
-    ): QueryAudienceExportResponse {
+    public function queryAudienceExport(QueryAudienceExportRequest $request, array $callOptions = []): QueryAudienceExportResponse
+    {
         return $this->startApiCall('QueryAudienceExport', $request, $callOptions)->wait();
     }
 
@@ -743,10 +736,8 @@ final class BetaAnalyticsDataClient
      *
      * @experimental
      */
-    public function runRealtimeReport(
-        RunRealtimeReportRequest $request,
-        array $callOptions = []
-    ): RunRealtimeReportResponse {
+    public function runRealtimeReport(RunRealtimeReportRequest $request, array $callOptions = []): RunRealtimeReportResponse
+    {
         return $this->startApiCall('RunRealtimeReport', $request, $callOptions)->wait();
     }
 

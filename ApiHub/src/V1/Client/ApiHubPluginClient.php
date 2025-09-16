@@ -28,6 +28,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -39,10 +40,13 @@ use Google\Cloud\ApiHub\V1\CreatePluginRequest;
 use Google\Cloud\ApiHub\V1\DeletePluginInstanceRequest;
 use Google\Cloud\ApiHub\V1\DeletePluginRequest;
 use Google\Cloud\ApiHub\V1\DisablePluginInstanceActionRequest;
+use Google\Cloud\ApiHub\V1\DisablePluginInstanceActionResponse;
 use Google\Cloud\ApiHub\V1\DisablePluginRequest;
 use Google\Cloud\ApiHub\V1\EnablePluginInstanceActionRequest;
+use Google\Cloud\ApiHub\V1\EnablePluginInstanceActionResponse;
 use Google\Cloud\ApiHub\V1\EnablePluginRequest;
 use Google\Cloud\ApiHub\V1\ExecutePluginInstanceActionRequest;
+use Google\Cloud\ApiHub\V1\ExecutePluginInstanceActionResponse;
 use Google\Cloud\ApiHub\V1\GetPluginInstanceRequest;
 use Google\Cloud\ApiHub\V1\GetPluginRequest;
 use Google\Cloud\ApiHub\V1\ListPluginInstancesRequest;
@@ -111,7 +115,9 @@ final class ApiHubPluginClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+    ];
 
     private $operationsClient;
 
@@ -143,7 +149,9 @@ final class ApiHubPluginClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return ['rest'];
+        return [
+            'rest',
+        ];
     }
 
     /**
@@ -169,9 +177,7 @@ final class ApiHubPluginClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning'])
-            ? $this->descriptors[$methodName]['longRunning']
-            : [];
+        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -262,12 +268,8 @@ final class ApiHubPluginClient
      *
      * @return string The formatted plugin_instance resource.
      */
-    public static function pluginInstanceName(
-        string $project,
-        string $location,
-        string $plugin,
-        string $instance
-    ): string {
+    public static function pluginInstanceName(string $project, string $location, string $plugin, string $instance): string
+    {
         return self::getPathTemplate('pluginInstance')->render([
             'project' => $project,
             'location' => $location,
@@ -324,7 +326,7 @@ final class ApiHubPluginClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
@@ -377,11 +379,13 @@ final class ApiHubPluginClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -443,14 +447,12 @@ final class ApiHubPluginClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<PluginInstance>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createPluginInstance(
-        CreatePluginInstanceRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function createPluginInstance(CreatePluginInstanceRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('CreatePluginInstance', $request, $callOptions)->wait();
     }
 
@@ -472,7 +474,7 @@ final class ApiHubPluginClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -498,14 +500,12 @@ final class ApiHubPluginClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deletePluginInstance(
-        DeletePluginInstanceRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function deletePluginInstance(DeletePluginInstanceRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('DeletePluginInstance', $request, $callOptions)->wait();
     }
 
@@ -554,14 +554,12 @@ final class ApiHubPluginClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<DisablePluginInstanceActionResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function disablePluginInstanceAction(
-        DisablePluginInstanceActionRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function disablePluginInstanceAction(DisablePluginInstanceActionRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('DisablePluginInstanceAction', $request, $callOptions)->wait();
     }
 
@@ -610,14 +608,12 @@ final class ApiHubPluginClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<EnablePluginInstanceActionResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function enablePluginInstanceAction(
-        EnablePluginInstanceActionRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function enablePluginInstanceAction(EnablePluginInstanceActionRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('EnablePluginInstanceAction', $request, $callOptions)->wait();
     }
 
@@ -639,14 +635,12 @@ final class ApiHubPluginClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<ExecutePluginInstanceActionResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function executePluginInstanceAction(
-        ExecutePluginInstanceActionRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function executePluginInstanceAction(ExecutePluginInstanceActionRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('ExecutePluginInstanceAction', $request, $callOptions)->wait();
     }
 

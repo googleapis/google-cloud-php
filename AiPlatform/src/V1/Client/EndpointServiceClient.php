@@ -28,6 +28,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -37,11 +38,14 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\AIPlatform\V1\CreateEndpointRequest;
 use Google\Cloud\AIPlatform\V1\DeleteEndpointRequest;
 use Google\Cloud\AIPlatform\V1\DeployModelRequest;
+use Google\Cloud\AIPlatform\V1\DeployModelResponse;
 use Google\Cloud\AIPlatform\V1\Endpoint;
 use Google\Cloud\AIPlatform\V1\GetEndpointRequest;
 use Google\Cloud\AIPlatform\V1\ListEndpointsRequest;
 use Google\Cloud\AIPlatform\V1\MutateDeployedModelRequest;
+use Google\Cloud\AIPlatform\V1\MutateDeployedModelResponse;
 use Google\Cloud\AIPlatform\V1\UndeployModelRequest;
+use Google\Cloud\AIPlatform\V1\UndeployModelResponse;
 use Google\Cloud\AIPlatform\V1\UpdateEndpointLongRunningRequest;
 use Google\Cloud\AIPlatform\V1\UpdateEndpointRequest;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
@@ -108,7 +112,9 @@ final class EndpointServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+    ];
 
     private $operationsClient;
 
@@ -154,9 +160,7 @@ final class EndpointServiceClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning'])
-            ? $this->descriptors[$methodName]['longRunning']
-            : [];
+        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -191,11 +195,8 @@ final class EndpointServiceClient
      *
      * @return string The formatted deployment_resource_pool resource.
      */
-    public static function deploymentResourcePoolName(
-        string $project,
-        string $location,
-        string $deploymentResourcePool
-    ): string {
+    public static function deploymentResourcePoolName(string $project, string $location, string $deploymentResourcePool): string
+    {
         return self::getPathTemplate('deploymentResourcePool')->render([
             'project' => $project,
             'location' => $location,
@@ -268,11 +269,8 @@ final class EndpointServiceClient
      *
      * @return string The formatted model_deployment_monitoring_job resource.
      */
-    public static function modelDeploymentMonitoringJobName(
-        string $project,
-        string $location,
-        string $modelDeploymentMonitoringJob
-    ): string {
+    public static function modelDeploymentMonitoringJobName(string $project, string $location, string $modelDeploymentMonitoringJob): string
+    {
         return self::getPathTemplate('modelDeploymentMonitoringJob')->render([
             'project' => $project,
             'location' => $location,
@@ -327,12 +325,8 @@ final class EndpointServiceClient
      *
      * @return string The formatted project_location_publisher_model resource.
      */
-    public static function projectLocationPublisherModelName(
-        string $project,
-        string $location,
-        string $publisher,
-        string $model
-    ): string {
+    public static function projectLocationPublisherModelName(string $project, string $location, string $publisher, string $model): string
+    {
         return self::getPathTemplate('projectLocationPublisherModel')->render([
             'project' => $project,
             'location' => $location,
@@ -395,7 +389,7 @@ final class EndpointServiceClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
@@ -451,11 +445,13 @@ final class EndpointServiceClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -490,7 +486,7 @@ final class EndpointServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Endpoint>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -516,7 +512,7 @@ final class EndpointServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -542,7 +538,7 @@ final class EndpointServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<DeployModelResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -623,7 +619,7 @@ final class EndpointServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<MutateDeployedModelResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -650,7 +646,7 @@ final class EndpointServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<UndeployModelResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -703,14 +699,12 @@ final class EndpointServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Endpoint>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateEndpointLongRunning(
-        UpdateEndpointLongRunningRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function updateEndpointLongRunning(UpdateEndpointLongRunningRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('UpdateEndpointLongRunning', $request, $callOptions)->wait();
     }
 
@@ -850,10 +844,8 @@ final class EndpointServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(
-        TestIamPermissionsRequest $request,
-        array $callOptions = []
-    ): TestIamPermissionsResponse {
+    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
+    {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

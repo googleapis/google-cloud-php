@@ -27,12 +27,14 @@ namespace Google\Cloud\AIPlatform\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\ServerStream;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
+use Google\Api\HttpBody;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\AIPlatform\V1\QueryReasoningEngineRequest;
 use Google\Cloud\AIPlatform\V1\QueryReasoningEngineResponse;
@@ -91,7 +93,9 @@ final class ReasoningEngineExecutionServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+    ];
 
     private static function getClientDefaults()
     {
@@ -99,16 +103,14 @@ final class ReasoningEngineExecutionServiceClient
             'serviceName' => self::SERVICE_NAME,
             'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__ . '/../resources/reasoning_engine_execution_service_client_config.json',
-            'descriptorsConfigPath' =>
-                __DIR__ . '/../resources/reasoning_engine_execution_service_descriptor_config.php',
+            'descriptorsConfigPath' => __DIR__ . '/../resources/reasoning_engine_execution_service_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__ . '/../resources/reasoning_engine_execution_service_grpc_config.json',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' =>
-                        __DIR__ . '/../resources/reasoning_engine_execution_service_rest_client_config.php',
+                    'restClientConfigPath' => __DIR__ . '/../resources/reasoning_engine_execution_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -160,7 +162,7 @@ final class ReasoningEngineExecutionServiceClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
@@ -216,11 +218,13 @@ final class ReasoningEngineExecutionServiceClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -259,10 +263,8 @@ final class ReasoningEngineExecutionServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function queryReasoningEngine(
-        QueryReasoningEngineRequest $request,
-        array $callOptions = []
-    ): QueryReasoningEngineResponse {
+    public function queryReasoningEngine(QueryReasoningEngineRequest $request, array $callOptions = []): QueryReasoningEngineResponse
+    {
         return $this->startApiCall('QueryReasoningEngine', $request, $callOptions)->wait();
     }
 
@@ -279,14 +281,12 @@ final class ReasoningEngineExecutionServiceClient
      *           Timeout to use for this call.
      * }
      *
-     * @return ServerStream
+     * @return ServerStream<HttpBody>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function streamQueryReasoningEngine(
-        StreamQueryReasoningEngineRequest $request,
-        array $callOptions = []
-    ): ServerStream {
+    public function streamQueryReasoningEngine(StreamQueryReasoningEngineRequest $request, array $callOptions = []): ServerStream
+    {
         return $this->startApiCall('StreamQueryReasoningEngine', $request, $callOptions);
     }
 
@@ -431,10 +431,8 @@ final class ReasoningEngineExecutionServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(
-        TestIamPermissionsRequest $request,
-        array $callOptions = []
-    ): TestIamPermissionsResponse {
+    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
+    {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

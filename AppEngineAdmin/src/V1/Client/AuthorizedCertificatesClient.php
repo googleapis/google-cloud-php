@@ -27,6 +27,7 @@ namespace Google\Cloud\AppEngine\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
@@ -106,7 +107,7 @@ final class AuthorizedCertificatesClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
@@ -162,11 +163,13 @@ final class AuthorizedCertificatesClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -205,10 +208,8 @@ final class AuthorizedCertificatesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createAuthorizedCertificate(
-        CreateAuthorizedCertificateRequest $request,
-        array $callOptions = []
-    ): AuthorizedCertificate {
+    public function createAuthorizedCertificate(CreateAuthorizedCertificateRequest $request, array $callOptions = []): AuthorizedCertificate
+    {
         return $this->startApiCall('CreateAuthorizedCertificate', $request, $callOptions)->wait();
     }
 
@@ -232,10 +233,8 @@ final class AuthorizedCertificatesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteAuthorizedCertificate(
-        DeleteAuthorizedCertificateRequest $request,
-        array $callOptions = []
-    ): void {
+    public function deleteAuthorizedCertificate(DeleteAuthorizedCertificateRequest $request, array $callOptions = []): void
+    {
         $this->startApiCall('DeleteAuthorizedCertificate', $request, $callOptions)->wait();
     }
 
@@ -261,10 +260,8 @@ final class AuthorizedCertificatesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getAuthorizedCertificate(
-        GetAuthorizedCertificateRequest $request,
-        array $callOptions = []
-    ): AuthorizedCertificate {
+    public function getAuthorizedCertificate(GetAuthorizedCertificateRequest $request, array $callOptions = []): AuthorizedCertificate
+    {
         return $this->startApiCall('GetAuthorizedCertificate', $request, $callOptions)->wait();
     }
 
@@ -290,10 +287,8 @@ final class AuthorizedCertificatesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listAuthorizedCertificates(
-        ListAuthorizedCertificatesRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listAuthorizedCertificates(ListAuthorizedCertificatesRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListAuthorizedCertificates', $request, $callOptions);
     }
 
@@ -323,10 +318,8 @@ final class AuthorizedCertificatesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateAuthorizedCertificate(
-        UpdateAuthorizedCertificateRequest $request,
-        array $callOptions = []
-    ): AuthorizedCertificate {
+    public function updateAuthorizedCertificate(UpdateAuthorizedCertificateRequest $request, array $callOptions = []): AuthorizedCertificate
+    {
         return $this->startApiCall('UpdateAuthorizedCertificate', $request, $callOptions)->wait();
     }
 }

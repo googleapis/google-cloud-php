@@ -27,6 +27,7 @@ namespace Google\Cloud\ApigeeRegistry\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -162,7 +163,9 @@ final class RegistryClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+    ];
 
     private static function getClientDefaults()
     {
@@ -235,13 +238,8 @@ final class RegistryClient
      *
      * @return string The formatted api_spec resource.
      */
-    public static function apiSpecName(
-        string $project,
-        string $location,
-        string $api,
-        string $version,
-        string $spec
-    ): string {
+    public static function apiSpecName(string $project, string $location, string $api, string $version, string $spec): string
+    {
         return self::getPathTemplate('apiSpec')->render([
             'project' => $project,
             'location' => $location,
@@ -319,12 +317,8 @@ final class RegistryClient
      *
      * @return string The formatted project_location_api_artifact resource.
      */
-    public static function projectLocationApiArtifactName(
-        string $project,
-        string $location,
-        string $api,
-        string $artifact
-    ): string {
+    public static function projectLocationApiArtifactName(string $project, string $location, string $api, string $artifact): string
+    {
         return self::getPathTemplate('projectLocationApiArtifact')->render([
             'project' => $project,
             'location' => $location,
@@ -345,13 +339,8 @@ final class RegistryClient
      *
      * @return string The formatted project_location_api_deployment_artifact resource.
      */
-    public static function projectLocationApiDeploymentArtifactName(
-        string $project,
-        string $location,
-        string $api,
-        string $deployment,
-        string $artifact
-    ): string {
+    public static function projectLocationApiDeploymentArtifactName(string $project, string $location, string $api, string $deployment, string $artifact): string
+    {
         return self::getPathTemplate('projectLocationApiDeploymentArtifact')->render([
             'project' => $project,
             'location' => $location,
@@ -373,13 +362,8 @@ final class RegistryClient
      *
      * @return string The formatted project_location_api_version_artifact resource.
      */
-    public static function projectLocationApiVersionArtifactName(
-        string $project,
-        string $location,
-        string $api,
-        string $version,
-        string $artifact
-    ): string {
+    public static function projectLocationApiVersionArtifactName(string $project, string $location, string $api, string $version, string $artifact): string
+    {
         return self::getPathTemplate('projectLocationApiVersionArtifact')->render([
             'project' => $project,
             'location' => $location,
@@ -402,14 +386,8 @@ final class RegistryClient
      *
      * @return string The formatted project_location_api_version_spec_artifact resource.
      */
-    public static function projectLocationApiVersionSpecArtifactName(
-        string $project,
-        string $location,
-        string $api,
-        string $version,
-        string $spec,
-        string $artifact
-    ): string {
+    public static function projectLocationApiVersionSpecArtifactName(string $project, string $location, string $api, string $version, string $spec, string $artifact): string
+    {
         return self::getPathTemplate('projectLocationApiVersionSpecArtifact')->render([
             'project' => $project,
             'location' => $location,
@@ -476,7 +454,7 @@ final class RegistryClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
@@ -532,11 +510,13 @@ final class RegistryClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -754,10 +734,8 @@ final class RegistryClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteApiDeploymentRevision(
-        DeleteApiDeploymentRevisionRequest $request,
-        array $callOptions = []
-    ): ApiDeployment {
+    public function deleteApiDeploymentRevision(DeleteApiDeploymentRevisionRequest $request, array $callOptions = []): ApiDeployment
+    {
         return $this->startApiCall('DeleteApiDeploymentRevision', $request, $callOptions)->wait();
     }
 
@@ -1071,10 +1049,8 @@ final class RegistryClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listApiDeploymentRevisions(
-        ListApiDeploymentRevisionsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listApiDeploymentRevisions(ListApiDeploymentRevisionsRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListApiDeploymentRevisions', $request, $callOptions);
     }
 
@@ -1126,10 +1102,8 @@ final class RegistryClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listApiSpecRevisions(
-        ListApiSpecRevisionsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listApiSpecRevisions(ListApiSpecRevisionsRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListApiSpecRevisions', $request, $callOptions);
     }
 
@@ -1339,10 +1313,8 @@ final class RegistryClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function tagApiDeploymentRevision(
-        TagApiDeploymentRevisionRequest $request,
-        array $callOptions = []
-    ): ApiDeployment {
+    public function tagApiDeploymentRevision(TagApiDeploymentRevisionRequest $request, array $callOptions = []): ApiDeployment
+    {
         return $this->startApiCall('TagApiDeploymentRevision', $request, $callOptions)->wait();
     }
 
@@ -1612,10 +1584,8 @@ final class RegistryClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(
-        TestIamPermissionsRequest $request,
-        array $callOptions = []
-    ): TestIamPermissionsResponse {
+    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
+    {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

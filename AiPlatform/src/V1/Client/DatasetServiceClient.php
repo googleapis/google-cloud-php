@@ -28,6 +28,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -43,10 +44,12 @@ use Google\Cloud\AIPlatform\V1\DeleteDatasetRequest;
 use Google\Cloud\AIPlatform\V1\DeleteDatasetVersionRequest;
 use Google\Cloud\AIPlatform\V1\DeleteSavedQueryRequest;
 use Google\Cloud\AIPlatform\V1\ExportDataRequest;
+use Google\Cloud\AIPlatform\V1\ExportDataResponse;
 use Google\Cloud\AIPlatform\V1\GetAnnotationSpecRequest;
 use Google\Cloud\AIPlatform\V1\GetDatasetRequest;
 use Google\Cloud\AIPlatform\V1\GetDatasetVersionRequest;
 use Google\Cloud\AIPlatform\V1\ImportDataRequest;
+use Google\Cloud\AIPlatform\V1\ImportDataResponse;
 use Google\Cloud\AIPlatform\V1\ListAnnotationsRequest;
 use Google\Cloud\AIPlatform\V1\ListDataItemsRequest;
 use Google\Cloud\AIPlatform\V1\ListDatasetVersionsRequest;
@@ -130,7 +133,9 @@ final class DatasetServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+    ];
 
     private $operationsClient;
 
@@ -176,9 +181,7 @@ final class DatasetServiceClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning'])
-            ? $this->descriptors[$methodName]['longRunning']
-            : [];
+        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -214,12 +217,8 @@ final class DatasetServiceClient
      *
      * @return string The formatted annotation_spec resource.
      */
-    public static function annotationSpecName(
-        string $project,
-        string $location,
-        string $dataset,
-        string $annotationSpec
-    ): string {
+    public static function annotationSpecName(string $project, string $location, string $dataset, string $annotationSpec): string
+    {
         return self::getPathTemplate('annotationSpec')->render([
             'project' => $project,
             'location' => $location,
@@ -279,12 +278,8 @@ final class DatasetServiceClient
      *
      * @return string The formatted dataset_version resource.
      */
-    public static function datasetVersionName(
-        string $project,
-        string $location,
-        string $dataset,
-        string $datasetVersion
-    ): string {
+    public static function datasetVersionName(string $project, string $location, string $dataset, string $datasetVersion): string
+    {
         return self::getPathTemplate('datasetVersion')->render([
             'project' => $project,
             'location' => $location,
@@ -321,12 +316,8 @@ final class DatasetServiceClient
      *
      * @return string The formatted saved_query resource.
      */
-    public static function savedQueryName(
-        string $project,
-        string $location,
-        string $dataset,
-        string $savedQuery
-    ): string {
+    public static function savedQueryName(string $project, string $location, string $dataset, string $savedQuery): string
+    {
         return self::getPathTemplate('savedQuery')->render([
             'project' => $project,
             'location' => $location,
@@ -367,7 +358,7 @@ final class DatasetServiceClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
@@ -423,11 +414,13 @@ final class DatasetServiceClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -462,7 +455,7 @@ final class DatasetServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Dataset>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -488,14 +481,12 @@ final class DatasetServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<DatasetVersion>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createDatasetVersion(
-        CreateDatasetVersionRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function createDatasetVersion(CreateDatasetVersionRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('CreateDatasetVersion', $request, $callOptions)->wait();
     }
 
@@ -516,7 +507,7 @@ final class DatasetServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -542,14 +533,12 @@ final class DatasetServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteDatasetVersion(
-        DeleteDatasetVersionRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function deleteDatasetVersion(DeleteDatasetVersionRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('DeleteDatasetVersion', $request, $callOptions)->wait();
     }
 
@@ -570,7 +559,7 @@ final class DatasetServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -596,7 +585,7 @@ final class DatasetServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<ExportDataResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -700,7 +689,7 @@ final class DatasetServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<ImportDataResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -858,14 +847,12 @@ final class DatasetServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<DatasetVersion>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function restoreDatasetVersion(
-        RestoreDatasetVersionRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function restoreDatasetVersion(RestoreDatasetVersionRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('RestoreDatasetVersion', $request, $callOptions)->wait();
     }
 
@@ -1083,10 +1070,8 @@ final class DatasetServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(
-        TestIamPermissionsRequest $request,
-        array $callOptions = []
-    ): TestIamPermissionsResponse {
+    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
+    {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

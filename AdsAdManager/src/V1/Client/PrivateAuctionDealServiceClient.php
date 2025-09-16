@@ -32,6 +32,7 @@ use Google\Ads\AdManager\V1\UpdatePrivateAuctionDealRequest;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -82,7 +83,9 @@ final class PrivateAuctionDealServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/admanager'];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/admanager',
+    ];
 
     private static function getClientDefaults()
     {
@@ -97,8 +100,7 @@ final class PrivateAuctionDealServiceClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' =>
-                        __DIR__ . '/../resources/private_auction_deal_service_rest_client_config.php',
+                    'restClientConfigPath' => __DIR__ . '/../resources/private_auction_deal_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -113,7 +115,9 @@ final class PrivateAuctionDealServiceClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return ['rest'];
+        return [
+            'rest',
+        ];
     }
 
     /**
@@ -338,7 +342,7 @@ final class PrivateAuctionDealServiceClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
@@ -391,11 +395,13 @@ final class PrivateAuctionDealServiceClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -434,10 +440,8 @@ final class PrivateAuctionDealServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createPrivateAuctionDeal(
-        CreatePrivateAuctionDealRequest $request,
-        array $callOptions = []
-    ): PrivateAuctionDeal {
+    public function createPrivateAuctionDeal(CreatePrivateAuctionDealRequest $request, array $callOptions = []): PrivateAuctionDeal
+    {
         return $this->startApiCall('CreatePrivateAuctionDeal', $request, $callOptions)->wait();
     }
 
@@ -463,10 +467,8 @@ final class PrivateAuctionDealServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getPrivateAuctionDeal(
-        GetPrivateAuctionDealRequest $request,
-        array $callOptions = []
-    ): PrivateAuctionDeal {
+    public function getPrivateAuctionDeal(GetPrivateAuctionDealRequest $request, array $callOptions = []): PrivateAuctionDeal
+    {
         return $this->startApiCall('GetPrivateAuctionDeal', $request, $callOptions)->wait();
     }
 
@@ -492,10 +494,8 @@ final class PrivateAuctionDealServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listPrivateAuctionDeals(
-        ListPrivateAuctionDealsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listPrivateAuctionDeals(ListPrivateAuctionDealsRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListPrivateAuctionDeals', $request, $callOptions);
     }
 
@@ -521,10 +521,8 @@ final class PrivateAuctionDealServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updatePrivateAuctionDeal(
-        UpdatePrivateAuctionDealRequest $request,
-        array $callOptions = []
-    ): PrivateAuctionDeal {
+    public function updatePrivateAuctionDeal(UpdatePrivateAuctionDealRequest $request, array $callOptions = []): PrivateAuctionDeal
+    {
         return $this->startApiCall('UpdatePrivateAuctionDeal', $request, $callOptions)->wait();
     }
 }
