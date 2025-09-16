@@ -28,6 +28,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
@@ -140,9 +141,7 @@ final class ImageAnnotatorClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning'])
-            ? $this->descriptors[$methodName]['longRunning']
-            : [];
+        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -213,7 +212,7 @@ final class ImageAnnotatorClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
@@ -269,11 +268,13 @@ final class ImageAnnotatorClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -314,14 +315,12 @@ final class ImageAnnotatorClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<AsyncBatchAnnotateFilesResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function asyncBatchAnnotateFiles(
-        AsyncBatchAnnotateFilesRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function asyncBatchAnnotateFiles(AsyncBatchAnnotateFilesRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('AsyncBatchAnnotateFiles', $request, $callOptions)->wait();
     }
 
@@ -351,14 +350,12 @@ final class ImageAnnotatorClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<AsyncBatchAnnotateImagesResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function asyncBatchAnnotateImages(
-        AsyncBatchAnnotateImagesRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function asyncBatchAnnotateImages(AsyncBatchAnnotateImagesRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('AsyncBatchAnnotateImages', $request, $callOptions)->wait();
     }
 
@@ -389,10 +386,8 @@ final class ImageAnnotatorClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function batchAnnotateFiles(
-        BatchAnnotateFilesRequest $request,
-        array $callOptions = []
-    ): BatchAnnotateFilesResponse {
+    public function batchAnnotateFiles(BatchAnnotateFilesRequest $request, array $callOptions = []): BatchAnnotateFilesResponse
+    {
         return $this->startApiCall('BatchAnnotateFiles', $request, $callOptions)->wait();
     }
 
@@ -417,10 +412,8 @@ final class ImageAnnotatorClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function batchAnnotateImages(
-        BatchAnnotateImagesRequest $request,
-        array $callOptions = []
-    ): BatchAnnotateImagesResponse {
+    public function batchAnnotateImages(BatchAnnotateImagesRequest $request, array $callOptions = []): BatchAnnotateImagesResponse
+    {
         return $this->startApiCall('BatchAnnotateImages', $request, $callOptions)->wait();
     }
 }

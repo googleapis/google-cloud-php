@@ -28,12 +28,14 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\TextToSpeech\V1\SynthesizeLongAudioRequest;
+use Google\Cloud\TextToSpeech\V1\SynthesizeLongAudioResponse;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
@@ -77,7 +79,9 @@ final class TextToSpeechLongAudioSynthesizeClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+    ];
 
     private $operationsClient;
 
@@ -87,16 +91,14 @@ final class TextToSpeechLongAudioSynthesizeClient
             'serviceName' => self::SERVICE_NAME,
             'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__ . '/../resources/text_to_speech_long_audio_synthesize_client_config.json',
-            'descriptorsConfigPath' =>
-                __DIR__ . '/../resources/text_to_speech_long_audio_synthesize_descriptor_config.php',
+            'descriptorsConfigPath' => __DIR__ . '/../resources/text_to_speech_long_audio_synthesize_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__ . '/../resources/text_to_speech_long_audio_synthesize_grpc_config.json',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' =>
-                        __DIR__ . '/../resources/text_to_speech_long_audio_synthesize_rest_client_config.php',
+                    'restClientConfigPath' => __DIR__ . '/../resources/text_to_speech_long_audio_synthesize_rest_client_config.php',
                 ],
             ],
         ];
@@ -125,9 +127,7 @@ final class TextToSpeechLongAudioSynthesizeClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning'])
-            ? $this->descriptors[$methodName]['longRunning']
-            : [];
+        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -198,7 +198,7 @@ final class TextToSpeechLongAudioSynthesizeClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
@@ -254,11 +254,13 @@ final class TextToSpeechLongAudioSynthesizeClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -294,7 +296,7 @@ final class TextToSpeechLongAudioSynthesizeClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<SynthesizeLongAudioResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
