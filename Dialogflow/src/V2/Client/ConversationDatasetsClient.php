@@ -28,6 +28,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -148,9 +149,7 @@ final class ConversationDatasetsClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning'])
-            ? $this->descriptors[$methodName]['longRunning']
-            : [];
+        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -185,11 +184,8 @@ final class ConversationDatasetsClient
      *
      * @return string The formatted conversation_dataset resource.
      */
-    public static function conversationDatasetName(
-        string $project,
-        string $location,
-        string $conversationDataset
-    ): string {
+    public static function conversationDatasetName(string $project, string $location, string $conversationDataset): string
+    {
         return self::getPathTemplate('conversationDataset')->render([
             'project' => $project,
             'location' => $location,
@@ -242,7 +238,7 @@ final class ConversationDatasetsClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
@@ -298,11 +294,13 @@ final class ConversationDatasetsClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -347,14 +345,12 @@ final class ConversationDatasetsClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<ConversationDataset>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createConversationDataset(
-        CreateConversationDatasetRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function createConversationDataset(CreateConversationDatasetRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('CreateConversationDataset', $request, $callOptions)->wait();
     }
 
@@ -385,14 +381,12 @@ final class ConversationDatasetsClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteConversationDataset(
-        DeleteConversationDatasetRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function deleteConversationDataset(DeleteConversationDatasetRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('DeleteConversationDataset', $request, $callOptions)->wait();
     }
 
@@ -418,10 +412,8 @@ final class ConversationDatasetsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getConversationDataset(
-        GetConversationDatasetRequest $request,
-        array $callOptions = []
-    ): ConversationDataset {
+    public function getConversationDataset(GetConversationDatasetRequest $request, array $callOptions = []): ConversationDataset
+    {
         return $this->startApiCall('GetConversationDataset', $request, $callOptions)->wait();
     }
 
@@ -454,14 +446,12 @@ final class ConversationDatasetsClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<ImportConversationDataOperationResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function importConversationData(
-        ImportConversationDataRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function importConversationData(ImportConversationDataRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('ImportConversationData', $request, $callOptions)->wait();
     }
 
@@ -488,10 +478,8 @@ final class ConversationDatasetsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listConversationDatasets(
-        ListConversationDatasetsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listConversationDatasets(ListConversationDatasetsRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListConversationDatasets', $request, $callOptions);
     }
 

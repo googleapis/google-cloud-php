@@ -27,6 +27,7 @@ namespace Google\Cloud\Dialogflow\V2\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -145,12 +146,8 @@ final class ContextsClient
      *
      * @return string The formatted project_environment_user_session resource.
      */
-    public static function projectEnvironmentUserSessionName(
-        string $project,
-        string $environment,
-        string $user,
-        string $session
-    ): string {
+    public static function projectEnvironmentUserSessionName(string $project, string $environment, string $user, string $session): string
+    {
         return self::getPathTemplate('projectEnvironmentUserSession')->render([
             'project' => $project,
             'environment' => $environment,
@@ -171,13 +168,8 @@ final class ContextsClient
      *
      * @return string The formatted project_environment_user_session_context resource.
      */
-    public static function projectEnvironmentUserSessionContextName(
-        string $project,
-        string $environment,
-        string $user,
-        string $session,
-        string $context
-    ): string {
+    public static function projectEnvironmentUserSessionContextName(string $project, string $environment, string $user, string $session, string $context): string
+    {
         return self::getPathTemplate('projectEnvironmentUserSessionContext')->render([
             'project' => $project,
             'environment' => $environment,
@@ -199,13 +191,8 @@ final class ContextsClient
      *
      * @return string The formatted project_location_environment_user_session resource.
      */
-    public static function projectLocationEnvironmentUserSessionName(
-        string $project,
-        string $location,
-        string $environment,
-        string $user,
-        string $session
-    ): string {
+    public static function projectLocationEnvironmentUserSessionName(string $project, string $location, string $environment, string $user, string $session): string
+    {
         return self::getPathTemplate('projectLocationEnvironmentUserSession')->render([
             'project' => $project,
             'location' => $location,
@@ -228,14 +215,8 @@ final class ContextsClient
      *
      * @return string The formatted project_location_environment_user_session_context resource.
      */
-    public static function projectLocationEnvironmentUserSessionContextName(
-        string $project,
-        string $location,
-        string $environment,
-        string $user,
-        string $session,
-        string $context
-    ): string {
+    public static function projectLocationEnvironmentUserSessionContextName(string $project, string $location, string $environment, string $user, string $session, string $context): string
+    {
         return self::getPathTemplate('projectLocationEnvironmentUserSessionContext')->render([
             'project' => $project,
             'location' => $location,
@@ -276,12 +257,8 @@ final class ContextsClient
      *
      * @return string The formatted project_location_session_context resource.
      */
-    public static function projectLocationSessionContextName(
-        string $project,
-        string $location,
-        string $session,
-        string $context
-    ): string {
+    public static function projectLocationSessionContextName(string $project, string $location, string $session, string $context): string
+    {
         return self::getPathTemplate('projectLocationSessionContext')->render([
             'project' => $project,
             'location' => $location,
@@ -379,7 +356,7 @@ final class ContextsClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
@@ -435,11 +412,13 @@ final class ContextsClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);

@@ -27,6 +27,7 @@ namespace Google\Cloud\Dialogflow\Cx\V3\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -119,13 +120,8 @@ final class DeploymentsClient
      *
      * @return string The formatted deployment resource.
      */
-    public static function deploymentName(
-        string $project,
-        string $location,
-        string $agent,
-        string $environment,
-        string $deployment
-    ): string {
+    public static function deploymentName(string $project, string $location, string $agent, string $environment, string $deployment): string
+    {
         return self::getPathTemplate('deployment')->render([
             'project' => $project,
             'location' => $location,
@@ -146,12 +142,8 @@ final class DeploymentsClient
      *
      * @return string The formatted environment resource.
      */
-    public static function environmentName(
-        string $project,
-        string $location,
-        string $agent,
-        string $environment
-    ): string {
+    public static function environmentName(string $project, string $location, string $agent, string $environment): string
+    {
         return self::getPathTemplate('environment')->render([
             'project' => $project,
             'location' => $location,
@@ -188,7 +180,7 @@ final class DeploymentsClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
@@ -244,11 +236,13 @@ final class DeploymentsClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);

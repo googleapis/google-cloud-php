@@ -28,6 +28,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -100,7 +101,9 @@ final class CmekServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+    ];
 
     private $operationsClient;
 
@@ -146,9 +149,7 @@ final class CmekServiceClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning'])
-            ? $this->descriptors[$methodName]['longRunning']
-            : [];
+        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -183,11 +184,8 @@ final class CmekServiceClient
      *
      * @return string The formatted encryption_config resource.
      */
-    public static function encryptionConfigName(
-        string $organization,
-        string $location,
-        string $encryptionConfig
-    ): string {
+    public static function encryptionConfigName(string $organization, string $location, string $encryptionConfig): string
+    {
         return self::getPathTemplate('encryptionConfig')->render([
             'organization' => $organization,
             'location' => $location,
@@ -240,7 +238,7 @@ final class CmekServiceClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
@@ -296,11 +294,13 @@ final class CmekServiceClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -335,14 +335,12 @@ final class CmekServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<EncryptionConfig>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createEncryptionConfig(
-        CreateEncryptionConfigRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function createEncryptionConfig(CreateEncryptionConfigRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('CreateEncryptionConfig', $request, $callOptions)->wait();
     }
 
@@ -363,14 +361,12 @@ final class CmekServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteEncryptionConfig(
-        DeleteEncryptionConfigRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function deleteEncryptionConfig(DeleteEncryptionConfigRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('DeleteEncryptionConfig', $request, $callOptions)->wait();
     }
 
@@ -421,10 +417,8 @@ final class CmekServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listEncryptionConfigs(
-        ListEncryptionConfigsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listEncryptionConfigs(ListEncryptionConfigsRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListEncryptionConfigs', $request, $callOptions);
     }
 
@@ -445,14 +439,12 @@ final class CmekServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<EncryptionConfig>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateEncryptionConfig(
-        UpdateEncryptionConfigRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function updateEncryptionConfig(UpdateEncryptionConfigRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('UpdateEncryptionConfig', $request, $callOptions)->wait();
     }
 
@@ -540,10 +532,8 @@ final class CmekServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(
-        TestIamPermissionsRequest $request,
-        array $callOptions = []
-    ): TestIamPermissionsResponse {
+    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
+    {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 

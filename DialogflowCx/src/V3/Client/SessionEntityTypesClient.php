@@ -27,6 +27,7 @@ namespace Google\Cloud\Dialogflow\Cx\V3\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -126,13 +127,8 @@ final class SessionEntityTypesClient
      *
      * @return string The formatted project_location_agent_environment_session resource.
      */
-    public static function projectLocationAgentEnvironmentSessionName(
-        string $project,
-        string $location,
-        string $agent,
-        string $environment,
-        string $session
-    ): string {
+    public static function projectLocationAgentEnvironmentSessionName(string $project, string $location, string $agent, string $environment, string $session): string
+    {
         return self::getPathTemplate('projectLocationAgentEnvironmentSession')->render([
             'project' => $project,
             'location' => $location,
@@ -155,14 +151,8 @@ final class SessionEntityTypesClient
      *
      * @return string The formatted project_location_agent_environment_session_entity_type resource.
      */
-    public static function projectLocationAgentEnvironmentSessionEntityTypeName(
-        string $project,
-        string $location,
-        string $agent,
-        string $environment,
-        string $session,
-        string $entityType
-    ): string {
+    public static function projectLocationAgentEnvironmentSessionEntityTypeName(string $project, string $location, string $agent, string $environment, string $session, string $entityType): string
+    {
         return self::getPathTemplate('projectLocationAgentEnvironmentSessionEntityType')->render([
             'project' => $project,
             'location' => $location,
@@ -184,12 +174,8 @@ final class SessionEntityTypesClient
      *
      * @return string The formatted project_location_agent_session resource.
      */
-    public static function projectLocationAgentSessionName(
-        string $project,
-        string $location,
-        string $agent,
-        string $session
-    ): string {
+    public static function projectLocationAgentSessionName(string $project, string $location, string $agent, string $session): string
+    {
         return self::getPathTemplate('projectLocationAgentSession')->render([
             'project' => $project,
             'location' => $location,
@@ -210,13 +196,8 @@ final class SessionEntityTypesClient
      *
      * @return string The formatted project_location_agent_session_entity_type resource.
      */
-    public static function projectLocationAgentSessionEntityTypeName(
-        string $project,
-        string $location,
-        string $agent,
-        string $session,
-        string $entityType
-    ): string {
+    public static function projectLocationAgentSessionEntityTypeName(string $project, string $location, string $agent, string $session, string $entityType): string
+    {
         return self::getPathTemplate('projectLocationAgentSessionEntityType')->render([
             'project' => $project,
             'location' => $location,
@@ -259,13 +240,8 @@ final class SessionEntityTypesClient
      *
      * @return string The formatted session_entity_type resource.
      */
-    public static function sessionEntityTypeName(
-        string $project,
-        string $location,
-        string $agent,
-        string $session,
-        string $entityType
-    ): string {
+    public static function sessionEntityTypeName(string $project, string $location, string $agent, string $session, string $entityType): string
+    {
         return self::getPathTemplate('sessionEntityType')->render([
             'project' => $project,
             'location' => $location,
@@ -307,7 +283,7 @@ final class SessionEntityTypesClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
@@ -363,11 +339,13 @@ final class SessionEntityTypesClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -406,10 +384,8 @@ final class SessionEntityTypesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createSessionEntityType(
-        CreateSessionEntityTypeRequest $request,
-        array $callOptions = []
-    ): SessionEntityType {
+    public function createSessionEntityType(CreateSessionEntityTypeRequest $request, array $callOptions = []): SessionEntityType
+    {
         return $this->startApiCall('CreateSessionEntityType', $request, $callOptions)->wait();
     }
 
@@ -460,10 +436,8 @@ final class SessionEntityTypesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getSessionEntityType(
-        GetSessionEntityTypeRequest $request,
-        array $callOptions = []
-    ): SessionEntityType {
+    public function getSessionEntityType(GetSessionEntityTypeRequest $request, array $callOptions = []): SessionEntityType
+    {
         return $this->startApiCall('GetSessionEntityType', $request, $callOptions)->wait();
     }
 
@@ -489,10 +463,8 @@ final class SessionEntityTypesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listSessionEntityTypes(
-        ListSessionEntityTypesRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listSessionEntityTypes(ListSessionEntityTypesRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListSessionEntityTypes', $request, $callOptions);
     }
 
@@ -518,10 +490,8 @@ final class SessionEntityTypesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateSessionEntityType(
-        UpdateSessionEntityTypeRequest $request,
-        array $callOptions = []
-    ): SessionEntityType {
+    public function updateSessionEntityType(UpdateSessionEntityTypeRequest $request, array $callOptions = []): SessionEntityType
+    {
         return $this->startApiCall('UpdateSessionEntityType', $request, $callOptions)->wait();
     }
 

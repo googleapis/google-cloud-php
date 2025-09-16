@@ -28,6 +28,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -150,9 +151,7 @@ final class DocumentsClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning'])
-            ? $this->descriptors[$methodName]['longRunning']
-            : [];
+        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -240,11 +239,8 @@ final class DocumentsClient
      *
      * @return string The formatted project_knowledge_base_document resource.
      */
-    public static function projectKnowledgeBaseDocumentName(
-        string $project,
-        string $knowledgeBase,
-        string $document
-    ): string {
+    public static function projectKnowledgeBaseDocumentName(string $project, string $knowledgeBase, string $document): string
+    {
         return self::getPathTemplate('projectKnowledgeBaseDocument')->render([
             'project' => $project,
             'knowledge_base' => $knowledgeBase,
@@ -262,11 +258,8 @@ final class DocumentsClient
      *
      * @return string The formatted project_location_knowledge_base resource.
      */
-    public static function projectLocationKnowledgeBaseName(
-        string $project,
-        string $location,
-        string $knowledgeBase
-    ): string {
+    public static function projectLocationKnowledgeBaseName(string $project, string $location, string $knowledgeBase): string
+    {
         return self::getPathTemplate('projectLocationKnowledgeBase')->render([
             'project' => $project,
             'location' => $location,
@@ -285,12 +278,8 @@ final class DocumentsClient
      *
      * @return string The formatted project_location_knowledge_base_document resource.
      */
-    public static function projectLocationKnowledgeBaseDocumentName(
-        string $project,
-        string $location,
-        string $knowledgeBase,
-        string $document
-    ): string {
+    public static function projectLocationKnowledgeBaseDocumentName(string $project, string $location, string $knowledgeBase, string $document): string
+    {
         return self::getPathTemplate('projectLocationKnowledgeBaseDocument')->render([
             'project' => $project,
             'location' => $location,
@@ -331,7 +320,7 @@ final class DocumentsClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
@@ -387,11 +376,13 @@ final class DocumentsClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -434,7 +425,7 @@ final class DocumentsClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Document>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -469,7 +460,7 @@ final class DocumentsClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -504,7 +495,7 @@ final class DocumentsClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Document>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -567,7 +558,7 @@ final class DocumentsClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<ImportDocumentsResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -633,7 +624,7 @@ final class DocumentsClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Document>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -667,7 +658,7 @@ final class DocumentsClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Document>
      *
      * @throws ApiException Thrown if the API call fails.
      */
