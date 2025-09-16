@@ -28,6 +28,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -43,7 +44,9 @@ use Google\Cloud\BareMetalSolution\V2\DeleteSSHKeyRequest;
 use Google\Cloud\BareMetalSolution\V2\DeleteVolumeSnapshotRequest;
 use Google\Cloud\BareMetalSolution\V2\DetachLunRequest;
 use Google\Cloud\BareMetalSolution\V2\DisableInteractiveSerialConsoleRequest;
+use Google\Cloud\BareMetalSolution\V2\DisableInteractiveSerialConsoleResponse;
 use Google\Cloud\BareMetalSolution\V2\EnableInteractiveSerialConsoleRequest;
+use Google\Cloud\BareMetalSolution\V2\EnableInteractiveSerialConsoleResponse;
 use Google\Cloud\BareMetalSolution\V2\EvictLunRequest;
 use Google\Cloud\BareMetalSolution\V2\EvictVolumeRequest;
 use Google\Cloud\BareMetalSolution\V2\GetInstanceRequest;
@@ -74,11 +77,14 @@ use Google\Cloud\BareMetalSolution\V2\RenameNetworkRequest;
 use Google\Cloud\BareMetalSolution\V2\RenameNfsShareRequest;
 use Google\Cloud\BareMetalSolution\V2\RenameVolumeRequest;
 use Google\Cloud\BareMetalSolution\V2\ResetInstanceRequest;
+use Google\Cloud\BareMetalSolution\V2\ResetInstanceResponse;
 use Google\Cloud\BareMetalSolution\V2\ResizeVolumeRequest;
 use Google\Cloud\BareMetalSolution\V2\RestoreVolumeSnapshotRequest;
 use Google\Cloud\BareMetalSolution\V2\SSHKey;
 use Google\Cloud\BareMetalSolution\V2\StartInstanceRequest;
+use Google\Cloud\BareMetalSolution\V2\StartInstanceResponse;
 use Google\Cloud\BareMetalSolution\V2\StopInstanceRequest;
+use Google\Cloud\BareMetalSolution\V2\StopInstanceResponse;
 use Google\Cloud\BareMetalSolution\V2\SubmitProvisioningConfigRequest;
 use Google\Cloud\BareMetalSolution\V2\SubmitProvisioningConfigResponse;
 use Google\Cloud\BareMetalSolution\V2\UpdateInstanceRequest;
@@ -186,7 +192,9 @@ final class BareMetalSolutionClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+    ];
 
     private $operationsClient;
 
@@ -232,9 +240,7 @@ final class BareMetalSolutionClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning'])
-            ? $this->descriptors[$methodName]['longRunning']
-            : [];
+        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -307,11 +313,8 @@ final class BareMetalSolutionClient
      *
      * @return string The formatted interconnect_attachment resource.
      */
-    public static function interconnectAttachmentName(
-        string $project,
-        string $region,
-        string $interconnectAttachment
-    ): string {
+    public static function interconnectAttachmentName(string $project, string $region, string $interconnectAttachment): string
+    {
         return self::getPathTemplate('interconnectAttachment')->render([
             'project' => $project,
             'region' => $region,
@@ -443,11 +446,8 @@ final class BareMetalSolutionClient
      *
      * @return string The formatted server_network_template resource.
      */
-    public static function serverNetworkTemplateName(
-        string $project,
-        string $location,
-        string $serverNetworkTemplate
-    ): string {
+    public static function serverNetworkTemplateName(string $project, string $location, string $serverNetworkTemplate): string
+    {
         return self::getPathTemplate('serverNetworkTemplate')->render([
             'project' => $project,
             'location' => $location,
@@ -523,12 +523,8 @@ final class BareMetalSolutionClient
      *
      * @return string The formatted volume_snapshot resource.
      */
-    public static function volumeSnapshotName(
-        string $project,
-        string $location,
-        string $volume,
-        string $snapshot
-    ): string {
+    public static function volumeSnapshotName(string $project, string $location, string $volume, string $snapshot): string
+    {
         return self::getPathTemplate('volumeSnapshot')->render([
             'project' => $project,
             'location' => $location,
@@ -577,7 +573,7 @@ final class BareMetalSolutionClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
@@ -633,11 +629,13 @@ final class BareMetalSolutionClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -672,7 +670,7 @@ final class BareMetalSolutionClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<NfsShare>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -703,10 +701,8 @@ final class BareMetalSolutionClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createProvisioningConfig(
-        CreateProvisioningConfigRequest $request,
-        array $callOptions = []
-    ): ProvisioningConfig {
+    public function createProvisioningConfig(CreateProvisioningConfigRequest $request, array $callOptions = []): ProvisioningConfig
+    {
         return $this->startApiCall('CreateProvisioningConfig', $request, $callOptions)->wait();
     }
 
@@ -782,7 +778,7 @@ final class BareMetalSolutionClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -858,7 +854,7 @@ final class BareMetalSolutionClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Instance>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -885,14 +881,12 @@ final class BareMetalSolutionClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<DisableInteractiveSerialConsoleResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function disableInteractiveSerialConsole(
-        DisableInteractiveSerialConsoleRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function disableInteractiveSerialConsole(DisableInteractiveSerialConsoleRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('DisableInteractiveSerialConsole', $request, $callOptions)->wait();
     }
 
@@ -914,14 +908,12 @@ final class BareMetalSolutionClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<EnableInteractiveSerialConsoleResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function enableInteractiveSerialConsole(
-        EnableInteractiveSerialConsoleRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function enableInteractiveSerialConsole(EnableInteractiveSerialConsoleRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('EnableInteractiveSerialConsole', $request, $callOptions)->wait();
     }
 
@@ -943,7 +935,7 @@ final class BareMetalSolutionClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -970,7 +962,7 @@ final class BareMetalSolutionClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1105,10 +1097,8 @@ final class BareMetalSolutionClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getProvisioningConfig(
-        GetProvisioningConfigRequest $request,
-        array $callOptions = []
-    ): ProvisioningConfig {
+    public function getProvisioningConfig(GetProvisioningConfigRequest $request, array $callOptions = []): ProvisioningConfig
+    {
         return $this->startApiCall('GetProvisioningConfig', $request, $callOptions)->wait();
     }
 
@@ -1239,10 +1229,8 @@ final class BareMetalSolutionClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listNetworkUsage(
-        ListNetworkUsageRequest $request,
-        array $callOptions = []
-    ): ListNetworkUsageResponse {
+    public function listNetworkUsage(ListNetworkUsageRequest $request, array $callOptions = []): ListNetworkUsageResponse
+    {
         return $this->startApiCall('ListNetworkUsage', $request, $callOptions)->wait();
     }
 
@@ -1346,10 +1334,8 @@ final class BareMetalSolutionClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listProvisioningQuotas(
-        ListProvisioningQuotasRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listProvisioningQuotas(ListProvisioningQuotasRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListProvisioningQuotas', $request, $callOptions);
     }
 
@@ -1561,7 +1547,7 @@ final class BareMetalSolutionClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<ResetInstanceResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1587,7 +1573,7 @@ final class BareMetalSolutionClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Volume>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1615,14 +1601,12 @@ final class BareMetalSolutionClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<VolumeSnapshot>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function restoreVolumeSnapshot(
-        RestoreVolumeSnapshotRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function restoreVolumeSnapshot(RestoreVolumeSnapshotRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('RestoreVolumeSnapshot', $request, $callOptions)->wait();
     }
 
@@ -1643,7 +1627,7 @@ final class BareMetalSolutionClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<StartInstanceResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1669,7 +1653,7 @@ final class BareMetalSolutionClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<StopInstanceResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1700,10 +1684,8 @@ final class BareMetalSolutionClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function submitProvisioningConfig(
-        SubmitProvisioningConfigRequest $request,
-        array $callOptions = []
-    ): SubmitProvisioningConfigResponse {
+    public function submitProvisioningConfig(SubmitProvisioningConfigRequest $request, array $callOptions = []): SubmitProvisioningConfigResponse
+    {
         return $this->startApiCall('SubmitProvisioningConfig', $request, $callOptions)->wait();
     }
 
@@ -1724,7 +1706,7 @@ final class BareMetalSolutionClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Instance>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1750,7 +1732,7 @@ final class BareMetalSolutionClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Network>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1776,7 +1758,7 @@ final class BareMetalSolutionClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<NfsShare>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1807,10 +1789,8 @@ final class BareMetalSolutionClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateProvisioningConfig(
-        UpdateProvisioningConfigRequest $request,
-        array $callOptions = []
-    ): ProvisioningConfig {
+    public function updateProvisioningConfig(UpdateProvisioningConfigRequest $request, array $callOptions = []): ProvisioningConfig
+    {
         return $this->startApiCall('UpdateProvisioningConfig', $request, $callOptions)->wait();
     }
 
@@ -1831,7 +1811,7 @@ final class BareMetalSolutionClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Volume>
      *
      * @throws ApiException Thrown if the API call fails.
      */

@@ -28,6 +28,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\InsecureCredentialsWrapper;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\ServerStream;
@@ -37,21 +38,27 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Bigtable\V2\CheckAndMutateRowRequest;
 use Google\Cloud\Bigtable\V2\CheckAndMutateRowResponse;
 use Google\Cloud\Bigtable\V2\ExecuteQueryRequest;
+use Google\Cloud\Bigtable\V2\ExecuteQueryResponse;
 use Google\Cloud\Bigtable\V2\GenerateInitialChangeStreamPartitionsRequest;
+use Google\Cloud\Bigtable\V2\GenerateInitialChangeStreamPartitionsResponse;
 use Google\Cloud\Bigtable\V2\MutateRowRequest;
 use Google\Cloud\Bigtable\V2\MutateRowResponse;
 use Google\Cloud\Bigtable\V2\MutateRowsRequest;
 use Google\Cloud\Bigtable\V2\MutateRowsRequest\Entry;
+use Google\Cloud\Bigtable\V2\MutateRowsResponse;
 use Google\Cloud\Bigtable\V2\Mutation;
 use Google\Cloud\Bigtable\V2\PingAndWarmRequest;
 use Google\Cloud\Bigtable\V2\PingAndWarmResponse;
 use Google\Cloud\Bigtable\V2\PrepareQueryRequest;
 use Google\Cloud\Bigtable\V2\PrepareQueryResponse;
 use Google\Cloud\Bigtable\V2\ReadChangeStreamRequest;
+use Google\Cloud\Bigtable\V2\ReadChangeStreamResponse;
 use Google\Cloud\Bigtable\V2\ReadModifyWriteRowRequest;
 use Google\Cloud\Bigtable\V2\ReadModifyWriteRowResponse;
 use Google\Cloud\Bigtable\V2\ReadRowsRequest;
+use Google\Cloud\Bigtable\V2\ReadRowsResponse;
 use Google\Cloud\Bigtable\V2\SampleRowKeysRequest;
+use Google\Cloud\Bigtable\V2\SampleRowKeysResponse;
 use Grpc\ChannelCredentials;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
@@ -236,7 +243,7 @@ final class BigtableClient
      * the API Endpoint to the value specified in the variable, as well as ensure that
      * empty credentials are used in the transport layer.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
@@ -292,11 +299,13 @@ final class BigtableClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $options = $this->setDefaultEmulatorConfig($options);
         $clientOptions = $this->buildClientOptions($options);
@@ -353,7 +362,7 @@ final class BigtableClient
      *           Timeout to use for this call.
      * }
      *
-     * @return ServerStream
+     * @return ServerStream<ExecuteQueryResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -378,7 +387,7 @@ final class BigtableClient
      *           Timeout to use for this call.
      * }
      *
-     * @return ServerStream
+     * @return ServerStream<GenerateInitialChangeStreamPartitionsResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -429,7 +438,7 @@ final class BigtableClient
      *           Timeout to use for this call.
      * }
      *
-     * @return ServerStream
+     * @return ServerStream<MutateRowsResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -507,7 +516,7 @@ final class BigtableClient
      *           Timeout to use for this call.
      * }
      *
-     * @return ServerStream
+     * @return ServerStream<ReadChangeStreamResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -563,7 +572,7 @@ final class BigtableClient
      *           Timeout to use for this call.
      * }
      *
-     * @return ServerStream
+     * @return ServerStream<ReadRowsResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -588,7 +597,7 @@ final class BigtableClient
      *           Timeout to use for this call.
      * }
      *
-     * @return ServerStream
+     * @return ServerStream<SampleRowKeysResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */

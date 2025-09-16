@@ -28,6 +28,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\BidiStream;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
@@ -185,7 +186,7 @@ final class BigQueryWriteClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
@@ -241,11 +242,13 @@ final class BigQueryWriteClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -340,10 +343,8 @@ final class BigQueryWriteClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function batchCommitWriteStreams(
-        BatchCommitWriteStreamsRequest $request,
-        array $callOptions = []
-    ): BatchCommitWriteStreamsResponse {
+    public function batchCommitWriteStreams(BatchCommitWriteStreamsRequest $request, array $callOptions = []): BatchCommitWriteStreamsResponse
+    {
         return $this->startApiCall('BatchCommitWriteStreams', $request, $callOptions)->wait();
     }
 
@@ -400,10 +401,8 @@ final class BigQueryWriteClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function finalizeWriteStream(
-        FinalizeWriteStreamRequest $request,
-        array $callOptions = []
-    ): FinalizeWriteStreamResponse {
+    public function finalizeWriteStream(FinalizeWriteStreamRequest $request, array $callOptions = []): FinalizeWriteStreamResponse
+    {
         return $this->startApiCall('FinalizeWriteStream', $request, $callOptions)->wait();
     }
 

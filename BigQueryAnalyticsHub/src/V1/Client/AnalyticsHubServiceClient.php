@@ -28,6 +28,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -56,10 +57,12 @@ use Google\Cloud\BigQuery\AnalyticsHub\V1\ListSubscriptionsRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\Listing;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\QueryTemplate;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\RefreshSubscriptionRequest;
+use Google\Cloud\BigQuery\AnalyticsHub\V1\RefreshSubscriptionResponse;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\RevokeSubscriptionRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\RevokeSubscriptionResponse;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\SubmitQueryTemplateRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\SubscribeDataExchangeRequest;
+use Google\Cloud\BigQuery\AnalyticsHub\V1\SubscribeDataExchangeResponse;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\SubscribeListingRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\SubscribeListingResponse;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\Subscription;
@@ -196,9 +199,7 @@ final class AnalyticsHubServiceClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning'])
-            ? $this->descriptors[$methodName]['longRunning']
-            : [];
+        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -323,12 +324,8 @@ final class AnalyticsHubServiceClient
      *
      * @return string The formatted query_template resource.
      */
-    public static function queryTemplateName(
-        string $project,
-        string $location,
-        string $dataExchange,
-        string $queryTemplate
-    ): string {
+    public static function queryTemplateName(string $project, string $location, string $dataExchange, string $queryTemplate): string
+    {
         return self::getPathTemplate('queryTemplate')->render([
             'project' => $project,
             'location' => $location,
@@ -447,7 +444,7 @@ final class AnalyticsHubServiceClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
@@ -503,11 +500,13 @@ final class AnalyticsHubServiceClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -724,7 +723,7 @@ final class AnalyticsHubServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -939,10 +938,8 @@ final class AnalyticsHubServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listOrgDataExchanges(
-        ListOrgDataExchangesRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listOrgDataExchanges(ListOrgDataExchangesRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListOrgDataExchanges', $request, $callOptions);
     }
 
@@ -995,10 +992,8 @@ final class AnalyticsHubServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listSharedResourceSubscriptions(
-        ListSharedResourceSubscriptionsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listSharedResourceSubscriptions(ListSharedResourceSubscriptionsRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListSharedResourceSubscriptions', $request, $callOptions);
     }
 
@@ -1049,7 +1044,7 @@ final class AnalyticsHubServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<RefreshSubscriptionResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1080,10 +1075,8 @@ final class AnalyticsHubServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function revokeSubscription(
-        RevokeSubscriptionRequest $request,
-        array $callOptions = []
-    ): RevokeSubscriptionResponse {
+    public function revokeSubscription(RevokeSubscriptionRequest $request, array $callOptions = []): RevokeSubscriptionResponse
+    {
         return $this->startApiCall('RevokeSubscription', $request, $callOptions)->wait();
     }
 
@@ -1161,14 +1154,12 @@ final class AnalyticsHubServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<SubscribeDataExchangeResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function subscribeDataExchange(
-        SubscribeDataExchangeRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function subscribeDataExchange(SubscribeDataExchangeRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('SubscribeDataExchange', $request, $callOptions)->wait();
     }
 
@@ -1198,10 +1189,8 @@ final class AnalyticsHubServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function subscribeListing(
-        SubscribeListingRequest $request,
-        array $callOptions = []
-    ): SubscribeListingResponse {
+    public function subscribeListing(SubscribeListingRequest $request, array $callOptions = []): SubscribeListingResponse
+    {
         return $this->startApiCall('SubscribeListing', $request, $callOptions)->wait();
     }
 
@@ -1227,10 +1216,8 @@ final class AnalyticsHubServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(
-        TestIamPermissionsRequest $request,
-        array $callOptions = []
-    ): TestIamPermissionsResponse {
+    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
+    {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 

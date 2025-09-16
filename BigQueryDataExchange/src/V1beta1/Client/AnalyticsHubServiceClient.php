@@ -29,6 +29,7 @@ namespace Google\Cloud\BigQuery\DataExchange\V1beta1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -260,7 +261,7 @@ final class AnalyticsHubServiceClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
@@ -316,13 +317,15 @@ final class AnalyticsHubServiceClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      *
      * @experimental
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -615,10 +618,8 @@ final class AnalyticsHubServiceClient
      *
      * @experimental
      */
-    public function listOrgDataExchanges(
-        ListOrgDataExchangesRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listOrgDataExchanges(ListOrgDataExchangesRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListOrgDataExchanges', $request, $callOptions);
     }
 
@@ -678,10 +679,8 @@ final class AnalyticsHubServiceClient
      *
      * @experimental
      */
-    public function subscribeListing(
-        SubscribeListingRequest $request,
-        array $callOptions = []
-    ): SubscribeListingResponse {
+    public function subscribeListing(SubscribeListingRequest $request, array $callOptions = []): SubscribeListingResponse
+    {
         return $this->startApiCall('SubscribeListing', $request, $callOptions)->wait();
     }
 
@@ -709,10 +708,8 @@ final class AnalyticsHubServiceClient
      *
      * @experimental
      */
-    public function testIamPermissions(
-        TestIamPermissionsRequest $request,
-        array $callOptions = []
-    ): TestIamPermissionsResponse {
+    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
+    {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 
