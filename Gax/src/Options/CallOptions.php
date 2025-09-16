@@ -93,17 +93,21 @@ class CallOptions implements ArrayAccess, OptionsInterface
     /**
      * @param array $headers
      */
-    public function setHeaders(array $headers)
+    public function setHeaders(array $headers): self
     {
         $this->headers = $headers;
+
+        return $this;
     }
 
     /**
      * @param int|null $timeoutMillis
      */
-    public function setTimeoutMillis(?int $timeoutMillis)
+    public function setTimeoutMillis(?int $timeoutMillis): self
     {
         $this->timeoutMillis = $timeoutMillis;
+
+        return $this;
     }
 
     /**
@@ -125,24 +129,32 @@ class CallOptions implements ArrayAccess, OptionsInterface
      *           See {@link https://docs.guzzlephp.org/en/stable/request-options.html}.
      * }
      */
-    public function setTransportOptions(array $transportOptions)
+    public function setTransportOptions(array $transportOptions): self
     {
         $this->transportOptions = $transportOptions;
+
+        return $this;
     }
 
     /**
      * @deprecated use CallOptions::setTransportOptions
      */
-    public function setTransportSpecificOptions(array $transportSpecificOptions)
+    public function setTransportSpecificOptions(array $transportSpecificOptions): self
     {
         $this->setTransportOptions($transportSpecificOptions);
+
+        return $this;
     }
 
     /**
      * @param RetrySettings|array|null $retrySettings
+     *
+     * @return $this
      */
-    public function setRetrySettings($retrySettings)
+    public function setRetrySettings($retrySettings): self
     {
         $this->retrySettings = $retrySettings;
+
+        return $this;
     }
 }

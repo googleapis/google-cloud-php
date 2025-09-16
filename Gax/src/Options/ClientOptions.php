@@ -202,25 +202,35 @@ class ClientOptions implements ArrayAccess, OptionsInterface
 
     /**
      * @param ?string $apiEndpoint
+     *
+     * @return $this
      */
-    public function setApiEndpoint(?string $apiEndpoint): void
+    public function setApiEndpoint(?string $apiEndpoint): self
     {
         $this->apiEndpoint = $apiEndpoint;
+
+        return $this;
     }
 
     /**
      * @param bool $disableRetries
+     *
+     * @return $this
      */
-    public function setDisableRetries(bool $disableRetries): void
+    public function setDisableRetries(bool $disableRetries): self
     {
         $this->disableRetries = $disableRetries;
+
+        return $this;
     }
 
     /**
      * @param string|array $clientConfig
+     *
+     * @return $this
      * @throws InvalidArgumentException
      */
-    public function setClientConfig($clientConfig): void
+    public function setClientConfig($clientConfig): self
     {
         if (is_string($clientConfig)) {
             $this->clientConfig = json_decode(file_get_contents($clientConfig), true);
@@ -229,123 +239,181 @@ class ClientOptions implements ArrayAccess, OptionsInterface
         } else {
             throw new InvalidArgumentException('Invalid client config');
         }
+
+        return $this;
     }
 
     /**
      * @param string|array|FetchAuthTokenInterface|CredentialsWrapper|null $credentials
+     *
+     * @return $this
      */
-    public function setCredentials($credentials): void
+    public function setCredentials($credentials): self
     {
         $this->credentials = $credentials;
+
+        return $this;
     }
 
     /**
      * @param array $credentialsConfig
+     *
+     * @return $this
      */
-    public function setCredentialsConfig(array $credentialsConfig): void
+    public function setCredentialsConfig(array $credentialsConfig): self
     {
         $this->credentialsConfig = $credentialsConfig;
+
+        return $this;
     }
 
     /**
      * @param string|TransportInterface|null $transport
+     *
+     * @return $this
      */
-    public function setTransport($transport): void
+    public function setTransport($transport): self
     {
         $this->transport = $transport;
+
+        return $this;
     }
 
     /**
      * @param TransportOptions $transportConfig
+     *
+     * @return $this
      */
-    public function setTransportConfig(TransportOptions $transportConfig): void
+    public function setTransportConfig(TransportOptions $transportConfig): self
     {
         $this->transportConfig = $transportConfig;
+
+        return $this;
     }
 
     /**
      * @param ?string $versionFile
+     *
+     * @return $this
      */
-    public function setVersionFile(?string $versionFile): void
+    public function setVersionFile(?string $versionFile): self
     {
         $this->versionFile = $versionFile;
+
+        return $this;
     }
 
     /**
      * @param ?string $descriptorsConfigPath
+     *
+     * @return $this
      */
-    private function setDescriptorsConfigPath(?string $descriptorsConfigPath)
+    private function setDescriptorsConfigPath(?string $descriptorsConfigPath): self
     {
         if (!is_null($descriptorsConfigPath)) {
             self::validateFileExists($descriptorsConfigPath);
         }
         $this->descriptorsConfigPath = $descriptorsConfigPath;
+
+        return $this;
     }
 
     /**
      * @param ?string $serviceName
+     *
+     * @return $this
      */
-    public function setServiceName(?string $serviceName): void
+    public function setServiceName(?string $serviceName): self
     {
         $this->serviceName = $serviceName;
+
+        return $this;
     }
 
     /**
      * @param ?string $libName
+     *
+     * @return $this
      */
-    public function setLibName(?string $libName): void
+    public function setLibName(?string $libName): self
     {
         $this->libName = $libName;
+
+        return $this;
     }
 
     /**
      * @param ?string $libVersion
+     *
+     * @return $this
      */
-    public function setLibVersion(?string $libVersion): void
+    public function setLibVersion(?string $libVersion): self
     {
         $this->libVersion = $libVersion;
+
+        return $this;
     }
 
     /**
      * @param ?string $gapicVersion
+     *
+     * @return $this
      */
-    public function setGapicVersion(?string $gapicVersion): void
+    public function setGapicVersion(?string $gapicVersion): self
     {
         $this->gapicVersion = $gapicVersion;
+
+        return $this;
     }
 
     /**
      * @param ?callable $clientCertSource
+     *
+     * @return $this
      */
-    public function setClientCertSource(?callable $clientCertSource)
+    public function setClientCertSource(?callable $clientCertSource): self
     {
         if (!is_null($clientCertSource)) {
             $clientCertSource = Closure::fromCallable($clientCertSource);
         }
         $this->clientCertSource = $clientCertSource;
+
+        return $this;
     }
 
     /**
      * @param string $universeDomain
+     *
+     * @return $this
      */
-    public function setUniverseDomain(?string $universeDomain)
+    public function setUniverseDomain(?string $universeDomain): self
     {
         $this->universeDomain = $universeDomain;
+
+        return $this;
     }
 
     /**
      * @param string $apiKey
+     *
+     * @return $this
      */
-    public function setApiKey(?string $apiKey)
+    public function setApiKey(?string $apiKey): self
     {
         $this->apiKey = $apiKey;
+
+        return $this;
     }
 
     /**
      * @param null|false|LoggerInterface $logger
+     *
+     * @return $this
      */
-    public function setLogger(null|false|LoggerInterface $logger)
+    public function setLogger(null|false|LoggerInterface $logger): self
     {
         $this->logger = $logger;
+
+        return $this;
     }
 }
