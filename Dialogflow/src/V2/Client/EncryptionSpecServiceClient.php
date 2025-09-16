@@ -28,6 +28,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -37,6 +38,7 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Dialogflow\V2\EncryptionSpec;
 use Google\Cloud\Dialogflow\V2\GetEncryptionSpecRequest;
 use Google\Cloud\Dialogflow\V2\InitializeEncryptionSpecRequest;
+use Google\Cloud\Dialogflow\V2\InitializeEncryptionSpecResponse;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
@@ -135,9 +137,7 @@ final class EncryptionSpecServiceClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning'])
-            ? $this->descriptors[$methodName]['longRunning']
-            : [];
+        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -206,7 +206,7 @@ final class EncryptionSpecServiceClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
@@ -262,11 +262,13 @@ final class EncryptionSpecServiceClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -333,14 +335,12 @@ final class EncryptionSpecServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<InitializeEncryptionSpecResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function initializeEncryptionSpec(
-        InitializeEncryptionSpecRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function initializeEncryptionSpec(InitializeEncryptionSpecRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('InitializeEncryptionSpec', $request, $callOptions)->wait();
     }
 

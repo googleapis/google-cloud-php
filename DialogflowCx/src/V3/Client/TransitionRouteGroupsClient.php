@@ -27,6 +27,7 @@ namespace Google\Cloud\Dialogflow\Cx\V3\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -208,13 +209,8 @@ final class TransitionRouteGroupsClient
      *
      * @return string The formatted page resource.
      */
-    public static function pageName(
-        string $project,
-        string $location,
-        string $agent,
-        string $flow,
-        string $page
-    ): string {
+    public static function pageName(string $project, string $location, string $agent, string $flow, string $page): string
+    {
         return self::getPathTemplate('page')->render([
             'project' => $project,
             'location' => $location,
@@ -236,13 +232,8 @@ final class TransitionRouteGroupsClient
      *
      * @return string The formatted project_location_agent_flow_transition_route_group resource.
      */
-    public static function projectLocationAgentFlowTransitionRouteGroupName(
-        string $project,
-        string $location,
-        string $agent,
-        string $flow,
-        string $transitionRouteGroup
-    ): string {
+    public static function projectLocationAgentFlowTransitionRouteGroupName(string $project, string $location, string $agent, string $flow, string $transitionRouteGroup): string
+    {
         return self::getPathTemplate('projectLocationAgentFlowTransitionRouteGroup')->render([
             'project' => $project,
             'location' => $location,
@@ -263,12 +254,8 @@ final class TransitionRouteGroupsClient
      *
      * @return string The formatted project_location_agent_transition_route_group resource.
      */
-    public static function projectLocationAgentTransitionRouteGroupName(
-        string $project,
-        string $location,
-        string $agent,
-        string $transitionRouteGroup
-    ): string {
+    public static function projectLocationAgentTransitionRouteGroupName(string $project, string $location, string $agent, string $transitionRouteGroup): string
+    {
         return self::getPathTemplate('projectLocationAgentTransitionRouteGroup')->render([
             'project' => $project,
             'location' => $location,
@@ -289,13 +276,8 @@ final class TransitionRouteGroupsClient
      *
      * @return string The formatted transition_route_group resource.
      */
-    public static function transitionRouteGroupName(
-        string $project,
-        string $location,
-        string $agent,
-        string $flow,
-        string $transitionRouteGroup
-    ): string {
+    public static function transitionRouteGroupName(string $project, string $location, string $agent, string $flow, string $transitionRouteGroup): string
+    {
         return self::getPathTemplate('transitionRouteGroup')->render([
             'project' => $project,
             'location' => $location,
@@ -361,7 +343,7 @@ final class TransitionRouteGroupsClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
@@ -417,11 +399,13 @@ final class TransitionRouteGroupsClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -466,10 +450,8 @@ final class TransitionRouteGroupsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createTransitionRouteGroup(
-        CreateTransitionRouteGroupRequest $request,
-        array $callOptions = []
-    ): TransitionRouteGroup {
+    public function createTransitionRouteGroup(CreateTransitionRouteGroupRequest $request, array $callOptions = []): TransitionRouteGroup
+    {
         return $this->startApiCall('CreateTransitionRouteGroup', $request, $callOptions)->wait();
     }
 
@@ -498,10 +480,8 @@ final class TransitionRouteGroupsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteTransitionRouteGroup(
-        DeleteTransitionRouteGroupRequest $request,
-        array $callOptions = []
-    ): void {
+    public function deleteTransitionRouteGroup(DeleteTransitionRouteGroupRequest $request, array $callOptions = []): void
+    {
         $this->startApiCall('DeleteTransitionRouteGroup', $request, $callOptions)->wait();
     }
 
@@ -528,10 +508,8 @@ final class TransitionRouteGroupsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getTransitionRouteGroup(
-        GetTransitionRouteGroupRequest $request,
-        array $callOptions = []
-    ): TransitionRouteGroup {
+    public function getTransitionRouteGroup(GetTransitionRouteGroupRequest $request, array $callOptions = []): TransitionRouteGroup
+    {
         return $this->startApiCall('GetTransitionRouteGroup', $request, $callOptions)->wait();
     }
 
@@ -557,10 +535,8 @@ final class TransitionRouteGroupsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listTransitionRouteGroups(
-        ListTransitionRouteGroupsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listTransitionRouteGroups(ListTransitionRouteGroupsRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListTransitionRouteGroups', $request, $callOptions);
     }
 
@@ -591,10 +567,8 @@ final class TransitionRouteGroupsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateTransitionRouteGroup(
-        UpdateTransitionRouteGroupRequest $request,
-        array $callOptions = []
-    ): TransitionRouteGroup {
+    public function updateTransitionRouteGroup(UpdateTransitionRouteGroupRequest $request, array $callOptions = []): TransitionRouteGroup
+    {
         return $this->startApiCall('UpdateTransitionRouteGroup', $request, $callOptions)->wait();
     }
 
