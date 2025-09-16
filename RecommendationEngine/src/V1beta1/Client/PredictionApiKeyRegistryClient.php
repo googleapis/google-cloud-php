@@ -29,6 +29,7 @@ namespace Google\Cloud\RecommendationEngine\V1beta1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -88,7 +89,9 @@ final class PredictionApiKeyRegistryClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+    ];
 
     private static function getClientDefaults()
     {
@@ -103,8 +106,7 @@ final class PredictionApiKeyRegistryClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' =>
-                        __DIR__ . '/../resources/prediction_api_key_registry_rest_client_config.php',
+                    'restClientConfigPath' => __DIR__ . '/../resources/prediction_api_key_registry_rest_client_config.php',
                 ],
             ],
         ];
@@ -123,12 +125,8 @@ final class PredictionApiKeyRegistryClient
      *
      * @experimental
      */
-    public static function eventStoreName(
-        string $project,
-        string $location,
-        string $catalog,
-        string $eventStore
-    ): string {
+    public static function eventStoreName(string $project, string $location, string $catalog, string $eventStore): string
+    {
         return self::getPathTemplate('eventStore')->render([
             'project' => $project,
             'location' => $location,
@@ -151,13 +149,8 @@ final class PredictionApiKeyRegistryClient
      *
      * @experimental
      */
-    public static function predictionApiKeyRegistrationName(
-        string $project,
-        string $location,
-        string $catalog,
-        string $eventStore,
-        string $predictionApiKeyRegistration
-    ): string {
+    public static function predictionApiKeyRegistrationName(string $project, string $location, string $catalog, string $eventStore, string $predictionApiKeyRegistration): string
+    {
         return self::getPathTemplate('predictionApiKeyRegistration')->render([
             'project' => $project,
             'location' => $location,
@@ -197,7 +190,7 @@ final class PredictionApiKeyRegistryClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
@@ -253,13 +246,15 @@ final class PredictionApiKeyRegistryClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      *
      * @experimental
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -301,10 +296,8 @@ final class PredictionApiKeyRegistryClient
      *
      * @experimental
      */
-    public function createPredictionApiKeyRegistration(
-        CreatePredictionApiKeyRegistrationRequest $request,
-        array $callOptions = []
-    ): PredictionApiKeyRegistration {
+    public function createPredictionApiKeyRegistration(CreatePredictionApiKeyRegistrationRequest $request, array $callOptions = []): PredictionApiKeyRegistration
+    {
         return $this->startApiCall('CreatePredictionApiKeyRegistration', $request, $callOptions)->wait();
     }
 
@@ -331,10 +324,8 @@ final class PredictionApiKeyRegistryClient
      *
      * @experimental
      */
-    public function deletePredictionApiKeyRegistration(
-        DeletePredictionApiKeyRegistrationRequest $request,
-        array $callOptions = []
-    ): void {
+    public function deletePredictionApiKeyRegistration(DeletePredictionApiKeyRegistrationRequest $request, array $callOptions = []): void
+    {
         $this->startApiCall('DeletePredictionApiKeyRegistration', $request, $callOptions)->wait();
     }
 
@@ -363,10 +354,8 @@ final class PredictionApiKeyRegistryClient
      *
      * @experimental
      */
-    public function listPredictionApiKeyRegistrations(
-        ListPredictionApiKeyRegistrationsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listPredictionApiKeyRegistrations(ListPredictionApiKeyRegistrationsRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListPredictionApiKeyRegistrations', $request, $callOptions);
     }
 }

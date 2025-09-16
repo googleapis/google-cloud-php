@@ -28,6 +28,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -35,17 +36,24 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Retail\V2\AddFulfillmentPlacesRequest;
+use Google\Cloud\Retail\V2\AddFulfillmentPlacesResponse;
 use Google\Cloud\Retail\V2\AddLocalInventoriesRequest;
+use Google\Cloud\Retail\V2\AddLocalInventoriesResponse;
 use Google\Cloud\Retail\V2\CreateProductRequest;
 use Google\Cloud\Retail\V2\DeleteProductRequest;
 use Google\Cloud\Retail\V2\GetProductRequest;
 use Google\Cloud\Retail\V2\ImportProductsRequest;
+use Google\Cloud\Retail\V2\ImportProductsResponse;
 use Google\Cloud\Retail\V2\ListProductsRequest;
 use Google\Cloud\Retail\V2\Product;
 use Google\Cloud\Retail\V2\PurgeProductsRequest;
+use Google\Cloud\Retail\V2\PurgeProductsResponse;
 use Google\Cloud\Retail\V2\RemoveFulfillmentPlacesRequest;
+use Google\Cloud\Retail\V2\RemoveFulfillmentPlacesResponse;
 use Google\Cloud\Retail\V2\RemoveLocalInventoriesRequest;
+use Google\Cloud\Retail\V2\RemoveLocalInventoriesResponse;
 use Google\Cloud\Retail\V2\SetInventoryRequest;
+use Google\Cloud\Retail\V2\SetInventoryResponse;
 use Google\Cloud\Retail\V2\UpdateProductRequest;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
@@ -102,7 +110,9 @@ final class ProductServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+    ];
 
     private $operationsClient;
 
@@ -148,9 +158,7 @@ final class ProductServiceClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning'])
-            ? $this->descriptors[$methodName]['longRunning']
-            : [];
+        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -208,13 +216,8 @@ final class ProductServiceClient
      *
      * @return string The formatted product resource.
      */
-    public static function productName(
-        string $project,
-        string $location,
-        string $catalog,
-        string $branch,
-        string $product
-    ): string {
+    public static function productName(string $project, string $location, string $catalog, string $branch, string $product): string
+    {
         return self::getPathTemplate('product')->render([
             'project' => $project,
             'location' => $location,
@@ -252,7 +255,7 @@ final class ProductServiceClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
@@ -308,11 +311,13 @@ final class ProductServiceClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -376,14 +381,12 @@ final class ProductServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<AddFulfillmentPlacesResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function addFulfillmentPlaces(
-        AddFulfillmentPlacesRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function addFulfillmentPlaces(AddFulfillmentPlacesRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('AddFulfillmentPlaces', $request, $callOptions)->wait();
     }
 
@@ -431,7 +434,7 @@ final class ProductServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<AddLocalInventoriesResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -539,7 +542,7 @@ final class ProductServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<ImportProductsResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -607,7 +610,7 @@ final class ProductServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<PurgeProductsResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -663,14 +666,12 @@ final class ProductServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<RemoveFulfillmentPlacesResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function removeFulfillmentPlaces(
-        RemoveFulfillmentPlacesRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function removeFulfillmentPlaces(RemoveFulfillmentPlacesRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('RemoveFulfillmentPlaces', $request, $callOptions)->wait();
     }
 
@@ -717,14 +718,12 @@ final class ProductServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<RemoveLocalInventoriesResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function removeLocalInventories(
-        RemoveLocalInventoriesRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function removeLocalInventories(RemoveLocalInventoriesRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('RemoveLocalInventories', $request, $callOptions)->wait();
     }
 
@@ -793,7 +792,7 @@ final class ProductServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<SetInventoryResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
