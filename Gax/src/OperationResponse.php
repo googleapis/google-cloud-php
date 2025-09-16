@@ -56,6 +56,8 @@ use LogicException;
  * more control is required, it is possible to make calls against the
  * Operations API directly instead of via the OperationResponse object
  * using an Operations Client instance.
+ *
+ * @template T = mixed
  */
 class OperationResponse
 {
@@ -280,9 +282,10 @@ class OperationResponse
     }
 
     /**
-     * Return the result of the operation. If operationSucceeded() is false, return null.
+     * Return the result of the operation. If operationSucceeded() is false,
+     * return null.
      *
-     * @return mixed|null The result of the operation, or null if operationSucceeded() is false
+     * @return T|null
      */
     public function getResult()
     {

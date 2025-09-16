@@ -39,6 +39,8 @@ use Psr\Log\LoggerInterface;
 
 /**
  * ServerStream is the response object from a server streaming API call.
+ *
+ * @template T = mixed
  */
 class ServerStream
 {
@@ -72,7 +74,7 @@ class ServerStream
      * completes. Throws an ApiException if the streaming call failed.
      *
      * @throws ApiException
-     * @return \Generator|mixed
+     * @return \Generator<int, T>|mixed
      */
     public function readAll()
     {
