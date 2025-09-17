@@ -25,6 +25,8 @@ class VideoStream extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Video\LiveStream\V1\VideoStream\H264CodecSettings $h264
      *           H264 codec settings.
+     *     @type \Google\Cloud\Video\LiveStream\V1\VideoStream\H265CodecSettings $h265
+     *           H265 codec settings.
      * }
      */
     public function __construct($data = NULL) {
@@ -59,6 +61,37 @@ class VideoStream extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Video\LiveStream\V1\VideoStream\H264CodecSettings::class);
         $this->writeOneof(20, $var);
+
+        return $this;
+    }
+
+    /**
+     * H265 codec settings.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.VideoStream.H265CodecSettings h265 = 21;</code>
+     * @return \Google\Cloud\Video\LiveStream\V1\VideoStream\H265CodecSettings|null
+     */
+    public function getH265()
+    {
+        return $this->readOneof(21);
+    }
+
+    public function hasH265()
+    {
+        return $this->hasOneof(21);
+    }
+
+    /**
+     * H265 codec settings.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.VideoStream.H265CodecSettings h265 = 21;</code>
+     * @param \Google\Cloud\Video\LiveStream\V1\VideoStream\H265CodecSettings $var
+     * @return $this
+     */
+    public function setH265($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Video\LiveStream\V1\VideoStream\H265CodecSettings::class);
+        $this->writeOneof(21, $var);
 
         return $this;
     }

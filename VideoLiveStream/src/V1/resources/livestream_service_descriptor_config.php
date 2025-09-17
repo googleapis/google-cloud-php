@@ -232,7 +232,45 @@ return [
                     ],
                 ],
             ],
+            'StartDistribution' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Video\LiveStream\V1\ChannelOperationResponse',
+                    'metadataReturnType' => '\Google\Cloud\Video\LiveStream\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'StopChannel' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Video\LiveStream\V1\ChannelOperationResponse',
+                    'metadataReturnType' => '\Google\Cloud\Video\LiveStream\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'StopDistribution' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Video\LiveStream\V1\ChannelOperationResponse',
                     'metadataReturnType' => '\Google\Cloud\Video\LiveStream\V1\OperationMetadata',
@@ -555,6 +593,18 @@ return [
                         'keyName' => 'parent',
                         'fieldAccessors' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'PreviewInput' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Video\LiveStream\V1\PreviewInputResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
                         ],
                     ],
                 ],
