@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.38.0](https://github.com/googleapis/gax-php/compare/v1.37.0...v1.38.0) (2025-09-17)
+
+
+### Features
+
+* Add the rpcName to the BIDI stream opening request ([#630](https://github.com/googleapis/gax-php/issues/630)) ([9c61d8f](https://github.com/googleapis/gax-php/commit/9c61d8f2bd09731d5f22c22eb81895eaf4db2031))
+* Make options classes fluid ([#618](https://github.com/googleapis/gax-php/issues/618)) ([427b46e](https://github.com/googleapis/gax-php/commit/427b46e91b3881fd0da361b5b351c6dda47e640a))
+
+
+### Bug Fixes
+
+* Update protobuf RepeatedField to new namespace ([#624](https://github.com/googleapis/gax-php/issues/624)) ([3558cc4](https://github.com/googleapis/gax-php/commit/3558cc49139861fa411c77b33f457467ec8daa97))
+
 ## [1.37.0](https://github.com/googleapis/gax-php/compare/v1.36.1...v1.37.0) (2025-09-10)
 
 
