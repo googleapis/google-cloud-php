@@ -46,7 +46,7 @@ class AwsVmDetails extends \Google\Protobuf\Internal\Message
      */
     protected $power_state = 0;
     /**
-     * The number of cpus the VM has.
+     * The number of CPU cores the VM has.
      *
      * Generated from protobuf field <code>int32 cpu_count = 6;</code>
      */
@@ -123,6 +123,13 @@ class AwsVmDetails extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.vmmigration.v1.AwsVmDetails.VmArchitecture architecture = 18;</code>
      */
     protected $architecture = 0;
+    /**
+     * The number of vCPUs the VM has. It is calculated as the
+     * number of CPU cores * threads per CPU the VM has.
+     *
+     * Generated from protobuf field <code>int32 vcpu_count = 19;</code>
+     */
+    protected $vcpu_count = 0;
 
     /**
      * Constructor.
@@ -141,7 +148,7 @@ class AwsVmDetails extends \Google\Protobuf\Internal\Message
      *     @type int $power_state
      *           Output only. The power state of the VM at the moment list was taken.
      *     @type int $cpu_count
-     *           The number of cpus the VM has.
+     *           The number of CPU cores the VM has.
      *     @type int $memory_mb
      *           The memory size of the VM in MB.
      *     @type int $disk_count
@@ -166,6 +173,9 @@ class AwsVmDetails extends \Google\Protobuf\Internal\Message
      *           The virtualization type.
      *     @type int $architecture
      *           The CPU architecture.
+     *     @type int $vcpu_count
+     *           The number of vCPUs the VM has. It is calculated as the
+     *           number of CPU cores * threads per CPU the VM has.
      * }
      */
     public function __construct($data = NULL) {
@@ -304,7 +314,7 @@ class AwsVmDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The number of cpus the VM has.
+     * The number of CPU cores the VM has.
      *
      * Generated from protobuf field <code>int32 cpu_count = 6;</code>
      * @return int
@@ -315,7 +325,7 @@ class AwsVmDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The number of cpus the VM has.
+     * The number of CPU cores the VM has.
      *
      * Generated from protobuf field <code>int32 cpu_count = 6;</code>
      * @param int $var
@@ -637,6 +647,34 @@ class AwsVmDetails extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\VMMigration\V1\AwsVmDetails\VmArchitecture::class);
         $this->architecture = $var;
+
+        return $this;
+    }
+
+    /**
+     * The number of vCPUs the VM has. It is calculated as the
+     * number of CPU cores * threads per CPU the VM has.
+     *
+     * Generated from protobuf field <code>int32 vcpu_count = 19;</code>
+     * @return int
+     */
+    public function getVcpuCount()
+    {
+        return $this->vcpu_count;
+    }
+
+    /**
+     * The number of vCPUs the VM has. It is calculated as the
+     * number of CPU cores * threads per CPU the VM has.
+     *
+     * Generated from protobuf field <code>int32 vcpu_count = 19;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setVcpuCount($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->vcpu_count = $var;
 
         return $this;
     }

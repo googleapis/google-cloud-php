@@ -60,6 +60,12 @@ class Name
      */
     const ROUND_ROBIN = 153895801;
     /**
+     * Per-instance weighted Load Balancing via health check reported weights. In internal passthrough network load balancing, it is weighted rendezvous hashing. This option is only supported in internal passthrough network load balancing.
+     *
+     * Generated from protobuf enum <code>WEIGHTED_GCP_RENDEZVOUS = 82501640;</code>
+     */
+    const WEIGHTED_GCP_RENDEZVOUS = 82501640;
+    /**
      * Per-instance weighted Load Balancing via health check reported weights. If set, the Backend Service must configure a non legacy HTTP-based Health Check, and health check replies are expected to contain non-standard HTTP response header field X-Load-Balancing-Endpoint-Weight to specify the per-instance weights. If set, Load Balancing is weighted based on the per-instance weights reported in the last processed health check replies, as long as every instance either reported a valid weight or had UNAVAILABLE_WEIGHT. Otherwise, Load Balancing remains equal-weight. This option is only supported in Network Load Balancing.
      *
      * Generated from protobuf enum <code>WEIGHTED_MAGLEV = 254930962;</code>
@@ -81,6 +87,7 @@ class Name
         self::RANDOM => 'RANDOM',
         self::RING_HASH => 'RING_HASH',
         self::ROUND_ROBIN => 'ROUND_ROBIN',
+        self::WEIGHTED_GCP_RENDEZVOUS => 'WEIGHTED_GCP_RENDEZVOUS',
         self::WEIGHTED_MAGLEV => 'WEIGHTED_MAGLEV',
         self::WEIGHTED_ROUND_ROBIN => 'WEIGHTED_ROUND_ROBIN',
     ];

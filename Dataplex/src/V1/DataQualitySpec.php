@@ -49,6 +49,13 @@ class DataQualitySpec extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataQualitySpec.PostScanActions post_scan_actions = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $post_scan_actions = null;
+    /**
+     * Optional. If set, the latest DataScan job result will be published as
+     * Dataplex Universal Catalog metadata.
+     *
+     * Generated from protobuf field <code>bool catalog_publishing_enabled = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $catalog_publishing_enabled = false;
 
     /**
      * Constructor.
@@ -74,6 +81,9 @@ class DataQualitySpec extends \Google\Protobuf\Internal\Message
      *           Example: col1 >= 0 AND col2 < 10
      *     @type \Google\Cloud\Dataplex\V1\DataQualitySpec\PostScanActions $post_scan_actions
      *           Optional. Actions to take upon job completion.
+     *     @type bool $catalog_publishing_enabled
+     *           Optional. If set, the latest DataScan job result will be published as
+     *           Dataplex Universal Catalog metadata.
      * }
      */
     public function __construct($data = NULL) {
@@ -211,6 +221,34 @@ class DataQualitySpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dataplex\V1\DataQualitySpec\PostScanActions::class);
         $this->post_scan_actions = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If set, the latest DataScan job result will be published as
+     * Dataplex Universal Catalog metadata.
+     *
+     * Generated from protobuf field <code>bool catalog_publishing_enabled = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getCatalogPublishingEnabled()
+    {
+        return $this->catalog_publishing_enabled;
+    }
+
+    /**
+     * Optional. If set, the latest DataScan job result will be published as
+     * Dataplex Universal Catalog metadata.
+     *
+     * Generated from protobuf field <code>bool catalog_publishing_enabled = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setCatalogPublishingEnabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->catalog_publishing_enabled = $var;
 
         return $this;
     }

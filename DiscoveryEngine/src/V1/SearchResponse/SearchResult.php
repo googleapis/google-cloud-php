@@ -44,6 +44,12 @@ class SearchResult extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, .google.cloud.discoveryengine.v1.DoubleList> model_scores = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $model_scores;
+    /**
+     * A set of ranking signals associated with the result.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchResponse.SearchResult.RankSignals rank_signals = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $rank_signals = null;
 
     /**
      * Constructor.
@@ -64,6 +70,8 @@ class SearchResult extends \Google\Protobuf\Internal\Message
      *           [CHUNKS][google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.SearchResultMode.CHUNKS].
      *     @type array|\Google\Protobuf\Internal\MapField $model_scores
      *           Output only. Google provided available scores.
+     *     @type \Google\Cloud\DiscoveryEngine\V1\SearchResponse\SearchResult\RankSignals $rank_signals
+     *           A set of ranking signals associated with the result.
      * }
      */
     public function __construct($data = NULL) {
@@ -201,6 +209,42 @@ class SearchResult extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DiscoveryEngine\V1\DoubleList::class);
         $this->model_scores = $arr;
+
+        return $this;
+    }
+
+    /**
+     * A set of ranking signals associated with the result.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchResponse.SearchResult.RankSignals rank_signals = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\SearchResponse\SearchResult\RankSignals|null
+     */
+    public function getRankSignals()
+    {
+        return $this->rank_signals;
+    }
+
+    public function hasRankSignals()
+    {
+        return isset($this->rank_signals);
+    }
+
+    public function clearRankSignals()
+    {
+        unset($this->rank_signals);
+    }
+
+    /**
+     * A set of ranking signals associated with the result.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchResponse.SearchResult.RankSignals rank_signals = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\SearchResponse\SearchResult\RankSignals $var
+     * @return $this
+     */
+    public function setRankSignals($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\SearchResponse\SearchResult\RankSignals::class);
+        $this->rank_signals = $var;
 
         return $this;
     }

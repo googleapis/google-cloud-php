@@ -16,6 +16,12 @@ use Google\Protobuf\Internal\GPBUtil;
  */
 class Timestamp extends \Google\Protobuf\Internal\Message
 {
+    /**
+     * The encoding to use when converting to or from lower level types.
+     *
+     * Generated from protobuf field <code>.google.bigtable.v2.Type.Timestamp.Encoding encoding = 1;</code>
+     */
+    protected $encoding = null;
 
     /**
      * Constructor.
@@ -23,11 +29,49 @@ class Timestamp extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type \Google\Cloud\Bigtable\V2\Type\Timestamp\Encoding $encoding
+     *           The encoding to use when converting to or from lower level types.
      * }
      */
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Bigtable\V2\Types::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * The encoding to use when converting to or from lower level types.
+     *
+     * Generated from protobuf field <code>.google.bigtable.v2.Type.Timestamp.Encoding encoding = 1;</code>
+     * @return \Google\Cloud\Bigtable\V2\Type\Timestamp\Encoding|null
+     */
+    public function getEncoding()
+    {
+        return $this->encoding;
+    }
+
+    public function hasEncoding()
+    {
+        return isset($this->encoding);
+    }
+
+    public function clearEncoding()
+    {
+        unset($this->encoding);
+    }
+
+    /**
+     * The encoding to use when converting to or from lower level types.
+     *
+     * Generated from protobuf field <code>.google.bigtable.v2.Type.Timestamp.Encoding encoding = 1;</code>
+     * @param \Google\Cloud\Bigtable\V2\Type\Timestamp\Encoding $var
+     * @return $this
+     */
+    public function setEncoding($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\V2\Type\Timestamp\Encoding::class);
+        $this->encoding = $var;
+
+        return $this;
     }
 
 }

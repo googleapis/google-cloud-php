@@ -44,7 +44,7 @@ use Google\Rpc\Status;
  *                                                                 * Must be between 1-63 characters.
  *                                                                 * Must end with a number or a letter.
  *                                                                 * Must be unique within the lake.
- * @param string $environmentInfrastructureSpecOsImageImageVersion Dataplex Image version.
+ * @param string $environmentInfrastructureSpecOsImageImageVersion Dataplex Universal Catalog Image version.
  */
 function create_environment_sample(
     string $formattedParent,

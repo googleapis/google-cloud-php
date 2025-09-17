@@ -35,6 +35,18 @@ return [
                     ],
                 ],
             ],
+            'CreateApiOperation' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\ApiHub\V1\ApiOperation',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateAttribute' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\ApiHub\V1\Attribute',
@@ -96,6 +108,18 @@ return [
                 ],
             ],
             'DeleteApi' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Protobuf\GPBEmpty',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteApiOperation' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Protobuf\GPBEmpty',
                 'headerParams' => [
@@ -448,6 +472,19 @@ return [
                     ],
                 ],
             ],
+            'UpdateApiOperation' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\ApiHub\V1\ApiOperation',
+                'headerParams' => [
+                    [
+                        'keyName' => 'api_operation.name',
+                        'fieldAccessors' => [
+                            'getApiOperation',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateAttribute' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\ApiHub\V1\Attribute',
@@ -555,6 +592,7 @@ return [
                 'deployment' => 'projects/{project}/locations/{location}/deployments/{deployment}',
                 'externalApi' => 'projects/{project}/locations/{location}/externalApis/{external_api}',
                 'location' => 'projects/{project}/locations/{location}',
+                'pluginInstance' => 'projects/{project}/locations/{location}/plugins/{plugin}/instances/{instance}',
                 'spec' => 'projects/{project}/locations/{location}/apis/{api}/versions/{version}/specs/{spec}',
                 'version' => 'projects/{project}/locations/{location}/apis/{api}/versions/{version}',
             ],

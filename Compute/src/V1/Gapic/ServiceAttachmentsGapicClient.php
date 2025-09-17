@@ -450,6 +450,8 @@ class ServiceAttachmentsGapicClient
      * @param array  $optionalArgs      {
      *     Optional.
      *
+     *     @type bool $showNatIps
+     *           Indicates whether NAT IPs should be included in the response.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -470,6 +472,10 @@ class ServiceAttachmentsGapicClient
         $requestParamHeaders['project'] = $project;
         $requestParamHeaders['region'] = $region;
         $requestParamHeaders['service_attachment'] = $serviceAttachment;
+        if (isset($optionalArgs['showNatIps'])) {
+            $request->setShowNatIps($optionalArgs['showNatIps']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('Get', ServiceAttachment::class, $optionalArgs, $request)->wait();

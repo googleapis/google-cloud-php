@@ -36,12 +36,20 @@ use Google\Cloud\VMMigration\V1\CancelCloneJobRequest;
 use Google\Cloud\VMMigration\V1\CancelCloneJobResponse;
 use Google\Cloud\VMMigration\V1\CancelCutoverJobRequest;
 use Google\Cloud\VMMigration\V1\CancelCutoverJobResponse;
+use Google\Cloud\VMMigration\V1\CancelDiskMigrationJobRequest;
+use Google\Cloud\VMMigration\V1\CancelDiskMigrationJobResponse;
+use Google\Cloud\VMMigration\V1\CancelImageImportJobRequest;
+use Google\Cloud\VMMigration\V1\CancelImageImportJobResponse;
 use Google\Cloud\VMMigration\V1\Client\VmMigrationClient;
 use Google\Cloud\VMMigration\V1\CloneJob;
+use Google\Cloud\VMMigration\V1\ComputeEngineDisk;
+use Google\Cloud\VMMigration\V1\ComputeEngineDiskType;
 use Google\Cloud\VMMigration\V1\CreateCloneJobRequest;
 use Google\Cloud\VMMigration\V1\CreateCutoverJobRequest;
 use Google\Cloud\VMMigration\V1\CreateDatacenterConnectorRequest;
+use Google\Cloud\VMMigration\V1\CreateDiskMigrationJobRequest;
 use Google\Cloud\VMMigration\V1\CreateGroupRequest;
+use Google\Cloud\VMMigration\V1\CreateImageImportRequest;
 use Google\Cloud\VMMigration\V1\CreateMigratingVmRequest;
 use Google\Cloud\VMMigration\V1\CreateSourceRequest;
 use Google\Cloud\VMMigration\V1\CreateTargetProjectRequest;
@@ -49,33 +57,53 @@ use Google\Cloud\VMMigration\V1\CreateUtilizationReportRequest;
 use Google\Cloud\VMMigration\V1\CutoverJob;
 use Google\Cloud\VMMigration\V1\DatacenterConnector;
 use Google\Cloud\VMMigration\V1\DeleteDatacenterConnectorRequest;
+use Google\Cloud\VMMigration\V1\DeleteDiskMigrationJobRequest;
 use Google\Cloud\VMMigration\V1\DeleteGroupRequest;
+use Google\Cloud\VMMigration\V1\DeleteImageImportRequest;
 use Google\Cloud\VMMigration\V1\DeleteMigratingVmRequest;
 use Google\Cloud\VMMigration\V1\DeleteSourceRequest;
 use Google\Cloud\VMMigration\V1\DeleteTargetProjectRequest;
 use Google\Cloud\VMMigration\V1\DeleteUtilizationReportRequest;
+use Google\Cloud\VMMigration\V1\DiskMigrationJob;
+use Google\Cloud\VMMigration\V1\DiskMigrationJobTargetDetails;
+use Google\Cloud\VMMigration\V1\ExtendMigrationRequest;
+use Google\Cloud\VMMigration\V1\ExtendMigrationResponse;
 use Google\Cloud\VMMigration\V1\FetchInventoryRequest;
 use Google\Cloud\VMMigration\V1\FetchInventoryResponse;
+use Google\Cloud\VMMigration\V1\FetchStorageInventoryRequest;
+use Google\Cloud\VMMigration\V1\FetchStorageInventoryRequest\StorageType;
+use Google\Cloud\VMMigration\V1\FetchStorageInventoryResponse;
 use Google\Cloud\VMMigration\V1\FinalizeMigrationRequest;
 use Google\Cloud\VMMigration\V1\FinalizeMigrationResponse;
 use Google\Cloud\VMMigration\V1\GetCloneJobRequest;
 use Google\Cloud\VMMigration\V1\GetCutoverJobRequest;
 use Google\Cloud\VMMigration\V1\GetDatacenterConnectorRequest;
+use Google\Cloud\VMMigration\V1\GetDiskMigrationJobRequest;
 use Google\Cloud\VMMigration\V1\GetGroupRequest;
+use Google\Cloud\VMMigration\V1\GetImageImportJobRequest;
+use Google\Cloud\VMMigration\V1\GetImageImportRequest;
 use Google\Cloud\VMMigration\V1\GetMigratingVmRequest;
 use Google\Cloud\VMMigration\V1\GetReplicationCycleRequest;
 use Google\Cloud\VMMigration\V1\GetSourceRequest;
 use Google\Cloud\VMMigration\V1\GetTargetProjectRequest;
 use Google\Cloud\VMMigration\V1\GetUtilizationReportRequest;
 use Google\Cloud\VMMigration\V1\Group;
+use Google\Cloud\VMMigration\V1\ImageImport;
+use Google\Cloud\VMMigration\V1\ImageImportJob;
 use Google\Cloud\VMMigration\V1\ListCloneJobsRequest;
 use Google\Cloud\VMMigration\V1\ListCloneJobsResponse;
 use Google\Cloud\VMMigration\V1\ListCutoverJobsRequest;
 use Google\Cloud\VMMigration\V1\ListCutoverJobsResponse;
 use Google\Cloud\VMMigration\V1\ListDatacenterConnectorsRequest;
 use Google\Cloud\VMMigration\V1\ListDatacenterConnectorsResponse;
+use Google\Cloud\VMMigration\V1\ListDiskMigrationJobsRequest;
+use Google\Cloud\VMMigration\V1\ListDiskMigrationJobsResponse;
 use Google\Cloud\VMMigration\V1\ListGroupsRequest;
 use Google\Cloud\VMMigration\V1\ListGroupsResponse;
+use Google\Cloud\VMMigration\V1\ListImageImportJobsRequest;
+use Google\Cloud\VMMigration\V1\ListImageImportJobsResponse;
+use Google\Cloud\VMMigration\V1\ListImageImportsRequest;
+use Google\Cloud\VMMigration\V1\ListImageImportsResponse;
 use Google\Cloud\VMMigration\V1\ListMigratingVmsRequest;
 use Google\Cloud\VMMigration\V1\ListMigratingVmsResponse;
 use Google\Cloud\VMMigration\V1\ListReplicationCyclesRequest;
@@ -94,10 +122,14 @@ use Google\Cloud\VMMigration\V1\RemoveGroupMigrationResponse;
 use Google\Cloud\VMMigration\V1\ReplicationCycle;
 use Google\Cloud\VMMigration\V1\ResumeMigrationRequest;
 use Google\Cloud\VMMigration\V1\ResumeMigrationResponse;
+use Google\Cloud\VMMigration\V1\RunDiskMigrationJobRequest;
+use Google\Cloud\VMMigration\V1\RunDiskMigrationJobResponse;
 use Google\Cloud\VMMigration\V1\Source;
+use Google\Cloud\VMMigration\V1\SourceStorageResource;
 use Google\Cloud\VMMigration\V1\StartMigrationRequest;
 use Google\Cloud\VMMigration\V1\StartMigrationResponse;
 use Google\Cloud\VMMigration\V1\TargetProject;
+use Google\Cloud\VMMigration\V1\UpdateDiskMigrationJobRequest;
 use Google\Cloud\VMMigration\V1\UpdateGroupRequest;
 use Google\Cloud\VMMigration\V1\UpdateMigratingVmRequest;
 use Google\Cloud\VMMigration\V1\UpdateSourceRequest;
@@ -516,6 +548,260 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/cancelCutoverJobTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function cancelDiskMigrationJobTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/cancelDiskMigrationJobTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $expectedResponse = new CancelDiskMigrationJobResponse();
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/cancelDiskMigrationJobTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedName = $gapicClient->diskMigrationJobName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[SOURCE]',
+            '[DISK_MIGRATION_JOB]'
+        );
+        $request = (new CancelDiskMigrationJobRequest())->setName($formattedName);
+        $response = $gapicClient->cancelDiskMigrationJob($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.vmmigration.v1.VmMigration/CancelDiskMigrationJob', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/cancelDiskMigrationJobTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function cancelDiskMigrationJobExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/cancelDiskMigrationJobTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->diskMigrationJobName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[SOURCE]',
+            '[DISK_MIGRATION_JOB]'
+        );
+        $request = (new CancelDiskMigrationJobRequest())->setName($formattedName);
+        $response = $gapicClient->cancelDiskMigrationJob($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/cancelDiskMigrationJobTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function cancelImageImportJobTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/cancelImageImportJobTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $expectedResponse = new CancelImageImportJobResponse();
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/cancelImageImportJobTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedName = $gapicClient->imageImportJobName('[PROJECT]', '[LOCATION]', '[JOB]', '[RESULT]');
+        $request = (new CancelImageImportJobRequest())->setName($formattedName);
+        $response = $gapicClient->cancelImageImportJob($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.vmmigration.v1.VmMigration/CancelImageImportJob', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/cancelImageImportJobTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function cancelImageImportJobExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/cancelImageImportJobTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->imageImportJobName('[PROJECT]', '[LOCATION]', '[JOB]', '[RESULT]');
+        $request = (new CancelImageImportJobRequest())->setName($formattedName);
+        $response = $gapicClient->cancelImageImportJob($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/cancelImageImportJobTest');
         try {
             $response->pollUntilComplete([
                 'initialPollDelayMillis' => 1,
@@ -964,6 +1250,164 @@ class VmMigrationClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function createDiskMigrationJobTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createDiskMigrationJobTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $expectedResponse = new DiskMigrationJob();
+        $expectedResponse->setName($name);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/createDiskMigrationJobTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedParent = $gapicClient->sourceName('[PROJECT]', '[LOCATION]', '[SOURCE]');
+        $diskMigrationJobId = 'diskMigrationJobId1115031760';
+        $diskMigrationJob = new DiskMigrationJob();
+        $diskMigrationJobTargetDetails = new DiskMigrationJobTargetDetails();
+        $targetDetailsTargetProject = $gapicClient->targetProjectName('[PROJECT]', '[LOCATION]', '[TARGET_PROJECT]');
+        $diskMigrationJobTargetDetails->setTargetProject($targetDetailsTargetProject);
+        $targetDetailsTargetDisk = new ComputeEngineDisk();
+        $targetDiskZone = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $targetDetailsTargetDisk->setZone($targetDiskZone);
+        $targetDiskDiskType = ComputeEngineDiskType::COMPUTE_ENGINE_DISK_TYPE_UNSPECIFIED;
+        $targetDetailsTargetDisk->setDiskType($targetDiskDiskType);
+        $diskMigrationJobTargetDetails->setTargetDisk($targetDetailsTargetDisk);
+        $diskMigrationJob->setTargetDetails($diskMigrationJobTargetDetails);
+        $request = (new CreateDiskMigrationJobRequest())
+            ->setParent($formattedParent)
+            ->setDiskMigrationJobId($diskMigrationJobId)
+            ->setDiskMigrationJob($diskMigrationJob);
+        $response = $gapicClient->createDiskMigrationJob($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.vmmigration.v1.VmMigration/CreateDiskMigrationJob', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getDiskMigrationJobId();
+        $this->assertProtobufEquals($diskMigrationJobId, $actualValue);
+        $actualValue = $actualApiRequestObject->getDiskMigrationJob();
+        $this->assertProtobufEquals($diskMigrationJob, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createDiskMigrationJobTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function createDiskMigrationJobExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createDiskMigrationJobTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->sourceName('[PROJECT]', '[LOCATION]', '[SOURCE]');
+        $diskMigrationJobId = 'diskMigrationJobId1115031760';
+        $diskMigrationJob = new DiskMigrationJob();
+        $diskMigrationJobTargetDetails = new DiskMigrationJobTargetDetails();
+        $targetDetailsTargetProject = $gapicClient->targetProjectName('[PROJECT]', '[LOCATION]', '[TARGET_PROJECT]');
+        $diskMigrationJobTargetDetails->setTargetProject($targetDetailsTargetProject);
+        $targetDetailsTargetDisk = new ComputeEngineDisk();
+        $targetDiskZone = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $targetDetailsTargetDisk->setZone($targetDiskZone);
+        $targetDiskDiskType = ComputeEngineDiskType::COMPUTE_ENGINE_DISK_TYPE_UNSPECIFIED;
+        $targetDetailsTargetDisk->setDiskType($targetDiskDiskType);
+        $diskMigrationJobTargetDetails->setTargetDisk($targetDetailsTargetDisk);
+        $diskMigrationJob->setTargetDetails($diskMigrationJobTargetDetails);
+        $request = (new CreateDiskMigrationJobRequest())
+            ->setParent($formattedParent)
+            ->setDiskMigrationJobId($diskMigrationJobId)
+            ->setDiskMigrationJob($diskMigrationJob);
+        $response = $gapicClient->createDiskMigrationJob($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createDiskMigrationJobTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
     public function createGroupTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1088,6 +1532,146 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createGroupTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function createImageImportTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createImageImportTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $cloudStorageUri = 'cloudStorageUri1921455774';
+        $name = 'name3373707';
+        $expectedResponse = new ImageImport();
+        $expectedResponse->setCloudStorageUri($cloudStorageUri);
+        $expectedResponse->setName($name);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/createImageImportTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $imageImportId = 'imageImportId-677769711';
+        $imageImport = new ImageImport();
+        $request = (new CreateImageImportRequest())
+            ->setParent($formattedParent)
+            ->setImageImportId($imageImportId)
+            ->setImageImport($imageImport);
+        $response = $gapicClient->createImageImport($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.vmmigration.v1.VmMigration/CreateImageImport', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getImageImportId();
+        $this->assertProtobufEquals($imageImportId, $actualValue);
+        $actualValue = $actualApiRequestObject->getImageImport();
+        $this->assertProtobufEquals($imageImport, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createImageImportTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function createImageImportExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createImageImportTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $imageImportId = 'imageImportId-677769711';
+        $imageImport = new ImageImport();
+        $request = (new CreateImageImportRequest())
+            ->setParent($formattedParent)
+            ->setImageImportId($imageImportId)
+            ->setImageImport($imageImport);
+        $response = $gapicClient->createImageImport($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createImageImportTest');
         try {
             $response->pollUntilComplete([
                 'initialPollDelayMillis' => 1,
@@ -1430,6 +2014,8 @@ class VmMigrationClientTest extends GeneratedTest
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $targetProjectId = 'targetProjectId1255314287';
         $targetProject = new TargetProject();
+        $targetProjectProject = 'targetProjectProject2026784177';
+        $targetProject->setProject($targetProjectProject);
         $request = (new CreateTargetProjectRequest())
             ->setParent($formattedParent)
             ->setTargetProjectId($targetProjectId)
@@ -1507,6 +2093,8 @@ class VmMigrationClientTest extends GeneratedTest
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $targetProjectId = 'targetProjectId1255314287';
         $targetProject = new TargetProject();
+        $targetProjectProject = 'targetProjectProject2026784177';
+        $targetProject->setProject($targetProjectProject);
         $request = (new CreateTargetProjectRequest())
             ->setParent($formattedParent)
             ->setTargetProjectId($targetProjectId)
@@ -1808,6 +2396,138 @@ class VmMigrationClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function deleteDiskMigrationJobTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteDiskMigrationJobTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $expectedResponse = new GPBEmpty();
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/deleteDiskMigrationJobTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedName = $gapicClient->diskMigrationJobName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[SOURCE]',
+            '[DISK_MIGRATION_JOB]'
+        );
+        $request = (new DeleteDiskMigrationJobRequest())->setName($formattedName);
+        $response = $gapicClient->deleteDiskMigrationJob($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.vmmigration.v1.VmMigration/DeleteDiskMigrationJob', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteDiskMigrationJobTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteDiskMigrationJobExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteDiskMigrationJobTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->diskMigrationJobName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[SOURCE]',
+            '[DISK_MIGRATION_JOB]'
+        );
+        $request = (new DeleteDiskMigrationJobRequest())->setName($formattedName);
+        $response = $gapicClient->deleteDiskMigrationJob($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteDiskMigrationJobTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
     public function deleteGroupTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1912,6 +2632,128 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteGroupTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteImageImportTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteImageImportTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $expectedResponse = new GPBEmpty();
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/deleteImageImportTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedName = $gapicClient->imageImportName('[PROJECT]', '[LOCATION]', '[JOB]');
+        $request = (new DeleteImageImportRequest())->setName($formattedName);
+        $response = $gapicClient->deleteImageImport($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.vmmigration.v1.VmMigration/DeleteImageImport', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteImageImportTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteImageImportExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteImageImportTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->imageImportName('[PROJECT]', '[LOCATION]', '[JOB]');
+        $request = (new DeleteImageImportRequest())->setName($formattedName);
+        $response = $gapicClient->deleteImageImport($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteImageImportTest');
         try {
             $response->pollUntilComplete([
                 'initialPollDelayMillis' => 1,
@@ -2428,6 +3270,128 @@ class VmMigrationClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function extendMigrationTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/extendMigrationTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $expectedResponse = new ExtendMigrationResponse();
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/extendMigrationTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedMigratingVm = $gapicClient->migratingVmName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[MIGRATING_VM]');
+        $request = (new ExtendMigrationRequest())->setMigratingVm($formattedMigratingVm);
+        $response = $gapicClient->extendMigration($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.vmmigration.v1.VmMigration/ExtendMigration', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getMigratingVm();
+        $this->assertProtobufEquals($formattedMigratingVm, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/extendMigrationTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function extendMigrationExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/extendMigrationTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedMigratingVm = $gapicClient->migratingVmName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[MIGRATING_VM]');
+        $request = (new ExtendMigrationRequest())->setMigratingVm($formattedMigratingVm);
+        $response = $gapicClient->extendMigration($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/extendMigrationTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
     public function fetchInventoryTest()
     {
         $transport = $this->createTransport();
@@ -2479,6 +3443,81 @@ class VmMigrationClientTest extends GeneratedTest
         $request = (new FetchInventoryRequest())->setSource($formattedSource);
         try {
             $gapicClient->fetchInventory($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function fetchStorageInventoryTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $resourcesElement = new SourceStorageResource();
+        $resources = [$resourcesElement];
+        $expectedResponse = new FetchStorageInventoryResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setResources($resources);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedSource = $gapicClient->sourceName('[PROJECT]', '[LOCATION]', '[SOURCE]');
+        $type = StorageType::STORAGE_TYPE_UNSPECIFIED;
+        $request = (new FetchStorageInventoryRequest())->setSource($formattedSource)->setType($type);
+        $response = $gapicClient->fetchStorageInventory($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getResources()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.vmmigration.v1.VmMigration/FetchStorageInventory', $actualFuncCall);
+        $actualValue = $actualRequestObject->getSource();
+        $this->assertProtobufEquals($formattedSource, $actualValue);
+        $actualValue = $actualRequestObject->getType();
+        $this->assertProtobufEquals($type, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function fetchStorageInventoryExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedSource = $gapicClient->sourceName('[PROJECT]', '[LOCATION]', '[SOURCE]');
+        $type = StorageType::STORAGE_TYPE_UNSPECIFIED;
+        $request = (new FetchStorageInventoryRequest())->setSource($formattedSource)->setType($type);
+        try {
+            $gapicClient->fetchStorageInventory($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2858,6 +3897,81 @@ class VmMigrationClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function getDiskMigrationJobTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $expectedResponse = new DiskMigrationJob();
+        $expectedResponse->setName($name2);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->diskMigrationJobName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[SOURCE]',
+            '[DISK_MIGRATION_JOB]'
+        );
+        $request = (new GetDiskMigrationJobRequest())->setName($formattedName);
+        $response = $gapicClient->getDiskMigrationJob($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.vmmigration.v1.VmMigration/GetDiskMigrationJob', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getDiskMigrationJobExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->diskMigrationJobName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[SOURCE]',
+            '[DISK_MIGRATION_JOB]'
+        );
+        $request = (new GetDiskMigrationJobRequest())->setName($formattedName);
+        try {
+            $gapicClient->getDiskMigrationJob($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function getGroupTest()
     {
         $transport = $this->createTransport();
@@ -2915,6 +4029,140 @@ class VmMigrationClientTest extends GeneratedTest
         $request = (new GetGroupRequest())->setName($formattedName);
         try {
             $gapicClient->getGroup($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getImageImportTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $cloudStorageUri = 'cloudStorageUri1921455774';
+        $name2 = 'name2-1052831874';
+        $expectedResponse = new ImageImport();
+        $expectedResponse->setCloudStorageUri($cloudStorageUri);
+        $expectedResponse->setName($name2);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->imageImportName('[PROJECT]', '[LOCATION]', '[JOB]');
+        $request = (new GetImageImportRequest())->setName($formattedName);
+        $response = $gapicClient->getImageImport($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.vmmigration.v1.VmMigration/GetImageImport', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getImageImportExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->imageImportName('[PROJECT]', '[LOCATION]', '[JOB]');
+        $request = (new GetImageImportRequest())->setName($formattedName);
+        try {
+            $gapicClient->getImageImport($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getImageImportJobTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $cloudStorageUri = 'cloudStorageUri1921455774';
+        $name2 = 'name2-1052831874';
+        $expectedResponse = new ImageImportJob();
+        $expectedResponse->setCloudStorageUri($cloudStorageUri);
+        $expectedResponse->setName($name2);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->imageImportJobName('[PROJECT]', '[LOCATION]', '[JOB]', '[RESULT]');
+        $request = (new GetImageImportJobRequest())->setName($formattedName);
+        $response = $gapicClient->getImageImportJob($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.vmmigration.v1.VmMigration/GetImageImportJob', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getImageImportJobExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->imageImportJobName('[PROJECT]', '[LOCATION]', '[JOB]', '[RESULT]');
+        $request = (new GetImageImportJobRequest())->setName($formattedName);
+        try {
+            $gapicClient->getImageImportJob($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -3521,6 +4769,77 @@ class VmMigrationClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function listDiskMigrationJobsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $diskMigrationJobsElement = new DiskMigrationJob();
+        $diskMigrationJobs = [$diskMigrationJobsElement];
+        $expectedResponse = new ListDiskMigrationJobsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setDiskMigrationJobs($diskMigrationJobs);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->sourceName('[PROJECT]', '[LOCATION]', '[SOURCE]');
+        $request = (new ListDiskMigrationJobsRequest())->setParent($formattedParent);
+        $response = $gapicClient->listDiskMigrationJobs($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getDiskMigrationJobs()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.vmmigration.v1.VmMigration/ListDiskMigrationJobs', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listDiskMigrationJobsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->sourceName('[PROJECT]', '[LOCATION]', '[SOURCE]');
+        $request = (new ListDiskMigrationJobsRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listDiskMigrationJobs($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function listGroupsTest()
     {
         $transport = $this->createTransport();
@@ -3584,6 +4903,148 @@ class VmMigrationClientTest extends GeneratedTest
         $request = (new ListGroupsRequest())->setParent($formattedParent)->setPageToken($pageToken);
         try {
             $gapicClient->listGroups($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listImageImportJobsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $imageImportJobsElement = new ImageImportJob();
+        $imageImportJobs = [$imageImportJobsElement];
+        $expectedResponse = new ListImageImportJobsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setImageImportJobs($imageImportJobs);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->imageImportName('[PROJECT]', '[LOCATION]', '[JOB]');
+        $request = (new ListImageImportJobsRequest())->setParent($formattedParent);
+        $response = $gapicClient->listImageImportJobs($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getImageImportJobs()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.vmmigration.v1.VmMigration/ListImageImportJobs', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listImageImportJobsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->imageImportName('[PROJECT]', '[LOCATION]', '[JOB]');
+        $request = (new ListImageImportJobsRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listImageImportJobs($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listImageImportsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $imageImportsElement = new ImageImport();
+        $imageImports = [$imageImportsElement];
+        $expectedResponse = new ListImageImportsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setImageImports($imageImports);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListImageImportsRequest())->setParent($formattedParent);
+        $response = $gapicClient->listImageImports($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getImageImports()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.vmmigration.v1.VmMigration/ListImageImports', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listImageImportsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListImageImportsRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listImageImports($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -4337,6 +5798,138 @@ class VmMigrationClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function runDiskMigrationJobTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/runDiskMigrationJobTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $expectedResponse = new RunDiskMigrationJobResponse();
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/runDiskMigrationJobTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedName = $gapicClient->diskMigrationJobName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[SOURCE]',
+            '[DISK_MIGRATION_JOB]'
+        );
+        $request = (new RunDiskMigrationJobRequest())->setName($formattedName);
+        $response = $gapicClient->runDiskMigrationJob($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.vmmigration.v1.VmMigration/RunDiskMigrationJob', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/runDiskMigrationJobTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function runDiskMigrationJobExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/runDiskMigrationJobTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->diskMigrationJobName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[SOURCE]',
+            '[DISK_MIGRATION_JOB]'
+        );
+        $request = (new RunDiskMigrationJobRequest())->setName($formattedName);
+        $response = $gapicClient->runDiskMigrationJob($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/runDiskMigrationJobTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
     public function startMigrationTest()
     {
         $operationsTransport = $this->createTransport();
@@ -4441,6 +6034,150 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/startMigrationTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function updateDiskMigrationJobTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateDiskMigrationJobTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $expectedResponse = new DiskMigrationJob();
+        $expectedResponse->setName($name);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/updateDiskMigrationJobTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $diskMigrationJob = new DiskMigrationJob();
+        $diskMigrationJobTargetDetails = new DiskMigrationJobTargetDetails();
+        $targetDetailsTargetProject = $gapicClient->targetProjectName('[PROJECT]', '[LOCATION]', '[TARGET_PROJECT]');
+        $diskMigrationJobTargetDetails->setTargetProject($targetDetailsTargetProject);
+        $targetDetailsTargetDisk = new ComputeEngineDisk();
+        $targetDiskZone = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $targetDetailsTargetDisk->setZone($targetDiskZone);
+        $targetDiskDiskType = ComputeEngineDiskType::COMPUTE_ENGINE_DISK_TYPE_UNSPECIFIED;
+        $targetDetailsTargetDisk->setDiskType($targetDiskDiskType);
+        $diskMigrationJobTargetDetails->setTargetDisk($targetDetailsTargetDisk);
+        $diskMigrationJob->setTargetDetails($diskMigrationJobTargetDetails);
+        $request = (new UpdateDiskMigrationJobRequest())->setDiskMigrationJob($diskMigrationJob);
+        $response = $gapicClient->updateDiskMigrationJob($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.vmmigration.v1.VmMigration/UpdateDiskMigrationJob', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getDiskMigrationJob();
+        $this->assertProtobufEquals($diskMigrationJob, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateDiskMigrationJobTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function updateDiskMigrationJobExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateDiskMigrationJobTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $diskMigrationJob = new DiskMigrationJob();
+        $diskMigrationJobTargetDetails = new DiskMigrationJobTargetDetails();
+        $targetDetailsTargetProject = $gapicClient->targetProjectName('[PROJECT]', '[LOCATION]', '[TARGET_PROJECT]');
+        $diskMigrationJobTargetDetails->setTargetProject($targetDetailsTargetProject);
+        $targetDetailsTargetDisk = new ComputeEngineDisk();
+        $targetDiskZone = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $targetDetailsTargetDisk->setZone($targetDiskZone);
+        $targetDiskDiskType = ComputeEngineDiskType::COMPUTE_ENGINE_DISK_TYPE_UNSPECIFIED;
+        $targetDetailsTargetDisk->setDiskType($targetDiskDiskType);
+        $diskMigrationJobTargetDetails->setTargetDisk($targetDetailsTargetDisk);
+        $diskMigrationJob->setTargetDetails($diskMigrationJobTargetDetails);
+        $request = (new UpdateDiskMigrationJobRequest())->setDiskMigrationJob($diskMigrationJob);
+        $response = $gapicClient->updateDiskMigrationJob($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateDiskMigrationJobTest');
         try {
             $response->pollUntilComplete([
                 'initialPollDelayMillis' => 1,
@@ -4881,6 +6618,8 @@ class VmMigrationClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $targetProject = new TargetProject();
+        $targetProjectProject = 'targetProjectProject2026784177';
+        $targetProject->setProject($targetProjectProject);
         $request = (new UpdateTargetProjectRequest())->setTargetProject($targetProject);
         $response = $gapicClient->updateTargetProject($request);
         $this->assertFalse($response->isDone());
@@ -4949,6 +6688,8 @@ class VmMigrationClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $targetProject = new TargetProject();
+        $targetProjectProject = 'targetProjectProject2026784177';
+        $targetProject->setProject($targetProjectProject);
         $request = (new UpdateTargetProjectRequest())->setTargetProject($targetProject);
         $response = $gapicClient->updateTargetProject($request);
         $this->assertFalse($response->isDone());

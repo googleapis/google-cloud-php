@@ -36,17 +36,22 @@ use Google\Rpc\Status;
  * NOTE: TargetProject is a global resource; hence the only supported value
  * for location is `global`.
  *
- * @param string $formattedParent The TargetProject's parent. Please see
- *                                {@see VmMigrationClient::locationName()} for help formatting this field.
- * @param string $targetProjectId The target_project identifier.
+ * @param string $formattedParent      The TargetProject's parent. Please see
+ *                                     {@see VmMigrationClient::locationName()} for help formatting this field.
+ * @param string $targetProjectId      The target_project identifier.
+ * @param string $targetProjectProject The target project ID (number) or project name.
  */
-function create_target_project_sample(string $formattedParent, string $targetProjectId): void
-{
+function create_target_project_sample(
+    string $formattedParent,
+    string $targetProjectId,
+    string $targetProjectProject
+): void {
     // Create a client.
     $vmMigrationClient = new VmMigrationClient();
 
     // Prepare the request message.
-    $targetProject = new TargetProject();
+    $targetProject = (new TargetProject())
+        ->setProject($targetProjectProject);
     $request = (new CreateTargetProjectRequest())
         ->setParent($formattedParent)
         ->setTargetProjectId($targetProjectId)
@@ -85,7 +90,8 @@ function callSample(): void
 {
     $formattedParent = VmMigrationClient::locationName('[PROJECT]', '[LOCATION]');
     $targetProjectId = '[TARGET_PROJECT_ID]';
+    $targetProjectProject = '[PROJECT]';
 
-    create_target_project_sample($formattedParent, $targetProjectId);
+    create_target_project_sample($formattedParent, $targetProjectId, $targetProjectProject);
 }
 // [END vmmigration_v1_generated_VmMigration_CreateTargetProject_sync]

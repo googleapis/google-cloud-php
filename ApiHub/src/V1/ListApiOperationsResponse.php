@@ -18,9 +18,6 @@ class ListApiOperationsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * The operations corresponding to an API version.
-     * Only following field will be populated in the response: name,
-     * spec, details.deprecated, details.http_operation.path.path,
-     * details.http_operation.method and details.documentation.external_uri.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.ApiOperation api_operations = 1;</code>
      */
@@ -41,9 +38,6 @@ class ListApiOperationsResponse extends \Google\Protobuf\Internal\Message
      *
      *     @type array<\Google\Cloud\ApiHub\V1\ApiOperation>|\Google\Protobuf\Internal\RepeatedField $api_operations
      *           The operations corresponding to an API version.
-     *           Only following field will be populated in the response: name,
-     *           spec, details.deprecated, details.http_operation.path.path,
-     *           details.http_operation.method and details.documentation.external_uri.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
      *           If this field is omitted, there are no subsequent pages.
@@ -56,9 +50,6 @@ class ListApiOperationsResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * The operations corresponding to an API version.
-     * Only following field will be populated in the response: name,
-     * spec, details.deprecated, details.http_operation.path.path,
-     * details.http_operation.method and details.documentation.external_uri.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.ApiOperation api_operations = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -70,9 +61,6 @@ class ListApiOperationsResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * The operations corresponding to an API version.
-     * Only following field will be populated in the response: name,
-     * spec, details.deprecated, details.http_operation.path.path,
-     * details.http_operation.method and details.documentation.external_uri.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.ApiOperation api_operations = 1;</code>
      * @param array<\Google\Cloud\ApiHub\V1\ApiOperation>|\Google\Protobuf\Internal\RepeatedField $var

@@ -1,3 +1,3 @@
 deep-copy-regex:
-  - source: /google/cloud/kms/(v1|v1beta1)/.*
+  - source: /google/cloud/example/(v1|v1beta1)/.*
     dest: /src/V1

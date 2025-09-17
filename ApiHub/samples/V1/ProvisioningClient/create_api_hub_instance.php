@@ -34,24 +34,17 @@ use Google\Rpc\Status;
 /**
  * Provisions instance resources for the API Hub.
  *
- * @param string $formattedParent                 The parent resource for the Api Hub instance resource.
- *                                                Format: `projects/{project}/locations/{location}`
- *                                                Please see {@see ProvisioningClient::locationName()} for help formatting this field.
- * @param string $apiHubInstanceConfigCmekKeyName The Customer Managed Encryption Key (CMEK) used for data
- *                                                encryption. The CMEK name should follow the format of
- *                                                `projects/([^/]+)/locations/([^/]+)/keyRings/([^/]+)/cryptoKeys/([^/]+)`,
- *                                                where the location must match the instance location.
+ * @param string $formattedParent The parent resource for the Api Hub instance resource.
+ *                                Format: `projects/{project}/locations/{location}`
+ *                                Please see {@see ProvisioningClient::locationName()} for help formatting this field.
  */
-function create_api_hub_instance_sample(
-    string $formattedParent,
-    string $apiHubInstanceConfigCmekKeyName
-): void {
+function create_api_hub_instance_sample(string $formattedParent): void
+{
     // Create a client.
     $provisioningClient = new ProvisioningClient();
 
     // Prepare the request message.
-    $apiHubInstanceConfig = (new Config())
-        ->setCmekKeyName($apiHubInstanceConfigCmekKeyName);
+    $apiHubInstanceConfig = new Config();
     $apiHubInstance = (new ApiHubInstance())
         ->setConfig($apiHubInstanceConfig);
     $request = (new CreateApiHubInstanceRequest())
@@ -90,8 +83,7 @@ function create_api_hub_instance_sample(
 function callSample(): void
 {
     $formattedParent = ProvisioningClient::locationName('[PROJECT]', '[LOCATION]');
-    $apiHubInstanceConfigCmekKeyName = '[CMEK_KEY_NAME]';
 
-    create_api_hub_instance_sample($formattedParent, $apiHubInstanceConfigCmekKeyName);
+    create_api_hub_instance_sample($formattedParent);
 }
 // [END apihub_v1_generated_Provisioning_CreateApiHubInstance_sync]

@@ -244,7 +244,8 @@ class Volume extends \Google\Protobuf\Internal\Message
      */
     protected $zone = '';
     /**
-     * Output only. Size of the volume cold tier data in GiB.
+     * Output only. Size of the volume cold tier data rounded down to the nearest
+     * GiB.
      *
      * Generated from protobuf field <code>int64 cold_tier_size_gib = 39 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -255,6 +256,19 @@ class Volume extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.netapp.v1.HybridReplicationParameters hybrid_replication_parameters = 40 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $hybrid_replication_parameters = null;
+    /**
+     * Optional. Throughput of the volume (in MiB/s)
+     *
+     * Generated from protobuf field <code>double throughput_mibps = 41 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $throughput_mibps = 0.0;
+    /**
+     * Output only. Total hot tier data rounded down to the nearest GiB used by
+     * the Volume. This field is only used for flex Service Level
+     *
+     * Generated from protobuf field <code>int64 hot_tier_size_used_gib = 44 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $hot_tier_size_used_gib = 0;
 
     /**
      * Constructor.
@@ -347,9 +361,15 @@ class Volume extends \Google\Protobuf\Internal\Message
      *     @type string $zone
      *           Output only. Specifies the active zone for regional volume.
      *     @type int|string $cold_tier_size_gib
-     *           Output only. Size of the volume cold tier data in GiB.
+     *           Output only. Size of the volume cold tier data rounded down to the nearest
+     *           GiB.
      *     @type \Google\Cloud\NetApp\V1\HybridReplicationParameters $hybrid_replication_parameters
      *           Optional. The Hybrid Replication parameters for the volume.
+     *     @type float $throughput_mibps
+     *           Optional. Throughput of the volume (in MiB/s)
+     *     @type int|string $hot_tier_size_used_gib
+     *           Output only. Total hot tier data rounded down to the nearest GiB used by
+     *           the Volume. This field is only used for flex Service Level
      * }
      */
     public function __construct($data = NULL) {
@@ -1378,7 +1398,8 @@ class Volume extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Size of the volume cold tier data in GiB.
+     * Output only. Size of the volume cold tier data rounded down to the nearest
+     * GiB.
      *
      * Generated from protobuf field <code>int64 cold_tier_size_gib = 39 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int|string
@@ -1389,7 +1410,8 @@ class Volume extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Size of the volume cold tier data in GiB.
+     * Output only. Size of the volume cold tier data rounded down to the nearest
+     * GiB.
      *
      * Generated from protobuf field <code>int64 cold_tier_size_gib = 39 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int|string $var
@@ -1435,6 +1457,60 @@ class Volume extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\NetApp\V1\HybridReplicationParameters::class);
         $this->hybrid_replication_parameters = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Throughput of the volume (in MiB/s)
+     *
+     * Generated from protobuf field <code>double throughput_mibps = 41 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return float
+     */
+    public function getThroughputMibps()
+    {
+        return $this->throughput_mibps;
+    }
+
+    /**
+     * Optional. Throughput of the volume (in MiB/s)
+     *
+     * Generated from protobuf field <code>double throughput_mibps = 41 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setThroughputMibps($var)
+    {
+        GPBUtil::checkDouble($var);
+        $this->throughput_mibps = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Total hot tier data rounded down to the nearest GiB used by
+     * the Volume. This field is only used for flex Service Level
+     *
+     * Generated from protobuf field <code>int64 hot_tier_size_used_gib = 44 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int|string
+     */
+    public function getHotTierSizeUsedGib()
+    {
+        return $this->hot_tier_size_used_gib;
+    }
+
+    /**
+     * Output only. Total hot tier data rounded down to the nearest GiB used by
+     * the Volume. This field is only used for flex Service Level
+     *
+     * Generated from protobuf field <code>int64 hot_tier_size_used_gib = 44 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setHotTierSizeUsedGib($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->hot_tier_size_used_gib = $var;
 
         return $this;
     }

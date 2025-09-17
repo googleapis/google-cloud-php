@@ -308,6 +308,21 @@ final class DataScanServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a project
+     * resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project resource.
+     */
+    public static function projectName(string $project): string
+    {
+        return self::getPathTemplate('project')->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
@@ -317,6 +332,7 @@ final class DataScanServiceClient
      * - dataset: projects/{project}/datasets/{dataset}
      * - entity: projects/{project}/locations/{location}/lakes/{lake}/zones/{zone}/entities/{entity}
      * - location: projects/{project}/locations/{location}
+     * - project: projects/{project}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is

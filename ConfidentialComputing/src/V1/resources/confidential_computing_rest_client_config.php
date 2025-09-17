@@ -47,6 +47,30 @@ return [
                     ],
                 ],
             ],
+            'VerifyConfidentialGke' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{challenge=projects/*/locations/*/challenges/*}:verifyConfidentialGke',
+                'body' => '*',
+                'placeholders' => [
+                    'challenge' => [
+                        'getters' => [
+                            'getChallenge',
+                        ],
+                    ],
+                ],
+            ],
+            'VerifyConfidentialSpace' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{challenge=projects/*/locations/*/challenges/*}:verifyConfidentialSpace',
+                'body' => '*',
+                'placeholders' => [
+                    'challenge' => [
+                        'getters' => [
+                            'getChallenge',
+                        ],
+                    ],
+                ],
+            ],
         ],
         'google.cloud.location.Locations' => [
             'GetLocation' => [

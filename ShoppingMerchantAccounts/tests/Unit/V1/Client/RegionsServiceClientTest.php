@@ -28,6 +28,11 @@ use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
+use Google\Shopping\Merchant\Accounts\V1\BatchCreateRegionsRequest;
+use Google\Shopping\Merchant\Accounts\V1\BatchCreateRegionsResponse;
+use Google\Shopping\Merchant\Accounts\V1\BatchDeleteRegionsRequest;
+use Google\Shopping\Merchant\Accounts\V1\BatchUpdateRegionsRequest;
+use Google\Shopping\Merchant\Accounts\V1\BatchUpdateRegionsResponse;
 use Google\Shopping\Merchant\Accounts\V1\Client\RegionsServiceClient;
 use Google\Shopping\Merchant\Accounts\V1\CreateRegionRequest;
 use Google\Shopping\Merchant\Accounts\V1\DeleteRegionRequest;
@@ -66,6 +71,206 @@ class RegionsServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ];
         return new RegionsServiceClient($options);
+    }
+
+    /** @test */
+    public function batchCreateRegionsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new BatchCreateRegionsResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->accountName('[ACCOUNT]');
+        $requests = [];
+        $request = (new BatchCreateRegionsRequest())->setParent($formattedParent)->setRequests($requests);
+        $response = $gapicClient->batchCreateRegions($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.shopping.merchant.accounts.v1.RegionsService/BatchCreateRegions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getRequests();
+        $this->assertProtobufEquals($requests, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function batchCreateRegionsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->accountName('[ACCOUNT]');
+        $requests = [];
+        $request = (new BatchCreateRegionsRequest())->setParent($formattedParent)->setRequests($requests);
+        try {
+            $gapicClient->batchCreateRegions($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function batchDeleteRegionsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new GPBEmpty();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->accountName('[ACCOUNT]');
+        $requests = [];
+        $request = (new BatchDeleteRegionsRequest())->setParent($formattedParent)->setRequests($requests);
+        $gapicClient->batchDeleteRegions($request);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.shopping.merchant.accounts.v1.RegionsService/BatchDeleteRegions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getRequests();
+        $this->assertProtobufEquals($requests, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function batchDeleteRegionsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->accountName('[ACCOUNT]');
+        $requests = [];
+        $request = (new BatchDeleteRegionsRequest())->setParent($formattedParent)->setRequests($requests);
+        try {
+            $gapicClient->batchDeleteRegions($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function batchUpdateRegionsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new BatchUpdateRegionsResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->accountName('[ACCOUNT]');
+        $requests = [];
+        $request = (new BatchUpdateRegionsRequest())->setParent($formattedParent)->setRequests($requests);
+        $response = $gapicClient->batchUpdateRegions($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.shopping.merchant.accounts.v1.RegionsService/BatchUpdateRegions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getRequests();
+        $this->assertProtobufEquals($requests, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function batchUpdateRegionsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->accountName('[ACCOUNT]');
+        $requests = [];
+        $request = (new BatchUpdateRegionsRequest())->setParent($formattedParent)->setRequests($requests);
+        try {
+            $gapicClient->batchUpdateRegions($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
@@ -417,7 +622,7 @@ class RegionsServiceClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function createRegionAsyncTest()
+    public function batchCreateRegionsAsyncTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -425,33 +630,23 @@ class RegionsServiceClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $name = 'name3373707';
-        $displayName = 'displayName1615086568';
-        $expectedResponse = new Region();
-        $expectedResponse->setName($name);
-        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse = new BatchCreateRegionsResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->accountName('[ACCOUNT]');
-        $regionId = 'regionId74348102';
-        $region = new Region();
-        $request = (new CreateRegionRequest())
-            ->setParent($formattedParent)
-            ->setRegionId($regionId)
-            ->setRegion($region);
-        $response = $gapicClient->createRegionAsync($request)->wait();
+        $requests = [];
+        $request = (new BatchCreateRegionsRequest())->setParent($formattedParent)->setRequests($requests);
+        $response = $gapicClient->batchCreateRegionsAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.shopping.merchant.accounts.v1.RegionsService/CreateRegion', $actualFuncCall);
+        $this->assertSame('/google.shopping.merchant.accounts.v1.RegionsService/BatchCreateRegions', $actualFuncCall);
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getRegionId();
-        $this->assertProtobufEquals($regionId, $actualValue);
-        $actualValue = $actualRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
+        $actualValue = $actualRequestObject->getRequests();
+        $this->assertProtobufEquals($requests, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

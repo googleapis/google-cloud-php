@@ -32,13 +32,15 @@ class Entry extends \Google\Protobuf\Internal\Message
      */
     protected $entry_type = '';
     /**
-     * Output only. The time when the entry was created in Dataplex.
+     * Output only. The time when the entry was created in Dataplex Universal
+     * Catalog.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $create_time = null;
     /**
-     * Output only. The time when the entry was last updated in Dataplex.
+     * Output only. The time when the entry was last updated in Dataplex Universal
+     * Catalog.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -93,9 +95,11 @@ class Entry extends \Google\Protobuf\Internal\Message
      *           used to create this entry, in the format
      *           `projects/{project_id_or_number}/locations/{location_id}/entryTypes/{entry_type_id}`.
      *     @type \Google\Protobuf\Timestamp $create_time
-     *           Output only. The time when the entry was created in Dataplex.
+     *           Output only. The time when the entry was created in Dataplex Universal
+     *           Catalog.
      *     @type \Google\Protobuf\Timestamp $update_time
-     *           Output only. The time when the entry was last updated in Dataplex.
+     *           Output only. The time when the entry was last updated in Dataplex Universal
+     *           Catalog.
      *     @type array|\Google\Protobuf\Internal\MapField $aspects
      *           Optional. The aspects that are attached to the entry. Depending on how the
      *           aspect is attached to the entry, the format of the aspect key can be one of
@@ -181,7 +185,8 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The time when the entry was created in Dataplex.
+     * Output only. The time when the entry was created in Dataplex Universal
+     * Catalog.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -202,7 +207,8 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The time when the entry was created in Dataplex.
+     * Output only. The time when the entry was created in Dataplex Universal
+     * Catalog.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -217,7 +223,8 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The time when the entry was last updated in Dataplex.
+     * Output only. The time when the entry was last updated in Dataplex Universal
+     * Catalog.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -238,7 +245,8 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The time when the entry was last updated in Dataplex.
+     * Output only. The time when the entry was last updated in Dataplex Universal
+     * Catalog.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var

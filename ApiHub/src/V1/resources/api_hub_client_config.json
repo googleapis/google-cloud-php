@@ -6,7 +6,8 @@
                 "retry_policy_1_codes": [
                     "UNAVAILABLE"
                 ],
-                "no_retry_1_codes": []
+                "no_retry_1_codes": [],
+                "no_retry_2_codes": []
             },
             "retry_params": {
                 "no_retry_params": {
@@ -35,6 +36,15 @@
                     "rpc_timeout_multiplier": 1.0,
                     "max_rpc_timeout_millis": 60000,
                     "total_timeout_millis": 60000
+                },
+                "no_retry_2_params": {
+                    "initial_retry_delay_millis": 0,
+                    "retry_delay_multiplier": 0.0,
+                    "max_retry_delay_millis": 0,
+                    "initial_rpc_timeout_millis": 300000,
+                    "rpc_timeout_multiplier": 1.0,
+                    "max_rpc_timeout_millis": 300000,
+                    "total_timeout_millis": 300000
                 }
             },
             "methods": {
@@ -42,6 +52,11 @@
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_1_codes",
                     "retry_params_name": "no_retry_1_params"
+                },
+                "CreateApiOperation": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
                 },
                 "CreateAttribute": {
                     "timeout_millis": 60000,
@@ -69,9 +84,14 @@
                     "retry_params_name": "no_retry_1_params"
                 },
                 "DeleteApi": {
+                    "timeout_millis": 300000,
+                    "retry_codes_name": "no_retry_2_codes",
+                    "retry_params_name": "no_retry_2_params"
+                },
+                "DeleteApiOperation": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "no_retry_1_codes",
-                    "retry_params_name": "no_retry_1_params"
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
                 },
                 "DeleteAttribute": {
                     "timeout_millis": 60000,
@@ -89,14 +109,14 @@
                     "retry_params_name": "no_retry_1_params"
                 },
                 "DeleteSpec": {
-                    "timeout_millis": 60000,
-                    "retry_codes_name": "no_retry_1_codes",
-                    "retry_params_name": "no_retry_1_params"
+                    "timeout_millis": 300000,
+                    "retry_codes_name": "no_retry_2_codes",
+                    "retry_params_name": "no_retry_2_params"
                 },
                 "DeleteVersion": {
-                    "timeout_millis": 60000,
-                    "retry_codes_name": "no_retry_1_codes",
-                    "retry_params_name": "no_retry_1_params"
+                    "timeout_millis": 300000,
+                    "retry_codes_name": "no_retry_2_codes",
+                    "retry_params_name": "no_retry_2_params"
                 },
                 "GetApi": {
                     "timeout_millis": 60000,
@@ -187,6 +207,11 @@
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_1_codes",
                     "retry_params_name": "no_retry_1_params"
+                },
+                "UpdateApiOperation": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
                 },
                 "UpdateAttribute": {
                     "timeout_millis": 60000,

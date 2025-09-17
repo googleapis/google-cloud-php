@@ -39,6 +39,9 @@ class AttributeValues extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\ApiHub\V1\AttributeValues\StringAttributeValues $json_values
      *           The attribute values associated with a resource in case attribute data
      *           type is JSON.
+     *     @type \Google\Cloud\ApiHub\V1\AttributeValues\StringAttributeValues $uri_values
+     *           The attribute values associated with a resource in case attribute data
+     *           type is URL, URI or IP, like gs://bucket-name/object-name.
      *     @type string $attribute
      *           Output only. The name of the attribute.
      *           Format: projects/{project}/locations/{location}/attributes/{attribute}
@@ -144,6 +147,39 @@ class AttributeValues extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\ApiHub\V1\AttributeValues\StringAttributeValues::class);
         $this->writeOneof(4, $var);
+
+        return $this;
+    }
+
+    /**
+     * The attribute values associated with a resource in case attribute data
+     * type is URL, URI or IP, like gs://bucket-name/object-name.
+     *
+     * Generated from protobuf field <code>.google.cloud.apihub.v1.AttributeValues.StringAttributeValues uri_values = 5;</code>
+     * @return \Google\Cloud\ApiHub\V1\AttributeValues\StringAttributeValues|null
+     */
+    public function getUriValues()
+    {
+        return $this->readOneof(5);
+    }
+
+    public function hasUriValues()
+    {
+        return $this->hasOneof(5);
+    }
+
+    /**
+     * The attribute values associated with a resource in case attribute data
+     * type is URL, URI or IP, like gs://bucket-name/object-name.
+     *
+     * Generated from protobuf field <code>.google.cloud.apihub.v1.AttributeValues.StringAttributeValues uri_values = 5;</code>
+     * @param \Google\Cloud\ApiHub\V1\AttributeValues\StringAttributeValues $var
+     * @return $this
+     */
+    public function setUriValues($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\ApiHub\V1\AttributeValues\StringAttributeValues::class);
+        $this->writeOneof(5, $var);
 
         return $this;
     }

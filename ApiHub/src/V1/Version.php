@@ -149,6 +149,13 @@ class Version extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string selected_deployment = 16 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     protected $selected_deployment = '';
+    /**
+     * Output only. The list of sources and metadata from the sources of the
+     * version.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.SourceMetadata source_metadata = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $source_metadata;
 
     /**
      * Constructor.
@@ -229,6 +236,9 @@ class Version extends \Google\Protobuf\Internal\Message
      *           particular deployment linked to the version.
      *           Format is
      *           `projects/{project}/locations/{location}/deployments/{deployment}`
+     *     @type array<\Google\Cloud\ApiHub\V1\SourceMetadata>|\Google\Protobuf\Internal\RepeatedField $source_metadata
+     *           Output only. The list of sources and metadata from the sources of the
+     *           version.
      * }
      */
     public function __construct($data = NULL) {
@@ -768,6 +778,34 @@ class Version extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->selected_deployment = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The list of sources and metadata from the sources of the
+     * version.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.SourceMetadata source_metadata = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getSourceMetadata()
+    {
+        return $this->source_metadata;
+    }
+
+    /**
+     * Output only. The list of sources and metadata from the sources of the
+     * version.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.SourceMetadata source_metadata = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<\Google\Cloud\ApiHub\V1\SourceMetadata>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setSourceMetadata($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\ApiHub\V1\SourceMetadata::class);
+        $this->source_metadata = $arr;
 
         return $this;
     }

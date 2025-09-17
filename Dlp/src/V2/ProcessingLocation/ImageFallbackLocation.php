@@ -9,22 +9,23 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Configure image processing to fall back to the configured processing option
- * below if unavailable in the request location.
+ * Configure image processing to fall back to any of the following processing
+ * options if image processing is unavailable in the original request
+ * location.
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.ProcessingLocation.ImageFallbackLocation</code>
  */
 class ImageFallbackLocation extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Processing will happen in a multi-region that contains the current region
+     * Processing occurs in a multi-region that contains the current region
      * if available.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.ProcessingLocation.MultiRegionProcessing multi_region_processing = 100;</code>
      */
     protected $multi_region_processing = null;
     /**
-     * Processing will happen in the global region.
+     * Processing occurs in the global region.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.ProcessingLocation.GlobalProcessing global_processing = 200;</code>
      */
@@ -37,10 +38,10 @@ class ImageFallbackLocation extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Dlp\V2\ProcessingLocation\MultiRegionProcessing $multi_region_processing
-     *           Processing will happen in a multi-region that contains the current region
+     *           Processing occurs in a multi-region that contains the current region
      *           if available.
      *     @type \Google\Cloud\Dlp\V2\ProcessingLocation\GlobalProcessing $global_processing
-     *           Processing will happen in the global region.
+     *           Processing occurs in the global region.
      * }
      */
     public function __construct($data = NULL) {
@@ -49,7 +50,7 @@ class ImageFallbackLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Processing will happen in a multi-region that contains the current region
+     * Processing occurs in a multi-region that contains the current region
      * if available.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.ProcessingLocation.MultiRegionProcessing multi_region_processing = 100;</code>
@@ -71,7 +72,7 @@ class ImageFallbackLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Processing will happen in a multi-region that contains the current region
+     * Processing occurs in a multi-region that contains the current region
      * if available.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.ProcessingLocation.MultiRegionProcessing multi_region_processing = 100;</code>
@@ -87,7 +88,7 @@ class ImageFallbackLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Processing will happen in the global region.
+     * Processing occurs in the global region.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.ProcessingLocation.GlobalProcessing global_processing = 200;</code>
      * @return \Google\Cloud\Dlp\V2\ProcessingLocation\GlobalProcessing|null
@@ -108,7 +109,7 @@ class ImageFallbackLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Processing will happen in the global region.
+     * Processing occurs in the global region.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.ProcessingLocation.GlobalProcessing global_processing = 200;</code>
      * @param \Google\Cloud\Dlp\V2\ProcessingLocation\GlobalProcessing $var

@@ -36,6 +36,7 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\ApiHub\V1\Api;
 use Google\Cloud\ApiHub\V1\ApiOperation;
 use Google\Cloud\ApiHub\V1\Attribute;
+use Google\Cloud\ApiHub\V1\CreateApiOperationRequest;
 use Google\Cloud\ApiHub\V1\CreateApiRequest;
 use Google\Cloud\ApiHub\V1\CreateAttributeRequest;
 use Google\Cloud\ApiHub\V1\CreateDeploymentRequest;
@@ -43,6 +44,7 @@ use Google\Cloud\ApiHub\V1\CreateExternalApiRequest;
 use Google\Cloud\ApiHub\V1\CreateSpecRequest;
 use Google\Cloud\ApiHub\V1\CreateVersionRequest;
 use Google\Cloud\ApiHub\V1\Definition;
+use Google\Cloud\ApiHub\V1\DeleteApiOperationRequest;
 use Google\Cloud\ApiHub\V1\DeleteApiRequest;
 use Google\Cloud\ApiHub\V1\DeleteAttributeRequest;
 use Google\Cloud\ApiHub\V1\DeleteDeploymentRequest;
@@ -70,6 +72,7 @@ use Google\Cloud\ApiHub\V1\ListVersionsRequest;
 use Google\Cloud\ApiHub\V1\SearchResourcesRequest;
 use Google\Cloud\ApiHub\V1\Spec;
 use Google\Cloud\ApiHub\V1\SpecContents;
+use Google\Cloud\ApiHub\V1\UpdateApiOperationRequest;
 use Google\Cloud\ApiHub\V1\UpdateApiRequest;
 use Google\Cloud\ApiHub\V1\UpdateAttributeRequest;
 use Google\Cloud\ApiHub\V1\UpdateDeploymentRequest;
@@ -95,12 +98,14 @@ use Psr\Log\LoggerInterface;
  * contained within formatted names that are returned by the API.
  *
  * @method PromiseInterface<Api> createApiAsync(CreateApiRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ApiOperation> createApiOperationAsync(CreateApiOperationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Attribute> createAttributeAsync(CreateAttributeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Deployment> createDeploymentAsync(CreateDeploymentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ExternalApi> createExternalApiAsync(CreateExternalApiRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Spec> createSpecAsync(CreateSpecRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Version> createVersionAsync(CreateVersionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteApiAsync(DeleteApiRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteApiOperationAsync(DeleteApiOperationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteAttributeAsync(DeleteAttributeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteDeploymentAsync(DeleteDeploymentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteExternalApiAsync(DeleteExternalApiRequest $request, array $optionalArgs = [])
@@ -124,6 +129,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<PagedListResponse> listVersionsAsync(ListVersionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> searchResourcesAsync(SearchResourcesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Api> updateApiAsync(UpdateApiRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ApiOperation> updateApiOperationAsync(UpdateApiOperationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Attribute> updateAttributeAsync(UpdateAttributeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Deployment> updateDeploymentAsync(UpdateDeploymentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ExternalApi> updateExternalApiAsync(UpdateExternalApiRequest $request, array $optionalArgs = [])
@@ -340,6 +346,31 @@ final class ApiHubClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * plugin_instance resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $plugin
+     * @param string $instance
+     *
+     * @return string The formatted plugin_instance resource.
+     */
+    public static function pluginInstanceName(
+        string $project,
+        string $location,
+        string $plugin,
+        string $instance
+    ): string {
+        return self::getPathTemplate('pluginInstance')->render([
+            'project' => $project,
+            'location' => $location,
+            'plugin' => $plugin,
+            'instance' => $instance,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a spec
      * resource.
      *
@@ -399,6 +430,7 @@ final class ApiHubClient
      * - deployment: projects/{project}/locations/{location}/deployments/{deployment}
      * - externalApi: projects/{project}/locations/{location}/externalApis/{external_api}
      * - location: projects/{project}/locations/{location}
+     * - pluginInstance: projects/{project}/locations/{location}/plugins/{plugin}/instances/{instance}
      * - spec: projects/{project}/locations/{location}/apis/{api}/versions/{version}/specs/{spec}
      * - version: projects/{project}/locations/{location}/apis/{api}/versions/{version}
      *
@@ -522,6 +554,34 @@ final class ApiHubClient
     public function createApi(CreateApiRequest $request, array $callOptions = []): Api
     {
         return $this->startApiCall('CreateApi', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Create an apiOperation in an API version.
+     * An apiOperation can be created only if the version has no apiOperations
+     * which were created by parsing a spec.
+     *
+     * The async variant is {@see ApiHubClient::createApiOperationAsync()} .
+     *
+     * @example samples/V1/ApiHubClient/create_api_operation.php
+     *
+     * @param CreateApiOperationRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ApiOperation
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createApiOperation(CreateApiOperationRequest $request, array $callOptions = []): ApiOperation
+    {
+        return $this->startApiCall('CreateApiOperation', $request, $callOptions)->wait();
     }
 
     /**
@@ -705,6 +765,32 @@ final class ApiHubClient
     public function deleteApi(DeleteApiRequest $request, array $callOptions = []): void
     {
         $this->startApiCall('DeleteApi', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Delete an operation in an API version and we can delete only the
+     * operations created via create API. If the operation was created by parsing
+     * the spec, then it can be deleted by editing or deleting the spec.
+     *
+     * The async variant is {@see ApiHubClient::deleteApiOperationAsync()} .
+     *
+     * @example samples/V1/ApiHubClient/delete_api_operation.php
+     *
+     * @param DeleteApiOperationRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteApiOperation(DeleteApiOperationRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('DeleteApiOperation', $request, $callOptions)->wait();
     }
 
     /**
@@ -1283,7 +1369,7 @@ final class ApiHubClient
 
     /**
      * Update an API resource in the API hub. The following fields in the
-     * [API][] can be updated:
+     * [API][google.cloud.apihub.v1.Api] can be updated:
      *
      * * [display_name][google.cloud.apihub.v1.Api.display_name]
      * * [description][google.cloud.apihub.v1.Api.description]
@@ -1293,6 +1379,7 @@ final class ApiHubClient
      * * [team][google.cloud.apihub.v1.Api.team]
      * * [business_unit][google.cloud.apihub.v1.Api.business_unit]
      * * [maturity_level][google.cloud.apihub.v1.Api.maturity_level]
+     * * [api_style][google.cloud.apihub.v1.Api.api_style]
      * * [attributes][google.cloud.apihub.v1.Api.attributes]
      *
      * The
@@ -1323,6 +1410,50 @@ final class ApiHubClient
     public function updateApi(UpdateApiRequest $request, array $callOptions = []): Api
     {
         return $this->startApiCall('UpdateApi', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Update an operation in an API version. The following fields in the
+     * [ApiOperation resource][google.cloud.apihub.v1.ApiOperation] can be
+     * updated:
+     *
+     * * [details.description][ApiOperation.details.description]
+     * * [details.documentation][ApiOperation.details.documentation]
+     * * [details.http_operation.path][ApiOperation.details.http_operation.path.path]
+     * * [details.http_operation.method][ApiOperation.details.http_operation.method]
+     * * [details.deprecated][ApiOperation.details.deprecated]
+     * * [attributes][google.cloud.apihub.v1.ApiOperation.attributes]
+     *
+     * The
+     * [update_mask][google.cloud.apihub.v1.UpdateApiOperationRequest.update_mask]
+     * should be used to specify the fields being updated.
+     *
+     * An operation can be updated only if the operation was created via
+     * [CreateApiOperation][google.cloud.apihub.v1.ApiHub.CreateApiOperation] API.
+     * If the operation was created by parsing the spec, then it can be edited by
+     * updating the spec.
+     *
+     * The async variant is {@see ApiHubClient::updateApiOperationAsync()} .
+     *
+     * @example samples/V1/ApiHubClient/update_api_operation.php
+     *
+     * @param UpdateApiOperationRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ApiOperation
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateApiOperation(UpdateApiOperationRequest $request, array $callOptions = []): ApiOperation
+    {
+        return $this->startApiCall('UpdateApiOperation', $request, $callOptions)->wait();
     }
 
     /**
@@ -1387,7 +1518,11 @@ final class ApiHubClient
      * * [slo][google.cloud.apihub.v1.Deployment.slo]
      * * [environment][google.cloud.apihub.v1.Deployment.environment]
      * * [attributes][google.cloud.apihub.v1.Deployment.attributes]
-     *
+     * * [source_project] [google.cloud.apihub.v1.Deployment.source_project]
+     * * [source_environment]
+     * [google.cloud.apihub.v1.Deployment.source_environment]
+     * * [management_url][google.cloud.apihub.v1.Deployment.management_url]
+     * * [source_uri][google.cloud.apihub.v1.Deployment.source_uri]
      * The
      * [update_mask][google.cloud.apihub.v1.UpdateDeploymentRequest.update_mask]
      * should be used to specify the fields being updated.

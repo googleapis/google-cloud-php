@@ -54,7 +54,7 @@ use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
 /**
- * Service Description: Dataplex Cmek Service
+ * Service Description: Dataplex Universal Catalog Customer Managed Encryption Keys (CMEK) Service
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.

@@ -34,30 +34,38 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\BigQuery\AnalyticsHub\V1\ApproveQueryTemplateRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\CreateDataExchangeRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\CreateListingRequest;
+use Google\Cloud\BigQuery\AnalyticsHub\V1\CreateQueryTemplateRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\DataExchange;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\DeleteDataExchangeRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\DeleteListingRequest;
+use Google\Cloud\BigQuery\AnalyticsHub\V1\DeleteQueryTemplateRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\DeleteSubscriptionRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\GetDataExchangeRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\GetListingRequest;
+use Google\Cloud\BigQuery\AnalyticsHub\V1\GetQueryTemplateRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\GetSubscriptionRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\ListDataExchangesRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\ListListingsRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\ListOrgDataExchangesRequest;
+use Google\Cloud\BigQuery\AnalyticsHub\V1\ListQueryTemplatesRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\ListSharedResourceSubscriptionsRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\ListSubscriptionsRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\Listing;
+use Google\Cloud\BigQuery\AnalyticsHub\V1\QueryTemplate;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\RefreshSubscriptionRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\RevokeSubscriptionRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\RevokeSubscriptionResponse;
+use Google\Cloud\BigQuery\AnalyticsHub\V1\SubmitQueryTemplateRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\SubscribeDataExchangeRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\SubscribeListingRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\SubscribeListingResponse;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\Subscription;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\UpdateDataExchangeRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\UpdateListingRequest;
+use Google\Cloud\BigQuery\AnalyticsHub\V1\UpdateQueryTemplateRequest;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\SetIamPolicyRequest;
@@ -84,28 +92,35 @@ use Psr\Log\LoggerInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
+ * @method PromiseInterface<QueryTemplate> approveQueryTemplateAsync(ApproveQueryTemplateRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<DataExchange> createDataExchangeAsync(CreateDataExchangeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Listing> createListingAsync(CreateListingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<QueryTemplate> createQueryTemplateAsync(CreateQueryTemplateRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteDataExchangeAsync(DeleteDataExchangeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteListingAsync(DeleteListingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteQueryTemplateAsync(DeleteQueryTemplateRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteSubscriptionAsync(DeleteSubscriptionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<DataExchange> getDataExchangeAsync(GetDataExchangeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Listing> getListingAsync(GetListingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<QueryTemplate> getQueryTemplateAsync(GetQueryTemplateRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Subscription> getSubscriptionAsync(GetSubscriptionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listDataExchangesAsync(ListDataExchangesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listListingsAsync(ListListingsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listOrgDataExchangesAsync(ListOrgDataExchangesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listQueryTemplatesAsync(ListQueryTemplatesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listSharedResourceSubscriptionsAsync(ListSharedResourceSubscriptionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listSubscriptionsAsync(ListSubscriptionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> refreshSubscriptionAsync(RefreshSubscriptionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<RevokeSubscriptionResponse> revokeSubscriptionAsync(RevokeSubscriptionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<QueryTemplate> submitQueryTemplateAsync(SubmitQueryTemplateRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> subscribeDataExchangeAsync(SubscribeDataExchangeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<SubscribeListingResponse> subscribeListingAsync(SubscribeListingRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<DataExchange> updateDataExchangeAsync(UpdateDataExchangeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Listing> updateListingAsync(UpdateListingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<QueryTemplate> updateQueryTemplateAsync(UpdateQueryTemplateRequest $request, array $optionalArgs = [])
  */
 final class AnalyticsHubServiceClient
 {
@@ -298,6 +313,31 @@ final class AnalyticsHubServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * query_template resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $dataExchange
+     * @param string $queryTemplate
+     *
+     * @return string The formatted query_template resource.
+     */
+    public static function queryTemplateName(
+        string $project,
+        string $location,
+        string $dataExchange,
+        string $queryTemplate
+    ): string {
+        return self::getPathTemplate('queryTemplate')->render([
+            'project' => $project,
+            'location' => $location,
+            'data_exchange' => $dataExchange,
+            'query_template' => $queryTemplate,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a routine
      * resource.
      *
@@ -380,6 +420,7 @@ final class AnalyticsHubServiceClient
      * - listing: projects/{project}/locations/{location}/dataExchanges/{data_exchange}/listings/{listing}
      * - location: projects/{project}/locations/{location}
      * - managedService: services/{service}
+     * - queryTemplate: projects/{project}/locations/{location}/dataExchanges/{data_exchange}/queryTemplates/{query_template}
      * - routine: projects/{project}/datasets/{dataset}/routines/{routine}
      * - subscription: projects/{project}/locations/{location}/subscriptions/{subscription}
      * - table: projects/{project}/datasets/{dataset}/tables/{table}
@@ -485,6 +526,33 @@ final class AnalyticsHubServiceClient
     }
 
     /**
+     * Approves a query template.
+     *
+     * The async variant is
+     * {@see AnalyticsHubServiceClient::approveQueryTemplateAsync()} .
+     *
+     * @example samples/V1/AnalyticsHubServiceClient/approve_query_template.php
+     *
+     * @param ApproveQueryTemplateRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return QueryTemplate
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function approveQueryTemplate(ApproveQueryTemplateRequest $request, array $callOptions = []): QueryTemplate
+    {
+        return $this->startApiCall('ApproveQueryTemplate', $request, $callOptions)->wait();
+    }
+
+    /**
      * Creates a new data exchange.
      *
      * The async variant is {@see AnalyticsHubServiceClient::createDataExchangeAsync()}
@@ -538,6 +606,33 @@ final class AnalyticsHubServiceClient
     }
 
     /**
+     * Creates a new QueryTemplate
+     *
+     * The async variant is
+     * {@see AnalyticsHubServiceClient::createQueryTemplateAsync()} .
+     *
+     * @example samples/V1/AnalyticsHubServiceClient/create_query_template.php
+     *
+     * @param CreateQueryTemplateRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return QueryTemplate
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createQueryTemplate(CreateQueryTemplateRequest $request, array $callOptions = []): QueryTemplate
+    {
+        return $this->startApiCall('CreateQueryTemplate', $request, $callOptions)->wait();
+    }
+
+    /**
      * Deletes an existing data exchange.
      *
      * The async variant is {@see AnalyticsHubServiceClient::deleteDataExchangeAsync()}
@@ -584,6 +679,31 @@ final class AnalyticsHubServiceClient
     public function deleteListing(DeleteListingRequest $request, array $callOptions = []): void
     {
         $this->startApiCall('DeleteListing', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a query template.
+     *
+     * The async variant is
+     * {@see AnalyticsHubServiceClient::deleteQueryTemplateAsync()} .
+     *
+     * @example samples/V1/AnalyticsHubServiceClient/delete_query_template.php
+     *
+     * @param DeleteQueryTemplateRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteQueryTemplate(DeleteQueryTemplateRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('DeleteQueryTemplate', $request, $callOptions)->wait();
     }
 
     /**
@@ -689,6 +809,32 @@ final class AnalyticsHubServiceClient
     public function getListing(GetListingRequest $request, array $callOptions = []): Listing
     {
         return $this->startApiCall('GetListing', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets a QueryTemplate
+     *
+     * The async variant is {@see AnalyticsHubServiceClient::getQueryTemplateAsync()} .
+     *
+     * @example samples/V1/AnalyticsHubServiceClient/get_query_template.php
+     *
+     * @param GetQueryTemplateRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return QueryTemplate
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getQueryTemplate(GetQueryTemplateRequest $request, array $callOptions = []): QueryTemplate
+    {
+        return $this->startApiCall('GetQueryTemplate', $request, $callOptions)->wait();
     }
 
     /**
@@ -798,6 +944,33 @@ final class AnalyticsHubServiceClient
         array $callOptions = []
     ): PagedListResponse {
         return $this->startApiCall('ListOrgDataExchanges', $request, $callOptions);
+    }
+
+    /**
+     * Lists all QueryTemplates in a given project and location.
+     *
+     * The async variant is {@see AnalyticsHubServiceClient::listQueryTemplatesAsync()}
+     * .
+     *
+     * @example samples/V1/AnalyticsHubServiceClient/list_query_templates.php
+     *
+     * @param ListQueryTemplatesRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listQueryTemplates(ListQueryTemplatesRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListQueryTemplates', $request, $callOptions);
     }
 
     /**
@@ -938,6 +1111,33 @@ final class AnalyticsHubServiceClient
     public function setIamPolicy(SetIamPolicyRequest $request, array $callOptions = []): Policy
     {
         return $this->startApiCall('SetIamPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Submits a query template for approval.
+     *
+     * The async variant is
+     * {@see AnalyticsHubServiceClient::submitQueryTemplateAsync()} .
+     *
+     * @example samples/V1/AnalyticsHubServiceClient/submit_query_template.php
+     *
+     * @param SubmitQueryTemplateRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return QueryTemplate
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function submitQueryTemplate(SubmitQueryTemplateRequest $request, array $callOptions = []): QueryTemplate
+    {
+        return $this->startApiCall('SubmitQueryTemplate', $request, $callOptions)->wait();
     }
 
     /**
@@ -1085,5 +1285,32 @@ final class AnalyticsHubServiceClient
     public function updateListing(UpdateListingRequest $request, array $callOptions = []): Listing
     {
         return $this->startApiCall('UpdateListing', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates an existing QueryTemplate
+     *
+     * The async variant is
+     * {@see AnalyticsHubServiceClient::updateQueryTemplateAsync()} .
+     *
+     * @example samples/V1/AnalyticsHubServiceClient/update_query_template.php
+     *
+     * @param UpdateQueryTemplateRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return QueryTemplate
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateQueryTemplate(UpdateQueryTemplateRequest $request, array $callOptions = []): QueryTemplate
+    {
+        return $this->startApiCall('UpdateQueryTemplate', $request, $callOptions)->wait();
     }
 }

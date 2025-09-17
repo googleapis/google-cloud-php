@@ -38,9 +38,12 @@ use Google\Cloud\ApiHub\V1\Deployment;
  *                                           Format: `projects/{project}/locations/{location}`
  *                                           Please see {@see ApiHubClient::locationName()} for help formatting this field.
  * @param string $deploymentDisplayName      The display name of the deployment.
- * @param string $deploymentResourceUri      A URI to the runtime resource. This URI can be used to manage the
- *                                           resource. For example, if the runtime resource is of type APIGEE_PROXY,
- *                                           then this field will contain the URI to the management UI of the proxy.
+ * @param string $deploymentResourceUri      The resource URI identifies the deployment within its gateway.
+ *                                           For Apigee gateways, its recommended to use the format:
+ *                                           organizations/{org}/environments/{env}/apis/{api}.
+ *                                           For ex: if a proxy with name `orders` is deployed in `staging`
+ *                                           environment of `cymbal` organization, the resource URI would be:
+ *                                           `organizations/cymbal/environments/staging/apis/orders`.
  * @param string $deploymentEndpointsElement The endpoints at which this deployment resource is listening for
  *                                           API requests. This could be a list of complete URIs, hostnames or an IP
  *                                           addresses.
