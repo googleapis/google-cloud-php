@@ -10,7 +10,7 @@
         "google/auth": "^1.45",
         "google/grpc-gcp": "^0.4",
         "grpc/grpc": "^1.13",
-        "google/protobuf": "^4.26.1",
+        "google/protobuf": "^4.31",
         "guzzlehttp/promises": "^2.0",
         "guzzlehttp/psr7": "^2.0",
         "google/common-protos": "^4.4",
@@ -24,7 +24,7 @@
         "phpstan/phpstan": "^2.0"
     },
     "conflict": {
-        "ext-protobuf": "<4.7.0"
+        "ext-protobuf": "<4.31.0"
     },
     "autoload": {
         "psr-4": {

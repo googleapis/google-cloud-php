@@ -75,7 +75,7 @@ class MockRequestBody extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *     @type int|string $number
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $repeated_field
+     *     @type string[]|\Google\Protobuf\RepeatedField $repeated_field
      *     @type \Google\ApiCore\Testing\MockRequestBody $nested_message
      *     @type \Google\Protobuf\BytesValue $bytes_value
      *     @type \Google\Protobuf\Duration $duration_value
@@ -143,7 +143,7 @@ class MockRequestBody extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated string repeated_field = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return \Google\Protobuf\RepeatedField
      */
     public function getRepeatedField()
     {
@@ -152,7 +152,7 @@ class MockRequestBody extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated string repeated_field = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[]|\Google\Protobuf\RepeatedField $var
      * @return $this
      */
     public function setRepeatedField($var)

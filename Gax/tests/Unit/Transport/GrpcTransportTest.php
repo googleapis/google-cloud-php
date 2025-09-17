@@ -43,7 +43,7 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\Logging\StdOutLogger;
 use Google\Protobuf\Internal\GPBType;
 use Google\Protobuf\Internal\Message;
-use Google\Protobuf\Internal\RepeatedField;
+use Google\Protobuf\RepeatedField;
 use Google\Rpc\Code;
 use Google\Rpc\Status;
 use Grpc\BaseStub;
