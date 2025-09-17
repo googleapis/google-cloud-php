@@ -32,7 +32,7 @@
 namespace Google\ApiCore;
 
 use Exception;
-use Google\Protobuf\Internal\RepeatedField;
+use Google\Protobuf\RepeatedField;
 use Google\Rpc\Status;
 use GuzzleHttp\Exception\RequestException;
 use stdClass;

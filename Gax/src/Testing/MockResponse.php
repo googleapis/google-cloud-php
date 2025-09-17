@@ -42,7 +42,7 @@ class MockResponse extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *     @type int|string $number
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $resources_list
+     *     @type string[]|\Google\Protobuf\RepeatedField $resources_list
      *     @type string $next_page_token
      *     @type array|\Google\Protobuf\Internal\MapField $resources_map
      * }
@@ -99,7 +99,7 @@ class MockResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated string resources_list = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return \Google\Protobuf\RepeatedField
      */
     public function getResourcesList()
     {
@@ -108,7 +108,7 @@ class MockResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated string resources_list = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[]|\Google\Protobuf\RepeatedField $var
      * @return $this
      */
     public function setResourcesList($var)
