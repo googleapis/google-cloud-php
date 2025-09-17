@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2022 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,51 +22,38 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START livestream_v1_generated_LivestreamService_CreateChannel_sync]
+// [START livestream_v1_generated_LivestreamService_StopDistribution_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Video\LiveStream\V1\Channel;
-use Google\Cloud\Video\LiveStream\V1\Channel\Output;
+use Google\Cloud\Video\LiveStream\V1\ChannelOperationResponse;
 use Google\Cloud\Video\LiveStream\V1\Client\LivestreamServiceClient;
-use Google\Cloud\Video\LiveStream\V1\CreateChannelRequest;
+use Google\Cloud\Video\LiveStream\V1\StopDistributionRequest;
 use Google\Rpc\Status;
 
 /**
- * Creates a channel with the provided unique ID in the specified
- * region.
+ * Stops the specified distribution.
  *
- * @param string $formattedParent The parent location for the resource, in the form of:
- *                                `projects/{project}/locations/{location}`. Please see
- *                                {@see LivestreamServiceClient::locationName()} for help formatting this field.
- * @param string $channelId       The ID of the channel resource to be created.
- *
- *                                This value must be 1-63 characters, begin and end with a lower-case letter
- *                                or a number, and consist of only lower-case letters, numbers, and hyphens.
- *                                In other words, it must match the following regex:
- *                                `^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?$`.
+ * @param string $formattedName The name of the channel resource, in the form of:
+ *                              `projects/{project}/locations/{location}/channels/{channelId}`. Please see
+ *                              {@see LivestreamServiceClient::channelName()} for help formatting this field.
  */
-function create_channel_sample(string $formattedParent, string $channelId): void
+function stop_distribution_sample(string $formattedName): void
 {
     // Create a client.
     $livestreamServiceClient = new LivestreamServiceClient();
 
     // Prepare the request message.
-    $channelOutput = new Output();
-    $channel = (new Channel())
-        ->setOutput($channelOutput);
-    $request = (new CreateChannelRequest())
-        ->setParent($formattedParent)
-        ->setChannel($channel)
-        ->setChannelId($channelId);
+    $request = (new StopDistributionRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $livestreamServiceClient->createChannel($request);
+        $response = $livestreamServiceClient->stopDistribution($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
-            /** @var Channel $result */
+            /** @var ChannelOperationResponse $result */
             $result = $response->getResult();
             printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
         } else {
@@ -90,9 +77,8 @@ function create_channel_sample(string $formattedParent, string $channelId): void
  */
 function callSample(): void
 {
-    $formattedParent = LivestreamServiceClient::locationName('[PROJECT]', '[LOCATION]');
-    $channelId = '[CHANNEL_ID]';
+    $formattedName = LivestreamServiceClient::channelName('[PROJECT]', '[LOCATION]', '[CHANNEL]');
 
-    create_channel_sample($formattedParent, $channelId);
+    stop_distribution_sample($formattedName);
 }
-// [END livestream_v1_generated_LivestreamService_CreateChannel_sync]
+// [END livestream_v1_generated_LivestreamService_StopDistribution_sync]

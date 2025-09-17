@@ -38,10 +38,12 @@ use Google\Rpc\Status;
  * @param string $formattedParent                   The parent resource name, in the following form:
  *                                                  `projects/{project}/locations/{location}/channels/{channelId}`. Please see
  *                                                  {@see LivestreamServiceClient::channelName()} for help formatting this field.
- * @param string $dvrSessionId                      Id of the requesting object in the following form:
+ * @param string $dvrSessionId                      The ID of the DVR session resource to be created.
  *
- *                                                  1. 1 character minimum, 63 characters maximum
- *                                                  2. Only contains letters, digits, underscores, and hyphens
+ *                                                  This value must be 1-63 characters, begin and end with a lower-case letter
+ *                                                  or a number, and consist of only lower-case letters, numbers, and hyphens.
+ *                                                  In other words, it must match the following regex:
+ *                                                  `^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?$`.
  * @param string $dvrSessionDvrManifestsManifestKey A unique key that identifies a manifest config in the parent
  *                                                  channel. This key is the same as `channel.manifests.key` for the selected
  *                                                  manifest.

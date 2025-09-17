@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2022 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,41 +22,32 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START livestream_v1_generated_LivestreamService_CreateEvent_sync]
+// [START livestream_v1_generated_LivestreamService_PreviewInput_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\Video\LiveStream\V1\Client\LivestreamServiceClient;
-use Google\Cloud\Video\LiveStream\V1\CreateEventRequest;
-use Google\Cloud\Video\LiveStream\V1\Event;
+use Google\Cloud\Video\LiveStream\V1\PreviewInputRequest;
+use Google\Cloud\Video\LiveStream\V1\PreviewInputResponse;
 
 /**
- * Creates an event with the provided unique ID in the specified channel.
+ * Preview the streaming content of the specified input.
  *
- * @param string $formattedParent The parent channel for the resource, in the form of:
- *                                `projects/{project}/locations/{location}/channels/{channelId}`. Please see
- *                                {@see LivestreamServiceClient::channelName()} for help formatting this field.
- * @param string $eventId         The ID of the event resource to be created.
- *
- *                                This value must be 1-63 characters, begin and end with a lower-case letter
- *                                or a number, and consist of only lower-case letters, numbers, and hyphens.
- *                                In other words, it must match the following regex:
- *                                `^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?$`.
+ * @param string $formattedName The name of the input resource, in the form of:
+ *                              `projects/{project}/locations/{location}/inputs/{inputId}`. Please see
+ *                              {@see LivestreamServiceClient::inputName()} for help formatting this field.
  */
-function create_event_sample(string $formattedParent, string $eventId): void
+function preview_input_sample(string $formattedName): void
 {
     // Create a client.
     $livestreamServiceClient = new LivestreamServiceClient();
 
     // Prepare the request message.
-    $event = new Event();
-    $request = (new CreateEventRequest())
-        ->setParent($formattedParent)
-        ->setEvent($event)
-        ->setEventId($eventId);
+    $request = (new PreviewInputRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
-        /** @var Event $response */
-        $response = $livestreamServiceClient->createEvent($request);
+        /** @var PreviewInputResponse $response */
+        $response = $livestreamServiceClient->previewInput($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
@@ -74,9 +65,8 @@ function create_event_sample(string $formattedParent, string $eventId): void
  */
 function callSample(): void
 {
-    $formattedParent = LivestreamServiceClient::channelName('[PROJECT]', '[LOCATION]', '[CHANNEL]');
-    $eventId = '[EVENT_ID]';
+    $formattedName = LivestreamServiceClient::inputName('[PROJECT]', '[LOCATION]', '[INPUT]');
 
-    create_event_sample($formattedParent, $eventId);
+    preview_input_sample($formattedName);
 }
-// [END livestream_v1_generated_LivestreamService_CreateEvent_sync]
+// [END livestream_v1_generated_LivestreamService_PreviewInput_sync]

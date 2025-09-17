@@ -135,14 +135,29 @@
                                 "listInputs"
                             ]
                         },
+                        "PreviewInput": {
+                            "methods": [
+                                "previewInput"
+                            ]
+                        },
                         "StartChannel": {
                             "methods": [
                                 "startChannel"
                             ]
                         },
+                        "StartDistribution": {
+                            "methods": [
+                                "startDistribution"
+                            ]
+                        },
                         "StopChannel": {
                             "methods": [
                                 "stopChannel"
+                            ]
+                        },
+                        "StopDistribution": {
+                            "methods": [
+                                "stopDistribution"
                             ]
                         },
                         "UpdateChannel": {
