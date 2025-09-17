@@ -20,11 +20,11 @@ class InstancesReportHostAsFaultyRequestFaultReason extends \Google\Protobuf\Int
      *
      * Generated from protobuf field <code>optional string behavior = 437170770;</code>
      */
-    private $behavior = null;
+    protected $behavior = null;
     /**
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
-    private $description = null;
+    protected $description = null;
 
     /**
      * Constructor.

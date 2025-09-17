@@ -20,13 +20,13 @@ class GetExternalVpnGatewayRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string external_vpn_gateway = 109898629 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $external_vpn_gateway = '';
+    protected $external_vpn_gateway = '';
     /**
      * Project ID for this request.
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project = '';
+    protected $project = '';
 
     /**
      * @param string $project            Project ID for this request.

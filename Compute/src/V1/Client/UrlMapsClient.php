@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -382,7 +382,7 @@ final class UrlMapsClient
     }
 
     /**
-     * Initiates a cache invalidation operation, invalidating the specified path, scoped to the specified UrlMap. For more information, see [Invalidating cached content](https://cloud.google.com/cdn/docs/invalidating-cached-content).
+     * Initiates a cache invalidation operation, invalidating the specified path, scoped to the specified UrlMap. For more information, see [Invalidating cached content](/cdn/docs/invalidating-cached-content).
      *
      * The async variant is {@see UrlMapsClient::invalidateCacheAsync()} .
      *

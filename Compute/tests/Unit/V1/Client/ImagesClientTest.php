@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -69,7 +69,9 @@ class ImagesClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return ImagesClient */
@@ -109,9 +111,7 @@ class ImagesClientTest extends GeneratedTest
         // Mock request
         $image = 'image100313435';
         $project = 'project-309310695';
-        $request = (new DeleteImageRequest())
-            ->setImage($image)
-            ->setProject($project);
+        $request = (new DeleteImageRequest())->setImage($image)->setProject($project);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -168,19 +168,20 @@ class ImagesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $image = 'image100313435';
         $project = 'project-309310695';
-        $request = (new DeleteImageRequest())
-            ->setImage($image)
-            ->setProject($project);
+        $request = (new DeleteImageRequest())->setImage($image)->setProject($project);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -292,12 +293,15 @@ class ImagesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $deprecationStatusResource = new DeprecationStatus();
@@ -385,9 +389,7 @@ class ImagesClientTest extends GeneratedTest
         // Mock request
         $image = 'image100313435';
         $project = 'project-309310695';
-        $request = (new GetImageRequest())
-            ->setImage($image)
-            ->setProject($project);
+        $request = (new GetImageRequest())->setImage($image)->setProject($project);
         $response = $gapicClient->get($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -413,19 +415,20 @@ class ImagesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $image = 'image100313435';
         $project = 'project-309310695';
-        $request = (new GetImageRequest())
-            ->setImage($image)
-            ->setProject($project);
+        $request = (new GetImageRequest())->setImage($image)->setProject($project);
         try {
             $gapicClient->get($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -497,9 +500,7 @@ class ImagesClientTest extends GeneratedTest
         // Mock request
         $family = 'family-1281860764';
         $project = 'project-309310695';
-        $request = (new GetFromFamilyImageRequest())
-            ->setFamily($family)
-            ->setProject($project);
+        $request = (new GetFromFamilyImageRequest())->setFamily($family)->setProject($project);
         $response = $gapicClient->getFromFamily($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -525,19 +526,20 @@ class ImagesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $family = 'family-1281860764';
         $project = 'project-309310695';
-        $request = (new GetFromFamilyImageRequest())
-            ->setFamily($family)
-            ->setProject($project);
+        $request = (new GetFromFamilyImageRequest())->setFamily($family)->setProject($project);
         try {
             $gapicClient->getFromFamily($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -571,9 +573,7 @@ class ImagesClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyImageRequest())
-            ->setProject($project)
-            ->setResource($resource);
+        $request = (new GetIamPolicyImageRequest())->setProject($project)->setResource($resource);
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -599,19 +599,20 @@ class ImagesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyImageRequest())
-            ->setProject($project)
-            ->setResource($resource);
+        $request = (new GetIamPolicyImageRequest())->setProject($project)->setResource($resource);
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -653,9 +654,7 @@ class ImagesClientTest extends GeneratedTest
         // Mock request
         $imageResource = new Image();
         $project = 'project-309310695';
-        $request = (new InsertImageRequest())
-            ->setImageResource($imageResource)
-            ->setProject($project);
+        $request = (new InsertImageRequest())->setImageResource($imageResource)->setProject($project);
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -712,19 +711,20 @@ class ImagesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $imageResource = new Image();
         $project = 'project-309310695';
-        $request = (new InsertImageRequest())
-            ->setImageResource($imageResource)
-            ->setProject($project);
+        $request = (new InsertImageRequest())->setImageResource($imageResource)->setProject($project);
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -759,9 +759,7 @@ class ImagesClientTest extends GeneratedTest
         $nextPageToken = '';
         $selfLink = 'selfLink-1691268851';
         $itemsElement = new Image();
-        $items = [
-            $itemsElement,
-        ];
+        $items = [$itemsElement];
         $expectedResponse = new ImageList();
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
@@ -771,8 +769,7 @@ class ImagesClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $project = 'project-309310695';
-        $request = (new ListImagesRequest())
-            ->setProject($project);
+        $request = (new ListImagesRequest())->setProject($project);
         $response = $gapicClient->list($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -799,17 +796,19 @@ class ImagesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';
-        $request = (new ListImagesRequest())
-            ->setProject($project);
+        $request = (new ListImagesRequest())->setProject($project);
         try {
             $gapicClient->list($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -914,12 +913,15 @@ class ImagesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $image = 'image100313435';
@@ -1001,12 +1003,15 @@ class ImagesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $globalSetPolicyRequestResource = new GlobalSetPolicyRequest();
@@ -1120,12 +1125,15 @@ class ImagesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $globalSetLabelsRequestResource = new GlobalSetLabelsRequest();
@@ -1201,12 +1209,15 @@ class ImagesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';
@@ -1257,9 +1268,7 @@ class ImagesClientTest extends GeneratedTest
         // Mock request
         $image = 'image100313435';
         $project = 'project-309310695';
-        $request = (new DeleteImageRequest())
-            ->setImage($image)
-            ->setProject($project);
+        $request = (new DeleteImageRequest())->setImage($image)->setProject($project);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();

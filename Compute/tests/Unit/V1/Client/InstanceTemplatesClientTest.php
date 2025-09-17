@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -66,7 +66,9 @@ class InstanceTemplatesClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return InstanceTemplatesClient */
@@ -103,8 +105,7 @@ class InstanceTemplatesClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $project = 'project-309310695';
-        $request = (new AggregatedListInstanceTemplatesRequest())
-            ->setProject($project);
+        $request = (new AggregatedListInstanceTemplatesRequest())->setProject($project);
         $response = $gapicClient->aggregatedList($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -133,17 +134,19 @@ class InstanceTemplatesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';
-        $request = (new AggregatedListInstanceTemplatesRequest())
-            ->setProject($project);
+        $request = (new AggregatedListInstanceTemplatesRequest())->setProject($project);
         try {
             $gapicClient->aggregatedList($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -185,9 +188,7 @@ class InstanceTemplatesClientTest extends GeneratedTest
         // Mock request
         $instanceTemplate = 'instanceTemplate309248228';
         $project = 'project-309310695';
-        $request = (new DeleteInstanceTemplateRequest())
-            ->setInstanceTemplate($instanceTemplate)
-            ->setProject($project);
+        $request = (new DeleteInstanceTemplateRequest())->setInstanceTemplate($instanceTemplate)->setProject($project);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -244,19 +245,20 @@ class InstanceTemplatesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $instanceTemplate = 'instanceTemplate309248228';
         $project = 'project-309310695';
-        $request = (new DeleteInstanceTemplateRequest())
-            ->setInstanceTemplate($instanceTemplate)
-            ->setProject($project);
+        $request = (new DeleteInstanceTemplateRequest())->setInstanceTemplate($instanceTemplate)->setProject($project);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -307,9 +309,7 @@ class InstanceTemplatesClientTest extends GeneratedTest
         // Mock request
         $instanceTemplate = 'instanceTemplate309248228';
         $project = 'project-309310695';
-        $request = (new GetInstanceTemplateRequest())
-            ->setInstanceTemplate($instanceTemplate)
-            ->setProject($project);
+        $request = (new GetInstanceTemplateRequest())->setInstanceTemplate($instanceTemplate)->setProject($project);
         $response = $gapicClient->get($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -335,19 +335,20 @@ class InstanceTemplatesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $instanceTemplate = 'instanceTemplate309248228';
         $project = 'project-309310695';
-        $request = (new GetInstanceTemplateRequest())
-            ->setInstanceTemplate($instanceTemplate)
-            ->setProject($project);
+        $request = (new GetInstanceTemplateRequest())->setInstanceTemplate($instanceTemplate)->setProject($project);
         try {
             $gapicClient->get($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -381,9 +382,7 @@ class InstanceTemplatesClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyInstanceTemplateRequest())
-            ->setProject($project)
-            ->setResource($resource);
+        $request = (new GetIamPolicyInstanceTemplateRequest())->setProject($project)->setResource($resource);
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -409,19 +408,20 @@ class InstanceTemplatesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyInstanceTemplateRequest())
-            ->setProject($project)
-            ->setResource($resource);
+        $request = (new GetIamPolicyInstanceTemplateRequest())->setProject($project)->setResource($resource);
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -522,12 +522,15 @@ class InstanceTemplatesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $instanceTemplateResource = new InstanceTemplate();
@@ -569,9 +572,7 @@ class InstanceTemplatesClientTest extends GeneratedTest
         $nextPageToken = '';
         $selfLink = 'selfLink-1691268851';
         $itemsElement = new InstanceTemplate();
-        $items = [
-            $itemsElement,
-        ];
+        $items = [$itemsElement];
         $expectedResponse = new InstanceTemplateList();
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
@@ -581,8 +582,7 @@ class InstanceTemplatesClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $project = 'project-309310695';
-        $request = (new ListInstanceTemplatesRequest())
-            ->setProject($project);
+        $request = (new ListInstanceTemplatesRequest())->setProject($project);
         $response = $gapicClient->list($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -609,17 +609,19 @@ class InstanceTemplatesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';
-        $request = (new ListInstanceTemplatesRequest())
-            ->setProject($project);
+        $request = (new ListInstanceTemplatesRequest())->setProject($project);
         try {
             $gapicClient->list($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -685,12 +687,15 @@ class InstanceTemplatesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $globalSetPolicyRequestResource = new GlobalSetPolicyRequest();
@@ -759,12 +764,15 @@ class InstanceTemplatesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';
@@ -812,8 +820,7 @@ class InstanceTemplatesClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $project = 'project-309310695';
-        $request = (new AggregatedListInstanceTemplatesRequest())
-            ->setProject($project);
+        $request = (new AggregatedListInstanceTemplatesRequest())->setProject($project);
         $response = $gapicClient->aggregatedListAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());

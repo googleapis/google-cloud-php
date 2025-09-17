@@ -19,7 +19,7 @@ class RegionInstanceGroupManagersSetTargetPoolsRequest extends \Google\Protobuf\
      *
      * Generated from protobuf field <code>optional string fingerprint = 234678500;</code>
      */
-    private $fingerprint = null;
+    protected $fingerprint = null;
     /**
      * The URL of all TargetPool resources to which instances in the instanceGroup field are added. The target pools automatically apply to all of the instances in the managed instance group.
      *

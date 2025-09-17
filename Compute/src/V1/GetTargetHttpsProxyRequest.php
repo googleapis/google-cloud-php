@@ -20,13 +20,13 @@ class GetTargetHttpsProxyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * Name of the TargetHttpsProxy resource to return.
      *
      * Generated from protobuf field <code>string target_https_proxy = 52336748 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $target_https_proxy = '';
+    protected $target_https_proxy = '';
 
     /**
      * @param string $project          Project ID for this request.

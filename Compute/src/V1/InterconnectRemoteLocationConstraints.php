@@ -20,20 +20,20 @@ class InterconnectRemoteLocationConstraints extends \Google\Protobuf\Internal\Me
      *
      * Generated from protobuf field <code>optional string port_pair_remote_location = 495917351;</code>
      */
-    private $port_pair_remote_location = null;
+    protected $port_pair_remote_location = null;
     /**
      * [Output Only] Port pair VLAN constraints, which can take one of the following values: PORT_PAIR_UNCONSTRAINED_VLAN, PORT_PAIR_MATCHING_VLAN
      * Check the PortPairVlan enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string port_pair_vlan = 478214506;</code>
      */
-    private $port_pair_vlan = null;
+    protected $port_pair_vlan = null;
     /**
      * [Output Only] [min-length, max-length] The minimum and maximum value (inclusive) for the IPv4 subnet length. For example, an interconnectRemoteLocation for Azure has {min: 30, max: 30} because Azure requires /30 subnets. This range specifies the values supported by both cloud providers. Interconnect currently supports /29 and /30 IPv4 subnet lengths. If a remote cloud has no constraint on IPv4 subnet length, the range would thus be {min: 29, max: 30}. 
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectRemoteLocationConstraintsSubnetLengthRange subnet_length_range = 184473670;</code>
      */
-    private $subnet_length_range = null;
+    protected $subnet_length_range = null;
 
     /**
      * Constructor.

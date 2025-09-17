@@ -25,7 +25,7 @@ class InstancesSetSecurityPolicyRequest extends \Google\Protobuf\Internal\Messag
      *
      * Generated from protobuf field <code>optional string security_policy = 171082513;</code>
      */
-    private $security_policy = null;
+    protected $security_policy = null;
 
     /**
      * Constructor.

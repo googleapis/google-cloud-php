@@ -20,19 +20,19 @@ class GetRegionHealthCheckServiceRequest extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>string health_check_service = 408374747 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $health_check_service = '';
+    protected $health_check_service = '';
     /**
      * Project ID for this request.
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * Name of the region scoping this request.
      *
      * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $region = '';
+    protected $region = '';
 
     /**
      * @param string $project            Project ID for this request.

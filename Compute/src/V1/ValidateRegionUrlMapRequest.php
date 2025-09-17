@@ -20,25 +20,25 @@ class ValidateRegionUrlMapRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * Name of the region scoping this request.
      *
      * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $region = '';
+    protected $region = '';
     /**
      * The body resource for this request
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.RegionUrlMapsValidateRequest region_url_maps_validate_request_resource = 56632858 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $region_url_maps_validate_request_resource = null;
+    protected $region_url_maps_validate_request_resource = null;
     /**
      * Name of the UrlMap resource to be validated as.
      *
      * Generated from protobuf field <code>string url_map = 367020684 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $url_map = '';
+    protected $url_map = '';
 
     /**
      * @param string                                                $project                              Project ID for this request.

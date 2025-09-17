@@ -19,7 +19,7 @@ class ManagedInstancePropertiesFromFlexibilityPolicy extends \Google\Protobuf\In
      *
      * Generated from protobuf field <code>optional string machine_type = 227711026;</code>
      */
-    private $machine_type = null;
+    protected $machine_type = null;
 
     /**
      * Constructor.

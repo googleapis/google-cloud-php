@@ -20,28 +20,28 @@ class NetworkProfileProfileType extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string network_type = 517413547;</code>
      */
-    private $network_type = null;
+    protected $network_type = null;
     /**
      * 
      * Check the RdmaSubtype enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string rdma_subtype = 82019713;</code>
      */
-    private $rdma_subtype = null;
+    protected $rdma_subtype = null;
     /**
      * 
      * Check the UllSubtype enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string ull_subtype = 94311408;</code>
      */
-    private $ull_subtype = null;
+    protected $ull_subtype = null;
     /**
      * 
      * Check the VpcSubtype enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string vpc_subtype = 356623396;</code>
      */
-    private $vpc_subtype = null;
+    protected $vpc_subtype = null;
 
     /**
      * Constructor.

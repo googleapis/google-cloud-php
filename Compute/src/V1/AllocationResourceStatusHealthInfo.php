@@ -20,20 +20,20 @@ class AllocationResourceStatusHealthInfo extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>optional int32 degraded_block_count = 514082636;</code>
      */
-    private $degraded_block_count = null;
+    protected $degraded_block_count = null;
     /**
      * The health status of the reservation.
      * Check the HealthStatus enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string health_status = 380545845;</code>
      */
-    private $health_status = null;
+    protected $health_status = null;
     /**
      * The number of reservation blocks that are healthy.
      *
      * Generated from protobuf field <code>optional int32 healthy_block_count = 223625019;</code>
      */
-    private $healthy_block_count = null;
+    protected $healthy_block_count = null;
 
     /**
      * Constructor.

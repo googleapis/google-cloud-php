@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -77,7 +77,9 @@ class ProjectsClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return ProjectsClient */
@@ -116,8 +118,7 @@ class ProjectsClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $project = 'project-309310695';
-        $request = (new DisableXpnHostProjectRequest())
-            ->setProject($project);
+        $request = (new DisableXpnHostProjectRequest())->setProject($project);
         $response = $gapicClient->disableXpnHost($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -172,17 +173,19 @@ class ProjectsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';
-        $request = (new DisableXpnHostProjectRequest())
-            ->setProject($project);
+        $request = (new DisableXpnHostProjectRequest())->setProject($project);
         $response = $gapicClient->disableXpnHost($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -290,12 +293,15 @@ class ProjectsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';
@@ -350,8 +356,7 @@ class ProjectsClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $project = 'project-309310695';
-        $request = (new EnableXpnHostProjectRequest())
-            ->setProject($project);
+        $request = (new EnableXpnHostProjectRequest())->setProject($project);
         $response = $gapicClient->enableXpnHost($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -406,17 +411,19 @@ class ProjectsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';
-        $request = (new EnableXpnHostProjectRequest())
-            ->setProject($project);
+        $request = (new EnableXpnHostProjectRequest())->setProject($project);
         $response = $gapicClient->enableXpnHost($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -524,12 +531,15 @@ class ProjectsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';
@@ -592,8 +602,7 @@ class ProjectsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $project = 'project-309310695';
-        $request = (new GetProjectRequest())
-            ->setProject($project);
+        $request = (new GetProjectRequest())->setProject($project);
         $response = $gapicClient->get($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -617,17 +626,19 @@ class ProjectsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';
-        $request = (new GetProjectRequest())
-            ->setProject($project);
+        $request = (new GetProjectRequest())->setProject($project);
         try {
             $gapicClient->get($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -676,8 +687,7 @@ class ProjectsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $project = 'project-309310695';
-        $request = (new GetXpnHostProjectRequest())
-            ->setProject($project);
+        $request = (new GetXpnHostProjectRequest())->setProject($project);
         $response = $gapicClient->getXpnHost($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -701,17 +711,19 @@ class ProjectsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';
-        $request = (new GetXpnHostProjectRequest())
-            ->setProject($project);
+        $request = (new GetXpnHostProjectRequest())->setProject($project);
         try {
             $gapicClient->getXpnHost($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -737,9 +749,7 @@ class ProjectsClientTest extends GeneratedTest
         $kind = 'kind3292052';
         $nextPageToken = '';
         $resourcesElement = new XpnResourceId();
-        $resources = [
-            $resourcesElement,
-        ];
+        $resources = [$resourcesElement];
         $expectedResponse = new ProjectsGetXpnResources();
         $expectedResponse->setKind($kind);
         $expectedResponse->setNextPageToken($nextPageToken);
@@ -747,8 +757,7 @@ class ProjectsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $project = 'project-309310695';
-        $request = (new GetXpnResourcesProjectsRequest())
-            ->setProject($project);
+        $request = (new GetXpnResourcesProjectsRequest())->setProject($project);
         $response = $gapicClient->getXpnResources($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -775,17 +784,19 @@ class ProjectsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';
-        $request = (new GetXpnResourcesProjectsRequest())
-            ->setProject($project);
+        $request = (new GetXpnResourcesProjectsRequest())->setProject($project);
         try {
             $gapicClient->getXpnResources($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -813,9 +824,7 @@ class ProjectsClientTest extends GeneratedTest
         $nextPageToken = '';
         $selfLink = 'selfLink-1691268851';
         $itemsElement = new Project();
-        $items = [
-            $itemsElement,
-        ];
+        $items = [$itemsElement];
         $expectedResponse = new XpnHostList();
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
@@ -857,12 +866,15 @@ class ProjectsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';
@@ -970,12 +982,15 @@ class ProjectsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $diskMoveRequestResource = new DiskMoveRequest();
@@ -1090,12 +1105,15 @@ class ProjectsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $instanceMoveRequestResource = new InstanceMoveRequest();
@@ -1210,12 +1228,15 @@ class ProjectsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';
@@ -1330,12 +1351,15 @@ class ProjectsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $metadataResource = new Metadata();
@@ -1450,12 +1474,15 @@ class ProjectsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';
@@ -1570,12 +1597,15 @@ class ProjectsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';
@@ -1630,8 +1660,7 @@ class ProjectsClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $project = 'project-309310695';
-        $request = (new DisableXpnHostProjectRequest())
-            ->setProject($project);
+        $request = (new DisableXpnHostProjectRequest())->setProject($project);
         $response = $gapicClient->disableXpnHost($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();

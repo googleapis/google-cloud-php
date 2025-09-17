@@ -19,7 +19,7 @@ class InstancesSetLabelsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string label_fingerprint = 178124825;</code>
      */
-    private $label_fingerprint = null;
+    protected $label_fingerprint = null;
     /**
      * Generated from protobuf field <code>map<string, string> labels = 500195327;</code>
      */

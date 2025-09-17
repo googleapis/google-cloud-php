@@ -17,11 +17,11 @@ class InterconnectRemoteLocationConstraintsSubnetLengthRange extends \Google\Pro
     /**
      * Generated from protobuf field <code>optional int32 max = 107876;</code>
      */
-    private $max = null;
+    protected $max = null;
     /**
      * Generated from protobuf field <code>optional int32 min = 108114;</code>
      */
-    private $min = null;
+    protected $min = null;
 
     /**
      * Constructor.

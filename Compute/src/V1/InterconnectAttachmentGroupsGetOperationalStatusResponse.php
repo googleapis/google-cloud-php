@@ -18,11 +18,11 @@ class InterconnectAttachmentGroupsGetOperationalStatusResponse extends \Google\P
     /**
      * Generated from protobuf field <code>optional string etag = 3123477;</code>
      */
-    private $etag = null;
+    protected $etag = null;
     /**
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectAttachmentGroupsOperationalStatus result = 139315229;</code>
      */
-    private $result = null;
+    protected $result = null;
 
     /**
      * Constructor.

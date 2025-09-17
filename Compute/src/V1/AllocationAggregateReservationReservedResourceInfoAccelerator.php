@@ -19,13 +19,13 @@ class AllocationAggregateReservationReservedResourceInfoAccelerator extends \Goo
      *
      * Generated from protobuf field <code>optional int32 accelerator_count = 504879675;</code>
      */
-    private $accelerator_count = null;
+    protected $accelerator_count = null;
     /**
      * Full or partial URL to accelerator type. e.g. "projects/{PROJECT}/zones/{ZONE}/acceleratorTypes/ct4l"
      *
      * Generated from protobuf field <code>optional string accelerator_type = 138031246;</code>
      */
-    private $accelerator_type = null;
+    protected $accelerator_type = null;
 
     /**
      * Constructor.

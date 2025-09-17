@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -77,7 +77,9 @@ class FirewallPoliciesClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return FirewallPoliciesClient */
@@ -175,12 +177,15 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $firewallPolicy = 'firewallPolicy1035044177';
@@ -294,12 +299,15 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $firewallPolicy = 'firewallPolicy1035044177';
@@ -354,8 +362,7 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $firewallPolicy = 'firewallPolicy1035044177';
-        $request = (new CloneRulesFirewallPolicyRequest())
-            ->setFirewallPolicy($firewallPolicy);
+        $request = (new CloneRulesFirewallPolicyRequest())->setFirewallPolicy($firewallPolicy);
         $response = $gapicClient->cloneRules($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -409,17 +416,19 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $firewallPolicy = 'firewallPolicy1035044177';
-        $request = (new CloneRulesFirewallPolicyRequest())
-            ->setFirewallPolicy($firewallPolicy);
+        $request = (new CloneRulesFirewallPolicyRequest())->setFirewallPolicy($firewallPolicy);
         $response = $gapicClient->cloneRules($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -467,8 +476,7 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $firewallPolicy = 'firewallPolicy1035044177';
-        $request = (new DeleteFirewallPolicyRequest())
-            ->setFirewallPolicy($firewallPolicy);
+        $request = (new DeleteFirewallPolicyRequest())->setFirewallPolicy($firewallPolicy);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -522,17 +530,19 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $firewallPolicy = 'firewallPolicy1035044177';
-        $request = (new DeleteFirewallPolicyRequest())
-            ->setFirewallPolicy($firewallPolicy);
+        $request = (new DeleteFirewallPolicyRequest())->setFirewallPolicy($firewallPolicy);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -592,8 +602,7 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $firewallPolicy = 'firewallPolicy1035044177';
-        $request = (new GetFirewallPolicyRequest())
-            ->setFirewallPolicy($firewallPolicy);
+        $request = (new GetFirewallPolicyRequest())->setFirewallPolicy($firewallPolicy);
         $response = $gapicClient->get($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -617,17 +626,19 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $firewallPolicy = 'firewallPolicy1035044177';
-        $request = (new GetFirewallPolicyRequest())
-            ->setFirewallPolicy($firewallPolicy);
+        $request = (new GetFirewallPolicyRequest())->setFirewallPolicy($firewallPolicy);
         try {
             $gapicClient->get($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -664,8 +675,7 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $firewallPolicy = 'firewallPolicy1035044177';
-        $request = (new GetAssociationFirewallPolicyRequest())
-            ->setFirewallPolicy($firewallPolicy);
+        $request = (new GetAssociationFirewallPolicyRequest())->setFirewallPolicy($firewallPolicy);
         $response = $gapicClient->getAssociation($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -689,17 +699,19 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $firewallPolicy = 'firewallPolicy1035044177';
-        $request = (new GetAssociationFirewallPolicyRequest())
-            ->setFirewallPolicy($firewallPolicy);
+        $request = (new GetAssociationFirewallPolicyRequest())->setFirewallPolicy($firewallPolicy);
         try {
             $gapicClient->getAssociation($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -732,8 +744,7 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyFirewallPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyFirewallPolicyRequest())->setResource($resource);
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -757,17 +768,19 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyFirewallPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyFirewallPolicyRequest())->setResource($resource);
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -816,8 +829,7 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $firewallPolicy = 'firewallPolicy1035044177';
-        $request = (new GetRuleFirewallPolicyRequest())
-            ->setFirewallPolicy($firewallPolicy);
+        $request = (new GetRuleFirewallPolicyRequest())->setFirewallPolicy($firewallPolicy);
         $response = $gapicClient->getRule($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -841,17 +853,19 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $firewallPolicy = 'firewallPolicy1035044177';
-        $request = (new GetRuleFirewallPolicyRequest())
-            ->setFirewallPolicy($firewallPolicy);
+        $request = (new GetRuleFirewallPolicyRequest())->setFirewallPolicy($firewallPolicy);
         try {
             $gapicClient->getRule($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -951,12 +965,15 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $firewallPolicyResource = new FirewallPolicy();
@@ -997,9 +1014,7 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $kind = 'kind3292052';
         $nextPageToken = '';
         $itemsElement = new FirewallPolicy();
-        $items = [
-            $itemsElement,
-        ];
+        $items = [$itemsElement];
         $expectedResponse = new FirewallPolicyList();
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
@@ -1031,12 +1046,15 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new ListFirewallPoliciesRequest();
         try {
@@ -1087,12 +1105,15 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new ListAssociationsFirewallPolicyRequest();
         try {
@@ -1136,9 +1157,7 @@ class FirewallPoliciesClientTest extends GeneratedTest
         // Mock request
         $firewallPolicy = 'firewallPolicy1035044177';
         $parentId = 'parentId2070327504';
-        $request = (new MoveFirewallPolicyRequest())
-            ->setFirewallPolicy($firewallPolicy)
-            ->setParentId($parentId);
+        $request = (new MoveFirewallPolicyRequest())->setFirewallPolicy($firewallPolicy)->setParentId($parentId);
         $response = $gapicClient->move($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -1194,19 +1213,20 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $firewallPolicy = 'firewallPolicy1035044177';
         $parentId = 'parentId2070327504';
-        $request = (new MoveFirewallPolicyRequest())
-            ->setFirewallPolicy($firewallPolicy)
-            ->setParentId($parentId);
+        $request = (new MoveFirewallPolicyRequest())->setFirewallPolicy($firewallPolicy)->setParentId($parentId);
         $response = $gapicClient->move($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1313,12 +1333,15 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $firewallPolicy = 'firewallPolicy1035044177';
@@ -1432,12 +1455,15 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $firewallPolicy = 'firewallPolicy1035044177';
@@ -1492,8 +1518,7 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $firewallPolicy = 'firewallPolicy1035044177';
-        $request = (new RemoveAssociationFirewallPolicyRequest())
-            ->setFirewallPolicy($firewallPolicy);
+        $request = (new RemoveAssociationFirewallPolicyRequest())->setFirewallPolicy($firewallPolicy);
         $response = $gapicClient->removeAssociation($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -1547,17 +1572,19 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $firewallPolicy = 'firewallPolicy1035044177';
-        $request = (new RemoveAssociationFirewallPolicyRequest())
-            ->setFirewallPolicy($firewallPolicy);
+        $request = (new RemoveAssociationFirewallPolicyRequest())->setFirewallPolicy($firewallPolicy);
         $response = $gapicClient->removeAssociation($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1605,8 +1632,7 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $firewallPolicy = 'firewallPolicy1035044177';
-        $request = (new RemoveRuleFirewallPolicyRequest())
-            ->setFirewallPolicy($firewallPolicy);
+        $request = (new RemoveRuleFirewallPolicyRequest())->setFirewallPolicy($firewallPolicy);
         $response = $gapicClient->removeRule($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -1660,17 +1686,19 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $firewallPolicy = 'firewallPolicy1035044177';
-        $request = (new RemoveRuleFirewallPolicyRequest())
-            ->setFirewallPolicy($firewallPolicy);
+        $request = (new RemoveRuleFirewallPolicyRequest())->setFirewallPolicy($firewallPolicy);
         $response = $gapicClient->removeRule($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1739,12 +1767,15 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $globalOrganizationSetPolicyRequestResource = new GlobalOrganizationSetPolicyRequest();
@@ -1807,12 +1838,15 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';

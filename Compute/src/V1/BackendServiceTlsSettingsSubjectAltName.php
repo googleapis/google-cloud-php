@@ -20,13 +20,13 @@ class BackendServiceTlsSettingsSubjectAltName extends \Google\Protobuf\Internal\
      *
      * Generated from protobuf field <code>optional string dns_name = 411992033;</code>
      */
-    private $dns_name = null;
+    protected $dns_name = null;
     /**
      * The SAN specified as a URI.
      *
      * Generated from protobuf field <code>optional string uniform_resource_identifier = 491409007;</code>
      */
-    private $uniform_resource_identifier = null;
+    protected $uniform_resource_identifier = null;
 
     /**
      * Constructor.

@@ -20,19 +20,19 @@ class GetNetworkEndpointGroupRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string network_endpoint_group = 433907078 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $network_endpoint_group = '';
+    protected $network_endpoint_group = '';
     /**
      * Project ID for this request.
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * The name of the zone where the network endpoint group is located. It should comply with RFC1035.
      *
      * Generated from protobuf field <code>string zone = 3744684 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $zone = '';
+    protected $zone = '';
 
     /**
      * @param string $project              Project ID for this request.

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -70,7 +70,9 @@ class NetworkEndpointGroupsClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return NetworkEndpointGroupsClient */
@@ -107,8 +109,7 @@ class NetworkEndpointGroupsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $project = 'project-309310695';
-        $request = (new AggregatedListNetworkEndpointGroupsRequest())
-            ->setProject($project);
+        $request = (new AggregatedListNetworkEndpointGroupsRequest())->setProject($project);
         $response = $gapicClient->aggregatedList($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -137,17 +138,19 @@ class NetworkEndpointGroupsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';
-        $request = (new AggregatedListNetworkEndpointGroupsRequest())
-            ->setProject($project);
+        $request = (new AggregatedListNetworkEndpointGroupsRequest())->setProject($project);
         try {
             $gapicClient->aggregatedList($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -193,7 +196,9 @@ class NetworkEndpointGroupsClientTest extends GeneratedTest
         $zone = 'zone3744684';
         $request = (new AttachNetworkEndpointsNetworkEndpointGroupRequest())
             ->setNetworkEndpointGroup($networkEndpointGroup)
-            ->setNetworkEndpointGroupsAttachEndpointsRequestResource($networkEndpointGroupsAttachEndpointsRequestResource)
+            ->setNetworkEndpointGroupsAttachEndpointsRequestResource(
+                $networkEndpointGroupsAttachEndpointsRequestResource
+            )
             ->setProject($project)
             ->setZone($zone);
         $response = $gapicClient->attachNetworkEndpoints($request);
@@ -257,12 +262,15 @@ class NetworkEndpointGroupsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $networkEndpointGroup = 'networkEndpointGroup-639834746';
@@ -271,7 +279,9 @@ class NetworkEndpointGroupsClientTest extends GeneratedTest
         $zone = 'zone3744684';
         $request = (new AttachNetworkEndpointsNetworkEndpointGroupRequest())
             ->setNetworkEndpointGroup($networkEndpointGroup)
-            ->setNetworkEndpointGroupsAttachEndpointsRequestResource($networkEndpointGroupsAttachEndpointsRequestResource)
+            ->setNetworkEndpointGroupsAttachEndpointsRequestResource(
+                $networkEndpointGroupsAttachEndpointsRequestResource
+            )
             ->setProject($project)
             ->setZone($zone);
         $response = $gapicClient->attachNetworkEndpoints($request);
@@ -386,12 +396,15 @@ class NetworkEndpointGroupsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $networkEndpointGroup = 'networkEndpointGroup-639834746';
@@ -453,7 +466,9 @@ class NetworkEndpointGroupsClientTest extends GeneratedTest
         $zone = 'zone3744684';
         $request = (new DetachNetworkEndpointsNetworkEndpointGroupRequest())
             ->setNetworkEndpointGroup($networkEndpointGroup)
-            ->setNetworkEndpointGroupsDetachEndpointsRequestResource($networkEndpointGroupsDetachEndpointsRequestResource)
+            ->setNetworkEndpointGroupsDetachEndpointsRequestResource(
+                $networkEndpointGroupsDetachEndpointsRequestResource
+            )
             ->setProject($project)
             ->setZone($zone);
         $response = $gapicClient->detachNetworkEndpoints($request);
@@ -517,12 +532,15 @@ class NetworkEndpointGroupsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $networkEndpointGroup = 'networkEndpointGroup-639834746';
@@ -531,7 +549,9 @@ class NetworkEndpointGroupsClientTest extends GeneratedTest
         $zone = 'zone3744684';
         $request = (new DetachNetworkEndpointsNetworkEndpointGroupRequest())
             ->setNetworkEndpointGroup($networkEndpointGroup)
-            ->setNetworkEndpointGroupsDetachEndpointsRequestResource($networkEndpointGroupsDetachEndpointsRequestResource)
+            ->setNetworkEndpointGroupsDetachEndpointsRequestResource(
+                $networkEndpointGroupsDetachEndpointsRequestResource
+            )
             ->setProject($project)
             ->setZone($zone);
         $response = $gapicClient->detachNetworkEndpoints($request);
@@ -628,12 +648,15 @@ class NetworkEndpointGroupsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $networkEndpointGroup = 'networkEndpointGroup-639834746';
@@ -748,12 +771,15 @@ class NetworkEndpointGroupsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $networkEndpointGroupResource = new NetworkEndpointGroup();
@@ -797,9 +823,7 @@ class NetworkEndpointGroupsClientTest extends GeneratedTest
         $nextPageToken = '';
         $selfLink = 'selfLink-1691268851';
         $itemsElement = new NetworkEndpointGroup();
-        $items = [
-            $itemsElement,
-        ];
+        $items = [$itemsElement];
         $expectedResponse = new NetworkEndpointGroupList();
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
@@ -810,9 +834,7 @@ class NetworkEndpointGroupsClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $request = (new ListNetworkEndpointGroupsRequest())
-            ->setProject($project)
-            ->setZone($zone);
+        $request = (new ListNetworkEndpointGroupsRequest())->setProject($project)->setZone($zone);
         $response = $gapicClient->list($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -841,19 +863,20 @@ class NetworkEndpointGroupsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $request = (new ListNetworkEndpointGroupsRequest())
-            ->setProject($project)
-            ->setZone($zone);
+        $request = (new ListNetworkEndpointGroupsRequest())->setProject($project)->setZone($zone);
         try {
             $gapicClient->list($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -880,9 +903,7 @@ class NetworkEndpointGroupsClientTest extends GeneratedTest
         $kind = 'kind3292052';
         $nextPageToken = '';
         $itemsElement = new NetworkEndpointWithHealthStatus();
-        $items = [
-            $itemsElement,
-        ];
+        $items = [$itemsElement];
         $expectedResponse = new NetworkEndpointGroupsListNetworkEndpoints();
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
@@ -931,12 +952,15 @@ class NetworkEndpointGroupsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $networkEndpointGroup = 'networkEndpointGroup-639834746';
@@ -1011,12 +1035,15 @@ class NetworkEndpointGroupsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';
@@ -1066,8 +1093,7 @@ class NetworkEndpointGroupsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $project = 'project-309310695';
-        $request = (new AggregatedListNetworkEndpointGroupsRequest())
-            ->setProject($project);
+        $request = (new AggregatedListNetworkEndpointGroupsRequest())->setProject($project);
         $response = $gapicClient->aggregatedListAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());

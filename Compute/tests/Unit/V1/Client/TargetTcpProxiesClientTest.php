@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -63,7 +63,9 @@ class TargetTcpProxiesClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return TargetTcpProxiesClient */
@@ -100,8 +102,7 @@ class TargetTcpProxiesClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $project = 'project-309310695';
-        $request = (new AggregatedListTargetTcpProxiesRequest())
-            ->setProject($project);
+        $request = (new AggregatedListTargetTcpProxiesRequest())->setProject($project);
         $response = $gapicClient->aggregatedList($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -130,17 +131,19 @@ class TargetTcpProxiesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';
-        $request = (new AggregatedListTargetTcpProxiesRequest())
-            ->setProject($project);
+        $request = (new AggregatedListTargetTcpProxiesRequest())->setProject($project);
         try {
             $gapicClient->aggregatedList($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -182,9 +185,7 @@ class TargetTcpProxiesClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $targetTcpProxy = 'targetTcpProxy503065442';
-        $request = (new DeleteTargetTcpProxyRequest())
-            ->setProject($project)
-            ->setTargetTcpProxy($targetTcpProxy);
+        $request = (new DeleteTargetTcpProxyRequest())->setProject($project)->setTargetTcpProxy($targetTcpProxy);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -241,19 +242,20 @@ class TargetTcpProxiesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';
         $targetTcpProxy = 'targetTcpProxy503065442';
-        $request = (new DeleteTargetTcpProxyRequest())
-            ->setProject($project)
-            ->setTargetTcpProxy($targetTcpProxy);
+        $request = (new DeleteTargetTcpProxyRequest())->setProject($project)->setTargetTcpProxy($targetTcpProxy);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -308,9 +310,7 @@ class TargetTcpProxiesClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $targetTcpProxy = 'targetTcpProxy503065442';
-        $request = (new GetTargetTcpProxyRequest())
-            ->setProject($project)
-            ->setTargetTcpProxy($targetTcpProxy);
+        $request = (new GetTargetTcpProxyRequest())->setProject($project)->setTargetTcpProxy($targetTcpProxy);
         $response = $gapicClient->get($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -336,19 +336,20 @@ class TargetTcpProxiesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';
         $targetTcpProxy = 'targetTcpProxy503065442';
-        $request = (new GetTargetTcpProxyRequest())
-            ->setProject($project)
-            ->setTargetTcpProxy($targetTcpProxy);
+        $request = (new GetTargetTcpProxyRequest())->setProject($project)->setTargetTcpProxy($targetTcpProxy);
         try {
             $gapicClient->get($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -449,12 +450,15 @@ class TargetTcpProxiesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';
@@ -496,9 +500,7 @@ class TargetTcpProxiesClientTest extends GeneratedTest
         $nextPageToken = '';
         $selfLink = 'selfLink-1691268851';
         $itemsElement = new TargetTcpProxy();
-        $items = [
-            $itemsElement,
-        ];
+        $items = [$itemsElement];
         $expectedResponse = new TargetTcpProxyList();
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
@@ -508,8 +510,7 @@ class TargetTcpProxiesClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $project = 'project-309310695';
-        $request = (new ListTargetTcpProxiesRequest())
-            ->setProject($project);
+        $request = (new ListTargetTcpProxiesRequest())->setProject($project);
         $response = $gapicClient->list($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -536,17 +537,19 @@ class TargetTcpProxiesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';
-        $request = (new ListTargetTcpProxiesRequest())
-            ->setProject($project);
+        $request = (new ListTargetTcpProxiesRequest())->setProject($project);
         try {
             $gapicClient->list($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -651,12 +654,15 @@ class TargetTcpProxiesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';
@@ -777,12 +783,15 @@ class TargetTcpProxiesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';
@@ -837,8 +846,7 @@ class TargetTcpProxiesClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $project = 'project-309310695';
-        $request = (new AggregatedListTargetTcpProxiesRequest())
-            ->setProject($project);
+        $request = (new AggregatedListTargetTcpProxiesRequest())->setProject($project);
         $response = $gapicClient->aggregatedListAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());

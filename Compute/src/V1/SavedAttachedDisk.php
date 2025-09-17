@@ -20,37 +20,37 @@ class SavedAttachedDisk extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional bool auto_delete = 464761403;</code>
      */
-    private $auto_delete = null;
+    protected $auto_delete = null;
     /**
      * Indicates that this is a boot disk. The virtual machine will use the first partition of the disk for its root filesystem.
      *
      * Generated from protobuf field <code>optional bool boot = 3029746;</code>
      */
-    private $boot = null;
+    protected $boot = null;
     /**
      * Specifies the name of the disk attached to the source instance.
      *
      * Generated from protobuf field <code>optional string device_name = 67541716;</code>
      */
-    private $device_name = null;
+    protected $device_name = null;
     /**
      * The encryption key for the disk.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.CustomerEncryptionKey disk_encryption_key = 271660677;</code>
      */
-    private $disk_encryption_key = null;
+    protected $disk_encryption_key = null;
     /**
      * The size of the disk in base-2 GB.
      *
      * Generated from protobuf field <code>optional int64 disk_size_gb = 316263735;</code>
      */
-    private $disk_size_gb = null;
+    protected $disk_size_gb = null;
     /**
      * [Output Only] URL of the disk type resource. For example: projects/project /zones/zone/diskTypes/pd-standard or pd-ssd
      *
      * Generated from protobuf field <code>optional string disk_type = 93009052;</code>
      */
-    private $disk_type = null;
+    protected $disk_type = null;
     /**
      * A list of features to enable on the guest operating system. Applicable only for bootable images. Read Enabling guest operating system features to see a list of available options.
      *
@@ -62,20 +62,20 @@ class SavedAttachedDisk extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int32 index = 100346066;</code>
      */
-    private $index = null;
+    protected $index = null;
     /**
      * Specifies the disk interface to use for attaching this disk, which is either SCSI or NVME.
      * Check the Interface enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string interface = 502623545;</code>
      */
-    private $interface = null;
+    protected $interface = null;
     /**
      * [Output Only] Type of the resource. Always compute#attachedDisk for attached disks.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
-    private $kind = null;
+    protected $kind = null;
     /**
      * [Output Only] Any valid publicly visible licenses.
      *
@@ -88,33 +88,33 @@ class SavedAttachedDisk extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string mode = 3357091;</code>
      */
-    private $mode = null;
+    protected $mode = null;
     /**
      * Specifies a URL of the disk attached to the source instance.
      *
      * Generated from protobuf field <code>optional string source = 177235995;</code>
      */
-    private $source = null;
+    protected $source = null;
     /**
      * [Output Only] A size of the storage used by the disk's snapshot by this machine image.
      *
      * Generated from protobuf field <code>optional int64 storage_bytes = 424631719;</code>
      */
-    private $storage_bytes = null;
+    protected $storage_bytes = null;
     /**
      * [Output Only] An indicator whether storageBytes is in a stable state or it is being adjusted as a result of shared storage reallocation. This status can either be UPDATING, meaning the size of the snapshot is being updated, or UP_TO_DATE, meaning the size of the snapshot is up-to-date.
      * Check the StorageBytesStatus enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string storage_bytes_status = 490739082;</code>
      */
-    private $storage_bytes_status = null;
+    protected $storage_bytes_status = null;
     /**
      * Specifies the type of the attached disk, either SCRATCH or PERSISTENT.
      * Check the Type enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string type = 3575610;</code>
      */
-    private $type = null;
+    protected $type = null;
 
     /**
      * Constructor.

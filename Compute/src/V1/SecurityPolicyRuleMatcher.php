@@ -20,26 +20,26 @@ class SecurityPolicyRuleMatcher extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPolicyRuleMatcherConfig config = 255820610;</code>
      */
-    private $config = null;
+    protected $config = null;
     /**
      * User defined CEVAL expression. A CEVAL expression is used to specify match criteria such as origin.ip, source.region_code and contents in the request header. Expressions containing `evaluateThreatIntelligence` require a Cloud Armor Enterprise subscription and are not supported in Edge Policies nor in Regional Policies. Expressions containing `evaluatePreconfiguredExpr('sourceiplist-*')` require a Cloud Armor Enterprise subscription and are only supported in Global Security Policies.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Expr expr = 3127797;</code>
      */
-    private $expr = null;
+    protected $expr = null;
     /**
      * The configuration options available when specifying a user defined CEVAL expression (i.e., 'expr').
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPolicyRuleMatcherExprOptions expr_options = 486220372;</code>
      */
-    private $expr_options = null;
+    protected $expr_options = null;
     /**
      * Preconfigured versioned expression. If this field is specified, config must also be specified. Available preconfigured expressions along with their requirements are: SRC_IPS_V1 - must specify the corresponding src_ip_range field in config.
      * Check the VersionedExpr enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string versioned_expr = 322286013;</code>
      */
-    private $versioned_expr = null;
+    protected $versioned_expr = null;
 
     /**
      * Constructor.

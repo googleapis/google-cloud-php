@@ -17,7 +17,7 @@ class ReservationSubBlocksGetResponse extends \Google\Protobuf\Internal\Message
     /**
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ReservationSubBlock resource = 195806222;</code>
      */
-    private $resource = null;
+    protected $resource = null;
 
     /**
      * Constructor.

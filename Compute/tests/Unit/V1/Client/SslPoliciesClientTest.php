@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -62,7 +62,9 @@ class SslPoliciesClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return SslPoliciesClient */
@@ -101,8 +103,7 @@ class SslPoliciesClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $project = 'project-309310695';
-        $request = (new AggregatedListSslPoliciesRequest())
-            ->setProject($project);
+        $request = (new AggregatedListSslPoliciesRequest())->setProject($project);
         $response = $gapicClient->aggregatedList($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -131,17 +132,19 @@ class SslPoliciesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';
-        $request = (new AggregatedListSslPoliciesRequest())
-            ->setProject($project);
+        $request = (new AggregatedListSslPoliciesRequest())->setProject($project);
         try {
             $gapicClient->aggregatedList($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -183,9 +186,7 @@ class SslPoliciesClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $sslPolicy = 'sslPolicy-1852293435';
-        $request = (new DeleteSslPolicyRequest())
-            ->setProject($project)
-            ->setSslPolicy($sslPolicy);
+        $request = (new DeleteSslPolicyRequest())->setProject($project)->setSslPolicy($sslPolicy);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -242,19 +243,20 @@ class SslPoliciesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';
         $sslPolicy = 'sslPolicy-1852293435';
-        $request = (new DeleteSslPolicyRequest())
-            ->setProject($project)
-            ->setSslPolicy($sslPolicy);
+        $request = (new DeleteSslPolicyRequest())->setProject($project)->setSslPolicy($sslPolicy);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -309,9 +311,7 @@ class SslPoliciesClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $sslPolicy = 'sslPolicy-1852293435';
-        $request = (new GetSslPolicyRequest())
-            ->setProject($project)
-            ->setSslPolicy($sslPolicy);
+        $request = (new GetSslPolicyRequest())->setProject($project)->setSslPolicy($sslPolicy);
         $response = $gapicClient->get($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -337,19 +337,20 @@ class SslPoliciesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';
         $sslPolicy = 'sslPolicy-1852293435';
-        $request = (new GetSslPolicyRequest())
-            ->setProject($project)
-            ->setSslPolicy($sslPolicy);
+        $request = (new GetSslPolicyRequest())->setProject($project)->setSslPolicy($sslPolicy);
         try {
             $gapicClient->get($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -391,9 +392,7 @@ class SslPoliciesClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $sslPolicyResource = new SslPolicy();
-        $request = (new InsertSslPolicyRequest())
-            ->setProject($project)
-            ->setSslPolicyResource($sslPolicyResource);
+        $request = (new InsertSslPolicyRequest())->setProject($project)->setSslPolicyResource($sslPolicyResource);
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -450,19 +449,20 @@ class SslPoliciesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';
         $sslPolicyResource = new SslPolicy();
-        $request = (new InsertSslPolicyRequest())
-            ->setProject($project)
-            ->setSslPolicyResource($sslPolicyResource);
+        $request = (new InsertSslPolicyRequest())->setProject($project)->setSslPolicyResource($sslPolicyResource);
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -497,9 +497,7 @@ class SslPoliciesClientTest extends GeneratedTest
         $nextPageToken = '';
         $selfLink = 'selfLink-1691268851';
         $itemsElement = new SslPolicy();
-        $items = [
-            $itemsElement,
-        ];
+        $items = [$itemsElement];
         $expectedResponse = new SslPoliciesList();
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
@@ -509,8 +507,7 @@ class SslPoliciesClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $project = 'project-309310695';
-        $request = (new ListSslPoliciesRequest())
-            ->setProject($project);
+        $request = (new ListSslPoliciesRequest())->setProject($project);
         $response = $gapicClient->list($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -537,17 +534,19 @@ class SslPoliciesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';
-        $request = (new ListSslPoliciesRequest())
-            ->setProject($project);
+        $request = (new ListSslPoliciesRequest())->setProject($project);
         try {
             $gapicClient->list($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -574,8 +573,7 @@ class SslPoliciesClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $project = 'project-309310695';
-        $request = (new ListAvailableFeaturesSslPoliciesRequest())
-            ->setProject($project);
+        $request = (new ListAvailableFeaturesSslPoliciesRequest())->setProject($project);
         $response = $gapicClient->listAvailableFeatures($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -599,17 +597,19 @@ class SslPoliciesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';
-        $request = (new ListAvailableFeaturesSslPoliciesRequest())
-            ->setProject($project);
+        $request = (new ListAvailableFeaturesSslPoliciesRequest())->setProject($project);
         try {
             $gapicClient->listAvailableFeatures($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -714,12 +714,15 @@ class SslPoliciesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';
@@ -776,8 +779,7 @@ class SslPoliciesClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $project = 'project-309310695';
-        $request = (new AggregatedListSslPoliciesRequest())
-            ->setProject($project);
+        $request = (new AggregatedListSslPoliciesRequest())->setProject($project);
         $response = $gapicClient->aggregatedListAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());

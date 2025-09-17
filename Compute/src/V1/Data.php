@@ -19,13 +19,13 @@ class Data extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string key = 106079;</code>
      */
-    private $key = null;
+    protected $key = null;
     /**
      * [Output Only] A warning data value corresponding to the key.
      *
      * Generated from protobuf field <code>optional string value = 111972721;</code>
      */
-    private $value = null;
+    protected $value = null;
 
     /**
      * Constructor.

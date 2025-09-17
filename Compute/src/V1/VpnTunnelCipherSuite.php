@@ -17,11 +17,11 @@ class VpnTunnelCipherSuite extends \Google\Protobuf\Internal\Message
     /**
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.VpnTunnelPhase1Algorithms phase1 = 84289046;</code>
      */
-    private $phase1 = null;
+    protected $phase1 = null;
     /**
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.VpnTunnelPhase2Algorithms phase2 = 84289047;</code>
      */
-    private $phase2 = null;
+    protected $phase2 = null;
 
     /**
      * Constructor.

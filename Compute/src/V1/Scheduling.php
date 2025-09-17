@@ -20,50 +20,50 @@ class Scheduling extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional bool automatic_restart = 350821371;</code>
      */
-    private $automatic_restart = null;
+    protected $automatic_restart = null;
     /**
      * Specifies the availability domain to place the instance in. The value must be a number between 1 and the number of availability domains specified in the spread placement policy attached to the instance.
      *
      * Generated from protobuf field <code>optional int32 availability_domain = 252514344;</code>
      */
-    private $availability_domain = null;
+    protected $availability_domain = null;
     /**
      * Specify the time in seconds for host error detection, the value must be within the range of [90, 330] with the increment of 30, if unset, the default behavior of host error recovery will be used.
      *
      * Generated from protobuf field <code>optional int32 host_error_timeout_seconds = 408317459;</code>
      */
-    private $host_error_timeout_seconds = null;
+    protected $host_error_timeout_seconds = null;
     /**
      * Specifies the termination action for the instance.
      * Check the InstanceTerminationAction enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string instance_termination_action = 107380667;</code>
      */
-    private $instance_termination_action = null;
+    protected $instance_termination_action = null;
     /**
      * Specifies the maximum amount of time a Local Ssd Vm should wait while recovery of the Local Ssd state is attempted. Its value should be in between 0 and 168 hours with hour granularity and the default value being 1 hour.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Duration local_ssd_recovery_timeout = 268015590;</code>
      */
-    private $local_ssd_recovery_timeout = null;
+    protected $local_ssd_recovery_timeout = null;
     /**
      * An opaque location hint used to place the instance close to other resources. This field is for use by internal tools that use the public API.
      *
      * Generated from protobuf field <code>optional string location_hint = 350519505;</code>
      */
-    private $location_hint = null;
+    protected $location_hint = null;
     /**
      * Specifies the max run duration for the given instance. If specified, the instance termination action will be performed at the end of the run duration.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Duration max_run_duration = 430839747;</code>
      */
-    private $max_run_duration = null;
+    protected $max_run_duration = null;
     /**
      * The minimum number of virtual CPUs this instance will consume when running on a sole-tenant node.
      *
      * Generated from protobuf field <code>optional int32 min_node_cpus = 317231675;</code>
      */
-    private $min_node_cpus = null;
+    protected $min_node_cpus = null;
     /**
      * A set of node affinity and anti-affinity configurations. Refer to Configuring node affinity for more information. Overrides reservationAffinity.
      *
@@ -76,36 +76,36 @@ class Scheduling extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string on_host_maintenance = 64616796;</code>
      */
-    private $on_host_maintenance = null;
+    protected $on_host_maintenance = null;
     /**
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.SchedulingOnInstanceStopAction on_instance_stop_action = 529876681;</code>
      */
-    private $on_instance_stop_action = null;
+    protected $on_instance_stop_action = null;
     /**
      * Defines whether the instance is preemptible. This can only be set during instance creation or while the instance is stopped and therefore, in a `TERMINATED` state. See Instance Life Cycle for more information on the possible instance states.
      *
      * Generated from protobuf field <code>optional bool preemptible = 324203169;</code>
      */
-    private $preemptible = null;
+    protected $preemptible = null;
     /**
      * Specifies the provisioning model of the instance.
      * Check the ProvisioningModel enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string provisioning_model = 494423;</code>
      */
-    private $provisioning_model = null;
+    protected $provisioning_model = null;
     /**
      * Default is false and there will be 120 seconds between GCE ACPI G2 Soft Off and ACPI G3 Mechanical Off for Standard VMs and 30 seconds for Spot VMs.
      *
      * Generated from protobuf field <code>optional bool skip_guest_os_shutdown = 201662378;</code>
      */
-    private $skip_guest_os_shutdown = null;
+    protected $skip_guest_os_shutdown = null;
     /**
      * Specifies the timestamp, when the instance will be terminated, in RFC3339 text format. If specified, the instance termination action will be performed at the termination time.
      *
      * Generated from protobuf field <code>optional string termination_time = 428082984;</code>
      */
-    private $termination_time = null;
+    protected $termination_time = null;
 
     /**
      * Constructor.

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -53,7 +53,9 @@ class InstanceSettingsServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return InstanceSettingsServiceClient */
@@ -85,9 +87,7 @@ class InstanceSettingsServiceClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $request = (new GetInstanceSettingRequest())
-            ->setProject($project)
-            ->setZone($zone);
+        $request = (new GetInstanceSettingRequest())->setProject($project)->setZone($zone);
         $response = $gapicClient->get($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -113,19 +113,20 @@ class InstanceSettingsServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $request = (new GetInstanceSettingRequest())
-            ->setProject($project)
-            ->setZone($zone);
+        $request = (new GetInstanceSettingRequest())->setProject($project)->setZone($zone);
         try {
             $gapicClient->get($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -231,12 +232,15 @@ class InstanceSettingsServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $instanceSettingsResource = new InstanceSettings();
@@ -286,9 +290,7 @@ class InstanceSettingsServiceClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $request = (new GetInstanceSettingRequest())
-            ->setProject($project)
-            ->setZone($zone);
+        $request = (new GetInstanceSettingRequest())->setProject($project)->setZone($zone);
         $response = $gapicClient->getAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
