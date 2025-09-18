@@ -23,7 +23,7 @@ class Partition extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes partition_token = 1;</code>
      */
-    private $partition_token = '';
+    protected $partition_token = '';
 
     /**
      * Constructor.

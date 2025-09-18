@@ -43,7 +43,7 @@ class KeySet extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool all = 3;</code>
      */
-    private $all = false;
+    protected $all = false;
 
     /**
      * Constructor.

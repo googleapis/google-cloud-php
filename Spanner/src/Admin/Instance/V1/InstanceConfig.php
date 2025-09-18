@@ -24,20 +24,20 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The name of this instance configuration as it appears in UIs.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Output only. Whether this instance configuration is a Google-managed or
      * user-managed configuration.
      *
      * Generated from protobuf field <code>.google.spanner.admin.instance.v1.InstanceConfig.Type config_type = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $config_type = 0;
+    protected $config_type = 0;
     /**
      * The geographic placement of nodes in this instance configuration and their
      * replication properties.
@@ -64,7 +64,7 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string base_config = 7 [(.google.api.resource_reference) = {</code>
      */
-    private $base_config = '';
+    protected $base_config = '';
     /**
      * Cloud Labels are a flexible and lightweight mechanism for organizing cloud
      * resources into groups that reflect a customer's organizational needs and
@@ -103,7 +103,7 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 9;</code>
      */
-    private $etag = '';
+    protected $etag = '';
     /**
      * Allowed values of the "default_leader" schema option for databases in
      * instances that use this instance configuration.
@@ -118,33 +118,33 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool reconciling = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $reconciling = false;
+    protected $reconciling = false;
     /**
      * Output only. The current instance configuration state. Applicable only for
      * `USER_MANAGED` configurations.
      *
      * Generated from protobuf field <code>.google.spanner.admin.instance.v1.InstanceConfig.State state = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. Describes whether free instances are available to be created
      * in this instance configuration.
      *
      * Generated from protobuf field <code>.google.spanner.admin.instance.v1.InstanceConfig.FreeInstanceAvailability free_instance_availability = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $free_instance_availability = 0;
+    protected $free_instance_availability = 0;
     /**
      * Output only. The `QuorumType` of the instance configuration.
      *
      * Generated from protobuf field <code>.google.spanner.admin.instance.v1.InstanceConfig.QuorumType quorum_type = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $quorum_type = 0;
+    protected $quorum_type = 0;
     /**
      * Output only. The storage limit in bytes per processing unit.
      *
      * Generated from protobuf field <code>int64 storage_limit_per_processing_unit = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $storage_limit_per_processing_unit = 0;
+    protected $storage_limit_per_processing_unit = 0;
 
     /**
      * Constructor.

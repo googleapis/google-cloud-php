@@ -20,14 +20,14 @@ class PartitionQueryRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string session = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $session = '';
+    protected $session = '';
     /**
      * Read-only snapshot transactions are supported, read and write and
      * single-use transactions are not.
      *
      * Generated from protobuf field <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
      */
-    private $transaction = null;
+    protected $transaction = null;
     /**
      * Required. The query request to generate partitions for. The request fails
      * if the query isn't root partitionable. For a query to be root
@@ -44,7 +44,7 @@ class PartitionQueryRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string sql = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $sql = '';
+    protected $sql = '';
     /**
      * Parameter names and values that bind to placeholders in the SQL string.
      * A parameter placeholder consists of the `&#64;` character followed by the
@@ -57,7 +57,7 @@ class PartitionQueryRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Struct params = 4;</code>
      */
-    private $params = null;
+    protected $params = null;
     /**
      * It isn't always possible for Cloud Spanner to infer the right SQL type
      * from a JSON value. For example, values of type `BYTES` and values
@@ -76,7 +76,7 @@ class PartitionQueryRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.spanner.v1.PartitionOptions partition_options = 6;</code>
      */
-    private $partition_options = null;
+    protected $partition_options = null;
 
     /**
      * Constructor.
