@@ -29,6 +29,10 @@ trait XrefTrait
      */
     private function normalizeTypedVariables(string $type): string
     {
+        // Reduce PHPStan array shapes to basic arrays (we handle this separately)
+        if (0 === strpos($type, 'array{')) {
+            return 'array';
+        }
         $types = explode('|', $type);
 
         // Remove redundant "RepeatedField" type for protobuf parameters
