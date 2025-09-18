@@ -28,6 +28,7 @@ use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Compute\V1\AttachNetworkEndpointsRegionNetworkEndpointGroupRequest;
 use Google\Cloud\Compute\V1\Client\RegionNetworkEndpointGroupsClient;
+use Google\Cloud\Compute\V1\Client\RegionOperationsClient;
 use Google\Cloud\Compute\V1\DeleteRegionNetworkEndpointGroupRequest;
 use Google\Cloud\Compute\V1\DetachNetworkEndpointsRegionNetworkEndpointGroupRequest;
 use Google\Cloud\Compute\V1\GetRegionNetworkEndpointGroupRequest;
@@ -43,7 +44,6 @@ use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\Operation\Status;
 use Google\Cloud\Compute\V1\RegionNetworkEndpointGroupsAttachEndpointsRequest;
 use Google\Cloud\Compute\V1\RegionNetworkEndpointGroupsDetachEndpointsRequest;
-use Google\Cloud\Compute\V1\RegionOperationsClient;
 use Google\Rpc\Code;
 use stdClass;
 

@@ -29,6 +29,7 @@ use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Compute\V1\AggregatedListNetworkEndpointGroupsRequest;
 use Google\Cloud\Compute\V1\AttachNetworkEndpointsNetworkEndpointGroupRequest;
 use Google\Cloud\Compute\V1\Client\NetworkEndpointGroupsClient;
+use Google\Cloud\Compute\V1\Client\ZoneOperationsClient;
 use Google\Cloud\Compute\V1\DeleteNetworkEndpointGroupRequest;
 use Google\Cloud\Compute\V1\DetachNetworkEndpointsNetworkEndpointGroupRequest;
 use Google\Cloud\Compute\V1\GetNetworkEndpointGroupRequest;
@@ -50,7 +51,6 @@ use Google\Cloud\Compute\V1\Operation\Status;
 use Google\Cloud\Compute\V1\TestIamPermissionsNetworkEndpointGroupRequest;
 use Google\Cloud\Compute\V1\TestPermissionsRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
-use Google\Cloud\Compute\V1\ZoneOperationsClient;
 use Google\Rpc\Code;
 use stdClass;
 

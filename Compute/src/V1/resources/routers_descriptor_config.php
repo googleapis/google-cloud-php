@@ -479,7 +479,15 @@ return [
                 ],
             ],
             'ListBgpRoutes' => [
-                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getMaxResults',
+                    'requestPageSizeSetMethod' => 'setMaxResults',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getResult',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
                 'responseType' => 'Google\Cloud\Compute\V1\RoutersListBgpRoutes',
                 'headerParams' => [
                     [
@@ -503,7 +511,15 @@ return [
                 ],
             ],
             'ListRoutePolicies' => [
-                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getMaxResults',
+                    'requestPageSizeSetMethod' => 'setMaxResults',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getResult',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
                 'responseType' => 'Google\Cloud\Compute\V1\RoutersListRoutePolicies',
                 'headerParams' => [
                     [

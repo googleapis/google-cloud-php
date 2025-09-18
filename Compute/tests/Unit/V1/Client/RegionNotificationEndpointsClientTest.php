@@ -27,6 +27,7 @@ use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Compute\V1\Client\RegionNotificationEndpointsClient;
+use Google\Cloud\Compute\V1\Client\RegionOperationsClient;
 use Google\Cloud\Compute\V1\DeleteRegionNotificationEndpointRequest;
 use Google\Cloud\Compute\V1\GetRegionNotificationEndpointRequest;
 use Google\Cloud\Compute\V1\GetRegionOperationRequest;
@@ -36,7 +37,6 @@ use Google\Cloud\Compute\V1\NotificationEndpoint;
 use Google\Cloud\Compute\V1\NotificationEndpointList;
 use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\Operation\Status;
-use Google\Cloud\Compute\V1\RegionOperationsClient;
 use Google\Rpc\Code;
 use stdClass;
 

@@ -28,6 +28,7 @@ use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Compute\V1\AggregatedListNetworkEdgeSecurityServicesRequest;
 use Google\Cloud\Compute\V1\Client\NetworkEdgeSecurityServicesClient;
+use Google\Cloud\Compute\V1\Client\RegionOperationsClient;
 use Google\Cloud\Compute\V1\DeleteNetworkEdgeSecurityServiceRequest;
 use Google\Cloud\Compute\V1\GetNetworkEdgeSecurityServiceRequest;
 use Google\Cloud\Compute\V1\GetRegionOperationRequest;
@@ -38,7 +39,6 @@ use Google\Cloud\Compute\V1\NetworkEdgeSecurityServicesScopedList;
 use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\Operation\Status;
 use Google\Cloud\Compute\V1\PatchNetworkEdgeSecurityServiceRequest;
-use Google\Cloud\Compute\V1\RegionOperationsClient;
 use Google\Rpc\Code;
 use stdClass;
 

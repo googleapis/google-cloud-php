@@ -30,6 +30,7 @@ use Google\Cloud\Compute\V1\AbandonInstancesInstanceGroupManagerRequest;
 use Google\Cloud\Compute\V1\AggregatedListInstanceGroupManagersRequest;
 use Google\Cloud\Compute\V1\ApplyUpdatesToInstancesInstanceGroupManagerRequest;
 use Google\Cloud\Compute\V1\Client\InstanceGroupManagersClient;
+use Google\Cloud\Compute\V1\Client\ZoneOperationsClient;
 use Google\Cloud\Compute\V1\CreateInstancesInstanceGroupManagerRequest;
 use Google\Cloud\Compute\V1\DeleteInstanceGroupManagerRequest;
 use Google\Cloud\Compute\V1\DeleteInstancesInstanceGroupManagerRequest;
@@ -78,7 +79,6 @@ use Google\Cloud\Compute\V1\StartInstancesInstanceGroupManagerRequest;
 use Google\Cloud\Compute\V1\StopInstancesInstanceGroupManagerRequest;
 use Google\Cloud\Compute\V1\SuspendInstancesInstanceGroupManagerRequest;
 use Google\Cloud\Compute\V1\UpdatePerInstanceConfigsInstanceGroupManagerRequest;
-use Google\Cloud\Compute\V1\ZoneOperationsClient;
 use Google\Rpc\Code;
 use stdClass;
 

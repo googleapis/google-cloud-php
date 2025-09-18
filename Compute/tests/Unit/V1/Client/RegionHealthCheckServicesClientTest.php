@@ -27,6 +27,7 @@ use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Compute\V1\Client\RegionHealthCheckServicesClient;
+use Google\Cloud\Compute\V1\Client\RegionOperationsClient;
 use Google\Cloud\Compute\V1\DeleteRegionHealthCheckServiceRequest;
 use Google\Cloud\Compute\V1\GetRegionHealthCheckServiceRequest;
 use Google\Cloud\Compute\V1\GetRegionOperationRequest;
@@ -37,7 +38,6 @@ use Google\Cloud\Compute\V1\ListRegionHealthCheckServicesRequest;
 use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\Operation\Status;
 use Google\Cloud\Compute\V1\PatchRegionHealthCheckServiceRequest;
-use Google\Cloud\Compute\V1\RegionOperationsClient;
 use Google\Rpc\Code;
 use stdClass;
 

@@ -24,9 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_Routers_ListRoutePolicies_sync]
 use Google\ApiCore\ApiException;
+use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Compute\V1\Client\RoutersClient;
 use Google\Cloud\Compute\V1\ListRoutePoliciesRoutersRequest;
-use Google\Cloud\Compute\V1\RoutersListRoutePolicies;
 
 /**
  * Retrieves a list of router route policy subresources available to the specified project.
@@ -48,9 +48,12 @@ function list_route_policies_sample(string $project, string $region, string $rou
 
     // Call the API and handle any network failures.
     try {
-        /** @var RoutersListRoutePolicies $response */
+        /** @var PagedListResponse $response */
         $response = $routersClient->listRoutePolicies($request);
-        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+
+        foreach ($response as $element) {
+            printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
+        }
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }

@@ -24,8 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_InterconnectAttachmentGroups_List_sync]
 use Google\ApiCore\ApiException;
+use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Compute\V1\Client\InterconnectAttachmentGroupsClient;
-use Google\Cloud\Compute\V1\InterconnectAttachmentGroupsListResponse;
 use Google\Cloud\Compute\V1\ListInterconnectAttachmentGroupsRequest;
 
 /**
@@ -44,9 +44,12 @@ function list_sample(string $project): void
 
     // Call the API and handle any network failures.
     try {
-        /** @var InterconnectAttachmentGroupsListResponse $response */
+        /** @var PagedListResponse $response */
         $response = $interconnectAttachmentGroupsClient->list($request);
-        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+
+        foreach ($response as $element) {
+            printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
+        }
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
