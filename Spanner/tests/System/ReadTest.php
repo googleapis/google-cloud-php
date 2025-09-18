@@ -585,7 +585,7 @@ class ReadTest extends SpannerTestCase
             $json = json_decode($e->getMessage(), true);
 
             if ($json['status'] == 'ALREADY_EXISTS') {
-                $this->insertUnorderedBatch($data);
+                $this->insertUnorderedBatch();
             } else {
                 throw $e;
             }
