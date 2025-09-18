@@ -351,6 +351,13 @@ trait TransactionalReadTrait
      *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions}
      *           If using the `replicaSelection::type` setting, utilize the constants available in
      *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type} to set a value.
+     *     @type int $orderBy Set the OrderBy option for the ReadRequest.
+     *           {@see \Google\Cloud\Spanner\V1\ReadRequest} and {@see \Google\Cloud\Spanner\V1\ReadRequest\OrderBy}
+     *           for more information and available options.
+     *     @type int $lockHint Set the LockHint option for the ReadRequest. Only available for ReadWrite transactions
+     *           and not Snapshots.
+     *           {@see \Google\Cloud\Spanner\V1\ReadRequest} and {@see \Google\Cloud\Spanner\V1\ReadRequest\LockHint}
+     *           for more information and available options.
      * }
      * @return Result
      */
