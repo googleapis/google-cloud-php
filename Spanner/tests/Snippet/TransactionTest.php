@@ -24,7 +24,7 @@ use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Result;
 use Google\Cloud\Spanner\Serializer;
-use Google\Cloud\Spanner\Session\Session;
+use Google\Cloud\Spanner\Session\SessionCache;
 use Google\Cloud\Spanner\StructType;
 use Google\Cloud\Spanner\StructValue;
 use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
@@ -54,8 +54,6 @@ class TransactionTest extends SnippetTestCase
     use ProphecyTrait;
     use ResultGeneratorTrait;
 
-    const TRANSACTION = 'my-transaction';
-
     private $spannerClient;
     private $serializer;
     private $transaction;
@@ -67,13 +65,8 @@ class TransactionTest extends SnippetTestCase
         $this->spannerClient = $this->prophesize(SpannerClient::class);
         $this->serializer = new Serializer();
         $operation = new Operation($this->spannerClient->reveal(), $this->serializer);
-        $session = $this->prophesize(Session::class);
-        $session->info()
-            ->willReturn([
-                'databaseName' => 'database'
-            ]);
-        $session->name()
-            ->willReturn('database');
+        $session = $this->prophesize(SessionCache::class);
+        $session->name()->willReturn(self::SESSION);
 
         $this->transaction = new Transaction(
             $operation,
@@ -392,9 +385,7 @@ class TransactionTest extends SnippetTestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn(new CommitResponse([
-                'commit_timestamp' => new TimestampProto(['seconds' => time()])
-            ]));
+            ->willReturn(new CommitResponse());
 
         $snippet = $this->snippetFromMethod(Transaction::class, 'commit');
         $snippet->addLocal('transaction', $this->transaction);
@@ -409,7 +400,6 @@ class TransactionTest extends SnippetTestCase
             Argument::type(CommitRequest::class),
             Argument::type('array')
         )->willReturn(new CommitResponse([
-            'commit_timestamp' => new TimestampProto(['seconds' => time()]),
             'commit_stats' => $expectedCommitStats,
         ]));
 
@@ -417,7 +407,8 @@ class TransactionTest extends SnippetTestCase
         $snippet->addLocal('transaction', $this->transaction);
 
         $res = $snippet->invoke('commitStats');
-        $this->assertEquals(['mutationCount' => 4], $res->returnVal());
+        $this->assertInstanceOf(CommitStats::class, $res->returnVal());
+        $this->assertEquals(4, $res->returnVal()->getMutationCount());
     }
 
     public function testState()

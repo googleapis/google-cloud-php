@@ -17,7 +17,6 @@
 
 namespace Google\Cloud\Spanner\Tests\Snippet;
 
-use Google\ApiCore\ServerStream;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
@@ -26,19 +25,16 @@ use Google\Cloud\Spanner\ArrayType;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\Serializer;
-use Google\Cloud\Spanner\Session\Session;
-use Google\Cloud\Spanner\Session\SessionPoolInterface;
+use Google\Cloud\Spanner\Session\SessionCache;
 use Google\Cloud\Spanner\StructType;
 use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
-use Google\Cloud\Spanner\V1\PartialResultSet;
-use Google\Cloud\Spanner\V1\ResultSetMetadata;
-use Google\Cloud\Spanner\V1\Type;
-use Google\Cloud\Spanner\V1\StructType as StructTypeProto;
-use Google\Cloud\Spanner\V1\StructType\Field;
-use Google\Protobuf\Value;
+use Google\Cloud\Spanner\V1\Session;
+use Google\Protobuf\Timestamp;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
+use Psr\Cache\CacheItemInterface;
+use Psr\Cache\CacheItemPoolInterface;
 
 /**
  * @group spanner
@@ -69,20 +65,8 @@ class StructTypeTest extends SnippetTestCase
         $instance->name()->willReturn(InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE));
         $instance->directedReadOptions()->willReturn([]);
 
-        $session = $this->prophesize(Session::class);
-        $session->info()
-            ->willReturn([
-                'databaseName' => 'database'
-            ]);
-        $session->name()
-            ->willReturn('database');
-        $session->setExpiration(Argument::any());
-
-        $sessionPool = $this->prophesize(SessionPoolInterface::class);
-        $sessionPool->acquire(Argument::any())
-            ->willReturn($session->reveal());
-        $sessionPool->setDatabase(Argument::any())
-            ->willReturn(null);
+        $session = $this->prophesize(SessionCache::class);
+        $session->name()->willReturn(self::SESSION);
 
         $this->serializer = new Serializer();
         $this->database = new Database(
@@ -92,7 +76,7 @@ class StructTypeTest extends SnippetTestCase
             $instance->reveal(),
             self::PROJECT,
             self::DATABASE,
-            ['sessionPool' => $sessionPool->reveal()]
+            $session->reveal(),
         );
 
         $this->type = new StructType();

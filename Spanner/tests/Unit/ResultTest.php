@@ -21,7 +21,7 @@ use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Result;
-use Google\Cloud\Spanner\Session\Session;
+use Google\Cloud\Spanner\Session\SessionCache;
 use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
 use Google\Cloud\Spanner\Transaction;
@@ -61,7 +61,7 @@ class ResultTest extends TestCase
         $this->checkAndSkipGrpcTests();
 
         $this->operation = $this->prophesize(Operation::class);
-        $this->session = $this->prophesize(Session::class);
+        $this->session = $this->prophesize(SessionCache::class);
         $this->transaction = $this->prophesize(Transaction::class);
         $this->snapshot = $this->prophesize(Snapshot::class);
 
@@ -339,7 +339,7 @@ class ResultTest extends TestCase
             $this->mapper->reveal()
         );
 
-        $this->assertInstanceOf(Session::class, $result->session());
+        $this->assertInstanceOf(SessionCache::class, $result->session());
     }
 
     public function testStats()
