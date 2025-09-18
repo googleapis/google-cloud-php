@@ -28,6 +28,7 @@ use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Compute\V1\AggregatedListTargetInstancesRequest;
 use Google\Cloud\Compute\V1\Client\TargetInstancesClient;
+use Google\Cloud\Compute\V1\Client\ZoneOperationsClient;
 use Google\Cloud\Compute\V1\DeleteTargetInstanceRequest;
 use Google\Cloud\Compute\V1\GetTargetInstanceRequest;
 use Google\Cloud\Compute\V1\GetZoneOperationRequest;
@@ -44,7 +45,6 @@ use Google\Cloud\Compute\V1\TargetInstancesScopedList;
 use Google\Cloud\Compute\V1\TestIamPermissionsTargetInstanceRequest;
 use Google\Cloud\Compute\V1\TestPermissionsRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
-use Google\Cloud\Compute\V1\ZoneOperationsClient;
 use Google\Rpc\Code;
 use stdClass;
 

@@ -28,6 +28,8 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
+use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
@@ -36,11 +38,9 @@ use Google\Cloud\Compute\V1\DeleteInterconnectAttachmentGroupRequest;
 use Google\Cloud\Compute\V1\GetIamPolicyInterconnectAttachmentGroupRequest;
 use Google\Cloud\Compute\V1\GetInterconnectAttachmentGroupRequest;
 use Google\Cloud\Compute\V1\GetOperationalStatusInterconnectAttachmentGroupRequest;
-use Google\Cloud\Compute\V1\GlobalOperationsClient;
 use Google\Cloud\Compute\V1\InsertInterconnectAttachmentGroupRequest;
 use Google\Cloud\Compute\V1\InterconnectAttachmentGroup;
 use Google\Cloud\Compute\V1\InterconnectAttachmentGroupsGetOperationalStatusResponse;
-use Google\Cloud\Compute\V1\InterconnectAttachmentGroupsListResponse;
 use Google\Cloud\Compute\V1\ListInterconnectAttachmentGroupsRequest;
 use Google\Cloud\Compute\V1\PatchInterconnectAttachmentGroupRequest;
 use Google\Cloud\Compute\V1\Policy;
@@ -61,7 +61,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyInterconnectAttachmentGroupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<InterconnectAttachmentGroupsGetOperationalStatusResponse> getOperationalStatusAsync(GetOperationalStatusInterconnectAttachmentGroupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> insertAsync(InsertInterconnectAttachmentGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<InterconnectAttachmentGroupsListResponse> listAsync(ListInterconnectAttachmentGroupsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListInterconnectAttachmentGroupsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> patchAsync(PatchInterconnectAttachmentGroupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyInterconnectAttachmentGroupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsInterconnectAttachmentGroupRequest $request, array $optionalArgs = [])
@@ -113,7 +113,6 @@ final class InterconnectAttachmentGroupsClient
                     'restClientConfigPath' => __DIR__ . '/../resources/interconnect_attachment_groups_rest_client_config.php',
                 ],
             ],
-            'operationsClientClass' => GlobalOperationsClient::class,
         ];
     }
 
@@ -175,16 +174,35 @@ final class InterconnectAttachmentGroupsClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : $this->getDefaultOperationDescriptor();
+        $options = $this->descriptors[$methodName]['longRunning'] ?? $this->getDefaultOperationDescriptor();
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
     }
 
     /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return GlobalOperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new GlobalOperationsClient($options);
+    }
+
+    /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
@@ -237,11 +255,13 @@ final class InterconnectAttachmentGroupsClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -408,13 +428,13 @@ final class InterconnectAttachmentGroupsClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return InterconnectAttachmentGroupsListResponse
+     * @return PagedListResponse
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function list(ListInterconnectAttachmentGroupsRequest $request, array $callOptions = []): InterconnectAttachmentGroupsListResponse
+    public function list(ListInterconnectAttachmentGroupsRequest $request, array $callOptions = []): PagedListResponse
     {
-        return $this->startApiCall('List', $request, $callOptions)->wait();
+        return $this->startApiCall('List', $request, $callOptions);
     }
 
     /**

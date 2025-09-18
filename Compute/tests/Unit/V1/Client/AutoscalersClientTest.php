@@ -32,6 +32,7 @@ use Google\Cloud\Compute\V1\AutoscalerAggregatedList;
 use Google\Cloud\Compute\V1\AutoscalerList;
 use Google\Cloud\Compute\V1\AutoscalersScopedList;
 use Google\Cloud\Compute\V1\Client\AutoscalersClient;
+use Google\Cloud\Compute\V1\Client\ZoneOperationsClient;
 use Google\Cloud\Compute\V1\DeleteAutoscalerRequest;
 use Google\Cloud\Compute\V1\GetAutoscalerRequest;
 use Google\Cloud\Compute\V1\GetZoneOperationRequest;
@@ -41,7 +42,6 @@ use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\Operation\Status;
 use Google\Cloud\Compute\V1\PatchAutoscalerRequest;
 use Google\Cloud\Compute\V1\UpdateAutoscalerRequest;
-use Google\Cloud\Compute\V1\ZoneOperationsClient;
 use Google\Rpc\Code;
 use stdClass;
 

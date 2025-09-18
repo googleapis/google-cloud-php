@@ -28,6 +28,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
@@ -49,12 +50,9 @@ use Google\Cloud\Compute\V1\NatIpInfoResponse;
 use Google\Cloud\Compute\V1\PatchRoutePolicyRouterRequest;
 use Google\Cloud\Compute\V1\PatchRouterRequest;
 use Google\Cloud\Compute\V1\PreviewRouterRequest;
-use Google\Cloud\Compute\V1\RegionOperationsClient;
 use Google\Cloud\Compute\V1\Router;
 use Google\Cloud\Compute\V1\RouterStatusResponse;
 use Google\Cloud\Compute\V1\RoutersGetRoutePolicyResponse;
-use Google\Cloud\Compute\V1\RoutersListBgpRoutes;
-use Google\Cloud\Compute\V1\RoutersListRoutePolicies;
 use Google\Cloud\Compute\V1\RoutersPreviewResponse;
 use Google\Cloud\Compute\V1\UpdateRoutePolicyRouterRequest;
 use Google\Cloud\Compute\V1\UpdateRouterRequest;
@@ -77,8 +75,8 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<RouterStatusResponse> getRouterStatusAsync(GetRouterStatusRouterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> insertAsync(InsertRouterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listAsync(ListRoutersRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<RoutersListBgpRoutes> listBgpRoutesAsync(ListBgpRoutesRoutersRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<RoutersListRoutePolicies> listRoutePoliciesAsync(ListRoutePoliciesRoutersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listBgpRoutesAsync(ListBgpRoutesRoutersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listRoutePoliciesAsync(ListRoutePoliciesRoutersRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> patchAsync(PatchRouterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> patchRoutePolicyAsync(PatchRoutePolicyRouterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<RoutersPreviewResponse> previewAsync(PreviewRouterRequest $request, array $optionalArgs = [])
@@ -132,7 +130,6 @@ final class RoutersClient
                     'restClientConfigPath' => __DIR__ . '/../resources/routers_rest_client_config.php',
                 ],
             ],
-            'operationsClientClass' => RegionOperationsClient::class,
         ];
     }
 
@@ -195,16 +192,35 @@ final class RoutersClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : $this->getDefaultOperationDescriptor();
+        $options = $this->descriptors[$methodName]['longRunning'] ?? $this->getDefaultOperationDescriptor();
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
     }
 
     /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return RegionOperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new RegionOperationsClient($options);
+    }
+
+    /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
@@ -257,11 +273,13 @@ final class RoutersClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -556,13 +574,13 @@ final class RoutersClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return RoutersListBgpRoutes
+     * @return PagedListResponse
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listBgpRoutes(ListBgpRoutesRoutersRequest $request, array $callOptions = []): RoutersListBgpRoutes
+    public function listBgpRoutes(ListBgpRoutesRoutersRequest $request, array $callOptions = []): PagedListResponse
     {
-        return $this->startApiCall('ListBgpRoutes', $request, $callOptions)->wait();
+        return $this->startApiCall('ListBgpRoutes', $request, $callOptions);
     }
 
     /**
@@ -582,13 +600,13 @@ final class RoutersClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return RoutersListRoutePolicies
+     * @return PagedListResponse
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listRoutePolicies(ListRoutePoliciesRoutersRequest $request, array $callOptions = []): RoutersListRoutePolicies
+    public function listRoutePolicies(ListRoutePoliciesRoutersRequest $request, array $callOptions = []): PagedListResponse
     {
-        return $this->startApiCall('ListRoutePolicies', $request, $callOptions)->wait();
+        return $this->startApiCall('ListRoutePolicies', $request, $callOptions);
     }
 
     /**

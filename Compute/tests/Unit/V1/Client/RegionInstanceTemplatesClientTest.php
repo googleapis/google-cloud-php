@@ -27,6 +27,7 @@ use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Compute\V1\Client\RegionInstanceTemplatesClient;
+use Google\Cloud\Compute\V1\Client\RegionOperationsClient;
 use Google\Cloud\Compute\V1\DeleteRegionInstanceTemplateRequest;
 use Google\Cloud\Compute\V1\GetRegionInstanceTemplateRequest;
 use Google\Cloud\Compute\V1\GetRegionOperationRequest;
@@ -36,7 +37,6 @@ use Google\Cloud\Compute\V1\InstanceTemplateList;
 use Google\Cloud\Compute\V1\ListRegionInstanceTemplatesRequest;
 use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\Operation\Status;
-use Google\Cloud\Compute\V1\RegionOperationsClient;
 use Google\Rpc\Code;
 use stdClass;
 

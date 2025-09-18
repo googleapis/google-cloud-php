@@ -28,6 +28,7 @@ use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Compute\V1\AggregatedListStoragePoolsRequest;
 use Google\Cloud\Compute\V1\Client\StoragePoolsClient;
+use Google\Cloud\Compute\V1\Client\ZoneOperationsClient;
 use Google\Cloud\Compute\V1\DeleteStoragePoolRequest;
 use Google\Cloud\Compute\V1\GetIamPolicyStoragePoolRequest;
 use Google\Cloud\Compute\V1\GetStoragePoolRequest;
@@ -41,6 +42,7 @@ use Google\Cloud\Compute\V1\Policy;
 use Google\Cloud\Compute\V1\SetIamPolicyStoragePoolRequest;
 use Google\Cloud\Compute\V1\StoragePool;
 use Google\Cloud\Compute\V1\StoragePoolAggregatedList;
+use Google\Cloud\Compute\V1\StoragePoolDisk;
 use Google\Cloud\Compute\V1\StoragePoolList;
 use Google\Cloud\Compute\V1\StoragePoolListDisks;
 use Google\Cloud\Compute\V1\StoragePoolsScopedList;
@@ -48,7 +50,6 @@ use Google\Cloud\Compute\V1\TestIamPermissionsStoragePoolRequest;
 use Google\Cloud\Compute\V1\TestPermissionsRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use Google\Cloud\Compute\V1\UpdateStoragePoolRequest;
-use Google\Cloud\Compute\V1\ZoneOperationsClient;
 use Google\Cloud\Compute\V1\ZoneSetPolicyRequest;
 use Google\Rpc\Code;
 use stdClass;
@@ -614,14 +615,19 @@ class StoragePoolsClientTest extends GeneratedTest
         $etag = 'etag3123477';
         $id = 'id3355';
         $kind = 'kind3292052';
-        $nextPageToken = 'nextPageToken-1530815211';
+        $nextPageToken = '';
         $selfLink = 'selfLink-1691268851';
+        $itemsElement = new StoragePool();
+        $items = [
+            $itemsElement,
+        ];
         $expectedResponse = new StoragePoolList();
         $expectedResponse->setEtag($etag);
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSelfLink($selfLink);
+        $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
         // Mock request
         $project = 'project-309310695';
@@ -630,7 +636,10 @@ class StoragePoolsClientTest extends GeneratedTest
             ->setProject($project)
             ->setZone($zone);
         $response = $gapicClient->list($request);
-        $this->assertEquals($expectedResponse, $response);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getItems()[0], $resources[0]);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -692,14 +701,19 @@ class StoragePoolsClientTest extends GeneratedTest
         $etag = 'etag3123477';
         $id = 'id3355';
         $kind = 'kind3292052';
-        $nextPageToken = 'nextPageToken-1530815211';
+        $nextPageToken = '';
         $selfLink = 'selfLink-1691268851';
+        $itemsElement = new StoragePoolDisk();
+        $items = [
+            $itemsElement,
+        ];
         $expectedResponse = new StoragePoolListDisks();
         $expectedResponse->setEtag($etag);
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSelfLink($selfLink);
+        $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
         // Mock request
         $project = 'project-309310695';
@@ -710,7 +724,10 @@ class StoragePoolsClientTest extends GeneratedTest
             ->setStoragePool($storagePool)
             ->setZone($zone);
         $response = $gapicClient->listDisks($request);
-        $this->assertEquals($expectedResponse, $response);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getItems()[0], $resources[0]);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();

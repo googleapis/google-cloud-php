@@ -28,6 +28,7 @@ use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Compute\V1\CancelInstanceGroupManagerResizeRequestRequest;
 use Google\Cloud\Compute\V1\Client\InstanceGroupManagerResizeRequestsClient;
+use Google\Cloud\Compute\V1\Client\ZoneOperationsClient;
 use Google\Cloud\Compute\V1\DeleteInstanceGroupManagerResizeRequestRequest;
 use Google\Cloud\Compute\V1\GetInstanceGroupManagerResizeRequestRequest;
 use Google\Cloud\Compute\V1\GetZoneOperationRequest;
@@ -37,7 +38,6 @@ use Google\Cloud\Compute\V1\InstanceGroupManagerResizeRequestsListResponse;
 use Google\Cloud\Compute\V1\ListInstanceGroupManagerResizeRequestsRequest;
 use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\Operation\Status;
-use Google\Cloud\Compute\V1\ZoneOperationsClient;
 use Google\Rpc\Code;
 use stdClass;
 
