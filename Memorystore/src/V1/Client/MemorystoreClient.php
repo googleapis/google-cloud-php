@@ -114,9 +114,7 @@ final class MemorystoreClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -148,9 +146,7 @@ final class MemorystoreClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -212,8 +208,12 @@ final class MemorystoreClient
      *
      * @return string The formatted backup resource.
      */
-    public static function backupName(string $project, string $location, string $backupCollection, string $backup): string
-    {
+    public static function backupName(
+        string $project,
+        string $location,
+        string $backupCollection,
+        string $backup
+    ): string {
         return self::getPathTemplate('backup')->render([
             'project' => $project,
             'location' => $location,
@@ -656,8 +656,10 @@ final class MemorystoreClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getCertificateAuthority(GetCertificateAuthorityRequest $request, array $callOptions = []): CertificateAuthority
-    {
+    public function getCertificateAuthority(
+        GetCertificateAuthorityRequest $request,
+        array $callOptions = []
+    ): CertificateAuthority {
         return $this->startApiCall('GetCertificateAuthority', $request, $callOptions)->wait();
     }
 
@@ -712,8 +714,10 @@ final class MemorystoreClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listBackupCollections(ListBackupCollectionsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listBackupCollections(
+        ListBackupCollectionsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListBackupCollections', $request, $callOptions);
     }
 
@@ -790,8 +794,10 @@ final class MemorystoreClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function rescheduleMaintenance(RescheduleMaintenanceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function rescheduleMaintenance(
+        RescheduleMaintenanceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('RescheduleMaintenance', $request, $callOptions)->wait();
     }
 

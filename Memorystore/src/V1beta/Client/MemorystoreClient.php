@@ -100,9 +100,7 @@ final class MemorystoreClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -134,9 +132,7 @@ final class MemorystoreClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -483,8 +479,10 @@ final class MemorystoreClient
      *
      * @experimental
      */
-    public function getCertificateAuthority(GetCertificateAuthorityRequest $request, array $callOptions = []): CertificateAuthority
-    {
+    public function getCertificateAuthority(
+        GetCertificateAuthorityRequest $request,
+        array $callOptions = []
+    ): CertificateAuthority {
         return $this->startApiCall('GetCertificateAuthority', $request, $callOptions)->wait();
     }
 
