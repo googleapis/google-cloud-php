@@ -263,6 +263,7 @@ class ReadTest extends SpannerTestCase
 
     public function testLockHintOnReadOnlyThrowsAnError()
     {
+        $this->skipEmulatorTests();
         $db = self::$database;
         $this->expectException(BadRequestException::class);
 

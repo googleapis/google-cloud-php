@@ -282,6 +282,7 @@ class SnapshotTest extends SpannerTestCase
 
     public function testLockHintInSnapshotThrowsAnException()
     {
+        $this->skipEmulatorTests();
         $this->expectException(BadRequestException::class);
         $db = self::$database;
 
