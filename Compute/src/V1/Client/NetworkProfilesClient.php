@@ -27,6 +27,8 @@ namespace Google\Cloud\Compute\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\Options\ClientOptions;
+use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
@@ -34,7 +36,6 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Compute\V1\GetNetworkProfileRequest;
 use Google\Cloud\Compute\V1\ListNetworkProfilesRequest;
 use Google\Cloud\Compute\V1\NetworkProfile;
-use Google\Cloud\Compute\V1\NetworkProfilesListResponse;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
@@ -45,7 +46,7 @@ use Psr\Log\LoggerInterface;
  * calls that map to API methods.
  *
  * @method PromiseInterface<NetworkProfile> getAsync(GetNetworkProfileRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<NetworkProfilesListResponse> listAsync(ListNetworkProfilesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListNetworkProfilesRequest $request, array $optionalArgs = [])
  */
 final class NetworkProfilesClient
 {
@@ -113,7 +114,7 @@ final class NetworkProfilesClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
@@ -166,11 +167,13 @@ final class NetworkProfilesClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -230,12 +233,12 @@ final class NetworkProfilesClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return NetworkProfilesListResponse
+     * @return PagedListResponse
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function list(ListNetworkProfilesRequest $request, array $callOptions = []): NetworkProfilesListResponse
+    public function list(ListNetworkProfilesRequest $request, array $callOptions = []): PagedListResponse
     {
-        return $this->startApiCall('List', $request, $callOptions)->wait();
+        return $this->startApiCall('List', $request, $callOptions);
     }
 }

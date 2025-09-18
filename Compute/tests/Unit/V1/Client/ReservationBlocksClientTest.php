@@ -27,6 +27,7 @@ use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Compute\V1\Client\ReservationBlocksClient;
+use Google\Cloud\Compute\V1\Client\ZoneOperationsClient;
 use Google\Cloud\Compute\V1\GetReservationBlockRequest;
 use Google\Cloud\Compute\V1\GetZoneOperationRequest;
 use Google\Cloud\Compute\V1\ListReservationBlocksRequest;
@@ -37,7 +38,6 @@ use Google\Cloud\Compute\V1\ReservationBlock;
 use Google\Cloud\Compute\V1\ReservationBlocksGetResponse;
 use Google\Cloud\Compute\V1\ReservationBlocksListResponse;
 use Google\Cloud\Compute\V1\ReservationsBlocksPerformMaintenanceRequest;
-use Google\Cloud\Compute\V1\ZoneOperationsClient;
 use Google\Rpc\Code;
 use stdClass;
 

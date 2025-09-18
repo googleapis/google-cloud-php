@@ -29,10 +29,10 @@ use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Compute\V1\BulkInsertInstanceResource;
 use Google\Cloud\Compute\V1\BulkInsertRegionInstanceRequest;
 use Google\Cloud\Compute\V1\Client\RegionInstancesClient;
+use Google\Cloud\Compute\V1\Client\RegionOperationsClient;
 use Google\Cloud\Compute\V1\GetRegionOperationRequest;
 use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\Operation\Status;
-use Google\Cloud\Compute\V1\RegionOperationsClient;
 use Google\Rpc\Code;
 use stdClass;
 
