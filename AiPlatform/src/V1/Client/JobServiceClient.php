@@ -28,6 +28,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -215,9 +216,7 @@ final class JobServiceClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning'])
-            ? $this->descriptors[$methodName]['longRunning']
-            : [];
+        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -272,12 +271,8 @@ final class JobServiceClient
      *
      * @return string The formatted context resource.
      */
-    public static function contextName(
-        string $project,
-        string $location,
-        string $metadataStore,
-        string $context
-    ): string {
+    public static function contextName(string $project, string $location, string $metadataStore, string $context): string
+    {
         return self::getPathTemplate('context')->render([
             'project' => $project,
             'location' => $location,
@@ -372,11 +367,8 @@ final class JobServiceClient
      *
      * @return string The formatted hyperparameter_tuning_job resource.
      */
-    public static function hyperparameterTuningJobName(
-        string $project,
-        string $location,
-        string $hyperparameterTuningJob
-    ): string {
+    public static function hyperparameterTuningJobName(string $project, string $location, string $hyperparameterTuningJob): string
+    {
         return self::getPathTemplate('hyperparameterTuningJob')->render([
             'project' => $project,
             'location' => $location,
@@ -430,11 +422,8 @@ final class JobServiceClient
      *
      * @return string The formatted model_deployment_monitoring_job resource.
      */
-    public static function modelDeploymentMonitoringJobName(
-        string $project,
-        string $location,
-        string $modelDeploymentMonitoringJob
-    ): string {
+    public static function modelDeploymentMonitoringJobName(string $project, string $location, string $modelDeploymentMonitoringJob): string
+    {
         return self::getPathTemplate('modelDeploymentMonitoringJob')->render([
             'project' => $project,
             'location' => $location,
@@ -472,12 +461,8 @@ final class JobServiceClient
      *
      * @return string The formatted nas_trial_detail resource.
      */
-    public static function nasTrialDetailName(
-        string $project,
-        string $location,
-        string $nasJob,
-        string $nasTrialDetail
-    ): string {
+    public static function nasTrialDetailName(string $project, string $location, string $nasJob, string $nasTrialDetail): string
+    {
         return self::getPathTemplate('nasTrialDetail')->render([
             'project' => $project,
             'location' => $location,
@@ -588,12 +573,8 @@ final class JobServiceClient
      *
      * @return string The formatted project_location_publisher_model resource.
      */
-    public static function projectLocationPublisherModelName(
-        string $project,
-        string $location,
-        string $publisher,
-        string $model
-    ): string {
+    public static function projectLocationPublisherModelName(string $project, string $location, string $publisher, string $model): string
+    {
         return self::getPathTemplate('projectLocationPublisherModel')->render([
             'project' => $project,
             'location' => $location,
@@ -708,25 +689,28 @@ final class JobServiceClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'aiplatform.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
-     *           *Important*: If you accept a credential configuration (credential
-     *           JSON/File/Stream) from an external source for authentication to Google Cloud
-     *           Platform, you must validate it before providing it to any Google API or library.
-     *           Providing an unvalidated credential configuration to Google APIs can compromise
-     *           the security of your systems and data. For more information {@see
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\AIPlatform\V1\JobServiceClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new JobServiceClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
      *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
@@ -764,11 +748,13 @@ final class JobServiceClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -914,10 +900,8 @@ final class JobServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function cancelHyperparameterTuningJob(
-        CancelHyperparameterTuningJobRequest $request,
-        array $callOptions = []
-    ): void {
+    public function cancelHyperparameterTuningJob(CancelHyperparameterTuningJobRequest $request, array $callOptions = []): void
+    {
         $this->startApiCall('CancelHyperparameterTuningJob', $request, $callOptions)->wait();
     }
 
@@ -979,10 +963,8 @@ final class JobServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createBatchPredictionJob(
-        CreateBatchPredictionJobRequest $request,
-        array $callOptions = []
-    ): BatchPredictionJob {
+    public function createBatchPredictionJob(CreateBatchPredictionJobRequest $request, array $callOptions = []): BatchPredictionJob
+    {
         return $this->startApiCall('CreateBatchPredictionJob', $request, $callOptions)->wait();
     }
 
@@ -1034,10 +1016,8 @@ final class JobServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createDataLabelingJob(
-        CreateDataLabelingJobRequest $request,
-        array $callOptions = []
-    ): DataLabelingJob {
+    public function createDataLabelingJob(CreateDataLabelingJobRequest $request, array $callOptions = []): DataLabelingJob
+    {
         return $this->startApiCall('CreateDataLabelingJob', $request, $callOptions)->wait();
     }
 
@@ -1063,10 +1043,8 @@ final class JobServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createHyperparameterTuningJob(
-        CreateHyperparameterTuningJobRequest $request,
-        array $callOptions = []
-    ): HyperparameterTuningJob {
+    public function createHyperparameterTuningJob(CreateHyperparameterTuningJobRequest $request, array $callOptions = []): HyperparameterTuningJob
+    {
         return $this->startApiCall('CreateHyperparameterTuningJob', $request, $callOptions)->wait();
     }
 
@@ -1093,10 +1071,8 @@ final class JobServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createModelDeploymentMonitoringJob(
-        CreateModelDeploymentMonitoringJobRequest $request,
-        array $callOptions = []
-    ): ModelDeploymentMonitoringJob {
+    public function createModelDeploymentMonitoringJob(CreateModelDeploymentMonitoringJobRequest $request, array $callOptions = []): ModelDeploymentMonitoringJob
+    {
         return $this->startApiCall('CreateModelDeploymentMonitoringJob', $request, $callOptions)->wait();
     }
 
@@ -1144,14 +1120,12 @@ final class JobServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteBatchPredictionJob(
-        DeleteBatchPredictionJobRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function deleteBatchPredictionJob(DeleteBatchPredictionJobRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('DeleteBatchPredictionJob', $request, $callOptions)->wait();
     }
 
@@ -1172,7 +1146,7 @@ final class JobServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1198,14 +1172,12 @@ final class JobServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteDataLabelingJob(
-        DeleteDataLabelingJobRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function deleteDataLabelingJob(DeleteDataLabelingJobRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('DeleteDataLabelingJob', $request, $callOptions)->wait();
     }
 
@@ -1227,14 +1199,12 @@ final class JobServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteHyperparameterTuningJob(
-        DeleteHyperparameterTuningJobRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function deleteHyperparameterTuningJob(DeleteHyperparameterTuningJobRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('DeleteHyperparameterTuningJob', $request, $callOptions)->wait();
     }
 
@@ -1256,14 +1226,12 @@ final class JobServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteModelDeploymentMonitoringJob(
-        DeleteModelDeploymentMonitoringJobRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function deleteModelDeploymentMonitoringJob(DeleteModelDeploymentMonitoringJobRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('DeleteModelDeploymentMonitoringJob', $request, $callOptions)->wait();
     }
 
@@ -1284,7 +1252,7 @@ final class JobServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1314,10 +1282,8 @@ final class JobServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getBatchPredictionJob(
-        GetBatchPredictionJobRequest $request,
-        array $callOptions = []
-    ): BatchPredictionJob {
+    public function getBatchPredictionJob(GetBatchPredictionJobRequest $request, array $callOptions = []): BatchPredictionJob
+    {
         return $this->startApiCall('GetBatchPredictionJob', $request, $callOptions)->wait();
     }
 
@@ -1395,10 +1361,8 @@ final class JobServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getHyperparameterTuningJob(
-        GetHyperparameterTuningJobRequest $request,
-        array $callOptions = []
-    ): HyperparameterTuningJob {
+    public function getHyperparameterTuningJob(GetHyperparameterTuningJobRequest $request, array $callOptions = []): HyperparameterTuningJob
+    {
         return $this->startApiCall('GetHyperparameterTuningJob', $request, $callOptions)->wait();
     }
 
@@ -1424,10 +1388,8 @@ final class JobServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getModelDeploymentMonitoringJob(
-        GetModelDeploymentMonitoringJobRequest $request,
-        array $callOptions = []
-    ): ModelDeploymentMonitoringJob {
+    public function getModelDeploymentMonitoringJob(GetModelDeploymentMonitoringJobRequest $request, array $callOptions = []): ModelDeploymentMonitoringJob
+    {
         return $this->startApiCall('GetModelDeploymentMonitoringJob', $request, $callOptions)->wait();
     }
 
@@ -1504,10 +1466,8 @@ final class JobServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listBatchPredictionJobs(
-        ListBatchPredictionJobsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listBatchPredictionJobs(ListBatchPredictionJobsRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListBatchPredictionJobs', $request, $callOptions);
     }
 
@@ -1558,10 +1518,8 @@ final class JobServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listDataLabelingJobs(
-        ListDataLabelingJobsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listDataLabelingJobs(ListDataLabelingJobsRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListDataLabelingJobs', $request, $callOptions);
     }
 
@@ -1587,10 +1545,8 @@ final class JobServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listHyperparameterTuningJobs(
-        ListHyperparameterTuningJobsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listHyperparameterTuningJobs(ListHyperparameterTuningJobsRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListHyperparameterTuningJobs', $request, $callOptions);
     }
 
@@ -1616,10 +1572,8 @@ final class JobServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listModelDeploymentMonitoringJobs(
-        ListModelDeploymentMonitoringJobsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listModelDeploymentMonitoringJobs(ListModelDeploymentMonitoringJobsRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListModelDeploymentMonitoringJobs', $request, $callOptions);
     }
 
@@ -1698,10 +1652,8 @@ final class JobServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function pauseModelDeploymentMonitoringJob(
-        PauseModelDeploymentMonitoringJobRequest $request,
-        array $callOptions = []
-    ): void {
+    public function pauseModelDeploymentMonitoringJob(PauseModelDeploymentMonitoringJobRequest $request, array $callOptions = []): void
+    {
         $this->startApiCall('PauseModelDeploymentMonitoringJob', $request, $callOptions)->wait();
     }
 
@@ -1727,10 +1679,8 @@ final class JobServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function resumeModelDeploymentMonitoringJob(
-        ResumeModelDeploymentMonitoringJobRequest $request,
-        array $callOptions = []
-    ): void {
+    public function resumeModelDeploymentMonitoringJob(ResumeModelDeploymentMonitoringJobRequest $request, array $callOptions = []): void
+    {
         $this->startApiCall('ResumeModelDeploymentMonitoringJob', $request, $callOptions)->wait();
     }
 
@@ -1756,10 +1706,8 @@ final class JobServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function searchModelDeploymentMonitoringStatsAnomalies(
-        SearchModelDeploymentMonitoringStatsAnomaliesRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function searchModelDeploymentMonitoringStatsAnomalies(SearchModelDeploymentMonitoringStatsAnomaliesRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('SearchModelDeploymentMonitoringStatsAnomalies', $request, $callOptions);
     }
 
@@ -1781,14 +1729,12 @@ final class JobServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<ModelDeploymentMonitoringJob>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateModelDeploymentMonitoringJob(
-        UpdateModelDeploymentMonitoringJobRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function updateModelDeploymentMonitoringJob(UpdateModelDeploymentMonitoringJobRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('UpdateModelDeploymentMonitoringJob', $request, $callOptions)->wait();
     }
 
@@ -1928,10 +1874,8 @@ final class JobServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(
-        TestIamPermissionsRequest $request,
-        array $callOptions = []
-    ): TestIamPermissionsResponse {
+    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
+    {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }
