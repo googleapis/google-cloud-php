@@ -36,6 +36,9 @@ class StreamingSynthesisInput extends \Google\Protobuf\Internal\Message
      *     @type string $markup
      *           Markup for HD voices specifically. This field may not be used with any
      *           other voices.
+     *     @type \Google\Cloud\TextToSpeech\V1\MultiSpeakerMarkup $multi_speaker_markup
+     *           Multi-speaker markup for Gemini TTS. This field may not
+     *           be used with any other voices.
      *     @type string $prompt
      *           This is system instruction supported only for controllable voice models.
      * }
@@ -109,6 +112,39 @@ class StreamingSynthesisInput extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->writeOneof(5, $var);
+
+        return $this;
+    }
+
+    /**
+     * Multi-speaker markup for Gemini TTS. This field may not
+     * be used with any other voices.
+     *
+     * Generated from protobuf field <code>.google.cloud.texttospeech.v1.MultiSpeakerMarkup multi_speaker_markup = 7;</code>
+     * @return \Google\Cloud\TextToSpeech\V1\MultiSpeakerMarkup|null
+     */
+    public function getMultiSpeakerMarkup()
+    {
+        return $this->readOneof(7);
+    }
+
+    public function hasMultiSpeakerMarkup()
+    {
+        return $this->hasOneof(7);
+    }
+
+    /**
+     * Multi-speaker markup for Gemini TTS. This field may not
+     * be used with any other voices.
+     *
+     * Generated from protobuf field <code>.google.cloud.texttospeech.v1.MultiSpeakerMarkup multi_speaker_markup = 7;</code>
+     * @param \Google\Cloud\TextToSpeech\V1\MultiSpeakerMarkup $var
+     * @return $this
+     */
+    public function setMultiSpeakerMarkup($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\TextToSpeech\V1\MultiSpeakerMarkup::class);
+        $this->writeOneof(7, $var);
 
         return $this;
     }
