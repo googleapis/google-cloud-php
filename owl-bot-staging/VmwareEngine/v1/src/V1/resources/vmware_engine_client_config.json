@@ -1,0 +1,449 @@
+{
+    "interfaces": {
+        "google.cloud.vmwareengine.v1.VmwareEngine": {
+            "retry_codes": {
+                "no_retry_codes": [],
+                "retry_policy_1_codes": [
+                    "UNAVAILABLE"
+                ],
+                "no_retry_1_codes": [],
+                "no_retry_2_codes": []
+            },
+            "retry_params": {
+                "no_retry_params": {
+                    "initial_retry_delay_millis": 0,
+                    "retry_delay_multiplier": 0.0,
+                    "max_retry_delay_millis": 0,
+                    "initial_rpc_timeout_millis": 0,
+                    "rpc_timeout_multiplier": 1.0,
+                    "max_rpc_timeout_millis": 0,
+                    "total_timeout_millis": 0
+                },
+                "retry_policy_1_params": {
+                    "initial_retry_delay_millis": 1000,
+                    "retry_delay_multiplier": 1.3,
+                    "max_retry_delay_millis": 10000,
+                    "initial_rpc_timeout_millis": 120000,
+                    "rpc_timeout_multiplier": 1.0,
+                    "max_rpc_timeout_millis": 120000,
+                    "total_timeout_millis": 120000
+                },
+                "no_retry_1_params": {
+                    "initial_retry_delay_millis": 0,
+                    "retry_delay_multiplier": 0.0,
+                    "max_retry_delay_millis": 0,
+                    "initial_rpc_timeout_millis": 60000,
+                    "rpc_timeout_multiplier": 1.0,
+                    "max_rpc_timeout_millis": 60000,
+                    "total_timeout_millis": 60000
+                },
+                "no_retry_2_params": {
+                    "initial_retry_delay_millis": 0,
+                    "retry_delay_multiplier": 0.0,
+                    "max_retry_delay_millis": 0,
+                    "initial_rpc_timeout_millis": 120000,
+                    "rpc_timeout_multiplier": 1.0,
+                    "max_rpc_timeout_millis": 120000,
+                    "total_timeout_millis": 120000
+                }
+            },
+            "methods": {
+                "CreateCluster": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "no_retry_2_codes",
+                    "retry_params_name": "no_retry_2_params"
+                },
+                "CreateExternalAccessRule": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "no_retry_2_codes",
+                    "retry_params_name": "no_retry_2_params"
+                },
+                "CreateExternalAddress": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "no_retry_2_codes",
+                    "retry_params_name": "no_retry_2_params"
+                },
+                "CreateHcxActivationKey": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "no_retry_2_codes",
+                    "retry_params_name": "no_retry_2_params"
+                },
+                "CreateLoggingServer": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "no_retry_2_codes",
+                    "retry_params_name": "no_retry_2_params"
+                },
+                "CreateManagementDnsZoneBinding": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "no_retry_2_codes",
+                    "retry_params_name": "no_retry_2_params"
+                },
+                "CreateNetworkPeering": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "no_retry_2_codes",
+                    "retry_params_name": "no_retry_2_params"
+                },
+                "CreateNetworkPolicy": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "no_retry_2_codes",
+                    "retry_params_name": "no_retry_2_params"
+                },
+                "CreatePrivateCloud": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "no_retry_2_codes",
+                    "retry_params_name": "no_retry_2_params"
+                },
+                "CreatePrivateConnection": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "no_retry_2_codes",
+                    "retry_params_name": "no_retry_2_params"
+                },
+                "CreateVmwareEngineNetwork": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "no_retry_2_codes",
+                    "retry_params_name": "no_retry_2_params"
+                },
+                "DeleteCluster": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "no_retry_2_codes",
+                    "retry_params_name": "no_retry_2_params"
+                },
+                "DeleteExternalAccessRule": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "no_retry_2_codes",
+                    "retry_params_name": "no_retry_2_params"
+                },
+                "DeleteExternalAddress": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "no_retry_2_codes",
+                    "retry_params_name": "no_retry_2_params"
+                },
+                "DeleteLoggingServer": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "no_retry_2_codes",
+                    "retry_params_name": "no_retry_2_params"
+                },
+                "DeleteManagementDnsZoneBinding": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "no_retry_2_codes",
+                    "retry_params_name": "no_retry_2_params"
+                },
+                "DeleteNetworkPeering": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "no_retry_2_codes",
+                    "retry_params_name": "no_retry_2_params"
+                },
+                "DeleteNetworkPolicy": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "no_retry_2_codes",
+                    "retry_params_name": "no_retry_2_params"
+                },
+                "DeletePrivateCloud": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "no_retry_2_codes",
+                    "retry_params_name": "no_retry_2_params"
+                },
+                "DeletePrivateConnection": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "no_retry_2_codes",
+                    "retry_params_name": "no_retry_2_params"
+                },
+                "DeleteVmwareEngineNetwork": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "no_retry_2_codes",
+                    "retry_params_name": "no_retry_2_params"
+                },
+                "FetchNetworkPolicyExternalAddresses": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "no_retry_2_codes",
+                    "retry_params_name": "no_retry_2_params"
+                },
+                "GetCluster": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "GetDnsBindPermission": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "GetDnsForwarding": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "GetExternalAccessRule": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "GetExternalAddress": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "GetHcxActivationKey": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "GetLoggingServer": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "GetManagementDnsZoneBinding": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "GetNetworkPeering": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "GetNetworkPolicy": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "GetNode": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "GetNodeType": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "GetPrivateCloud": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "GetPrivateConnection": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "GetSubnet": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "GetVmwareEngineNetwork": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "GrantDnsBindPermission": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "no_retry_2_codes",
+                    "retry_params_name": "no_retry_2_params"
+                },
+                "ListClusters": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "ListExternalAccessRules": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "ListExternalAddresses": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "ListHcxActivationKeys": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "ListLoggingServers": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "ListManagementDnsZoneBindings": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "ListNetworkPeerings": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "ListNetworkPolicies": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "ListNodeTypes": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "ListNodes": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "ListPeeringRoutes": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "ListPrivateClouds": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "ListPrivateConnectionPeeringRoutes": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "ListPrivateConnections": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "ListSubnets": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "ListVmwareEngineNetworks": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "RepairManagementDnsZoneBinding": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "no_retry_2_codes",
+                    "retry_params_name": "no_retry_2_params"
+                },
+                "ResetNsxCredentials": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "no_retry_2_codes",
+                    "retry_params_name": "no_retry_2_params"
+                },
+                "ResetVcenterCredentials": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "no_retry_2_codes",
+                    "retry_params_name": "no_retry_2_params"
+                },
+                "RevokeDnsBindPermission": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "no_retry_2_codes",
+                    "retry_params_name": "no_retry_2_params"
+                },
+                "ShowNsxCredentials": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "ShowVcenterCredentials": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "UndeletePrivateCloud": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "no_retry_2_codes",
+                    "retry_params_name": "no_retry_2_params"
+                },
+                "UpdateCluster": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "no_retry_2_codes",
+                    "retry_params_name": "no_retry_2_params"
+                },
+                "UpdateDnsForwarding": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "no_retry_2_codes",
+                    "retry_params_name": "no_retry_2_params"
+                },
+                "UpdateExternalAccessRule": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "no_retry_2_codes",
+                    "retry_params_name": "no_retry_2_params"
+                },
+                "UpdateExternalAddress": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "no_retry_2_codes",
+                    "retry_params_name": "no_retry_2_params"
+                },
+                "UpdateLoggingServer": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "no_retry_2_codes",
+                    "retry_params_name": "no_retry_2_params"
+                },
+                "UpdateManagementDnsZoneBinding": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "no_retry_2_codes",
+                    "retry_params_name": "no_retry_2_params"
+                },
+                "UpdateNetworkPeering": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "no_retry_2_codes",
+                    "retry_params_name": "no_retry_2_params"
+                },
+                "UpdateNetworkPolicy": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "no_retry_2_codes",
+                    "retry_params_name": "no_retry_2_params"
+                },
+                "UpdatePrivateCloud": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "no_retry_2_codes",
+                    "retry_params_name": "no_retry_2_params"
+                },
+                "UpdatePrivateConnection": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "no_retry_2_codes",
+                    "retry_params_name": "no_retry_2_params"
+                },
+                "UpdateSubnet": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
+                "UpdateVmwareEngineNetwork": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "no_retry_2_codes",
+                    "retry_params_name": "no_retry_2_params"
+                },
+                "GetLocation": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "no_retry_2_codes",
+                    "retry_params_name": "no_retry_2_params"
+                },
+                "ListLocations": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "no_retry_2_codes",
+                    "retry_params_name": "no_retry_2_params"
+                },
+                "GetIamPolicy": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "no_retry_2_codes",
+                    "retry_params_name": "no_retry_2_params"
+                },
+                "SetIamPolicy": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "no_retry_2_codes",
+                    "retry_params_name": "no_retry_2_params"
+                },
+                "TestIamPermissions": {
+                    "timeout_millis": 120000,
+                    "retry_codes_name": "no_retry_2_codes",
+                    "retry_params_name": "no_retry_2_params"
+                }
+            }
+        }
+    }
+}
