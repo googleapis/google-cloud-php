@@ -17,27 +17,27 @@ use Google\Protobuf\Internal\GPBUtil;
 class DrmSystems extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Widevine configuration.
+     * Optional. Widevine configuration.
      *
-     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Encryption.Widevine widevine = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Encryption.Widevine widevine = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $widevine = null;
     /**
-     * Fairplay configuration.
+     * Optional. Fairplay configuration.
      *
-     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Encryption.Fairplay fairplay = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Encryption.Fairplay fairplay = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $fairplay = null;
     /**
-     * Playready configuration.
+     * Optional. Playready configuration.
      *
-     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Encryption.Playready playready = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Encryption.Playready playready = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $playready = null;
     /**
-     * Clearkey configuration.
+     * Optional. Clearkey configuration.
      *
-     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Encryption.Clearkey clearkey = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Encryption.Clearkey clearkey = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $clearkey = null;
 
@@ -48,13 +48,13 @@ class DrmSystems extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Video\LiveStream\V1\Encryption\Widevine $widevine
-     *           Widevine configuration.
+     *           Optional. Widevine configuration.
      *     @type \Google\Cloud\Video\LiveStream\V1\Encryption\Fairplay $fairplay
-     *           Fairplay configuration.
+     *           Optional. Fairplay configuration.
      *     @type \Google\Cloud\Video\LiveStream\V1\Encryption\Playready $playready
-     *           Playready configuration.
+     *           Optional. Playready configuration.
      *     @type \Google\Cloud\Video\LiveStream\V1\Encryption\Clearkey $clearkey
-     *           Clearkey configuration.
+     *           Optional. Clearkey configuration.
      * }
      */
     public function __construct($data = NULL) {
@@ -63,9 +63,9 @@ class DrmSystems extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Widevine configuration.
+     * Optional. Widevine configuration.
      *
-     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Encryption.Widevine widevine = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Encryption.Widevine widevine = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Video\LiveStream\V1\Encryption\Widevine|null
      */
     public function getWidevine()
@@ -84,9 +84,9 @@ class DrmSystems extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Widevine configuration.
+     * Optional. Widevine configuration.
      *
-     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Encryption.Widevine widevine = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Encryption.Widevine widevine = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Video\LiveStream\V1\Encryption\Widevine $var
      * @return $this
      */
@@ -99,9 +99,9 @@ class DrmSystems extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Fairplay configuration.
+     * Optional. Fairplay configuration.
      *
-     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Encryption.Fairplay fairplay = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Encryption.Fairplay fairplay = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Video\LiveStream\V1\Encryption\Fairplay|null
      */
     public function getFairplay()
@@ -120,9 +120,9 @@ class DrmSystems extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Fairplay configuration.
+     * Optional. Fairplay configuration.
      *
-     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Encryption.Fairplay fairplay = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Encryption.Fairplay fairplay = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Video\LiveStream\V1\Encryption\Fairplay $var
      * @return $this
      */
@@ -135,9 +135,9 @@ class DrmSystems extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Playready configuration.
+     * Optional. Playready configuration.
      *
-     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Encryption.Playready playready = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Encryption.Playready playready = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Video\LiveStream\V1\Encryption\Playready|null
      */
     public function getPlayready()
@@ -156,9 +156,9 @@ class DrmSystems extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Playready configuration.
+     * Optional. Playready configuration.
      *
-     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Encryption.Playready playready = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Encryption.Playready playready = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Video\LiveStream\V1\Encryption\Playready $var
      * @return $this
      */
@@ -171,9 +171,9 @@ class DrmSystems extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Clearkey configuration.
+     * Optional. Clearkey configuration.
      *
-     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Encryption.Clearkey clearkey = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Encryption.Clearkey clearkey = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Video\LiveStream\V1\Encryption\Clearkey|null
      */
     public function getClearkey()
@@ -192,9 +192,9 @@ class DrmSystems extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Clearkey configuration.
+     * Optional. Clearkey configuration.
      *
-     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Encryption.Clearkey clearkey = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Encryption.Clearkey clearkey = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Video\LiveStream\V1\Encryption\Clearkey $var
      * @return $this
      */

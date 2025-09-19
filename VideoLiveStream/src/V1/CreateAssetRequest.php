@@ -30,8 +30,10 @@ class CreateAssetRequest extends \Google\Protobuf\Internal\Message
     protected $asset = null;
     /**
      * Required. The ID of the asset resource to be created.
-     * This value must be 1-63 characters, begin and end with `[a-z0-9]`,
-     * could contain dashes (-) in between.
+     * This value must be 1-63 characters, begin and end with a lower-case letter
+     * or a number, and consist of only lower-case letters, numbers, and hyphens.
+     * In other words, it must match the following regex:
+     * `^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?$`.
      *
      * Generated from protobuf field <code>string asset_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -59,8 +61,11 @@ class CreateAssetRequest extends \Google\Protobuf\Internal\Message
      *                                                         {@see LivestreamServiceClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\Video\LiveStream\V1\Asset $asset   Required. The asset resource to be created.
      * @param string                                  $assetId Required. The ID of the asset resource to be created.
-     *                                                         This value must be 1-63 characters, begin and end with `[a-z0-9]`,
-     *                                                         could contain dashes (-) in between.
+     *
+     *                                                         This value must be 1-63 characters, begin and end with a lower-case letter
+     *                                                         or a number, and consist of only lower-case letters, numbers, and hyphens.
+     *                                                         In other words, it must match the following regex:
+     *                                                         `^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?$`.
      *
      * @return \Google\Cloud\Video\LiveStream\V1\CreateAssetRequest
      *
@@ -87,8 +92,10 @@ class CreateAssetRequest extends \Google\Protobuf\Internal\Message
      *           Required. The asset resource to be created.
      *     @type string $asset_id
      *           Required. The ID of the asset resource to be created.
-     *           This value must be 1-63 characters, begin and end with `[a-z0-9]`,
-     *           could contain dashes (-) in between.
+     *           This value must be 1-63 characters, begin and end with a lower-case letter
+     *           or a number, and consist of only lower-case letters, numbers, and hyphens.
+     *           In other words, it must match the following regex:
+     *           `^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?$`.
      *     @type string $request_id
      *           A request ID to identify requests. Specify a unique request ID
      *           so that if you must retry your request, the server will know to ignore
@@ -174,8 +181,10 @@ class CreateAssetRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The ID of the asset resource to be created.
-     * This value must be 1-63 characters, begin and end with `[a-z0-9]`,
-     * could contain dashes (-) in between.
+     * This value must be 1-63 characters, begin and end with a lower-case letter
+     * or a number, and consist of only lower-case letters, numbers, and hyphens.
+     * In other words, it must match the following regex:
+     * `^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?$`.
      *
      * Generated from protobuf field <code>string asset_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -187,8 +196,10 @@ class CreateAssetRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The ID of the asset resource to be created.
-     * This value must be 1-63 characters, begin and end with `[a-z0-9]`,
-     * could contain dashes (-) in between.
+     * This value must be 1-63 characters, begin and end with a lower-case letter
+     * or a number, and consist of only lower-case letters, numbers, and hyphens.
+     * In other words, it must match the following regex:
+     * `^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?$`.
      *
      * Generated from protobuf field <code>string asset_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
