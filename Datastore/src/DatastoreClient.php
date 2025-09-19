@@ -22,14 +22,14 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\Int64;
-use Google\Cloud\Datastore\Connection\ConnectionInterface;
-use Google\Cloud\Datastore\Connection\Grpc;
-use Google\Cloud\Datastore\Connection\Rest;
+use Google\Cloud\Core\TimestampTrait;
 use Google\Cloud\Datastore\Query\AggregationQuery;
 use Google\Cloud\Datastore\Query\AggregationQueryResult;
 use Google\Cloud\Datastore\Query\GqlQuery;
 use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Query\QueryInterface;
+use Google\Cloud\Datastore\V1\Client\DatastoreClient as GapicDatastoreClient;
+use InvalidArgumentException;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\Http\Message\StreamInterface;
 
@@ -90,16 +90,11 @@ class DatastoreClient
     use ArrayTrait;
     use ClientTrait;
     use DatastoreTrait;
+    use TimestampTrait;
 
     const VERSION = '1.33.1';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/datastore';
-
-    /**
-     * @deprecated
-     * @var ConnectionInterface
-     */
-    protected $connection;
 
     /**
      * @var Operation
@@ -110,6 +105,11 @@ class DatastoreClient
      * @var EntityMapper
      */
     private $entityMapper;
+
+    /**
+     * @var GapicDatastoreClient
+     */
+    private GapicDatastoreClient $gapicClient;
 
     /**
      * Create a Datastore client.
@@ -149,6 +149,8 @@ class DatastoreClient
      *     @type bool $returnInt64AsObject If true, 64 bit integers will be
      *           returned as a {@see \Google\Cloud\Core\Int64} object for 32 bit
      *           platform compatibility. **Defaults to** false.
+     *     @type Google\Cloud\Datastore\V1\Client\DatastoreClient $datastoreClient A client that is of
+     *           type {@see \Google\Cloud\Datastore\V1\Client\DatastoreClient}
      * }
      * @throws \InvalidArgumentException
      */
@@ -169,9 +171,7 @@ class DatastoreClient
         ];
 
         $config = $this->configureAuthentication($config);
-        $this->connection = $connectionType === 'grpc'
-            ? new Grpc($config)
-            : new Rest($config);
+        $this->gapicClient = $this->getGapicClient($config);
 
         // The second parameter here should change to a variable
         // when gRPC support is added for variable encoding.
@@ -182,7 +182,7 @@ class DatastoreClient
             $connectionType
         );
         $this->operation = new Operation(
-            $this->connection,
+            $this->gapicClient,
             $this->projectId,
             $config['namespaceId'],
             $this->entityMapper,
@@ -546,7 +546,6 @@ class DatastoreClient
      * @codingStandardsIgnoreStart
      * @param array $options {
      *     Configuration options.
-     *
      *     @type array $transactionOptions Transaction configuration. See
      *           [ReadWrite](https://cloud.google.com/datastore/docs/reference/rest/v1/projects/beginTransaction#ReadWrite).
      *     @type string $databaseId ID of the database to which the entities belong.
@@ -556,6 +555,11 @@ class DatastoreClient
      */
     public function transaction(array $options = [])
     {
+        if (isset($options['transactionOptions']['previousTransaction'])) {
+            $options['transactionOptions']['previousTransaction'] = base64_encode(
+                $options['transactionOptions']['previousTransaction']
+            );
+        }
         $transaction = $this->operation->beginTransaction([
             // if empty, force request to encode as {} rather than [].
             'readWrite' => $this->pluck('transactionOptions', $options, false) ?: (object) []
@@ -1254,5 +1258,14 @@ class DatastoreClient
 
         // cast to string for conformance between REST and gRPC.
         return (string) $mutationResult['version'];
+    }
+
+    private function getGapicClient(array $config): GapicDatastoreClient
+    {
+        if (isset($config['datastoreClient']) && (!$config['datastoreClient'] instanceof GapicDatastoreClient)) {
+            throw new InvalidArgumentException('The client configuration option must be an instance of ' . GapicDatastoreClient::class);
+        }
+
+        return $config['datastoreClient'] ?? new GapicDatastoreClient($config);
     }
 }
