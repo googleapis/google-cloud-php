@@ -26,13 +26,13 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
+use Google\Cloud\Compute\V1\Client\GlobalOperationsClient;
 use Google\Cloud\Compute\V1\Client\InterconnectAttachmentGroupsClient;
 use Google\Cloud\Compute\V1\DeleteInterconnectAttachmentGroupRequest;
 use Google\Cloud\Compute\V1\GetGlobalOperationRequest;
 use Google\Cloud\Compute\V1\GetIamPolicyInterconnectAttachmentGroupRequest;
 use Google\Cloud\Compute\V1\GetInterconnectAttachmentGroupRequest;
 use Google\Cloud\Compute\V1\GetOperationalStatusInterconnectAttachmentGroupRequest;
-use Google\Cloud\Compute\V1\GlobalOperationsClient;
 use Google\Cloud\Compute\V1\GlobalSetPolicyRequest;
 use Google\Cloud\Compute\V1\InsertInterconnectAttachmentGroupRequest;
 use Google\Cloud\Compute\V1\InterconnectAttachmentGroup;
@@ -558,21 +558,29 @@ class InterconnectAttachmentGroupsClientTest extends GeneratedTest
         $etag = 'etag3123477';
         $id = 'id3355';
         $kind = 'kind3292052';
-        $nextPageToken = 'nextPageToken-1530815211';
+        $nextPageToken = '';
         $selfLink = 'selfLink-1691268851';
+        $itemsElement = new InterconnectAttachmentGroup();
+        $items = [
+            $itemsElement,
+        ];
         $expectedResponse = new InterconnectAttachmentGroupsListResponse();
         $expectedResponse->setEtag($etag);
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSelfLink($selfLink);
+        $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
         // Mock request
         $project = 'project-309310695';
         $request = (new ListInterconnectAttachmentGroupsRequest())
             ->setProject($project);
         $response = $gapicClient->list($request);
-        $this->assertEquals($expectedResponse, $response);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getItems()[0], $resources[0]);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();

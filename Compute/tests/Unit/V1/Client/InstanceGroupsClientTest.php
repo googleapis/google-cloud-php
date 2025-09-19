@@ -29,6 +29,7 @@ use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Compute\V1\AddInstancesInstanceGroupRequest;
 use Google\Cloud\Compute\V1\AggregatedListInstanceGroupsRequest;
 use Google\Cloud\Compute\V1\Client\InstanceGroupsClient;
+use Google\Cloud\Compute\V1\Client\ZoneOperationsClient;
 use Google\Cloud\Compute\V1\DeleteInstanceGroupRequest;
 use Google\Cloud\Compute\V1\GetInstanceGroupRequest;
 use Google\Cloud\Compute\V1\GetZoneOperationRequest;
@@ -52,7 +53,6 @@ use Google\Cloud\Compute\V1\SetNamedPortsInstanceGroupRequest;
 use Google\Cloud\Compute\V1\TestIamPermissionsInstanceGroupRequest;
 use Google\Cloud\Compute\V1\TestPermissionsRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
-use Google\Cloud\Compute\V1\ZoneOperationsClient;
 use Google\Rpc\Code;
 use stdClass;
 

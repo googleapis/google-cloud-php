@@ -28,6 +28,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
@@ -43,12 +44,9 @@ use Google\Cloud\Compute\V1\ListStoragePoolsRequest;
 use Google\Cloud\Compute\V1\Policy;
 use Google\Cloud\Compute\V1\SetIamPolicyStoragePoolRequest;
 use Google\Cloud\Compute\V1\StoragePool;
-use Google\Cloud\Compute\V1\StoragePoolList;
-use Google\Cloud\Compute\V1\StoragePoolListDisks;
 use Google\Cloud\Compute\V1\TestIamPermissionsStoragePoolRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use Google\Cloud\Compute\V1\UpdateStoragePoolRequest;
-use Google\Cloud\Compute\V1\ZoneOperationsClient;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
@@ -63,8 +61,8 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<StoragePool> getAsync(GetStoragePoolRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyStoragePoolRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> insertAsync(InsertStoragePoolRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<StoragePoolList> listAsync(ListStoragePoolsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<StoragePoolListDisks> listDisksAsync(ListDisksStoragePoolsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListStoragePoolsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDisksAsync(ListDisksStoragePoolsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyStoragePoolRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsStoragePoolRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateAsync(UpdateStoragePoolRequest $request, array $optionalArgs = [])
@@ -116,7 +114,6 @@ final class StoragePoolsClient
                     'restClientConfigPath' => __DIR__ . '/../resources/storage_pools_rest_client_config.php',
                 ],
             ],
-            'operationsClientClass' => ZoneOperationsClient::class,
         ];
     }
 
@@ -179,16 +176,35 @@ final class StoragePoolsClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : $this->getDefaultOperationDescriptor();
+        $options = $this->descriptors[$methodName]['longRunning'] ?? $this->getDefaultOperationDescriptor();
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
     }
 
     /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return ZoneOperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new ZoneOperationsClient($options);
+    }
+
+    /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
@@ -241,11 +257,13 @@ final class StoragePoolsClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -410,13 +428,13 @@ final class StoragePoolsClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return StoragePoolList
+     * @return PagedListResponse
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function list(ListStoragePoolsRequest $request, array $callOptions = []): StoragePoolList
+    public function list(ListStoragePoolsRequest $request, array $callOptions = []): PagedListResponse
     {
-        return $this->startApiCall('List', $request, $callOptions)->wait();
+        return $this->startApiCall('List', $request, $callOptions);
     }
 
     /**
@@ -436,13 +454,13 @@ final class StoragePoolsClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return StoragePoolListDisks
+     * @return PagedListResponse
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listDisks(ListDisksStoragePoolsRequest $request, array $callOptions = []): StoragePoolListDisks
+    public function listDisks(ListDisksStoragePoolsRequest $request, array $callOptions = []): PagedListResponse
     {
-        return $this->startApiCall('ListDisks', $request, $callOptions)->wait();
+        return $this->startApiCall('ListDisks', $request, $callOptions);
     }
 
     /**

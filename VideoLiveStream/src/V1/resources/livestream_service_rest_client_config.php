@@ -346,6 +346,18 @@ return [
                     ],
                 ],
             ],
+            'PreviewInput' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/inputs/*}:preview',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'StartChannel' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/channels/*}:start',
@@ -358,9 +370,33 @@ return [
                     ],
                 ],
             ],
+            'StartDistribution' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/channels/*}:startdistribution',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'StopChannel' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/channels/*}:stop',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'StopDistribution' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/channels/*}:stopdistribution',
                 'body' => '*',
                 'placeholders' => [
                     'name' => [

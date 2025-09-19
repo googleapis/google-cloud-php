@@ -27,6 +27,8 @@ use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Compute\V1\AggregatedListRoutersRequest;
+use Google\Cloud\Compute\V1\BgpRoute;
+use Google\Cloud\Compute\V1\Client\RegionOperationsClient;
 use Google\Cloud\Compute\V1\Client\RoutersClient;
 use Google\Cloud\Compute\V1\DeleteRoutePolicyRouterRequest;
 use Google\Cloud\Compute\V1\DeleteRouterRequest;
@@ -46,7 +48,6 @@ use Google\Cloud\Compute\V1\Operation\Status;
 use Google\Cloud\Compute\V1\PatchRoutePolicyRouterRequest;
 use Google\Cloud\Compute\V1\PatchRouterRequest;
 use Google\Cloud\Compute\V1\PreviewRouterRequest;
-use Google\Cloud\Compute\V1\RegionOperationsClient;
 use Google\Cloud\Compute\V1\RoutePolicy;
 use Google\Cloud\Compute\V1\Router;
 use Google\Cloud\Compute\V1\RouterAggregatedList;
@@ -1054,14 +1055,19 @@ class RoutersClientTest extends GeneratedTest
         $etag = 'etag3123477';
         $id = 'id3355';
         $kind = 'kind3292052';
-        $nextPageToken = 'nextPageToken-1530815211';
+        $nextPageToken = '';
         $selfLink = 'selfLink-1691268851';
+        $resultElement = new BgpRoute();
+        $result = [
+            $resultElement,
+        ];
         $expectedResponse = new RoutersListBgpRoutes();
         $expectedResponse->setEtag($etag);
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSelfLink($selfLink);
+        $expectedResponse->setResult($result);
         $transport->addResponse($expectedResponse);
         // Mock request
         $project = 'project-309310695';
@@ -1072,7 +1078,10 @@ class RoutersClientTest extends GeneratedTest
             ->setRegion($region)
             ->setRouter($router);
         $response = $gapicClient->listBgpRoutes($request);
-        $this->assertEquals($expectedResponse, $response);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getResult()[0], $resources[0]);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -1138,14 +1147,19 @@ class RoutersClientTest extends GeneratedTest
         $etag = 'etag3123477';
         $id = 'id3355';
         $kind = 'kind3292052';
-        $nextPageToken = 'nextPageToken-1530815211';
+        $nextPageToken = '';
         $selfLink = 'selfLink-1691268851';
+        $resultElement = new RoutePolicy();
+        $result = [
+            $resultElement,
+        ];
         $expectedResponse = new RoutersListRoutePolicies();
         $expectedResponse->setEtag($etag);
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSelfLink($selfLink);
+        $expectedResponse->setResult($result);
         $transport->addResponse($expectedResponse);
         // Mock request
         $project = 'project-309310695';
@@ -1156,7 +1170,10 @@ class RoutersClientTest extends GeneratedTest
             ->setRegion($region)
             ->setRouter($router);
         $response = $gapicClient->listRoutePolicies($request);
-        $this->assertEquals($expectedResponse, $response);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getResult()[0], $resources[0]);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
