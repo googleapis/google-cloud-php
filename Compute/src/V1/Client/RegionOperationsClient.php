@@ -110,9 +110,7 @@ final class RegionOperationsClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -215,8 +213,10 @@ final class RegionOperationsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function delete(DeleteRegionOperationRequest $request, array $callOptions = []): DeleteRegionOperationResponse
-    {
+    public function delete(
+        DeleteRegionOperationRequest $request,
+        array $callOptions = []
+    ): DeleteRegionOperationResponse {
         return $this->startApiCall('Delete', $request, $callOptions)->wait();
     }
 

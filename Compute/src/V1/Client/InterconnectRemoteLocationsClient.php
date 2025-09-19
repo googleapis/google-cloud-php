@@ -91,7 +91,8 @@ final class InterconnectRemoteLocationsClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/interconnect_remote_locations_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/interconnect_remote_locations_rest_client_config.php',
                 ],
             ],
         ];
@@ -106,9 +107,7 @@ final class InterconnectRemoteLocationsClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -211,8 +210,10 @@ final class InterconnectRemoteLocationsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function get(GetInterconnectRemoteLocationRequest $request, array $callOptions = []): InterconnectRemoteLocation
-    {
+    public function get(
+        GetInterconnectRemoteLocationRequest $request,
+        array $callOptions = []
+    ): InterconnectRemoteLocation {
         return $this->startApiCall('Get', $request, $callOptions)->wait();
     }
 

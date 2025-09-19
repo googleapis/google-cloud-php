@@ -122,9 +122,7 @@ final class InterconnectsClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -141,9 +139,7 @@ final class InterconnectsClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-            ],
+            'additionalArgumentMethods' => ['getProject'],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -349,8 +345,10 @@ final class InterconnectsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getDiagnostics(GetDiagnosticsInterconnectRequest $request, array $callOptions = []): InterconnectsGetDiagnosticsResponse
-    {
+    public function getDiagnostics(
+        GetDiagnosticsInterconnectRequest $request,
+        array $callOptions = []
+    ): InterconnectsGetDiagnosticsResponse {
         return $this->startApiCall('GetDiagnostics', $request, $callOptions)->wait();
     }
 
@@ -375,8 +373,10 @@ final class InterconnectsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getMacsecConfig(GetMacsecConfigInterconnectRequest $request, array $callOptions = []): InterconnectsGetMacsecConfigResponse
-    {
+    public function getMacsecConfig(
+        GetMacsecConfigInterconnectRequest $request,
+        array $callOptions = []
+    ): InterconnectsGetMacsecConfigResponse {
         return $this->startApiCall('GetMacsecConfig', $request, $callOptions)->wait();
     }
 

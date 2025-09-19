@@ -93,7 +93,8 @@ final class GlobalOrganizationOperationsClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/global_organization_operations_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/global_organization_operations_rest_client_config.php',
                 ],
             ],
         ];
@@ -108,9 +109,7 @@ final class GlobalOrganizationOperationsClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -213,8 +212,10 @@ final class GlobalOrganizationOperationsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function delete(DeleteGlobalOrganizationOperationRequest $request, array $callOptions = []): DeleteGlobalOrganizationOperationResponse
-    {
+    public function delete(
+        DeleteGlobalOrganizationOperationRequest $request,
+        array $callOptions = []
+    ): DeleteGlobalOrganizationOperationResponse {
         return $this->startApiCall('Delete', $request, $callOptions)->wait();
     }
 

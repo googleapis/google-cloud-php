@@ -110,7 +110,8 @@ final class InterconnectAttachmentGroupsClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/interconnect_attachment_groups_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/interconnect_attachment_groups_rest_client_config.php',
                 ],
             ],
         ];
@@ -125,9 +126,7 @@ final class InterconnectAttachmentGroupsClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -144,9 +143,7 @@ final class InterconnectAttachmentGroupsClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-            ],
+            'additionalArgumentMethods' => ['getProject'],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -300,8 +297,10 @@ final class InterconnectAttachmentGroupsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function delete(DeleteInterconnectAttachmentGroupRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function delete(
+        DeleteInterconnectAttachmentGroupRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('Delete', $request, $callOptions)->wait();
     }
 
@@ -326,8 +325,10 @@ final class InterconnectAttachmentGroupsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function get(GetInterconnectAttachmentGroupRequest $request, array $callOptions = []): InterconnectAttachmentGroup
-    {
+    public function get(
+        GetInterconnectAttachmentGroupRequest $request,
+        array $callOptions = []
+    ): InterconnectAttachmentGroup {
         return $this->startApiCall('Get', $request, $callOptions)->wait();
     }
 
@@ -353,8 +354,10 @@ final class InterconnectAttachmentGroupsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getIamPolicy(GetIamPolicyInterconnectAttachmentGroupRequest $request, array $callOptions = []): Policy
-    {
+    public function getIamPolicy(
+        GetIamPolicyInterconnectAttachmentGroupRequest $request,
+        array $callOptions = []
+    ): Policy {
         return $this->startApiCall('GetIamPolicy', $request, $callOptions)->wait();
     }
 
@@ -380,8 +383,10 @@ final class InterconnectAttachmentGroupsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getOperationalStatus(GetOperationalStatusInterconnectAttachmentGroupRequest $request, array $callOptions = []): InterconnectAttachmentGroupsGetOperationalStatusResponse
-    {
+    public function getOperationalStatus(
+        GetOperationalStatusInterconnectAttachmentGroupRequest $request,
+        array $callOptions = []
+    ): InterconnectAttachmentGroupsGetOperationalStatusResponse {
         return $this->startApiCall('GetOperationalStatus', $request, $callOptions)->wait();
     }
 
@@ -406,8 +411,10 @@ final class InterconnectAttachmentGroupsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function insert(InsertInterconnectAttachmentGroupRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function insert(
+        InsertInterconnectAttachmentGroupRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('Insert', $request, $callOptions)->wait();
     }
 
@@ -485,8 +492,10 @@ final class InterconnectAttachmentGroupsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setIamPolicy(SetIamPolicyInterconnectAttachmentGroupRequest $request, array $callOptions = []): Policy
-    {
+    public function setIamPolicy(
+        SetIamPolicyInterconnectAttachmentGroupRequest $request,
+        array $callOptions = []
+    ): Policy {
         return $this->startApiCall('SetIamPolicy', $request, $callOptions)->wait();
     }
 
@@ -512,8 +521,10 @@ final class InterconnectAttachmentGroupsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsInterconnectAttachmentGroupRequest $request, array $callOptions = []): TestPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsInterconnectAttachmentGroupRequest $request,
+        array $callOptions = []
+    ): TestPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

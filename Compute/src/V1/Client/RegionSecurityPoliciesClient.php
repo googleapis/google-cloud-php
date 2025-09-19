@@ -125,9 +125,7 @@ final class RegionSecurityPoliciesClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -144,10 +142,7 @@ final class RegionSecurityPoliciesClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-                'getRegion',
-            ],
+            'additionalArgumentMethods' => ['getProject', 'getRegion'],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -509,8 +504,10 @@ final class RegionSecurityPoliciesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function removeRule(RemoveRuleRegionSecurityPolicyRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function removeRule(
+        RemoveRuleRegionSecurityPolicyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('RemoveRule', $request, $callOptions)->wait();
     }
 

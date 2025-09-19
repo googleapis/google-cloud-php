@@ -112,9 +112,7 @@ final class GlobalOperationsClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -217,8 +215,10 @@ final class GlobalOperationsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function aggregatedList(AggregatedListGlobalOperationsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function aggregatedList(
+        AggregatedListGlobalOperationsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('AggregatedList', $request, $callOptions);
     }
 
@@ -243,8 +243,10 @@ final class GlobalOperationsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function delete(DeleteGlobalOperationRequest $request, array $callOptions = []): DeleteGlobalOperationResponse
-    {
+    public function delete(
+        DeleteGlobalOperationRequest $request,
+        array $callOptions = []
+    ): DeleteGlobalOperationResponse {
         return $this->startApiCall('Delete', $request, $callOptions)->wait();
     }
 

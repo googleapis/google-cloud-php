@@ -118,9 +118,7 @@ final class InterconnectAttachmentsClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -137,10 +135,7 @@ final class InterconnectAttachmentsClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-                'getRegion',
-            ],
+            'additionalArgumentMethods' => ['getProject', 'getRegion'],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -295,8 +290,10 @@ final class InterconnectAttachmentsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function aggregatedList(AggregatedListInterconnectAttachmentsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function aggregatedList(
+        AggregatedListInterconnectAttachmentsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('AggregatedList', $request, $callOptions);
     }
 
@@ -451,8 +448,10 @@ final class InterconnectAttachmentsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setLabels(SetLabelsInterconnectAttachmentRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function setLabels(
+        SetLabelsInterconnectAttachmentRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SetLabels', $request, $callOptions)->wait();
     }
 }
