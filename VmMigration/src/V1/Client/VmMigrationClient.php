@@ -28,6 +28,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -38,10 +39,15 @@ use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
 use Google\Cloud\VMMigration\V1\AddGroupMigrationRequest;
+use Google\Cloud\VMMigration\V1\AddGroupMigrationResponse;
 use Google\Cloud\VMMigration\V1\CancelCloneJobRequest;
+use Google\Cloud\VMMigration\V1\CancelCloneJobResponse;
 use Google\Cloud\VMMigration\V1\CancelCutoverJobRequest;
+use Google\Cloud\VMMigration\V1\CancelCutoverJobResponse;
 use Google\Cloud\VMMigration\V1\CancelDiskMigrationJobRequest;
+use Google\Cloud\VMMigration\V1\CancelDiskMigrationJobResponse;
 use Google\Cloud\VMMigration\V1\CancelImageImportJobRequest;
+use Google\Cloud\VMMigration\V1\CancelImageImportJobResponse;
 use Google\Cloud\VMMigration\V1\CloneJob;
 use Google\Cloud\VMMigration\V1\CreateCloneJobRequest;
 use Google\Cloud\VMMigration\V1\CreateCutoverJobRequest;
@@ -65,10 +71,12 @@ use Google\Cloud\VMMigration\V1\DeleteTargetProjectRequest;
 use Google\Cloud\VMMigration\V1\DeleteUtilizationReportRequest;
 use Google\Cloud\VMMigration\V1\DiskMigrationJob;
 use Google\Cloud\VMMigration\V1\ExtendMigrationRequest;
+use Google\Cloud\VMMigration\V1\ExtendMigrationResponse;
 use Google\Cloud\VMMigration\V1\FetchInventoryRequest;
 use Google\Cloud\VMMigration\V1\FetchInventoryResponse;
 use Google\Cloud\VMMigration\V1\FetchStorageInventoryRequest;
 use Google\Cloud\VMMigration\V1\FinalizeMigrationRequest;
+use Google\Cloud\VMMigration\V1\FinalizeMigrationResponse;
 use Google\Cloud\VMMigration\V1\GetCloneJobRequest;
 use Google\Cloud\VMMigration\V1\GetCutoverJobRequest;
 use Google\Cloud\VMMigration\V1\GetDatacenterConnectorRequest;
@@ -98,12 +106,17 @@ use Google\Cloud\VMMigration\V1\ListTargetProjectsRequest;
 use Google\Cloud\VMMigration\V1\ListUtilizationReportsRequest;
 use Google\Cloud\VMMigration\V1\MigratingVm;
 use Google\Cloud\VMMigration\V1\PauseMigrationRequest;
+use Google\Cloud\VMMigration\V1\PauseMigrationResponse;
 use Google\Cloud\VMMigration\V1\RemoveGroupMigrationRequest;
+use Google\Cloud\VMMigration\V1\RemoveGroupMigrationResponse;
 use Google\Cloud\VMMigration\V1\ReplicationCycle;
 use Google\Cloud\VMMigration\V1\ResumeMigrationRequest;
+use Google\Cloud\VMMigration\V1\ResumeMigrationResponse;
 use Google\Cloud\VMMigration\V1\RunDiskMigrationJobRequest;
+use Google\Cloud\VMMigration\V1\RunDiskMigrationJobResponse;
 use Google\Cloud\VMMigration\V1\Source;
 use Google\Cloud\VMMigration\V1\StartMigrationRequest;
+use Google\Cloud\VMMigration\V1\StartMigrationResponse;
 use Google\Cloud\VMMigration\V1\TargetProject;
 use Google\Cloud\VMMigration\V1\UpdateDiskMigrationJobRequest;
 use Google\Cloud\VMMigration\V1\UpdateGroupRequest;
@@ -111,6 +124,7 @@ use Google\Cloud\VMMigration\V1\UpdateMigratingVmRequest;
 use Google\Cloud\VMMigration\V1\UpdateSourceRequest;
 use Google\Cloud\VMMigration\V1\UpdateTargetProjectRequest;
 use Google\Cloud\VMMigration\V1\UpgradeApplianceRequest;
+use Google\Cloud\VMMigration\V1\UpgradeApplianceResponse;
 use Google\Cloud\VMMigration\V1\UtilizationReport;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
@@ -218,7 +232,9 @@ final class VmMigrationClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+    ];
 
     private $operationsClient;
 
@@ -264,9 +280,7 @@ final class VmMigrationClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning'])
-            ? $this->descriptors[$methodName]['longRunning']
-            : [];
+        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -303,13 +317,8 @@ final class VmMigrationClient
      *
      * @return string The formatted clone_job resource.
      */
-    public static function cloneJobName(
-        string $project,
-        string $location,
-        string $source,
-        string $migratingVm,
-        string $cloneJob
-    ): string {
+    public static function cloneJobName(string $project, string $location, string $source, string $migratingVm, string $cloneJob): string
+    {
         return self::getPathTemplate('cloneJob')->render([
             'project' => $project,
             'location' => $location,
@@ -352,13 +361,8 @@ final class VmMigrationClient
      *
      * @return string The formatted cutover_job resource.
      */
-    public static function cutoverJobName(
-        string $project,
-        string $location,
-        string $source,
-        string $migratingVm,
-        string $cutoverJob
-    ): string {
+    public static function cutoverJobName(string $project, string $location, string $source, string $migratingVm, string $cutoverJob): string
+    {
         return self::getPathTemplate('cutoverJob')->render([
             'project' => $project,
             'location' => $location,
@@ -379,12 +383,8 @@ final class VmMigrationClient
      *
      * @return string The formatted datacenter_connector resource.
      */
-    public static function datacenterConnectorName(
-        string $project,
-        string $location,
-        string $source,
-        string $datacenterConnector
-    ): string {
+    public static function datacenterConnectorName(string $project, string $location, string $source, string $datacenterConnector): string
+    {
         return self::getPathTemplate('datacenterConnector')->render([
             'project' => $project,
             'location' => $location,
@@ -404,12 +404,8 @@ final class VmMigrationClient
      *
      * @return string The formatted disk_migration_job resource.
      */
-    public static function diskMigrationJobName(
-        string $project,
-        string $location,
-        string $source,
-        string $diskMigrationJob
-    ): string {
+    public static function diskMigrationJobName(string $project, string $location, string $source, string $diskMigrationJob): string
+    {
         return self::getPathTemplate('diskMigrationJob')->render([
             'project' => $project,
             'location' => $location,
@@ -522,12 +518,8 @@ final class VmMigrationClient
      *
      * @return string The formatted migrating_vm resource.
      */
-    public static function migratingVmName(
-        string $project,
-        string $location,
-        string $source,
-        string $migratingVm
-    ): string {
+    public static function migratingVmName(string $project, string $location, string $source, string $migratingVm): string
+    {
         return self::getPathTemplate('migratingVm')->render([
             'project' => $project,
             'location' => $location,
@@ -548,13 +540,8 @@ final class VmMigrationClient
      *
      * @return string The formatted replication_cycle resource.
      */
-    public static function replicationCycleName(
-        string $project,
-        string $location,
-        string $source,
-        string $migratingVm,
-        string $replicationCycle
-    ): string {
+    public static function replicationCycleName(string $project, string $location, string $source, string $migratingVm, string $replicationCycle): string
+    {
         return self::getPathTemplate('replicationCycle')->render([
             'project' => $project,
             'location' => $location,
@@ -630,12 +617,8 @@ final class VmMigrationClient
      *
      * @return string The formatted utilization_report resource.
      */
-    public static function utilizationReportName(
-        string $project,
-        string $location,
-        string $source,
-        string $utilizationReport
-    ): string {
+    public static function utilizationReportName(string $project, string $location, string $source, string $utilizationReport): string
+    {
         return self::getPathTemplate('utilizationReport')->render([
             'project' => $project,
             'location' => $location,
@@ -686,25 +669,28 @@ final class VmMigrationClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'vmmigration.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
-     *           *Important*: If you accept a credential configuration (credential
-     *           JSON/File/Stream) from an external source for authentication to Google Cloud
-     *           Platform, you must validate it before providing it to any Google API or library.
-     *           Providing an unvalidated credential configuration to Google APIs can compromise
-     *           the security of your systems and data. For more information {@see
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\VMMigration\V1\VmMigrationClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new VmMigrationClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
      *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
@@ -742,11 +728,13 @@ final class VmMigrationClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -781,7 +769,7 @@ final class VmMigrationClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<AddGroupMigrationResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -807,7 +795,7 @@ final class VmMigrationClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<CancelCloneJobResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -833,7 +821,7 @@ final class VmMigrationClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<CancelCutoverJobResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -859,14 +847,12 @@ final class VmMigrationClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<CancelDiskMigrationJobResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function cancelDiskMigrationJob(
-        CancelDiskMigrationJobRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function cancelDiskMigrationJob(CancelDiskMigrationJobRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('CancelDiskMigrationJob', $request, $callOptions)->wait();
     }
 
@@ -887,14 +873,12 @@ final class VmMigrationClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<CancelImageImportJobResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function cancelImageImportJob(
-        CancelImageImportJobRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function cancelImageImportJob(CancelImageImportJobRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('CancelImageImportJob', $request, $callOptions)->wait();
     }
 
@@ -915,7 +899,7 @@ final class VmMigrationClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<CloneJob>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -943,7 +927,7 @@ final class VmMigrationClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<CutoverJob>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -970,14 +954,12 @@ final class VmMigrationClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<DatacenterConnector>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createDatacenterConnector(
-        CreateDatacenterConnectorRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function createDatacenterConnector(CreateDatacenterConnectorRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('CreateDatacenterConnector', $request, $callOptions)->wait();
     }
 
@@ -998,14 +980,12 @@ final class VmMigrationClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<DiskMigrationJob>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createDiskMigrationJob(
-        CreateDiskMigrationJobRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function createDiskMigrationJob(CreateDiskMigrationJobRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('CreateDiskMigrationJob', $request, $callOptions)->wait();
     }
 
@@ -1026,7 +1006,7 @@ final class VmMigrationClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Group>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1052,7 +1032,7 @@ final class VmMigrationClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<ImageImport>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1078,7 +1058,7 @@ final class VmMigrationClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<MigratingVm>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1104,7 +1084,7 @@ final class VmMigrationClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Source>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1133,7 +1113,7 @@ final class VmMigrationClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<TargetProject>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1159,14 +1139,12 @@ final class VmMigrationClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<UtilizationReport>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createUtilizationReport(
-        CreateUtilizationReportRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function createUtilizationReport(CreateUtilizationReportRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('CreateUtilizationReport', $request, $callOptions)->wait();
     }
 
@@ -1188,14 +1166,12 @@ final class VmMigrationClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteDatacenterConnector(
-        DeleteDatacenterConnectorRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function deleteDatacenterConnector(DeleteDatacenterConnectorRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('DeleteDatacenterConnector', $request, $callOptions)->wait();
     }
 
@@ -1216,14 +1192,12 @@ final class VmMigrationClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteDiskMigrationJob(
-        DeleteDiskMigrationJobRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function deleteDiskMigrationJob(DeleteDiskMigrationJobRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('DeleteDiskMigrationJob', $request, $callOptions)->wait();
     }
 
@@ -1244,7 +1218,7 @@ final class VmMigrationClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1270,7 +1244,7 @@ final class VmMigrationClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1296,7 +1270,7 @@ final class VmMigrationClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1322,7 +1296,7 @@ final class VmMigrationClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1351,7 +1325,7 @@ final class VmMigrationClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1377,14 +1351,12 @@ final class VmMigrationClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteUtilizationReport(
-        DeleteUtilizationReportRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function deleteUtilizationReport(DeleteUtilizationReportRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('DeleteUtilizationReport', $request, $callOptions)->wait();
     }
 
@@ -1405,7 +1377,7 @@ final class VmMigrationClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<ExtendMigrationResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1470,10 +1442,8 @@ final class VmMigrationClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function fetchStorageInventory(
-        FetchStorageInventoryRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function fetchStorageInventory(FetchStorageInventoryRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('FetchStorageInventory', $request, $callOptions);
     }
 
@@ -1495,7 +1465,7 @@ final class VmMigrationClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<FinalizeMigrationResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1577,10 +1547,8 @@ final class VmMigrationClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getDatacenterConnector(
-        GetDatacenterConnectorRequest $request,
-        array $callOptions = []
-    ): DatacenterConnector {
+    public function getDatacenterConnector(GetDatacenterConnectorRequest $request, array $callOptions = []): DatacenterConnector
+    {
         return $this->startApiCall('GetDatacenterConnector', $request, $callOptions)->wait();
     }
 
@@ -1816,10 +1784,8 @@ final class VmMigrationClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getUtilizationReport(
-        GetUtilizationReportRequest $request,
-        array $callOptions = []
-    ): UtilizationReport {
+    public function getUtilizationReport(GetUtilizationReportRequest $request, array $callOptions = []): UtilizationReport
+    {
         return $this->startApiCall('GetUtilizationReport', $request, $callOptions)->wait();
     }
 
@@ -1898,10 +1864,8 @@ final class VmMigrationClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listDatacenterConnectors(
-        ListDatacenterConnectorsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listDatacenterConnectors(ListDatacenterConnectorsRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListDatacenterConnectors', $request, $callOptions);
     }
 
@@ -1926,10 +1890,8 @@ final class VmMigrationClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listDiskMigrationJobs(
-        ListDiskMigrationJobsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listDiskMigrationJobs(ListDiskMigrationJobsRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListDiskMigrationJobs', $request, $callOptions);
     }
 
@@ -2058,10 +2020,8 @@ final class VmMigrationClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listReplicationCycles(
-        ListReplicationCyclesRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listReplicationCycles(ListReplicationCyclesRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListReplicationCycles', $request, $callOptions);
     }
 
@@ -2141,10 +2101,8 @@ final class VmMigrationClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listUtilizationReports(
-        ListUtilizationReportsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listUtilizationReports(ListUtilizationReportsRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListUtilizationReports', $request, $callOptions);
     }
 
@@ -2167,7 +2125,7 @@ final class VmMigrationClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<PauseMigrationResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -2193,14 +2151,12 @@ final class VmMigrationClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<RemoveGroupMigrationResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function removeGroupMigration(
-        RemoveGroupMigrationRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function removeGroupMigration(RemoveGroupMigrationRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('RemoveGroupMigration', $request, $callOptions)->wait();
     }
 
@@ -2224,7 +2180,7 @@ final class VmMigrationClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<ResumeMigrationResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -2250,7 +2206,7 @@ final class VmMigrationClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<RunDiskMigrationJobResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -2277,7 +2233,7 @@ final class VmMigrationClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<StartMigrationResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -2303,14 +2259,12 @@ final class VmMigrationClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<DiskMigrationJob>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateDiskMigrationJob(
-        UpdateDiskMigrationJobRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function updateDiskMigrationJob(UpdateDiskMigrationJobRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('UpdateDiskMigrationJob', $request, $callOptions)->wait();
     }
 
@@ -2331,7 +2285,7 @@ final class VmMigrationClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Group>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -2357,7 +2311,7 @@ final class VmMigrationClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<MigratingVm>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -2383,7 +2337,7 @@ final class VmMigrationClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Source>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -2412,7 +2366,7 @@ final class VmMigrationClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<TargetProject>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -2439,7 +2393,7 @@ final class VmMigrationClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<UpgradeApplianceResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
