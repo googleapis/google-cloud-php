@@ -19,7 +19,7 @@ namespace Google\Cloud\Firestore;
 
 use Google\Cloud\Core\DebugInfoTrait;
 use Google\Cloud\Core\Timestamp;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient;
 
 /**
  * Represents a Firestore transaction.
@@ -49,9 +49,9 @@ class Transaction
     use DebugInfoTrait;
 
     /**
-     * @var ConnectionInterface
+     * @var FirestoreClient
      */
-    private $connection;
+    private FirestoreClient $gapicClient;
 
     /**
      * @var ValueMapper
@@ -74,23 +74,23 @@ class Transaction
     private $writer;
 
     /**
-     * @param ConnectionInterface $connection A connection to Cloud Firestore.
+     * @param FirestoreClient $gapicClient A FirestoreClient instance.
      * @param ValueMapper $valueMapper A Firestore Value Mapper.
      * @param string $database The database name.
      * @param string $transaction The transaction ID.
      */
     public function __construct(
-        ConnectionInterface $connection,
+        FirestoreClient $gapicClient,
         ValueMapper $valueMapper,
         $database,
         $transaction
     ) {
-        $this->connection = $connection;
+        $this->gapicClient = $gapicClient;
         $this->valueMapper = $valueMapper;
         $this->database = $database;
         $this->transaction = $transaction;
 
-        $this->writer = new BulkWriter($connection, $valueMapper, $database, $transaction);
+        $this->writer = new BulkWriter($this->gapicClient, $valueMapper, $database, $transaction);
     }
 
     /**
@@ -107,7 +107,7 @@ class Transaction
      */
     public function snapshot(DocumentReference $document, array $options = [])
     {
-        return $this->createSnapshot($this->connection, $this->valueMapper, $document, [
+        return $this->createSnapshot($this->gapicClient, $this->valueMapper, $document, [
             'transaction' => $this->transaction,
         ] + $options);
     }
@@ -189,7 +189,7 @@ class Transaction
     public function documents(array $paths, array $options = [])
     {
         return $this->getDocumentsByPaths(
-            $this->connection,
+            $this->gapicClient,
             $this->valueMapper,
             $this->projectIdFromName($this->database),
             $this->databaseIdFromName($this->database),

@@ -20,7 +20,7 @@ namespace Google\Cloud\Firestore;
 use Google\Cloud\Core\DebugInfoTrait;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient;
 
 /**
  * Represents a reference to a Firestore document.
@@ -38,11 +38,8 @@ class DocumentReference
     use SnapshotTrait;
     use DebugInfoTrait;
 
-    /**
-     * @var ConnectionInterface
-     * @internal
-     */
-    private $connection;
+    /** @var FirestoreClient */
+    private FirestoreClient $gapicClient;
 
     /**
      * @var ValueMapper
@@ -60,7 +57,7 @@ class DocumentReference
     private $name;
 
     /**
-     * @param ConnectionInterface $connection A Connection to Cloud Firestore.
+     * @param FirestoreClient $gapicClient An instance of the Firestore client.
      *        This object is created by FirestoreClient,
      *        and should not be instantiated outside of this client.
      * @param ValueMapper $valueMapper A Firestore Value Mapper.
@@ -68,12 +65,12 @@ class DocumentReference
      * @param string $name The fully-qualified document name.
      */
     public function __construct(
-        ConnectionInterface $connection,
+        FirestoreClient $gapicClient,
         ValueMapper $valueMapper,
         CollectionReference $parent,
         $name
     ) {
-        $this->connection = $connection;
+        $this->gapicClient = $gapicClient;
         $this->valueMapper = $valueMapper;
         $this->parent = $parent;
         $this->name = $name;
@@ -89,7 +86,7 @@ class DocumentReference
      *
      * @return CollectionReference
      */
-    public function parent()
+    public function parent(): CollectionReference
     {
         return $this->parent;
     }
@@ -111,7 +108,7 @@ class DocumentReference
      *
      * @return string
      */
-    public function name()
+    public function name(): string
     {
         return $this->name;
     }
@@ -131,7 +128,7 @@ class DocumentReference
      *
      * @return string
      */
-    public function path()
+    public function path(): string
     {
         return $this->relativeName($this->name);
     }
@@ -150,7 +147,7 @@ class DocumentReference
      *
      * @return string
      */
-    public function id()
+    public function id(): string
     {
         return $this->pathId($this->name);
     }
@@ -179,7 +176,7 @@ class DocumentReference
      * @return array [WriteResult](https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.WriteResult)
      * @codingStandardsIgnoreEnd
      */
-    public function create(array $fields = [], array $options = [])
+    public function create(array $fields = [], array $options = []): array
     {
         return $this->writeResult(
             $this->batchFactory()
@@ -222,7 +219,7 @@ class DocumentReference
      * @return array [WriteResult](https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.WriteResult)
      * @codingStandardsIgnoreEnd
      */
-    public function set(array $fields, array $options = [])
+    public function set(array $fields, array $options = []): array
     {
         return $this->writeResult(
             $this->batchFactory()
@@ -297,7 +294,7 @@ class DocumentReference
      * @throws \InvalidArgumentException If field paths conflict.
      * @codingStandardsIgnoreEnd
      */
-    public function update(array $data, array $options = [])
+    public function update(array $data, array $options = []): array
     {
         return $this->writeResult(
             $this->batchFactory()
@@ -321,7 +318,7 @@ class DocumentReference
      * @return array [WriteResult](https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.WriteResult)
      * @codingStandardsIgnoreEnd
      */
-    public function delete(array $options = [])
+    public function delete(array $options = []): array
     {
         return $this->writeResult(
             $this->batchFactory()
@@ -345,9 +342,9 @@ class DocumentReference
      * @param array $options Configuration Options
      * @return DocumentSnapshot
      */
-    public function snapshot(array $options = [])
+    public function snapshot(array $options = []): DocumentSnapshot
     {
-        return $this->createSnapshot($this->connection, $this->valueMapper, $this, $options);
+        return $this->createSnapshot($this->gapicClient, $this->valueMapper, $this, $options);
     }
 
     /**
@@ -361,10 +358,10 @@ class DocumentReference
      * @param string $collectionId The ID of the child collection.
      * @return CollectionReference
      */
-    public function collection($collectionId)
+    public function collection($collectionId): CollectionReference
     {
         return new CollectionReference(
-            $this->connection,
+            $this->gapicClient,
             $this->valueMapper,
             $this->childPath($this->name, $collectionId)
         );
@@ -387,7 +384,7 @@ class DocumentReference
      * @throws \InvalidArgumentException if an invalid `$options.readTime` is
      *     specified.
      */
-    public function collections(array $options = [])
+    public function collections(array $options = []): ItemIterator
     {
         $options = $this->formatReadTimeOption($options);
 
@@ -396,12 +393,12 @@ class DocumentReference
             new PageIterator(
                 function ($collectionId) {
                     return new CollectionReference(
-                        $this->connection,
+                        $this->gapicClient,
                         $this->valueMapper,
                         $this->childPath($this->name, $collectionId)
                     );
                 },
-                [$this->connection, 'listCollectionIds'],
+                [$this->gapicClient, 'listCollectionIds'],
                 $options + ['parent' => $this->name],
                 [
                     'itemsKey' => 'collectionIds',
@@ -414,15 +411,12 @@ class DocumentReference
     /**
      * Create a Batch Writer for single-use mutations in this class.
      *
-     * @return WriteBatch
+     * @return BulkWriter
      */
-    protected function batchFactory()
+    protected function batchFactory(): BulkWriter
     {
-        if (!class_exists(WriteBatch::class, false)) {
-            class_alias(BulkWriter::class, WriteBatch::class);
-        }
         return new BulkWriter(
-            $this->connection,
+            $this->gapicClient,
             $this->valueMapper,
             $this->databaseFromName($this->name)
         );

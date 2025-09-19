@@ -25,7 +25,7 @@ use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Core\ValidateTrait;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient;
 use Google\Protobuf\NullValue;
 
 /**
@@ -45,10 +45,10 @@ class ValueMapper
     const UNESCAPED_FIELD_NAME = '/^[_a-zA-Z][_a-zA-Z0-9]*$/';
 
     /**
-     * @var ConnectionInterface
+     * @var FirestoreClient
      * @internal
      */
-    private $connection;
+    private $gapicClient;
 
     /**
      * @var bool
@@ -56,15 +56,13 @@ class ValueMapper
     private $returnInt64AsObject;
 
     /**
-     * @param ConnectionInterface $connection A connection to Cloud Firestore
-     *        This object is created by FirestoreClient,
-     *        and should not be instantiated outside of this client.
+     * @param FirestoreClient $gapicClient A FirestoreClient instance
      * @param bool $returnInt64AsObject Whether to wrap int types in a wrapper
      *        (to preserve values in 32-bit environments).
      */
-    public function __construct(ConnectionInterface $connection, $returnInt64AsObject)
+    public function __construct(FirestoreClient $gapicClient, $returnInt64AsObject)
     {
-        $this->connection = $connection;
+        $this->gapicClient = $gapicClient;
         $this->returnInt64AsObject = $returnInt64AsObject;
     }
 
@@ -179,8 +177,8 @@ class ValueMapper
                 break;
 
             case 'referenceValue':
-                $parent = new CollectionReference($this->connection, $this, $this->parentPath($value));
-                return new DocumentReference($this->connection, $this, $parent, $value);
+                $parent = new CollectionReference($this->gapicClient, $this, $this->parentPath($value));
+                return new DocumentReference($this->gapicClient, $this, $parent, $value);
 
             default:
                 throw new \RuntimeException(sprintf(

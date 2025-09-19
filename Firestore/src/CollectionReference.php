@@ -22,7 +22,7 @@ use Google\Cloud\Core\DebugInfoTrait;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Core\TimestampTrait;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient;
 
 /**
  * Represents a Cloud Firestore Collection.
@@ -47,10 +47,9 @@ class CollectionReference extends Query
     use TimestampTrait;
 
     /**
-     * @var ConnectionInterface
-     * @internal
+     * @var FirestoreClient
      */
-    private $connection;
+    private FirestoreClient $gapicClient;
 
     /**
      * @var ValueMapper
@@ -68,23 +67,23 @@ class CollectionReference extends Query
     private $parent;
 
     /**
-     * @param ConnectionInterface $connection A Connection to Cloud Firestore.
+     * @param FirestoreClient $gapicClient A Connection to Cloud Firestore.
      *        This object is created by FirestoreClient,
      *        and should not be instantiated outside of this client.
      * @param ValueMapper $valueMapper A Firestore Value Mapper.
      * @param string $name The absolute name of the collection.
      */
     public function __construct(
-        ConnectionInterface $connection,
+        FirestoreClient $gapicClient,
         ValueMapper $valueMapper,
         $name
     ) {
-        $this->connection = $connection;
+        $this->gapicClient = $gapicClient;
         $this->valueMapper = $valueMapper;
         $this->name = $name;
 
         parent::__construct(
-            $connection,
+            $gapicClient,
             $valueMapper,
             $this->parentPath($this->name),
             [
@@ -280,7 +279,7 @@ class CollectionReference extends Query
                 function ($document) {
                     return $this->documentFactory($document['name']);
                 },
-                [$this->connection, 'listDocuments'],
+                [$this->gapicClient, 'listDocuments'],
                 $options,
                 [
                     'itemsKey' => 'documents',
@@ -319,6 +318,6 @@ class CollectionReference extends Query
      */
     private function documentFactory($name)
     {
-        return new DocumentReference($this->connection, $this->valueMapper, $this, $name);
+        return new DocumentReference($this->gapicClient, $this->valueMapper, $this, $name);
     }
 }
