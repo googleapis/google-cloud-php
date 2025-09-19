@@ -29,7 +29,7 @@ class CreateEnrollmentRequest extends \Google\Protobuf\Internal\Message
     protected $enrollment = null;
     /**
      * Required. The user-provided ID to be assigned to the Enrollment. It should
-     * match the format (^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$).
+     * match the format `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`.
      *
      * Generated from protobuf field <code>string enrollment_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -47,7 +47,7 @@ class CreateEnrollmentRequest extends \Google\Protobuf\Internal\Message
      *                                                           {@see EventarcClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\Eventarc\V1\Enrollment $enrollment   Required. The enrollment to create.
      * @param string                               $enrollmentId Required. The user-provided ID to be assigned to the Enrollment. It should
-     *                                                           match the format (^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$).
+     *                                                           match the format `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`.
      *
      * @return \Google\Cloud\Eventarc\V1\CreateEnrollmentRequest
      *
@@ -73,7 +73,7 @@ class CreateEnrollmentRequest extends \Google\Protobuf\Internal\Message
      *           Required. The enrollment to create.
      *     @type string $enrollment_id
      *           Required. The user-provided ID to be assigned to the Enrollment. It should
-     *           match the format (^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$).
+     *           match the format `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`.
      *     @type bool $validate_only
      *           Optional. If set, validate the request and preview the review, but do not
      *           post it.
@@ -148,7 +148,7 @@ class CreateEnrollmentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The user-provided ID to be assigned to the Enrollment. It should
-     * match the format (^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$).
+     * match the format `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`.
      *
      * Generated from protobuf field <code>string enrollment_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -160,7 +160,7 @@ class CreateEnrollmentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The user-provided ID to be assigned to the Enrollment. It should
-     * match the format (^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$).
+     * match the format `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`.
      *
      * Generated from protobuf field <code>string enrollment_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

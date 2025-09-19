@@ -32,7 +32,7 @@ use Google\Cloud\Eventarc\V1\MessageBus;
 /**
  * List message buses.
  *
- * @param string $formattedParent The parent collection to list triggers on. Please see
+ * @param string $formattedParent The parent collection to list message buses on. Please see
  *                                {@see EventarcClient::locationName()} for help formatting this field.
  */
 function list_message_buses_sample(string $formattedParent): void
