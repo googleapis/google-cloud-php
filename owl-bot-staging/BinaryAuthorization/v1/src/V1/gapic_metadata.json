@@ -1,0 +1,81 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.binaryauthorization.v1",
+    "libraryPackage": "Google\\Cloud\\BinaryAuthorization\\V1",
+    "services": {
+        "BinauthzManagementServiceV1": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "BinauthzManagementServiceV1GapicClient",
+                    "rpcs": {
+                        "CreateAttestor": {
+                            "methods": [
+                                "createAttestor"
+                            ]
+                        },
+                        "DeleteAttestor": {
+                            "methods": [
+                                "deleteAttestor"
+                            ]
+                        },
+                        "GetAttestor": {
+                            "methods": [
+                                "getAttestor"
+                            ]
+                        },
+                        "GetPolicy": {
+                            "methods": [
+                                "getPolicy"
+                            ]
+                        },
+                        "ListAttestors": {
+                            "methods": [
+                                "listAttestors"
+                            ]
+                        },
+                        "UpdateAttestor": {
+                            "methods": [
+                                "updateAttestor"
+                            ]
+                        },
+                        "UpdatePolicy": {
+                            "methods": [
+                                "updatePolicy"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "SystemPolicyV1": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SystemPolicyV1GapicClient",
+                    "rpcs": {
+                        "GetSystemPolicy": {
+                            "methods": [
+                                "getSystemPolicy"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "ValidationHelperV1": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ValidationHelperV1GapicClient",
+                    "rpcs": {
+                        "ValidateAttestationOccurrence": {
+                            "methods": [
+                                "validateAttestationOccurrence"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
