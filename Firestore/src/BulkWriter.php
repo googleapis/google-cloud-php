@@ -22,11 +22,16 @@ use Google\Cloud\Core\DebugInfoTrait;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Core\ValidateTrait;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\FieldValue\DeleteFieldValue;
 use Google\Cloud\Firestore\FieldValue\DocumentTransformInterface;
 use Google\Cloud\Firestore\FieldValue\FieldValueInterface;
+use Google\Cloud\Firestore\V1\BatchWriteRequest;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient;
+use Google\Cloud\Firestore\V1\CommitRequest;
+use Google\Cloud\Firestore\V1\RollbackRequest;
 use Google\Rpc\Code;
+
+use function PHPUnit\Framework\isEmpty;
 
 /**
  * Enqueue and write multiple mutations to Cloud Firestore.
@@ -60,7 +65,7 @@ class BulkWriter
 
     /**
      * @var array Holds default configurations for Bulkwriter.
-     * These values are experiementally derived after performance evaluations.
+     * These values are experimentally derived after performance evaluations.
      * The underlying constants may change in backwards-incompatible ways.
      * Please use with caution, and test thoroughly when upgrading.
      */
@@ -116,10 +121,9 @@ class BulkWriter
     ];
 
     /**
-     * @var ConnectionInterface
-     * @internal
+     * @var FirestoreClient
      */
-    private $connection;
+    private FirestoreClient $gapicClient;
 
     /**
      * @var ValueMapper
@@ -207,9 +211,7 @@ class BulkWriter
     private $maxDelayTime;
 
     /**
-     * @param ConnectionInterface $connection A connection to Cloud Firestore
-     *        This object is created by FirestoreClient,
-     *        and should not be instantiated outside of this client.
+     * @param FirestoreClient $gapicClient A FirestoreClient instance.
      * @param ValueMapper $valueMapper A Value Mapper instance
      * @param string $database The current database
      * @param array $options [optional] {
@@ -238,9 +240,9 @@ class BulkWriter
      *           true if retryable.
      * }
      */
-    public function __construct(ConnectionInterface $connection, $valueMapper, $database, $options = null)
+    public function __construct(FirestoreClient $gapicClient, $valueMapper, $database, $options = null)
     {
-        $this->connection = $connection;
+        $this->gapicClient = $gapicClient;
         $this->valueMapper = $valueMapper;
         $this->database = $database;
         $this->closed = false;
@@ -707,22 +709,25 @@ class BulkWriter
      * @return array [https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1beta1#commitresponse](CommitResponse)
      * @codingStandardsIgnoreEnd
      */
-    public function commit(array $options = [])
+    public function commit(array $options = []): array
     {
         unset($options['merge'], $options['precondition']);
 
-        $response = $this->connection->commit(array_filter([
-            'database' => $this->database,
-            'writes' => $this->writes,
-            'transaction' => $this->transaction,
-        ]) + $options);
+        $request = new CommitRequest();
+        $request->setDatabase($this->database);
+        $request->setWrites($this->writes);
+        $request->setTransaction($this->transaction);
 
-        if (isset($response['commitTime'])) {
-            $time = $this->parseTimeString($response['commitTime']);
+        $response = $this->gapicClient->commit($request, $options);
+
+        $responseArray = json_decode($response->serializeToJsonString(), true);
+
+        if (!is_null($response->getCommitTime())) {
+            $time = $this->parseTimeString($responseArray['comitTime']);
             $response['commitTime'] = new Timestamp($time[0], $time[1]);
         }
 
-        if (isset($response['writeResults'])) {
+        if (!is_null($response->getWriteResults())) {
             foreach ($response['writeResults'] as &$result) {
                 if (isset($result['updateTime'])) {
                     $time = $this->parseTimeString($result['updateTime']);
@@ -731,7 +736,7 @@ class BulkWriter
             }
         }
 
-        return $response;
+        return $responseArray;
     }
 
     /**
@@ -749,16 +754,17 @@ class BulkWriter
      * @return void
      * @throws \RuntimeException If no transaction ID is provided at class construction.
      */
-    public function rollback(array $options = [])
+    public function rollback(array $options = []): void
     {
         if (!$this->transaction) {
             throw new \RuntimeException('Cannot rollback because no transaction id was provided.');
         }
 
-        $this->connection->rollback([
-            'database' => $this->database,
-            'transaction' => $this->transaction,
-        ] + $options);
+        $request = new RollbackRequest();
+        $request->setDatabase($this->database);
+        $request->setTransaction($this->transaction);
+
+        $this->gapicClient->rollback($request, $options);
     }
 
     /**
@@ -956,13 +962,16 @@ class BulkWriter
         unset($options['merge'], $options['precondition']);
         $options += ['labels' => []];
 
-        $response = $this->connection->batchWrite(array_filter([
-            'database' => $this->database,
-            'writes' => $writes,
-        ]) + $options);
+        $request = new BatchWriteRequest();
+        $request->setDatabase($this->database);
+        $request->setWrites($writes);
 
-        if (isset($response['writeResults'])) {
-            foreach ($response['writeResults'] as &$result) {
+        $response = $this->gapicClient->batchWrite($request, $options);
+
+        $responseArray = json_decode($response->serializeToJsonString(), true);
+
+        if (!isEmpty($response->getWriteResults())) {
+            foreach ($responseArray['writeResults'] as &$result) {
                 if (isset($result['updateTime'])) {
                     $time = $this->parseTimeString($result['updateTime']);
                     $result['updateTime'] = new Timestamp($time[0], $time[1]);
@@ -970,7 +979,7 @@ class BulkWriter
             }
         }
 
-        return $response;
+        return $responseArray;
     }
 
     /**

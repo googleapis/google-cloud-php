@@ -105,4 +105,3 @@ class TransactionOptions extends \Google\Protobuf\Internal\Message
     }
 
 }
-

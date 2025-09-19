@@ -19,9 +19,10 @@ namespace Google\Cloud\Firestore;
 
 use Google\Cloud\Core\DebugInfoTrait;
 use Google\Cloud\Core\ExponentialBackoff;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\FieldValue\FieldValueInterface;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient;
 use Google\Cloud\Firestore\V1\ExplainMetrics;
+use Google\Cloud\Firestore\V1\RunQueryRequest;
 use Google\Cloud\Firestore\V1\StructuredQuery\CompositeFilter\Operator;
 use Google\Cloud\Firestore\V1\StructuredQuery\Direction;
 use Google\Cloud\Firestore\V1\StructuredQuery\FieldFilter\Operator as FieldFilterOperator;
@@ -116,10 +117,9 @@ class Query
     ];
 
     /**
-     * @var ConnectionInterface
-     * @internal
+     * @var FirestoreClient
      */
-    private $connection;
+    private FirestoreClient $gapicClient;
 
     /**
      * @var ValueMapper
@@ -142,9 +142,7 @@ class Query
     private $limitToLast;
 
     /**
-     * @param ConnectionInterface $connection A Connection to Cloud Firestore.
-     *        This object is created by FirestoreClient,
-     *        and should not be instantiated outside of this client.
+     * @param FirestoreClient $gapicClient A FirestoreClient instance.
      * @param ValueMapper $valueMapper A Firestore Value Mapper.
      * @param string $parent The parent of the query.
      * @param array $query The Query object
@@ -152,13 +150,13 @@ class Query
      * @throws \InvalidArgumentException If the query does not provide a valid selector.
      */
     public function __construct(
-        ConnectionInterface $connection,
+        FirestoreClient $gapicClient,
         ValueMapper $valueMapper,
         $parent,
         array $query,
         $limitToLast = false
     ) {
-        $this->connection = $connection;
+        $this->gapicClient = $gapicClient;
         $this->valueMapper = $valueMapper;
         $this->parentName = $parent;
         $this->query = $query;
@@ -286,7 +284,7 @@ class Query
     public function addAggregation($aggregate)
     {
         $aggregateQuery = new AggregateQuery(
-            $this->connection,
+            $this->gapicClient,
             $this->parentName,
             [
                 'query' => $this->query,
@@ -338,12 +336,12 @@ class Query
         $explainMetrics = null;
 
         $rows = (new ExponentialBackoff($maxRetries))->execute(function () use ($query, $options, &$explainMetrics) {
+            $request = new RunQueryRequest();
+            $request->setParent($this->parentName);
+            $request->setStructuredQuery($query);
 
-            $generator = $this->connection->runQuery($this->arrayFilterRemoveNull([
-                'parent' => $this->parentName,
-                'structuredQuery' => $query,
-                'retries' => 0
-            ]) + $options);
+            // WHY WAS RETRIES HERE? Need to check the old GRPC
+            $generator = $this->gapicClient->runQuery($request, $options)->readAll();
 
             // cache collection references
             $collections = [];
@@ -356,14 +354,14 @@ class Query
                     $collectionName = $this->parentPath($result['document']['name']);
                     if (!isset($collections[$collectionName])) {
                         $collections[$collectionName] = new CollectionReference(
-                            $this->connection,
+                            $this->gapicClient,
                             $this->valueMapper,
                             $collectionName
                         );
                     }
 
                     $ref = new DocumentReference(
-                        $this->connection,
+                        $this->gapicClient,
                         $this->valueMapper,
                         $collections[$collectionName],
                         $result['document']['name']
@@ -993,7 +991,7 @@ class Query
         $query = $this->arrayMergeRecursive($query, $additionalConfig);
 
         return new self(
-            $this->connection,
+            $this->gapicClient,
             $this->valueMapper,
             $this->parentName,
             $query,
@@ -1030,13 +1028,13 @@ class Query
         }
 
         $parent = new CollectionReference(
-            $this->connection,
+            $this->gapicClient,
             $this->valueMapper,
             $this->parentPath($childPath)
         );
 
         return new DocumentReference(
-            $this->connection,
+            $this->gapicClient,
             $this->valueMapper,
             $parent,
             $childPath

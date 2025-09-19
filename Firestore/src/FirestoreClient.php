@@ -28,6 +28,12 @@ use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Core\Retry;
 use Google\Cloud\Core\ValidateTrait;
 use Google\Cloud\Firestore\Connection\Grpc;
+use Google\Cloud\Firestore\V1\BeginTransactionRequest;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient as GapicFirestoreClient;
+use Google\Cloud\Firestore\V1\TransactionOptions;
+use Google\Cloud\Firestore\V1\TransactionOptions\ReadWrite;
+use InvalidArgumentException;
+use Psr\Cache\CacheItemPoolInterface;
 use Psr\Http\Message\StreamInterface;
 
 /**
@@ -84,12 +90,6 @@ class FirestoreClient
     const MAX_RETRIES = 5;
 
     /**
-     * @var Connection\ConnectionInterface
-     * @internal
-     */
-    private $connection;
-
-    /**
      * @var string
      */
     private $database = '(default)';
@@ -98,6 +98,11 @@ class FirestoreClient
      * @var ValueMapper
      */
     private $valueMapper;
+
+    /**
+     * @var GapicFirestoreClient
+     */
+    private GapicFirestoreClient $gapicClient;
 
     /**
      * Create a Firestore client. Please note that this client requires
@@ -173,6 +178,7 @@ class FirestoreClient
      *     @type bool $returnInt64AsObject If true, 64 bit integers will be
      *           returned as a {@see \Google\Cloud\Core\Int64} object for 32 bit
      *           platform compatibility. **Defaults to** false.
+     *     @type GapicFirestoreClient $firestoreClient A pre-instantiated client for the Firestore service.
      * }
      * @throws \InvalidArgumentException
      * @throws GoogleException If the gRPC extension is not enabled.
@@ -192,42 +198,11 @@ class FirestoreClient
 
         $this->database = $config['database'];
 
-        $this->connection = new Grpc($this->configureAuthentication($config) + [
-            'projectId' => $this->projectId,
-        ]);
+        $this->gapicClient = $this->getGapicClient($config);
 
         $this->valueMapper = new ValueMapper(
-            $this->connection,
+            $this->gapicClient,
             $config['returnInt64AsObject']
-        );
-    }
-
-    /**
-     * Get a Batch Writer
-     *
-     * The {@see \Google\Cloud\Firestore\WriteBatch} allows more performant
-     * multi-document, atomic updates.
-     *
-     * Example:
-     * ```
-     * $batch = $firestore->batch();
-     * ```
-     *
-     * @return WriteBatch
-     * @deprecated Please use {@see \Google\Cloud\Firestore\BulkWriter} instead.
-     */
-    public function batch()
-    {
-        if (!class_exists(WriteBatch::class, false)) {
-            class_alias(BulkWriter::class, WriteBatch::class);
-        }
-        return new BulkWriter(
-            $this->connection,
-            $this->valueMapper,
-            $this->databaseName(
-                $this->projectId,
-                $this->database
-            )
         );
     }
 
@@ -274,7 +249,7 @@ class FirestoreClient
     public function bulkWriter(array $options = [])
     {
         return new BulkWriter(
-            $this->connection,
+            $this->gapicClient,
             $this->valueMapper,
             $this->databaseName(
                 $this->projectId,
@@ -302,7 +277,7 @@ class FirestoreClient
     public function collection($name)
     {
         return $this->getCollectionReference(
-            $this->connection,
+            $this->gapicClient,
             $this->valueMapper,
             $this->projectId,
             $this->database,
@@ -346,7 +321,7 @@ class FirestoreClient
                 function ($collectionId) {
                     return $this->collection($collectionId);
                 },
-                [$this->connection, 'listCollectionIds'],
+                [$this->gapicClient, 'listCollectionIds'],
                 [
                     'parent' => $this->fullName($this->projectId, $this->database),
                 ] + $options,
@@ -373,7 +348,7 @@ class FirestoreClient
     public function document($name)
     {
         return $this->getDocumentReference(
-            $this->connection,
+            $this->gapicClient,
             $this->valueMapper,
             $this->projectId,
             $this->database,
@@ -424,7 +399,7 @@ class FirestoreClient
     public function documents(array $paths, array $options = [])
     {
         return $this->getDocumentsByPaths(
-            $this->connection,
+            $this->gapicClient,
             $this->valueMapper,
             $this->projectId,
             $this->database,
@@ -463,7 +438,7 @@ class FirestoreClient
         }
 
         return new Query(
-            $this->connection,
+            $this->gapicClient,
             $this->valueMapper,
             $this->fullName($this->projectId, $this->database),
             [
@@ -582,18 +557,24 @@ class FirestoreClient
         ) use (&$transactionId) {
             $database = $this->databaseName($this->projectId, $this->database);
 
-            $beginTransaction = $this->connection->beginTransaction(array_filter([
-                'database' => $database,
-                'retryTransaction' => $transactionId,
-            ]) + $options['begin']);
+            $request = new BeginTransactionRequest();
+            $request->setDatabase($database);
 
-            $transactionId = $beginTransaction['transaction'];
+            if (!is_null($transactionId)) {
+                $transactionOptions = new TransactionOptions();
+                $readWrite = new ReadWrite();
+                $readWrite->setRetryTransaction($transactionId);
+                $transactionOptions->setReadWrite($readWrite);
+                $request->setOptions($transactionOptions);
+            }
+
+            $response = $this->gapicClient->beginTransaction($request, $options);
 
             $transaction = new Transaction(
-                $this->connection,
+                $this->gapicClient,
                 $this->valueMapper,
                 $database,
-                $transactionId
+                $response->getTransaction()
             );
 
             try {
@@ -719,11 +700,25 @@ class FirestoreClient
     public function sessionHandler(array $options = [])
     {
         return new FirestoreSessionHandler(
-            $this->connection,
+            $this->gapicClient,
             $this->valueMapper,
             $this->projectId,
             $this->database,
             $options
         );
+    }
+
+    private function getGapicClient(array $config): GapicFirestoreClient
+    {
+        if (!isset($config['firestoreClient'])) {
+            return new GapicFirestoreClient($config);
+        }
+
+        if (!$config['firestoreClient'] instanceof GapicFirestoreClient) {
+            throw new InvalidArgumentException('The firestoreClient option must be an instance of ' . GapicFirestoreClient::class . '.');
+        }
+
+        /* @var GapicFirestoreClient */
+        return $config['firestoreClient'];
     }
 }

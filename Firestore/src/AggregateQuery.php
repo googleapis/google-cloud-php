@@ -17,8 +17,9 @@
 
 namespace Google\Cloud\Firestore;
 
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient;
 use Google\Cloud\Firestore\V1\ExplainOptions;
+use Google\Cloud\Firestore\V1\RunAggregationQueryRequest;
 use InvalidArgumentException;
 
 /**
@@ -39,10 +40,10 @@ class AggregateQuery
     use QueryTrait;
 
     /**
-     * @var ConnectionInterface
+     * @var FirestoreClient
      * @internal
      */
-    private $connection;
+    private FirestoreClient $gapicClient;
 
     /**
      * @var array
@@ -62,20 +63,18 @@ class AggregateQuery
     /**
      * Create an aggregation query.
      *
-     * @param ConnectionInterface $connection A Connection to Cloud Firestore.
-     *        This object is created by FirestoreClient,
-     *        and should not be instantiated outside of this client.
+     * @param FirestoreClient $gapicClient A FirestoreClient instance.
      * @param string $parent The parent of the query.
      * @param array $query Represents the underlying structured query.
      * @param Aggregate $aggregate Aggregation over the provided query.
      */
     public function __construct(
-        ConnectionInterface $connection,
+        FirestoreClient $gapicClient,
         $parent,
         array $query,
         Aggregate $aggregate
     ) {
-        $this->connection = $connection;
+        $this->gapicClient = $gapicClient;
         $this->parentName = $parent;
         $this->query = $query;
         $this->aggregates[] = $aggregate;
@@ -118,12 +117,17 @@ class AggregateQuery
         foreach ($this->aggregates as $aggregate) {
             $parsedAggregates[] = $aggregate->getProps();
         }
-        $snapshot = $this->connection->runAggregationQuery([
-            'parent' => $this->parentName,
-            'structuredAggregationQuery' => $this->aggregateQueryPrepare([
-                'aggregates' => $this->aggregates
-            ] + $this->query),
-        ] + $options)->current();
+
+        $request = new RunAggregationQueryRequest();
+        $request->setParent($this->parentName);
+
+        $jsonStructuredAggregationQuery = $this->aggregateQueryPrepare([
+            'aggregates' => $this->aggregates
+        ] + $this->query);
+
+        $request->mergeFromJsonString(json_encode($jsonStructuredAggregationQuery));
+
+        $snapshot = $this->gapicClient->runAggregationQuery($request, $options)->readAll()->current();
 
         return new AggregateQuerySnapshot($snapshot);
     }

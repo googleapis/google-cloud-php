@@ -22,7 +22,9 @@ use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\TimestampTrait;
 use Google\Cloud\Core\TimeTrait;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
+use Google\Cloud\Firestore\V1\BatchGetDocumentsRequest;
+use Google\Cloud\Firestore\V1\BatchGetDocumentsResponse;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient;
 
 /**
  * Methods common to representing Document Snapshots.
@@ -37,9 +39,7 @@ trait SnapshotTrait
     /**
      * Execute a service request to retrieve a document snapshot.
      *
-     * @param ConnectionInterface $connection A Connection to Cloud Firestore.
-     *        This object is created by FirestoreClient,
-     *        and should not be instantiated outside of this client.
+     * @param FirestoreClient $gapicClient A FirestoreClient instance.
      * @param ValueMapper $valueMapper A Firestore Value Mapper.
      * @param DocumentReference $reference The parent document.
      * @param array $options {
@@ -50,7 +50,7 @@ trait SnapshotTrait
      * @return DocumentSnapshot
      */
     private function createSnapshot(
-        ConnectionInterface $connection,
+        FirestoreClient $gapicClient,
         ValueMapper $valueMapper,
         DocumentReference $reference,
         array $options = []
@@ -60,7 +60,7 @@ trait SnapshotTrait
         $exists = true;
 
         try {
-            $document = $this->getSnapshot($connection, $reference->name(), $options);
+            $document = $this->getSnapshot($gapicClient, $reference->name(), $options);
         } catch (NotFoundException $e) {
             $exists = false;
         }
@@ -98,7 +98,7 @@ trait SnapshotTrait
     /**
      * Send a service request for a snapshot, and return the raw data
      *
-     * @param ConnectionInterface $connection A Connection to Cloud Firestore
+     * @param FirestoreClient $gapicClient A firestore client instance.
      * @param string $name The document name.
      * @param array $options Configuration options.
      * @return array
@@ -106,23 +106,27 @@ trait SnapshotTrait
      *     specified.
      * @throws NotFoundException If the document does not exist.
      */
-    private function getSnapshot(ConnectionInterface $connection, $name, array $options = [])
+    private function getSnapshot(FirestoreClient $gapicClient, $name, array $options = []): array
     {
         $options = $this->formatReadTimeOption($options);
 
-        $snapshot = $connection->batchGetDocuments([
-            'database' => $this->databaseFromName($name),
-            'documents' => [$name],
-        ] + $options)->current();
+        $request = new BatchGetDocumentsRequest();
+        $request->setDatabase($this->databaseFromName($name));
+        $request->setDocuments([$name]);
 
-        if (!isset($snapshot['found'])) {
+        $stream = $gapicClient->batchGetDocuments($request, $options);
+
+        /** @var BatchGetDocumentsResponse */
+        $response = $stream->readAll()->current();
+
+        if ($response->hasFound()) {
             throw new NotFoundException(sprintf(
                 'Document %s does not exist',
                 $name
             ));
         }
 
-        return $snapshot['found'];
+        return json_decode($response->getFound()->serializeToJsonString(), true);
     }
 
     /**
@@ -130,7 +134,7 @@ trait SnapshotTrait
      * input order, creates a list of snapshots (whether the document exists or
      * not), and returns.
      *
-     * @param ConnectionInterface $connection A connection to Cloud Firestore.
+     * @param FirestoreClient $gapicClient An instance of the Firestore client.
      * @param ValueMapper $mapper A Firestore value mapper.
      * @param string $projectId The current project id.
      * @param string $database The database id.
@@ -140,7 +144,7 @@ trait SnapshotTrait
      * @return DocumentSnapshot[]
      */
     private function getDocumentsByPaths(
-        ConnectionInterface $connection,
+        FirestoreClient $gapicClient,
         ValueMapper $mapper,
         $projectId,
         $database,
@@ -166,14 +170,18 @@ trait SnapshotTrait
             $documentNames[] = $path;
         }
 
-        $documents = $this->connection->batchGetDocuments([
-            'database' => $this->databaseName($projectId, $database),
-            'documents' => $documentNames,
-        ] + $options);
+        $request = new BatchGetDocumentsRequest();
+        $request->setDatabase($this->databaseName($projectId, $database));
+        $request->setDocuments($documentNames, $options);
+
+        $stream = $gapicClient->batchGetDocuments($request, $options);
 
         $res = [];
-        foreach ($documents as $document) {
-            $exists = isset($document['found']);
+        /** @var BatchGetDocumentsResponse $response*/
+        foreach ($stream->readAll() as $response) {
+            $document = json_decode($response->serializeToJsonString(), true);
+
+            $exists = $document->hasFound();
             $data = $exists
                 ? $document['found'] + ['readTime' => $document['readTime']]
                 : ['readTime' => $document['readTime']];
@@ -183,7 +191,7 @@ trait SnapshotTrait
                 : $document['missing'];
 
             $ref = $this->getDocumentReference(
-                $connection,
+                $gapicClient,
                 $mapper,
                 $projectId,
                 $database,
@@ -209,7 +217,7 @@ trait SnapshotTrait
     /**
      * Creates a DocumentReference object.
      *
-     * @param ConnectionInterface $connection A connection to Cloud Firestore.
+     * @param FirestoreClient $gapicClient An instance of the Firestore client.
      * @param ValueMapper $mapper A Firestore value mapper.
      * @param string $projectId The current project id.
      * @param string $database The database id.
@@ -218,7 +226,7 @@ trait SnapshotTrait
      * @throws \InvalidArgumentException if an invalid path is provided.
      */
     private function getDocumentReference(
-        ConnectionInterface $connection,
+        FirestoreClient $gapicClient,
         ValueMapper $mapper,
         $projectId,
         $database,
@@ -233,10 +241,10 @@ trait SnapshotTrait
         }
 
         return new DocumentReference(
-            $connection,
+            $gapicClient,
             $mapper,
             $this->getCollectionReference(
-                $connection,
+                $gapicClient,
                 $mapper,
                 $projectId,
                 $database,
@@ -249,7 +257,7 @@ trait SnapshotTrait
     /**
      * Creates a CollectionReference object.
      *
-     * @param ConnectionInterface $connection A connection to Cloud Firestore.
+     * @param FirestoreClient $gapicClient A FirestoreClient instance.
      * @param ValueMapper $mapper A Firestore value mapper.
      * @param string $projectId The current project id.
      * @param string $database The database id.
@@ -258,7 +266,7 @@ trait SnapshotTrait
      * @throws \InvalidArgumentException if an invalid path is provided.
      */
     private function getCollectionReference(
-        ConnectionInterface $connection,
+        FirestoreClient $gapicClient,
         ValueMapper $mapper,
         $projectId,
         $database,
@@ -275,7 +283,7 @@ trait SnapshotTrait
             ));
         }
 
-        return new CollectionReference($connection, $mapper, $name);
+        return new CollectionReference($gapicClient, $mapper, $name);
     }
 
     /**
