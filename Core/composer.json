@@ -21,7 +21,7 @@
         "phpdocumentor/reflection": "^5.3.3||^6.0",
         "phpdocumentor/reflection-docblock": "^5.3",
         "erusev/parsedown": "^1.6",
-        "opis/closure": "^3",
+        "opis/closure": "^3.7|^4.0",
         "google/cloud-common-protos": "~0.5"
     },
     "suggest": {
