@@ -1,0 +1,63 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.assuredworkloads.v1",
+    "libraryPackage": "Google\\Cloud\\AssuredWorkloads\\V1",
+    "services": {
+        "AssuredWorkloadsService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "AssuredWorkloadsServiceGapicClient",
+                    "rpcs": {
+                        "AcknowledgeViolation": {
+                            "methods": [
+                                "acknowledgeViolation"
+                            ]
+                        },
+                        "CreateWorkload": {
+                            "methods": [
+                                "createWorkload"
+                            ]
+                        },
+                        "DeleteWorkload": {
+                            "methods": [
+                                "deleteWorkload"
+                            ]
+                        },
+                        "GetViolation": {
+                            "methods": [
+                                "getViolation"
+                            ]
+                        },
+                        "GetWorkload": {
+                            "methods": [
+                                "getWorkload"
+                            ]
+                        },
+                        "ListViolations": {
+                            "methods": [
+                                "listViolations"
+                            ]
+                        },
+                        "ListWorkloads": {
+                            "methods": [
+                                "listWorkloads"
+                            ]
+                        },
+                        "RestrictAllowedResources": {
+                            "methods": [
+                                "restrictAllowedResources"
+                            ]
+                        },
+                        "UpdateWorkload": {
+                            "methods": [
+                                "updateWorkload"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
