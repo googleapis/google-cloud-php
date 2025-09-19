@@ -1,0 +1,43 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.maintenance.api.v1beta",
+    "libraryPackage": "Google\\Cloud\\Maintenance\\Api\\V1beta",
+    "services": {
+        "Maintenance": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "MaintenanceGapicClient",
+                    "rpcs": {
+                        "GetResourceMaintenance": {
+                            "methods": [
+                                "getResourceMaintenance"
+                            ]
+                        },
+                        "ListResourceMaintenances": {
+                            "methods": [
+                                "listResourceMaintenances"
+                            ]
+                        },
+                        "SummarizeMaintenances": {
+                            "methods": [
+                                "summarizeMaintenances"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
