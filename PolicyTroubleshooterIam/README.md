@@ -35,10 +35,10 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-Google\ApiCore\ApiException;
-Google\Cloud\PolicyTroubleshooter\Iam\V3\Client\PolicyTroubleshooterClient;
-Google\Cloud\PolicyTroubleshooter\Iam\V3\TroubleshootIamPolicyRequest;
-Google\Cloud\PolicyTroubleshooter\Iam\V3\TroubleshootIamPolicyResponse;
+use Google\ApiCore\ApiException;
+use Google\Cloud\PolicyTroubleshooter\Iam\V3\Client\PolicyTroubleshooterClient;
+use Google\Cloud\PolicyTroubleshooter\Iam\V3\TroubleshootIamPolicyRequest;
+use Google\Cloud\PolicyTroubleshooter\Iam\V3\TroubleshootIamPolicyResponse;
 
 // Create a client.
 $policyTroubleshooterClient = new PolicyTroubleshooterClient();

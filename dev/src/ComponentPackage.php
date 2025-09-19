@@ -162,4 +162,63 @@ class ComponentPackage
         }
         throw new \Exception('No class found in ' . $filePath);
     }
+
+    public function getSimplestSample(): string
+    {
+        $samplesPath = $this->component->getPath() . '/samples/' . $this->name;
+        if (!file_exists($samplesPath)) {
+            return '';
+        }
+
+        $result = (new Finder())->files()->in($samplesPath)
+            ->name('*.php')->sortByName();
+
+        $preferredFile = array_filter(
+            iterator_to_array($result),
+            fn ($f) => str_starts_with($f->getFilename(), 'get') && $f->getFilename() !== 'get_iam_policy.php'
+        )[0] ?? null;
+
+        // grab the shortest file if no "get" example exists
+        if ($preferredFile === null) {
+            foreach ($result as $file) {
+                if (str_starts_with($file->getFilename(), 'get')
+                    && $file->getFilename() !== 'get_iam_policy.php'
+                ) {
+                    $preferredFile = $file;
+                    break;
+                }
+                $preferredFile ??= $file; // set first file to default preferred file
+
+                $preferredFile = count(file($file->getRealPath())) < count(file($preferredFile->getRealPath()))
+                    ? $file
+                    : $preferredFile;
+            }
+        }
+
+        if ($preferredFile === null || !preg_match('/^{(.|\n)*?(^})/m', $preferredFile->getContents(), $matches)) {
+            return '';
+        }
+
+        $lines = explode("\n", $matches[0]);
+
+        // remove wrapped parenthesis
+        array_shift($lines);
+        array_pop($lines);
+
+        // remove indent
+        $sampleText = implode("\n", array_map(fn ($line) => substr($line, 4), $lines));
+
+        // add imports
+        $imports = array_filter(
+            explode("\n", $preferredFile->getContents()),
+            fn ($line) => str_starts_with($line, 'use Google\\')
+        );
+
+        if ($imports) {
+            $imports[] = "\n";
+            $sampleText = implode("\n", $imports) . $sampleText;
+        }
+
+        return $sampleText;
+    }
 }

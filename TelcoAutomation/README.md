@@ -35,10 +35,10 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-Google\ApiCore\ApiException;
-Google\Cloud\TelcoAutomation\V1\Blueprint;
-Google\Cloud\TelcoAutomation\V1\Client\TelcoAutomationClient;
-Google\Cloud\TelcoAutomation\V1\GetBlueprintRequest;
+use Google\ApiCore\ApiException;
+use Google\Cloud\TelcoAutomation\V1\Blueprint;
+use Google\Cloud\TelcoAutomation\V1\Client\TelcoAutomationClient;
+use Google\Cloud\TelcoAutomation\V1\GetBlueprintRequest;
 
 // Create a client.
 $telcoAutomationClient = new TelcoAutomationClient();

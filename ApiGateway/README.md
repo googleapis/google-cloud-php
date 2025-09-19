@@ -29,6 +29,31 @@ Please see our [Authentication guide](https://github.com/googleapis/google-cloud
 on authenticating your client. Once authenticated, you'll be ready to start making requests.
 
 
+### Sample
+
+```php
+use Google\ApiCore\ApiException;
+use Google\Cloud\ApiGateway\V1\Api;
+use Google\Cloud\ApiGateway\V1\Client\ApiGatewayServiceClient;
+use Google\Cloud\ApiGateway\V1\GetApiRequest;
+
+// Create a client.
+$apiGatewayServiceClient = new ApiGatewayServiceClient();
+
+// Prepare the request message.
+$request = (new GetApiRequest())
+    ->setName($formattedName);
+
+// Call the API and handle any network failures.
+try {
+    /** @var Api $response */
+    $response = $apiGatewayServiceClient->getApi($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
+```
+
 ### Debugging
 
 Please see our [Debugging guide](https://github.com/googleapis/google-cloud-php/blob/main/DEBUG.md)

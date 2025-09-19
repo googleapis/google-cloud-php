@@ -35,10 +35,10 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-Google\ApiCore\ApiException;
-Google\Cloud\AlloyDb\V1\Backup;
-Google\Cloud\AlloyDb\V1\Client\AlloyDBAdminClient;
-Google\Cloud\AlloyDb\V1\GetBackupRequest;
+use Google\ApiCore\ApiException;
+use Google\Cloud\AlloyDb\V1\Backup;
+use Google\Cloud\AlloyDb\V1\Client\AlloyDBAdminClient;
+use Google\Cloud\AlloyDb\V1\GetBackupRequest;
 
 // Create a client.
 $alloyDBAdminClient = new AlloyDBAdminClient();

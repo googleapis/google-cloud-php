@@ -31,18 +31,25 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-require 'vendor/autoload.php';
-
+use Google\Analytics\Admin\V1beta\Account;
 use Google\Analytics\Admin\V1beta\Client\AnalyticsAdminServiceClient;
-use Google\Analytics\Admin\V1beta\ListAccountsRequest;
+use Google\Analytics\Admin\V1beta\GetAccountRequest;
+use Google\ApiCore\ApiException;
 
-$client = new AnalyticsAdminServiceClient();
+// Create a client.
+$analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
-$request = new ListAccountsRequest();
-$accounts = $client->listAccounts($request);
+// Prepare the request message.
+$request = (new GetAccountRequest())
+    ->setName($formattedName);
 
-foreach ($accounts as $account) {
-    print 'Found account: ' . $account->getName() . PHP_EOL;
+// Call the API and handle any network failures.
+try {
+    /** @var Account $response */
+    $response = $analyticsAdminServiceClient->getAccount($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
 }
 ```
 

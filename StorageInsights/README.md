@@ -35,21 +35,22 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-Google\ApiCore\ApiException;
-Google\Cloud\Location\GetLocationRequest;
-Google\Cloud\Location\Location;
-Google\Cloud\StorageInsights\V1\Client\StorageInsightsClient;
+use Google\ApiCore\ApiException;
+use Google\Cloud\StorageInsights\V1\Client\StorageInsightsClient;
+use Google\Cloud\StorageInsights\V1\DatasetConfig;
+use Google\Cloud\StorageInsights\V1\GetDatasetConfigRequest;
 
 // Create a client.
 $storageInsightsClient = new StorageInsightsClient();
 
 // Prepare the request message.
-$request = new GetLocationRequest();
+$request = (new GetDatasetConfigRequest())
+    ->setName($formattedName);
 
 // Call the API and handle any network failures.
 try {
-    /** @var Location $response */
-    $response = $storageInsightsClient->getLocation($request);
+    /** @var DatasetConfig $response */
+    $response = $storageInsightsClient->getDatasetConfig($request);
     printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
 } catch (ApiException $ex) {
     printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

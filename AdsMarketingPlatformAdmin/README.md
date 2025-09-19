@@ -35,10 +35,10 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-Google\Ads\MarketingPlatform\Admin\V1alpha\Client\MarketingplatformAdminServiceClient;
-Google\Ads\MarketingPlatform\Admin\V1alpha\GetOrganizationRequest;
-Google\Ads\MarketingPlatform\Admin\V1alpha\Organization;
-Google\ApiCore\ApiException;
+use Google\Ads\MarketingPlatform\Admin\V1alpha\Client\MarketingplatformAdminServiceClient;
+use Google\Ads\MarketingPlatform\Admin\V1alpha\GetOrganizationRequest;
+use Google\Ads\MarketingPlatform\Admin\V1alpha\Organization;
+use Google\ApiCore\ApiException;
 
 // Create a client.
 $marketingplatformAdminServiceClient = new MarketingplatformAdminServiceClient();

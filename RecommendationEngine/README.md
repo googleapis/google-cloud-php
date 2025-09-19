@@ -31,20 +31,26 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-use Google\Cloud\RecommendationEngine\V1beta1\PredictionServiceClient;
-use Google\Cloud\RecommendationEngine\V1beta1\UserEvent;
+use Google\ApiCore\ApiException;
+use Google\Cloud\RecommendationEngine\V1beta1\CatalogItem;
+use Google\Cloud\RecommendationEngine\V1beta1\Client\CatalogServiceClient;
+use Google\Cloud\RecommendationEngine\V1beta1\GetCatalogItemRequest;
 
-$client = new PredictionServiceClient();
-$formattedName = $predictionServiceClient->placementName(
-    '[PROJECT]',
-    '[LOCATION]',
-    '[CATALOG]',
-    '[EVENT_STORE]',
-    '[PLACEMENT]'
-);
-$userEvent = new UserEvent();
+// Create a client.
+$catalogServiceClient = new CatalogServiceClient();
 
-$predictions = $predictionServiceClient->predict($formattedName, $userEvent);
+// Prepare the request message.
+$request = (new GetCatalogItemRequest())
+    ->setName($formattedName);
+
+// Call the API and handle any network failures.
+try {
+    /** @var CatalogItem $response */
+    $response = $catalogServiceClient->getCatalogItem($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
 ```
 
 ### Debugging
