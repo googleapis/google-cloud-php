@@ -9,6 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * Stats indicates the type of aggregate and the corresponding aggregates.
+ *
  * Generated from protobuf message <code>google.cloud.maintenance.api.v1beta.MaintenanceSummary.Stats</code>
  */
 class Stats extends \Google\Protobuf\Internal\Message
