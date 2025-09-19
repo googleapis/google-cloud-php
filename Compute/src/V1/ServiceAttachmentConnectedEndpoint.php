@@ -20,13 +20,13 @@ class ServiceAttachmentConnectedEndpoint extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>optional string consumer_network = 254357221;</code>
      */
-    private $consumer_network = null;
+    protected $consumer_network = null;
     /**
      * The url of a connected endpoint.
      *
      * Generated from protobuf field <code>optional string endpoint = 130489749;</code>
      */
-    private $endpoint = null;
+    protected $endpoint = null;
     /**
      * NAT IPs of the connected PSC endpoint and those of other endpoints propagated from it.
      *
@@ -38,20 +38,20 @@ class ServiceAttachmentConnectedEndpoint extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>optional uint32 propagated_connection_count = 324594130;</code>
      */
-    private $propagated_connection_count = null;
+    protected $propagated_connection_count = null;
     /**
      * The PSC connection id of the connected endpoint.
      *
      * Generated from protobuf field <code>optional uint64 psc_connection_id = 292082397;</code>
      */
-    private $psc_connection_id = null;
+    protected $psc_connection_id = null;
     /**
      * The status of a connected endpoint to this service attachment.
      * Check the Status enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>
      */
-    private $status = null;
+    protected $status = null;
 
     /**
      * Constructor.

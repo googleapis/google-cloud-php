@@ -20,99 +20,99 @@ class InterconnectRemoteLocation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string address = 462920692;</code>
      */
-    private $address = null;
+    protected $address = null;
     /**
      * [Output Only] Subset of fields from InterconnectAttachment's |configurationConstraints| field that apply to all attachments for this remote location.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectAttachmentConfigurationConstraints attachment_configuration_constraints = 326825041;</code>
      */
-    private $attachment_configuration_constraints = null;
+    protected $attachment_configuration_constraints = null;
     /**
      * [Output Only] Metropolitan area designator that indicates which city an interconnect is located. For example: "Chicago, IL", "Amsterdam, Netherlands".
      *
      * Generated from protobuf field <code>optional string city = 3053931;</code>
      */
-    private $city = null;
+    protected $city = null;
     /**
      * [Output Only] Constraints on the parameters for creating Cross-Cloud Interconnect and associated InterconnectAttachments.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectRemoteLocationConstraints constraints = 3909174;</code>
      */
-    private $constraints = null;
+    protected $constraints = null;
     /**
      * [Output Only] Continent for this location, which can take one of the following values: - AFRICA - ASIA_PAC - EUROPE - NORTH_AMERICA - SOUTH_AMERICA
      * Check the Continent enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string continent = 133442996;</code>
      */
-    private $continent = null;
+    protected $continent = null;
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
-    private $creation_timestamp = null;
+    protected $creation_timestamp = null;
     /**
      * [Output Only] An optional description of the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
-    private $description = null;
+    protected $description = null;
     /**
      * [Output Only] The name of the provider for this facility (e.g., EQUINIX).
      *
      * Generated from protobuf field <code>optional string facility_provider = 533303309;</code>
      */
-    private $facility_provider = null;
+    protected $facility_provider = null;
     /**
      * [Output Only] A provider-assigned Identifier for this facility (e.g., Ashburn-DC1).
      *
      * Generated from protobuf field <code>optional string facility_provider_facility_id = 87269125;</code>
      */
-    private $facility_provider_facility_id = null;
+    protected $facility_provider_facility_id = null;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
-    private $id = null;
+    protected $id = null;
     /**
      * [Output Only] Type of the resource. Always compute#interconnectRemoteLocation for interconnect remote locations.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
-    private $kind = null;
+    protected $kind = null;
     /**
      * [Output Only] Link Aggregation Control Protocol (LACP) constraints, which can take one of the following values: LACP_SUPPORTED, LACP_UNSUPPORTED
      * Check the Lacp enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string lacp = 3313826;</code>
      */
-    private $lacp = null;
+    protected $lacp = null;
     /**
      * [Output Only] The maximum number of 100 Gbps ports supported in a link aggregation group (LAG). When linkType is 100 Gbps, requestedLinkCount cannot exceed max_lag_size_100_gbps.
      *
      * Generated from protobuf field <code>optional int32 max_lag_size100_gbps = 245219253;</code>
      */
-    private $max_lag_size100_gbps = null;
+    protected $max_lag_size100_gbps = null;
     /**
      * [Output Only] The maximum number of 10 Gbps ports supported in a link aggregation group (LAG). When linkType is 10 Gbps, requestedLinkCount cannot exceed max_lag_size_10_gbps.
      *
      * Generated from protobuf field <code>optional int32 max_lag_size10_gbps = 294007573;</code>
      */
-    private $max_lag_size10_gbps = null;
+    protected $max_lag_size10_gbps = null;
     /**
      * [Output Only] Name of the resource.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
     /**
      * [Output Only] The peeringdb identifier for this facility (corresponding with a netfac type in peeringdb).
      *
      * Generated from protobuf field <code>optional string peeringdb_facility_id = 536567094;</code>
      */
-    private $peeringdb_facility_id = null;
+    protected $peeringdb_facility_id = null;
     /**
      * [Output Only] Permitted connections.
      *
@@ -124,20 +124,20 @@ class InterconnectRemoteLocation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string remote_service = 391954364;</code>
      */
-    private $remote_service = null;
+    protected $remote_service = null;
     /**
      * [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
-    private $self_link = null;
+    protected $self_link = null;
     /**
      * [Output Only] The status of this InterconnectRemoteLocation, which can take one of the following values: - CLOSED: The InterconnectRemoteLocation is closed and is unavailable for provisioning new Cross-Cloud Interconnects. - AVAILABLE: The InterconnectRemoteLocation is available for provisioning new Cross-Cloud Interconnects.
      * Check the Status enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>
      */
-    private $status = null;
+    protected $status = null;
 
     /**
      * Constructor.

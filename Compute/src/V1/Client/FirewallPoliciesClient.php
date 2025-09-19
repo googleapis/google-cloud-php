@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -145,9 +145,7 @@ final class FirewallPoliciesClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -319,8 +317,10 @@ final class FirewallPoliciesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function addAssociation(AddAssociationFirewallPolicyRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function addAssociation(
+        AddAssociationFirewallPolicyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('AddAssociation', $request, $callOptions)->wait();
     }
 
@@ -449,8 +449,10 @@ final class FirewallPoliciesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getAssociation(GetAssociationFirewallPolicyRequest $request, array $callOptions = []): FirewallPolicyAssociation
-    {
+    public function getAssociation(
+        GetAssociationFirewallPolicyRequest $request,
+        array $callOptions = []
+    ): FirewallPolicyAssociation {
         return $this->startApiCall('GetAssociation', $request, $callOptions)->wait();
     }
 
@@ -579,8 +581,10 @@ final class FirewallPoliciesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listAssociations(ListAssociationsFirewallPolicyRequest $request, array $callOptions = []): FirewallPoliciesListAssociationsResponse
-    {
+    public function listAssociations(
+        ListAssociationsFirewallPolicyRequest $request,
+        array $callOptions = []
+    ): FirewallPoliciesListAssociationsResponse {
         return $this->startApiCall('ListAssociations', $request, $callOptions)->wait();
     }
 
@@ -683,8 +687,10 @@ final class FirewallPoliciesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function removeAssociation(RemoveAssociationFirewallPolicyRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function removeAssociation(
+        RemoveAssociationFirewallPolicyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('RemoveAssociation', $request, $callOptions)->wait();
     }
 
@@ -761,8 +767,10 @@ final class FirewallPoliciesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsFirewallPolicyRequest $request, array $callOptions = []): TestPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsFirewallPolicyRequest $request,
+        array $callOptions = []
+    ): TestPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

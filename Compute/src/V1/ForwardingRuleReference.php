@@ -17,7 +17,7 @@ class ForwardingRuleReference extends \Google\Protobuf\Internal\Message
     /**
      * Generated from protobuf field <code>optional string forwarding_rule = 269964030;</code>
      */
-    private $forwarding_rule = null;
+    protected $forwarding_rule = null;
 
     /**
      * Constructor.

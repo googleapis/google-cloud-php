@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -214,9 +214,7 @@ final class InstancesClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -233,10 +231,7 @@ final class InstancesClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-                'getZone',
-            ],
+            'additionalArgumentMethods' => ['getProject', 'getZone'],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -416,8 +411,10 @@ final class InstancesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function addNetworkInterface(AddNetworkInterfaceInstanceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function addNetworkInterface(
+        AddNetworkInterfaceInstanceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('AddNetworkInterface', $request, $callOptions)->wait();
     }
 
@@ -442,8 +439,10 @@ final class InstancesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function addResourcePolicies(AddResourcePoliciesInstanceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function addResourcePolicies(
+        AddResourcePoliciesInstanceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('AddResourcePolicies', $request, $callOptions)->wait();
     }
 
@@ -572,8 +571,10 @@ final class InstancesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteAccessConfig(DeleteAccessConfigInstanceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteAccessConfig(
+        DeleteAccessConfigInstanceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteAccessConfig', $request, $callOptions)->wait();
     }
 
@@ -598,8 +599,10 @@ final class InstancesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteNetworkInterface(DeleteNetworkInterfaceInstanceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteNetworkInterface(
+        DeleteNetworkInterfaceInstanceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteNetworkInterface', $request, $callOptions)->wait();
     }
 
@@ -676,8 +679,10 @@ final class InstancesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getEffectiveFirewalls(GetEffectiveFirewallsInstanceRequest $request, array $callOptions = []): InstancesGetEffectiveFirewallsResponse
-    {
+    public function getEffectiveFirewalls(
+        GetEffectiveFirewallsInstanceRequest $request,
+        array $callOptions = []
+    ): InstancesGetEffectiveFirewallsResponse {
         return $this->startApiCall('GetEffectiveFirewalls', $request, $callOptions)->wait();
     }
 
@@ -702,8 +707,10 @@ final class InstancesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getGuestAttributes(GetGuestAttributesInstanceRequest $request, array $callOptions = []): GuestAttributes
-    {
+    public function getGuestAttributes(
+        GetGuestAttributesInstanceRequest $request,
+        array $callOptions = []
+    ): GuestAttributes {
         return $this->startApiCall('GetGuestAttributes', $request, $callOptions)->wait();
     }
 
@@ -780,8 +787,10 @@ final class InstancesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getSerialPortOutput(GetSerialPortOutputInstanceRequest $request, array $callOptions = []): SerialPortOutput
-    {
+    public function getSerialPortOutput(
+        GetSerialPortOutputInstanceRequest $request,
+        array $callOptions = []
+    ): SerialPortOutput {
         return $this->startApiCall('GetSerialPortOutput', $request, $callOptions)->wait();
     }
 
@@ -807,8 +816,10 @@ final class InstancesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getShieldedInstanceIdentity(GetShieldedInstanceIdentityInstanceRequest $request, array $callOptions = []): ShieldedInstanceIdentity
-    {
+    public function getShieldedInstanceIdentity(
+        GetShieldedInstanceIdentityInstanceRequest $request,
+        array $callOptions = []
+    ): ShieldedInstanceIdentity {
         return $this->startApiCall('GetShieldedInstanceIdentity', $request, $callOptions)->wait();
     }
 
@@ -911,8 +922,10 @@ final class InstancesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function performMaintenance(PerformMaintenanceInstanceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function performMaintenance(
+        PerformMaintenanceInstanceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('PerformMaintenance', $request, $callOptions)->wait();
     }
 
@@ -937,8 +950,10 @@ final class InstancesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function removeResourcePolicies(RemoveResourcePoliciesInstanceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function removeResourcePolicies(
+        RemoveResourcePoliciesInstanceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('RemoveResourcePolicies', $request, $callOptions)->wait();
     }
 
@@ -963,8 +978,10 @@ final class InstancesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function reportHostAsFaulty(ReportHostAsFaultyInstanceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function reportHostAsFaulty(
+        ReportHostAsFaultyInstanceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('ReportHostAsFaulty', $request, $callOptions)->wait();
     }
 
@@ -1041,8 +1058,10 @@ final class InstancesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function sendDiagnosticInterrupt(SendDiagnosticInterruptInstanceRequest $request, array $callOptions = []): SendDiagnosticInterruptInstanceResponse
-    {
+    public function sendDiagnosticInterrupt(
+        SendDiagnosticInterruptInstanceRequest $request,
+        array $callOptions = []
+    ): SendDiagnosticInterruptInstanceResponse {
         return $this->startApiCall('SendDiagnosticInterrupt', $request, $callOptions)->wait();
     }
 
@@ -1067,8 +1086,10 @@ final class InstancesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setDeletionProtection(SetDeletionProtectionInstanceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function setDeletionProtection(
+        SetDeletionProtectionInstanceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SetDeletionProtection', $request, $callOptions)->wait();
     }
 
@@ -1093,8 +1114,10 @@ final class InstancesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setDiskAutoDelete(SetDiskAutoDeleteInstanceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function setDiskAutoDelete(
+        SetDiskAutoDeleteInstanceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SetDiskAutoDelete', $request, $callOptions)->wait();
     }
 
@@ -1171,8 +1194,10 @@ final class InstancesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setMachineResources(SetMachineResourcesInstanceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function setMachineResources(
+        SetMachineResourcesInstanceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SetMachineResources', $request, $callOptions)->wait();
     }
 
@@ -1249,8 +1274,10 @@ final class InstancesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setMinCpuPlatform(SetMinCpuPlatformInstanceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function setMinCpuPlatform(
+        SetMinCpuPlatformInstanceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SetMinCpuPlatform', $request, $callOptions)->wait();
     }
 
@@ -1327,8 +1354,10 @@ final class InstancesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setSecurityPolicy(SetSecurityPolicyInstanceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function setSecurityPolicy(
+        SetSecurityPolicyInstanceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SetSecurityPolicy', $request, $callOptions)->wait();
     }
 
@@ -1353,8 +1382,10 @@ final class InstancesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setServiceAccount(SetServiceAccountInstanceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function setServiceAccount(
+        SetServiceAccountInstanceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SetServiceAccount', $request, $callOptions)->wait();
     }
 
@@ -1380,8 +1411,10 @@ final class InstancesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setShieldedInstanceIntegrityPolicy(SetShieldedInstanceIntegrityPolicyInstanceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function setShieldedInstanceIntegrityPolicy(
+        SetShieldedInstanceIntegrityPolicyInstanceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SetShieldedInstanceIntegrityPolicy', $request, $callOptions)->wait();
     }
 
@@ -1432,8 +1465,10 @@ final class InstancesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function simulateMaintenanceEvent(SimulateMaintenanceEventInstanceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function simulateMaintenanceEvent(
+        SimulateMaintenanceEventInstanceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SimulateMaintenanceEvent', $request, $callOptions)->wait();
     }
 
@@ -1484,8 +1519,10 @@ final class InstancesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function startWithEncryptionKey(StartWithEncryptionKeyInstanceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function startWithEncryptionKey(
+        StartWithEncryptionKeyInstanceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('StartWithEncryptionKey', $request, $callOptions)->wait();
     }
 
@@ -1562,8 +1599,10 @@ final class InstancesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsInstanceRequest $request, array $callOptions = []): TestPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsInstanceRequest $request,
+        array $callOptions = []
+    ): TestPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 
@@ -1614,8 +1653,10 @@ final class InstancesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateAccessConfig(UpdateAccessConfigInstanceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function updateAccessConfig(
+        UpdateAccessConfigInstanceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UpdateAccessConfig', $request, $callOptions)->wait();
     }
 
@@ -1640,8 +1681,10 @@ final class InstancesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateDisplayDevice(UpdateDisplayDeviceInstanceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function updateDisplayDevice(
+        UpdateDisplayDeviceInstanceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UpdateDisplayDevice', $request, $callOptions)->wait();
     }
 
@@ -1666,8 +1709,10 @@ final class InstancesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateNetworkInterface(UpdateNetworkInterfaceInstanceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function updateNetworkInterface(
+        UpdateNetworkInterfaceInstanceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UpdateNetworkInterface', $request, $callOptions)->wait();
     }
 
@@ -1693,8 +1738,10 @@ final class InstancesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateShieldedInstanceConfig(UpdateShieldedInstanceConfigInstanceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function updateShieldedInstanceConfig(
+        UpdateShieldedInstanceConfigInstanceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UpdateShieldedInstanceConfig', $request, $callOptions)->wait();
     }
 }

@@ -20,25 +20,25 @@ class GetServiceAttachmentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * Name of the region of this request.
      *
      * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $region = '';
+    protected $region = '';
     /**
      * Name of the ServiceAttachment resource to return.
      *
      * Generated from protobuf field <code>string service_attachment = 338957549 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $service_attachment = '';
+    protected $service_attachment = '';
     /**
      * Indicates whether NAT IPs should be included in the response.
      *
      * Generated from protobuf field <code>optional bool show_nat_ips = 485502156;</code>
      */
-    private $show_nat_ips = null;
+    protected $show_nat_ips = null;
 
     /**
      * @param string $project           Project ID for this request.

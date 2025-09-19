@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -98,7 +98,9 @@ class InstanceGroupManagersClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return InstanceGroupManagersClient */
@@ -142,7 +144,9 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $zone = 'zone3744684';
         $request = (new AbandonInstancesInstanceGroupManagerRequest())
             ->setInstanceGroupManager($instanceGroupManager)
-            ->setInstanceGroupManagersAbandonInstancesRequestResource($instanceGroupManagersAbandonInstancesRequestResource)
+            ->setInstanceGroupManagersAbandonInstancesRequestResource(
+                $instanceGroupManagersAbandonInstancesRequestResource
+            )
             ->setProject($project)
             ->setZone($zone);
         $response = $gapicClient->abandonInstances($request);
@@ -206,12 +210,15 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $instanceGroupManager = 'instanceGroupManager-1361249341';
@@ -220,7 +227,9 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $zone = 'zone3744684';
         $request = (new AbandonInstancesInstanceGroupManagerRequest())
             ->setInstanceGroupManager($instanceGroupManager)
-            ->setInstanceGroupManagersAbandonInstancesRequestResource($instanceGroupManagersAbandonInstancesRequestResource)
+            ->setInstanceGroupManagersAbandonInstancesRequestResource(
+                $instanceGroupManagersAbandonInstancesRequestResource
+            )
             ->setProject($project)
             ->setZone($zone);
         $response = $gapicClient->abandonInstances($request);
@@ -268,8 +277,7 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $project = 'project-309310695';
-        $request = (new AggregatedListInstanceGroupManagersRequest())
-            ->setProject($project);
+        $request = (new AggregatedListInstanceGroupManagersRequest())->setProject($project);
         $response = $gapicClient->aggregatedList($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -298,17 +306,19 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';
-        $request = (new AggregatedListInstanceGroupManagersRequest())
-            ->setProject($project);
+        $request = (new AggregatedListInstanceGroupManagersRequest())->setProject($project);
         try {
             $gapicClient->aggregatedList($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -418,12 +428,15 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $instanceGroupManager = 'instanceGroupManager-1361249341';
@@ -487,7 +500,9 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $zone = 'zone3744684';
         $request = (new CreateInstancesInstanceGroupManagerRequest())
             ->setInstanceGroupManager($instanceGroupManager)
-            ->setInstanceGroupManagersCreateInstancesRequestResource($instanceGroupManagersCreateInstancesRequestResource)
+            ->setInstanceGroupManagersCreateInstancesRequestResource(
+                $instanceGroupManagersCreateInstancesRequestResource
+            )
             ->setProject($project)
             ->setZone($zone);
         $response = $gapicClient->createInstances($request);
@@ -551,12 +566,15 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $instanceGroupManager = 'instanceGroupManager-1361249341';
@@ -565,7 +583,9 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $zone = 'zone3744684';
         $request = (new CreateInstancesInstanceGroupManagerRequest())
             ->setInstanceGroupManager($instanceGroupManager)
-            ->setInstanceGroupManagersCreateInstancesRequestResource($instanceGroupManagersCreateInstancesRequestResource)
+            ->setInstanceGroupManagersCreateInstancesRequestResource(
+                $instanceGroupManagersCreateInstancesRequestResource
+            )
             ->setProject($project)
             ->setZone($zone);
         $response = $gapicClient->createInstances($request);
@@ -680,12 +700,15 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $instanceGroupManager = 'instanceGroupManager-1361249341';
@@ -747,7 +770,9 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $zone = 'zone3744684';
         $request = (new DeleteInstancesInstanceGroupManagerRequest())
             ->setInstanceGroupManager($instanceGroupManager)
-            ->setInstanceGroupManagersDeleteInstancesRequestResource($instanceGroupManagersDeleteInstancesRequestResource)
+            ->setInstanceGroupManagersDeleteInstancesRequestResource(
+                $instanceGroupManagersDeleteInstancesRequestResource
+            )
             ->setProject($project)
             ->setZone($zone);
         $response = $gapicClient->deleteInstances($request);
@@ -811,12 +836,15 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $instanceGroupManager = 'instanceGroupManager-1361249341';
@@ -825,7 +853,9 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $zone = 'zone3744684';
         $request = (new DeleteInstancesInstanceGroupManagerRequest())
             ->setInstanceGroupManager($instanceGroupManager)
-            ->setInstanceGroupManagersDeleteInstancesRequestResource($instanceGroupManagersDeleteInstancesRequestResource)
+            ->setInstanceGroupManagersDeleteInstancesRequestResource(
+                $instanceGroupManagersDeleteInstancesRequestResource
+            )
             ->setProject($project)
             ->setZone($zone);
         $response = $gapicClient->deleteInstances($request);
@@ -880,7 +910,9 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $zone = 'zone3744684';
         $request = (new DeletePerInstanceConfigsInstanceGroupManagerRequest())
             ->setInstanceGroupManager($instanceGroupManager)
-            ->setInstanceGroupManagersDeletePerInstanceConfigsReqResource($instanceGroupManagersDeletePerInstanceConfigsReqResource)
+            ->setInstanceGroupManagersDeletePerInstanceConfigsReqResource(
+                $instanceGroupManagersDeletePerInstanceConfigsReqResource
+            )
             ->setProject($project)
             ->setZone($zone);
         $response = $gapicClient->deletePerInstanceConfigs($request);
@@ -891,7 +923,10 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.InstanceGroupManagers/DeletePerInstanceConfigs', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.compute.v1.InstanceGroupManagers/DeletePerInstanceConfigs',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getInstanceGroupManager();
         $this->assertProtobufEquals($instanceGroupManager, $actualValue);
         $actualValue = $actualApiRequestObject->getInstanceGroupManagersDeletePerInstanceConfigsReqResource();
@@ -944,12 +979,15 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $instanceGroupManager = 'instanceGroupManager-1361249341';
@@ -958,7 +996,9 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $zone = 'zone3744684';
         $request = (new DeletePerInstanceConfigsInstanceGroupManagerRequest())
             ->setInstanceGroupManager($instanceGroupManager)
-            ->setInstanceGroupManagersDeletePerInstanceConfigsReqResource($instanceGroupManagersDeletePerInstanceConfigsReqResource)
+            ->setInstanceGroupManagersDeletePerInstanceConfigsReqResource(
+                $instanceGroupManagersDeletePerInstanceConfigsReqResource
+            )
             ->setProject($project)
             ->setZone($zone);
         $response = $gapicClient->deletePerInstanceConfigs($request);
@@ -1063,12 +1103,15 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $instanceGroupManager = 'instanceGroupManager-1361249341';
@@ -1183,12 +1226,15 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $instanceGroupManagerResource = new InstanceGroupManager();
@@ -1232,9 +1278,7 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $nextPageToken = '';
         $selfLink = 'selfLink-1691268851';
         $itemsElement = new InstanceGroupManager();
-        $items = [
-            $itemsElement,
-        ];
+        $items = [$itemsElement];
         $expectedResponse = new InstanceGroupManagerList();
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
@@ -1245,9 +1289,7 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $request = (new ListInstanceGroupManagersRequest())
-            ->setProject($project)
-            ->setZone($zone);
+        $request = (new ListInstanceGroupManagersRequest())->setProject($project)->setZone($zone);
         $response = $gapicClient->list($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1276,19 +1318,20 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $request = (new ListInstanceGroupManagersRequest())
-            ->setProject($project)
-            ->setZone($zone);
+        $request = (new ListInstanceGroupManagersRequest())->setProject($project)->setZone($zone);
         try {
             $gapicClient->list($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1313,9 +1356,7 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $itemsElement = new InstanceManagedByIgmError();
-        $items = [
-            $itemsElement,
-        ];
+        $items = [$itemsElement];
         $expectedResponse = new InstanceGroupManagersListErrorsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setItems($items);
@@ -1358,12 +1399,15 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $instanceGroupManager = 'instanceGroupManager-1361249341';
@@ -1397,9 +1441,7 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $managedInstancesElement = new ManagedInstance();
-        $managedInstances = [
-            $managedInstancesElement,
-        ];
+        $managedInstances = [$managedInstancesElement];
         $expectedResponse = new InstanceGroupManagersListManagedInstancesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setManagedInstances($managedInstances);
@@ -1442,12 +1484,15 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $instanceGroupManager = 'instanceGroupManager-1361249341';
@@ -1481,9 +1526,7 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $itemsElement = new PerInstanceConfig();
-        $items = [
-            $itemsElement,
-        ];
+        $items = [$itemsElement];
         $expectedResponse = new InstanceGroupManagersListPerInstanceConfigsResp();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setItems($items);
@@ -1526,12 +1569,15 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $instanceGroupManager = 'instanceGroupManager-1361249341';
@@ -1650,12 +1696,15 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $instanceGroupManager = 'instanceGroupManager-1361249341';
@@ -1719,7 +1768,9 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $zone = 'zone3744684';
         $request = (new PatchPerInstanceConfigsInstanceGroupManagerRequest())
             ->setInstanceGroupManager($instanceGroupManager)
-            ->setInstanceGroupManagersPatchPerInstanceConfigsReqResource($instanceGroupManagersPatchPerInstanceConfigsReqResource)
+            ->setInstanceGroupManagersPatchPerInstanceConfigsReqResource(
+                $instanceGroupManagersPatchPerInstanceConfigsReqResource
+            )
             ->setProject($project)
             ->setZone($zone);
         $response = $gapicClient->patchPerInstanceConfigs($request);
@@ -1783,12 +1834,15 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $instanceGroupManager = 'instanceGroupManager-1361249341';
@@ -1797,7 +1851,9 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $zone = 'zone3744684';
         $request = (new PatchPerInstanceConfigsInstanceGroupManagerRequest())
             ->setInstanceGroupManager($instanceGroupManager)
-            ->setInstanceGroupManagersPatchPerInstanceConfigsReqResource($instanceGroupManagersPatchPerInstanceConfigsReqResource)
+            ->setInstanceGroupManagersPatchPerInstanceConfigsReqResource(
+                $instanceGroupManagersPatchPerInstanceConfigsReqResource
+            )
             ->setProject($project)
             ->setZone($zone);
         $response = $gapicClient->patchPerInstanceConfigs($request);
@@ -1852,7 +1908,9 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $zone = 'zone3744684';
         $request = (new RecreateInstancesInstanceGroupManagerRequest())
             ->setInstanceGroupManager($instanceGroupManager)
-            ->setInstanceGroupManagersRecreateInstancesRequestResource($instanceGroupManagersRecreateInstancesRequestResource)
+            ->setInstanceGroupManagersRecreateInstancesRequestResource(
+                $instanceGroupManagersRecreateInstancesRequestResource
+            )
             ->setProject($project)
             ->setZone($zone);
         $response = $gapicClient->recreateInstances($request);
@@ -1916,12 +1974,15 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $instanceGroupManager = 'instanceGroupManager-1361249341';
@@ -1930,7 +1991,9 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $zone = 'zone3744684';
         $request = (new RecreateInstancesInstanceGroupManagerRequest())
             ->setInstanceGroupManager($instanceGroupManager)
-            ->setInstanceGroupManagersRecreateInstancesRequestResource($instanceGroupManagersRecreateInstancesRequestResource)
+            ->setInstanceGroupManagersRecreateInstancesRequestResource(
+                $instanceGroupManagersRecreateInstancesRequestResource
+            )
             ->setProject($project)
             ->setZone($zone);
         $response = $gapicClient->recreateInstances($request);
@@ -2049,12 +2112,15 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $instanceGroupManager = 'instanceGroupManager-1361249341';
@@ -2118,7 +2184,9 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $zone = 'zone3744684';
         $request = (new ResumeInstancesInstanceGroupManagerRequest())
             ->setInstanceGroupManager($instanceGroupManager)
-            ->setInstanceGroupManagersResumeInstancesRequestResource($instanceGroupManagersResumeInstancesRequestResource)
+            ->setInstanceGroupManagersResumeInstancesRequestResource(
+                $instanceGroupManagersResumeInstancesRequestResource
+            )
             ->setProject($project)
             ->setZone($zone);
         $response = $gapicClient->resumeInstances($request);
@@ -2182,12 +2250,15 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $instanceGroupManager = 'instanceGroupManager-1361249341';
@@ -2196,7 +2267,9 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $zone = 'zone3744684';
         $request = (new ResumeInstancesInstanceGroupManagerRequest())
             ->setInstanceGroupManager($instanceGroupManager)
-            ->setInstanceGroupManagersResumeInstancesRequestResource($instanceGroupManagersResumeInstancesRequestResource)
+            ->setInstanceGroupManagersResumeInstancesRequestResource(
+                $instanceGroupManagersResumeInstancesRequestResource
+            )
             ->setProject($project)
             ->setZone($zone);
         $response = $gapicClient->resumeInstances($request);
@@ -2251,7 +2324,9 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $zone = 'zone3744684';
         $request = (new SetInstanceTemplateInstanceGroupManagerRequest())
             ->setInstanceGroupManager($instanceGroupManager)
-            ->setInstanceGroupManagersSetInstanceTemplateRequestResource($instanceGroupManagersSetInstanceTemplateRequestResource)
+            ->setInstanceGroupManagersSetInstanceTemplateRequestResource(
+                $instanceGroupManagersSetInstanceTemplateRequestResource
+            )
             ->setProject($project)
             ->setZone($zone);
         $response = $gapicClient->setInstanceTemplate($request);
@@ -2315,12 +2390,15 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $instanceGroupManager = 'instanceGroupManager-1361249341';
@@ -2329,7 +2407,9 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $zone = 'zone3744684';
         $request = (new SetInstanceTemplateInstanceGroupManagerRequest())
             ->setInstanceGroupManager($instanceGroupManager)
-            ->setInstanceGroupManagersSetInstanceTemplateRequestResource($instanceGroupManagersSetInstanceTemplateRequestResource)
+            ->setInstanceGroupManagersSetInstanceTemplateRequestResource(
+                $instanceGroupManagersSetInstanceTemplateRequestResource
+            )
             ->setProject($project)
             ->setZone($zone);
         $response = $gapicClient->setInstanceTemplate($request);
@@ -2448,12 +2528,15 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $instanceGroupManager = 'instanceGroupManager-1361249341';
@@ -2581,12 +2664,15 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $instanceGroupManager = 'instanceGroupManager-1361249341';
@@ -2714,12 +2800,15 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $instanceGroupManager = 'instanceGroupManager-1361249341';
@@ -2783,7 +2872,9 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $zone = 'zone3744684';
         $request = (new SuspendInstancesInstanceGroupManagerRequest())
             ->setInstanceGroupManager($instanceGroupManager)
-            ->setInstanceGroupManagersSuspendInstancesRequestResource($instanceGroupManagersSuspendInstancesRequestResource)
+            ->setInstanceGroupManagersSuspendInstancesRequestResource(
+                $instanceGroupManagersSuspendInstancesRequestResource
+            )
             ->setProject($project)
             ->setZone($zone);
         $response = $gapicClient->suspendInstances($request);
@@ -2847,12 +2938,15 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $instanceGroupManager = 'instanceGroupManager-1361249341';
@@ -2861,7 +2955,9 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $zone = 'zone3744684';
         $request = (new SuspendInstancesInstanceGroupManagerRequest())
             ->setInstanceGroupManager($instanceGroupManager)
-            ->setInstanceGroupManagersSuspendInstancesRequestResource($instanceGroupManagersSuspendInstancesRequestResource)
+            ->setInstanceGroupManagersSuspendInstancesRequestResource(
+                $instanceGroupManagersSuspendInstancesRequestResource
+            )
             ->setProject($project)
             ->setZone($zone);
         $response = $gapicClient->suspendInstances($request);
@@ -2916,7 +3012,9 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $zone = 'zone3744684';
         $request = (new UpdatePerInstanceConfigsInstanceGroupManagerRequest())
             ->setInstanceGroupManager($instanceGroupManager)
-            ->setInstanceGroupManagersUpdatePerInstanceConfigsReqResource($instanceGroupManagersUpdatePerInstanceConfigsReqResource)
+            ->setInstanceGroupManagersUpdatePerInstanceConfigsReqResource(
+                $instanceGroupManagersUpdatePerInstanceConfigsReqResource
+            )
             ->setProject($project)
             ->setZone($zone);
         $response = $gapicClient->updatePerInstanceConfigs($request);
@@ -2927,7 +3025,10 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.InstanceGroupManagers/UpdatePerInstanceConfigs', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.compute.v1.InstanceGroupManagers/UpdatePerInstanceConfigs',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getInstanceGroupManager();
         $this->assertProtobufEquals($instanceGroupManager, $actualValue);
         $actualValue = $actualApiRequestObject->getInstanceGroupManagersUpdatePerInstanceConfigsReqResource();
@@ -2980,12 +3081,15 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $instanceGroupManager = 'instanceGroupManager-1361249341';
@@ -2994,7 +3098,9 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $zone = 'zone3744684';
         $request = (new UpdatePerInstanceConfigsInstanceGroupManagerRequest())
             ->setInstanceGroupManager($instanceGroupManager)
-            ->setInstanceGroupManagersUpdatePerInstanceConfigsReqResource($instanceGroupManagersUpdatePerInstanceConfigsReqResource)
+            ->setInstanceGroupManagersUpdatePerInstanceConfigsReqResource(
+                $instanceGroupManagersUpdatePerInstanceConfigsReqResource
+            )
             ->setProject($project)
             ->setZone($zone);
         $response = $gapicClient->updatePerInstanceConfigs($request);
@@ -3049,7 +3155,9 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $zone = 'zone3744684';
         $request = (new AbandonInstancesInstanceGroupManagerRequest())
             ->setInstanceGroupManager($instanceGroupManager)
-            ->setInstanceGroupManagersAbandonInstancesRequestResource($instanceGroupManagersAbandonInstancesRequestResource)
+            ->setInstanceGroupManagersAbandonInstancesRequestResource(
+                $instanceGroupManagersAbandonInstancesRequestResource
+            )
             ->setProject($project)
             ->setZone($zone);
         $response = $gapicClient->abandonInstances($request);

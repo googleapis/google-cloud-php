@@ -18,7 +18,7 @@ class InterconnectAttachmentGroupAttachment extends \Google\Protobuf\Internal\Me
     /**
      * Generated from protobuf field <code>optional string attachment = 183982371;</code>
      */
-    private $attachment = null;
+    protected $attachment = null;
 
     /**
      * Constructor.

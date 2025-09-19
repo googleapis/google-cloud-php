@@ -20,19 +20,19 @@ class LicenseResourceCommitment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int64 amount = 196759640;</code>
      */
-    private $amount = null;
+    protected $amount = null;
     /**
      * The number of cores per license.
      *
      * Generated from protobuf field <code>optional string cores_per_license = 32482324;</code>
      */
-    private $cores_per_license = null;
+    protected $cores_per_license = null;
     /**
      * The applicable license URI.
      *
      * Generated from protobuf field <code>optional string license = 166757441;</code>
      */
-    private $license = null;
+    protected $license = null;
 
     /**
      * Constructor.

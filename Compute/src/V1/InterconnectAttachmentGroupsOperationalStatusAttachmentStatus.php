@@ -20,27 +20,27 @@ class InterconnectAttachmentGroupsOperationalStatusAttachmentStatus extends \Goo
      *
      * Generated from protobuf field <code>optional bool admin_enabled = 445675089;</code>
      */
-    private $admin_enabled = null;
+    protected $admin_enabled = null;
     /**
      * The URL of the Attachment being described.
      *
      * Generated from protobuf field <code>optional string attachment = 183982371;</code>
      */
-    private $attachment = null;
+    protected $attachment = null;
     /**
      * Whether this Attachment is participating in the redundant configuration. This will be ACTIVE if and only if the status below is CONNECTION_UP. Any INACTIVE Attachments are excluded from the analysis that generates operational.availabilitySLA.
      * Check the IsActive enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string is_active = 114830267;</code>
      */
-    private $is_active = null;
+    protected $is_active = null;
     /**
      * Whether this Attachment is active, and if so, whether BGP is up.
      * Check the Status enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>
      */
-    private $status = null;
+    protected $status = null;
 
     /**
      * Constructor.

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -122,9 +122,7 @@ final class VpnGatewaysClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -141,10 +139,7 @@ final class VpnGatewaysClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-                'getRegion',
-            ],
+            'additionalArgumentMethods' => ['getProject', 'getRegion'],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -298,8 +293,10 @@ final class VpnGatewaysClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function aggregatedList(AggregatedListVpnGatewaysRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function aggregatedList(
+        AggregatedListVpnGatewaysRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('AggregatedList', $request, $callOptions);
     }
 
@@ -376,8 +373,10 @@ final class VpnGatewaysClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getStatus(GetStatusVpnGatewayRequest $request, array $callOptions = []): VpnGatewaysGetStatusResponse
-    {
+    public function getStatus(
+        GetStatusVpnGatewayRequest $request,
+        array $callOptions = []
+    ): VpnGatewaysGetStatusResponse {
         return $this->startApiCall('GetStatus', $request, $callOptions)->wait();
     }
 
@@ -480,8 +479,10 @@ final class VpnGatewaysClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsVpnGatewayRequest $request, array $callOptions = []): TestPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsVpnGatewayRequest $request,
+        array $callOptions = []
+    ): TestPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

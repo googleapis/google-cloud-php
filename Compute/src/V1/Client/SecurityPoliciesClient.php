@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -130,9 +130,7 @@ final class SecurityPoliciesClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -149,9 +147,7 @@ final class SecurityPoliciesClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-            ],
+            'additionalArgumentMethods' => ['getProject'],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -331,8 +327,10 @@ final class SecurityPoliciesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function aggregatedList(AggregatedListSecurityPoliciesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function aggregatedList(
+        AggregatedListSecurityPoliciesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('AggregatedList', $request, $callOptions);
     }
 
@@ -488,8 +486,10 @@ final class SecurityPoliciesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listPreconfiguredExpressionSets(ListPreconfiguredExpressionSetsSecurityPoliciesRequest $request, array $callOptions = []): SecurityPoliciesListPreconfiguredExpressionSetsResponse
-    {
+    public function listPreconfiguredExpressionSets(
+        ListPreconfiguredExpressionSetsSecurityPoliciesRequest $request,
+        array $callOptions = []
+    ): SecurityPoliciesListPreconfiguredExpressionSetsResponse {
         return $this->startApiCall('ListPreconfiguredExpressionSets', $request, $callOptions)->wait();
     }
 

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -92,14 +92,16 @@ final class InstanceGroupManagerResizeRequestsClient
             'serviceName' => self::SERVICE_NAME,
             'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__ . '/../resources/instance_group_manager_resize_requests_client_config.json',
-            'descriptorsConfigPath' => __DIR__ . '/../resources/instance_group_manager_resize_requests_descriptor_config.php',
+            'descriptorsConfigPath' =>
+                __DIR__ . '/../resources/instance_group_manager_resize_requests_descriptor_config.php',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
                 'useJwtAccessWithScope' => false,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/instance_group_manager_resize_requests_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/instance_group_manager_resize_requests_rest_client_config.php',
                 ],
             ],
         ];
@@ -114,9 +116,7 @@ final class InstanceGroupManagerResizeRequestsClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -133,10 +133,7 @@ final class InstanceGroupManagerResizeRequestsClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-                'getZone',
-            ],
+            'additionalArgumentMethods' => ['getProject', 'getZone'],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -291,8 +288,10 @@ final class InstanceGroupManagerResizeRequestsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function cancel(CancelInstanceGroupManagerResizeRequestRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function cancel(
+        CancelInstanceGroupManagerResizeRequestRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('Cancel', $request, $callOptions)->wait();
     }
 
@@ -318,8 +317,10 @@ final class InstanceGroupManagerResizeRequestsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function delete(DeleteInstanceGroupManagerResizeRequestRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function delete(
+        DeleteInstanceGroupManagerResizeRequestRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('Delete', $request, $callOptions)->wait();
     }
 
@@ -345,8 +346,10 @@ final class InstanceGroupManagerResizeRequestsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function get(GetInstanceGroupManagerResizeRequestRequest $request, array $callOptions = []): InstanceGroupManagerResizeRequest
-    {
+    public function get(
+        GetInstanceGroupManagerResizeRequestRequest $request,
+        array $callOptions = []
+    ): InstanceGroupManagerResizeRequest {
         return $this->startApiCall('Get', $request, $callOptions)->wait();
     }
 
@@ -372,8 +375,10 @@ final class InstanceGroupManagerResizeRequestsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function insert(InsertInstanceGroupManagerResizeRequestRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function insert(
+        InsertInstanceGroupManagerResizeRequestRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('Insert', $request, $callOptions)->wait();
     }
 
@@ -399,8 +404,10 @@ final class InstanceGroupManagerResizeRequestsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function list(ListInstanceGroupManagerResizeRequestsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function list(
+        ListInstanceGroupManagerResizeRequestsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('List', $request, $callOptions);
     }
 }

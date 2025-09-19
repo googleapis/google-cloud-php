@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -50,7 +50,9 @@ class NetworkProfilesClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return NetworkProfilesClient */
@@ -92,9 +94,7 @@ class NetworkProfilesClientTest extends GeneratedTest
         // Mock request
         $networkProfile = 'networkProfile709983384';
         $project = 'project-309310695';
-        $request = (new GetNetworkProfileRequest())
-            ->setNetworkProfile($networkProfile)
-            ->setProject($project);
+        $request = (new GetNetworkProfileRequest())->setNetworkProfile($networkProfile)->setProject($project);
         $response = $gapicClient->get($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -120,19 +120,20 @@ class NetworkProfilesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $networkProfile = 'networkProfile709983384';
         $project = 'project-309310695';
-        $request = (new GetNetworkProfileRequest())
-            ->setNetworkProfile($networkProfile)
-            ->setProject($project);
+        $request = (new GetNetworkProfileRequest())->setNetworkProfile($networkProfile)->setProject($project);
         try {
             $gapicClient->get($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -161,9 +162,7 @@ class NetworkProfilesClientTest extends GeneratedTest
         $nextPageToken = '';
         $selfLink = 'selfLink-1691268851';
         $itemsElement = new NetworkProfile();
-        $items = [
-            $itemsElement,
-        ];
+        $items = [$itemsElement];
         $expectedResponse = new NetworkProfilesListResponse();
         $expectedResponse->setEtag($etag);
         $expectedResponse->setId($id);
@@ -174,8 +173,7 @@ class NetworkProfilesClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $project = 'project-309310695';
-        $request = (new ListNetworkProfilesRequest())
-            ->setProject($project);
+        $request = (new ListNetworkProfilesRequest())->setProject($project);
         $response = $gapicClient->list($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -202,17 +200,19 @@ class NetworkProfilesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';
-        $request = (new ListNetworkProfilesRequest())
-            ->setProject($project);
+        $request = (new ListNetworkProfilesRequest())->setProject($project);
         try {
             $gapicClient->list($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -256,9 +256,7 @@ class NetworkProfilesClientTest extends GeneratedTest
         // Mock request
         $networkProfile = 'networkProfile709983384';
         $project = 'project-309310695';
-        $request = (new GetNetworkProfileRequest())
-            ->setNetworkProfile($networkProfile)
-            ->setProject($project);
+        $request = (new GetNetworkProfileRequest())->setNetworkProfile($networkProfile)->setProject($project);
         $response = $gapicClient->getAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -103,7 +103,8 @@ final class PublicAdvertisedPrefixesClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/public_advertised_prefixes_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/public_advertised_prefixes_rest_client_config.php',
                 ],
             ],
         ];
@@ -118,9 +119,7 @@ final class PublicAdvertisedPrefixesClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -137,9 +136,7 @@ final class PublicAdvertisedPrefixesClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-            ],
+            'additionalArgumentMethods' => ['getProject'],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -293,8 +290,10 @@ final class PublicAdvertisedPrefixesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function announce(AnnouncePublicAdvertisedPrefixeRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function announce(
+        AnnouncePublicAdvertisedPrefixeRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('Announce', $request, $callOptions)->wait();
     }
 
@@ -449,8 +448,10 @@ final class PublicAdvertisedPrefixesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function withdraw(WithdrawPublicAdvertisedPrefixeRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function withdraw(
+        WithdrawPublicAdvertisedPrefixeRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('Withdraw', $request, $callOptions)->wait();
     }
 }

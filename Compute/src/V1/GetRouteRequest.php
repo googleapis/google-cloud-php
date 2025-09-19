@@ -20,13 +20,13 @@ class GetRouteRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * Name of the Route resource to return.
      *
      * Generated from protobuf field <code>string route = 108704329 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $route = '';
+    protected $route = '';
 
     /**
      * @param string $project Project ID for this request.

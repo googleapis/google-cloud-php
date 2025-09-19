@@ -25,13 +25,13 @@ class RoutePolicyPolicyTerm extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Expr match = 103668165;</code>
      */
-    private $match = null;
+    protected $match = null;
     /**
      * The evaluation priority for this term, which must be between 0 (inclusive) and 2^31 (exclusive), and unique within the list.
      *
      * Generated from protobuf field <code>optional int32 priority = 445151652;</code>
      */
-    private $priority = null;
+    protected $priority = null;
 
     /**
      * Constructor.

@@ -32,19 +32,19 @@ class AllocationSpecificSKUAllocationReservedInstanceProperties extends \Google\
      *
      * Generated from protobuf field <code>optional string location_hint = 350519505;</code>
      */
-    private $location_hint = null;
+    protected $location_hint = null;
     /**
      * Specifies type of machine (name only) which has fixed number of vCPUs and fixed amount of memory. This also includes specifying custom machine type following custom-NUMBER_OF_CPUS-AMOUNT_OF_MEMORY pattern.
      *
      * Generated from protobuf field <code>optional string machine_type = 227711026;</code>
      */
-    private $machine_type = null;
+    protected $machine_type = null;
     /**
      * Minimum cpu platform the reservation.
      *
      * Generated from protobuf field <code>optional string min_cpu_platform = 242912759;</code>
      */
-    private $min_cpu_platform = null;
+    protected $min_cpu_platform = null;
 
     /**
      * Constructor.

@@ -20,7 +20,7 @@ class RequestMirrorPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string backend_service = 306946058;</code>
      */
-    private $backend_service = null;
+    protected $backend_service = null;
 
     /**
      * Constructor.

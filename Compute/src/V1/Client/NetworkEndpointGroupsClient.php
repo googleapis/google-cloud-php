@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -123,9 +123,7 @@ final class NetworkEndpointGroupsClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -142,10 +140,7 @@ final class NetworkEndpointGroupsClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-                'getZone',
-            ],
+            'additionalArgumentMethods' => ['getProject', 'getZone'],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -299,8 +294,10 @@ final class NetworkEndpointGroupsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function aggregatedList(AggregatedListNetworkEndpointGroupsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function aggregatedList(
+        AggregatedListNetworkEndpointGroupsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('AggregatedList', $request, $callOptions);
     }
 
@@ -326,8 +323,10 @@ final class NetworkEndpointGroupsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function attachNetworkEndpoints(AttachNetworkEndpointsNetworkEndpointGroupRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function attachNetworkEndpoints(
+        AttachNetworkEndpointsNetworkEndpointGroupRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('AttachNetworkEndpoints', $request, $callOptions)->wait();
     }
 
@@ -379,8 +378,10 @@ final class NetworkEndpointGroupsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function detachNetworkEndpoints(DetachNetworkEndpointsNetworkEndpointGroupRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function detachNetworkEndpoints(
+        DetachNetworkEndpointsNetworkEndpointGroupRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DetachNetworkEndpoints', $request, $callOptions)->wait();
     }
 
@@ -484,8 +485,10 @@ final class NetworkEndpointGroupsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listNetworkEndpoints(ListNetworkEndpointsNetworkEndpointGroupsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listNetworkEndpoints(
+        ListNetworkEndpointsNetworkEndpointGroupsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListNetworkEndpoints', $request, $callOptions);
     }
 
@@ -511,8 +514,10 @@ final class NetworkEndpointGroupsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsNetworkEndpointGroupRequest $request, array $callOptions = []): TestPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsNetworkEndpointGroupRequest $request,
+        array $callOptions = []
+    ): TestPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

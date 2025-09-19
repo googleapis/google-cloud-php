@@ -20,7 +20,7 @@ class DisksStopGroupAsyncReplicationResource extends \Google\Protobuf\Internal\M
      *
      * Generated from protobuf field <code>optional string resource_policy = 159240835;</code>
      */
-    private $resource_policy = null;
+    protected $resource_policy = null;
 
     /**
      * Constructor.

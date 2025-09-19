@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -131,9 +131,7 @@ final class RegionBackendServicesClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -150,10 +148,7 @@ final class RegionBackendServicesClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-                'getRegion',
-            ],
+            'additionalArgumentMethods' => ['getProject', 'getRegion'],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -359,8 +354,10 @@ final class RegionBackendServicesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getHealth(GetHealthRegionBackendServiceRequest $request, array $callOptions = []): BackendServiceGroupHealth
-    {
+    public function getHealth(
+        GetHealthRegionBackendServiceRequest $request,
+        array $callOptions = []
+    ): BackendServiceGroupHealth {
         return $this->startApiCall('GetHealth', $request, $callOptions)->wait();
     }
 
@@ -463,8 +460,10 @@ final class RegionBackendServicesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listUsable(ListUsableRegionBackendServicesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listUsable(
+        ListUsableRegionBackendServicesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListUsable', $request, $callOptions);
     }
 
@@ -542,8 +541,10 @@ final class RegionBackendServicesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setSecurityPolicy(SetSecurityPolicyRegionBackendServiceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function setSecurityPolicy(
+        SetSecurityPolicyRegionBackendServiceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SetSecurityPolicy', $request, $callOptions)->wait();
     }
 
@@ -569,8 +570,10 @@ final class RegionBackendServicesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRegionBackendServiceRequest $request, array $callOptions = []): TestPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRegionBackendServiceRequest $request,
+        array $callOptions = []
+    ): TestPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 

@@ -18,13 +18,13 @@ class InterconnectApplicationAwareInterconnect extends \Google\Protobuf\Internal
     /**
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectApplicationAwareInterconnectBandwidthPercentagePolicy bandwidth_percentage_policy = 187018857;</code>
      */
-    private $bandwidth_percentage_policy = null;
+    protected $bandwidth_percentage_policy = null;
     /**
      * Description for the application awareness profile on this Cloud Interconnect.
      *
      * Generated from protobuf field <code>optional string profile_description = 262813286;</code>
      */
-    private $profile_description = null;
+    protected $profile_description = null;
     /**
      * Optional field to specify a list of shape average percentages to be applied in conjunction with StrictPriorityPolicy or BandwidthPercentagePolicy.
      *
@@ -34,7 +34,7 @@ class InterconnectApplicationAwareInterconnect extends \Google\Protobuf\Internal
     /**
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectApplicationAwareInterconnectStrictPriorityPolicy strict_priority_policy = 145083063;</code>
      */
-    private $strict_priority_policy = null;
+    protected $strict_priority_policy = null;
 
     /**
      * Constructor.

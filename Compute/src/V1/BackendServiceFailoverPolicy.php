@@ -20,19 +20,19 @@ class BackendServiceFailoverPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional bool disable_connection_drain_on_failover = 182150753;</code>
      */
-    private $disable_connection_drain_on_failover = null;
+    protected $disable_connection_drain_on_failover = null;
     /**
      * If set to true, connections to the load balancer are dropped when all primary and all backup backend VMs are unhealthy.If set to false, connections are distributed among all primary VMs when all primary and all backup backend VMs are unhealthy. For load balancers that have configurable failover: [Internal passthrough Network Load Balancers](https://cloud.google.com/load-balancing/docs/internal/failover-overview) and [external passthrough Network Load Balancers](https://cloud.google.com/load-balancing/docs/network/networklb-failover-overview). The default is false.
      *
      * Generated from protobuf field <code>optional bool drop_traffic_if_unhealthy = 112289428;</code>
      */
-    private $drop_traffic_if_unhealthy = null;
+    protected $drop_traffic_if_unhealthy = null;
     /**
      * The value of the field must be in the range [0, 1]. If the value is 0, the load balancer performs a failover when the number of healthy primary VMs equals zero. For all other values, the load balancer performs a failover when the total number of healthy primary VMs is less than this ratio. For load balancers that have configurable failover: [Internal TCP/UDP Load Balancing](https://cloud.google.com/load-balancing/docs/internal/failover-overview) and [external TCP/UDP Load Balancing](https://cloud.google.com/load-balancing/docs/network/networklb-failover-overview).
      *
      * Generated from protobuf field <code>optional float failover_ratio = 212667006;</code>
      */
-    private $failover_ratio = null;
+    protected $failover_ratio = null;
 
     /**
      * Constructor.

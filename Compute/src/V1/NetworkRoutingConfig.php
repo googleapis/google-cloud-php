@@ -20,41 +20,41 @@ class NetworkRoutingConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional bool bgp_always_compare_med = 213102902;</code>
      */
-    private $bgp_always_compare_med = null;
+    protected $bgp_always_compare_med = null;
     /**
      * The BGP best path selection algorithm to be employed within this network for dynamic routes learned by Cloud Routers. Can be LEGACY (default) or STANDARD.
      * Check the BgpBestPathSelectionMode enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string bgp_best_path_selection_mode = 317816297;</code>
      */
-    private $bgp_best_path_selection_mode = null;
+    protected $bgp_best_path_selection_mode = null;
     /**
      * Allows to define a preferred approach for handling inter-region cost in the selection process when using the STANDARD BGP best path selection algorithm. Can be DEFAULT or ADD_COST_TO_MED.
      * Check the BgpInterRegionCost enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string bgp_inter_region_cost = 462142689;</code>
      */
-    private $bgp_inter_region_cost = null;
+    protected $bgp_inter_region_cost = null;
     /**
      * [Output Only] Effective value of the bgp_always_compare_med field.
      *
      * Generated from protobuf field <code>optional bool effective_bgp_always_compare_med = 214661838;</code>
      */
-    private $effective_bgp_always_compare_med = null;
+    protected $effective_bgp_always_compare_med = null;
     /**
      * [Output Only] Effective value of the bgp_inter_region_cost field.
      * Check the EffectiveBgpInterRegionCost enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string effective_bgp_inter_region_cost = 185098313;</code>
      */
-    private $effective_bgp_inter_region_cost = null;
+    protected $effective_bgp_inter_region_cost = null;
     /**
      * The network-wide routing mode to use. If set to REGIONAL, this network's Cloud Routers will only advertise routes with subnets of this network in the same region as the router. If set to GLOBAL, this network's Cloud Routers will advertise routes with all subnets of this network, across regions.
      * Check the RoutingMode enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string routing_mode = 475143548;</code>
      */
-    private $routing_mode = null;
+    protected $routing_mode = null;
 
     /**
      * Constructor.

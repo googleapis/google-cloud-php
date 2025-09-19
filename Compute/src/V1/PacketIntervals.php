@@ -20,39 +20,39 @@ class PacketIntervals extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int64 avg_ms = 204811827;</code>
      */
-    private $avg_ms = null;
+    protected $avg_ms = null;
     /**
      * From how long ago in the past these intervals were observed.
      * Check the Duration enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string duration = 155471252;</code>
      */
-    private $duration = null;
+    protected $duration = null;
     /**
      * Maximum observed inter-packet interval in milliseconds.
      *
      * Generated from protobuf field <code>optional int64 max_ms = 529474145;</code>
      */
-    private $max_ms = null;
+    protected $max_ms = null;
     /**
      * Minimum observed inter-packet interval in milliseconds.
      *
      * Generated from protobuf field <code>optional int64 min_ms = 536564403;</code>
      */
-    private $min_ms = null;
+    protected $min_ms = null;
     /**
      * Number of inter-packet intervals from which these statistics were derived.
      *
      * Generated from protobuf field <code>optional int64 num_intervals = 186329813;</code>
      */
-    private $num_intervals = null;
+    protected $num_intervals = null;
     /**
      * The type of packets for which inter-packet intervals were computed.
      * Check the Type enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string type = 3575610;</code>
      */
-    private $type = null;
+    protected $type = null;
 
     /**
      * Constructor.

@@ -20,19 +20,19 @@ class ForwardingRuleServiceDirectoryRegistration extends \Google\Protobuf\Intern
      *
      * Generated from protobuf field <code>optional string namespace = 178476379;</code>
      */
-    private $namespace = null;
+    protected $namespace = null;
     /**
      * Service Directory service to register the forwarding rule under.
      *
      * Generated from protobuf field <code>optional string service = 373540533;</code>
      */
-    private $service = null;
+    protected $service = null;
     /**
      * [Optional] Service Directory region to register this global forwarding rule under. Default to "us-central1". Only used for PSC for Google APIs. All PSC for Google APIs forwarding rules on the same network should use the same Service Directory region.
      *
      * Generated from protobuf field <code>optional string service_directory_region = 74030416;</code>
      */
-    private $service_directory_region = null;
+    protected $service_directory_region = null;
 
     /**
      * Constructor.

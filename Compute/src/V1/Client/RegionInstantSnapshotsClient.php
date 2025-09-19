@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -122,9 +122,7 @@ final class RegionInstantSnapshotsClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -141,10 +139,7 @@ final class RegionInstantSnapshotsClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-                'getRegion',
-            ],
+            'additionalArgumentMethods' => ['getProject', 'getRegion'],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -454,8 +449,10 @@ final class RegionInstantSnapshotsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setLabels(SetLabelsRegionInstantSnapshotRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function setLabels(
+        SetLabelsRegionInstantSnapshotRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SetLabels', $request, $callOptions)->wait();
     }
 
@@ -481,8 +478,10 @@ final class RegionInstantSnapshotsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRegionInstantSnapshotRequest $request, array $callOptions = []): TestPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRegionInstantSnapshotRequest $request,
+        array $callOptions = []
+    ): TestPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -136,9 +136,7 @@ final class NodeGroupsClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -155,10 +153,7 @@ final class NodeGroupsClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-                'getZone',
-            ],
+            'additionalArgumentMethods' => ['getProject', 'getZone'],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -572,8 +567,10 @@ final class NodeGroupsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function performMaintenance(PerformMaintenanceNodeGroupRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function performMaintenance(
+        PerformMaintenanceNodeGroupRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('PerformMaintenance', $request, $callOptions)->wait();
     }
 
@@ -624,8 +621,10 @@ final class NodeGroupsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setNodeTemplate(SetNodeTemplateNodeGroupRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function setNodeTemplate(
+        SetNodeTemplateNodeGroupRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SetNodeTemplate', $request, $callOptions)->wait();
     }
 
@@ -650,8 +649,10 @@ final class NodeGroupsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function simulateMaintenanceEvent(SimulateMaintenanceEventNodeGroupRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function simulateMaintenanceEvent(
+        SimulateMaintenanceEventNodeGroupRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SimulateMaintenanceEvent', $request, $callOptions)->wait();
     }
 
@@ -676,8 +677,10 @@ final class NodeGroupsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsNodeGroupRequest $request, array $callOptions = []): TestPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsNodeGroupRequest $request,
+        array $callOptions = []
+    ): TestPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -139,9 +139,7 @@ final class BackendServicesClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -158,9 +156,7 @@ final class BackendServicesClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-            ],
+            'additionalArgumentMethods' => ['getProject'],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -314,8 +310,10 @@ final class BackendServicesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function addSignedUrlKey(AddSignedUrlKeyBackendServiceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function addSignedUrlKey(
+        AddSignedUrlKeyBackendServiceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('AddSignedUrlKey', $request, $callOptions)->wait();
     }
 
@@ -340,8 +338,10 @@ final class BackendServicesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function aggregatedList(AggregatedListBackendServicesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function aggregatedList(
+        AggregatedListBackendServicesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('AggregatedList', $request, $callOptions);
     }
 
@@ -392,8 +392,10 @@ final class BackendServicesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteSignedUrlKey(DeleteSignedUrlKeyBackendServiceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteSignedUrlKey(
+        DeleteSignedUrlKeyBackendServiceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteSignedUrlKey', $request, $callOptions)->wait();
     }
 
@@ -444,8 +446,10 @@ final class BackendServicesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getHealth(GetHealthBackendServiceRequest $request, array $callOptions = []): BackendServiceGroupHealth
-    {
+    public function getHealth(
+        GetHealthBackendServiceRequest $request,
+        array $callOptions = []
+    ): BackendServiceGroupHealth {
         return $this->startApiCall('GetHealth', $request, $callOptions)->wait();
     }
 
@@ -601,8 +605,10 @@ final class BackendServicesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setEdgeSecurityPolicy(SetEdgeSecurityPolicyBackendServiceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function setEdgeSecurityPolicy(
+        SetEdgeSecurityPolicyBackendServiceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SetEdgeSecurityPolicy', $request, $callOptions)->wait();
     }
 
@@ -653,8 +659,10 @@ final class BackendServicesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setSecurityPolicy(SetSecurityPolicyBackendServiceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function setSecurityPolicy(
+        SetSecurityPolicyBackendServiceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SetSecurityPolicy', $request, $callOptions)->wait();
     }
 
@@ -679,8 +687,10 @@ final class BackendServicesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsBackendServiceRequest $request, array $callOptions = []): TestPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsBackendServiceRequest $request,
+        array $callOptions = []
+    ): TestPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 

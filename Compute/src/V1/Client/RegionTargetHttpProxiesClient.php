@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -99,7 +99,8 @@ final class RegionTargetHttpProxiesClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/region_target_http_proxies_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/region_target_http_proxies_rest_client_config.php',
                 ],
             ],
         ];
@@ -114,9 +115,7 @@ final class RegionTargetHttpProxiesClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -133,10 +132,7 @@ final class RegionTargetHttpProxiesClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-                'getRegion',
-            ],
+            'additionalArgumentMethods' => ['getProject', 'getRegion'],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -394,8 +390,10 @@ final class RegionTargetHttpProxiesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setUrlMap(SetUrlMapRegionTargetHttpProxyRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function setUrlMap(
+        SetUrlMapRegionTargetHttpProxyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SetUrlMap', $request, $callOptions)->wait();
     }
 }

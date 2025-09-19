@@ -19,7 +19,7 @@ class BackendBucketUsedBy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string reference = 148586315;</code>
      */
-    private $reference = null;
+    protected $reference = null;
 
     /**
      * Constructor.

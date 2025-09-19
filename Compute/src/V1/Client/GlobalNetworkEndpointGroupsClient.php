@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -103,7 +103,8 @@ final class GlobalNetworkEndpointGroupsClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/global_network_endpoint_groups_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/global_network_endpoint_groups_rest_client_config.php',
                 ],
             ],
         ];
@@ -118,9 +119,7 @@ final class GlobalNetworkEndpointGroupsClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -137,9 +136,7 @@ final class GlobalNetworkEndpointGroupsClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-            ],
+            'additionalArgumentMethods' => ['getProject'],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -294,8 +291,10 @@ final class GlobalNetworkEndpointGroupsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function attachNetworkEndpoints(AttachNetworkEndpointsGlobalNetworkEndpointGroupRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function attachNetworkEndpoints(
+        AttachNetworkEndpointsGlobalNetworkEndpointGroupRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('AttachNetworkEndpoints', $request, $callOptions)->wait();
     }
 
@@ -347,8 +346,10 @@ final class GlobalNetworkEndpointGroupsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function detachNetworkEndpoints(DetachNetworkEndpointsGlobalNetworkEndpointGroupRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function detachNetworkEndpoints(
+        DetachNetworkEndpointsGlobalNetworkEndpointGroupRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DetachNetworkEndpoints', $request, $callOptions)->wait();
     }
 
@@ -452,8 +453,10 @@ final class GlobalNetworkEndpointGroupsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listNetworkEndpoints(ListNetworkEndpointsGlobalNetworkEndpointGroupsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listNetworkEndpoints(
+        ListNetworkEndpointsGlobalNetworkEndpointGroupsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListNetworkEndpoints', $request, $callOptions);
     }
 }

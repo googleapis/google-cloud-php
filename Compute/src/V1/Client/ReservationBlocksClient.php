@@ -110,9 +110,7 @@ final class ReservationBlocksClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -129,10 +127,7 @@ final class ReservationBlocksClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-                'getZone',
-            ],
+            'additionalArgumentMethods' => ['getProject', 'getZone'],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -338,8 +333,10 @@ final class ReservationBlocksClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function performMaintenance(PerformMaintenanceReservationBlockRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function performMaintenance(
+        PerformMaintenanceReservationBlockRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('PerformMaintenance', $request, $callOptions)->wait();
     }
 }

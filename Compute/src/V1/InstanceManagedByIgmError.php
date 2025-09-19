@@ -19,19 +19,19 @@ class InstanceManagedByIgmError extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceManagedByIgmErrorManagedInstanceError error = 96784904;</code>
      */
-    private $error = null;
+    protected $error = null;
     /**
      * [Output Only] Details of the instance action that triggered this error. May be null, if the error was not caused by an action on an instance. This field is optional.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceManagedByIgmErrorInstanceActionDetails instance_action_details = 292224547;</code>
      */
-    private $instance_action_details = null;
+    protected $instance_action_details = null;
     /**
      * [Output Only] The time that this error occurred. This value is in RFC3339 text format.
      *
      * Generated from protobuf field <code>optional string timestamp = 55126294;</code>
      */
-    private $timestamp = null;
+    protected $timestamp = null;
 
     /**
      * Constructor.

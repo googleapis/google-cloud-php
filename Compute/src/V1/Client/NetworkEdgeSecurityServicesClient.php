@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -99,7 +99,8 @@ final class NetworkEdgeSecurityServicesClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/network_edge_security_services_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/network_edge_security_services_rest_client_config.php',
                 ],
             ],
         ];
@@ -114,9 +115,7 @@ final class NetworkEdgeSecurityServicesClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -133,10 +132,7 @@ final class NetworkEdgeSecurityServicesClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-                'getRegion',
-            ],
+            'additionalArgumentMethods' => ['getProject', 'getRegion'],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -291,8 +287,10 @@ final class NetworkEdgeSecurityServicesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function aggregatedList(AggregatedListNetworkEdgeSecurityServicesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function aggregatedList(
+        AggregatedListNetworkEdgeSecurityServicesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('AggregatedList', $request, $callOptions);
     }
 
@@ -343,8 +341,10 @@ final class NetworkEdgeSecurityServicesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function get(GetNetworkEdgeSecurityServiceRequest $request, array $callOptions = []): NetworkEdgeSecurityService
-    {
+    public function get(
+        GetNetworkEdgeSecurityServiceRequest $request,
+        array $callOptions = []
+    ): NetworkEdgeSecurityService {
         return $this->startApiCall('Get', $request, $callOptions)->wait();
     }
 

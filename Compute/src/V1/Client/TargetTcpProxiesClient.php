@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -118,9 +118,7 @@ final class TargetTcpProxiesClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -137,9 +135,7 @@ final class TargetTcpProxiesClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-            ],
+            'additionalArgumentMethods' => ['getProject'],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -293,8 +289,10 @@ final class TargetTcpProxiesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function aggregatedList(AggregatedListTargetTcpProxiesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function aggregatedList(
+        AggregatedListTargetTcpProxiesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('AggregatedList', $request, $callOptions);
     }
 
@@ -423,8 +421,10 @@ final class TargetTcpProxiesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setBackendService(SetBackendServiceTargetTcpProxyRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function setBackendService(
+        SetBackendServiceTargetTcpProxyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SetBackendService', $request, $callOptions)->wait();
     }
 
@@ -449,8 +449,10 @@ final class TargetTcpProxiesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setProxyHeader(SetProxyHeaderTargetTcpProxyRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function setProxyHeader(
+        SetProxyHeaderTargetTcpProxyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SetProxyHeader', $request, $callOptions)->wait();
     }
 }

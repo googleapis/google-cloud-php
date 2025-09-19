@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -144,9 +144,7 @@ final class DisksClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -163,10 +161,7 @@ final class DisksClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-                'getZone',
-            ],
+            'additionalArgumentMethods' => ['getProject', 'getZone'],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -320,8 +315,10 @@ final class DisksClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function addResourcePolicies(AddResourcePoliciesDiskRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function addResourcePolicies(
+        AddResourcePoliciesDiskRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('AddResourcePolicies', $request, $callOptions)->wait();
     }
 
@@ -580,8 +577,10 @@ final class DisksClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function removeResourcePolicies(RemoveResourcePoliciesDiskRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function removeResourcePolicies(
+        RemoveResourcePoliciesDiskRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('RemoveResourcePolicies', $request, $callOptions)->wait();
     }
 
@@ -684,8 +683,10 @@ final class DisksClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function startAsyncReplication(StartAsyncReplicationDiskRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function startAsyncReplication(
+        StartAsyncReplicationDiskRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('StartAsyncReplication', $request, $callOptions)->wait();
     }
 
@@ -710,8 +711,10 @@ final class DisksClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function stopAsyncReplication(StopAsyncReplicationDiskRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function stopAsyncReplication(
+        StopAsyncReplicationDiskRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('StopAsyncReplication', $request, $callOptions)->wait();
     }
 
@@ -736,8 +739,10 @@ final class DisksClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function stopGroupAsyncReplication(StopGroupAsyncReplicationDiskRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function stopGroupAsyncReplication(
+        StopGroupAsyncReplicationDiskRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('StopGroupAsyncReplication', $request, $callOptions)->wait();
     }
 
@@ -762,8 +767,10 @@ final class DisksClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsDiskRequest $request, array $callOptions = []): TestPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsDiskRequest $request,
+        array $callOptions = []
+    ): TestPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 

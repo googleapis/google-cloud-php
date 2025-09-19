@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -140,9 +140,7 @@ final class RegionDisksClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -159,10 +157,7 @@ final class RegionDisksClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-                'getRegion',
-            ],
+            'additionalArgumentMethods' => ['getProject', 'getRegion'],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -316,8 +311,10 @@ final class RegionDisksClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function addResourcePolicies(AddResourcePoliciesRegionDiskRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function addResourcePolicies(
+        AddResourcePoliciesRegionDiskRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('AddResourcePolicies', $request, $callOptions)->wait();
     }
 
@@ -524,8 +521,10 @@ final class RegionDisksClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function removeResourcePolicies(RemoveResourcePoliciesRegionDiskRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function removeResourcePolicies(
+        RemoveResourcePoliciesRegionDiskRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('RemoveResourcePolicies', $request, $callOptions)->wait();
     }
 
@@ -628,8 +627,10 @@ final class RegionDisksClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function startAsyncReplication(StartAsyncReplicationRegionDiskRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function startAsyncReplication(
+        StartAsyncReplicationRegionDiskRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('StartAsyncReplication', $request, $callOptions)->wait();
     }
 
@@ -654,8 +655,10 @@ final class RegionDisksClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function stopAsyncReplication(StopAsyncReplicationRegionDiskRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function stopAsyncReplication(
+        StopAsyncReplicationRegionDiskRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('StopAsyncReplication', $request, $callOptions)->wait();
     }
 
@@ -681,8 +684,10 @@ final class RegionDisksClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function stopGroupAsyncReplication(StopGroupAsyncReplicationRegionDiskRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function stopGroupAsyncReplication(
+        StopGroupAsyncReplicationRegionDiskRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('StopGroupAsyncReplication', $request, $callOptions)->wait();
     }
 
@@ -707,8 +712,10 @@ final class RegionDisksClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRegionDiskRequest $request, array $callOptions = []): TestPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRegionDiskRequest $request,
+        array $callOptions = []
+    ): TestPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 

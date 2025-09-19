@@ -20,7 +20,7 @@ class InstanceParams extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Duration request_valid_for_duration = 116247389;</code>
      */
-    private $request_valid_for_duration = null;
+    protected $request_valid_for_duration = null;
     /**
      * Resource manager tags to be bound to the instance. Tag keys and values have the same definition as resource manager tags. Keys must be in the format `tagKeys/{tag_key_id}`, and values are in the format `tagValues/456`. The field is ignored (both PUT & PATCH) when empty.
      *

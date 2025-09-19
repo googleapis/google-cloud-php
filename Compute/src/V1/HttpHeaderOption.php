@@ -20,19 +20,19 @@ class HttpHeaderOption extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string header_name = 110223613;</code>
      */
-    private $header_name = null;
+    protected $header_name = null;
     /**
      * The value of the header to add.
      *
      * Generated from protobuf field <code>optional string header_value = 203094335;</code>
      */
-    private $header_value = null;
+    protected $header_value = null;
     /**
      * If false, headerValue is appended to any values that already exist for the header. If true, headerValue is set for the header, discarding any values that were set for that header. The default value is true, unless a variable is present in headerValue, in which case the default value is false. .
      *
      * Generated from protobuf field <code>optional bool replace = 20755124;</code>
      */
-    private $replace = null;
+    protected $replace = null;
 
     /**
      * Constructor.

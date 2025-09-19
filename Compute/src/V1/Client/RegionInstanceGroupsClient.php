@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -115,9 +115,7 @@ final class RegionInstanceGroupsClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -134,10 +132,7 @@ final class RegionInstanceGroupsClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-                'getRegion',
-            ],
+            'additionalArgumentMethods' => ['getProject', 'getRegion'],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -343,8 +338,10 @@ final class RegionInstanceGroupsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listInstances(ListInstancesRegionInstanceGroupsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listInstances(
+        ListInstancesRegionInstanceGroupsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListInstances', $request, $callOptions);
     }
 
@@ -369,8 +366,10 @@ final class RegionInstanceGroupsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setNamedPorts(SetNamedPortsRegionInstanceGroupRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function setNamedPorts(
+        SetNamedPortsRegionInstanceGroupRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SetNamedPorts', $request, $callOptions)->wait();
     }
 
@@ -396,8 +395,10 @@ final class RegionInstanceGroupsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRegionInstanceGroupRequest $request, array $callOptions = []): TestPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRegionInstanceGroupRequest $request,
+        array $callOptions = []
+    ): TestPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

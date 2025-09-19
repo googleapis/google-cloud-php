@@ -25,60 +25,60 @@ class HealthStatus extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string forwarding_rule = 269964030;</code>
      */
-    private $forwarding_rule = null;
+    protected $forwarding_rule = null;
     /**
      * A forwarding rule IP address assigned to this instance.
      *
      * Generated from protobuf field <code>optional string forwarding_rule_ip = 172250632;</code>
      */
-    private $forwarding_rule_ip = null;
+    protected $forwarding_rule_ip = null;
     /**
      * Health state of the IPv4 address of the instance.
      * Check the HealthState enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string health_state = 324007150;</code>
      */
-    private $health_state = null;
+    protected $health_state = null;
     /**
      * URL of the instance resource.
      *
      * Generated from protobuf field <code>optional string instance = 18257045;</code>
      */
-    private $instance = null;
+    protected $instance = null;
     /**
      * For target pool based Network Load Balancing, it indicates the forwarding rule's IP address assigned to this instance. For other types of load balancing, the field indicates VM internal ip.
      *
      * Generated from protobuf field <code>optional string ip_address = 406272220;</code>
      */
-    private $ip_address = null;
+    protected $ip_address = null;
     /**
      * Generated from protobuf field <code>optional string ipv6_address = 341563804;</code>
      */
-    private $ipv6_address = null;
+    protected $ipv6_address = null;
     /**
      * Health state of the IPv6 address of the instance.
      * Check the Ipv6HealthState enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string ipv6_health_state = 190316614;</code>
      */
-    private $ipv6_health_state = null;
+    protected $ipv6_health_state = null;
     /**
      * The named port of the instance group, not necessarily the port that is health-checked.
      *
      * Generated from protobuf field <code>optional int32 port = 3446913;</code>
      */
-    private $port = null;
+    protected $port = null;
     /**
      * Generated from protobuf field <code>optional string weight = 282149496;</code>
      */
-    private $weight = null;
+    protected $weight = null;
     /**
      * 
      * Check the WeightError enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string weight_error = 522501505;</code>
      */
-    private $weight_error = null;
+    protected $weight_error = null;
 
     /**
      * Constructor.

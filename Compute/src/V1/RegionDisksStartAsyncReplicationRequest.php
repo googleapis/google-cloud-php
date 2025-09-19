@@ -19,7 +19,7 @@ class RegionDisksStartAsyncReplicationRequest extends \Google\Protobuf\Internal\
      *
      * Generated from protobuf field <code>optional string async_secondary_disk = 131645867;</code>
      */
-    private $async_secondary_disk = null;
+    protected $async_secondary_disk = null;
 
     /**
      * Constructor.

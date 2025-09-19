@@ -32,13 +32,13 @@ class VmEndpointNatMappingsInterfaceNatMappings extends \Google\Protobuf\Interna
      *
      * Generated from protobuf field <code>optional int32 num_total_drain_nat_ports = 335532793;</code>
      */
-    private $num_total_drain_nat_ports = null;
+    protected $num_total_drain_nat_ports = null;
     /**
      * Total number of ports across all NAT IPs allocated to this interface. It equals to the aggregated port number in the field nat_ip_port_ranges.
      *
      * Generated from protobuf field <code>optional int32 num_total_nat_ports = 299904384;</code>
      */
-    private $num_total_nat_ports = null;
+    protected $num_total_nat_ports = null;
     /**
      * Information about mappings provided by rules in this NAT.
      *
@@ -50,13 +50,13 @@ class VmEndpointNatMappingsInterfaceNatMappings extends \Google\Protobuf\Interna
      *
      * Generated from protobuf field <code>optional string source_alias_ip_range = 440340952;</code>
      */
-    private $source_alias_ip_range = null;
+    protected $source_alias_ip_range = null;
     /**
      * Primary IP of the VM for this NIC.
      *
      * Generated from protobuf field <code>optional string source_virtual_ip = 149836159;</code>
      */
-    private $source_virtual_ip = null;
+    protected $source_virtual_ip = null;
 
     /**
      * Constructor.

@@ -20,13 +20,13 @@ class GetNetworkProfileRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string network_profile = 173112472 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $network_profile = '';
+    protected $network_profile = '';
     /**
      * Project ID for this request.
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project = '';
+    protected $project = '';
 
     /**
      * @param string $project        Project ID for this request.

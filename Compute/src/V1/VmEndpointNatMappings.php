@@ -20,7 +20,7 @@ class VmEndpointNatMappings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string instance_name = 227947509;</code>
      */
-    private $instance_name = null;
+    protected $instance_name = null;
     /**
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.VmEndpointNatMappingsInterfaceNatMappings interface_nat_mappings = 256196617;</code>
      */

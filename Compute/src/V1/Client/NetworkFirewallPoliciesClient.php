@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -135,7 +135,8 @@ final class NetworkFirewallPoliciesClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/network_firewall_policies_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/network_firewall_policies_rest_client_config.php',
                 ],
             ],
         ];
@@ -150,9 +151,7 @@ final class NetworkFirewallPoliciesClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -169,9 +168,7 @@ final class NetworkFirewallPoliciesClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-            ],
+            'additionalArgumentMethods' => ['getProject'],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -326,8 +323,10 @@ final class NetworkFirewallPoliciesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function addAssociation(AddAssociationNetworkFirewallPolicyRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function addAssociation(
+        AddAssociationNetworkFirewallPolicyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('AddAssociation', $request, $callOptions)->wait();
     }
 
@@ -353,8 +352,10 @@ final class NetworkFirewallPoliciesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function addPacketMirroringRule(AddPacketMirroringRuleNetworkFirewallPolicyRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function addPacketMirroringRule(
+        AddPacketMirroringRuleNetworkFirewallPolicyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('AddPacketMirroringRule', $request, $callOptions)->wait();
     }
 
@@ -406,8 +407,10 @@ final class NetworkFirewallPoliciesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function aggregatedList(AggregatedListNetworkFirewallPoliciesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function aggregatedList(
+        AggregatedListNetworkFirewallPoliciesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('AggregatedList', $request, $callOptions);
     }
 
@@ -432,8 +435,10 @@ final class NetworkFirewallPoliciesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function cloneRules(CloneRulesNetworkFirewallPolicyRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function cloneRules(
+        CloneRulesNetworkFirewallPolicyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CloneRules', $request, $callOptions)->wait();
     }
 
@@ -511,8 +516,10 @@ final class NetworkFirewallPoliciesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getAssociation(GetAssociationNetworkFirewallPolicyRequest $request, array $callOptions = []): FirewallPolicyAssociation
-    {
+    public function getAssociation(
+        GetAssociationNetworkFirewallPolicyRequest $request,
+        array $callOptions = []
+    ): FirewallPolicyAssociation {
         return $this->startApiCall('GetAssociation', $request, $callOptions)->wait();
     }
 
@@ -564,8 +571,10 @@ final class NetworkFirewallPoliciesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getPacketMirroringRule(GetPacketMirroringRuleNetworkFirewallPolicyRequest $request, array $callOptions = []): FirewallPolicyRule
-    {
+    public function getPacketMirroringRule(
+        GetPacketMirroringRuleNetworkFirewallPolicyRequest $request,
+        array $callOptions = []
+    ): FirewallPolicyRule {
         return $this->startApiCall('GetPacketMirroringRule', $request, $callOptions)->wait();
     }
 
@@ -695,8 +704,10 @@ final class NetworkFirewallPoliciesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function patchPacketMirroringRule(PatchPacketMirroringRuleNetworkFirewallPolicyRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function patchPacketMirroringRule(
+        PatchPacketMirroringRuleNetworkFirewallPolicyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('PatchPacketMirroringRule', $request, $callOptions)->wait();
     }
 
@@ -721,8 +732,10 @@ final class NetworkFirewallPoliciesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function patchRule(PatchRuleNetworkFirewallPolicyRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function patchRule(
+        PatchRuleNetworkFirewallPolicyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('PatchRule', $request, $callOptions)->wait();
     }
 
@@ -748,8 +761,10 @@ final class NetworkFirewallPoliciesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function removeAssociation(RemoveAssociationNetworkFirewallPolicyRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function removeAssociation(
+        RemoveAssociationNetworkFirewallPolicyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('RemoveAssociation', $request, $callOptions)->wait();
     }
 
@@ -775,8 +790,10 @@ final class NetworkFirewallPoliciesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function removePacketMirroringRule(RemovePacketMirroringRuleNetworkFirewallPolicyRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function removePacketMirroringRule(
+        RemovePacketMirroringRuleNetworkFirewallPolicyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('RemovePacketMirroringRule', $request, $callOptions)->wait();
     }
 
@@ -801,8 +818,10 @@ final class NetworkFirewallPoliciesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function removeRule(RemoveRuleNetworkFirewallPolicyRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function removeRule(
+        RemoveRuleNetworkFirewallPolicyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('RemoveRule', $request, $callOptions)->wait();
     }
 
@@ -854,8 +873,10 @@ final class NetworkFirewallPoliciesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsNetworkFirewallPolicyRequest $request, array $callOptions = []): TestPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsNetworkFirewallPolicyRequest $request,
+        array $callOptions = []
+    ): TestPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

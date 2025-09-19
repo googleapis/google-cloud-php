@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -103,7 +103,8 @@ final class RegionTargetHttpsProxiesClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/region_target_https_proxies_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/region_target_https_proxies_rest_client_config.php',
                 ],
             ],
         ];
@@ -118,9 +119,7 @@ final class RegionTargetHttpsProxiesClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -137,10 +136,7 @@ final class RegionTargetHttpsProxiesClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-                'getRegion',
-            ],
+            'additionalArgumentMethods' => ['getProject', 'getRegion'],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -425,8 +421,10 @@ final class RegionTargetHttpsProxiesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setSslCertificates(SetSslCertificatesRegionTargetHttpsProxyRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function setSslCertificates(
+        SetSslCertificatesRegionTargetHttpsProxyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SetSslCertificates', $request, $callOptions)->wait();
     }
 
@@ -451,8 +449,10 @@ final class RegionTargetHttpsProxiesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setUrlMap(SetUrlMapRegionTargetHttpsProxyRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function setUrlMap(
+        SetUrlMapRegionTargetHttpsProxyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SetUrlMap', $request, $callOptions)->wait();
     }
 }

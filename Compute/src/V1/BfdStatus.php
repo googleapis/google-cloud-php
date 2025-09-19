@@ -21,19 +21,19 @@ class BfdStatus extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string bfd_session_initialization_mode = 218156954;</code>
      */
-    private $bfd_session_initialization_mode = null;
+    protected $bfd_session_initialization_mode = null;
     /**
      * Unix timestamp of the most recent config update.
      *
      * Generated from protobuf field <code>optional int64 config_update_timestamp_micros = 457195569;</code>
      */
-    private $config_update_timestamp_micros = null;
+    protected $config_update_timestamp_micros = null;
     /**
      * Control packet counts for the current BFD session.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.BfdStatusPacketCounts control_packet_counts = 132573561;</code>
      */
-    private $control_packet_counts = null;
+    protected $control_packet_counts = null;
     /**
      * Inter-packet time interval statistics for control packets.
      *
@@ -46,38 +46,38 @@ class BfdStatus extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string local_diagnostic = 463737083;</code>
      */
-    private $local_diagnostic = null;
+    protected $local_diagnostic = null;
     /**
      * The current BFD session state as seen by the transmitting system. These states are specified in section 4.1 of RFC5880
      * Check the LocalState enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string local_state = 149195453;</code>
      */
-    private $local_state = null;
+    protected $local_state = null;
     /**
      * Negotiated transmit interval for control packets.
      *
      * Generated from protobuf field <code>optional uint32 negotiated_local_control_tx_interval_ms = 21768340;</code>
      */
-    private $negotiated_local_control_tx_interval_ms = null;
+    protected $negotiated_local_control_tx_interval_ms = null;
     /**
      * The most recent Rx control packet for this BFD session.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.BfdPacket rx_packet = 505069729;</code>
      */
-    private $rx_packet = null;
+    protected $rx_packet = null;
     /**
      * The most recent Tx control packet for this BFD session.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.BfdPacket tx_packet = 111386275;</code>
      */
-    private $tx_packet = null;
+    protected $tx_packet = null;
     /**
      * Session uptime in milliseconds. Value will be 0 if session is not up.
      *
      * Generated from protobuf field <code>optional int64 uptime_ms = 125398365;</code>
      */
-    private $uptime_ms = null;
+    protected $uptime_ms = null;
 
     /**
      * Constructor.

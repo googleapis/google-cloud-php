@@ -19,7 +19,7 @@ class FirewallPolicyRuleMatcherLayer4Config extends \Google\Protobuf\Internal\Me
      *
      * Generated from protobuf field <code>optional string ip_protocol = 475958960;</code>
      */
-    private $ip_protocol = null;
+    protected $ip_protocol = null;
     /**
      * An optional list of ports to which this rule applies. This field is only applicable for UDP or TCP protocol. Each entry must be either an integer or a range. If not specified, this rule applies to connections through any port. Example inputs include: ["22"], ["80","443"], and ["12345-12349"].
      *

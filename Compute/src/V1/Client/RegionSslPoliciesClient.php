@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -117,9 +117,7 @@ final class RegionSslPoliciesClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -136,10 +134,7 @@ final class RegionSslPoliciesClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-                'getRegion',
-            ],
+            'additionalArgumentMethods' => ['getProject', 'getRegion'],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -398,8 +393,10 @@ final class RegionSslPoliciesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listAvailableFeatures(ListAvailableFeaturesRegionSslPoliciesRequest $request, array $callOptions = []): SslPoliciesListAvailableFeaturesResponse
-    {
+    public function listAvailableFeatures(
+        ListAvailableFeaturesRegionSslPoliciesRequest $request,
+        array $callOptions = []
+    ): SslPoliciesListAvailableFeaturesResponse {
         return $this->startApiCall('ListAvailableFeatures', $request, $callOptions)->wait();
     }
 
