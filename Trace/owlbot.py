@@ -81,7 +81,7 @@ subprocess.run([
     'npx',
     '-y',
     '-p',
-    '@prettier/plugin-php@^0.16',
+    '@prettier/plugin-php@^0.19',
     'prettier',
     '**/Gapic/*',
     '--write',
