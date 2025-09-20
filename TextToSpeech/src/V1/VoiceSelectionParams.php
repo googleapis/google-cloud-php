@@ -72,6 +72,14 @@ class VoiceSelectionParams extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string model_name = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $model_name = '';
+    /**
+     * Optional. The configuration for a Gemini multi-speaker text-to-speech
+     * setup. Enables the use of two distinct voices in a single synthesis
+     * request.
+     *
+     * Generated from protobuf field <code>.google.cloud.texttospeech.v1.MultiSpeakerVoiceConfig multi_speaker_voice_config = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $multi_speaker_voice_config = null;
 
     /**
      * Constructor.
@@ -112,6 +120,10 @@ class VoiceSelectionParams extends \Google\Protobuf\Internal\Message
      *     @type string $model_name
      *           Optional. The name of the model. If set, the service will choose the model
      *           matching the specified configuration.
+     *     @type \Google\Cloud\TextToSpeech\V1\MultiSpeakerVoiceConfig $multi_speaker_voice_config
+     *           Optional. The configuration for a Gemini multi-speaker text-to-speech
+     *           setup. Enables the use of two distinct voices in a single synthesis
+     *           request.
      * }
      */
     public function __construct($data = NULL) {
@@ -333,6 +345,46 @@ class VoiceSelectionParams extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->model_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The configuration for a Gemini multi-speaker text-to-speech
+     * setup. Enables the use of two distinct voices in a single synthesis
+     * request.
+     *
+     * Generated from protobuf field <code>.google.cloud.texttospeech.v1.MultiSpeakerVoiceConfig multi_speaker_voice_config = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\TextToSpeech\V1\MultiSpeakerVoiceConfig|null
+     */
+    public function getMultiSpeakerVoiceConfig()
+    {
+        return $this->multi_speaker_voice_config;
+    }
+
+    public function hasMultiSpeakerVoiceConfig()
+    {
+        return isset($this->multi_speaker_voice_config);
+    }
+
+    public function clearMultiSpeakerVoiceConfig()
+    {
+        unset($this->multi_speaker_voice_config);
+    }
+
+    /**
+     * Optional. The configuration for a Gemini multi-speaker text-to-speech
+     * setup. Enables the use of two distinct voices in a single synthesis
+     * request.
+     *
+     * Generated from protobuf field <code>.google.cloud.texttospeech.v1.MultiSpeakerVoiceConfig multi_speaker_voice_config = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\TextToSpeech\V1\MultiSpeakerVoiceConfig $var
+     * @return $this
+     */
+    public function setMultiSpeakerVoiceConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\TextToSpeech\V1\MultiSpeakerVoiceConfig::class);
+        $this->multi_speaker_voice_config = $var;
 
         return $this;
     }
