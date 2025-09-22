@@ -223,8 +223,6 @@ class StorageClient
             $userProject = $this->projectId;
         }
 
-        $storage = new StorageClient(['keyFile' => 'var']);
-
         return new Bucket($this->connection, $name, $options + [
             'requesterProjectId' => $userProject
         ]);
