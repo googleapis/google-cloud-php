@@ -559,6 +559,7 @@ class SpannerClient
                 'routeToLeader' => $this->routeToLeader,
                 'defaultQueryOptions' => $this->defaultQueryOptions,
                 'returnInt64AsObject' => $this->returnInt64AsObject,
+                'cacheItemPool' => $this->cacheItemPool,
             ],
             $instance,
         );

@@ -26,13 +26,9 @@ use Google\Cloud\Spanner\V1\TransactionOptions;
  */
 trait SnapshotTrait
 {
-    use ArrayTrait;
     use TransactionalReadTrait;
 
-    /**
-     * @var Timestamp
-     */
-    private $readTimestamp;
+    private ?Timestamp $readTimestamp;
 
     /**
      * @param Operation $operation The Operation instance.
@@ -60,17 +56,8 @@ trait SnapshotTrait
         $this->operation = $operation;
         $this->session = $session;
 
-        $options += [
-            'id' => null,
-            'readTimestamp' => null
-        ];
-
-        if ($options['readTimestamp'] && !($options['readTimestamp'] instanceof Timestamp)) {
-            throw new \InvalidArgumentException('$options.readTimestamp must be an instance of Timestamp.');
-        }
-
-        $this->transactionId = $this->pluck('id', $options) ?: null;
-        $this->readTimestamp = $this->pluck('readTimestamp', $options) ?: null;
+        $this->transactionId = $options['id'] ?? null;
+        $this->readTimestamp = $options['readTimestamp'] ?? null;
         $this->type = $this->transactionId
             ? self::TYPE_PRE_ALLOCATED
             : self::TYPE_SINGLE_USE;

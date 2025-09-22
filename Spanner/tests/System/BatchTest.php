@@ -168,6 +168,9 @@ class BatchTest extends SpannerTestCase
         try {
             $partitions = $snapshot->partitionQuery($query, ['parameters' => $parameters]);
         } catch (ServiceException $e) {
+            if (is_null($expected)) {
+                throw $e;
+            }
             $error = $e;
         }
 

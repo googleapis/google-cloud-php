@@ -42,12 +42,9 @@ use Google\Cloud\Spanner\Result;
 use Google\Cloud\Spanner\Serializer;
 use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
-use Google\Cloud\Spanner\V1\CreateSessionRequest;
-use Google\Cloud\Spanner\V1\DeleteSessionRequest;
 use Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type;
 use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
 use Google\Cloud\Spanner\V1\Session;
-use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Timestamp;
 use InvalidArgumentException;
@@ -107,6 +104,7 @@ class InstanceTest extends TestCase
 
         // ensure cache hit
         $cacheItem = $this->prophesize(CacheItemInterface::class);
+        $cacheItem->isHit()->willReturn(true);
         $cacheItem->get()->willReturn((new Session([
             'name' => self::SESSION,
             'multiplexed' => true,
@@ -687,7 +685,7 @@ class InstanceTest extends TestCase
 
         // ensure cache miss
         $cacheItem = $this->prophesize(CacheItemInterface::class);
-        $cacheItem->get()->willReturn(null);
+        $cacheItem->isHit()->willReturn(false);
         $cacheItem->set(Argument::any())->willReturn($cacheItem->reveal());
         $cacheItem->expiresAt(Argument::any())->willReturn($cacheItem->reveal());
 

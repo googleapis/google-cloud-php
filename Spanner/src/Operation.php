@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Spanner;
 
+use DateTimeImmutable;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\Options\CallOptions;
 use Google\ApiCore\ServerStream;
@@ -642,12 +643,15 @@ class Operation
             $transactionProto = $this->beginTransaction($session, $beginTransaction, $callOptions);
             $transactionId = $transactionProto->getId();
             if ($timestamp = $transactionProto->getReadTimestamp()) {
-                $dateTime = \DateTimeImmutable::createFromFormat(
-                    'U',
-                    (int) $timestamp?->getSeconds(),
-                    new \DateTimeZone('UTC')
-                );
-                $readTimestamp = new Timestamp($dateTime, $timestamp?->getNanos());
+                // Convert nanoseconds to microseconds (1 microsecond = 1000 nanoseconds)
+                $microseconds = (int) ($timestamp->getNanos() / 1000);
+
+                // Combine the seconds and microseconds into a floating-point timestamp
+                $timestampFloat = (float) $timestamp->getSeconds() + ($microseconds / 1000000);
+
+                // Create a DateTimeImmutable object from the floating-point timestamp
+                $datetime = DateTimeImmutable::createFromFormat('U.u', sprintf('%.6f', $timestampFloat));
+                $readTimestamp = new Timestamp($datetime, $timestamp->getNanos());
             }
         }
 

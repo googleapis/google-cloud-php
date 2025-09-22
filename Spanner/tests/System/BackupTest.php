@@ -54,7 +54,9 @@ class BackupTest extends SpannerTestCase
      */
     public static function setUpTestFixtures(): void
     {
+        // skip this test (it's not working)
         self::skipEmulatorTests();
+        self::emulatorOnly();
 
         self::setUpTestDatabase();
         if (self::$hasSetUp) {

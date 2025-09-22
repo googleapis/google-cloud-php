@@ -18,6 +18,8 @@
 namespace Google\Cloud\Spanner\Session;
 
 use DateTimeImmutable;
+use Google\Auth\Cache\FileSystemCacheItemPool;
+use Google\Auth\Cache\SysVCacheItemPool;
 use Google\Cloud\Core\Lock\FlockLock;
 use Google\Cloud\Core\Lock\LockInterface;
 use Google\Cloud\Core\Lock\SemaphoreLock;
@@ -47,18 +49,19 @@ class SessionCache
     private ?Session $session = null;
     private string $databaseRole;
     private bool $routeToLeader;
+    private CacheItemPoolInterface $cacheItemPool;
 
     /**
      * @param array $options {
-     *         Configuration Options.
+     *     Configuration Options.
      *
-     *         @type string $databaseRole
-     *         @type LockInterface $lock
-     *         @type bool $routeToLeader
+     *     @type string $databaseRole
+     *     @type LockInterface $lock
+     *     @type bool $routeToLeader
+     *     @type CacheItemPool $cacheItemPool
      * }
      */
     public function __construct(
-        private CacheItemPoolInterface $cacheItemPool,
         private SpannerClient $spannerClient,
         private string $databaseName,
         array $options = [],
@@ -74,6 +77,11 @@ class SessionCache
         );
 
         $this->routeToLeader = $options['routeToLeader'] ?? false;
+        $this->cacheItemPool = $options['cacheItemPool'] ?? (
+            extension_loaded('sysvshm')
+                ? new SysVCacheItemPool()
+                : new FileSystemCacheItemPool(sys_get_temp_dir() . '/spanner_cache/')
+        );
         $this->lock = $options['lock'] ?? $this->getDefaultLock($this->cacheKey);
     }
 
@@ -99,23 +107,25 @@ class SessionCache
     {
         if (!$this->session || $this->isExpired()) {
             // Acquire a new multiplex session from the pool
-            $this->session = $this->lock->synchronize(function () {
+            if ($this->lock->acquire()) {
                 $item = $this->cacheItemPool->getItem($this->cacheKey);
-                if ($sessionData = $item->get()) {
+                if ($item->isHit() && $sessionData = $item->get()) {
                     $session = new Session();
                     $session->mergeFromString($sessionData);
-                    return $session;
+                    $this->session = $session;
+                } else {
+                    $this->session = $this->refreshCacheItem($item);
                 }
-
-                return $this->refreshCacheItem($item);
-            });
+                $this->lock->release();
+            }
         }
     }
 
     private function refreshCacheItem(CacheItemInterface $item)
     {
         $session = $this->createSession();
-        $expiresAtSeconds = $session->getCreateTime()->getSeconds() + self::SESSION_EXPIRATION_SECONDS;
+        $expiresAtSeconds = time() + self::SESSION_EXPIRATION_SECONDS;
+        $expiresAtSeconds = ($session->getCreateTime()?->getSeconds() ?? time()) + self::SESSION_EXPIRATION_SECONDS;
         $expiresAt = DateTimeImmutable::createFromFormat('U', (string) $expiresAtSeconds);
         $item->set($session->serializeToString());
         $item->expiresAt($expiresAt);
@@ -151,7 +161,7 @@ class SessionCache
      *
      * @return LockInterface
      */
-    private function getDefaultLock(string $cacheKey)
+    private function getDefaultLock(string $cacheKey): LockInterface
     {
         if ($this->isSysvIPCLoaded()) {
             return new SemaphoreLock(

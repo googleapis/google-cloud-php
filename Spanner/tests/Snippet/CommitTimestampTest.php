@@ -71,7 +71,7 @@ class CommitTimestampTest extends SnippetTestCase
 
         // ensure cache miss
         $cacheItem = $this->prophesize(CacheItemInterface::class);
-        $cacheItem->get()->willReturn(null);
+        $cacheItem->isHit()->willReturn(false);
         $cacheItem->set(Argument::any())->willReturn($cacheItem->reveal());
         $cacheItem->expiresAt(Argument::any())->willReturn($cacheItem->reveal());
         $cacheItemPool = $this->prophesize(CacheItemPoolInterface::class);

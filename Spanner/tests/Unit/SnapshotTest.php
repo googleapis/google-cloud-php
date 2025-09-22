@@ -86,21 +86,6 @@ class SnapshotTest extends TestCase
         $this->assertEquals($this->timestamp, $this->snapshot->readTimestamp());
     }
 
-    public function testWithInvalidTimestamp()
-    {
-        $this->expectException(InvalidArgumentException::class);
-
-        $args = [
-            'readTimestamp' => 'foo'
-        ];
-
-        new Snapshot(
-            $this->prophesize(Operation::class)->reveal(),
-            $this->prophesize(SessionCache::class)->reveal(),
-            $args
-        );
-    }
-
     public function testSingleUseFailsOnSecondUse()
     {
         $this->expectException(\BadMethodCallException::class);

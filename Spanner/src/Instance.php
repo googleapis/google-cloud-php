@@ -529,15 +529,15 @@ class Instance
         }
 
         if (!$session = $options['session'] ?? null) {
-            $cacheItemPool = $this->cacheItemPool ?? (
-                extension_loaded('sysvshm')
-                    ? new SysVCacheItemPool()
-                    : new FileSystemCacheItemPool(sys_get_temp_dir() . '/spanner_cache/')
+            $session = new SessionCache(
+                $this->spannerClient,
+                $databaseName,
+                [
+                    'databaseRole' => $options['databaseRole'] ?? '',
+                    'routeToLeader' => $this->routeToLeader,
+                    'cacheItemPool' => $this->cacheItemPool,
+                ]
             );
-            $session = new SessionCache($cacheItemPool, $this->spannerClient, $databaseName, [
-                'databaseRole' => $options['databaseRole'] ?? '',
-                'routeToLeader' => $this->routeToLeader,
-            ]);
         }
 
         return new Database(

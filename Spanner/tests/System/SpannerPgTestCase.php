@@ -173,7 +173,8 @@ abstract class SpannerPgTestCase extends SystemTestCase
         $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
 
         $clientConfig = [
-            'keyFilePath' => $keyFilePath
+            'keyFilePath' => $keyFilePath,
+            'cacheItemPool' => self::getCacheItemPool(),
         ];
 
         $serviceAddress = getenv('SPANNER_SERVICE_ADDRESS');

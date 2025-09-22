@@ -26,6 +26,7 @@ use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Psr\Cache\CacheItemInterface;
 use Psr\Cache\CacheItemPoolInterface;
+use Symfony\Component\Process\Process;
 
 /**
  * @group spanner
@@ -51,10 +52,11 @@ class SessionCacheTest extends TestCase
         $this->sessionName = SpannerClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE, self::SESSION);
     }
 
-    public function testRefreshSessionCacheHit()
+    public function testEnsureValidSessionCacheHit()
     {
         // ensure cache hit
         $cacheItem = $this->prophesize(CacheItemInterface::class);
+        $cacheItem->isHit()->shouldBeCalledOnce()->willReturn(true);
         $cacheItem->get()->willReturn((new Session([
             'name' => $this->sessionName,
             'multiplexed' => true,
@@ -64,18 +66,21 @@ class SessionCacheTest extends TestCase
         $cacheKey = sprintf('cache-session-pool.%s.%s.%s.%s', self::PROJECT, self::INSTANCE, self::DATABASE, '');
         $cacheItemPool = $this->prophesize(CacheItemPoolInterface::class);
         $cacheItemPool->getItem($cacheKey)
+            ->shouldBeCalledOnce()
             ->willReturn($cacheItem->reveal());
 
         $session = new SessionCache(
-            $cacheItemPool->reveal(),
             $this->spannerClient->reveal(),
             $this->databaseName,
+            [
+                'cacheItemPool' => $cacheItemPool->reveal(),
+            ]
         );
         $name = $session->name();
         $this->assertEquals($this->sessionName, $name);
     }
 
-    public function testRefreshSessionWithCacheMiss()
+    public function testEnsureValidSessionCacheMiss()
     {
         $this->spannerClient->createSession(
             Argument::that(function ($request) {
@@ -94,27 +99,113 @@ class SessionCacheTest extends TestCase
 
         // ensure cache miss
         $cacheItem = $this->prophesize(CacheItemInterface::class);
-        $cacheItem->get()->willReturn(null);
+        $cacheItem->isHit()->shouldBeCalledOnce()->willReturn(false);
+        $cacheItem->get()->shouldNotBeCalled();
         $cacheItem->set(Argument::any())->willReturn($cacheItem->reveal());
         $cacheItem->expiresAt(Argument::any())->willReturn($cacheItem->reveal());
 
         $cacheItemPool = $this->prophesize(CacheItemPoolInterface::class);
         $cacheItemPool->getItem(Argument::type('string'))
+            ->shouldBeCalledOnce()
             ->willReturn($cacheItem->reveal());
         $cacheItemPool->save(Argument::type(CacheItemInterface::class))
+            ->shouldBeCalledOnce()
             ->willReturn(true);
 
-        $sessionCache = new SessionCache(
-            $cacheItemPool->reveal(),
+        $session = new SessionCache(
             $this->spannerClient->reveal(),
             $this->databaseName,
             [
-                'databaseRole' => 'Reader'
+                'databaseRole' => 'Reader',
+                'cacheItemPool' => $cacheItemPool->reveal(),
             ]
         );
-        $sessionProto = $sessionCache->refreshSession();
 
+        $this->assertEquals($this->sessionName, $session->name());
+    }
+
+    public function testRefreshSession()
+    {
+        $this->spannerClient->createSession(
+            Argument::that(function ($request) {
+                $this->assertEquals('Reader', $request->getSession()->getCreatorRole());
+                $this->assertEquals($this->databaseName, $request->getDatabase());
+                return true;
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new Session([
+                'name' => $this->sessionName,
+                'multiplexed' => true,
+                'create_time' => new Timestamp(['seconds' => time()]),
+            ]));
+
+        // ensure cache miss
+        $cacheItem = $this->prophesize(CacheItemInterface::class);
+        $cacheItem->isHit()->shouldNotBeCalled();
+        $cacheItem->get()->shouldNotBeCalled();
+        $cacheItem->set(Argument::any())->willReturn($cacheItem->reveal());
+        $cacheItem->expiresAt(Argument::any())->willReturn($cacheItem->reveal());
+
+        $cacheItemPool = $this->prophesize(CacheItemPoolInterface::class);
+        $cacheItemPool->getItem(Argument::type('string'))
+            ->shouldBeCalledOnce()
+            ->willReturn($cacheItem->reveal());
+        $cacheItemPool->save(Argument::type(CacheItemInterface::class))
+            ->shouldBeCalledOnce()
+            ->willReturn(true);
+
+        $session = new SessionCache(
+            $this->spannerClient->reveal(),
+            $this->databaseName,
+            [
+                'databaseRole' => 'Reader',
+                'cacheItemPool' => $cacheItemPool->reveal(),
+            ]
+        );
+
+        $sessionProto = $session->refreshSession();
         $this->assertInstanceOf(Session::class, $sessionProto);
         $this->assertEquals($this->sessionName, $sessionProto->getName());
+    }
+
+
+    public function testCacheLocking()
+    {
+        // Use mt_rand to ensure the cache key is unique for each test run
+        $databaseName = SpannerClient::databaseName(self::PROJECT, self::INSTANCE, mt_rand());
+        $sessionCache = new SessionCache(
+            $this->spannerClient->reveal(),
+            $databaseName,
+        );
+
+        // Mock a valid session call
+        $session = new Session();
+        $session->setName($databaseName . '/sessions/session-id-' . uniqid());
+        $session->setCreateTime(new Timestamp(['seconds' => time()]));
+
+        $process = new Process(['php', __DIR__ . '/lock_test_process.php', $databaseName]);
+        $process->setTimeout(5);
+
+        // Mock fetching the session from the API
+        $this->spannerClient->createSession(
+            Argument::any(),
+            Argument::any()
+        )
+            ->shouldBeCalledOnce()
+            ->will(function() use ($process, $session) {
+                // We are currently inside the lock - run the process and ensure it does not complete
+                // @see lock_test_process.php
+                $process->start();
+                sleep(1);
+                return $session;
+            });
+
+        $this->assertStringStartsWith($databaseName, $sessionCache->name());
+        $this->assertTrue($process->isRunning());
+        $process->wait();
+        $this->assertEquals(0, $process->getExitCode(), $process->getErrorOutput());
+        $this->assertEquals($sessionCache->name(), $process->getOutput());
     }
 }

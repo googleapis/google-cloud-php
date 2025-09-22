@@ -1526,22 +1526,24 @@ class DatabaseTest extends TestCase
 
         // ensure cache miss
         $cacheItem = $this->prophesize(CacheItemInterface::class);
-        $cacheItem->get()->willReturn(null);
-        $cacheItem->set(Argument::any())->willReturn($cacheItem->reveal());
-        $cacheItem->expiresAt(Argument::any())->willReturn($cacheItem->reveal());
+        $cacheItem->isHit()->willReturn(false);
+        $cacheItem->set(Argument::any())->shouldBeCalledOnce()->willReturn($cacheItem->reveal());
+        $cacheItem->expiresAt(Argument::any())->shouldBeCalledOnce()->willReturn($cacheItem->reveal());
 
         $cacheItemPool = $this->prophesize(CacheItemPoolInterface::class);
         $cacheItemPool->getItem(Argument::type('string'))
+            ->shouldBeCalledOnce()
             ->willReturn($cacheItem->reveal());
         $cacheItemPool->save(Argument::type(CacheItemInterface::class))
+            ->shouldBeCalledOnce()
             ->willReturn(true);
 
         $sessionCache = new SessionCache(
-            $cacheItemPool->reveal(),
             $this->spannerClient->reveal(),
             $this->database->name(),
             [
-                'databaseRole' => 'Reader'
+                'databaseRole' => 'Reader',
+                'cacheItemPool' => $cacheItemPool->reveal(),
             ]
         );
 
