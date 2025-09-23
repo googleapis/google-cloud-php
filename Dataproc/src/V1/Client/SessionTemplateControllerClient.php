@@ -93,9 +93,7 @@ final class SessionTemplateControllerClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private static function getClientDefaults()
     {
@@ -110,7 +108,8 @@ final class SessionTemplateControllerClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/session_template_controller_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/session_template_controller_rest_client_config.php',
                 ],
             ],
         ];
@@ -304,8 +303,10 @@ final class SessionTemplateControllerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createSessionTemplate(CreateSessionTemplateRequest $request, array $callOptions = []): SessionTemplate
-    {
+    public function createSessionTemplate(
+        CreateSessionTemplateRequest $request,
+        array $callOptions = []
+    ): SessionTemplate {
         return $this->startApiCall('CreateSessionTemplate', $request, $callOptions)->wait();
     }
 
@@ -383,8 +384,10 @@ final class SessionTemplateControllerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listSessionTemplates(ListSessionTemplatesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listSessionTemplates(
+        ListSessionTemplatesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListSessionTemplates', $request, $callOptions);
     }
 
@@ -410,8 +413,10 @@ final class SessionTemplateControllerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateSessionTemplate(UpdateSessionTemplateRequest $request, array $callOptions = []): SessionTemplate
-    {
+    public function updateSessionTemplate(
+        UpdateSessionTemplateRequest $request,
+        array $callOptions = []
+    ): SessionTemplate {
         return $this->startApiCall('UpdateSessionTemplate', $request, $callOptions)->wait();
     }
 
@@ -502,8 +507,10 @@ final class SessionTemplateControllerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }
