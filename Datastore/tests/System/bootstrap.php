@@ -1,5 +1,6 @@
 <?php
 
+use DG\BypassFinals;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Datastore\Tests\System\DatastoreTestCase;
 

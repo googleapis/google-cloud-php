@@ -17,7 +17,6 @@
 
 namespace Google\Cloud\Datastore\Tests\Unit;
 
-use DG\BypassFinals;
 use Google\Cloud\Core\Testing\DatastoreOperationRefreshTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
@@ -74,9 +73,6 @@ class TransactionTest extends TestCase
 
     public function setUp(): void
     {
-         if (class_exists(BypassFinals::class)) {
-            BypassFinals::enable(true);
-        }
         $this->gapicClient = $this->prophesize(DatastoreClient::class);
 
         $this->operation = new Operation(

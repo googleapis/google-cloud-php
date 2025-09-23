@@ -49,7 +49,6 @@ use Google\Cloud\Datastore\V1\EntityResult;
 use Google\Cloud\Datastore\V1\LookupRequest;
 use Google\Cloud\Datastore\V1\LookupResponse;
 use Prophecy\PhpUnit\ProphecyTrait;
-use DG\BypassFinals;
 use Google\Cloud\Datastore\V1\AllocateIdsRequest;
 use Google\Cloud\Datastore\V1\AllocateIdsResponse;
 use Google\Cloud\Datastore\V1\BeginTransactionRequest;
@@ -81,10 +80,6 @@ class DatastoreClientTest extends TestCase
 
     public function setUp(): void
     {
-        if (class_exists(BypassFinals::class)) {
-            BypassFinals::enable(true);
-        }
-
         $this->gapicClient = $this->prophesize(GapicClient::class);
         $this->client = new DatastoreClient([
             'projectId' => self::PROJECT,
@@ -323,7 +318,7 @@ class DatastoreClientTest extends TestCase
                 ->getReadWrite()
                 ->getPreviousTransaction();
             $this->assertNotEmpty($previousTransaction);
-            $this->assertEquals($previousTransaction, 'previousId');
+            $this->assertEquals(base64_decode('previousId'), $previousTransaction);
             return true;
         }), [])->shouldBeCalled(1)->willReturn(
             $response
