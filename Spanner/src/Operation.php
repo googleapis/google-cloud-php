@@ -322,9 +322,7 @@ class Operation
 
         $res = $this->execute($session, $sql, $options);
 
-        if (empty($transaction->id()) && $res->transaction()) {
-            $transaction->setId($res->transaction()->id());
-        }
+        $transaction->updateFromResult($res->transaction());
 
         // Iterate through the result to ensure we have query statistics available.
         iterator_to_array($res->rows());
@@ -411,7 +409,7 @@ class Operation
             // Get the transaction from array of ResultSets.
             // ResultSet contains transaction in the metadata.
             // @see https://cloud.google.com/spanner/docs/reference/rest/v1/ResultSet
-            $transaction->setId($res['resultSets'][0]['metadata']['transaction']['id'] ?? null);
+            $transaction->setId($response->getResultSets()[0]?->getMetadata()->getTransaction()->getId());
         }
 
         $errorStatement = null;
@@ -843,33 +841,6 @@ class Operation
             'resource-prefix' => $this->getDatabaseNameFromSession($session),
             'route-to-leader' => $routeToLeader,
         ]);
-    }
-
-    /**
-     * Convert a KeySet object to an API-ready array.
-     *
-     * @param KeySet $keySet The keySet object.
-     * @return array [KeySet](https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#keyset)
-     */
-    private function flattenKeySet(KeySet $keySet): array
-    {
-        $keys = $keySet->keySetObject();
-
-        if (!empty($keys['ranges'])) {
-            foreach ($keys['ranges'] as $index => $range) {
-                foreach ($range as $type => $rangeKeys) {
-                    $range[$type] = $this->mapper->encodeValuesAsSimpleType($rangeKeys);
-                }
-
-                $keys['ranges'][$index] = $range;
-            }
-        }
-
-        if (!empty($keys['keys'])) {
-            $keys['keys'] = $this->mapper->encodeValuesAsSimpleType($keys['keys'], true);
-        }
-
-        return $this->arrayFilterRemoveNull($keys);
     }
 
     private function getDatabaseNameFromSession(SessionCache $session): string

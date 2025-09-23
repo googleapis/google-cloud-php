@@ -63,6 +63,12 @@ class Serializer extends ApiCoreSerializer
 
                 return $keySet;
             },
+            'google.spanner.v1.Mutation' => function ($v) {
+                return $this->formatMutation($v);
+            },
+            'google.spanner.v1.TransactionOptions' => function ($v) {
+                return $this->formatTransactionOptions($v);
+            },
             'google.protobuf.Struct' => function ($v) {
                 if (!isset($v['fields'])) {
                     return ['fields' => $v];
@@ -87,12 +93,6 @@ class Serializer extends ApiCoreSerializer
                     return $this->formatValueForApi($v);
                 }
                 return $v;
-            },
-            'google.spanner.v1.Mutation' => function ($v) {
-                return $this->formatMutation($v);
-            },
-            'google.spanner.v1.TransactionOptions' => function ($v) {
-                return $this->formatTransactionOptions($v);
             },
         ];
         $customEncoders = [

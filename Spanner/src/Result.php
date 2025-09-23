@@ -24,6 +24,7 @@ use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Spanner\Session\SessionCache;
 use Google\Cloud\Spanner\V1\ExecuteSqlRequest\QueryMode;
+use Google\Cloud\Spanner\V1\MultiplexedSessionPrecommitToken;
 use Grpc;
 
 /**
@@ -518,6 +519,14 @@ class Result implements \IteratorAggregate
                     [],
                     $this->mapper
                 );
+                if (isset($result['precommitToken'])) {
+                    // @TODO: Can we move this logic to the serializer or value mapper?
+                    $this->transaction->setPrecommitToken(
+                        (new MultiplexedSessionPrecommitToken())
+                            ->setPrecommitToken(base64_decode($result['precommitToken']['precommitToken']))
+                            ->setSeqNum($result['precommitToken']['seqNum'] ?? 0)
+                    );
+                }
             }
         }
     }

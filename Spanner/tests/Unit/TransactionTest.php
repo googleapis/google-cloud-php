@@ -423,7 +423,7 @@ class TransactionTest extends TestCase
             })
         )
             ->shouldBeCalledOnce()
-            ->willReturn($this->resultGeneratorStream());
+            ->willReturn($this->resultGeneratorStream([]));
 
         $res = $this->transaction->read(
             $table,
@@ -662,6 +662,50 @@ class TransactionTest extends TestCase
 
         $this->assertTrue($transaction->isRetry());
     }
+
+    public function testPrecommitTokenIsSentInCommitRequest()
+    {
+        $precommitToken = (new MultiplexedSessionPrecommitToken())
+            ->setPrecommitToken('abc');
+
+        $this->spannerClient->executeStreamingSql(
+            Argument::type(ExecuteSqlRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->resultGeneratorStream(
+                [
+                    [
+                        'name' => 'foo',
+                        'type' => 1,
+                        'value' => 'bar',
+                        'precommitToken' => $precommitToken
+                    ],
+                ],
+                new ResultSetStats(['row_count_exact' => 1]),
+                'transaction-id'
+            ));
+        $this->spannerClient->commit(
+            Argument::that(function ($commitRequest) use ($precommitToken) {
+                $this->assertEquals($commitRequest->getPrecommitToken(), $precommitToken);
+                return true;
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->commitResponseWithCommitStats());
+
+        $transaction = new Transaction(
+            $this->operation,
+            $this->session->reveal(),
+            self::TRANSACTION,
+            ['tag' => self::TRANSACTION_TAG]
+        );
+
+        $transaction->executeUpdate('Some SQL');
+        $transaction->commit();
+    }
+
 
     public function testSavePrecommitTokenWithHighestSequenceNum()
     {

@@ -170,7 +170,6 @@ class SessionCacheTest extends TestCase
         $this->assertEquals($this->sessionName, $sessionProto->getName());
     }
 
-
     public function testCacheLocking()
     {
         // Use mt_rand to ensure the cache key is unique for each test run
@@ -180,11 +179,6 @@ class SessionCacheTest extends TestCase
             $databaseName,
         );
 
-        // Mock a valid session call
-        $session = new Session();
-        $session->setName($databaseName . '/sessions/session-id-' . uniqid());
-        $session->setCreateTime(new Timestamp(['seconds' => time()]));
-
         $process = new Process(['php', __DIR__ . '/lock_test_process.php', $databaseName]);
         $process->setTimeout(5);
 
@@ -193,13 +187,15 @@ class SessionCacheTest extends TestCase
             Argument::any(),
             Argument::any()
         )
-            ->shouldBeCalledOnce()
-            ->will(function() use ($process, $session) {
+            ->will(function () use ($process, $databaseName) {
                 // We are currently inside the lock - run the process and ensure it does not complete
                 // @see lock_test_process.php
                 $process->start();
-                sleep(1);
-                return $session;
+                // sleep long enough to ensure the process is blocked
+                sleep(2);
+                return (new Session())
+                    ->setName($databaseName . '/sessions/session-id-' . uniqid())
+                    ->setCreateTime(new Timestamp(['seconds' => time()]));
             });
 
         $this->assertStringStartsWith($databaseName, $sessionCache->name());
@@ -207,5 +203,33 @@ class SessionCacheTest extends TestCase
         $process->wait();
         $this->assertEquals(0, $process->getExitCode(), $process->getErrorOutput());
         $this->assertEquals($sessionCache->name(), $process->getOutput());
+    }
+
+    public function testCacheExpiration()
+    {
+        // Use mt_rand to ensure the cache key is unique for each test run
+        $databaseName = SpannerClient::databaseName(self::PROJECT, self::INSTANCE, mt_rand());
+        $sessionCache = new SessionCache(
+            $this->spannerClient->reveal(),
+            $databaseName,
+        );
+
+        // Mock fetching the session from the API
+        $this->spannerClient->createSession(
+            Argument::any(),
+            Argument::any()
+        )
+            ->shouldBeCalledTimes(2)
+            ->will(function () use ($databaseName) {
+                // ensure the cache will be considered expired
+                return (new Session())
+                    ->setName($databaseName . '/sessions/session-id-' . uniqid())
+                    ->setCreateTime(new Timestamp(['seconds' => 0]));
+            });
+
+        // Assert calling the cache a second time will request a new session because it's expired
+        $this->assertStringStartsWith($databaseName, $sess1 = $sessionCache->name());
+        $this->assertStringStartsWith($databaseName, $sess2 = $sessionCache->name());
+        $this->assertNotEquals($sess1, $sess2);
     }
 }

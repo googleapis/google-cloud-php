@@ -451,11 +451,6 @@ class Transaction implements TransactionalReadInterface
             $this->state = self::STATE_COMMITTED;
         }
 
-        $options += [
-            'mutations' => [],
-            'requestOptions' => []
-        ];
-
         // set transactionId in the request
         $options['transactionId'] = $this->transactionId;
 
@@ -466,7 +461,7 @@ class Transaction implements TransactionalReadInterface
 
         $response = $this->operation->commit(
             $this->session,
-            $this->pluck('mutations', $options),
+            $this->pluck('mutations', $options, false) ?? [],
             $options
         );
 
@@ -564,5 +559,19 @@ class Transaction implements TransactionalReadInterface
         $options['headers']['spanner-route-to-leader'] = ['true'];
 
         return $options;
+    }
+
+    public function updateFromResult(?Transaction $transaction = null): void
+    {
+        if (is_null($transaction)) {
+            return;
+        }
+
+        if (empty($this->transactionId)) {
+            $this->transactionId = $transaction->id();
+        }
+        if (isset($transaction->precommitToken)) {
+            $this->setPrecommitToken($transaction->precommitToken);
+        }
     }
 }
