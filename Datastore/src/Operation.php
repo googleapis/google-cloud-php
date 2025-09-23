@@ -32,7 +32,8 @@ use Google\Cloud\Datastore\V1\QueryResultBatch\MoreResultsType;
 use Google\Cloud\Datastore\V1\Client\DatastoreClient;
 use Google\Cloud\Datastore\V1\CommitRequest;
 use Google\Cloud\Datastore\V1\CommitRequest\Mode;
-use Google\Cloud\Datastore\V1\Key as GrpcKey;
+use Google\Cloud\Datastore\V1\EntityResult;
+use Google\Cloud\Datastore\V1\Key as ProtobufKey;
 use Google\Cloud\Datastore\V1\LookupRequest;
 use Google\Cloud\Datastore\V1\Mutation;
 use Google\Cloud\Datastore\V1\ReadOptions;
@@ -41,6 +42,7 @@ use Google\Cloud\Datastore\V1\RollbackRequest;
 use Google\Cloud\Datastore\V1\RunAggregationQueryRequest;
 use Google\Cloud\Datastore\V1\RunQueryRequest;
 use Google\Cloud\Datastore\V1\TransactionOptions;
+use Google\Protobuf\RepeatedField;
 use Google\Protobuf\Timestamp as ProtobufTimestamp;
 use InvalidArgumentException;
 
@@ -310,10 +312,10 @@ class Operation
         $protoTransactionOptions = new TransactionOptions();
         $protoTransactionOptions->mergeFromJsonString(json_encode($transactionOptions));
 
-        $beginTransactionRequest = new BeginTransactionRequest();
-        $beginTransactionRequest->setProjectId($this->projectId);
-        $beginTransactionRequest->setDatabaseId($options['databaseId'] ?? $this->databaseId);
-        $beginTransactionRequest->setTransactionOptions($protoTransactionOptions);
+        $beginTransactionRequest = (new BeginTransactionRequest())
+            ->setProjectId($this->projectId)
+            ->setDatabaseId($options['databaseId'] ?? $this->databaseId)
+            ->setTransactionOptions($protoTransactionOptions);
 
         $res = $this->gapicClient->beginTransaction($beginTransactionRequest, $options);
 
@@ -353,19 +355,19 @@ class Operation
 
         $serviceKeys = [];
         foreach ($keys as $key) {
-            $keyMessage = new GrpcKey();
+            $keyMessage = new protobufKey();
             $keyMessage->mergeFromJsonString(json_encode($key->keyObject()));
             $serviceKeys[] = $keyMessage;
         }
 
-        $request = new AllocateIdsRequest();
-        $request->setProjectId($this->projectId);
-        $request->setDatabaseId($options['databaseId'] ?? $this->databaseId);
-        $request->setKeys($serviceKeys);
+        $request = (new AllocateIdsRequest())
+            ->setProjectId($this->projectId)
+            ->setDatabaseId($options['databaseId'] ?? $this->databaseId)
+            ->setKeys($serviceKeys);
 
         $allocateIdsResponse = $this->gapicClient->allocateIds($request, $options);
 
-        /** @var GrpcKey $responseKey */
+        /** @var protobufKey $responseKey */
         foreach ($allocateIdsResponse->getKeys() as $index => $responseKey) {
             $path = $responseKey->getPath();
 
@@ -425,17 +427,16 @@ class Operation
                 ));
             }
 
-            $grpcKey = new GrpcKey();
-            $grpcKey->mergeFromJsonString(json_encode($key->keyObject()));
-            $serviceKeys[] = $grpcKey;
+            $protobufKey = new protobufKey();
+            $protobufKey->mergeFromJsonString(json_encode($key->keyObject()));
+            $serviceKeys[] = $protobufKey;
         });
 
-        $lookupRequest = new LookupRequest();
-        $lookupRequest->setDatabaseId($options['databaseId'] ?? $this->databaseId);
-        $lookupRequest->setProjectId($this->projectId);
-        $lookupRequest->setKeys($serviceKeys);
-
-        $lookupRequest->setReadOptions($this->createReadOptions($options));
+        $lookupRequest = (new LookupRequest())
+            ->setDatabaseId($options['databaseId'] ?? $this->databaseId)
+            ->setProjectId($this->projectId)
+            ->setKeys($serviceKeys)
+            ->setReadOptions($this->createReadOptions($options));
 
         $lookupResponse = $this->gapicClient->lookup($lookupRequest, $options);
 
@@ -445,7 +446,7 @@ class Operation
             'deferred' => [],
         ];
 
-        /** @var GrpcEntity $found */
+        /** @var protoEntity $found */
         foreach ($lookupResponse->getFound() as $found) {
             $result['found'][] = $this->mapEntityResult(
                 $this->serializer->encodeMessage($found), $options['className']
@@ -456,7 +457,7 @@ class Operation
             $result['found'] = $this->sortEntities($result['found'], $keys);
         }
 
-        /** @var GrpcEntity $missing */
+        /** @var entityResult $missing*/
         foreach ($lookupResponse->getMissing() as $missing) {
             $result['missing'][] = $this->key(
                 $missing->getEntity()->getKey()->getPath(),
@@ -464,7 +465,7 @@ class Operation
             );
         }
 
-        /** @var GrpcKey $deferred */
+        /** @var protobufKey $deferred */
         foreach ($lookupResponse->getDeferred() as $deferred) {
             $result['deferred'][] = $this->key(
                 $deferred->getPath(),
@@ -615,6 +616,8 @@ class Operation
      *           [ReadConsistency](https://cloud.google.com/datastore/reference/rest/v1/ReadOptions#ReadConsistency).
      *     @type string $databaseId ID of the database to which the entities belong.
      *     @type Timestamp $readTime Reads entities as they were at the given timestamp.
+     *     @type ExplainOptions $explainOptions An ExplainOptions object to get the execution stats
+     *           {@see ExplainOptions}
      * }
      * @return AggregationQueryResult
      */
@@ -692,11 +695,12 @@ class Operation
             $protoMutations[] = $protoMutation;
         }
 
-        $commitRequest = new CommitRequest();
-        $commitRequest->setMutations($protoMutations);
-        $commitRequest->setDatabaseId($options['databaseId']);
-        $commitRequest->setProjectId($this->projectId);
-        $commitRequest->setMode($transactionMode);
+        $commitRequest = (new CommitRequest())
+            ->setMutations($protoMutations)
+            ->setDatabaseId($options['databaseId'])
+            ->setProjectId($this->projectId)
+            ->setMode($transactionMode);
+
         if ($transactionMode === Mode::TRANSACTIONAL) {
             $commitRequest->setTransaction(base64_decode($options['transaction']));
         }
@@ -793,10 +797,10 @@ class Operation
      */
     public function rollback($transactionId)
     {
-        $rollbackRequest = new RollbackRequest();
-        $rollbackRequest->setProjectId($this->projectId);
-        $rollbackRequest->setDatabaseId($this->databaseId);
-        $rollbackRequest->setTransaction(base64_decode($transactionId));
+        $rollbackRequest = (new RollbackRequest())
+            ->setProjectId($this->projectId)
+            ->setDatabaseId($this->databaseId)
+            ->setTransaction(base64_decode($transactionId));
 
         $this->gapicClient->rollback($rollbackRequest);
     }
@@ -885,7 +889,7 @@ class Operation
         }
 
         return $this->entity($key, $properties, [
-            'cursor' => (isset($result['cursor']) && $result['cursor'] !== '')
+            'cursor' => !empty($result['cursor'])
                 ? $result['cursor']
                 : null,
             'baseVersion' => (isset($result['version']))
