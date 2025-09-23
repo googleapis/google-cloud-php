@@ -101,9 +101,7 @@ final class ReasoningEngineServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -363,8 +361,10 @@ final class ReasoningEngineServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createReasoningEngine(CreateReasoningEngineRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createReasoningEngine(
+        CreateReasoningEngineRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateReasoningEngine', $request, $callOptions)->wait();
     }
 
@@ -390,8 +390,10 @@ final class ReasoningEngineServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteReasoningEngine(DeleteReasoningEngineRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteReasoningEngine(
+        DeleteReasoningEngineRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteReasoningEngine', $request, $callOptions)->wait();
     }
 
@@ -444,8 +446,10 @@ final class ReasoningEngineServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listReasoningEngines(ListReasoningEnginesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listReasoningEngines(
+        ListReasoningEnginesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListReasoningEngines', $request, $callOptions);
     }
 
@@ -471,8 +475,10 @@ final class ReasoningEngineServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateReasoningEngine(UpdateReasoningEngineRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function updateReasoningEngine(
+        UpdateReasoningEngineRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UpdateReasoningEngine', $request, $callOptions)->wait();
     }
 
@@ -613,8 +619,10 @@ final class ReasoningEngineServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

@@ -94,9 +94,7 @@ final class MatchServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private static function getClientDefaults()
     {
@@ -293,8 +291,10 @@ final class MatchServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function readIndexDatapoints(ReadIndexDatapointsRequest $request, array $callOptions = []): ReadIndexDatapointsResponse
-    {
+    public function readIndexDatapoints(
+        ReadIndexDatapointsRequest $request,
+        array $callOptions = []
+    ): ReadIndexDatapointsResponse {
         return $this->startApiCall('ReadIndexDatapoints', $request, $callOptions)->wait();
     }
 
@@ -434,8 +434,10 @@ final class MatchServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

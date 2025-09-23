@@ -106,9 +106,7 @@ final class SpecialistPoolServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -348,8 +346,10 @@ final class SpecialistPoolServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createSpecialistPool(CreateSpecialistPoolRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createSpecialistPool(
+        CreateSpecialistPoolRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateSpecialistPool', $request, $callOptions)->wait();
     }
 
@@ -375,8 +375,10 @@ final class SpecialistPoolServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteSpecialistPool(DeleteSpecialistPoolRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteSpecialistPool(
+        DeleteSpecialistPoolRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteSpecialistPool', $request, $callOptions)->wait();
     }
 
@@ -456,8 +458,10 @@ final class SpecialistPoolServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateSpecialistPool(UpdateSpecialistPoolRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function updateSpecialistPool(
+        UpdateSpecialistPoolRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UpdateSpecialistPool', $request, $callOptions)->wait();
     }
 
@@ -598,8 +602,10 @@ final class SpecialistPoolServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }
