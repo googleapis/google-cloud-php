@@ -2247,7 +2247,7 @@ class DatabaseTest extends TestCase
         ]);
     }
 
-    public function testMutationKeyIsSetFromInsert()
+    public function testMutationKeyIsSetFromMutation()
     {
         $this->spannerClient->beginTransaction(
             Argument::that(function (BeginTransactionRequest $request) {
@@ -2280,67 +2280,37 @@ class DatabaseTest extends TestCase
         });
     }
 
-    // public function testMutationKeyIsNullForGenericTransaction()
-    // {
-    //     $this->spannerClient->beginTransaction(
-    //         Argument::that(function (BeginTransactionRequest $request) {
-    //             $this->assertNull($request->getMutationKey());
-    //             // $this->assertNotNull($request->getMutationKey()->getInsert());
-    //             // $this->assertGreaterThan(0, $request->getMutationKey()->getInsert()->getValues()->count());
-    //             return true;
-    //         }),
-    //         Argument::type('array')
-    //     )
-    //         ->shouldBeCalledOnce()
-    //         ->willReturn(new TransactionProto());
+    public function testMutationKeyIsNotSetWhenTransactionIdExists()
+    {
+        $this->spannerClient->beginTransaction(
+            Argument::that(function (BeginTransactionRequest $request) {
+                $this->assertNull($request->getMutationKey());
+                return true;
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new TransactionProto(['id' => 'abc']));
 
-    //     $this->spannerClient->commit(
-    //         Argument::type(CommitRequest::class),
-    //         Argument::type('array')
-    //     )
-    //         ->shouldBeCalledOnce()
-    //         ->willReturn(new CommitResponse());
+        $this->spannerClient->commit(
+            Argument::that(function (CommitRequest $request) {
+                $this->assertNotNull($request->getTransactionId());
+                return true;
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new CommitResponse());
 
-    //     $t = $this->database->transaction();
-    //     $res = $t->execute('SELECT * FROM ' . self::TEST_TABLE_NAME . ' WHERE id = @id', [
-    //         'parameters' => [
-    //             'id' => 123
-    //         ]
-    //     ]);
-    //         // $t->executeUpdate(
-    //         //     'INSERT INTO ' . self::TEST_TABLE_NAME . ' (id, name, birthday) VALUES (@id, @name, @birthday)',
-    //         //     [
-    //         //         'parameters' => [
-    //         //             'id' => 123,
-    //         //             'name' => 'my-row-new-name',
-    //         //             'birthday' => new Date(new \DateTime())
-    //         //         ]
-    //         //     ]
-    //         // );
-    //     $t->commit();
-    //     // });
-    // }
-
-        // $db->runTransaction(function ($t) use ($values) {
-        //     $id = rand(1, 346464);
-        //     $t->insert(self::TEST_TABLE_NAME, $values);
-
-        //     $t->commit();
-        // });
-        // $cols = array_keys($row);
-        // $keySet = new KeySet([
-        //     'keys' => [$id]
-        // ]);
-        // $snapshot = $db->snapshot();
-        // $res = $snapshot->read(self::TEST_TABLE_NAME, $keySet, $cols);
-        // $resRow = $res->rows()->current();
-        // $this->assertEquals($resRow['id'], $row['id']);
-        // $this->assertEquals($resRow['name'], $row['name']);
-        // $this->assertEquals(
-        //     $resRow['birthday']->formatAsString(),
-        //     $row['birthday']->formatAsString()
-        // );
-    // }
+        $row = [
+            'id' => 123,
+            'name' => 'my-row',
+            'birthday' => new Date(new \DateTime())
+        ];
+        $t = $this->database->transaction();
+        $t->insert(self::TEST_TABLE_NAME, $row);
+        $t->commit();
+    }
 
     private function createStreamingAPIArgs()
     {

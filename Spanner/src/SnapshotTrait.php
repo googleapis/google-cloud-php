@@ -17,7 +17,6 @@
 
 namespace Google\Cloud\Spanner;
 
-use Google\ApiCore\ArrayTrait;
 use Google\Cloud\Spanner\Session\SessionCache;
 use Google\Cloud\Spanner\V1\TransactionOptions;
 

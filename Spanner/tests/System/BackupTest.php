@@ -160,7 +160,6 @@ class BackupTest extends SpannerTestCase
         $this->assertEquals(Type::GOOGLE_DEFAULT_ENCRYPTION, $backup->info()['encryptionInfo']['encryptionType']);
 
         $this->assertNotNull($metadata);
-        var_dump($metadata);exit;
         $this->assertArrayHasKey('progress', $metadata);
         $this->assertArrayHasKey('progressPercent', $metadata['progress']);
         $this->assertArrayHasKey('startTime', $metadata['progress']);

@@ -36,6 +36,7 @@ use Google\Cloud\Spanner\V1\Transaction as TransactionProto;
 use Google\Protobuf\Timestamp as TimestampProto;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
+
 /**
  * @group spanner
  */

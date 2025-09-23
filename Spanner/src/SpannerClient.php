@@ -110,7 +110,7 @@ class SpannerClient
     use RequestTrait;
 
     const VERSION = '1.104.0';
-    private const SERVICE_NAME='google.spanner.v1.Spanner';
+    private const SERVICE_NAME = 'google.spanner.v1.Spanner';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/spanner.data';
     const ADMIN_SCOPE = 'https://www.googleapis.com/auth/spanner.admin';
@@ -297,7 +297,6 @@ class SpannerClient
         return new BatchClient(
             $operation,
             $database->session(),
-            $options
         );
     }
 

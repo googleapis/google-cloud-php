@@ -22,6 +22,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\Options\CallOptions;
 use Google\ApiCore\ServerStream;
 use Google\Cloud\Core\ApiHelperTrait;
+use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\RequestProcessorTrait;
 use Google\Cloud\Spanner\Batch\QueryPartition;
 use Google\Cloud\Spanner\Batch\ReadPartition;
@@ -33,6 +34,7 @@ use Google\Cloud\Spanner\V1\CommitResponse;
 use Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest;
 use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
 use Google\Cloud\Spanner\V1\PartialResultSet;
+use Google\Cloud\Spanner\V1\Partition;
 use Google\Cloud\Spanner\V1\PartitionOptions;
 use Google\Cloud\Spanner\V1\PartitionQueryRequest;
 use Google\Cloud\Spanner\V1\PartitionReadRequest;
@@ -44,6 +46,7 @@ use Google\Cloud\Spanner\V1\TransactionOptions;
 use Google\Cloud\Spanner\V1\TransactionOptions\ReadWrite;
 use Google\Cloud\Spanner\V1\TransactionSelector;
 use Google\Cloud\Spanner\V1\Type;
+use Google\Protobuf\RepeatedField;
 use Google\Rpc\Code;
 use GPBMetadata\Google\Spanner\V1\ResultSet;
 use InvalidArgumentException;
@@ -249,7 +252,7 @@ class Operation
             $options,
             new ExecuteSqlRequest(),
             CallOptions::class,
-            ['parameters', 'types', 'transactionContext'],
+            ['parameters', 'types', 'transactionContext', 'singleUse'],
             ['route-to-leader']
         );
         $executeSqlRequest->setSql($sql);
@@ -400,25 +403,25 @@ class Operation
             'resource-prefix' => $this->getDatabaseNameFromSession($session),
             'route-to-leader' => $this->routeToLeader
         ]);
+        $resultCount = count($response->getResultSets());
         if ($precommitToken = $response->getPrecommitToken()) {
             // Set the precommitToken from {@see ExecuteBatchDmlResponse::getPrecommitToken}
             $transaction->setPrecommitToken($precommitToken);
         }
-        $res = $this->handleResponse($response);
-        if (empty($transaction->id())) {
+        if (empty($transaction->id()) && $resultCount > 0) {
             // Get the transaction from array of ResultSets.
             // ResultSet contains transaction in the metadata.
             // @see https://cloud.google.com/spanner/docs/reference/rest/v1/ResultSet
-            $transaction->setId($response->getResultSets()[0]?->getMetadata()->getTransaction()->getId());
+            $transaction->setId($response->getResultSets()[0]->getMetadata()->getTransaction()->getId());
         }
 
         $errorStatement = null;
-        if (isset($res['status']) && $res['status']['code'] !== Code::OK) {
-            $errIndex = count($res['resultSets']);
-            $errorStatement = $statements[$errIndex];
+        if ($response->getStatus() && $response->getStatus()->getCode() !== Code::OK) {
+            $errorStatement = $statements[$resultCount];
         }
 
-        return new BatchDmlResult($res, $errorStatement);
+        $responseData = $this->handleResponse($response);
+        return new BatchDmlResult($responseData, $errorStatement);
     }
 
     /**
@@ -733,7 +736,10 @@ class Operation
 
         $partitions = [];
         $queryPartitionOptions = $this->pluckArray(['parameters', 'types', 'maxPartitions', 'partitionSizeBytes'], $options);
-        foreach ($response->getPartitions() as $partition) {
+
+        /** @var RepeatedField<Partition> $protoPartitions */
+        $protoPartitions = $response->getPartitions();
+        foreach ($protoPartitions as $partition) {
             $partitions[] = new QueryPartition(
                 $partition->getPartitionToken(),
                 $sql,
@@ -802,7 +808,10 @@ class Operation
 
         $partitions = [];
         $readPartitionOptions = $this->pluckArray(['index', 'maxPartitions', 'partitionSizeBytes'], $options);
-        foreach ($response->getPartitions() as $partition) {
+
+        /** @var RepeatedField<Partition> $protoPartitions */
+        $protoPartitions = $response->getPartitions();
+        foreach ($protoPartitions as $partition) {
             $partitions[] = new ReadPartition(
                 $partition->getPartitionToken(),
                 $table,
@@ -989,8 +998,8 @@ class Operation
      * Handles a streaming response.
      *
      * @param ServerStream $response
-     * @return \Generator<ResultSet|PartialResultSet>
-     * @throws Exception\ServiceException
+     * @return \Generator<array>
+     * @throws ServiceException
      */
     private function handleResultSetStream(ServerStream $response, ?Transaction $transaction)
     {

@@ -9,7 +9,6 @@ use Google\Cloud\Spanner\V1\Type;
 use Google\Protobuf\Internal\RepeatedField as DeprecatedRepeatedField;
 use Google\Protobuf\RepeatedField;
 use Google\Protobuf\Struct;
-use Google\Protobuf\Timestamp;
 use Google\Protobuf\Value;
 
 /**

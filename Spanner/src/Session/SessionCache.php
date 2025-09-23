@@ -182,7 +182,7 @@ class SessionCache
     {
         return [
             'session' => $this->session,
-            'cacheItemPool' => $this->cacheItemPool ?? null,
+            'cacheItemPool' => $this->cacheItemPool,
         ];
     }
 }

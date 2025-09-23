@@ -437,7 +437,7 @@ class Transaction implements TransactionalReadInterface
                 'singleUse' => $this->transactionSelector['singleUse'] ?? null,
             ]);
             if (!empty($options['mutations'])) {
-                // generate mutation key
+                // Set the mutation key if we have mutations but do not have a precommit token
                 $mutationKey = $options['mutations'][array_rand($options['mutations'])];
                 $operationTransactionOptions['mutationKey'] = $mutationKey;
             }

@@ -663,7 +663,7 @@ class TransactionTest extends TestCase
         $this->assertTrue($transaction->isRetry());
     }
 
-    public function testPrecommitTokenIsSentInCommitRequest()
+    public function testPrecommitTokenIsSentInCommitRequestForExecuteUpdate()
     {
         $precommitToken = (new MultiplexedSessionPrecommitToken())
             ->setPrecommitToken('abc');
@@ -699,10 +699,49 @@ class TransactionTest extends TestCase
             $this->operation,
             $this->session->reveal(),
             self::TRANSACTION,
-            ['tag' => self::TRANSACTION_TAG]
         );
 
-        $transaction->executeUpdate('Some SQL');
+        $transaction->executeUpdate('SELECT *');
+        $transaction->commit();
+    }
+
+    public function testPrecommitTokenIsSentInCommitRequestForExecuteUpdateBatch()
+    {
+        $precommitToken = (new MultiplexedSessionPrecommitToken())
+            ->setPrecommitToken('abc');
+
+        $this->spannerClient->executeBatchDml(
+            Argument::type(ExecuteBatchDmlRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new ExecuteBatchDmlResponse([
+                'precommit_token' => $precommitToken,
+            ]));
+        $this->spannerClient->commit(
+            Argument::that(function ($commitRequest) use ($precommitToken) {
+                $this->assertEquals($commitRequest->getPrecommitToken(), $precommitToken);
+                return true;
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->commitResponseWithCommitStats());
+
+        $transaction = new Transaction(
+            $this->operation,
+            $this->session->reveal(),
+            self::TRANSACTION,
+        );
+        $transaction->executeUpdateBatch([
+            [
+                'sql' => 'UPDATE posts SET author = @author WHERE id = @id',
+                'params' => [
+                    'author' => 'John',
+                    'id' => 1
+                ]
+            ]
+        ]);
         $transaction->commit();
     }
 

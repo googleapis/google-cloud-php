@@ -20,8 +20,6 @@ namespace Google\Cloud\Spanner;
 use Closure;
 use Google\ApiCore\Options\CallOptions;
 use Google\ApiCore\ValidationException;
-use Google\Auth\Cache\FileSystemCacheItemPool;
-use Google\Auth\Cache\SysVCacheItemPool;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Iam\IamManager;
 use Google\Cloud\Core\Iterator\ItemIterator;
