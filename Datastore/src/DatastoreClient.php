@@ -187,8 +187,8 @@ class DatastoreClient
      *     @type bool $returnInt64AsObject If true, 64 bit integers will be
      *           returned as a {@see \Google\Cloud\Core\Int64} object for 32 bit
      *           platform compatibility. **Defaults to** false.
-     *     @type Google\Cloud\Datastore\V1\Client\DatastoreClient $datastoreClient A client that is of
-     *           type {@see \Google\Cloud\Datastore\V1\Client\DatastoreClient}
+     *     @type GapicDatastoreClient $datastoreClient A client that is of
+     *           type {@see GapicDatastoreClient}
      * }
      * @throws \InvalidArgumentException
      */
@@ -593,11 +593,6 @@ class DatastoreClient
      */
     public function transaction(array $options = [])
     {
-        if (isset($options['transactionOptions']['previousTransaction'])) {
-            $options['transactionOptions']['previousTransaction'] = base64_encode(
-                $options['transactionOptions']['previousTransaction']
-            );
-        }
         $transaction = $this->operation->beginTransaction([
             // if empty, force request to encode as {} rather than [].
             'readWrite' => $this->pluck('transactionOptions', $options, false) ?: (object) []
