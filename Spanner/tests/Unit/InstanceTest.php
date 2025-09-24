@@ -470,9 +470,12 @@ class InstanceTest extends TestCase
 
     public function testDatabases()
     {
+        $dbName1 = DatabaseAdminClient::databaseName(self::PROJECT, self::INSTANCE, 'database1');
+        $dbName2 = DatabaseAdminClient::databaseName(self::PROJECT, self::INSTANCE, 'database2');
+
         $databases = [
-            new DatabaseProto(['name' => DatabaseAdminClient::databaseName(self::PROJECT, self::INSTANCE, 'database1')]),
-            new DatabaseProto(['name' => DatabaseAdminClient::databaseName(self::PROJECT, self::INSTANCE, 'database2')])
+            new DatabaseProto(['name' => $dbName1]),
+            new DatabaseProto(['name' => $dbName2]),
         ];
 
         $this->page
@@ -515,9 +518,12 @@ class InstanceTest extends TestCase
 
     public function testDatabasesPaged()
     {
+        $dbName1 = DatabaseAdminClient::databaseName(self::PROJECT, self::INSTANCE, 'database1');
+        $dbName2 = DatabaseAdminClient::databaseName(self::PROJECT, self::INSTANCE, 'database2');
+
         $databases = [
-            new DatabaseProto(['name' => DatabaseAdminClient::databaseName(self::PROJECT, self::INSTANCE, 'database1')]),
-            new DatabaseProto(['name' => DatabaseAdminClient::databaseName(self::PROJECT, self::INSTANCE, 'database2')]),
+            new DatabaseProto(['name' => $dbName1]),
+            new DatabaseProto(['name' => $dbName2]),
         ];
 
         $page1 = $this->prophesize(Page::class);

@@ -1,5 +1,8 @@
 <?php
 
+namespace Google\Cloud\Spanner\Tests\Unit\Session;
+
+use DG\BypassFinals;
 use Google\Cloud\Spanner\Session\SessionCache;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Prophecy\Argument;
@@ -21,10 +24,9 @@ if (file_exists(__DIR__ . '/../../../vendor/autoload.php')) {
     require __DIR__ . '/../../../../vendor/autoload.php';
 }
 
-DG\BypassFinals::enable();
+BypassFinals::enable();
 
-class AcquireSession
-{
+$acquireSession = new class($argv[1]) {
     use ProphecyTrait;
 
     public function __construct(private string $databaseName)
@@ -52,6 +54,7 @@ class AcquireSession
     public function registerFailureType()
     {
     }
-}
+};
 
-echo (new AcquireSession($argv[1]))->run();
+echo $acquireSession->run();
+

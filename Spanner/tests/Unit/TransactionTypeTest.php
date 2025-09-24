@@ -89,7 +89,8 @@ class TransactionTypeTest extends TestCase
         $instance->directedReadOptions()->willReturn([]);
 
         $this->session = $this->prophesize(SessionCache::class);
-        $this->session->name()->willReturn(SpannerClient::sessionName(self::PROJECT, self::INSTANCE, self::DATABASE, self::SESSION));
+        $sessionName = SpannerClient::sessionName(self::PROJECT, self::INSTANCE, self::DATABASE, self::SESSION);
+        $this->session->name()->willReturn($sessionName);
 
         $this->database = new Database(
             $this->spannerClient->reveal(),

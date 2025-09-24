@@ -13,23 +13,6 @@
         ],
         "phpstan": [
             "dev/sh/static-analysis"
-        ],
-        "test-unit": [
-            "vendor/bin/phpunit --testdox --stop-on-failure"
-        ],
-        "test-snippets": [
-            "vendor/bin/phpunit -c phpunit-snippets.xml.dist --testdox --stop-on-failure"
-        ],
-        "test-system": [
-            "Composer\\Config::disableProcessTimeout",
-            "vendor/bin/phpunit -c phpunit-system.xml.dist --testdox --stop-on-failure"
-        ],
-        "test-all": [
-            "@test-unit",
-            "@test-snippets",
-            "@test-system",
-            "@style-check",
-            "@phpstan"
         ]
     },
     "keywords": [
@@ -98,8 +81,8 @@
         "dg/bypass-finals": "^1.7",
         "squizlabs/php_codesniffer": "3.*",
         "dms/phpunit-arraysubset-asserts": "^0.5.0",
-        "symfony/cache": "^7.3",
-        "symfony/process": "^7.3"
+        "symfony/cache": "^6.4",
+        "symfony/process": "^6.4"
     },
     "replace": {
         "google/access-context-manager": "1.0.4",
