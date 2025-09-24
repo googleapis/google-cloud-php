@@ -40,6 +40,14 @@ class Maps extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string place_id = 4;</code>
      */
     protected $place_id = null;
+    /**
+     * Sources used to generate the place answer.
+     * This includes review snippets and photos that were used to generate the
+     * answer, as well as uris to flag content.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.GroundingChunk.Maps.PlaceAnswerSources place_answer_sources = 5;</code>
+     */
+    protected $place_answer_sources = null;
 
     /**
      * Constructor.
@@ -56,6 +64,10 @@ class Maps extends \Google\Protobuf\Internal\Message
      *     @type string $place_id
      *           This Place's resource name, in `places/{place_id}` format.  Can be used
      *           to look up the Place.
+     *     @type \Google\Cloud\AIPlatform\V1\GroundingChunk\Maps\PlaceAnswerSources $place_answer_sources
+     *           Sources used to generate the place answer.
+     *           This includes review snippets and photos that were used to generate the
+     *           answer, as well as uris to flag content.
      * }
      */
     public function __construct($data = NULL) {
@@ -205,6 +217,46 @@ class Maps extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->place_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Sources used to generate the place answer.
+     * This includes review snippets and photos that were used to generate the
+     * answer, as well as uris to flag content.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.GroundingChunk.Maps.PlaceAnswerSources place_answer_sources = 5;</code>
+     * @return \Google\Cloud\AIPlatform\V1\GroundingChunk\Maps\PlaceAnswerSources|null
+     */
+    public function getPlaceAnswerSources()
+    {
+        return $this->place_answer_sources;
+    }
+
+    public function hasPlaceAnswerSources()
+    {
+        return isset($this->place_answer_sources);
+    }
+
+    public function clearPlaceAnswerSources()
+    {
+        unset($this->place_answer_sources);
+    }
+
+    /**
+     * Sources used to generate the place answer.
+     * This includes review snippets and photos that were used to generate the
+     * answer, as well as uris to flag content.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.GroundingChunk.Maps.PlaceAnswerSources place_answer_sources = 5;</code>
+     * @param \Google\Cloud\AIPlatform\V1\GroundingChunk\Maps\PlaceAnswerSources $var
+     * @return $this
+     */
+    public function setPlaceAnswerSources($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\GroundingChunk\Maps\PlaceAnswerSources::class);
+        $this->place_answer_sources = $var;
 
         return $this;
     }
