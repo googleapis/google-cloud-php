@@ -57,4 +57,3 @@ $acquireSession = new class($argv[1]) {
 };
 
 echo $acquireSession->run();
-
