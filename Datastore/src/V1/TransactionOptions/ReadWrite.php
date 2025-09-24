@@ -20,7 +20,7 @@ class ReadWrite extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes previous_transaction = 1;</code>
      */
-    private $previous_transaction = '';
+    protected $previous_transaction = '';
 
     /**
      * Constructor.
@@ -65,6 +65,4 @@ class ReadWrite extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ReadWrite::class, \Google\Cloud\Datastore\V1\TransactionOptions_ReadWrite::class);
 
