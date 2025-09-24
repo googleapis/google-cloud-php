@@ -26,6 +26,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @group core
  * @group lock
+ * @runTestsInSeparateProcesses
  */
 class SemaphoreLockTest extends TestCase
 {
