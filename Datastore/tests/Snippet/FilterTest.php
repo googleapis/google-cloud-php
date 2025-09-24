@@ -20,7 +20,7 @@ class FilterTest extends SnippetTestCase
     use DatastoreOperationRefreshTrait;
     use ProphecyTrait;
 
-    private const PROJECT = 'alpha-project';
+    const PROJECT = 'alpha-project';
     private $connection;
     private $datastore;
     private $operation;

@@ -26,6 +26,7 @@ use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Psr\Cache\CacheItemInterface;
 use Psr\Cache\CacheItemPoolInterface;
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Symfony\Component\Process\Process;
 
 /**
@@ -173,33 +174,39 @@ class SessionCacheTest extends TestCase
     public function testCacheLocking()
     {
         // Use mt_rand to ensure the cache key is unique for each test run
-        $databaseName = SpannerClient::databaseName(self::PROJECT, self::INSTANCE, mt_rand());
+        $databaseId = mt_rand();
+        $databaseName = SpannerClient::databaseName(self::PROJECT, self::INSTANCE, $databaseId);
         $sessionCache = new SessionCache(
             $this->spannerClient->reveal(),
             $databaseName,
+            ['cacheItemPool' => new FilesystemAdapter($databaseId)]
         );
 
         $process = new Process(['php', __DIR__ . '/lock_test_process.php', $databaseName]);
         $process->setTimeout(5);
 
         // Mock fetching the session from the API
+        $phpunit = $this;
         $this->spannerClient->createSession(
             Argument::any(),
             Argument::any()
         )
-            ->will(function () use ($process, $databaseName) {
+            ->shouldBeCalledOnce()
+            ->will(function () use ($process, $databaseName, $phpunit) {
                 // We are currently inside the lock - run the process and ensure it does not complete
                 // @see lock_test_process.php
                 $process->start();
                 // sleep long enough to ensure the process is blocked
                 sleep(2);
+                // assert process is still running (waiting for this process to complete)
+                $phpunit->assertTrue($process->isRunning(), $process->getErrorOutput());
                 return (new Session())
                     ->setName($databaseName . '/sessions/session-id-' . uniqid())
                     ->setCreateTime(new Timestamp(['seconds' => time()]));
             });
 
         $this->assertStringStartsWith($databaseName, $sessionCache->name());
-        $this->assertTrue($process->isRunning());
+
         $process->wait();
         $this->assertEquals(0, $process->getExitCode(), $process->getErrorOutput());
         $this->assertEquals($sessionCache->name(), $process->getOutput());

@@ -83,6 +83,7 @@ class DatabaseTest extends SnippetTestCase
     const INSTANCE = 'my-instance';
     const TRANSACTION = 'my-transaction';
     const BACKUP = 'my-backup';
+    const SESSION = 'projects/my-awesome-project/instances/my-instance/databases/my-database/sessions/session-id';
 
     private $spannerClient;
     private $databaseAdminClient;

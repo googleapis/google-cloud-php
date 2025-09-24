@@ -33,11 +33,6 @@ use PHPUnit\Framework\TestCase;
 class SnippetTestCase extends TestCase
 {
     const PROJECT = 'my-awesome-project';
-    const DATABASE = 'my-database';
-    const INSTANCE = 'my-instance';
-    const TRANSACTION = 'my-transaction';
-    const BACKUP = 'my-backup';
-    const SESSION = 'projects/my-awesome-project/instances/my-instance/databases/my-database/sessions/session-id';
 
     use CheckForClassTrait;
 

@@ -54,6 +54,11 @@ use Psr\Cache\CacheItemPoolInterface;
  */
 class TransactionalReadMethodsTest extends SnippetTestCase
 {
+    const DATABASE = 'my-database';
+    const INSTANCE = 'my-instance';
+    const TRANSACTION = 'my-transaction';
+    const SESSION = 'projects/my-awesome-project/instances/my-instance/databases/my-database/sessions/session-id';
+
     use GrpcTestTrait;
     use ProphecyTrait;
     use ResultGeneratorTrait;

@@ -40,6 +40,10 @@ use Prophecy\PhpUnit\ProphecyTrait;
  */
 class ArrayTypeTest extends SnippetTestCase
 {
+    const DATABASE = 'my-database';
+    const INSTANCE = 'my-instance';
+    const SESSION = 'projects/my-awesome-project/instances/my-instance/databases/my-database/sessions/session-id';
+
     use GrpcTestTrait;
     use ProphecyTrait;
     use ApiHelperTrait;
