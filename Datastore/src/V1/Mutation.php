@@ -22,7 +22,7 @@ class Mutation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.datastore.v1.Mutation.ConflictResolutionStrategy conflict_resolution_strategy = 10;</code>
      */
-    private $conflict_resolution_strategy = 0;
+    protected $conflict_resolution_strategy = 0;
     /**
      * The properties to write in this mutation.
      * None of the properties in the mask may have a reserved name, except for
@@ -34,7 +34,7 @@ class Mutation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.datastore.v1.PropertyMask property_mask = 9;</code>
      */
-    private $property_mask = null;
+    protected $property_mask = null;
     /**
      * Optional. The transforms to perform on the entity.
      * This field can be set only when the operation is `insert`, `update`,

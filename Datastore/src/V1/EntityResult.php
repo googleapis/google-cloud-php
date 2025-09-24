@@ -20,7 +20,7 @@ class EntityResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.datastore.v1.Entity entity = 1;</code>
      */
-    private $entity = null;
+    protected $entity = null;
     /**
      * The version of the entity, a strictly positive number that monotonically
      * increases with changes to the entity.
@@ -32,7 +32,7 @@ class EntityResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 version = 4;</code>
      */
-    private $version = 0;
+    protected $version = 0;
     /**
      * The time at which the entity was created.
      * This field is set for
@@ -41,7 +41,7 @@ class EntityResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * The time at which the entity was last changed.
      * This field is set for
@@ -50,14 +50,14 @@ class EntityResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 5;</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * A cursor that points to the position after the result entity.
      * Set only when the `EntityResult` is part of a `QueryResultBatch` message.
      *
      * Generated from protobuf field <code>bytes cursor = 3;</code>
      */
-    private $cursor = '';
+    protected $cursor = '';
 
     /**
      * Constructor.

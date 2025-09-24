@@ -23,7 +23,7 @@ class PBReadOnly extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 1;</code>
      */
-    private $read_time = null;
+    protected $read_time = null;
 
     /**
      * Constructor.
@@ -87,7 +87,7 @@ class PBReadOnly extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(PBReadOnly::class, \Google\Cloud\Datastore\V1\TransactionOptions_ReadOnly::class);
 
+// Adding a class alias for backwards compatibility with the "readonly" keyword.
+class_alias(PBReadOnly::class, __NAMESPACE__ . '\ReadOnly');
 
