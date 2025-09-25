@@ -273,6 +273,11 @@ class ApiHelperTraitTest extends TestCase
             $expected,
             $this->implementation->validateOptions($options, ...$optionTypes)
         );
+        // test using an implementation without a serializer
+        $this->assertEquals(
+            $expected,
+            (new ApiHelpersTraitImpl)->validateOptions($options, ...$optionTypes)
+        );
     }
 
     public function validateOptionsProvider()

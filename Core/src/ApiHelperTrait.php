@@ -292,9 +292,17 @@ trait ApiHelperTrait
                     )
                 );
                 $messageOptions = $this->pluckArray($messageKeys, $options);
-                $splitOptions[] = $optionType instanceof Message
-                    ? $this->serializer->decodeMessage($optionType, $messageOptions)
-                    : $messageOptions;
+                if ($optionType instanceof Message) {
+                    if (isset($this->serializer)) {
+                        $validatedOptionGroup = $this->serializer->decodeMessage($optionType, $messageOptions);
+                    } else {
+                        $optionType->mergeFromJsonString(json_encode($messageOptions));
+                        $validatedOptionGroup = $optionType;
+                    }
+                } else {
+                    $validatedOptionGroup = $messageOptions;
+                }
+                $splitOptions[] = $validatedOptionGroup;
             } else {
                 throw new LogicException(sprintf('Invalid option type: %s', $optionType));
             }
