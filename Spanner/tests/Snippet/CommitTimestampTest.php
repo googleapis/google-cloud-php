@@ -58,24 +58,17 @@ class CommitTimestampTest extends SnippetTestCase
     {
         $id = 'abc';
 
-        $this->spannerClient->createSession(
-            Argument::type(CreateSessionRequest::class),
-            Argument::type('array')
-        )
-            ->shouldBeCalledOnce()
-            ->willReturn(new Session([
-                'name' => self::SESSION,
-                'multiplexed' => true,
-                'create_time' => new TimestampProto(['seconds' => time()]),
-            ]));
         $this->spannerClient->addMiddleware(Argument::type('callable'))
             ->shouldBeCalledOnce();
 
-        // ensure cache miss
+        // ensure cache hit
         $cacheItem = $this->prophesize(CacheItemInterface::class);
-        $cacheItem->isHit()->willReturn(false);
-        $cacheItem->set(Argument::any())->willReturn($cacheItem->reveal());
-        $cacheItem->expiresAt(Argument::any())->willReturn($cacheItem->reveal());
+        $cacheItem->isHit()->willReturn(true);
+        $cacheItem->get()->willReturn((new Session([
+            'name' => self::SESSION,
+            'multiplexed' => true,
+            'create_time' => new TimestampProto(['seconds' => time()]),
+        ]))->serializeToString());
         $cacheItemPool = $this->prophesize(CacheItemPoolInterface::class);
         $cacheItemPool->getItem(Argument::type('string'))
             ->willReturn($cacheItem->reveal());
