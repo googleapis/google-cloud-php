@@ -50,6 +50,7 @@ class SessionCache
     private string $databaseRole;
     private bool $routeToLeader;
     private CacheItemPoolInterface $cacheItemPool;
+    private CacheItemInterface $cacheItem;
 
     /**
      * @param array $options {
@@ -99,39 +100,49 @@ class SessionCache
 
     public function refreshSession(): Session
     {
-        $item = $this->cacheItemPool->getItem($this->cacheKey);
-        return $this->refreshCacheItem($item);
+        if (!isset($this->cacheItem)) {
+            $this->cacheItem = $this->cacheItemPool->getItem($this->cacheKey);
+        }
+        $session = $this->createSession();
+        $expiresAtSeconds = time() + self::SESSION_EXPIRATION_SECONDS;
+        $expiresAtSeconds = ($session->getCreateTime()?->getSeconds() ?? time()) + self::SESSION_EXPIRATION_SECONDS;
+        $expiresAt = DateTimeImmutable::createFromFormat('U', (string) $expiresAtSeconds);
+        $this->cacheItem->set($session->serializeToString());
+        $this->cacheItem->expiresAt($expiresAt);
+        $this->cacheItemPool->save($this->cacheItem);
+
+        return $session;
     }
 
     private function ensureValidSession(): void
     {
         if (!$this->session || $this->isExpired()) {
-            // Acquire a new multiplex session from the pool
+            // pull the latest session from the cache
+            if ($this->getSessionFromCache()) {
+                return;
+            }
+            // acquire a lock to refresh the cache
             if ($this->lock->acquire()) {
-                $item = $this->cacheItemPool->getItem($this->cacheKey);
-                if ($item->isHit() && $sessionData = $item->get()) {
-                    $session = new Session();
-                    $session->mergeFromString($sessionData);
-                    $this->session = $session;
-                } else {
-                    $this->session = $this->refreshCacheItem($item);
+                // see if we now have a cache hit (in the event of a race condition)
+                if (!$this->getSessionFromCache()) {
+                    // If there's still no cache hit, creata a new multiplex session
+                    $this->session = $this->refreshSession();
                 }
                 $this->lock->release();
             }
         }
     }
 
-    private function refreshCacheItem(CacheItemInterface $item)
+    private function getSessionFromCache(): bool
     {
-        $session = $this->createSession();
-        $expiresAtSeconds = time() + self::SESSION_EXPIRATION_SECONDS;
-        $expiresAtSeconds = ($session->getCreateTime()?->getSeconds() ?? time()) + self::SESSION_EXPIRATION_SECONDS;
-        $expiresAt = DateTimeImmutable::createFromFormat('U', (string) $expiresAtSeconds);
-        $item->set($session->serializeToString());
-        $item->expiresAt($expiresAt);
-        $this->cacheItemPool->save($item);
-
-        return $session;
+        $this->cacheItem = $this->cacheItemPool->getItem($this->cacheKey);
+        if ($this->cacheItem->isHit() && $sessionData = $this->cacheItem->get()) {
+            $session = new Session();
+            $session->mergeFromString($sessionData);
+            $this->session = $session;
+            return true;
+        }
+        return false;
     }
 
     private function createSession(): Session

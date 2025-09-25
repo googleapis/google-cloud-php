@@ -1532,7 +1532,7 @@ class DatabaseTest extends TestCase
 
         $cacheItemPool = $this->prophesize(CacheItemPoolInterface::class);
         $cacheItemPool->getItem(Argument::type('string'))
-            ->shouldBeCalledOnce()
+            ->shouldBeCalledTimes(2)
             ->willReturn($cacheItem->reveal());
         $cacheItemPool->save(Argument::type(CacheItemInterface::class))
             ->shouldBeCalledOnce()

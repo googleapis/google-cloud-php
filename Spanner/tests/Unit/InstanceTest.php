@@ -698,7 +698,7 @@ class InstanceTest extends TestCase
         $this->cacheItemPool->getItem(
             'cache-session-pool.test-project.instance-name.database-name.Reader'
         )
-            ->shouldBeCalledOnce()
+            ->shouldBeCalledTimes(2)
             ->willReturn($cacheItem->reveal());
         $this->cacheItemPool->save(Argument::type(CacheItemInterface::class))
             ->shouldBeCalledOnce()

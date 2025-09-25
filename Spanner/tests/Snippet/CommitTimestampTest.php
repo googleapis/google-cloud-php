@@ -63,17 +63,16 @@ class CommitTimestampTest extends SnippetTestCase
 
         // ensure cache hit
         $cacheItem = $this->prophesize(CacheItemInterface::class);
-        $cacheItem->isHit()->willReturn(true);
-        $cacheItem->get()->willReturn((new Session([
+        $cacheItem->isHit()->shouldBeCalled()->willReturn(true);
+        $cacheItem->get()->shouldBeCalled()->willReturn((new Session([
             'name' => self::SESSION,
             'multiplexed' => true,
             'create_time' => new TimestampProto(['seconds' => time()]),
         ]))->serializeToString());
         $cacheItemPool = $this->prophesize(CacheItemPoolInterface::class);
         $cacheItemPool->getItem(Argument::type('string'))
+            ->shouldBeCalledOnce()
             ->willReturn($cacheItem->reveal());
-        $cacheItemPool->save(Argument::type(CacheItemInterface::class))
-            ->willReturn(true);
 
         $mutation = [
             'insert' => [

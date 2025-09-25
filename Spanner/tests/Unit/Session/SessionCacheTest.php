@@ -100,14 +100,14 @@ class SessionCacheTest extends TestCase
 
         // ensure cache miss
         $cacheItem = $this->prophesize(CacheItemInterface::class);
-        $cacheItem->isHit()->shouldBeCalledOnce()->willReturn(false);
+        $cacheItem->isHit()->shouldBeCalledTimes(2)->willReturn(false);
         $cacheItem->get()->shouldNotBeCalled();
         $cacheItem->set(Argument::any())->willReturn($cacheItem->reveal());
         $cacheItem->expiresAt(Argument::any())->willReturn($cacheItem->reveal());
 
         $cacheItemPool = $this->prophesize(CacheItemPoolInterface::class);
         $cacheItemPool->getItem(Argument::type('string'))
-            ->shouldBeCalledOnce()
+            ->shouldBeCalledTimes(2)
             ->willReturn($cacheItem->reveal());
         $cacheItemPool->save(Argument::type(CacheItemInterface::class))
             ->shouldBeCalledOnce()
