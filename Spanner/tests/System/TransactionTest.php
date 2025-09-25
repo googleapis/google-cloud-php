@@ -110,9 +110,9 @@ class TransactionTest extends SpannerTestCase
      */
     public function testConcurrentTransactionsIncrementValueWithRead()
     {
-        // These tests result in an infinite loop locally
-        // @TODO: look into why and try to fix it
-        $this->emulatorOnly();
+        if (!ini_get('grpc.enable_fork_support')) {
+            $this->markTestSkipped('This test requires grpc.enable_fork_support=1 in php.ini');
+        }
 
         $db = self::$database;
 
@@ -169,9 +169,9 @@ class TransactionTest extends SpannerTestCase
      */
     public function testAbortedErrorCausesRetry()
     {
-        // These tests result in an infinite loop locally
-        // @TODO: look into why and try to fix it
-        $this->emulatorOnly();
+        if (!ini_get('grpc.enable_fork_support')) {
+            $this->markTestSkipped('This test requires grpc.enable_fork_support=1 in php.ini');
+        }
 
         $db = self::$database;
         $db2 = self::$database2;
@@ -209,9 +209,9 @@ class TransactionTest extends SpannerTestCase
      */
     public function testConcurrentTransactionsIncrementValueWithExecute()
     {
-        // These tests result in an infinite loop locally
-        // @TODO: look into why and try to fix it
-        $this->emulatorOnly();
+        if (!ini_get('grpc.enable_fork_support')) {
+            $this->markTestSkipped('This test requires grpc.enable_fork_support=1 in php.ini');
+        }
 
         $db = self::$database;
 
@@ -437,16 +437,22 @@ class TransactionTest extends SpannerTestCase
             ]);
             $this->assertEquals($res->rows()->current()['id'], $id);
             // For Multiplexed Sessions, a transaction is returned on READ
-            $this->assertNotNull($res->transaction());
-            $this->assertEquals($res->transaction()->id(), $t->id());
+            // The emulator doesn't support this
+            if (!$this->isEmulatorUsed()) {
+                $this->assertNotNull($res->transaction());
+                $this->assertEquals($res->transaction()->id(), $t->id());
+            }
             $this->assertEquals($t->id(), $transactionId);
 
             $keyset = new KeySet(['keys' => [$id]]);
             $res = $t->read(self::TEST_TABLE_NAME, $keyset, ['id']);
             $this->assertEquals($res->rows()->current()['id'], $id);
             // For Multiplexed Sessions, a transaction is returned on READ
-            $this->assertNotNull($res->transaction());
-            $this->assertEquals($res->transaction()->id(), $t->id());
+            // The emulator doesn't support this
+            if (!$this->isEmulatorUsed()) {
+                $this->assertNotNull($res->transaction());
+                $this->assertEquals($res->transaction()->id(), $t->id());
+            }
             $this->assertEquals($t->id(), $transactionId);
 
             $res = $t->executeUpdateBatch([

@@ -40,7 +40,8 @@ class SessionCache
 {
     use SysvTrait;
 
-    private const CACHE_KEY_TEMPLATE = 'cache-session-pool.%s.%s.%s.%s';
+    private const CACHE_KEY_TEMPLATE = 'session_cache.%s.%s.%s.%s';
+    private const CACHE_KEY_VALIDATION_REGEX = '/[^a-zA-Z0-9_\.! ]+/';
     private const SESSION_LIFETIME_SECONDS = 28 * 24 * 3600; // 28 days
     private const SESSION_EXPIRATION_SECONDS = 7 * 24 * 3600; // 7 days;
 
@@ -69,12 +70,16 @@ class SessionCache
     ) {
         $this->databaseRole = $options['databaseRole'] ?? '';
         $identity = DatabaseAdminClient::parseName($databaseName);
-        $this->cacheKey = sprintf(
-            self::CACHE_KEY_TEMPLATE,
-            $identity['project'],
-            $identity['instance'],
-            $identity['database'],
-            $this->databaseRole,
+        $this->cacheKey = preg_replace(
+            self::CACHE_KEY_VALIDATION_REGEX,
+            '',
+            sprintf(
+                self::CACHE_KEY_TEMPLATE,
+                $identity['project'],
+                $identity['instance'],
+                $identity['database'],
+                $this->databaseRole,
+            )
         );
 
         $this->routeToLeader = $options['routeToLeader'] ?? false;

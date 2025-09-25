@@ -111,7 +111,7 @@ class InstanceTest extends TestCase
             'create_time' => new Timestamp(['seconds' => time()]),
         ]))->serializeToString());
 
-        $cacheKey = sprintf('cache-session-pool.%s.%s.%s.%s', self::PROJECT, self::INSTANCE, self::DATABASE, '');
+        $cacheKey = 'session_cache.testproject.instancename.databasename.';
         $this->cacheItemPool = $this->prophesize(CacheItemPoolInterface::class);
         $this->cacheItemPool->getItem($cacheKey)
             ->willReturn($cacheItem->reveal());
@@ -696,7 +696,7 @@ class InstanceTest extends TestCase
         $cacheItem->expiresAt(Argument::any())->willReturn($cacheItem->reveal());
 
         $this->cacheItemPool->getItem(
-            'cache-session-pool.test-project.instance-name.database-name.Reader'
+            'session_cache.testproject.instancename.databasename.Reader'
         )
             ->shouldBeCalledTimes(2)
             ->willReturn($cacheItem->reveal());
