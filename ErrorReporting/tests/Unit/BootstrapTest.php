@@ -141,6 +141,7 @@ class BootstrapTest extends TestCase
     /**
      * @dataProvider exceptionProvider
      * @runInSeparateProcess
+     * @preserveGlobalState disabled
      */
     public function testExceptionHandlerWithHttpContext($exception)
     {

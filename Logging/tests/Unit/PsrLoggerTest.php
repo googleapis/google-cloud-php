@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Logging\Tests\Unit;
 
+use Google\Cloud\Core\Batch\OpisClosureSerializerV4;
 use Google\Cloud\Core\Report\EmptyMetadataProvider;
 use Google\Cloud\Logging\Logger;
 use Google\Cloud\Logging\PsrLogger;
@@ -267,7 +268,9 @@ class PsrLoggerTest extends TestCase
             $attr->setAccessible(true);
             $this->assertEquals(
                 $attr->getValue($psrLogger),
-                $options[$attributeName]
+                $attributeName === 'clientConfig'&& class_exists(OpisClosureSerializerV4::class)
+                    ? serialize($options[$attributeName])
+                    : $options[$attributeName]
             );
         }
     }
