@@ -9,14 +9,14 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Message for response to listing Databases.
+ * Message for ListDatabases response.
  *
  * Generated from protobuf message <code>google.cloud.alloydb.v1.ListDatabasesResponse</code>
  */
 class ListDatabasesResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The list of databases
+     * The list of databases.
      *
      * Generated from protobuf field <code>repeated .google.cloud.alloydb.v1.Database databases = 1;</code>
      */
@@ -36,7 +36,7 @@ class ListDatabasesResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\AlloyDb\V1\Database>|\Google\Protobuf\Internal\RepeatedField $databases
-     *           The list of databases
+     *           The list of databases.
      *     @type string $next_page_token
      *           A token identifying the next page of results the server should return.
      *           If this field is omitted, there are no subsequent pages.
@@ -48,7 +48,7 @@ class ListDatabasesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The list of databases
+     * The list of databases.
      *
      * Generated from protobuf field <code>repeated .google.cloud.alloydb.v1.Database databases = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -59,7 +59,7 @@ class ListDatabasesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The list of databases
+     * The list of databases.
      *
      * Generated from protobuf field <code>repeated .google.cloud.alloydb.v1.Database databases = 1;</code>
      * @param array<\Google\Cloud\AlloyDb\V1\Database>|\Google\Protobuf\Internal\RepeatedField $var

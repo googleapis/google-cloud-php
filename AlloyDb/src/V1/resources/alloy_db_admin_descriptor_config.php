@@ -703,10 +703,12 @@ return [
             'templateMap' => [
                 'backup' => 'projects/{project}/locations/{location}/backups/{backup}',
                 'cluster' => 'projects/{project}/locations/{location}/clusters/{cluster}',
+                'cryptoKey' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}',
                 'cryptoKeyVersion' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}',
                 'instance' => 'projects/{project}/locations/{location}/clusters/{cluster}/instances/{instance}',
                 'location' => 'projects/{project}/locations/{location}',
                 'network' => 'projects/{project}/global/networks/{network}',
+                'serviceAttachment' => 'projects/{project}/regions/{region}/serviceAttachments/{service_attachment}',
                 'user' => 'projects/{project}/locations/{location}/clusters/{cluster}/users/{user}',
             ],
         ],

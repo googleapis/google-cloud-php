@@ -215,6 +215,4 @@ class StageSchedule extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(StageSchedule::class, \Google\Cloud\AlloyDb\V1\UpgradeClusterStatus_StageStatus_StageSchedule::class);
 

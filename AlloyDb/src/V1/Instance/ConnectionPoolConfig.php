@@ -133,6 +133,4 @@ class ConnectionPoolConfig extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ConnectionPoolConfig::class, \Google\Cloud\AlloyDb\V1\Instance_ConnectionPoolConfig::class);
 

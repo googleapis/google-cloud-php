@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Message for requesting list of Databases.
+ * Message for ListDatabases request.
  *
  * Generated from protobuf message <code>google.cloud.alloydb.v1.ListDatabasesRequest</code>
  */
