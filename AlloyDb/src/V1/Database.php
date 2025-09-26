@@ -23,21 +23,42 @@ class Database extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * Optional. Charset for the database.
+     * Optional. Immutable. Charset for the database.
      * This field can contain any PostgreSQL supported charset name.
      * Example values include "UTF8", "SQL_ASCII", etc.
      *
-     * Generated from protobuf field <code>string charset = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string charset = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $charset = '';
     /**
-     * Optional. Collation for the database.
-     * Name of the custom or native collation for postgres.
-     * Example values include "C", "POSIX", etc
+     * Optional. Immutable. lc_collate for the database.
+     * String sort order.
+     * Example values include "C", "POSIX", etc.
      *
-     * Generated from protobuf field <code>string collation = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string collation = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $collation = '';
+    /**
+     * Optional. Immutable. lc_ctype for the database.
+     * Character classification (What is a letter? The upper-case equivalent?).
+     * Example values include "C", "POSIX", etc.
+     *
+     * Generated from protobuf field <code>string character_type = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
+     */
+    protected $character_type = '';
+    /**
+     * Input only. Immutable. Template of the database to be used for creating a
+     * new database.
+     *
+     * Generated from protobuf field <code>string database_template = 6 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
+     */
+    protected $database_template = '';
+    /**
+     * Optional. Whether the database is a template database.
+     *
+     * Generated from protobuf field <code>optional bool is_template_database = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $is_template_database = null;
 
     /**
      * Constructor.
@@ -49,13 +70,22 @@ class Database extends \Google\Protobuf\Internal\Message
      *           Identifier. Name of the resource in the form of
      *           `projects/{project}/locations/{location}/clusters/{cluster}/databases/{database}`.
      *     @type string $charset
-     *           Optional. Charset for the database.
+     *           Optional. Immutable. Charset for the database.
      *           This field can contain any PostgreSQL supported charset name.
      *           Example values include "UTF8", "SQL_ASCII", etc.
      *     @type string $collation
-     *           Optional. Collation for the database.
-     *           Name of the custom or native collation for postgres.
-     *           Example values include "C", "POSIX", etc
+     *           Optional. Immutable. lc_collate for the database.
+     *           String sort order.
+     *           Example values include "C", "POSIX", etc.
+     *     @type string $character_type
+     *           Optional. Immutable. lc_ctype for the database.
+     *           Character classification (What is a letter? The upper-case equivalent?).
+     *           Example values include "C", "POSIX", etc.
+     *     @type string $database_template
+     *           Input only. Immutable. Template of the database to be used for creating a
+     *           new database.
+     *     @type bool $is_template_database
+     *           Optional. Whether the database is a template database.
      * }
      */
     public function __construct($data = NULL) {
@@ -92,11 +122,11 @@ class Database extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Charset for the database.
+     * Optional. Immutable. Charset for the database.
      * This field can contain any PostgreSQL supported charset name.
      * Example values include "UTF8", "SQL_ASCII", etc.
      *
-     * Generated from protobuf field <code>string charset = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string charset = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
      */
     public function getCharset()
@@ -105,11 +135,11 @@ class Database extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Charset for the database.
+     * Optional. Immutable. Charset for the database.
      * This field can contain any PostgreSQL supported charset name.
      * Example values include "UTF8", "SQL_ASCII", etc.
      *
-     * Generated from protobuf field <code>string charset = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string charset = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
      * @return $this
      */
@@ -122,11 +152,11 @@ class Database extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Collation for the database.
-     * Name of the custom or native collation for postgres.
-     * Example values include "C", "POSIX", etc
+     * Optional. Immutable. lc_collate for the database.
+     * String sort order.
+     * Example values include "C", "POSIX", etc.
      *
-     * Generated from protobuf field <code>string collation = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string collation = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
      */
     public function getCollation()
@@ -135,11 +165,11 @@ class Database extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Collation for the database.
-     * Name of the custom or native collation for postgres.
-     * Example values include "C", "POSIX", etc
+     * Optional. Immutable. lc_collate for the database.
+     * String sort order.
+     * Example values include "C", "POSIX", etc.
      *
-     * Generated from protobuf field <code>string collation = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string collation = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
      * @return $this
      */
@@ -147,6 +177,100 @@ class Database extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->collation = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Immutable. lc_ctype for the database.
+     * Character classification (What is a letter? The upper-case equivalent?).
+     * Example values include "C", "POSIX", etc.
+     *
+     * Generated from protobuf field <code>string character_type = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return string
+     */
+    public function getCharacterType()
+    {
+        return $this->character_type;
+    }
+
+    /**
+     * Optional. Immutable. lc_ctype for the database.
+     * Character classification (What is a letter? The upper-case equivalent?).
+     * Example values include "C", "POSIX", etc.
+     *
+     * Generated from protobuf field <code>string character_type = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCharacterType($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->character_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Input only. Immutable. Template of the database to be used for creating a
+     * new database.
+     *
+     * Generated from protobuf field <code>string database_template = 6 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return string
+     */
+    public function getDatabaseTemplate()
+    {
+        return $this->database_template;
+    }
+
+    /**
+     * Input only. Immutable. Template of the database to be used for creating a
+     * new database.
+     *
+     * Generated from protobuf field <code>string database_template = 6 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDatabaseTemplate($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->database_template = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Whether the database is a template database.
+     *
+     * Generated from protobuf field <code>optional bool is_template_database = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getIsTemplateDatabase()
+    {
+        return isset($this->is_template_database) ? $this->is_template_database : false;
+    }
+
+    public function hasIsTemplateDatabase()
+    {
+        return isset($this->is_template_database);
+    }
+
+    public function clearIsTemplateDatabase()
+    {
+        unset($this->is_template_database);
+    }
+
+    /**
+     * Optional. Whether the database is a template database.
+     *
+     * Generated from protobuf field <code>optional bool is_template_database = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setIsTemplateDatabase($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->is_template_database = $var;
 
         return $this;
     }

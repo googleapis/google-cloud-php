@@ -242,6 +242,12 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.alloydb.v1.Instance.ActivationPolicy activation_policy = 35 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $activation_policy = 0;
+    /**
+     * Optional. The configuration for Managed Connection Pool (MCP).
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.Instance.ConnectionPoolConfig connection_pool_config = 37 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $connection_pool_config = null;
 
     /**
      * Constructor.
@@ -359,6 +365,8 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           There are restrictions around when an instance can/cannot be activated (for
      *           example, a read pool instance should be stopped before stopping primary
      *           etc.). Please refer to the API documentation for more details.
+     *     @type \Google\Cloud\AlloyDb\V1\Instance\ConnectionPoolConfig $connection_pool_config
+     *           Optional. The configuration for Managed Connection Pool (MCP).
      * }
      */
     public function __construct($data = NULL) {
@@ -1330,6 +1338,42 @@ class Instance extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\AlloyDb\V1\Instance\ActivationPolicy::class);
         $this->activation_policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The configuration for Managed Connection Pool (MCP).
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.Instance.ConnectionPoolConfig connection_pool_config = 37 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AlloyDb\V1\Instance\ConnectionPoolConfig|null
+     */
+    public function getConnectionPoolConfig()
+    {
+        return $this->connection_pool_config;
+    }
+
+    public function hasConnectionPoolConfig()
+    {
+        return isset($this->connection_pool_config);
+    }
+
+    public function clearConnectionPoolConfig()
+    {
+        unset($this->connection_pool_config);
+    }
+
+    /**
+     * Optional. The configuration for Managed Connection Pool (MCP).
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.Instance.ConnectionPoolConfig connection_pool_config = 37 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AlloyDb\V1\Instance\ConnectionPoolConfig $var
+     * @return $this
+     */
+    public function setConnectionPoolConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AlloyDb\V1\Instance\ConnectionPoolConfig::class);
+        $this->connection_pool_config = $var;
 
         return $this;
     }

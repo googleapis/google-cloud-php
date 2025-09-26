@@ -21,7 +21,7 @@ class PrimaryConfig extends \Google\Protobuf\Internal\Message
      * Output only. Names of the clusters that are replicating from this
      * cluster.
      *
-     * Generated from protobuf field <code>repeated string secondary_cluster_names = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>repeated string secondary_cluster_names = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
     private $secondary_cluster_names;
 
@@ -45,7 +45,7 @@ class PrimaryConfig extends \Google\Protobuf\Internal\Message
      * Output only. Names of the clusters that are replicating from this
      * cluster.
      *
-     * Generated from protobuf field <code>repeated string secondary_cluster_names = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>repeated string secondary_cluster_names = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getSecondaryClusterNames()
@@ -57,7 +57,7 @@ class PrimaryConfig extends \Google\Protobuf\Internal\Message
      * Output only. Names of the clusters that are replicating from this
      * cluster.
      *
-     * Generated from protobuf field <code>repeated string secondary_cluster_names = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>repeated string secondary_cluster_names = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

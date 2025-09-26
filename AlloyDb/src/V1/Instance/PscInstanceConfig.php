@@ -22,7 +22,7 @@ class PscInstanceConfig extends \Google\Protobuf\Internal\Message
      * The name of the resource will be in the format of
      * `projects/<alloydb-tenant-project-number>/regions/<region-name>/serviceAttachments/<service-attachment-name>`
      *
-     * Generated from protobuf field <code>string service_attachment_link = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string service_attachment_link = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
     protected $service_attachment_link = '';
     /**
@@ -92,7 +92,7 @@ class PscInstanceConfig extends \Google\Protobuf\Internal\Message
      * The name of the resource will be in the format of
      * `projects/<alloydb-tenant-project-number>/regions/<region-name>/serviceAttachments/<service-attachment-name>`
      *
-     * Generated from protobuf field <code>string service_attachment_link = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string service_attachment_link = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getServiceAttachmentLink()
@@ -106,7 +106,7 @@ class PscInstanceConfig extends \Google\Protobuf\Internal\Message
      * The name of the resource will be in the format of
      * `projects/<alloydb-tenant-project-number>/regions/<region-name>/serviceAttachments/<service-attachment-name>`
      *
-     * Generated from protobuf field <code>string service_attachment_link = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string service_attachment_link = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

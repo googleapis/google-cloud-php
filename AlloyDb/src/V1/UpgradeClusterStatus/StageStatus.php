@@ -27,6 +27,12 @@ class StageStatus extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.alloydb.v1.UpgradeClusterResponse.Status state = 2;</code>
      */
     protected $state = 0;
+    /**
+     * Output only. Timing information for the stage execution.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.UpgradeClusterStatus.StageStatus.StageSchedule schedule = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $schedule = null;
     protected $stage_specific_status;
 
     /**
@@ -41,6 +47,8 @@ class StageStatus extends \Google\Protobuf\Internal\Message
      *           Upgrade stage.
      *     @type int $state
      *           State of this stage.
+     *     @type \Google\Cloud\AlloyDb\V1\UpgradeClusterStatus\StageStatus\StageSchedule $schedule
+     *           Output only. Timing information for the stage execution.
      * }
      */
     public function __construct($data = NULL) {
@@ -127,6 +135,42 @@ class StageStatus extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\AlloyDb\V1\UpgradeClusterResponse\Status::class);
         $this->state = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Timing information for the stage execution.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.UpgradeClusterStatus.StageStatus.StageSchedule schedule = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\AlloyDb\V1\UpgradeClusterStatus\StageStatus\StageSchedule|null
+     */
+    public function getSchedule()
+    {
+        return $this->schedule;
+    }
+
+    public function hasSchedule()
+    {
+        return isset($this->schedule);
+    }
+
+    public function clearSchedule()
+    {
+        unset($this->schedule);
+    }
+
+    /**
+     * Output only. Timing information for the stage execution.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.UpgradeClusterStatus.StageStatus.StageSchedule schedule = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\AlloyDb\V1\UpgradeClusterStatus\StageStatus\StageSchedule $var
+     * @return $this
+     */
+    public function setSchedule($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AlloyDb\V1\UpgradeClusterStatus\StageStatus\StageSchedule::class);
+        $this->schedule = $var;
 
         return $this;
     }

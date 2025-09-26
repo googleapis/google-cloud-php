@@ -26,11 +26,8 @@ class State
      */
     const READY = 1;
     /**
-     * The cluster is stopped. All instances in the cluster are stopped.
-     * Customers can start a stopped cluster at any point and all their
-     * instances will come back to life with same names and IP resources. In
-     * this state, customer pays for storage.
-     * Associated backups could also be present in a stopped cluster.
+     * This is unused. Even when all instances in the cluster are stopped, the
+     * cluster remains in READY state.
      *
      * Generated from protobuf enum <code>STOPPED = 2;</code>
      */

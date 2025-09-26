@@ -45,6 +45,13 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string sql_statement = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $sql_statement = '';
+    /**
+     * Optional. If set, validates the sql statement by performing
+     * syntax and semantic validation and doesn't execute the query.
+     *
+     * Generated from protobuf field <code>bool validate_only = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $validate_only = false;
     protected $user_credential;
 
     /**
@@ -97,6 +104,9 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      *     @type string $sql_statement
      *           Required. SQL statement to execute on database. Any valid statement is
      *           permitted, including DDL, DML, DQL statements.
+     *     @type bool $validate_only
+     *           Optional. If set, validates the sql statement by performing
+     *           syntax and semantic validation and doesn't execute the query.
      * }
      */
     public function __construct($data = NULL) {
@@ -247,6 +257,34 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->sql_statement = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If set, validates the sql statement by performing
+     * syntax and semantic validation and doesn't execute the query.
+     *
+     * Generated from protobuf field <code>bool validate_only = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getValidateOnly()
+    {
+        return $this->validate_only;
+    }
+
+    /**
+     * Optional. If set, validates the sql statement by performing
+     * syntax and semantic validation and doesn't execute the query.
+     *
+     * Generated from protobuf field <code>bool validate_only = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setValidateOnly($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->validate_only = $var;
 
         return $this;
     }

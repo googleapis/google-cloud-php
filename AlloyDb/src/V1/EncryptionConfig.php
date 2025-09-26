@@ -21,7 +21,7 @@ class EncryptionConfig extends \Google\Protobuf\Internal\Message
      * Each Cloud KMS key is regionalized and has the following format:
      * projects/[PROJECT]/locations/[REGION]/keyRings/[RING]/cryptoKeys/[KEY_NAME]
      *
-     * Generated from protobuf field <code>string kms_key_name = 1;</code>
+     * Generated from protobuf field <code>string kms_key_name = 1 [(.google.api.resource_reference) = {</code>
      */
     protected $kms_key_name = '';
 
@@ -47,7 +47,7 @@ class EncryptionConfig extends \Google\Protobuf\Internal\Message
      * Each Cloud KMS key is regionalized and has the following format:
      * projects/[PROJECT]/locations/[REGION]/keyRings/[RING]/cryptoKeys/[KEY_NAME]
      *
-     * Generated from protobuf field <code>string kms_key_name = 1;</code>
+     * Generated from protobuf field <code>string kms_key_name = 1 [(.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getKmsKeyName()
@@ -60,7 +60,7 @@ class EncryptionConfig extends \Google\Protobuf\Internal\Message
      * Each Cloud KMS key is regionalized and has the following format:
      * projects/[PROJECT]/locations/[REGION]/keyRings/[RING]/cryptoKeys/[KEY_NAME]
      *
-     * Generated from protobuf field <code>string kms_key_name = 1;</code>
+     * Generated from protobuf field <code>string kms_key_name = 1 [(.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
