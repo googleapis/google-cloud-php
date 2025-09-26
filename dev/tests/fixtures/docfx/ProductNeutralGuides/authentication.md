@@ -93,30 +93,30 @@ $video = new VideoIntelligenceServiceClient([
 ```
 
 #### Note:
-Some clients accept the `keyFilePath` and `keyFile` configuration options pointing to the credentials file:
+Some clients accept the `keyFilePath` and `keyFile` configuration options pointing to the credentials
+file. However, both of these options are deprecated in favor of using the `credentialsFetcher`
+option or
+[Application Default Credentials](https://developers.google.com/identity/protocols/application-default-credentials).
 
 ```php
+require 'vendor/autoload.php';
+
 use Google\Cloud\Storage\StorageClient;
+use Google\Auth\Credentials\ServiceAccountCredentials;
 
-// Authenticate using a keyfile path
-$cloud = new StorageClient([
-    'keyFilePath' => 'path/to/keyfile.json'
-]);
-
-// Authenticate using keyfile data
-$cloud = new StorageClient([
-    'keyFile' => json_decode(file_get_contents('/path/to/keyfile.json'), true)
+// Create the service account credentials and pass them in using the "credentialsFile" option
+$keyFile = json_decode(file_get_contents('/path/to/keyfile.json'), true);
+$storage = new StorageClient([
+    'credentialsFetcher' => new ServiceAccountCredentials($scopes, $keyFile),
 ]);
 ```
 A list of clients that accept these parameters are:
-- [Bigtable](https://github.com/googleapis/google-cloud-php-bigtable)
-- [Spanner](https://github.com/googleapis/google-cloud-php-spanner)
-- [Firestore](https://github.com/googleapis/google-cloud-php-firestore)
+
+- [BigQuery](https://github.com/googleapis/google-cloud-php-bigquery)
 - [Datastore](https://github.com/googleapis/google-cloud-php-datastore)
-- [Pubsub](https://github.com/googleapis/google-cloud-php-pubsub)
+- [Firestore](https://github.com/googleapis/google-cloud-php-firestore)
 - [Logging](https://github.com/googleapis/google-cloud-php-logging)
-- [Translate](https://github.com/googleapis/google-cloud-php-translate)
-- [Bigquery](https://github.com/googleapis/google-cloud-php-bigquery)
+- [Spanner](https://github.com/googleapis/google-cloud-php-spanner)
 - [Storage](https://github.com/googleapis/google-cloud-php-storage)
 
 We recommend to visit the Check the [client documentation][php-ref-docs] for the client library you're using

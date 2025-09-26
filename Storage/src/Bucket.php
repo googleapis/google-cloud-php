@@ -1519,14 +1519,50 @@ class Bucket
      *           space, and line breaks will be replaced by an empty string.
      *           V2 Signed URLs may not provide `x-goog-encryption-key` or
      *           `x-goog-encryption-key-sha256` headers.
-     *     @type array $keyFile Keyfile data to use in place of the keyfile with
-     *           which the client was constructed. If `$options.keyFilePath` is
-     *           set, this option is ignored.
-     *     @type string $keyFilePath A path to a valid keyfile to use in place
-     *           of the keyfile with which the client was constructed.
-     *     @type string|array $scopes One or more authentication scopes to be
-     *           used with a key file. This option is ignored unless
-     *           `$options.keyFile` or `$options.keyFilePath` is set.
+     *     @type FetchAuthTokenInterface $credentialsFetcher A credentials
+     *           fetcher instance.
+     *     @type array $keyFile [DEPRECATED]
+     *           @deprecated This option is being deprecated because of a potential security risk.
+     *           This option does not validate the credential configuration. The security
+     *           risk occurs when a credential configuration is accepted from a source
+     *           that is not under your control and used without validation on your side.
+     *           If you know that you will be loading credential configurations of a
+     *           specific type, it is recommended to create the credentials directly and
+     *           configure them using the `credentialsFetcher` option instead.
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           $credentialsFetcher = new ServiceAccountCredentials($scopes, $json);
+     *           ```
+     *           This will ensure that an unexpected credential type with potential for
+     *           malicious intent is not loaded unintentionally. You might still have to do
+     *           validation for certain credential types.
+     *           If you are loading your credential configuration from an untrusted source and have
+     *           not mitigated the risks (e.g. by validating the configuration yourself), make
+     *           these changes as soon as possible to prevent security risks to your environment.
+     *           Regardless of the method used, it is always your responsibility to validate
+     *           configurations received from external sources.
+     *           @see https://cloud.google.com/docs/authentication/external/externally-sourced-credentials
+    *     @type string $keyFilePath [DEPRECATED]
+     *           @deprecated This option is being deprecated because of a potential security risk.
+     *           This option does not validate the credential configuration. The security
+     *           risk occurs when a credential configuration is accepted from a source
+     *           that is not under your control and used without validation on your side.
+     *           If you know that you will be loading credential configurations of a
+     *           specific type, it is recommended to create the credentials directly and
+     *           configure them using the `credentialsFetcher` option instead.
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           $credentialsFetcher = new ServiceAccountCredentials($scopes, $json);
+     *           ```
+     *           This will ensure that an unexpected credential type with potential for
+     *           malicious intent is not loaded unintentionally. You might still have to do
+     *           validation for certain credential types.
+     *           If you are loading your credential configuration from an untrusted source and have
+     *           not mitigated the risks (e.g. by validating the configuration yourself), make
+     *           these changes as soon as possible to prevent security risks to your environment.
+     *           Regardless of the method used, it is always your responsibility to validate
+     *           configurations received from external sources.
+     *           @see https://cloud.google.com/docs/authentication/external/externally-sourced-credentials
      *     @type array $queryParams Additional query parameters to be included
      *           as part of the signed URL query string. For allowed values,
      *           see [Reference Headers](https://cloud.google.com/storage/docs/xml-api/reference-headers#query).
@@ -1613,12 +1649,50 @@ class Bucket
      *           `x-ignore` prefix), given as key/value pairs.
      *     @type bool $forceOpenssl If true, OpenSSL will be used regardless of
      *           whether phpseclib is available. **Defaults to** `false`.
-     *     @type array $keyFile Keyfile data to use in place of the keyfile with
-     *           which the client was constructed. If `$options.keyFilePath` is
-     *           set, this option is ignored.
-     *     @type string $keyFilePath A path to a valid Keyfile to use in place
-     *           of the keyfile with which the client was constructed.
-     *     @type string $scheme Either `http` or `https`. Only used if a custom
+     *     @type FetchAuthTokenInterface $credentialsFetcher A credentials
+     *           fetcher instance.
+     *     @type array $keyFile [DEPRECATED]
+     *           @deprecated This option is being deprecated because of a potential security risk.
+     *           This option does not validate the credential configuration. The security
+     *           risk occurs when a credential configuration is accepted from a source
+     *           that is not under your control and used without validation on your side.
+     *           If you know that you will be loading credential configurations of a
+     *           specific type, it is recommended to create the credentials directly and
+     *           configure them using the `credentialsFetcher` option instead.
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           $credentialsFetcher = new ServiceAccountCredentials($scopes, $json);
+     *           ```
+     *           This will ensure that an unexpected credential type with potential for
+     *           malicious intent is not loaded unintentionally. You might still have to do
+     *           validation for certain credential types.
+     *           If you are loading your credential configuration from an untrusted source and have
+     *           not mitigated the risks (e.g. by validating the configuration yourself), make
+     *           these changes as soon as possible to prevent security risks to your environment.
+     *           Regardless of the method used, it is always your responsibility to validate
+     *           configurations received from external sources.
+     *           @see https://cloud.google.com/docs/authentication/external/externally-sourced-credentials
+    *     @type string $keyFilePath [DEPRECATED]
+     *           @deprecated This option is being deprecated because of a potential security risk.
+     *           This option does not validate the credential configuration. The security
+     *           risk occurs when a credential configuration is accepted from a source
+     *           that is not under your control and used without validation on your side.
+     *           If you know that you will be loading credential configurations of a
+     *           specific type, it is recommended to create the credentials directly and
+     *           configure them using the `credentialsFetcher` option instead.
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           $credentialsFetcher = new ServiceAccountCredentials($scopes, $json);
+     *           ```
+     *           This will ensure that an unexpected credential type with potential for
+     *           malicious intent is not loaded unintentionally. You might still have to do
+     *           validation for certain credential types.
+     *           If you are loading your credential configuration from an untrusted source and have
+     *           not mitigated the risks (e.g. by validating the configuration yourself), make
+     *           these changes as soon as possible to prevent security risks to your environment.
+     *           Regardless of the method used, it is always your responsibility to validate
+     *           configurations received from external sources.
+     *           @see https://cloud.google.com/docs/authentication/external/externally-sourced-credentials
      *           hostname is provided via `$options.bucketBoundHostname`. If a
      *           custom bucketBoundHostname is provided, **defaults to** `http`.
      *           In all other cases, **defaults to** `https`.
