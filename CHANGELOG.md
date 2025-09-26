@@ -1,5 +1,42 @@
 # Changelog
 
+## 0.303.0
+
+<details><summary>google/cloud-ai-platform 1.39.0</summary>
+
+
+
+### Features
+
+* [AiPlatform] Add enable_widget option in Google Maps and additional grounding information ([#8619](https://github.com/googleapis/google-cloud-php/issues/8619)) ([ecdcc10](https://github.com/googleapis/google-cloud-php/commit/ecdcc1037a482783cfe745dcbd0c2bf695fcd0e0))
+
+
+### Documentation
+
+* Remove legacy internal lint directives ([ecdcc10](https://github.com/googleapis/google-cloud-php/commit/ecdcc1037a482783cfe745dcbd0c2bf695fcd0e0))
+
+</details>
+
+<details><summary>google/cloud-dataproc 2.8.0</summary>
+
+
+
+### Features
+
+* [Dataproc] Added support for JUPYTER_KERNEL_GATEWAY component ([#8618](https://github.com/googleapis/google-cloud-php/issues/8618)) ([722181a](https://github.com/googleapis/google-cloud-php/commit/722181ae2b2bf1193c52ef6852ca54577824b739))
+
+</details>
+
+<details><summary>google/cloud-text-to-speech 2.5.0</summary>
+
+
+
+### Features
+
+* [TextToSpeech] add Gemini TTS Multispeaker API fields ([#8615](https://github.com/googleapis/google-cloud-php/issues/8615)) ([4fe529d](https://github.com/googleapis/google-cloud-php/commit/4fe529d3dd43bf7f36d127094d29daa36460f70b))
+
+</details>
+
 ## 0.302.0
 
 <details><summary>google/cloud-access-approval: 2.1.0</summary>
