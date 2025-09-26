@@ -20,7 +20,7 @@
  * This file was automatically generated - do not edit!
  */
 
-namespace Google\Cloud\Spanner\Tests\Unit\Admin\Instance\V1;
+namespace Google\Cloud\Spanner\Admin\Instance\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
@@ -48,7 +48,7 @@ use Google\Rpc\Code;
 use stdClass;
 
 /**
- * @group spanner-admin-instance
+ * @group instance
  *
  * @group gapic
  */

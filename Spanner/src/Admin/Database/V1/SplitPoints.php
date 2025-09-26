@@ -20,14 +20,14 @@ class SplitPoints extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string table = 1;</code>
      */
-    private $table = '';
+    protected $table = '';
     /**
      * The index to split.
      * If specified, the `table` field must refer to the index's base table.
      *
      * Generated from protobuf field <code>string index = 2;</code>
      */
-    private $index = '';
+    protected $index = '';
     /**
      * Required. The list of split keys, i.e., the split boundaries.
      *
@@ -42,7 +42,7 @@ class SplitPoints extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $expire_time = null;
+    protected $expire_time = null;
 
     /**
      * Constructor.

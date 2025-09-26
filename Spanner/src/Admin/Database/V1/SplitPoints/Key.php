@@ -20,7 +20,7 @@ class Key extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.ListValue key_parts = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $key_parts = null;
+    protected $key_parts = null;
 
     /**
      * Constructor.

@@ -23,7 +23,7 @@ class AddSplitPointsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string database = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $database = '';
+    protected $database = '';
     /**
      * Required. The split points to add.
      *
@@ -39,7 +39,7 @@ class AddSplitPointsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string initiator = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $initiator = '';
+    protected $initiator = '';
 
     /**
      * @param string                                                $database    Required. The database on whose tables/indexes split points are to be

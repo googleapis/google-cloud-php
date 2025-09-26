@@ -26,13 +26,13 @@ class Field extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The type of the field.
      *
      * Generated from protobuf field <code>.google.spanner.v1.Type type = 2;</code>
      */
-    private $type = null;
+    protected $type = null;
 
     /**
      * Constructor.
@@ -133,6 +133,4 @@ class Field extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Field::class, \Google\Cloud\Spanner\V1\StructType_Field::class);
 
