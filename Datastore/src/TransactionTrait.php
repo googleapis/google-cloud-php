@@ -19,6 +19,7 @@ namespace Google\Cloud\Datastore;
 
 use Google\Cloud\Datastore\Query\AggregationQuery;
 use Google\Cloud\Datastore\Query\QueryInterface;
+use InvalidArgumentException;
 
 /**
  * Common operations for datastore transactions.
@@ -126,6 +127,13 @@ trait TransactionTrait
      */
     public function lookupBatch(array $keys, array $options = [])
     {
+        if (isset($options['readTime']) || isset($options['readConsistency']) || isset($options['newTransaction'])) {
+            throw new InvalidArgumentException(
+                'Transaction::lookup and Transaction::batchLookup methods ' .
+                'do not take a `readTime`, `readConsistency` or `newTransaction` option.'
+            );
+        }
+
         return $this->operation->lookup($keys, $options + [
             'transaction' => $this->transactionId
         ]);

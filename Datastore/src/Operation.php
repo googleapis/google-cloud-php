@@ -17,16 +17,33 @@
 
 namespace Google\Cloud\Datastore;
 
+use Google\ApiCore\Serializer;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\TimestampTrait;
 use Google\Cloud\Core\ValidateTrait;
-use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\Query\AggregationQuery;
 use Google\Cloud\Datastore\Query\AggregationQueryResult;
 use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Query\QueryInterface;
+use Google\Cloud\Datastore\V1\AllocateIdsRequest;
+use Google\Cloud\Datastore\V1\BeginTransactionRequest;
 use Google\Cloud\Datastore\V1\ExplainOptions;
 use Google\Cloud\Datastore\V1\QueryResultBatch\MoreResultsType;
+use Google\Cloud\Datastore\V1\Client\DatastoreClient;
+use Google\Cloud\Datastore\V1\CommitRequest;
+use Google\Cloud\Datastore\V1\CommitRequest\Mode;
+use Google\Cloud\Datastore\V1\EntityResult;
+use Google\Cloud\Datastore\V1\Key as ProtobufKey;
+use Google\Cloud\Datastore\V1\LookupRequest;
+use Google\Cloud\Datastore\V1\Mutation;
+use Google\Cloud\Datastore\V1\ReadOptions;
+use Google\Cloud\Datastore\V1\ReadOptions_ReadConsistency;
+use Google\Cloud\Datastore\V1\RollbackRequest;
+use Google\Cloud\Datastore\V1\RunAggregationQueryRequest;
+use Google\Cloud\Datastore\V1\RunQueryRequest;
+use Google\Cloud\Datastore\V1\TransactionOptions;
+use Google\Protobuf\RepeatedField;
+use Google\Protobuf\Timestamp as ProtobufTimestamp;
 use InvalidArgumentException;
 
 /**
@@ -47,10 +64,10 @@ class Operation
     use TimestampTrait;
 
     /**
-     * @var ConnectionInterface
+     * @var DatastoreClient
      * @internal
      */
-    protected $connection;
+    protected DatastoreClient $gapicClient;
 
     /**
      * @var string
@@ -73,28 +90,46 @@ class Operation
     private $entityMapper;
 
     /**
+     * @var Serializer
+     */
+    private Serializer $serializer;
+
+    /**
      * Create an operation
      *
-     * @param ConnectionInterface $connection A connection to Google Cloud Platform's Datastore API.
-     *        This object is created by DatastoreClient,
-     *        and should not be instantiated outside of this client.
+     * @param DatastoreClient $gapicClient A Datastore Gapic Client instance.
      * @param string $projectId The Google Cloud Platform project ID.
      * @param string $namespaceId The namespace to use for all service requests.
      * @param EntityMapper $entityMapper A Datastore Entity Mapper instance.
      * @param string $databaseId ID of the database to which the entities belong.
      */
     public function __construct(
-        ConnectionInterface $connection,
+        DatastoreClient $gapicClient,
         $projectId,
         $namespaceId,
         EntityMapper $entityMapper,
         $databaseId = ''
     ) {
-        $this->connection = $connection;
+        $this->gapicClient = $gapicClient;
         $this->projectId = $projectId;
         $this->namespaceId = $namespaceId;
         $this->databaseId = $databaseId;
         $this->entityMapper = $entityMapper;
+        $this->serializer = new Serializer([
+            'end_cursor' => function ($v) {
+                return base64_encode($v);
+            },
+            'start_cursor' => function ($v) {
+                return base64_encode($v);
+            },
+            'cursor' => function ($v) {
+                return base64_encode($v);
+            }
+        ],[
+            'google.protobuf.Duration' => function ($v) {
+                return $this->formatDurationFromApi($v);
+            }
+        ]);
     }
 
     /**
@@ -274,21 +309,17 @@ class Operation
      */
     public function beginTransaction($transactionOptions, array $options = [])
     {
-        // Read Only option might not be present or empty
-        if (isset($transactionOptions['readOnly']) &&
-            is_array($transactionOptions['readOnly'])
-        ) {
-            $transactionOptions['readOnly'] = $this->formatReadTimeOption(
-                $transactionOptions['readOnly']
-            );
-        }
-        $res = $this->connection->beginTransaction($options + [
-            'projectId' => $this->projectId,
-            'databaseId' => $this->databaseId,
-            'transactionOptions' => $transactionOptions,
-        ]);
+        $protoTransactionOptions = new TransactionOptions();
+        $protoTransactionOptions->mergeFromJsonString(json_encode($transactionOptions));
 
-        return $res['transaction'];
+        $beginTransactionRequest = (new BeginTransactionRequest())
+            ->setProjectId($this->projectId)
+            ->setDatabaseId($options['databaseId'] ?? $this->databaseId)
+            ->setTransactionOptions($protoTransactionOptions);
+
+        $res = $this->gapicClient->beginTransaction($beginTransactionRequest, $options);
+
+        return base64_encode($res->getTransaction());
     }
 
     /**
@@ -324,25 +355,27 @@ class Operation
 
         $serviceKeys = [];
         foreach ($keys as $key) {
-            $serviceKeys[] = $key->keyObject();
+            $keyMessage = new protobufKey();
+            $keyMessage->mergeFromJsonString(json_encode($key->keyObject()));
+            $serviceKeys[] = $keyMessage;
         }
 
-        $res = $this->connection->allocateIds($options + [
-            'projectId' => $this->projectId,
-            'databaseId' => $this->databaseId,
-            'keys' => $serviceKeys,
-        ]);
+        $request = (new AllocateIdsRequest())
+            ->setProjectId($this->projectId)
+            ->setDatabaseId($options['databaseId'] ?? $this->databaseId)
+            ->setKeys($serviceKeys);
 
-        if (isset($res['keys'])) {
-            foreach ($res['keys'] as $index => $key) {
-                if (!isset($keys[$index])) {
-                    continue;
-                }
+        $allocateIdsResponse = $this->gapicClient->allocateIds($request, $options);
 
-                $end = end($key['path']);
-                $id = $end['id'];
-                $keys[$index]->setLastElementIdentifier($id);
-            }
+        /** @var protobufKey $responseKey */
+        foreach ($allocateIdsResponse->getKeys() as $index => $responseKey) {
+            $path = $responseKey->getPath();
+
+            // @phpstan-ignore argument.type
+            $lastPathElement = count($path) - 1;
+
+            $id = $path[$lastPathElement]->getId();
+            $keys[$index]->setLastElementIdentifier($id);
         }
 
         return $keys;
@@ -381,7 +414,7 @@ class Operation
     {
         $options += [
             'className' => Entity::class,
-            'sort' => false,
+            'sort' => false
         ];
 
         $serviceKeys = [];
@@ -394,48 +427,50 @@ class Operation
                 ));
             }
 
-            $serviceKeys[] = $key->keyObject();
+            $protobufKey = new protobufKey();
+            $protobufKey->mergeFromJsonString(json_encode($key->keyObject()));
+            $serviceKeys[] = $protobufKey;
         });
 
-        $res = $this->connection->lookup($options + $this->readOptions($options) + [
-            'projectId' => $this->projectId,
-            'databaseId' => $this->databaseId,
-            'keys' => $serviceKeys,
-        ]);
+        $lookupRequest = (new LookupRequest())
+            ->setDatabaseId($options['databaseId'] ?? $this->databaseId)
+            ->setProjectId($this->projectId)
+            ->setKeys($serviceKeys)
+            ->setReadOptions($this->createReadOptions($options));
 
-        $result = [];
-        if (isset($res['found'])) {
-            foreach ($res['found'] as $found) {
-                $result['found'][] = $this->mapEntityResult($found, $options['className']);
-            }
+        $lookupResponse = $this->gapicClient->lookup($lookupRequest, $options);
 
-            if ($options['sort']) {
-                $result['found'] = $this->sortEntities($result['found'], $keys);
-            }
+        $result = [
+            'result' => [],
+            'missing' => [],
+            'deferred' => [],
+        ];
+
+        /** @var protoEntity $found */
+        foreach ($lookupResponse->getFound() as $found) {
+            $result['found'][] = $this->mapEntityResult(
+                $this->serializer->encodeMessage($found), $options['className']
+            );
         }
 
-        if (isset($res['missing'])) {
-            $result['missing'] = [];
-            foreach ($res['missing'] as $missing) {
-                $key = $this->key(
-                    $missing['entity']['key']['path'],
-                    $missing['entity']['key']['partitionId']
-                );
-
-                $result['missing'][] = $key;
-            }
+        if ($options['sort']) {
+            $result['found'] = $this->sortEntities($result['found'], $keys);
         }
 
-        if (isset($res['deferred'])) {
-            $result['deferred'] = [];
-            foreach ($res['deferred'] as $deferred) {
-                $key = $this->key(
-                    $deferred['path'],
-                    $deferred['partitionId']
-                );
+        /** @var entityResult $missing*/
+        foreach ($lookupResponse->getMissing() as $missing) {
+            $result['missing'][] = $this->key(
+                $missing->getEntity()->getKey()->getPath(),
+                $missing->getEntity()->getKey()->getPartitionId()
+            );
+        }
 
-                $result['deferred'][] = $key;
-            }
+        /** @var protobufKey $deferred */
+        foreach ($lookupResponse->getDeferred() as $deferred) {
+            $result['deferred'][] = $this->key(
+                $deferred->getPath(),
+                $deferred->getPartitionId()
+            );
         }
 
         return $result;
@@ -509,6 +544,7 @@ class Operation
             if (isset($remainingLimit)) {
                 $requestQueryArr['limit'] = $remainingLimit;
             }
+
             $request = [
                 'projectId' => $this->projectId,
                 'partitionId' => $this->partitionId(
@@ -519,7 +555,16 @@ class Operation
                 $runQueryObj->queryKey() => $requestQueryArr,
             ] + $this->readOptions($options) + $options;
 
-            $res = $this->connection->runQuery($request);
+            $runQueryRequest = new RunQueryRequest();
+
+            if (isset($request['explainOptions'])) {
+                $runQueryRequest->setExplainOptions($request['explainOptions']);
+            }
+
+            $runQueryRequest->mergeFromJsonString(json_encode($request), true);
+            $runQueryResponse = $this->gapicClient->runQuery($runQueryRequest);
+
+            $res = $this->serializer->encodeMessage($runQueryResponse);
 
             // When executing a GQL Query, the server will compute a query object
             // and return it with the first response batch.
@@ -571,6 +616,8 @@ class Operation
      *           [ReadConsistency](https://cloud.google.com/datastore/reference/rest/v1/ReadOptions#ReadConsistency).
      *     @type string $databaseId ID of the database to which the entities belong.
      *     @type Timestamp $readTime Reads entities as they were at the given timestamp.
+     *     @type ExplainOptions $explainOptions An ExplainOptions object to get the execution stats
+     *           {@see ExplainOptions}
      * }
      * @return AggregationQueryResult
      */
@@ -580,12 +627,6 @@ class Operation
             'namespaceId' => $this->namespaceId,
             'databaseId' => $this->databaseId,
         ];
-
-        if (isset($options['explainOptions']) && !$options['explainOptions'] instanceof ExplainOptions) {
-            throw new InvalidArgumentException(
-                'The explainOptions option needs to be an instance of the ExplainOptions class'
-            );
-        }
 
         $args = [
             'query' => [],
@@ -600,7 +641,23 @@ class Operation
             ),
         ] + $requestQueryArr + $this->readOptions($options) + $options;
 
-        $res = $this->connection->runAggregationQuery($request);
+        $runAggregationQueryRequest = new RunAggregationQueryRequest();
+
+        if (isset($options['explainOptions'])) {
+            if (!$options['explainOptions'] instanceof ExplainOptions) {
+                throw new InvalidArgumentException(
+                    'The explainOptions option needs to be an instance of the ExplainOptions class'
+                );
+            }
+
+            $runAggregationQueryRequest->setExplainOptions($options['explainOptions']);
+        }
+
+        $runAggregationQueryRequest->mergeFromJsonString(json_encode($request), true);
+        $runAggregationQueryResponse = $this->gapicClient->runAggregationQuery($runAggregationQueryRequest, $options);
+
+        $res = $this->serializer->encodeMessage($runAggregationQueryResponse);
+
         return new AggregationQueryResult($res, $this->entityMapper);
     }
 
@@ -629,13 +686,28 @@ class Operation
             'databaseId' => $this->databaseId,
         ];
 
-        $res = $this->connection->commit($options + [
-            'mode' => ($options['transaction']) ? 'TRANSACTIONAL' : 'NON_TRANSACTIONAL',
-            'mutations' => $mutations,
-            'projectId' => $this->projectId,
-        ]);
+        $transactionMode = isset($options['transaction']) ? Mode::TRANSACTIONAL : Mode::NON_TRANSACTIONAL;
 
-        return $res;
+        $protoMutations = [];
+        foreach ($mutations as $mutation) {
+            $protoMutation = new Mutation();
+            $protoMutation->mergeFromJsonString(json_encode($mutation));
+            $protoMutations[] = $protoMutation;
+        }
+
+        $commitRequest = (new CommitRequest())
+            ->setMutations($protoMutations)
+            ->setDatabaseId($options['databaseId'])
+            ->setProjectId($this->projectId)
+            ->setMode($transactionMode);
+
+        if ($transactionMode === Mode::TRANSACTIONAL) {
+            $commitRequest->setTransaction(base64_decode($options['transaction']));
+        }
+
+        $commitResponse = $this->gapicClient->commit($commitRequest, $options);
+
+        return $this->serializer->encodeMessage($commitResponse);
     }
 
     /**
@@ -725,11 +797,12 @@ class Operation
      */
     public function rollback($transactionId)
     {
-        $this->connection->rollback([
-            'projectId' => $this->projectId,
-            'transaction' => $transactionId,
-            'databaseId' => $this->databaseId,
-        ]);
+        $rollbackRequest = (new RollbackRequest())
+            ->setProjectId($this->projectId)
+            ->setDatabaseId($this->databaseId)
+            ->setTransaction(base64_decode($transactionId));
+
+        $this->gapicClient->rollback($rollbackRequest);
     }
 
     /**
@@ -816,7 +889,7 @@ class Operation
         }
 
         return $this->entity($key, $properties, [
-            'cursor' => (isset($result['cursor']))
+            'cursor' => !empty($result['cursor'])
                 ? $result['cursor']
                 : null,
             'baseVersion' => (isset($result['version']))
@@ -850,13 +923,15 @@ class Operation
             'readTime' => null
         ];
 
-        $options = $this->formatReadTimeOption($options);
-
         $readOptions = array_filter([
             'readConsistency' => $options['readConsistency'],
             'transaction' => $options['transaction'],
             'readTime' => $options['readTime']
         ]);
+
+        if (count($readOptions) > 1) {
+            throw new InvalidArgumentException('ReadOptions can only be one of `readConsistency`, `transaction` or `readTime`.');
+        }
 
         return array_filter([
             'readOptions' => $readOptions,
@@ -885,5 +960,57 @@ class Operation
         }
 
         return $ret;
+    }
+
+    /**
+     * Create a ReadOptions object from an options array.
+     *
+     * @param array $options The options.
+     * @return null|ReadOptions
+     */
+    private function createReadOptions(array $options)
+    {
+        $totalSet = 0;
+
+        $readOptions = new ReadOptions();
+        if (isset($options['transaction'])) {
+            $totalSet++;
+            $readOptions->setTransaction(base64_decode($options['transaction']));
+        }
+        if (isset($options['readConsistency'])) {
+            $totalSet++;
+            $readOptions->setReadConsistency($options['readConsistency']);
+        }
+        if (isset($options['readTime'])) {
+            $totalSet++;
+            $protoTime = new ProtobufTimestamp();
+            // Timestamps can be passed as an array or a Timestamp object.
+            $protoTime->mergeFromJsonString(json_encode($options['readTime']));
+            $readOptions->setReadTime($protoTime);
+        }
+
+        if ($totalSet === 0) {
+            return null;
+        }
+
+        if ($totalSet > 1) {
+            throw new InvalidArgumentException('Only one of `readConsistency`, `transaction` or `readTime` may be set.');
+        }
+
+        return $readOptions;
+    }
+
+    /**
+     * Format a duration from the API
+     *
+     * @param array $value
+     * @return string
+     */
+    private function formatDurationFromApi($value): string
+    {
+        $seconds = $value['seconds'];
+        $nanos = str_pad($value['nanos'], 9, 0, STR_PAD_LEFT);
+
+        return "{$seconds}.{$nanos}s";
     }
 }
