@@ -84,7 +84,7 @@ class SpannerMiddleware implements MiddlewareInterface
         array $options
     ): PromiseInterface|ClientStream|ServerStream|BidiStream {
         if ($resourcePrefix = $this->pluck('resource-prefix', $options, false)) {
-            $options['headers'][self::RESOURCE_PREFIX_HEADER] = [$options['resource-prefix']];
+            $options['headers'][self::RESOURCE_PREFIX_HEADER] = [$resourcePrefix];
         }
 
         if (true === $this->pluck('route-to-leader', $options, false)) {

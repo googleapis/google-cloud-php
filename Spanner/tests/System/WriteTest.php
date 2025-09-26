@@ -26,6 +26,7 @@ use Google\Cloud\Spanner\CommitTimestamp;
 use Google\Cloud\Spanner\Date;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Numeric;
+use Google\Cloud\Spanner\Proto;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Rpc\Code;
 use Google\Protobuf\Internal\Message;
@@ -151,7 +152,7 @@ class WriteTest extends SpannerTestCase
             $this->assertEquals($value->formatAsString(), $row[$field]->formatAsString());
         } elseif ($value instanceof Message) {
             $this->assertInstanceOf(Proto::class, $row[$field]);
-            $this->assertEquals($value->serializeToString(), $row[$field]->getValue());
+            $this->assertEquals(base64_encode($value->serializeToString()), $row[$field]->getValue());
             $this->assertEquals($value, $row[$field]->get());
         } else {
             $this->assertValues($value, $row[$field]);
@@ -1194,6 +1195,8 @@ class WriteTest extends SpannerTestCase
             foreach ($expected as $key => $value) {
                 $this->assertValues($value, $actual[$key]);
             }
+        } elseif ($actual instanceof Proto) {
+            $this->assertEquals($expected, $actual->get());
         } else {
             $this->assertEquals($expected, $actual);
         }

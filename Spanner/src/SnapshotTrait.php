@@ -17,9 +17,7 @@
 
 namespace Google\Cloud\Spanner;
 
-use Google\ApiCore\ArrayTrait;
-use Google\Cloud\Spanner\Session\Session;
-use Google\Cloud\Spanner\Session\SessionPoolInterface;
+use Google\Cloud\Spanner\Session\SessionCache;
 use Google\Cloud\Spanner\V1\TransactionOptions;
 
 /**
@@ -27,17 +25,13 @@ use Google\Cloud\Spanner\V1\TransactionOptions;
  */
 trait SnapshotTrait
 {
-    use ArrayTrait;
     use TransactionalReadTrait;
 
-    /**
-     * @var Timestamp
-     */
-    private $readTimestamp;
+    private ?Timestamp $readTimestamp;
 
     /**
      * @param Operation $operation The Operation instance.
-     * @param Session $session The session to use for spanner interactions.
+     * @param SessionCache $session The session to use for spanner interactions.
      * @param array $options [optional] {
      *     Configuration Options.
      *
@@ -49,32 +43,25 @@ trait SnapshotTrait
      *           If using the `replicaSelection::type` setting, utilize the constants available in
      *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type} to set a value.
      *     @type array $transactionOptions The Transaction Options
+     *     @type array $singleUse
+     *     @type array $begin
      * }
      */
     private function initialize(
         Operation $operation,
-        Session $session,
+        SessionCache $session,
         array $options = []
     ): void {
         $this->operation = $operation;
         $this->session = $session;
 
-        $options += [
-            'id' => null,
-            'readTimestamp' => null
-        ];
-
-        if ($options['readTimestamp'] && !($options['readTimestamp'] instanceof Timestamp)) {
-            throw new \InvalidArgumentException('$options.readTimestamp must be an instance of Timestamp.');
-        }
-
-        $this->transactionId = $this->pluck('id', $options) ?: null;
-        $this->readTimestamp = $this->pluck('readTimestamp', $options) ?: null;
+        $this->transactionId = $options['id'] ?? null;
+        $this->readTimestamp = $options['readTimestamp'] ?? null;
         $this->type = $this->transactionId
             ? self::TYPE_PRE_ALLOCATED
             : self::TYPE_SINGLE_USE;
 
-        $this->context = SessionPoolInterface::CONTEXT_READ;
+        $this->context = Database::CONTEXT_READ;
         $this->directedReadOptions = $options['directedReadOptions'] ?? [];
         $this->transactionSelector = array_intersect_key(
             (array) $options,

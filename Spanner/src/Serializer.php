@@ -62,6 +62,12 @@ class Serializer extends ApiCoreSerializer
 
                 return $keySet;
             },
+            'google.spanner.v1.Mutation' => function ($v) {
+                return $this->formatMutation($v);
+            },
+            'google.spanner.v1.TransactionOptions' => function ($v) {
+                return $this->formatTransactionOptions($v);
+            },
             'google.protobuf.Struct' => function ($v) {
                 if (!isset($v['fields'])) {
                     return ['fields' => $v];
@@ -198,5 +204,50 @@ class Serializer extends ApiCoreSerializer
         }
 
         return $data;
+    }
+
+    private function formatMutation(array $mutation): array
+    {
+        if (!$mutation) {
+            return [];
+        }
+        $type = array_keys($mutation)[0];
+        $data = $mutation[$type];
+        switch ($type) {
+            case Operation::OP_DELETE:
+                // no-op
+                break;
+            default:
+                $modifiedData = array_map([$this, 'formatValueForApi'], $data['values']);
+                $data['values'] = [['values' => $modifiedData]];
+                break;
+        }
+
+        return [$type => $data];
+    }
+
+    /**
+     * @param array $transactionOptions
+     * @return array
+     */
+    private function formatTransactionOptions(array $transactionOptions): array
+    {
+        // sometimes readOnly is a PBReadOnly message instance
+        if (isset($transactionOptions['readOnly']) && is_array($transactionOptions['readOnly'])) {
+            $ro = $transactionOptions['readOnly'];
+            if (isset($ro['minReadTimestamp'])) {
+                $ro['minReadTimestamp'] =
+                    $this->formatTimestampForApi($ro['minReadTimestamp']);
+            }
+
+            if (isset($ro['readTimestamp'])) {
+                $ro['readTimestamp'] =
+                    $this->formatTimestampForApi($ro['readTimestamp']);
+            }
+
+            $transactionOptions['readOnly'] = $ro;
+        }
+
+        return $transactionOptions;
     }
 }
