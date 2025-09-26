@@ -28,6 +28,31 @@ please see our [gRPC installation guide](https://cloud.google.com/php/grpc).
 Please see our [Authentication guide](https://github.com/googleapis/google-cloud-php/blob/main/AUTHENTICATION.md) for more information
 on authenticating your client. Once authenticated, you'll be ready to start making requests.
 
+### Sample
+
+```php
+use Google\ApiCore\ApiException;
+use Google\Cloud\GkeMultiCloud\V1\AttachedCluster;
+use Google\Cloud\GkeMultiCloud\V1\Client\AttachedClustersClient;
+use Google\Cloud\GkeMultiCloud\V1\GetAttachedClusterRequest;
+
+// Create a client.
+$attachedClustersClient = new AttachedClustersClient();
+
+// Prepare the request message.
+$request = (new GetAttachedClusterRequest())
+    ->setName($formattedName);
+
+// Call the API and handle any network failures.
+try {
+    /** @var AttachedCluster $response */
+    $response = $attachedClustersClient->getAttachedCluster($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
+```
+
 ### Debugging
 
 Please see our [Debugging guide](https://github.com/googleapis/google-cloud-php/blob/main/DEBUG.md)

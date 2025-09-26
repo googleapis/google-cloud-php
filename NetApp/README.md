@@ -35,10 +35,10 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-Google\ApiCore\ApiException;
-Google\Cloud\NetApp\V1\ActiveDirectory;
-Google\Cloud\NetApp\V1\Client\NetAppClient;
-Google\Cloud\NetApp\V1\GetActiveDirectoryRequest;
+use Google\ApiCore\ApiException;
+use Google\Cloud\NetApp\V1\ActiveDirectory;
+use Google\Cloud\NetApp\V1\Client\NetAppClient;
+use Google\Cloud\NetApp\V1\GetActiveDirectoryRequest;
 
 // Create a client.
 $netAppClient = new NetAppClient();

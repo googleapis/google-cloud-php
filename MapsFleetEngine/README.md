@@ -35,10 +35,10 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-Google\ApiCore\ApiException;
-Google\Maps\FleetEngine\V1\Client\TripServiceClient;
-Google\Maps\FleetEngine\V1\GetTripRequest;
-Google\Maps\FleetEngine\V1\Trip;
+use Google\ApiCore\ApiException;
+use Google\Maps\FleetEngine\V1\Client\TripServiceClient;
+use Google\Maps\FleetEngine\V1\GetTripRequest;
+use Google\Maps\FleetEngine\V1\Trip;
 
 // Create a client.
 $tripServiceClient = new TripServiceClient();

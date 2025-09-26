@@ -33,32 +33,25 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-require 'vendor/autoload.php';
+use Google\ApiCore\ApiException;
+use Google\Cloud\PubSub\V1\Client\PublisherClient;
+use Google\Cloud\PubSub\V1\GetTopicRequest;
+use Google\Cloud\PubSub\V1\Topic;
 
-use Google\Cloud\PubSub\PubSubClient;
+// Create a client.
+$publisherClient = new PublisherClient();
 
-$pubSub = new PubSubClient();
+// Prepare the request message.
+$request = (new GetTopicRequest())
+    ->setTopic($formattedTopic);
 
-// Get an instance of a previously created topic.
-$topic = $pubSub->topic('my_topic');
-
-// Publish a message to the topic.
-$topic->publish([
-    'data' => 'My new message.',
-    'attributes' => [
-        'location' => 'Detroit'
-    ]
-]);
-
-// Get an instance of a previously created subscription.
-$subscription = $pubSub->subscription('my_subscription');
-
-// Pull all available messages.
-$messages = $subscription->pull();
-
-foreach ($messages as $message) {
-    echo $message->data() . "\n";
-    echo $message->attribute('location');
+// Call the API and handle any network failures.
+try {
+    /** @var Topic $response */
+    $response = $publisherClient->getTopic($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
 }
 ```
 

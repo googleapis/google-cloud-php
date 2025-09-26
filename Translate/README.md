@@ -33,10 +33,10 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-Google\ApiCore\ApiException;
-Google\Cloud\Translate\V3\AdaptiveMtDataset;
-Google\Cloud\Translate\V3\Client\TranslationServiceClient;
-Google\Cloud\Translate\V3\GetAdaptiveMtDatasetRequest;
+use Google\ApiCore\ApiException;
+use Google\Cloud\Translate\V3\AdaptiveMtDataset;
+use Google\Cloud\Translate\V3\Client\TranslationServiceClient;
+use Google\Cloud\Translate\V3\GetAdaptiveMtDatasetRequest;
 
 // Create a client.
 $translationServiceClient = new TranslationServiceClient();
@@ -52,29 +52,6 @@ try {
     printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
 } catch (ApiException $ex) {
     printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
-}
-``` 
-
-### Using the Generated Client (Interacts with the V3 API)
-```php
-require 'vendor/autoload.php';
-
-use Google\Cloud\Translate\V3\TranslationServiceClient;
-
-$translationClient = new TranslationServiceClient();
-$content = ['one', 'two', 'three'];
-$targetLanguage = 'es';
-$response = $translationClient->translateText(
-    $content,
-    $targetLanguage,
-    TranslationServiceClient::locationName('[PROJECT_ID]', 'global')
-);
-
-foreach ($response->getTranslations() as $key => $translation) {
-    $separator = $key === 2
-        ? '!'
-        : ', ';
-    echo $translation->getTranslatedText() . $separator;
 }
 ```
 
