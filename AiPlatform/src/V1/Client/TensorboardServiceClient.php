@@ -284,8 +284,12 @@ final class TensorboardServiceClient
      *
      * @return string The formatted tensorboard_experiment resource.
      */
-    public static function tensorboardExperimentName(string $project, string $location, string $tensorboard, string $experiment): string
-    {
+    public static function tensorboardExperimentName(
+        string $project,
+        string $location,
+        string $tensorboard,
+        string $experiment
+    ): string {
         return self::getPathTemplate('tensorboardExperiment')->render([
             'project' => $project,
             'location' => $location,
@@ -306,8 +310,13 @@ final class TensorboardServiceClient
      *
      * @return string The formatted tensorboard_run resource.
      */
-    public static function tensorboardRunName(string $project, string $location, string $tensorboard, string $experiment, string $run): string
-    {
+    public static function tensorboardRunName(
+        string $project,
+        string $location,
+        string $tensorboard,
+        string $experiment,
+        string $run
+    ): string {
         return self::getPathTemplate('tensorboardRun')->render([
             'project' => $project,
             'location' => $location,
@@ -330,8 +339,14 @@ final class TensorboardServiceClient
      *
      * @return string The formatted tensorboard_time_series resource.
      */
-    public static function tensorboardTimeSeriesName(string $project, string $location, string $tensorboard, string $experiment, string $run, string $timeSeries): string
-    {
+    public static function tensorboardTimeSeriesName(
+        string $project,
+        string $location,
+        string $tensorboard,
+        string $experiment,
+        string $run,
+        string $timeSeries
+    ): string {
         return self::getPathTemplate('tensorboardTimeSeries')->render([
             'project' => $project,
             'location' => $location,
@@ -478,8 +493,10 @@ final class TensorboardServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function batchCreateTensorboardRuns(BatchCreateTensorboardRunsRequest $request, array $callOptions = []): BatchCreateTensorboardRunsResponse
-    {
+    public function batchCreateTensorboardRuns(
+        BatchCreateTensorboardRunsRequest $request,
+        array $callOptions = []
+    ): BatchCreateTensorboardRunsResponse {
         return $this->startApiCall('BatchCreateTensorboardRuns', $request, $callOptions)->wait();
     }
 
@@ -505,8 +522,10 @@ final class TensorboardServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function batchCreateTensorboardTimeSeries(BatchCreateTensorboardTimeSeriesRequest $request, array $callOptions = []): BatchCreateTensorboardTimeSeriesResponse
-    {
+    public function batchCreateTensorboardTimeSeries(
+        BatchCreateTensorboardTimeSeriesRequest $request,
+        array $callOptions = []
+    ): BatchCreateTensorboardTimeSeriesResponse {
         return $this->startApiCall('BatchCreateTensorboardTimeSeries', $request, $callOptions)->wait();
     }
 
@@ -536,8 +555,10 @@ final class TensorboardServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function batchReadTensorboardTimeSeriesData(BatchReadTensorboardTimeSeriesDataRequest $request, array $callOptions = []): BatchReadTensorboardTimeSeriesDataResponse
-    {
+    public function batchReadTensorboardTimeSeriesData(
+        BatchReadTensorboardTimeSeriesDataRequest $request,
+        array $callOptions = []
+    ): BatchReadTensorboardTimeSeriesDataResponse {
         return $this->startApiCall('BatchReadTensorboardTimeSeriesData', $request, $callOptions)->wait();
     }
 
@@ -589,8 +610,10 @@ final class TensorboardServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createTensorboardExperiment(CreateTensorboardExperimentRequest $request, array $callOptions = []): TensorboardExperiment
-    {
+    public function createTensorboardExperiment(
+        CreateTensorboardExperimentRequest $request,
+        array $callOptions = []
+    ): TensorboardExperiment {
         return $this->startApiCall('CreateTensorboardExperiment', $request, $callOptions)->wait();
     }
 
@@ -643,8 +666,10 @@ final class TensorboardServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createTensorboardTimeSeries(CreateTensorboardTimeSeriesRequest $request, array $callOptions = []): TensorboardTimeSeries
-    {
+    public function createTensorboardTimeSeries(
+        CreateTensorboardTimeSeriesRequest $request,
+        array $callOptions = []
+    ): TensorboardTimeSeries {
         return $this->startApiCall('CreateTensorboardTimeSeries', $request, $callOptions)->wait();
     }
 
@@ -696,8 +721,10 @@ final class TensorboardServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteTensorboardExperiment(DeleteTensorboardExperimentRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteTensorboardExperiment(
+        DeleteTensorboardExperimentRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteTensorboardExperiment', $request, $callOptions)->wait();
     }
 
@@ -723,8 +750,10 @@ final class TensorboardServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteTensorboardRun(DeleteTensorboardRunRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteTensorboardRun(
+        DeleteTensorboardRunRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteTensorboardRun', $request, $callOptions)->wait();
     }
 
@@ -750,8 +779,10 @@ final class TensorboardServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteTensorboardTimeSeries(DeleteTensorboardTimeSeriesRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteTensorboardTimeSeries(
+        DeleteTensorboardTimeSeriesRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteTensorboardTimeSeries', $request, $callOptions)->wait();
     }
 
@@ -778,8 +809,10 @@ final class TensorboardServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function exportTensorboardTimeSeriesData(ExportTensorboardTimeSeriesDataRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function exportTensorboardTimeSeriesData(
+        ExportTensorboardTimeSeriesDataRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ExportTensorboardTimeSeriesData', $request, $callOptions);
     }
 
@@ -831,8 +864,10 @@ final class TensorboardServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getTensorboardExperiment(GetTensorboardExperimentRequest $request, array $callOptions = []): TensorboardExperiment
-    {
+    public function getTensorboardExperiment(
+        GetTensorboardExperimentRequest $request,
+        array $callOptions = []
+    ): TensorboardExperiment {
         return $this->startApiCall('GetTensorboardExperiment', $request, $callOptions)->wait();
     }
 
@@ -884,8 +919,10 @@ final class TensorboardServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getTensorboardTimeSeries(GetTensorboardTimeSeriesRequest $request, array $callOptions = []): TensorboardTimeSeries
-    {
+    public function getTensorboardTimeSeries(
+        GetTensorboardTimeSeriesRequest $request,
+        array $callOptions = []
+    ): TensorboardTimeSeries {
         return $this->startApiCall('GetTensorboardTimeSeries', $request, $callOptions)->wait();
     }
 
@@ -911,8 +948,10 @@ final class TensorboardServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listTensorboardExperiments(ListTensorboardExperimentsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listTensorboardExperiments(
+        ListTensorboardExperimentsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListTensorboardExperiments', $request, $callOptions);
     }
 
@@ -965,8 +1004,10 @@ final class TensorboardServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listTensorboardTimeSeries(ListTensorboardTimeSeriesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listTensorboardTimeSeries(
+        ListTensorboardTimeSeriesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListTensorboardTimeSeries', $request, $callOptions);
     }
 
@@ -1016,8 +1057,10 @@ final class TensorboardServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function readTensorboardBlobData(ReadTensorboardBlobDataRequest $request, array $callOptions = []): ServerStream
-    {
+    public function readTensorboardBlobData(
+        ReadTensorboardBlobDataRequest $request,
+        array $callOptions = []
+    ): ServerStream {
         return $this->startApiCall('ReadTensorboardBlobData', $request, $callOptions);
     }
 
@@ -1043,8 +1086,10 @@ final class TensorboardServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function readTensorboardSize(ReadTensorboardSizeRequest $request, array $callOptions = []): ReadTensorboardSizeResponse
-    {
+    public function readTensorboardSize(
+        ReadTensorboardSizeRequest $request,
+        array $callOptions = []
+    ): ReadTensorboardSizeResponse {
         return $this->startApiCall('ReadTensorboardSize', $request, $callOptions)->wait();
     }
 
@@ -1074,8 +1119,10 @@ final class TensorboardServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function readTensorboardTimeSeriesData(ReadTensorboardTimeSeriesDataRequest $request, array $callOptions = []): ReadTensorboardTimeSeriesDataResponse
-    {
+    public function readTensorboardTimeSeriesData(
+        ReadTensorboardTimeSeriesDataRequest $request,
+        array $callOptions = []
+    ): ReadTensorboardTimeSeriesDataResponse {
         return $this->startApiCall('ReadTensorboardTimeSeriesData', $request, $callOptions)->wait();
     }
 
@@ -1101,8 +1148,10 @@ final class TensorboardServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function readTensorboardUsage(ReadTensorboardUsageRequest $request, array $callOptions = []): ReadTensorboardUsageResponse
-    {
+    public function readTensorboardUsage(
+        ReadTensorboardUsageRequest $request,
+        array $callOptions = []
+    ): ReadTensorboardUsageResponse {
         return $this->startApiCall('ReadTensorboardUsage', $request, $callOptions)->wait();
     }
 
@@ -1154,8 +1203,10 @@ final class TensorboardServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateTensorboardExperiment(UpdateTensorboardExperimentRequest $request, array $callOptions = []): TensorboardExperiment
-    {
+    public function updateTensorboardExperiment(
+        UpdateTensorboardExperimentRequest $request,
+        array $callOptions = []
+    ): TensorboardExperiment {
         return $this->startApiCall('UpdateTensorboardExperiment', $request, $callOptions)->wait();
     }
 
@@ -1208,8 +1259,10 @@ final class TensorboardServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateTensorboardTimeSeries(UpdateTensorboardTimeSeriesRequest $request, array $callOptions = []): TensorboardTimeSeries
-    {
+    public function updateTensorboardTimeSeries(
+        UpdateTensorboardTimeSeriesRequest $request,
+        array $callOptions = []
+    ): TensorboardTimeSeries {
         return $this->startApiCall('UpdateTensorboardTimeSeries', $request, $callOptions)->wait();
     }
 
@@ -1236,8 +1289,10 @@ final class TensorboardServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function writeTensorboardExperimentData(WriteTensorboardExperimentDataRequest $request, array $callOptions = []): WriteTensorboardExperimentDataResponse
-    {
+    public function writeTensorboardExperimentData(
+        WriteTensorboardExperimentDataRequest $request,
+        array $callOptions = []
+    ): WriteTensorboardExperimentDataResponse {
         return $this->startApiCall('WriteTensorboardExperimentData', $request, $callOptions)->wait();
     }
 
@@ -1264,8 +1319,10 @@ final class TensorboardServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function writeTensorboardRunData(WriteTensorboardRunDataRequest $request, array $callOptions = []): WriteTensorboardRunDataResponse
-    {
+    public function writeTensorboardRunData(
+        WriteTensorboardRunDataRequest $request,
+        array $callOptions = []
+    ): WriteTensorboardRunDataResponse {
         return $this->startApiCall('WriteTensorboardRunData', $request, $callOptions)->wait();
     }
 
@@ -1406,8 +1463,10 @@ final class TensorboardServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

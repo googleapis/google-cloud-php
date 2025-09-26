@@ -116,9 +116,7 @@ final class FeatureRegistryServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -200,8 +198,12 @@ final class FeatureRegistryServiceClient
      *
      * @return string The formatted entity_type resource.
      */
-    public static function entityTypeName(string $project, string $location, string $featurestore, string $entityType): string
-    {
+    public static function entityTypeName(
+        string $project,
+        string $location,
+        string $featurestore,
+        string $entityType
+    ): string {
         return self::getPathTemplate('entityType')->render([
             'project' => $project,
             'location' => $location,
@@ -222,8 +224,13 @@ final class FeatureRegistryServiceClient
      *
      * @return string The formatted feature resource.
      */
-    public static function featureName(string $project, string $location, string $featurestore, string $entityType, string $feature): string
-    {
+    public static function featureName(
+        string $project,
+        string $location,
+        string $featurestore,
+        string $entityType,
+        string $feature
+    ): string {
         return self::getPathTemplate('feature')->render([
             'project' => $project,
             'location' => $location,
@@ -280,8 +287,12 @@ final class FeatureRegistryServiceClient
      *
      * @return string The formatted project_location_feature_group_feature resource.
      */
-    public static function projectLocationFeatureGroupFeatureName(string $project, string $location, string $featureGroup, string $feature): string
-    {
+    public static function projectLocationFeatureGroupFeatureName(
+        string $project,
+        string $location,
+        string $featureGroup,
+        string $feature
+    ): string {
         return self::getPathTemplate('projectLocationFeatureGroupFeature')->render([
             'project' => $project,
             'location' => $location,
@@ -302,8 +313,13 @@ final class FeatureRegistryServiceClient
      *
      * @return string The formatted project_location_featurestore_entity_type_feature resource.
      */
-    public static function projectLocationFeaturestoreEntityTypeFeatureName(string $project, string $location, string $featurestore, string $entityType, string $feature): string
-    {
+    public static function projectLocationFeaturestoreEntityTypeFeatureName(
+        string $project,
+        string $location,
+        string $featurestore,
+        string $entityType,
+        string $feature
+    ): string {
         return self::getPathTemplate('projectLocationFeaturestoreEntityTypeFeature')->render([
             'project' => $project,
             'location' => $location,
@@ -857,8 +873,10 @@ final class FeatureRegistryServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

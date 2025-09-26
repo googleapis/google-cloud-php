@@ -137,9 +137,7 @@ final class ModelServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -276,8 +274,12 @@ final class ModelServiceClient
      *
      * @return string The formatted model_evaluation resource.
      */
-    public static function modelEvaluationName(string $project, string $location, string $model, string $evaluation): string
-    {
+    public static function modelEvaluationName(
+        string $project,
+        string $location,
+        string $model,
+        string $evaluation
+    ): string {
         return self::getPathTemplate('modelEvaluation')->render([
             'project' => $project,
             'location' => $location,
@@ -298,8 +300,13 @@ final class ModelServiceClient
      *
      * @return string The formatted model_evaluation_slice resource.
      */
-    public static function modelEvaluationSliceName(string $project, string $location, string $model, string $evaluation, string $slice): string
-    {
+    public static function modelEvaluationSliceName(
+        string $project,
+        string $location,
+        string $model,
+        string $evaluation,
+        string $slice
+    ): string {
         return self::getPathTemplate('modelEvaluationSlice')->render([
             'project' => $project,
             'location' => $location,
@@ -358,8 +365,12 @@ final class ModelServiceClient
      *
      * @return string The formatted project_location_publisher_model resource.
      */
-    public static function projectLocationPublisherModelName(string $project, string $location, string $publisher, string $model): string
-    {
+    public static function projectLocationPublisherModelName(
+        string $project,
+        string $location,
+        string $publisher,
+        string $model
+    ): string {
         return self::getPathTemplate('projectLocationPublisherModel')->render([
             'project' => $project,
             'location' => $location,
@@ -527,8 +538,10 @@ final class ModelServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function batchImportEvaluatedAnnotations(BatchImportEvaluatedAnnotationsRequest $request, array $callOptions = []): BatchImportEvaluatedAnnotationsResponse
-    {
+    public function batchImportEvaluatedAnnotations(
+        BatchImportEvaluatedAnnotationsRequest $request,
+        array $callOptions = []
+    ): BatchImportEvaluatedAnnotationsResponse {
         return $this->startApiCall('BatchImportEvaluatedAnnotations', $request, $callOptions)->wait();
     }
 
@@ -554,8 +567,10 @@ final class ModelServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function batchImportModelEvaluationSlices(BatchImportModelEvaluationSlicesRequest $request, array $callOptions = []): BatchImportModelEvaluationSlicesResponse
-    {
+    public function batchImportModelEvaluationSlices(
+        BatchImportModelEvaluationSlicesRequest $request,
+        array $callOptions = []
+    ): BatchImportModelEvaluationSlicesResponse {
         return $this->startApiCall('BatchImportModelEvaluationSlices', $request, $callOptions)->wait();
     }
 
@@ -757,8 +772,10 @@ final class ModelServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getModelEvaluationSlice(GetModelEvaluationSliceRequest $request, array $callOptions = []): ModelEvaluationSlice
-    {
+    public function getModelEvaluationSlice(
+        GetModelEvaluationSliceRequest $request,
+        array $callOptions = []
+    ): ModelEvaluationSlice {
         return $this->startApiCall('GetModelEvaluationSlice', $request, $callOptions)->wait();
     }
 
@@ -783,8 +800,10 @@ final class ModelServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function importModelEvaluation(ImportModelEvaluationRequest $request, array $callOptions = []): ModelEvaluation
-    {
+    public function importModelEvaluation(
+        ImportModelEvaluationRequest $request,
+        array $callOptions = []
+    ): ModelEvaluation {
         return $this->startApiCall('ImportModelEvaluation', $request, $callOptions)->wait();
     }
 
@@ -810,8 +829,10 @@ final class ModelServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listModelEvaluationSlices(ListModelEvaluationSlicesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listModelEvaluationSlices(
+        ListModelEvaluationSlicesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListModelEvaluationSlices', $request, $callOptions);
     }
 
@@ -836,8 +857,10 @@ final class ModelServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listModelEvaluations(ListModelEvaluationsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listModelEvaluations(
+        ListModelEvaluationsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListModelEvaluations', $request, $callOptions);
     }
 
@@ -863,8 +886,10 @@ final class ModelServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listModelVersionCheckpoints(ListModelVersionCheckpointsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listModelVersionCheckpoints(
+        ListModelVersionCheckpointsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListModelVersionCheckpoints', $request, $callOptions);
     }
 
@@ -968,8 +993,10 @@ final class ModelServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateExplanationDataset(UpdateExplanationDatasetRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function updateExplanationDataset(
+        UpdateExplanationDatasetRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UpdateExplanationDataset', $request, $callOptions)->wait();
     }
 
@@ -1161,8 +1188,10 @@ final class ModelServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

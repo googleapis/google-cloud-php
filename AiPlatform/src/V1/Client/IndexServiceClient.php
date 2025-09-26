@@ -107,9 +107,7 @@ final class IndexServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -475,8 +473,10 @@ final class IndexServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function removeDatapoints(RemoveDatapointsRequest $request, array $callOptions = []): RemoveDatapointsResponse
-    {
+    public function removeDatapoints(
+        RemoveDatapointsRequest $request,
+        array $callOptions = []
+    ): RemoveDatapointsResponse {
         return $this->startApiCall('RemoveDatapoints', $request, $callOptions)->wait();
     }
 
@@ -527,8 +527,10 @@ final class IndexServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function upsertDatapoints(UpsertDatapointsRequest $request, array $callOptions = []): UpsertDatapointsResponse
-    {
+    public function upsertDatapoints(
+        UpsertDatapointsRequest $request,
+        array $callOptions = []
+    ): UpsertDatapointsResponse {
         return $this->startApiCall('UpsertDatapoints', $request, $callOptions)->wait();
     }
 
@@ -668,8 +670,10 @@ final class IndexServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

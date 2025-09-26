@@ -96,9 +96,7 @@ final class VertexRagServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private static function getClientDefaults()
     {
@@ -315,8 +313,10 @@ final class VertexRagServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function corroborateContent(CorroborateContentRequest $request, array $callOptions = []): CorroborateContentResponse
-    {
+    public function corroborateContent(
+        CorroborateContentRequest $request,
+        array $callOptions = []
+    ): CorroborateContentResponse {
         return $this->startApiCall('CorroborateContent', $request, $callOptions)->wait();
     }
 
@@ -341,8 +341,10 @@ final class VertexRagServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function retrieveContexts(RetrieveContextsRequest $request, array $callOptions = []): RetrieveContextsResponse
-    {
+    public function retrieveContexts(
+        RetrieveContextsRequest $request,
+        array $callOptions = []
+    ): RetrieveContextsResponse {
         return $this->startApiCall('RetrieveContexts', $request, $callOptions)->wait();
     }
 
@@ -482,8 +484,10 @@ final class VertexRagServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

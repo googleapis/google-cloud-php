@@ -96,9 +96,7 @@ final class MigrationServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -399,8 +397,10 @@ final class MigrationServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function batchMigrateResources(BatchMigrateResourcesRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function batchMigrateResources(
+        BatchMigrateResourcesRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('BatchMigrateResources', $request, $callOptions)->wait();
     }
 
@@ -428,8 +428,10 @@ final class MigrationServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function searchMigratableResources(SearchMigratableResourcesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function searchMigratableResources(
+        SearchMigratableResourcesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('SearchMigratableResources', $request, $callOptions);
     }
 
@@ -569,8 +571,10 @@ final class MigrationServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

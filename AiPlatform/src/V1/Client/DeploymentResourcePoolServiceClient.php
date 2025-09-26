@@ -103,9 +103,7 @@ final class DeploymentResourcePoolServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -122,7 +120,8 @@ final class DeploymentResourcePoolServiceClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/deployment_resource_pool_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/deployment_resource_pool_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -186,8 +185,11 @@ final class DeploymentResourcePoolServiceClient
      *
      * @return string The formatted deployment_resource_pool resource.
      */
-    public static function deploymentResourcePoolName(string $project, string $location, string $deploymentResourcePool): string
-    {
+    public static function deploymentResourcePoolName(
+        string $project,
+        string $location,
+        string $deploymentResourcePool
+    ): string {
         return self::getPathTemplate('deploymentResourcePool')->render([
             'project' => $project,
             'location' => $location,
@@ -382,8 +384,10 @@ final class DeploymentResourcePoolServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createDeploymentResourcePool(CreateDeploymentResourcePoolRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createDeploymentResourcePool(
+        CreateDeploymentResourcePoolRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateDeploymentResourcePool', $request, $callOptions)->wait();
     }
 
@@ -410,8 +414,10 @@ final class DeploymentResourcePoolServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteDeploymentResourcePool(DeleteDeploymentResourcePoolRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteDeploymentResourcePool(
+        DeleteDeploymentResourcePoolRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteDeploymentResourcePool', $request, $callOptions)->wait();
     }
 
@@ -437,8 +443,10 @@ final class DeploymentResourcePoolServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getDeploymentResourcePool(GetDeploymentResourcePoolRequest $request, array $callOptions = []): DeploymentResourcePool
-    {
+    public function getDeploymentResourcePool(
+        GetDeploymentResourcePoolRequest $request,
+        array $callOptions = []
+    ): DeploymentResourcePool {
         return $this->startApiCall('GetDeploymentResourcePool', $request, $callOptions)->wait();
     }
 
@@ -464,8 +472,10 @@ final class DeploymentResourcePoolServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listDeploymentResourcePools(ListDeploymentResourcePoolsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listDeploymentResourcePools(
+        ListDeploymentResourcePoolsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListDeploymentResourcePools', $request, $callOptions);
     }
 
@@ -519,8 +529,10 @@ final class DeploymentResourcePoolServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateDeploymentResourcePool(UpdateDeploymentResourcePoolRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function updateDeploymentResourcePool(
+        UpdateDeploymentResourcePoolRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UpdateDeploymentResourcePool', $request, $callOptions)->wait();
     }
 
@@ -665,8 +677,10 @@ final class DeploymentResourcePoolServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

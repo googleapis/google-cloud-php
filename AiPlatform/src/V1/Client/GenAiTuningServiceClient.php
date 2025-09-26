@@ -101,9 +101,7 @@ final class GenAiTuningServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -185,8 +183,12 @@ final class GenAiTuningServiceClient
      *
      * @return string The formatted context resource.
      */
-    public static function contextName(string $project, string $location, string $metadataStore, string $context): string
-    {
+    public static function contextName(
+        string $project,
+        string $location,
+        string $metadataStore,
+        string $context
+    ): string {
         return self::getPathTemplate('context')->render([
             'project' => $project,
             'location' => $location,
@@ -299,8 +301,12 @@ final class GenAiTuningServiceClient
      *
      * @return string The formatted project_location_publisher_model resource.
      */
-    public static function projectLocationPublisherModelName(string $project, string $location, string $publisher, string $model): string
-    {
+    public static function projectLocationPublisherModelName(
+        string $project,
+        string $location,
+        string $publisher,
+        string $model
+    ): string {
         return self::getPathTemplate('projectLocationPublisherModel')->render([
             'project' => $project,
             'location' => $location,
@@ -722,8 +728,10 @@ final class GenAiTuningServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

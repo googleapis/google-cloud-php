@@ -90,9 +90,7 @@ final class DataFoundryServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private static function getClientDefaults()
     {
@@ -261,8 +259,10 @@ final class DataFoundryServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function generateSyntheticData(GenerateSyntheticDataRequest $request, array $callOptions = []): GenerateSyntheticDataResponse
-    {
+    public function generateSyntheticData(
+        GenerateSyntheticDataRequest $request,
+        array $callOptions = []
+    ): GenerateSyntheticDataResponse {
         return $this->startApiCall('GenerateSyntheticData', $request, $callOptions)->wait();
     }
 
@@ -403,8 +403,10 @@ final class DataFoundryServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }
