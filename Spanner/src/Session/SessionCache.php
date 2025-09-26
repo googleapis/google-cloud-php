@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Spanner\Session;
 
+use DateTimeImmutable;
 use Google\Cloud\Core\SysvTrait;
 use Google\Cloud\Core\Lock\FlockLock;
 use Google\Cloud\Core\Lock\LockInterface;
@@ -37,7 +38,7 @@ class SessionCache
 {
     use SysvTrait;
 
-    private const CACHE_KEY_TEMPLATE = 'cache-session-pool.%s.%s.%s';
+    private const CACHE_KEY_TEMPLATE = 'cae-session-pool.%s.%s.%s.%s';
     private const SESSION_LIFETIME_SECONDS = 28 * 24 * 3600; // 28 days
     private const SESSION_EXPIRATION_SECONDS = 7 * 24 * 3600; // 7 days;
 
@@ -51,14 +52,15 @@ class SessionCache
         private CacheItemPoolInterface $cacheItemPool,
         private Database $database,
         protected SessionProto|null $session = null,
-        LockInterface|null $lock = null
+        LockInterface|null $lock = null,
     ) {
         $identity = $database->identity();
         $this->cacheKey = sprintf(
             self::CACHE_KEY_TEMPLATE,
             $identity['projectId'],
             $identity['instance'],
-            $identity['database']
+            $identity['database'],
+            $database->role(),
         );
         $this->lock = $lock ?? $this->getDefaultLock($this->cacheKey);
     }
@@ -77,15 +79,18 @@ class SessionCache
 
     private function ensureValidSession(): void
     {
-        if (!$this->session || $this->isExpired($this->session)) {
+        if (!$this->session || $this->isExpired()) {
             // Acquire a new multiplex session from the pool
             $this->session = $this->lock->synchronize(function () {
                 $item = $this->cacheItemPool->getItem($this->cacheKey);
-                if (!$session = $item->get()) {
-                    $sessionCache = $this->database->createSession();
-                    $session = $sessionCache->session;
-                    $expiresAt = $session->getCreateTime()->getSeconds() + self::SESSION_EXPIRATION_SECONDS;
-                    $item->set($session);
+                if ($sessionData = $item->get()) {
+                    $session = new SessionProto();
+                    $session->mergeFromString($sessionData);
+                } else {
+                    $session = $this->database->createSession();
+                    $expiresAtSeconds = $session->getCreateTime()->getSeconds() + self::SESSION_EXPIRATION_SECONDS;
+                    $expiresAt = DateTimeImmutable::createFromFormat('U', (string) $expiresAtSeconds);
+                    $item->set($session->serializeToString());
                     $item->expiresAt($expiresAt);
                     $this->cacheItemPool->save($item);
                 }
@@ -95,7 +100,7 @@ class SessionCache
         }
     }
 
-    private function isExpired(SessionProto $session): bool
+    private function isExpired(): bool
     {
         $createdTimeSeconds = $this->session->getCreateTime()->getSeconds();
         return time() >=  ($createdTimeSeconds + self::SESSION_EXPIRATION_SECONDS);

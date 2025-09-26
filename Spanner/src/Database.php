@@ -197,6 +197,9 @@ class Database
             ? new SysVCacheItemPool()
             : new FilesystemCacheItemPool(sys_get_temp_dir() . '/spanner_cache/');
 
+        //$this->session = new SessionCache($this->cacheItemPool, $this);
+
+
         $this->directedReadOptions = $instance->directedReadOptions();
     }
 
@@ -303,6 +306,21 @@ class Database
     public function name(): string
     {
         return $this->name;
+    }
+
+    /**
+     * Return the fully-qualified database name.
+     *
+     * Example:
+     * ```
+     * $name = $database->name();
+     * ```
+     *
+     * @return string
+     */
+    public function role(): string
+    {
+        return $this->databaseRole;
     }
 
     /**
@@ -2057,7 +2075,7 @@ class Database
      * @param array $options [optional] Configuration options.
      * @return SessionCache
      */
-    public function createSession(array $options = []): SessionCache
+    public function createSession(array $options = []): Session
     {
         [$session, $callOptions] = $this->validateOptions(
             $options,
@@ -2078,7 +2096,7 @@ class Database
             'route-to-leader' => $this->routeToLeader
         ]);
 
-        return new SessionCache($this->cacheItemPool, $this, $session);
+        return $session;
     }
 
 
@@ -2311,11 +2329,11 @@ class Database
      * @internal
      * @return SessionCache
      */
-    public function session(array $options = []): SessionCache
+    public function session(): SessionCache
     {
         // Sessions are used by BatchClient to create a BatchSnapshot, so
-        // this method must be public.
-        return $this->session = $this->session ?? $this->createSession($options);
+	    // this method must be public.
+	return $this->selectSession();
     }
 
     /**
@@ -2327,7 +2345,7 @@ class Database
      */
     private function selectSession(): SessionCache
     {
-        return $this->session = $this->session ?? $this->createSession();
+        return $this->session = $this->session ?? new SessionCache($this->cacheItemPool, $this, $this->createSession());
     }
 
     /**
