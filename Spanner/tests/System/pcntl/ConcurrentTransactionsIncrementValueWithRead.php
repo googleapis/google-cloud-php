@@ -31,7 +31,7 @@ $callable = function ($dbName, KeySet $keyset, array $columns, $tableName) use (
 };
 
 $delay = 2000;
-$retryLimit = 3;
+$retryLimit = 100;
 if ($childPID1 = pcntl_fork()) {
     usleep($delay);
 

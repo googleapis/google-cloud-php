@@ -441,6 +441,8 @@ class TransactionTest extends SpannerTestCase
             if (!$this->isEmulatorUsed()) {
                 $this->assertNotNull($res->transaction());
                 $this->assertEquals($res->transaction()->id(), $t->id());
+            } else {
+                usleep(1000000);
             }
             $this->assertEquals($t->id(), $transactionId);
 
@@ -452,6 +454,8 @@ class TransactionTest extends SpannerTestCase
             if (!$this->isEmulatorUsed()) {
                 $this->assertNotNull($res->transaction());
                 $this->assertEquals($res->transaction()->id(), $t->id());
+            } else {
+                usleep(1000000);
             }
             $this->assertEquals($t->id(), $transactionId);
 
