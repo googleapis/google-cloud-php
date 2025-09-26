@@ -20,13 +20,13 @@ class PropertyOrder extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.datastore.v1.PropertyReference property = 1;</code>
      */
-    private $property = null;
+    protected $property = null;
     /**
      * The direction to order by. Defaults to `ASCENDING`.
      *
      * Generated from protobuf field <code>.google.datastore.v1.PropertyOrder.Direction direction = 2;</code>
      */
-    private $direction = 0;
+    protected $direction = 0;
 
     /**
      * Constructor.

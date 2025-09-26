@@ -20,7 +20,7 @@ class RollbackRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project_id = 8 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
     /**
      * The ID of the database against which to make the request.
      * '(default)' is not allowed; please use empty string '' to refer the default
@@ -28,14 +28,14 @@ class RollbackRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string database_id = 9;</code>
      */
-    private $database_id = '';
+    protected $database_id = '';
     /**
      * Required. The transaction identifier, returned by a call to
      * [Datastore.BeginTransaction][google.datastore.v1.Datastore.BeginTransaction].
      *
      * Generated from protobuf field <code>bytes transaction = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $transaction = '';
+    protected $transaction = '';
 
     /**
      * @param string $projectId   Required. The ID of the project against which to make the request.

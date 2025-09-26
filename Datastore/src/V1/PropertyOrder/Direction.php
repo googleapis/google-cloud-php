@@ -59,6 +59,4 @@ class Direction
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Direction::class, \Google\Cloud\Datastore\V1\PropertyOrder_Direction::class);
 

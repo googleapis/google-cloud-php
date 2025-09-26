@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -64,7 +64,9 @@ class DatastoreClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return DatastoreClient */
@@ -90,9 +92,7 @@ class DatastoreClientTest extends GeneratedTest
         // Mock request
         $projectId = 'projectId-1969970175';
         $keys = [];
-        $request = (new AllocateIdsRequest())
-            ->setProjectId($projectId)
-            ->setKeys($keys);
+        $request = (new AllocateIdsRequest())->setProjectId($projectId)->setKeys($keys);
         $response = $gapicClient->allocateIds($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -118,19 +118,20 @@ class DatastoreClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $projectId = 'projectId-1969970175';
         $keys = [];
-        $request = (new AllocateIdsRequest())
-            ->setProjectId($projectId)
-            ->setKeys($keys);
+        $request = (new AllocateIdsRequest())->setProjectId($projectId)->setKeys($keys);
         try {
             $gapicClient->allocateIds($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -159,8 +160,7 @@ class DatastoreClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $projectId = 'projectId-1969970175';
-        $request = (new BeginTransactionRequest())
-            ->setProjectId($projectId);
+        $request = (new BeginTransactionRequest())->setProjectId($projectId);
         $response = $gapicClient->beginTransaction($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -184,17 +184,19 @@ class DatastoreClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $projectId = 'projectId-1969970175';
-        $request = (new BeginTransactionRequest())
-            ->setProjectId($projectId);
+        $request = (new BeginTransactionRequest())->setProjectId($projectId);
         try {
             $gapicClient->beginTransaction($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -256,12 +258,15 @@ class DatastoreClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -300,9 +305,7 @@ class DatastoreClientTest extends GeneratedTest
         // Mock request
         $projectId = 'projectId-1969970175';
         $keys = [];
-        $request = (new LookupRequest())
-            ->setProjectId($projectId)
-            ->setKeys($keys);
+        $request = (new LookupRequest())->setProjectId($projectId)->setKeys($keys);
         $response = $gapicClient->lookup($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -328,19 +331,20 @@ class DatastoreClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $projectId = 'projectId-1969970175';
         $keys = [];
-        $request = (new LookupRequest())
-            ->setProjectId($projectId)
-            ->setKeys($keys);
+        $request = (new LookupRequest())->setProjectId($projectId)->setKeys($keys);
         try {
             $gapicClient->lookup($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -368,9 +372,7 @@ class DatastoreClientTest extends GeneratedTest
         // Mock request
         $projectId = 'projectId-1969970175';
         $keys = [];
-        $request = (new ReserveIdsRequest())
-            ->setProjectId($projectId)
-            ->setKeys($keys);
+        $request = (new ReserveIdsRequest())->setProjectId($projectId)->setKeys($keys);
         $response = $gapicClient->reserveIds($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -396,19 +398,20 @@ class DatastoreClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $projectId = 'projectId-1969970175';
         $keys = [];
-        $request = (new ReserveIdsRequest())
-            ->setProjectId($projectId)
-            ->setKeys($keys);
+        $request = (new ReserveIdsRequest())->setProjectId($projectId)->setKeys($keys);
         try {
             $gapicClient->reserveIds($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -436,9 +439,7 @@ class DatastoreClientTest extends GeneratedTest
         // Mock request
         $projectId = 'projectId-1969970175';
         $transaction = '-34';
-        $request = (new RollbackRequest())
-            ->setProjectId($projectId)
-            ->setTransaction($transaction);
+        $request = (new RollbackRequest())->setProjectId($projectId)->setTransaction($transaction);
         $response = $gapicClient->rollback($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -464,19 +465,20 @@ class DatastoreClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $projectId = 'projectId-1969970175';
         $transaction = '-34';
-        $request = (new RollbackRequest())
-            ->setProjectId($projectId)
-            ->setTransaction($transaction);
+        $request = (new RollbackRequest())->setProjectId($projectId)->setTransaction($transaction);
         try {
             $gapicClient->rollback($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -505,8 +507,7 @@ class DatastoreClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $projectId = 'projectId-1969970175';
-        $request = (new RunAggregationQueryRequest())
-            ->setProjectId($projectId);
+        $request = (new RunAggregationQueryRequest())->setProjectId($projectId);
         $response = $gapicClient->runAggregationQuery($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -530,17 +531,19 @@ class DatastoreClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $projectId = 'projectId-1969970175';
-        $request = (new RunAggregationQueryRequest())
-            ->setProjectId($projectId);
+        $request = (new RunAggregationQueryRequest())->setProjectId($projectId);
         try {
             $gapicClient->runAggregationQuery($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -570,9 +573,7 @@ class DatastoreClientTest extends GeneratedTest
         // Mock request
         $projectId = 'projectId-1969970175';
         $partitionId = new PartitionId();
-        $request = (new RunQueryRequest())
-            ->setProjectId($projectId)
-            ->setPartitionId($partitionId);
+        $request = (new RunQueryRequest())->setProjectId($projectId)->setPartitionId($partitionId);
         $response = $gapicClient->runQuery($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -598,19 +599,20 @@ class DatastoreClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $projectId = 'projectId-1969970175';
         $partitionId = new PartitionId();
-        $request = (new RunQueryRequest())
-            ->setProjectId($projectId)
-            ->setPartitionId($partitionId);
+        $request = (new RunQueryRequest())->setProjectId($projectId)->setPartitionId($partitionId);
         try {
             $gapicClient->runQuery($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -638,9 +640,7 @@ class DatastoreClientTest extends GeneratedTest
         // Mock request
         $projectId = 'projectId-1969970175';
         $keys = [];
-        $request = (new AllocateIdsRequest())
-            ->setProjectId($projectId)
-            ->setKeys($keys);
+        $request = (new AllocateIdsRequest())->setProjectId($projectId)->setKeys($keys);
         $response = $gapicClient->allocateIdsAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();

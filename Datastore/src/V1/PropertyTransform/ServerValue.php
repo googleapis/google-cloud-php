@@ -54,6 +54,4 @@ class ServerValue
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ServerValue::class, \Google\Cloud\Datastore\V1\PropertyTransform_ServerValue::class);
 

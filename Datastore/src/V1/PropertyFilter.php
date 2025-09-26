@@ -20,19 +20,19 @@ class PropertyFilter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.datastore.v1.PropertyReference property = 1;</code>
      */
-    private $property = null;
+    protected $property = null;
     /**
      * The operator to filter by.
      *
      * Generated from protobuf field <code>.google.datastore.v1.PropertyFilter.Operator op = 2;</code>
      */
-    private $op = 0;
+    protected $op = 0;
     /**
      * The value to compare the property to.
      *
      * Generated from protobuf field <code>.google.datastore.v1.Value value = 3;</code>
      */
-    private $value = null;
+    protected $value = null;
 
     /**
      * Constructor.
