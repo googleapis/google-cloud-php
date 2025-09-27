@@ -85,6 +85,7 @@ class InterconnectRemoteLocationsClientTest extends GeneratedTest
         $lacp = 'lacp3313826';
         $maxLagSize100Gbps = 828522571;
         $maxLagSize10Gbps = 294007573;
+        $maxLagSize400Gbps = 104941138;
         $name = 'name3373707';
         $peeringdbFacilityId = 'peeringdbFacilityId-303818';
         $remoteService = 'remoteService-1218658372';
@@ -103,6 +104,7 @@ class InterconnectRemoteLocationsClientTest extends GeneratedTest
         $expectedResponse->setLacp($lacp);
         $expectedResponse->setMaxLagSize100Gbps($maxLagSize100Gbps);
         $expectedResponse->setMaxLagSize10Gbps($maxLagSize10Gbps);
+        $expectedResponse->setMaxLagSize400Gbps($maxLagSize400Gbps);
         $expectedResponse->setName($name);
         $expectedResponse->setPeeringdbFacilityId($peeringdbFacilityId);
         $expectedResponse->setRemoteService($remoteService);
@@ -267,6 +269,7 @@ class InterconnectRemoteLocationsClientTest extends GeneratedTest
         $lacp = 'lacp3313826';
         $maxLagSize100Gbps = 828522571;
         $maxLagSize10Gbps = 294007573;
+        $maxLagSize400Gbps = 104941138;
         $name = 'name3373707';
         $peeringdbFacilityId = 'peeringdbFacilityId-303818';
         $remoteService = 'remoteService-1218658372';
@@ -285,6 +288,7 @@ class InterconnectRemoteLocationsClientTest extends GeneratedTest
         $expectedResponse->setLacp($lacp);
         $expectedResponse->setMaxLagSize100Gbps($maxLagSize100Gbps);
         $expectedResponse->setMaxLagSize10Gbps($maxLagSize10Gbps);
+        $expectedResponse->setMaxLagSize400Gbps($maxLagSize400Gbps);
         $expectedResponse->setName($name);
         $expectedResponse->setPeeringdbFacilityId($peeringdbFacilityId);
         $expectedResponse->setRemoteService($remoteService);
