@@ -57,6 +57,13 @@ class ListSubnetworksRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional bool return_partial_success = 517198390;</code>
      */
     protected $return_partial_success = null;
+    /**
+     * Defines the extra views returned back in the subnetwork resource. Supported values: - WITH_UTILIZATION: Utilization data is included in the response.
+     * Check the Views enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string views = 112204398;</code>
+     */
+    protected $views = null;
 
     /**
      * @param string $project Project ID for this request.
@@ -93,6 +100,9 @@ class ListSubnetworksRequest extends \Google\Protobuf\Internal\Message
      *           Name of the region scoping this request.
      *     @type bool $return_partial_success
      *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false. For example, when partial success behavior is enabled, aggregatedList for a single zone scope either returns all resources in the zone or no resources, with an error code.
+     *     @type string $views
+     *           Defines the extra views returned back in the subnetwork resource. Supported values: - WITH_UTILIZATION: Utilization data is included in the response.
+     *           Check the Views enum for the list of possible values.
      * }
      */
     public function __construct($data = NULL) {
@@ -328,6 +338,44 @@ class ListSubnetworksRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->return_partial_success = $var;
+
+        return $this;
+    }
+
+    /**
+     * Defines the extra views returned back in the subnetwork resource. Supported values: - WITH_UTILIZATION: Utilization data is included in the response.
+     * Check the Views enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string views = 112204398;</code>
+     * @return string
+     */
+    public function getViews()
+    {
+        return isset($this->views) ? $this->views : '';
+    }
+
+    public function hasViews()
+    {
+        return isset($this->views);
+    }
+
+    public function clearViews()
+    {
+        unset($this->views);
+    }
+
+    /**
+     * Defines the extra views returned back in the subnetwork resource. Supported values: - WITH_UTILIZATION: Utilization data is included in the response.
+     * Check the Views enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string views = 112204398;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setViews($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->views = $var;
 
         return $this;
     }

@@ -202,6 +202,12 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string system_reserved_internal_ipv6_ranges = 432294995;</code>
      */
     private $system_reserved_internal_ipv6_ranges;
+    /**
+     * Output only. [Output Only] The current IP utilization of all subnetwork ranges. Contains the total number of allocated and free IPs in each range.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SubnetworkUtilizationDetails utilization_details = 125404453;</code>
+     */
+    protected $utilization_details = null;
 
     /**
      * Constructor.
@@ -276,6 +282,8 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
      *           Output only. [Output Only] The array of external IPv6 network ranges reserved from the subnetwork's external IPv6 range for system use.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $system_reserved_internal_ipv6_ranges
      *           Output only. [Output Only] The array of internal IPv6 network ranges reserved from the subnetwork's internal IPv6 range for system use.
+     *     @type \Google\Cloud\Compute\V1\SubnetworkUtilizationDetails $utilization_details
+     *           Output only. [Output Only] The current IP utilization of all subnetwork ranges. Contains the total number of allocated and free IPs in each range.
      * }
      */
     public function __construct($data = NULL) {
@@ -1343,6 +1351,42 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->system_reserved_internal_ipv6_ranges = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. [Output Only] The current IP utilization of all subnetwork ranges. Contains the total number of allocated and free IPs in each range.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SubnetworkUtilizationDetails utilization_details = 125404453;</code>
+     * @return \Google\Cloud\Compute\V1\SubnetworkUtilizationDetails|null
+     */
+    public function getUtilizationDetails()
+    {
+        return $this->utilization_details;
+    }
+
+    public function hasUtilizationDetails()
+    {
+        return isset($this->utilization_details);
+    }
+
+    public function clearUtilizationDetails()
+    {
+        unset($this->utilization_details);
+    }
+
+    /**
+     * Output only. [Output Only] The current IP utilization of all subnetwork ranges. Contains the total number of allocated and free IPs in each range.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SubnetworkUtilizationDetails utilization_details = 125404453;</code>
+     * @param \Google\Cloud\Compute\V1\SubnetworkUtilizationDetails $var
+     * @return $this
+     */
+    public function setUtilizationDetails($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\SubnetworkUtilizationDetails::class);
+        $this->utilization_details = $var;
 
         return $this;
     }
