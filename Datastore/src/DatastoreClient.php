@@ -791,7 +791,7 @@ class DatastoreClient
             'allowOverwrite' => false
         ];
 
-        $this->operation->checkOverwrite($entities, $options['allowOverwrite']);
+        $this->operation->checkOverwrite($entities, $this->pluck('allowOverwrite', $options));
         $mutations = [];
         foreach ($entities as $entity) {
             $mutations[] = $this->operation->mutation('update', $entity, Entity::class);
@@ -955,7 +955,7 @@ class DatastoreClient
 
         $mutations = [];
         foreach ($keys as $key) {
-            $mutations[] = $this->operation->mutation('delete', $key, Key::class, $options['baseVersion']);
+            $mutations[] = $this->operation->mutation('delete', $key, Key::class, $this->pluck('baseVersion', $options, false));
         }
 
         return $this->operation->commit($mutations, $options);
