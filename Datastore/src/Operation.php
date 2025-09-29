@@ -17,7 +17,9 @@
 
 namespace Google\Cloud\Datastore;
 
+use Google\ApiCore\Options\CallOptions;
 use Google\ApiCore\Serializer;
+use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\TimestampTrait;
 use Google\Cloud\Core\ValidateTrait;
@@ -62,6 +64,7 @@ class Operation
     use DatastoreTrait;
     use ValidateTrait;
     use TimestampTrait;
+    use ApiHelperTrait;
 
     /**
      * @var DatastoreClient
@@ -682,30 +685,28 @@ class Operation
     public function commit(array $mutations, array $options = [])
     {
         $options += [
-            'transaction' => null,
             'databaseId' => $this->databaseId,
+            'projectId' => $this->projectId,
+            'mutations' => $mutations,
         ];
 
-        $transactionMode = isset($options['transaction']) ? Mode::TRANSACTIONAL : Mode::NON_TRANSACTIONAL;
+        /**
+         * @var CallOptions $callOptions
+         * @var CommitRequest $commitRequest
+        */
+        [$commitRequest, $callOptions] = $this->validateOptions(
+            $options,
+            new CommitRequest(),
+            CallOptions::class,
+        );
 
-        $protoMutations = [];
-        foreach ($mutations as $mutation) {
-            $protoMutation = new Mutation();
-            $protoMutation->mergeFromJsonString(json_encode($mutation));
-            $protoMutations[] = $protoMutation;
-        }
+        $commitRequest->setMode(
+            empty($commitRequest->getTransaction())
+            ? MODE::NON_TRANSACTIONAL
+            : MODE::TRANSACTIONAL
+        );
 
-        $commitRequest = (new CommitRequest())
-            ->setMutations($protoMutations)
-            ->setDatabaseId($options['databaseId'])
-            ->setProjectId($this->projectId)
-            ->setMode($transactionMode);
-
-        if ($transactionMode === Mode::TRANSACTIONAL) {
-            $commitRequest->setTransaction(base64_decode($options['transaction']));
-        }
-
-        $commitResponse = $this->gapicClient->commit($commitRequest, $options);
+        $commitResponse = $this->gapicClient->commit($commitRequest, $callOptions);
 
         return $this->serializer->encodeMessage($commitResponse);
     }
