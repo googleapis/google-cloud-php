@@ -17,19 +17,18 @@
 
 namespace Google\Cloud\Core\Batch;
 
-use Opis\Closure\SerializableClosure;
+use Opis\Closure;
 
 /**
  * A closure serializer utilizing
  * [Opis Closure Library](https://github.com/opis/closure).
  *
- * @deprecated use OpisClosureSerializerV4
  * @experimental The experimental flag means that while we believe this method
  *      or class is ready for use, it may change before release in backwards-
  *      incompatible ways. Please use with caution, and test thoroughly when
  *      upgrading.
  */
-class OpisClosureSerializer implements ClosureSerializerInterface
+class OpisClosureSerializerV4 implements ClosureSerializerInterface
 {
     /**
      * Recursively serializes closures.
@@ -38,9 +37,7 @@ class OpisClosureSerializer implements ClosureSerializerInterface
      */
     public function wrapClosures(&$data)
     {
-        SerializableClosure::enterContext();
-        SerializableClosure::wrapClosures($data);
-        SerializableClosure::exitContext();
+        $data = Closure\serialize($data);
     }
 
     /**
@@ -50,8 +47,6 @@ class OpisClosureSerializer implements ClosureSerializerInterface
      */
     public function unwrapClosures(&$data)
     {
-        SerializableClosure::enterContext();
-        SerializableClosure::unwrapClosures($data);
-        SerializableClosure::exitContext();
+        $data = Closure\unserialize($data);
     }
 }
