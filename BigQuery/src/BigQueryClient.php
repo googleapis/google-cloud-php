@@ -93,12 +93,50 @@ class BigQueryClient
      *           fetcher instance.
      *     @type callable $httpHandler A handler used to deliver Psr7 requests.
      *           Only valid for requests sent over REST.
-     *     @type array $keyFile The contents of the service account credentials
-     *           .json file retrieved from the Google Developer's Console.
-     *           Ex: `json_decode(file_get_contents($path), true)`.
-     *     @type string $keyFilePath The full path to your service account
-     *           credentials .json file retrieved from the Google Developers
-     *           Console.
+     *     @type array $keyFile [DEPRECATED]
+     *           @deprecated This option is being deprecated because of a potential security risk.
+     *           This option does not validate the credential configuration. The security
+     *           risk occurs when a credential configuration is accepted from a source
+     *           that is not under your control and used without validation on your side.
+     *           If you know that you will be loading credential configurations of a
+     *           specific type, it is recommended to create the credentials directly and
+     *           configure them using the `credentialsFetcher` option instead.
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           $credentialsFetcher = new ServiceAccountCredentials($scopes, $json);
+     *           $creds = new BigQueryClient(['credentialsFetcher' => $creds]);
+     *           ```
+     *           This will ensure that an unexpected credential type with potential for
+     *           malicious intent is not loaded unintentionally. You might still have to do
+     *           validation for certain credential types.
+     *           If you are loading your credential configuration from an untrusted source and have
+     *           not mitigated the risks (e.g. by validating the configuration yourself), make
+     *           these changes as soon as possible to prevent security risks to your environment.
+     *           Regardless of the method used, it is always your responsibility to validate
+     *           configurations received from external sources.
+     *           @see https://cloud.google.com/docs/authentication/external/externally-sourced-credentials
+    *     @type string $keyFilePath [DEPRECATED]
+     *           @deprecated This option is being deprecated because of a potential security risk.
+     *           This option does not validate the credential configuration. The security
+     *           risk occurs when a credential configuration is accepted from a source
+     *           that is not under your control and used without validation on your side.
+     *           If you know that you will be loading credential configurations of a
+     *           specific type, it is recommended to create the credentials directly and
+     *           configure them using the `credentialsFetcher` option instead.
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           $credentialsFetcher = new ServiceAccountCredentials($scopes, $json);
+     *           $creds = new BigQueryClient(['credentialsFetcher' => $creds]);
+     *           ```
+     *           This will ensure that an unexpected credential type with potential for
+     *           malicious intent is not loaded unintentionally. You might still have to do
+     *           validation for certain credential types.
+     *           If you are loading your credential configuration from an untrusted source and have
+     *           not mitigated the risks (e.g. by validating the configuration yourself), make
+     *           these changes as soon as possible to prevent security risks to your environment.
+     *           Regardless of the method used, it is always your responsibility to validate
+     *           configurations received from external sources.
+     *           @see https://cloud.google.com/docs/authentication/external/externally-sourced-credentials
      *     @type float $requestTimeout Seconds to wait before timing out the
      *           request. **Defaults to** `0` with REST and `60` with gRPC.
      *     @type int $retries Number of retries for a failed request. **Defaults

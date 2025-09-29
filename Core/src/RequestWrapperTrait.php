@@ -84,9 +84,7 @@ trait RequestWrapperTrait
      *     @type array $authCacheOptions Cache configuration options.
      *     @type FetchAuthTokenInterface $credentialsFetcher A credentials
      *           fetcher instance.
-     *     @type array $keyFile The contents of the service account credentials
-     *           .json file retrieved from the Google Developer's Console.
-     *           Ex: `json_decode(file_get_contents($path), true)`.
+     *     @type array $keyFile [DEPRECATED] use `credentialsFetcher` option.
      *     @type float $requestTimeout Seconds to wait before timing out the
      *           request. **Defaults to** `0` with REST and `60` with gRPC.
      *     @type int $retries Number of retries for a failed request.
