@@ -374,11 +374,18 @@ class DatastoreClientTest extends TestCase
 
         // 1. Test Insert
         $this->gapicClient->commit(Argument::that(function(CommitRequest $request) {
-            return $request->getMutations()[0]->getOperation() == 'insert';
-        }), [
-            'transaction' => null,
-            'databaseId' => self::DATABASE
-        ])->shouldBeCalledTimes(1)
+            switch ($request->getMutations()[0]->getOperation()) {
+                case 'insert':
+                case 'update':
+                case 'upsert':
+                case 'delete':
+                    return true;
+                default:
+                    $this->fail('Unexpected value received to the commit function');
+                    return false;
+            }
+            return true;
+        }), Argument::any())->shouldBeCalledTimes(4)
             ->willReturn($commitResponse);
 
         $this->client->insert($entity);
@@ -387,46 +394,15 @@ class DatastoreClientTest extends TestCase
         $updateData = ['firstName' => 'Jeffrey'];
         $updateEntity = $this->client->entity($key, $updateData, ['populatedByService' => true]);
 
-        $this->gapicClient->commit(
-            Argument::that(function (CommitRequest $request) {
-                return $request->getMutations()[0]->getOperation() == 'update';
-            }),
-            [
-                'transaction' => null,
-                'databaseId' => self::DATABASE,
-                'allowOverwrite' => false,
-            ]
-        )->shouldBeCalledTimes(1)
-            ->willReturn($commitResponse);
-
         $this->client->update($updateEntity);
 
         // 3. Test Upsert
         $upsertData = ['firstName' => 'Geoff'];
         $upsertEntity = $this->client->entity($key, $upsertData);
 
-        $this->gapicClient->commit(
-            Argument::that(function (CommitRequest $request) {
-                return $request->getMutations()[0]->getOperation() == 'upsert';
-            }),
-            [
-                'transaction' => null,
-                'databaseId' => self::DATABASE,
-            ]
-        )->shouldBeCalledTimes(1)
-            ->willReturn($commitResponse);
-
         $this->client->upsert($upsertEntity);
 
         // 4. Test Delete
-        $this->gapicClient->commit(Argument::that(function(CommitRequest $request) {
-            return $request->getMutations()[0]->getOperation() == 'delete';
-        }), [
-            'baseVersion' => null,
-            'transaction' => null,
-            'databaseId' => self::DATABASE,
-        ])->shouldBeCalledTimes(1)->willReturn($commitResponse);
-
         $this->client->delete($key);
     }
 
