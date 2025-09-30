@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2025 Google LLC
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without

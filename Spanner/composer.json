@@ -44,16 +44,5 @@
             "Testing\\Data\\": "tests/data/generated/Testing/Data",
             "GPBMetadata\\Data\\": "tests/data/generated/GPBMetadata/Data"
         }
-    },
-    "repositories": {
-        "google-cloud": {
-            "type": "path",
-            "url": "../Core",
-            "options": {
-                "versions": {
-                    "google/cloud-core": "1.60"
-                }
-            }
-        }
     }
 }

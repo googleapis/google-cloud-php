@@ -286,10 +286,10 @@ class ApiHelperTraitTest extends TestCase
         $numMessages = count(array_filter($expected, fn ($optionType) => $optionType instanceof Message));
         $serializer = $this->prophesize(Serializer::class);
         $serializer->decodeMessage(Argument::type(Message::class), Argument::type('array'))
-        ->shouldBeCalledTimes($numMessages)
-        ->will(function ($args) {
+            ->shouldBeCalledTimes($numMessages)
+            ->will(function ($args) {
                 return (new Serializer())->decodeMessage($args[0], $args[1]);
-        });
+            });
 
         // test using an implementation with custom serializer
         $implementation = new ApiHelpersTraitImpl();

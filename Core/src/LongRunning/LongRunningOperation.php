@@ -254,7 +254,7 @@ class LongRunningOperation
         $this->result = null;
         $this->error = null;
 
-        if (isset($res['done']) && $res['done'] && isset($res['metadata']['typeUrl'])) {
+        if ($res['done'] ?? false && isset($res['metadata']['typeUrl'])) {
             $type = $res['metadata']['typeUrl'];
             $this->result = $this->executeDoneCallback($type, $res['response']);
             $this->error = $res['error'] ?? null;
