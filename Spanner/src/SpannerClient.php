@@ -30,6 +30,7 @@ use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\LongRunning\LongRunningClientConnection;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
+use Google\Cloud\Core\OptionsValidator;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig;
@@ -227,6 +228,7 @@ class SpannerClient
         }
         $this->projectId = $this->detectProjectId($options);
         $this->serializer = new Serializer();
+        $this->optionsValidator = new OptionsValidator($this->serializer);
 
         // Adds some defaults
         // gccl needs to be present for handwritten clients

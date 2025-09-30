@@ -19,6 +19,7 @@ namespace Google\Cloud\Spanner;
 
 use Google\ApiCore\Options\CallOptions;
 use Google\Cloud\Core\ApiHelperTrait;
+use Google\Cloud\Core\OptionsValidator;
 use Google\Cloud\Core\RequestProcessorTrait;
 use Google\Cloud\Spanner\Batch\QueryPartition;
 use Google\Cloud\Spanner\Batch\ReadPartition;
@@ -95,6 +96,7 @@ class Operation
         $this->mapper = new ValueMapper($options['returnInt64AsObject'] ?? false);
         $this->routeToLeader = $options['routeToLeader'] ?? true;
         $this->defaultQueryOptions = $options['defaultQueryOptions'] ?? [];
+        $this->optionsValidator = new OptionsValidator($serializer);
     }
 
     /**

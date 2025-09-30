@@ -30,6 +30,7 @@ use Google\Cloud\Core\Iam\IamManager;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\LongRunning\LongRunningClientConnection;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
+use Google\Cloud\Core\OptionsValidator;
 use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Retry;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
@@ -190,6 +191,7 @@ class Database
             $this->sessionPool->setDatabase($this);
         }
 
+        $this->optionsValidator = new OptionsValidator($serializer);
         $this->directedReadOptions = $instance->directedReadOptions();
     }
 
