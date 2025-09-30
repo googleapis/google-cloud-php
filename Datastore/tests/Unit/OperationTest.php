@@ -611,7 +611,8 @@ class OperationTest extends TestCase
     {
         $this->gapicClient
             ->runQuery(Argument::that(function (RunQueryRequest $request) {
-                return $request->getDatabaseId() === 'otherDatabaseId';
+                $this->assertEquals('otherDatabaseId', $request->getDatabaseId());
+                return true;
             }), Argument::any())
             ->shouldBeCalledTimes(1)
             ->willReturn(self::generateProto(RunQueryResponse::class, []));
