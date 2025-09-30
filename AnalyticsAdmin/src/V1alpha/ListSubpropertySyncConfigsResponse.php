@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListSubpropertySyncConfigsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * List of Subproperty Sync Configs.
+     * List of `SubpropertySyncConfig` resources.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.SubpropertySyncConfig subproperty_sync_configs = 1;</code>
      */
@@ -36,7 +36,7 @@ class ListSubpropertySyncConfigsResponse extends \Google\Protobuf\Internal\Messa
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Analytics\Admin\V1alpha\SubpropertySyncConfig>|\Google\Protobuf\Internal\RepeatedField $subproperty_sync_configs
-     *           List of Subproperty Sync Configs.
+     *           List of `SubpropertySyncConfig` resources.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page. If
      *           this field is omitted, there are no subsequent pages.
@@ -48,7 +48,7 @@ class ListSubpropertySyncConfigsResponse extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * List of Subproperty Sync Configs.
+     * List of `SubpropertySyncConfig` resources.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.SubpropertySyncConfig subproperty_sync_configs = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -59,7 +59,7 @@ class ListSubpropertySyncConfigsResponse extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * List of Subproperty Sync Configs.
+     * List of `SubpropertySyncConfig` resources.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.SubpropertySyncConfig subproperty_sync_configs = 1;</code>
      * @param array<\Google\Analytics\Admin\V1alpha\SubpropertySyncConfig>|\Google\Protobuf\Internal\RepeatedField $var

@@ -75,7 +75,8 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
      */
     protected $profile_status = null;
     /**
-     * State of a profile.
+     * State of a profile. This will always be set to DONE when the table data
+     * profile is written to another service like BigQuery or Pub/Sub.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.TableDataProfile.State state = 22;</code>
      */
@@ -197,6 +198,12 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.RelatedResource related_resources = 41;</code>
      */
     private $related_resources;
+    /**
+     * Domains associated with the profile.
+     *
+     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Domain domains = 47;</code>
+     */
+    private $domains;
 
     /**
      * Constructor.
@@ -228,7 +235,8 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
      *           Success or error status from the most recent profile generation attempt.
      *           May be empty if the profile is still being generated.
      *     @type int $state
-     *           State of a profile.
+     *           State of a profile. This will always be set to DONE when the table data
+     *           profile is written to another service like BigQuery or Pub/Sub.
      *     @type \Google\Cloud\Dlp\V2\SensitivityScore $sensitivity_score
      *           The sensitivity score of this table.
      *     @type \Google\Cloud\Dlp\V2\DataRiskLevel $data_risk_level
@@ -270,6 +278,8 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
      *           Cloud SQL tables, this field is empty for Cloud SQL table profiles.
      *     @type array<\Google\Cloud\Dlp\V2\RelatedResource>|\Google\Protobuf\Internal\RepeatedField $related_resources
      *           Resources related to this profile.
+     *     @type array<\Google\Cloud\Dlp\V2\Domain>|\Google\Protobuf\Internal\RepeatedField $domains
+     *           Domains associated with the profile.
      * }
      */
     public function __construct($data = NULL) {
@@ -542,7 +552,8 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * State of a profile.
+     * State of a profile. This will always be set to DONE when the table data
+     * profile is written to another service like BigQuery or Pub/Sub.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.TableDataProfile.State state = 22;</code>
      * @return int
@@ -553,7 +564,8 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * State of a profile.
+     * State of a profile. This will always be set to DONE when the table data
+     * profile is written to another service like BigQuery or Pub/Sub.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.TableDataProfile.State state = 22;</code>
      * @param int $var
@@ -1143,6 +1155,32 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dlp\V2\RelatedResource::class);
         $this->related_resources = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Domains associated with the profile.
+     *
+     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Domain domains = 47;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getDomains()
+    {
+        return $this->domains;
+    }
+
+    /**
+     * Domains associated with the profile.
+     *
+     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Domain domains = 47;</code>
+     * @param array<\Google\Cloud\Dlp\V2\Domain>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setDomains($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dlp\V2\Domain::class);
+        $this->domains = $arr;
 
         return $this;
     }

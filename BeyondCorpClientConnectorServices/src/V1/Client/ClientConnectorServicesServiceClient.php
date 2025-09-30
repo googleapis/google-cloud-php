@@ -28,6 +28,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -110,7 +111,9 @@ final class ClientConnectorServicesServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+    ];
 
     private $operationsClient;
 
@@ -120,16 +123,14 @@ final class ClientConnectorServicesServiceClient
             'serviceName' => self::SERVICE_NAME,
             'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__ . '/../resources/client_connector_services_service_client_config.json',
-            'descriptorsConfigPath' =>
-                __DIR__ . '/../resources/client_connector_services_service_descriptor_config.php',
+            'descriptorsConfigPath' => __DIR__ . '/../resources/client_connector_services_service_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__ . '/../resources/client_connector_services_service_grpc_config.json',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' =>
-                        __DIR__ . '/../resources/client_connector_services_service_rest_client_config.php',
+                    'restClientConfigPath' => __DIR__ . '/../resources/client_connector_services_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -158,9 +159,7 @@ final class ClientConnectorServicesServiceClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning'])
-            ? $this->descriptors[$methodName]['longRunning']
-            : [];
+        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -195,11 +194,8 @@ final class ClientConnectorServicesServiceClient
      *
      * @return string The formatted client_connector_service resource.
      */
-    public static function clientConnectorServiceName(
-        string $project,
-        string $location,
-        string $clientConnectorService
-    ): string {
+    public static function clientConnectorServiceName(string $project, string $location, string $clientConnectorService): string
+    {
         return self::getPathTemplate('clientConnectorService')->render([
             'project' => $project,
             'location' => $location,
@@ -252,25 +248,29 @@ final class ClientConnectorServicesServiceClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'beyondcorp.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
-     *           *Important*: If you accept a credential configuration (credential
-     *           JSON/File/Stream) from an external source for authentication to Google Cloud
-     *           Platform, you must validate it before providing it to any Google API or library.
-     *           Providing an unvalidated credential configuration to Google APIs can compromise
-     *           the security of your systems and data. For more information {@see
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use
+     *           Google\Cloud\BeyondCorp\ClientConnectorServices\V1\ClientConnectorServicesServiceClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new ClientConnectorServicesServiceClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
      *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
@@ -308,11 +308,13 @@ final class ClientConnectorServicesServiceClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -349,14 +351,12 @@ final class ClientConnectorServicesServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<ClientConnectorService>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createClientConnectorService(
-        CreateClientConnectorServiceRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function createClientConnectorService(CreateClientConnectorServiceRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('CreateClientConnectorService', $request, $callOptions)->wait();
     }
 
@@ -379,14 +379,12 @@ final class ClientConnectorServicesServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteClientConnectorService(
-        DeleteClientConnectorServiceRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function deleteClientConnectorService(DeleteClientConnectorServiceRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('DeleteClientConnectorService', $request, $callOptions)->wait();
     }
 
@@ -412,10 +410,8 @@ final class ClientConnectorServicesServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getClientConnectorService(
-        GetClientConnectorServiceRequest $request,
-        array $callOptions = []
-    ): ClientConnectorService {
+    public function getClientConnectorService(GetClientConnectorServiceRequest $request, array $callOptions = []): ClientConnectorService
+    {
         return $this->startApiCall('GetClientConnectorService', $request, $callOptions)->wait();
     }
 
@@ -442,10 +438,8 @@ final class ClientConnectorServicesServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listClientConnectorServices(
-        ListClientConnectorServicesRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listClientConnectorServices(ListClientConnectorServicesRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListClientConnectorServices', $request, $callOptions);
     }
 
@@ -468,14 +462,12 @@ final class ClientConnectorServicesServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<ClientConnectorService>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateClientConnectorService(
-        UpdateClientConnectorServiceRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function updateClientConnectorService(UpdateClientConnectorServiceRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('UpdateClientConnectorService', $request, $callOptions)->wait();
     }
 
@@ -620,10 +612,8 @@ final class ClientConnectorServicesServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(
-        TestIamPermissionsRequest $request,
-        array $callOptions = []
-    ): TestIamPermissionsResponse {
+    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
+    {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

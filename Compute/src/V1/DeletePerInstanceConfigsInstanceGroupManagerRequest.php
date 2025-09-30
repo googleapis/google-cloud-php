@@ -20,25 +20,25 @@ class DeletePerInstanceConfigsInstanceGroupManagerRequest extends \Google\Protob
      *
      * Generated from protobuf field <code>string instance_group_manager = 249363395 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $instance_group_manager = '';
+    protected $instance_group_manager = '';
     /**
      * The body resource for this request
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceGroupManagersDeletePerInstanceConfigsReq instance_group_managers_delete_per_instance_configs_req_resource = 362427680 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $instance_group_managers_delete_per_instance_configs_req_resource = null;
+    protected $instance_group_managers_delete_per_instance_configs_req_resource = null;
     /**
      * Project ID for this request.
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "project"];</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * The name of the zone where the managed instance group is located. It should conform to RFC1035.
      *
      * Generated from protobuf field <code>string zone = 3744684 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "zone"];</code>
      */
-    private $zone = '';
+    protected $zone = '';
 
     /**
      * @param string                                                                    $project                                                  Project ID for this request.

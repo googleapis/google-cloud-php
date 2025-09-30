@@ -20,25 +20,25 @@ class GetInstanceGroupManagerResizeRequestRequest extends \Google\Protobuf\Inter
      *
      * Generated from protobuf field <code>string instance_group_manager = 249363395 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $instance_group_manager = '';
+    protected $instance_group_manager = '';
     /**
      * Project ID for this request.
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * The name of the resize request. Name should conform to RFC1035 or be a resource ID.
      *
      * Generated from protobuf field <code>string resize_request = 216941060 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $resize_request = '';
+    protected $resize_request = '';
     /**
      * Name of the href="/compute/docs/regions-zones/#available">zone scoping this request. Name should conform to RFC1035.
      *
      * Generated from protobuf field <code>string zone = 3744684 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $zone = '';
+    protected $zone = '';
 
     /**
      * @param string $project              Project ID for this request.

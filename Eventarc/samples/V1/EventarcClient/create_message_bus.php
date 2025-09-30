@@ -36,7 +36,7 @@ use Google\Rpc\Status;
  * @param string $formattedParent The parent collection in which to add this message bus. Please see
  *                                {@see EventarcClient::locationName()} for help formatting this field.
  * @param string $messageBusId    The user-provided ID to be assigned to the MessageBus. It should
- *                                match the format (^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$)
+ *                                match the format `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`.
  */
 function create_message_bus_sample(string $formattedParent, string $messageBusId): void
 {

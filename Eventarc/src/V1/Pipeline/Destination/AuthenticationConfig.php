@@ -25,7 +25,7 @@ class AuthenticationConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Eventarc\V1\Pipeline\Destination\AuthenticationConfig\OidcToken $google_oidc
      *           Optional. This authenticate method will apply Google OIDC tokens
-     *           signed by a GCP service account to the requests.
+     *           signed by a Google Cloud service account to the requests.
      *     @type \Google\Cloud\Eventarc\V1\Pipeline\Destination\AuthenticationConfig\OAuthToken $oauth_token
      *           Optional. If specified, an [OAuth
      *           token](https://developers.google.com/identity/protocols/OAuth2) will
@@ -42,7 +42,7 @@ class AuthenticationConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. This authenticate method will apply Google OIDC tokens
-     * signed by a GCP service account to the requests.
+     * signed by a Google Cloud service account to the requests.
      *
      * Generated from protobuf field <code>.google.cloud.eventarc.v1.Pipeline.Destination.AuthenticationConfig.OidcToken google_oidc = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Eventarc\V1\Pipeline\Destination\AuthenticationConfig\OidcToken|null
@@ -59,7 +59,7 @@ class AuthenticationConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. This authenticate method will apply Google OIDC tokens
-     * signed by a GCP service account to the requests.
+     * signed by a Google Cloud service account to the requests.
      *
      * Generated from protobuf field <code>.google.cloud.eventarc.v1.Pipeline.Destination.AuthenticationConfig.OidcToken google_oidc = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Eventarc\V1\Pipeline\Destination\AuthenticationConfig\OidcToken $var

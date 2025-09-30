@@ -20,7 +20,7 @@ class ProjectsSetDefaultNetworkTierRequest extends \Google\Protobuf\Internal\Mes
      *
      * Generated from protobuf field <code>optional string network_tier = 517397843;</code>
      */
-    private $network_tier = null;
+    protected $network_tier = null;
 
     /**
      * Constructor.

@@ -20,7 +20,7 @@ class InterconnectGroupInterconnect extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string interconnect = 224601230;</code>
      */
-    private $interconnect = null;
+    protected $interconnect = null;
 
     /**
      * Constructor.

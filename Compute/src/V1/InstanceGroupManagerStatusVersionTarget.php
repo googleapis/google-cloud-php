@@ -19,7 +19,7 @@ class InstanceGroupManagerStatusVersionTarget extends \Google\Protobuf\Internal\
      *
      * Generated from protobuf field <code>optional bool is_reached = 433209149;</code>
      */
-    private $is_reached = null;
+    protected $is_reached = null;
 
     /**
      * Constructor.

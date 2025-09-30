@@ -20,8 +20,8 @@ class Trigger
      */
     const TRIGGER_UNSPECIFIED = 0;
     /**
-     * The job was triggered by Dataplex based on trigger spec from task
-     * definition.
+     * The job was triggered by Dataplex Universal Catalog based on trigger spec
+     * from task definition.
      *
      * Generated from protobuf enum <code>TASK_CONFIG = 1;</code>
      */

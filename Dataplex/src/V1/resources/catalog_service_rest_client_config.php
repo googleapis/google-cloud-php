@@ -80,6 +80,21 @@ return [
                     'entry_group_id',
                 ],
             ],
+            'CreateEntryLink' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/entryGroups/*}/entryLinks',
+                'body' => 'entry_link',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'entry_link_id',
+                ],
+            ],
             'CreateEntryType' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/entryTypes',
@@ -140,6 +155,17 @@ return [
                     ],
                 ],
             ],
+            'DeleteEntryLink' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/entryGroups/*/entryLinks/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteEntryType' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/entryTypes/*}',
@@ -176,6 +202,17 @@ return [
             'GetEntryGroup' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/entryGroups/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetEntryLink' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/entryGroups/*/entryLinks/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -541,6 +578,16 @@ return [
                         'uriTemplate' => '/v1/{resource=organizations/*/locations/*/encryptionConfigs/*}:setIamPolicy',
                         'body' => '*',
                     ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/dataProducts/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/dataProducts/*/dataAssets/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
                 ],
                 'placeholders' => [
                     'resource' => [
@@ -640,6 +687,16 @@ return [
                         'uriTemplate' => '/v1/{resource=organizations/*/locations/*/encryptionConfigs/*}:testIamPermissions',
                         'body' => '*',
                     ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/dataProducts/*}:testIamPermissions',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/dataProducts/*/dataAssets/*}:testIamPermissions',
+                        'body' => '*',
+                    ],
                 ],
                 'placeholders' => [
                     'resource' => [
@@ -710,7 +767,7 @@ return [
                 'additionalBindings' => [
                     [
                         'method' => 'get',
-                        'uriTemplate' => '/v1/{name=organizations/*/locations/*/operations/*}',
+                        'uriTemplate' => '/v1/{name=organizations/*/locations/*}/operations',
                     ],
                 ],
                 'placeholders' => [

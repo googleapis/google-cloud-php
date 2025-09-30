@@ -20,19 +20,19 @@ class GetRegionInstanceGroupRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string instance_group = 81095253 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $instance_group = '';
+    protected $instance_group = '';
     /**
      * Project ID for this request.
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * Name of the region scoping this request.
      *
      * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $region = '';
+    protected $region = '';
 
     /**
      * @param string $project       Project ID for this request.

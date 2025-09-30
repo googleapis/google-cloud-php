@@ -38,19 +38,19 @@ class RouterStatusNatStatus extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int32 min_extra_nat_ips_needed = 365786338;</code>
      */
-    private $min_extra_nat_ips_needed = null;
+    protected $min_extra_nat_ips_needed = null;
     /**
      * Unique name of this NAT.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
     /**
      * Number of VM endpoints (i.e., Nics) that can use NAT.
      *
      * Generated from protobuf field <code>optional int32 num_vm_endpoints_with_nat_mappings = 512367468;</code>
      */
-    private $num_vm_endpoints_with_nat_mappings = null;
+    protected $num_vm_endpoints_with_nat_mappings = null;
     /**
      * Status of rules in this NAT.
      *

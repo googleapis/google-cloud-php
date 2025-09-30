@@ -25,7 +25,7 @@ class NetworkEndpointWithHealthStatus extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkEndpoint network_endpoint = 56789126;</code>
      */
-    private $network_endpoint = null;
+    protected $network_endpoint = null;
 
     /**
      * Constructor.

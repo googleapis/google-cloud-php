@@ -35,7 +35,7 @@ use Google\Rpc\Status;
  *
  * @param string $formattedParent The resource name of the lake location, of the form:
  *                                projects/{project_number}/locations/{location_id}
- *                                where `location_id` refers to a GCP region. Please see
+ *                                where `location_id` refers to a Google Cloud region. Please see
  *                                {@see DataplexServiceClient::locationName()} for help formatting this field.
  * @param string $lakeId          Lake identifier.
  *                                This ID will be used to generate names such as database and dataset names

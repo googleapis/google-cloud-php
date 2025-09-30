@@ -20,13 +20,13 @@ class BulkInsertInstanceResourcePerInstanceProperties extends \Google\Protobuf\I
      *
      * Generated from protobuf field <code>optional string hostname = 237067315;</code>
      */
-    private $hostname = null;
+    protected $hostname = null;
     /**
      * This field is only temporary. It will be removed. Do not use it.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
 
     /**
      * Constructor.

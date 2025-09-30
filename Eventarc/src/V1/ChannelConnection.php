@@ -60,6 +60,12 @@ class ChannelConnection extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string activation_token = 8 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
     protected $activation_token = '';
+    /**
+     * Optional. Resource labels.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $labels;
 
     /**
      * Constructor.
@@ -85,6 +91,8 @@ class ChannelConnection extends \Google\Protobuf\Internal\Message
      *           Input only. Activation token for the channel. The token will be used
      *           during the creation of ChannelConnection to bind the channel with the
      *           provider project. This field will not be stored in the provider resource.
+     *     @type array|\Google\Protobuf\Internal\MapField $labels
+     *           Optional. Resource labels.
      * }
      */
     public function __construct($data = NULL) {
@@ -276,6 +284,32 @@ class ChannelConnection extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->activation_token = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Resource labels.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getLabels()
+    {
+        return $this->labels;
+    }
+
+    /**
+     * Optional. Resource labels.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setLabels($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->labels = $arr;
 
         return $this;
     }

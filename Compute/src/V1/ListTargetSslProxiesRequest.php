@@ -20,37 +20,37 @@ class ListTargetSslProxiesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string filter = 336120696;</code>
      */
-    private $filter = null;
+    protected $filter = null;
     /**
      * The maximum number of results per page that should be returned. If the number of available results is larger than `maxResults`, Compute Engine returns a `nextPageToken` that can be used to get the next page of results in subsequent list requests. Acceptable values are `0` to `500`, inclusive. (Default: `500`)
      *
      * Generated from protobuf field <code>optional uint32 max_results = 54715419;</code>
      */
-    private $max_results = null;
+    protected $max_results = null;
     /**
      * Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name. You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first. Currently, only sorting by `name` or `creationTimestamp desc` is supported.
      *
      * Generated from protobuf field <code>optional string order_by = 160562920;</code>
      */
-    private $order_by = null;
+    protected $order_by = null;
     /**
      * Specifies a page token to use. Set `pageToken` to the `nextPageToken` returned by a previous list request to get the next page of results.
      *
      * Generated from protobuf field <code>optional string page_token = 19994697;</code>
      */
-    private $page_token = null;
+    protected $page_token = null;
     /**
      * Project ID for this request.
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false. For example, when partial success behavior is enabled, aggregatedList for a single zone scope either returns all resources in the zone or no resources, with an error code.
      *
      * Generated from protobuf field <code>optional bool return_partial_success = 517198390;</code>
      */
-    private $return_partial_success = null;
+    protected $return_partial_success = null;
 
     /**
      * @param string $project Project ID for this request.

@@ -19,91 +19,91 @@ class StoragePoolType extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
-    private $creation_timestamp = null;
+    protected $creation_timestamp = null;
     /**
      * [Output Only] The deprecation status associated with this storage pool type.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.DeprecationStatus deprecated = 515138995;</code>
      */
-    private $deprecated = null;
+    protected $deprecated = null;
     /**
      * [Output Only] An optional description of this resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
-    private $description = null;
+    protected $description = null;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
-    private $id = null;
+    protected $id = null;
     /**
      * [Output Only] Type of the resource. Always compute#storagePoolType for storage pool types.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
-    private $kind = null;
+    protected $kind = null;
     /**
      * [Output Only] Maximum storage pool size in GB.
      *
      * Generated from protobuf field <code>optional int64 max_pool_provisioned_capacity_gb = 182139085;</code>
      */
-    private $max_pool_provisioned_capacity_gb = null;
+    protected $max_pool_provisioned_capacity_gb = null;
     /**
      * [Output Only] Maximum provisioned IOPS.
      *
      * Generated from protobuf field <code>optional int64 max_pool_provisioned_iops = 515270652;</code>
      */
-    private $max_pool_provisioned_iops = null;
+    protected $max_pool_provisioned_iops = null;
     /**
      * [Output Only] Maximum provisioned throughput.
      *
      * Generated from protobuf field <code>optional int64 max_pool_provisioned_throughput = 228928061;</code>
      */
-    private $max_pool_provisioned_throughput = null;
+    protected $max_pool_provisioned_throughput = null;
     /**
      * [Output Only] Minimum storage pool size in GB.
      *
      * Generated from protobuf field <code>optional int64 min_pool_provisioned_capacity_gb = 191022751;</code>
      */
-    private $min_pool_provisioned_capacity_gb = null;
+    protected $min_pool_provisioned_capacity_gb = null;
     /**
      * [Output Only] Minimum provisioned IOPS.
      *
      * Generated from protobuf field <code>optional int64 min_pool_provisioned_iops = 416473706;</code>
      */
-    private $min_pool_provisioned_iops = null;
+    protected $min_pool_provisioned_iops = null;
     /**
      * [Output Only] Minimum provisioned throughput.
      *
      * Generated from protobuf field <code>optional int64 min_pool_provisioned_throughput = 367761963;</code>
      */
-    private $min_pool_provisioned_throughput = null;
+    protected $min_pool_provisioned_throughput = null;
     /**
      * [Deprecated] This field is deprecated. Use minPoolProvisionedCapacityGb instead.
      *
      * Generated from protobuf field <code>optional int64 min_size_gb = 385278188;</code>
      */
-    private $min_size_gb = null;
+    protected $min_size_gb = null;
     /**
      * [Output Only] Name of the resource.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
     /**
      * [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
-    private $self_link = null;
+    protected $self_link = null;
     /**
      * [Output Only] Server-defined URL for this resource with the resource id.
      *
      * Generated from protobuf field <code>optional string self_link_with_id = 44520962;</code>
      */
-    private $self_link_with_id = null;
+    protected $self_link_with_id = null;
     /**
      * [Output Only] The list of disk types supported in this storage pool type.
      *
@@ -115,7 +115,7 @@ class StoragePoolType extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string zone = 3744684;</code>
      */
-    private $zone = null;
+    protected $zone = null;
 
     /**
      * Constructor.

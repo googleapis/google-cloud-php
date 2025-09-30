@@ -20,7 +20,7 @@ class DisplayDevice extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional bool enable_display = 14266886;</code>
      */
-    private $enable_display = null;
+    protected $enable_display = null;
 
     /**
      * Constructor.

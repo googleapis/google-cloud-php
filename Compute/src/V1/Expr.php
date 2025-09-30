@@ -20,25 +20,25 @@ class Expr extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
-    private $description = null;
+    protected $description = null;
     /**
      * Textual representation of an expression in Common Expression Language syntax.
      *
      * Generated from protobuf field <code>optional string expression = 352031384;</code>
      */
-    private $expression = null;
+    protected $expression = null;
     /**
      * Optional. String indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
      *
      * Generated from protobuf field <code>optional string location = 290430901;</code>
      */
-    private $location = null;
+    protected $location = null;
     /**
      * Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
      *
      * Generated from protobuf field <code>optional string title = 110371416;</code>
      */
-    private $title = null;
+    protected $title = null;
 
     /**
      * Constructor.

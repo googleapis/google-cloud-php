@@ -22,6 +22,28 @@ class Schema extends \Google\Protobuf\Internal\Message
      */
     private $fields;
     /**
+     * Optional. A textual description of the table's content and purpose.
+     * For example: "Contains information about customer orders in our e-commerce
+     * store."
+     *
+     * Generated from protobuf field <code>string description = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $description = '';
+    /**
+     * Optional. A list of alternative names or synonyms that can be used to refer
+     * to the table. For example: ["sales", "orders", "purchases"]
+     *
+     * Generated from protobuf field <code>repeated string synonyms = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $synonyms;
+    /**
+     * Optional. A list of tags or keywords associated with the table, used for
+     * categorization. For example: ["transaction", "revenue", "customer_data"]
+     *
+     * Generated from protobuf field <code>repeated string tags = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $tags;
+    /**
      * Optional. Table display_name (same as label in
      * cloud/data_analytics/anarres/data/looker/proto/model_explore.proto), not
      * required, currently only Looker has this field.
@@ -29,6 +51,13 @@ class Schema extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string display_name = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $display_name = '';
+    /**
+     * Optional. The filters on the datasource's underlying data. Currently only
+     * used for Looker data sources.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.DataFilter filters = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $filters;
 
     /**
      * Constructor.
@@ -38,10 +67,23 @@ class Schema extends \Google\Protobuf\Internal\Message
      *
      *     @type array<\Google\Cloud\GeminiDataAnalytics\V1beta\Field>|\Google\Protobuf\Internal\RepeatedField $fields
      *           Optional. The fields in the schema.
+     *     @type string $description
+     *           Optional. A textual description of the table's content and purpose.
+     *           For example: "Contains information about customer orders in our e-commerce
+     *           store."
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $synonyms
+     *           Optional. A list of alternative names or synonyms that can be used to refer
+     *           to the table. For example: ["sales", "orders", "purchases"]
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tags
+     *           Optional. A list of tags or keywords associated with the table, used for
+     *           categorization. For example: ["transaction", "revenue", "customer_data"]
      *     @type string $display_name
      *           Optional. Table display_name (same as label in
      *           cloud/data_analytics/anarres/data/looker/proto/model_explore.proto), not
      *           required, currently only Looker has this field.
+     *     @type array<\Google\Cloud\GeminiDataAnalytics\V1beta\DataFilter>|\Google\Protobuf\Internal\RepeatedField $filters
+     *           Optional. The filters on the datasource's underlying data. Currently only
+     *           used for Looker data sources.
      * }
      */
     public function __construct($data = NULL) {
@@ -76,6 +118,92 @@ class Schema extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. A textual description of the table's content and purpose.
+     * For example: "Contains information about customer orders in our e-commerce
+     * store."
+     *
+     * Generated from protobuf field <code>string description = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Optional. A textual description of the table's content and purpose.
+     * For example: "Contains information about customer orders in our e-commerce
+     * store."
+     *
+     * Generated from protobuf field <code>string description = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDescription($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->description = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A list of alternative names or synonyms that can be used to refer
+     * to the table. For example: ["sales", "orders", "purchases"]
+     *
+     * Generated from protobuf field <code>repeated string synonyms = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getSynonyms()
+    {
+        return $this->synonyms;
+    }
+
+    /**
+     * Optional. A list of alternative names or synonyms that can be used to refer
+     * to the table. For example: ["sales", "orders", "purchases"]
+     *
+     * Generated from protobuf field <code>repeated string synonyms = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setSynonyms($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->synonyms = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A list of tags or keywords associated with the table, used for
+     * categorization. For example: ["transaction", "revenue", "customer_data"]
+     *
+     * Generated from protobuf field <code>repeated string tags = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    /**
+     * Optional. A list of tags or keywords associated with the table, used for
+     * categorization. For example: ["transaction", "revenue", "customer_data"]
+     *
+     * Generated from protobuf field <code>repeated string tags = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setTags($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->tags = $arr;
+
+        return $this;
+    }
+
+    /**
      * Optional. Table display_name (same as label in
      * cloud/data_analytics/anarres/data/looker/proto/model_explore.proto), not
      * required, currently only Looker has this field.
@@ -101,6 +229,34 @@ class Schema extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->display_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The filters on the datasource's underlying data. Currently only
+     * used for Looker data sources.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.DataFilter filters = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getFilters()
+    {
+        return $this->filters;
+    }
+
+    /**
+     * Optional. The filters on the datasource's underlying data. Currently only
+     * used for Looker data sources.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.DataFilter filters = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<\Google\Cloud\GeminiDataAnalytics\V1beta\DataFilter>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setFilters($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\GeminiDataAnalytics\V1beta\DataFilter::class);
+        $this->filters = $arr;
 
         return $this;
     }

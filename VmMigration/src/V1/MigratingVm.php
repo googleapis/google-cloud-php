@@ -81,12 +81,19 @@ class MigratingVm extends \Google\Protobuf\Internal\Message
      */
     protected $state_time = null;
     /**
-     * Output only. The percentage progress of the current running replication
-     * cycle.
+     * Output only. Details of the current running replication cycle.
      *
      * Generated from protobuf field <code>.google.cloud.vmmigration.v1.ReplicationCycle current_sync_info = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $current_sync_info = null;
+    /**
+     * Output only. Details of the last replication cycle. This will be updated
+     * whenever a replication cycle is finished and is not to be confused with
+     * last_sync which is only updated on successful replication cycles.
+     *
+     * Generated from protobuf field <code>.google.cloud.vmmigration.v1.ReplicationCycle last_replication_cycle = 32 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $last_replication_cycle = null;
     /**
      * Output only. The group this migrating vm is included in, if any. The group
      * is represented by the full path of the appropriate
@@ -128,6 +135,20 @@ class MigratingVm extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.CutoverJob recent_cutover_jobs = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $recent_cutover_jobs;
+    /**
+     * Output only. Provides details of future CutoverJobs of a MigratingVm.
+     * Set to empty when cutover forecast is unavailable.
+     *
+     * Generated from protobuf field <code>.google.cloud.vmmigration.v1.CutoverForecast cutover_forecast = 33 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $cutover_forecast = null;
+    /**
+     * Output only. Provides details about the expiration state of the migrating
+     * VM.
+     *
+     * Generated from protobuf field <code>.google.cloud.vmmigration.v1.MigratingVm.Expiration expiration = 37 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $expiration = null;
     protected $target_vm_defaults;
     protected $source_vm_details;
 
@@ -139,8 +160,14 @@ class MigratingVm extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\VMMigration\V1\ComputeEngineTargetDefaults $compute_engine_target_defaults
      *           Details of the target VM in Compute Engine.
+     *     @type \Google\Cloud\VMMigration\V1\ComputeEngineDisksTargetDefaults $compute_engine_disks_target_defaults
+     *           Details of the target Persistent Disks in Compute Engine.
+     *     @type \Google\Cloud\VMMigration\V1\VmwareSourceVmDetails $vmware_source_vm_details
+     *           Output only. Details of the VM from a Vmware source.
      *     @type \Google\Cloud\VMMigration\V1\AwsSourceVmDetails $aws_source_vm_details
      *           Output only. Details of the VM from an AWS source.
+     *     @type \Google\Cloud\VMMigration\V1\AzureSourceVmDetails $azure_source_vm_details
+     *           Output only. Details of the VM from an Azure source.
      *     @type string $name
      *           Output only. The identifier of the MigratingVm.
      *     @type string $source_vm_id
@@ -166,8 +193,11 @@ class MigratingVm extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $state_time
      *           Output only. The last time the migrating VM state was updated.
      *     @type \Google\Cloud\VMMigration\V1\ReplicationCycle $current_sync_info
-     *           Output only. The percentage progress of the current running replication
-     *           cycle.
+     *           Output only. Details of the current running replication cycle.
+     *     @type \Google\Cloud\VMMigration\V1\ReplicationCycle $last_replication_cycle
+     *           Output only. Details of the last replication cycle. This will be updated
+     *           whenever a replication cycle is finished and is not to be confused with
+     *           last_sync which is only updated on successful replication cycles.
      *     @type string $group
      *           Output only. The group this migrating vm is included in, if any. The group
      *           is represented by the full path of the appropriate
@@ -189,6 +219,12 @@ class MigratingVm extends \Google\Protobuf\Internal\Message
      *           running cutover job, if one exists.
      *           Note: To have this field populated you need to explicitly request it via
      *           the "view" parameter of the Get/List request.
+     *     @type \Google\Cloud\VMMigration\V1\CutoverForecast $cutover_forecast
+     *           Output only. Provides details of future CutoverJobs of a MigratingVm.
+     *           Set to empty when cutover forecast is unavailable.
+     *     @type \Google\Cloud\VMMigration\V1\MigratingVm\Expiration $expiration
+     *           Output only. Provides details about the expiration state of the migrating
+     *           VM.
      * }
      */
     public function __construct($data = NULL) {
@@ -228,6 +264,68 @@ class MigratingVm extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Details of the target Persistent Disks in Compute Engine.
+     *
+     * Generated from protobuf field <code>.google.cloud.vmmigration.v1.ComputeEngineDisksTargetDefaults compute_engine_disks_target_defaults = 34;</code>
+     * @return \Google\Cloud\VMMigration\V1\ComputeEngineDisksTargetDefaults|null
+     */
+    public function getComputeEngineDisksTargetDefaults()
+    {
+        return $this->readOneof(34);
+    }
+
+    public function hasComputeEngineDisksTargetDefaults()
+    {
+        return $this->hasOneof(34);
+    }
+
+    /**
+     * Details of the target Persistent Disks in Compute Engine.
+     *
+     * Generated from protobuf field <code>.google.cloud.vmmigration.v1.ComputeEngineDisksTargetDefaults compute_engine_disks_target_defaults = 34;</code>
+     * @param \Google\Cloud\VMMigration\V1\ComputeEngineDisksTargetDefaults $var
+     * @return $this
+     */
+    public function setComputeEngineDisksTargetDefaults($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\VMMigration\V1\ComputeEngineDisksTargetDefaults::class);
+        $this->writeOneof(34, $var);
+
+        return $this;
+    }
+
+    /**
+     * Output only. Details of the VM from a Vmware source.
+     *
+     * Generated from protobuf field <code>.google.cloud.vmmigration.v1.VmwareSourceVmDetails vmware_source_vm_details = 28 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\VMMigration\V1\VmwareSourceVmDetails|null
+     */
+    public function getVmwareSourceVmDetails()
+    {
+        return $this->readOneof(28);
+    }
+
+    public function hasVmwareSourceVmDetails()
+    {
+        return $this->hasOneof(28);
+    }
+
+    /**
+     * Output only. Details of the VM from a Vmware source.
+     *
+     * Generated from protobuf field <code>.google.cloud.vmmigration.v1.VmwareSourceVmDetails vmware_source_vm_details = 28 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\VMMigration\V1\VmwareSourceVmDetails $var
+     * @return $this
+     */
+    public function setVmwareSourceVmDetails($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\VMMigration\V1\VmwareSourceVmDetails::class);
+        $this->writeOneof(28, $var);
+
+        return $this;
+    }
+
+    /**
      * Output only. Details of the VM from an AWS source.
      *
      * Generated from protobuf field <code>.google.cloud.vmmigration.v1.AwsSourceVmDetails aws_source_vm_details = 29 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -254,6 +352,37 @@ class MigratingVm extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\VMMigration\V1\AwsSourceVmDetails::class);
         $this->writeOneof(29, $var);
+
+        return $this;
+    }
+
+    /**
+     * Output only. Details of the VM from an Azure source.
+     *
+     * Generated from protobuf field <code>.google.cloud.vmmigration.v1.AzureSourceVmDetails azure_source_vm_details = 30 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\VMMigration\V1\AzureSourceVmDetails|null
+     */
+    public function getAzureSourceVmDetails()
+    {
+        return $this->readOneof(30);
+    }
+
+    public function hasAzureSourceVmDetails()
+    {
+        return $this->hasOneof(30);
+    }
+
+    /**
+     * Output only. Details of the VM from an Azure source.
+     *
+     * Generated from protobuf field <code>.google.cloud.vmmigration.v1.AzureSourceVmDetails azure_source_vm_details = 30 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\VMMigration\V1\AzureSourceVmDetails $var
+     * @return $this
+     */
+    public function setAzureSourceVmDetails($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\VMMigration\V1\AzureSourceVmDetails::class);
+        $this->writeOneof(30, $var);
 
         return $this;
     }
@@ -577,8 +706,7 @@ class MigratingVm extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The percentage progress of the current running replication
-     * cycle.
+     * Output only. Details of the current running replication cycle.
      *
      * Generated from protobuf field <code>.google.cloud.vmmigration.v1.ReplicationCycle current_sync_info = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\VMMigration\V1\ReplicationCycle|null
@@ -599,8 +727,7 @@ class MigratingVm extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The percentage progress of the current running replication
-     * cycle.
+     * Output only. Details of the current running replication cycle.
      *
      * Generated from protobuf field <code>.google.cloud.vmmigration.v1.ReplicationCycle current_sync_info = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\VMMigration\V1\ReplicationCycle $var
@@ -610,6 +737,46 @@ class MigratingVm extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\VMMigration\V1\ReplicationCycle::class);
         $this->current_sync_info = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Details of the last replication cycle. This will be updated
+     * whenever a replication cycle is finished and is not to be confused with
+     * last_sync which is only updated on successful replication cycles.
+     *
+     * Generated from protobuf field <code>.google.cloud.vmmigration.v1.ReplicationCycle last_replication_cycle = 32 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\VMMigration\V1\ReplicationCycle|null
+     */
+    public function getLastReplicationCycle()
+    {
+        return $this->last_replication_cycle;
+    }
+
+    public function hasLastReplicationCycle()
+    {
+        return isset($this->last_replication_cycle);
+    }
+
+    public function clearLastReplicationCycle()
+    {
+        unset($this->last_replication_cycle);
+    }
+
+    /**
+     * Output only. Details of the last replication cycle. This will be updated
+     * whenever a replication cycle is finished and is not to be confused with
+     * last_sync which is only updated on successful replication cycles.
+     *
+     * Generated from protobuf field <code>.google.cloud.vmmigration.v1.ReplicationCycle last_replication_cycle = 32 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\VMMigration\V1\ReplicationCycle $var
+     * @return $this
+     */
+    public function setLastReplicationCycle($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\VMMigration\V1\ReplicationCycle::class);
+        $this->last_replication_cycle = $var;
 
         return $this;
     }
@@ -772,6 +939,82 @@ class MigratingVm extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\VMMigration\V1\CutoverJob::class);
         $this->recent_cutover_jobs = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Provides details of future CutoverJobs of a MigratingVm.
+     * Set to empty when cutover forecast is unavailable.
+     *
+     * Generated from protobuf field <code>.google.cloud.vmmigration.v1.CutoverForecast cutover_forecast = 33 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\VMMigration\V1\CutoverForecast|null
+     */
+    public function getCutoverForecast()
+    {
+        return $this->cutover_forecast;
+    }
+
+    public function hasCutoverForecast()
+    {
+        return isset($this->cutover_forecast);
+    }
+
+    public function clearCutoverForecast()
+    {
+        unset($this->cutover_forecast);
+    }
+
+    /**
+     * Output only. Provides details of future CutoverJobs of a MigratingVm.
+     * Set to empty when cutover forecast is unavailable.
+     *
+     * Generated from protobuf field <code>.google.cloud.vmmigration.v1.CutoverForecast cutover_forecast = 33 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\VMMigration\V1\CutoverForecast $var
+     * @return $this
+     */
+    public function setCutoverForecast($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\VMMigration\V1\CutoverForecast::class);
+        $this->cutover_forecast = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Provides details about the expiration state of the migrating
+     * VM.
+     *
+     * Generated from protobuf field <code>.google.cloud.vmmigration.v1.MigratingVm.Expiration expiration = 37 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\VMMigration\V1\MigratingVm\Expiration|null
+     */
+    public function getExpiration()
+    {
+        return $this->expiration;
+    }
+
+    public function hasExpiration()
+    {
+        return isset($this->expiration);
+    }
+
+    public function clearExpiration()
+    {
+        unset($this->expiration);
+    }
+
+    /**
+     * Output only. Provides details about the expiration state of the migrating
+     * VM.
+     *
+     * Generated from protobuf field <code>.google.cloud.vmmigration.v1.MigratingVm.Expiration expiration = 37 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\VMMigration\V1\MigratingVm\Expiration $var
+     * @return $this
+     */
+    public function setExpiration($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\VMMigration\V1\MigratingVm\Expiration::class);
+        $this->expiration = $var;
 
         return $this;
     }

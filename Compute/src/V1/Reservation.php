@@ -20,68 +20,68 @@ class Reservation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ReservationAdvancedDeploymentControl advanced_deployment_control = 410618144;</code>
      */
-    private $advanced_deployment_control = null;
+    protected $advanced_deployment_control = null;
     /**
      * Reservation for aggregated resources, providing shape flexibility.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.AllocationAggregateReservation aggregate_reservation = 291567948;</code>
      */
-    private $aggregate_reservation = null;
+    protected $aggregate_reservation = null;
     /**
      * [Output Only] Full or partial URL to a parent commitment. This field displays for reservations that are tied to a commitment.
      *
      * Generated from protobuf field <code>optional string commitment = 482134805;</code>
      */
-    private $commitment = null;
+    protected $commitment = null;
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
-    private $creation_timestamp = null;
+    protected $creation_timestamp = null;
     /**
      * Duration time relative to reservation creation when Compute Engine will automatically delete this resource.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Duration delete_after_duration = 323997099;</code>
      */
-    private $delete_after_duration = null;
+    protected $delete_after_duration = null;
     /**
      * Absolute time in future when the reservation will be auto-deleted by Compute Engine. Timestamp is represented in RFC3339 text format.
      *
      * Generated from protobuf field <code>optional string delete_at_time = 83294405;</code>
      */
-    private $delete_at_time = null;
+    protected $delete_at_time = null;
     /**
      * Specifies the deployment strategy for this reservation.
      * Check the DeploymentType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string deployment_type = 396722292;</code>
      */
-    private $deployment_type = null;
+    protected $deployment_type = null;
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
-    private $description = null;
+    protected $description = null;
     /**
      * Indicates whether Compute Engine allows unplanned maintenance for your VMs; for example, to fix hardware errors.
      *
      * Generated from protobuf field <code>optional bool enable_emergent_maintenance = 353759497;</code>
      */
-    private $enable_emergent_maintenance = null;
+    protected $enable_emergent_maintenance = null;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
-    private $id = null;
+    protected $id = null;
     /**
      * [Output Only] Type of the resource. Always compute#reservations for reservations.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
-    private $kind = null;
+    protected $kind = null;
     /**
      * [Output Only] Full or partial URL to parent commitments. This field displays for reservations that are tied to multiple commitments.
      *
@@ -93,13 +93,13 @@ class Reservation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
     /**
      * Specify the reservation sharing policy. If unspecified, the reservation will not be shared with Google Cloud managed services.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.AllocationReservationSharingPolicy reservation_sharing_policy = 205970120;</code>
      */
-    private $reservation_sharing_policy = null;
+    protected $reservation_sharing_policy = null;
     /**
      * Resource policies to be added to this reservation. The key is defined by user, and the value is resource policy url. This is to define placement policy with reservation.
      *
@@ -111,57 +111,57 @@ class Reservation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.AllocationResourceStatus resource_status = 249429315;</code>
      */
-    private $resource_status = null;
+    protected $resource_status = null;
     /**
      * [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool satisfies_pzs = 480964267;</code>
      */
-    private $satisfies_pzs = null;
+    protected $satisfies_pzs = null;
     /**
      * The type of maintenance for the reservation.
      * Check the SchedulingType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string scheduling_type = 199835397;</code>
      */
-    private $scheduling_type = null;
+    protected $scheduling_type = null;
     /**
      * [Output Only] Server-defined fully-qualified URL for this resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
-    private $self_link = null;
+    protected $self_link = null;
     /**
      * Specify share-settings to create a shared reservation. This property is optional. For more information about the syntax and options for this field and its subfields, see the guide for creating a shared reservation.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ShareSettings share_settings = 266668163;</code>
      */
-    private $share_settings = null;
+    protected $share_settings = null;
     /**
      * Reservation for instances with specific machine shapes.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.AllocationSpecificSKUReservation specific_reservation = 404901951;</code>
      */
-    private $specific_reservation = null;
+    protected $specific_reservation = null;
     /**
      * Indicates whether the reservation can be consumed by VMs with affinity for "any" reservation. If the field is set, then only VMs that target the reservation by name can consume from this reservation.
      *
      * Generated from protobuf field <code>optional bool specific_reservation_required = 226550687;</code>
      */
-    private $specific_reservation_required = null;
+    protected $specific_reservation_required = null;
     /**
      * [Output Only] The status of the reservation. - CREATING: Reservation resources are being allocated. - READY: Reservation resources have been allocated, and the reservation is ready for use. - DELETING: Reservation deletion is in progress. - UPDATING: Reservation update is in progress.
      * Check the Status enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>
      */
-    private $status = null;
+    protected $status = null;
     /**
      * Zone in which the reservation resides. A zone must be provided if the reservation is created within a commitment.
      *
      * Generated from protobuf field <code>optional string zone = 3744684;</code>
      */
-    private $zone = null;
+    protected $zone = null;
 
     /**
      * Constructor.

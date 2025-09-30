@@ -204,6 +204,115 @@
                 }
             }
         },
+        "BusinessGlossaryService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "BusinessGlossaryServiceGapicClient",
+                    "rpcs": {
+                        "CreateGlossary": {
+                            "methods": [
+                                "createGlossary"
+                            ]
+                        },
+                        "CreateGlossaryCategory": {
+                            "methods": [
+                                "createGlossaryCategory"
+                            ]
+                        },
+                        "CreateGlossaryTerm": {
+                            "methods": [
+                                "createGlossaryTerm"
+                            ]
+                        },
+                        "DeleteGlossary": {
+                            "methods": [
+                                "deleteGlossary"
+                            ]
+                        },
+                        "DeleteGlossaryCategory": {
+                            "methods": [
+                                "deleteGlossaryCategory"
+                            ]
+                        },
+                        "DeleteGlossaryTerm": {
+                            "methods": [
+                                "deleteGlossaryTerm"
+                            ]
+                        },
+                        "GetGlossary": {
+                            "methods": [
+                                "getGlossary"
+                            ]
+                        },
+                        "GetGlossaryCategory": {
+                            "methods": [
+                                "getGlossaryCategory"
+                            ]
+                        },
+                        "GetGlossaryTerm": {
+                            "methods": [
+                                "getGlossaryTerm"
+                            ]
+                        },
+                        "ListGlossaries": {
+                            "methods": [
+                                "listGlossaries"
+                            ]
+                        },
+                        "ListGlossaryCategories": {
+                            "methods": [
+                                "listGlossaryCategories"
+                            ]
+                        },
+                        "ListGlossaryTerms": {
+                            "methods": [
+                                "listGlossaryTerms"
+                            ]
+                        },
+                        "UpdateGlossary": {
+                            "methods": [
+                                "updateGlossary"
+                            ]
+                        },
+                        "UpdateGlossaryCategory": {
+                            "methods": [
+                                "updateGlossaryCategory"
+                            ]
+                        },
+                        "UpdateGlossaryTerm": {
+                            "methods": [
+                                "updateGlossaryTerm"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "CatalogService": {
             "clients": {
                 "grpc": {
@@ -227,6 +336,11 @@
                         "CreateEntryGroup": {
                             "methods": [
                                 "createEntryGroup"
+                            ]
+                        },
+                        "CreateEntryLink": {
+                            "methods": [
+                                "createEntryLink"
                             ]
                         },
                         "CreateEntryType": {
@@ -254,6 +368,11 @@
                                 "deleteEntryGroup"
                             ]
                         },
+                        "DeleteEntryLink": {
+                            "methods": [
+                                "deleteEntryLink"
+                            ]
+                        },
                         "DeleteEntryType": {
                             "methods": [
                                 "deleteEntryType"
@@ -272,6 +391,11 @@
                         "GetEntryGroup": {
                             "methods": [
                                 "getEntryGroup"
+                            ]
+                        },
+                        "GetEntryLink": {
+                            "methods": [
+                                "getEntryLink"
                             ]
                         },
                         "GetEntryType": {

@@ -20,31 +20,31 @@ class SerialPortOutput extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string contents = 506419994;</code>
      */
-    private $contents = null;
+    protected $contents = null;
     /**
      * [Output Only] Type of the resource. Always compute#serialPortOutput for serial port output.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
-    private $kind = null;
+    protected $kind = null;
     /**
      * [Output Only] The position of the next byte of content, regardless of whether the content exists, following the output returned in the `contents` property. Use this value in the next request as the start parameter.
      *
      * Generated from protobuf field <code>optional int64 next = 3377907;</code>
      */
-    private $next = null;
+    protected $next = null;
     /**
      * [Output Only] Server-defined URL for this resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
-    private $self_link = null;
+    protected $self_link = null;
     /**
      * The starting byte position of the output that was returned. This should match the start parameter sent with the request. If the serial console output exceeds the size of the buffer (1 MB), older output is overwritten by newer content. The output start value will indicate the byte position of the output that was returned, which might be different than the `start` value that was specified in the request.
      *
      * Generated from protobuf field <code>optional int64 start = 109757538;</code>
      */
-    private $start = null;
+    protected $start = null;
 
     /**
      * Constructor.

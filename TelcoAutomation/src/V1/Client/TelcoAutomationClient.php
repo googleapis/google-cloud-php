@@ -28,6 +28,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -166,7 +167,9 @@ final class TelcoAutomationClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+    ];
 
     private $operationsClient;
 
@@ -212,9 +215,7 @@ final class TelcoAutomationClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning'])
-            ? $this->descriptors[$methodName]['longRunning']
-            : [];
+        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -250,12 +251,8 @@ final class TelcoAutomationClient
      *
      * @return string The formatted blueprint resource.
      */
-    public static function blueprintName(
-        string $project,
-        string $location,
-        string $orchestrationCluster,
-        string $blueprint
-    ): string {
+    public static function blueprintName(string $project, string $location, string $orchestrationCluster, string $blueprint): string
+    {
         return self::getPathTemplate('blueprint')->render([
             'project' => $project,
             'location' => $location,
@@ -275,12 +272,8 @@ final class TelcoAutomationClient
      *
      * @return string The formatted deployment resource.
      */
-    public static function deploymentName(
-        string $project,
-        string $location,
-        string $orchestrationCluster,
-        string $deployment
-    ): string {
+    public static function deploymentName(string $project, string $location, string $orchestrationCluster, string $deployment): string
+    {
         return self::getPathTemplate('deployment')->render([
             'project' => $project,
             'location' => $location,
@@ -320,13 +313,8 @@ final class TelcoAutomationClient
      *
      * @return string The formatted hydrated_deployment resource.
      */
-    public static function hydratedDeploymentName(
-        string $project,
-        string $location,
-        string $orchestrationCluster,
-        string $deployment,
-        string $hydratedDeployment
-    ): string {
+    public static function hydratedDeploymentName(string $project, string $location, string $orchestrationCluster, string $deployment, string $hydratedDeployment): string
+    {
         return self::getPathTemplate('hydratedDeployment')->render([
             'project' => $project,
             'location' => $location,
@@ -363,11 +351,8 @@ final class TelcoAutomationClient
      *
      * @return string The formatted orchestration_cluster resource.
      */
-    public static function orchestrationClusterName(
-        string $project,
-        string $location,
-        string $orchestrationCluster
-    ): string {
+    public static function orchestrationClusterName(string $project, string $location, string $orchestrationCluster): string
+    {
         return self::getPathTemplate('orchestrationCluster')->render([
             'project' => $project,
             'location' => $location,
@@ -427,25 +412,28 @@ final class TelcoAutomationClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'telcoautomation.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
-     *           *Important*: If you accept a credential configuration (credential
-     *           JSON/File/Stream) from an external source for authentication to Google Cloud
-     *           Platform, you must validate it before providing it to any Google API or library.
-     *           Providing an unvalidated credential configuration to Google APIs can compromise
-     *           the security of your systems and data. For more information {@see
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\TelcoAutomation\V1\TelcoAutomationClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new TelcoAutomationClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
      *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
@@ -483,11 +471,13 @@ final class TelcoAutomationClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -553,10 +543,8 @@ final class TelcoAutomationClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function applyHydratedDeployment(
-        ApplyHydratedDeploymentRequest $request,
-        array $callOptions = []
-    ): HydratedDeployment {
+    public function applyHydratedDeployment(ApplyHydratedDeploymentRequest $request, array $callOptions = []): HydratedDeployment
+    {
         return $this->startApiCall('ApplyHydratedDeployment', $request, $callOptions)->wait();
     }
 
@@ -608,10 +596,8 @@ final class TelcoAutomationClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function computeDeploymentStatus(
-        ComputeDeploymentStatusRequest $request,
-        array $callOptions = []
-    ): ComputeDeploymentStatusResponse {
+    public function computeDeploymentStatus(ComputeDeploymentStatusRequest $request, array $callOptions = []): ComputeDeploymentStatusResponse
+    {
         return $this->startApiCall('ComputeDeploymentStatus', $request, $callOptions)->wait();
     }
 
@@ -684,7 +670,7 @@ final class TelcoAutomationClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<EdgeSlm>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -711,14 +697,12 @@ final class TelcoAutomationClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<OrchestrationCluster>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createOrchestrationCluster(
-        CreateOrchestrationClusterRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function createOrchestrationCluster(CreateOrchestrationClusterRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('CreateOrchestrationCluster', $request, $callOptions)->wait();
     }
 
@@ -763,7 +747,7 @@ final class TelcoAutomationClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -790,14 +774,12 @@ final class TelcoAutomationClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteOrchestrationCluster(
-        DeleteOrchestrationClusterRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function deleteOrchestrationCluster(DeleteOrchestrationClusterRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('DeleteOrchestrationCluster', $request, $callOptions)->wait();
     }
 
@@ -825,10 +807,8 @@ final class TelcoAutomationClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function discardBlueprintChanges(
-        DiscardBlueprintChangesRequest $request,
-        array $callOptions = []
-    ): DiscardBlueprintChangesResponse {
+    public function discardBlueprintChanges(DiscardBlueprintChangesRequest $request, array $callOptions = []): DiscardBlueprintChangesResponse
+    {
         return $this->startApiCall('DiscardBlueprintChanges', $request, $callOptions)->wait();
     }
 
@@ -856,10 +836,8 @@ final class TelcoAutomationClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function discardDeploymentChanges(
-        DiscardDeploymentChangesRequest $request,
-        array $callOptions = []
-    ): DiscardDeploymentChangesResponse {
+    public function discardDeploymentChanges(DiscardDeploymentChangesRequest $request, array $callOptions = []): DiscardDeploymentChangesResponse
+    {
         return $this->startApiCall('DiscardDeploymentChanges', $request, $callOptions)->wait();
     }
 
@@ -963,10 +941,8 @@ final class TelcoAutomationClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getHydratedDeployment(
-        GetHydratedDeploymentRequest $request,
-        array $callOptions = []
-    ): HydratedDeployment {
+    public function getHydratedDeployment(GetHydratedDeploymentRequest $request, array $callOptions = []): HydratedDeployment
+    {
         return $this->startApiCall('GetHydratedDeployment', $request, $callOptions)->wait();
     }
 
@@ -992,10 +968,8 @@ final class TelcoAutomationClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getOrchestrationCluster(
-        GetOrchestrationClusterRequest $request,
-        array $callOptions = []
-    ): OrchestrationCluster {
+    public function getOrchestrationCluster(GetOrchestrationClusterRequest $request, array $callOptions = []): OrchestrationCluster
+    {
         return $this->startApiCall('GetOrchestrationCluster', $request, $callOptions)->wait();
     }
 
@@ -1047,10 +1021,8 @@ final class TelcoAutomationClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listBlueprintRevisions(
-        ListBlueprintRevisionsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listBlueprintRevisions(ListBlueprintRevisionsRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListBlueprintRevisions', $request, $callOptions);
     }
 
@@ -1102,10 +1074,8 @@ final class TelcoAutomationClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listDeploymentRevisions(
-        ListDeploymentRevisionsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listDeploymentRevisions(ListDeploymentRevisionsRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListDeploymentRevisions', $request, $callOptions);
     }
 
@@ -1183,10 +1153,8 @@ final class TelcoAutomationClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listHydratedDeployments(
-        ListHydratedDeploymentsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listHydratedDeployments(ListHydratedDeploymentsRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListHydratedDeployments', $request, $callOptions);
     }
 
@@ -1212,10 +1180,8 @@ final class TelcoAutomationClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listOrchestrationClusters(
-        ListOrchestrationClustersRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listOrchestrationClusters(ListOrchestrationClustersRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListOrchestrationClusters', $request, $callOptions);
     }
 
@@ -1241,10 +1207,8 @@ final class TelcoAutomationClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listPublicBlueprints(
-        ListPublicBlueprintsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listPublicBlueprints(ListPublicBlueprintsRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListPublicBlueprints', $request, $callOptions);
     }
 
@@ -1374,10 +1338,8 @@ final class TelcoAutomationClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function searchBlueprintRevisions(
-        SearchBlueprintRevisionsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function searchBlueprintRevisions(SearchBlueprintRevisionsRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('SearchBlueprintRevisions', $request, $callOptions);
     }
 
@@ -1403,10 +1365,8 @@ final class TelcoAutomationClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function searchDeploymentRevisions(
-        SearchDeploymentRevisionsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function searchDeploymentRevisions(SearchDeploymentRevisionsRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('SearchDeploymentRevisions', $request, $callOptions);
     }
 
@@ -1484,10 +1444,8 @@ final class TelcoAutomationClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateHydratedDeployment(
-        UpdateHydratedDeploymentRequest $request,
-        array $callOptions = []
-    ): HydratedDeployment {
+    public function updateHydratedDeployment(UpdateHydratedDeploymentRequest $request, array $callOptions = []): HydratedDeployment
+    {
         return $this->startApiCall('UpdateHydratedDeployment', $request, $callOptions)->wait();
     }
 

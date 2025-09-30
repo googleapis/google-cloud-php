@@ -55,6 +55,7 @@ items:
       returns:
         -
           var_type: int
+          description: 'Enum of type <xref uid="\Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak\BreakType">BreakType</xref>.'
   -
     uid: '\Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak::setType()'
     name: setType
@@ -69,7 +70,7 @@ items:
         -
           id: var
           var_type: int
-          description: ''
+          description: 'Enum of type <xref uid="\Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak\BreakType">BreakType</xref>. '
       returns:
         -
           var_type: $this

@@ -127,6 +127,13 @@ class Replication extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.netapp.v1.Replication.HybridReplicationType hybrid_replication_type = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $hybrid_replication_type = 0;
+    /**
+     * Output only. Copy pastable snapmirror commands to be executed on onprem
+     * cluster by the customer.
+     *
+     * Generated from protobuf field <code>.google.cloud.netapp.v1.UserCommands hybrid_replication_user_commands = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $hybrid_replication_user_commands = null;
 
     /**
      * Constructor.
@@ -176,6 +183,9 @@ class Replication extends \Google\Protobuf\Internal\Message
      *           Optional. Location of the user cluster.
      *     @type int $hybrid_replication_type
      *           Output only. Type of the hybrid replication.
+     *     @type \Google\Cloud\NetApp\V1\UserCommands $hybrid_replication_user_commands
+     *           Output only. Copy pastable snapmirror commands to be executed on onprem
+     *           cluster by the customer.
      * }
      */
     public function __construct($data = NULL) {
@@ -697,6 +707,44 @@ class Replication extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\NetApp\V1\Replication\HybridReplicationType::class);
         $this->hybrid_replication_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Copy pastable snapmirror commands to be executed on onprem
+     * cluster by the customer.
+     *
+     * Generated from protobuf field <code>.google.cloud.netapp.v1.UserCommands hybrid_replication_user_commands = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\NetApp\V1\UserCommands|null
+     */
+    public function getHybridReplicationUserCommands()
+    {
+        return $this->hybrid_replication_user_commands;
+    }
+
+    public function hasHybridReplicationUserCommands()
+    {
+        return isset($this->hybrid_replication_user_commands);
+    }
+
+    public function clearHybridReplicationUserCommands()
+    {
+        unset($this->hybrid_replication_user_commands);
+    }
+
+    /**
+     * Output only. Copy pastable snapmirror commands to be executed on onprem
+     * cluster by the customer.
+     *
+     * Generated from protobuf field <code>.google.cloud.netapp.v1.UserCommands hybrid_replication_user_commands = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\NetApp\V1\UserCommands $var
+     * @return $this
+     */
+    public function setHybridReplicationUserCommands($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\NetApp\V1\UserCommands::class);
+        $this->hybrid_replication_user_commands = $var;
 
         return $this;
     }

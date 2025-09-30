@@ -19,7 +19,7 @@ class NodeGroupsSetNodeTemplateRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string node_template = 323154455;</code>
      */
-    private $node_template = null;
+    protected $node_template = null;
 
     /**
      * Constructor.

@@ -9,6 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * Aggregate is a <group, count> pair.
+ *
  * Generated from protobuf message <code>google.cloud.maintenance.api.v1beta.MaintenanceSummary.Aggregate</code>
  */
 class Aggregate extends \Google\Protobuf\Internal\Message

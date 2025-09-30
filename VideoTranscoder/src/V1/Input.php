@@ -39,6 +39,12 @@ class Input extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.PreprocessingConfig preprocessing_config = 3;</code>
      */
     protected $preprocessing_config = null;
+    /**
+     * Optional. Input Attributes.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.InputAttributes attributes = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $attributes = null;
 
     /**
      * Constructor.
@@ -58,6 +64,8 @@ class Input extends \Google\Protobuf\Internal\Message
      *           formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).
      *     @type \Google\Cloud\Video\Transcoder\V1\PreprocessingConfig $preprocessing_config
      *           Preprocessing configurations.
+     *     @type \Google\Cloud\Video\Transcoder\V1\InputAttributes $attributes
+     *           Optional. Input Attributes.
      * }
      */
     public function __construct($data = NULL) {
@@ -161,6 +169,42 @@ class Input extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Video\Transcoder\V1\PreprocessingConfig::class);
         $this->preprocessing_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Input Attributes.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.InputAttributes attributes = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Video\Transcoder\V1\InputAttributes|null
+     */
+    public function getAttributes()
+    {
+        return $this->attributes;
+    }
+
+    public function hasAttributes()
+    {
+        return isset($this->attributes);
+    }
+
+    public function clearAttributes()
+    {
+        unset($this->attributes);
+    }
+
+    /**
+     * Optional. Input Attributes.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.InputAttributes attributes = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Video\Transcoder\V1\InputAttributes $var
+     * @return $this
+     */
+    public function setAttributes($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Video\Transcoder\V1\InputAttributes::class);
+        $this->attributes = $var;
 
         return $this;
     }

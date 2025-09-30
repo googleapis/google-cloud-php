@@ -32,18 +32,22 @@ use Google\Cloud\Dataplex\V1\CancelMetadataJobRequest;
 use Google\Cloud\Dataplex\V1\Client\CatalogServiceClient;
 use Google\Cloud\Dataplex\V1\CreateAspectTypeRequest;
 use Google\Cloud\Dataplex\V1\CreateEntryGroupRequest;
+use Google\Cloud\Dataplex\V1\CreateEntryLinkRequest;
 use Google\Cloud\Dataplex\V1\CreateEntryRequest;
 use Google\Cloud\Dataplex\V1\CreateEntryTypeRequest;
 use Google\Cloud\Dataplex\V1\CreateMetadataJobRequest;
 use Google\Cloud\Dataplex\V1\DeleteAspectTypeRequest;
 use Google\Cloud\Dataplex\V1\DeleteEntryGroupRequest;
+use Google\Cloud\Dataplex\V1\DeleteEntryLinkRequest;
 use Google\Cloud\Dataplex\V1\DeleteEntryRequest;
 use Google\Cloud\Dataplex\V1\DeleteEntryTypeRequest;
 use Google\Cloud\Dataplex\V1\Entry;
 use Google\Cloud\Dataplex\V1\EntryGroup;
+use Google\Cloud\Dataplex\V1\EntryLink;
 use Google\Cloud\Dataplex\V1\EntryType;
 use Google\Cloud\Dataplex\V1\GetAspectTypeRequest;
 use Google\Cloud\Dataplex\V1\GetEntryGroupRequest;
+use Google\Cloud\Dataplex\V1\GetEntryLinkRequest;
 use Google\Cloud\Dataplex\V1\GetEntryRequest;
 use Google\Cloud\Dataplex\V1\GetEntryTypeRequest;
 use Google\Cloud\Dataplex\V1\GetMetadataJobRequest;
@@ -568,6 +572,95 @@ class CatalogServiceClientTest extends GeneratedTest
         $operationsTransport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
         $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function createEntryLinkTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $entryLinkType = 'entryLinkType-1478418222';
+        $expectedResponse = new EntryLink();
+        $expectedResponse->setName($name);
+        $expectedResponse->setEntryLinkType($entryLinkType);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->entryGroupName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]');
+        $entryLinkId = 'entryLinkId1406280883';
+        $entryLink = new EntryLink();
+        $entryLinkEntryLinkType = 'entryLinkEntryLinkType-1556238150';
+        $entryLink->setEntryLinkType($entryLinkEntryLinkType);
+        $entryLinkEntryReferences = [];
+        $entryLink->setEntryReferences($entryLinkEntryReferences);
+        $request = (new CreateEntryLinkRequest())
+            ->setParent($formattedParent)
+            ->setEntryLinkId($entryLinkId)
+            ->setEntryLink($entryLink);
+        $response = $gapicClient->createEntryLink($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.dataplex.v1.CatalogService/CreateEntryLink', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getEntryLinkId();
+        $this->assertProtobufEquals($entryLinkId, $actualValue);
+        $actualValue = $actualRequestObject->getEntryLink();
+        $this->assertProtobufEquals($entryLink, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function createEntryLinkExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->entryGroupName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]');
+        $entryLinkId = 'entryLinkId1406280883';
+        $entryLink = new EntryLink();
+        $entryLinkEntryLinkType = 'entryLinkEntryLinkType-1556238150';
+        $entryLink->setEntryLinkType($entryLinkEntryLinkType);
+        $entryLinkEntryReferences = [];
+        $entryLink->setEntryReferences($entryLinkEntryReferences);
+        $request = (new CreateEntryLinkRequest())
+            ->setParent($formattedParent)
+            ->setEntryLinkId($entryLinkId)
+            ->setEntryLink($entryLink);
+        try {
+            $gapicClient->createEntryLink($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
@@ -1170,6 +1263,73 @@ class CatalogServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function deleteEntryLinkTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $entryLinkType = 'entryLinkType-1478418222';
+        $expectedResponse = new EntryLink();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setEntryLinkType($entryLinkType);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->entryLinkName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY_LINK]');
+        $request = (new DeleteEntryLinkRequest())->setName($formattedName);
+        $response = $gapicClient->deleteEntryLink($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.dataplex.v1.CatalogService/DeleteEntryLink', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteEntryLinkExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->entryLinkName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY_LINK]');
+        $request = (new DeleteEntryLinkRequest())->setName($formattedName);
+        try {
+            $gapicClient->deleteEntryLink($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function deleteEntryTypeTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1497,6 +1657,73 @@ class CatalogServiceClientTest extends GeneratedTest
         $request = (new GetEntryGroupRequest())->setName($formattedName);
         try {
             $gapicClient->getEntryGroup($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getEntryLinkTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $entryLinkType = 'entryLinkType-1478418222';
+        $expectedResponse = new EntryLink();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setEntryLinkType($entryLinkType);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->entryLinkName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY_LINK]');
+        $request = (new GetEntryLinkRequest())->setName($formattedName);
+        $response = $gapicClient->getEntryLink($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.dataplex.v1.CatalogService/GetEntryLink', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getEntryLinkExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->entryLinkName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY_LINK]');
+        $request = (new GetEntryLinkRequest())->setName($formattedName);
+        try {
+            $gapicClient->getEntryLink($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

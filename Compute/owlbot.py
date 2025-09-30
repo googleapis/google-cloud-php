@@ -1,4 +1,4 @@
-# Copyright 2021 Google LLC
+# Copyright 2024 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,8 +16,9 @@
 
 import logging
 from pathlib import Path
-import synthtool as s
 import subprocess
+
+import synthtool as s
 from synthtool.languages import php
 from synthtool import _tracked_paths
 
@@ -29,14 +30,7 @@ dest = Path().resolve()
 # Added so that we can pass copy_excludes in the owlbot_main() call
 _tracked_paths.add(src)
 
-# Exclude backwards-compatibility files for protos
-php.owlbot_main(
-    src=src,
-    dest=dest,
-    copy_excludes=[
-        src / "*/proto/src/Google/Cloud/Compute/*/*_*.php"
-    ]
-)
+php.owlbot_main(src=src, dest=dest)
 
 # remove class_alias code
 s.replace(
@@ -47,23 +41,16 @@ s.replace(
     + "\n",
     '')
 
-
-### [START] protoc backwards compatibility fixes
-
-# roll back to private properties.
-s.replace(
-    "src/V*/**/*.php",
-    r"Generated from protobuf field ([^\n]{0,})\n\s{5}\*/\n\s{4}protected \$",
-    r"""Generated from protobuf field \1
-     */
-    private $""")
-
-### [END] protoc backwards compatibility fixes
-
-# fix relative cloud.google.com links
-s.replace(
-    "src/**/V*/**/*.php",
-    r"(.{0,})\]\((/.{0,})\)",
-    r"\1](https://cloud.google.com\2)"
-)
-
+# format generated clients
+subprocess.run([
+    'npm',
+    'exec',
+    '--yes',
+    '--package=@prettier/plugin-php@^0.19',
+    '--',
+    'prettier',
+    '**/Client/*',
+    '--write',
+    '--parser=php',
+    '--single-quote',
+    '--print-width=120'])

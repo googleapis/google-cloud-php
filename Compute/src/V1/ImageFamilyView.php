@@ -19,7 +19,7 @@ class ImageFamilyView extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Image image = 100313435;</code>
      */
-    private $image = null;
+    protected $image = null;
 
     /**
      * Constructor.

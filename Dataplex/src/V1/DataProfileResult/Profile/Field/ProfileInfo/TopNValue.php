@@ -16,22 +16,22 @@ use Google\Protobuf\Internal\GPBUtil;
 class TopNValue extends \Google\Protobuf\Internal\Message
 {
     /**
-     * String value of a top N non-null value.
+     * Output only. String value of a top N non-null value.
      *
-     * Generated from protobuf field <code>string value = 1;</code>
+     * Generated from protobuf field <code>string value = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $value = '';
     /**
-     * Count of the corresponding value in the scanned data.
+     * Output only. Count of the corresponding value in the scanned data.
      *
-     * Generated from protobuf field <code>int64 count = 2;</code>
+     * Generated from protobuf field <code>int64 count = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $count = 0;
     /**
-     * Ratio of the corresponding value in the field against the total
-     * number of rows in the scanned data.
+     * Output only. Ratio of the corresponding value in the field against
+     * the total number of rows in the scanned data.
      *
-     * Generated from protobuf field <code>double ratio = 3;</code>
+     * Generated from protobuf field <code>double ratio = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $ratio = 0.0;
 
@@ -42,12 +42,12 @@ class TopNValue extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $value
-     *           String value of a top N non-null value.
+     *           Output only. String value of a top N non-null value.
      *     @type int|string $count
-     *           Count of the corresponding value in the scanned data.
+     *           Output only. Count of the corresponding value in the scanned data.
      *     @type float $ratio
-     *           Ratio of the corresponding value in the field against the total
-     *           number of rows in the scanned data.
+     *           Output only. Ratio of the corresponding value in the field against
+     *           the total number of rows in the scanned data.
      * }
      */
     public function __construct($data = NULL) {
@@ -56,9 +56,9 @@ class TopNValue extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * String value of a top N non-null value.
+     * Output only. String value of a top N non-null value.
      *
-     * Generated from protobuf field <code>string value = 1;</code>
+     * Generated from protobuf field <code>string value = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getValue()
@@ -67,9 +67,9 @@ class TopNValue extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * String value of a top N non-null value.
+     * Output only. String value of a top N non-null value.
      *
-     * Generated from protobuf field <code>string value = 1;</code>
+     * Generated from protobuf field <code>string value = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -82,9 +82,9 @@ class TopNValue extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Count of the corresponding value in the scanned data.
+     * Output only. Count of the corresponding value in the scanned data.
      *
-     * Generated from protobuf field <code>int64 count = 2;</code>
+     * Generated from protobuf field <code>int64 count = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int|string
      */
     public function getCount()
@@ -93,9 +93,9 @@ class TopNValue extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Count of the corresponding value in the scanned data.
+     * Output only. Count of the corresponding value in the scanned data.
      *
-     * Generated from protobuf field <code>int64 count = 2;</code>
+     * Generated from protobuf field <code>int64 count = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int|string $var
      * @return $this
      */
@@ -108,10 +108,10 @@ class TopNValue extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Ratio of the corresponding value in the field against the total
-     * number of rows in the scanned data.
+     * Output only. Ratio of the corresponding value in the field against
+     * the total number of rows in the scanned data.
      *
-     * Generated from protobuf field <code>double ratio = 3;</code>
+     * Generated from protobuf field <code>double ratio = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return float
      */
     public function getRatio()
@@ -120,10 +120,10 @@ class TopNValue extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Ratio of the corresponding value in the field against the total
-     * number of rows in the scanned data.
+     * Output only. Ratio of the corresponding value in the field against
+     * the total number of rows in the scanned data.
      *
-     * Generated from protobuf field <code>double ratio = 3;</code>
+     * Generated from protobuf field <code>double ratio = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param float $var
      * @return $this
      */
