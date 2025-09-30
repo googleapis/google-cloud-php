@@ -231,7 +231,7 @@ class TransactionTest extends TestCase
             $this->assertNotNull($request->getGqlQuery());
             $this->assertEquals('SELECT 1=1', $request->getGqlQuery()->getQueryString());
             return true;
-        }))->shouldBeCalled(1)->willReturn(self::generateProto(RunQueryResponse::class, [
+        }), Argument::any())->shouldBeCalled(1)->willReturn(self::generateProto(RunQueryResponse::class, [
             'batch' => [
                 'entityResults' => [
                     [
