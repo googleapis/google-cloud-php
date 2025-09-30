@@ -166,7 +166,8 @@ class SessionCacheTest extends TestCase
             ]
         );
 
-        $sessionProto = $session->refreshSession();
+        $session->refreshSession();
+        $sessionProto = (new \ReflectionClass($session))->getProperty('session')->getValue($session);
         $this->assertInstanceOf(Session::class, $sessionProto);
         $this->assertEquals($this->sessionName, $sessionProto->getName());
     }

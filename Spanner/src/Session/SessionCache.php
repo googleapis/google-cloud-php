@@ -105,18 +105,18 @@ class SessionCache
 
     public function refreshSession(): Session
     {
-        if (!isset($this->cacheItem)) {
-            $this->cacheItem = $this->cacheItemPool->getItem($this->cacheKey);
-        }
         $session = $this->createSession();
         $expiresAtSeconds = time() + self::SESSION_EXPIRATION_SECONDS;
         $expiresAtSeconds = ($session->getCreateTime()?->getSeconds() ?? time()) + self::SESSION_EXPIRATION_SECONDS;
         $expiresAt = DateTimeImmutable::createFromFormat('U', (string) $expiresAtSeconds);
+
+        // save the new session to the cache
+        $this->cacheItem = $this->cacheItem ?? $this->cacheItemPool->getItem($this->cacheKey);
         $this->cacheItem->set($session->serializeToString());
         $this->cacheItem->expiresAt($expiresAt);
         $this->cacheItemPool->save($this->cacheItem);
 
-        return $session;
+        return $this->session = $session;
     }
 
     private function ensureValidSession(): void
@@ -131,7 +131,7 @@ class SessionCache
                 // see if we now have a cache hit (in the event of a race condition)
                 if (!$this->getSessionFromCache()) {
                     // If there's still no cache hit, creata a new multiplex session
-                    $this->session = $this->refreshSession();
+                    $this->refreshSession();
                 }
                 $this->lock->release();
             }
