@@ -26,7 +26,7 @@ namespace Google\Cloud\Spanner;
  * use Google\Cloud\Spanner\Database;
  * use Google\Cloud\Spanner\SpannerClient;
  *
- * $spanner = new SpannerClient();
+ * $spanner = new SpannerClient(['projectId' => 'my-project']);
  * $database = $spanner->connect('my-instance', 'my-database');
  *
  * $res = $database->execute('SELECT @userStruct.firstName, @userStruct.lastName', [
@@ -42,16 +42,12 @@ namespace Google\Cloud\Spanner;
  *             ->add('lastName', Database::TYPE_STRING)
  *     ]
  * ])->rows()->current();
- *
- * $fullName = $res['firstName'] . ' ' . $res['lastName']; // `John Testuser`
+ * $fullName = $res['firstName'] . ' ' . $res['lastName']; // `John Testuser`;
  * ```
  */
 class StructType
 {
-    /**
-     * @var array
-     */
-    private $fields = [];
+    private array $fields = [];
 
     /**
      * Example:
@@ -127,7 +123,7 @@ class StructType
      * ```
      *
      * @param string|null $name The field name.
-     * @param int|ArrayType|StructType $type $type A value type code or nested
+     * @param int|string|ArrayType|StructType $type $type A value type code or nested
      *        struct or array definition. Accepted integer values are defined as
      *        constants on {@see \Google\Cloud\Spanner\Database}, and are as
      *        follows: `Database::TYPE_BOOL`, `Database::TYPE_INT64`,
@@ -138,7 +134,7 @@ class StructType
      *        definitions.
      * @throws \InvalidArgumentException If an invalid type is provided.
      */
-    public function add($name, $type)
+    public function add(string|null $name, int|string|ArrayType|StructType $type): StructType
     {
         $invalidIntTypes = [
             Database::TYPE_STRUCT,
@@ -185,7 +181,7 @@ class StructType
      * $structType->addUnnamed(Database::TYPE_STRING);
      * ```
      *
-     * @param int|ArrayType|StructType $type $type A value type code or nested
+     * @param int|string|ArrayType|StructType $type $type A value type code or nested
      *        struct or array definition. Accepted integer values are defined as
      *        constants on {@see \Google\Cloud\Spanner\Database}, and are as
      *        follows: `Database::TYPE_BOOL`, `Database::TYPE_INT64`,
@@ -196,7 +192,7 @@ class StructType
      *        definitions.
      * @throws \InvalidArgumentException If an invalid type is provided.
      */
-    public function addUnnamed($type)
+    public function addUnnamed(int|string|ArrayType|StructType $type): StructType
     {
         return $this->add(null, $type);
     }
@@ -208,7 +204,7 @@ class StructType
      * @return array[] An array containing a field definition. Each field
      *        is of form `[(string|null) $name, (int) $type, (ArrayType|StructType|null) $child]`.
      */
-    public function fields()
+    public function fields(): array
     {
         return $this->fields;
     }

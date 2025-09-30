@@ -19,13 +19,21 @@ namespace Google\Cloud\Spanner\Tests\Snippet\Batch;
 
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
-use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Batch\BatchClient;
 use Google\Cloud\Spanner\Batch\QueryPartition;
 use Google\Cloud\Spanner\Operation;
-use Google\Cloud\Spanner\Tests\StubCreationTrait;
-use Google\Cloud\Spanner\Timestamp;
+use Google\Cloud\Spanner\Serializer;
+use Google\Cloud\Spanner\V1\BeginTransactionRequest;
+use Google\Cloud\Spanner\V1\Client\SpannerClient;
+use Google\Cloud\Spanner\V1\CreateSessionRequest;
+use Google\Cloud\Spanner\V1\Partition;
+use Google\Cloud\Spanner\V1\PartitionQueryRequest;
+use Google\Cloud\Spanner\V1\PartitionResponse;
+use Google\Cloud\Spanner\V1\Session as SessionProto;
+use Google\Cloud\Spanner\V1\Transaction;
+use Google\Protobuf\Timestamp as TimestampProto;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group spanner
@@ -33,14 +41,16 @@ use Prophecy\Argument;
  */
 class QueryPartitionTest extends SnippetTestCase
 {
+    use ProphecyTrait;
     use GrpcTestTrait;
     use PartitionSharedSnippetTestTrait;
-    use StubCreationTrait;
 
     const DATABASE = 'projects/my-awesome-project/instances/my-instance/databases/my-database';
     const SESSION = 'projects/my-awesome-project/instances/my-instance/databases/my-database/sessions/session-id';
     const TRANSACTION = 'transaction-id';
 
+    private $spannerClient;
+    private $serializer;
     private $className = QueryPartition::class;
     private $sql = 'SELECT 1=1';
     private $time;
@@ -49,36 +59,40 @@ class QueryPartitionTest extends SnippetTestCase
     {
         $this->checkAndSkipGrpcTests();
 
+        $this->spannerClient = $this->prophesize(SpannerClient::class);
+        $this->serializer = new Serializer();
         $this->time = time();
         $this->partition = new QueryPartition($this->token, $this->sql, $this->options);
     }
 
     public function testClass()
     {
-        $connection = $this->getConnStub();
-        $connection->createSession(Argument::any())
-            ->shouldBeCalledTimes(1)
-            ->willReturn([
-                'name' => self::SESSION
-            ]);
-        $connection->beginTransaction(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
-                'id' => self::TRANSACTION,
-                'readTimestamp' => \DateTime::createFromFormat('U', (string) $this->time)->format(Timestamp::FORMAT)
-            ]);
-        $connection->partitionQuery(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
-                'partitions' => [
-                    ['partitionToken' => 'foo']
-                ]
-            ]);
+        $this->spannerClient->createSession(
+            Argument::type(CreateSessionRequest::class),
+            Argument::type('array')
+        )->willReturn(new SessionProto(['name' => self::SESSION]));
 
-        $client = TestHelpers::stub(BatchClient::class, [
-            new Operation($connection->reveal(), false),
+        $this->spannerClient->beginTransaction(
+            Argument::type(BeginTransactionRequest::class),
+            Argument::type('array')
+        )
+            ->willReturn(new Transaction([
+                'id' => self::TRANSACTION,
+                'read_timestamp' => new TimestampProto(['seconds' => $this->time])
+            ]));
+        $this->spannerClient->partitionQuery(
+            Argument::type(PartitionQueryRequest::class),
+            Argument::type('array')
+        )->willReturn(new PartitionResponse([
+                'partitions' => [
+                    new Partition(['partition_token' => 'foo'])
+                ]
+            ]));
+
+        $client = new BatchClient(
+            new Operation($this->spannerClient->reveal(), $this->serializer),
             self::DATABASE
-        ]);
+        );
 
         $snippet = $this->snippetFromClass(QueryPartition::class);
         $snippet->setLine(3, '');

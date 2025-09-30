@@ -77,7 +77,7 @@ trait TimeTrait
             $dateTime = clone $dateTime;
         }
         $dateTime = $dateTime->setTimeZone(new \DateTimeZone('UTC'));
-        if ($ns === null) {
+        if (is_null($ns)) {
             return $dateTime->format(Timestamp::FORMAT);
         } else {
             return sprintf(
@@ -95,10 +95,10 @@ trait TimeTrait
      *        $dateTime will be used instead.
      * @return array
      */
-    private function formatTimeAsArray(\DateTimeInterface $dateTime, $ns)
+    private function formatTimeAsArray(\DateTimeInterface $dateTime, $ns = null)
     {
         if ($ns === null) {
-            $ns = $dateTime->format('u');
+            $ns = $this->convertFractionToNanoSeconds($dateTime->format('u'));
         }
         return [
             'seconds' => (int) $dateTime->format('U'),

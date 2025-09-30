@@ -17,8 +17,8 @@
 
 namespace Google\Cloud\Spanner\Tests\Unit;
 
-use Google\Cloud\Spanner\Date;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
+use Google\Cloud\Spanner\Date;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -57,7 +57,7 @@ class DateTest extends TestCase
 
     public function testCast()
     {
-        $this->assertEquals($this->dt->format(Date::FORMAT), (string)$this->date);
+        $this->assertEquals($this->dt->format(Date::FORMAT), (string) $this->date);
     }
 
     public function testType()

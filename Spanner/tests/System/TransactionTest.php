@@ -17,9 +17,9 @@
 
 namespace Google\Cloud\Spanner\Tests\System;
 
+use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Spanner\Date;
 use Google\Cloud\Spanner\KeySet;
-use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type as ReplicaType;
 use Google\Cloud\Spanner\V1\ReadRequest\LockHint;
@@ -49,7 +49,7 @@ class TransactionTest extends SpannerTestCase
         if (self::$isSetup) {
             return;
         }
-        parent::setUpTestFixtures();
+        self::setUpTestDatabase();
 
         self::$tableName = uniqid(self::TABLE_NAME);
         self::$id1 = rand(1000, 9999);
@@ -81,7 +81,7 @@ class TransactionTest extends SpannerTestCase
         $row = [
             'id' => $id,
             'name' => uniqid(self::TESTING_PREFIX),
-            'birthday' => new Date(new \DateTime)
+            'birthday' => new Date(new \DateTime())
         ];
         $cols = array_keys($row);
 
@@ -115,7 +115,6 @@ class TransactionTest extends SpannerTestCase
             'id' => $id,
             'number' => 0
         ]);
-
 
         $iterations = shell_exec(implode(' ', [
             'php',
@@ -397,7 +396,7 @@ class TransactionTest extends SpannerTestCase
             $row = [
                 'id' => $id,
                 'name' => uniqid(self::TESTING_PREFIX),
-                'birthday' => new Date(new \DateTime)
+                'birthday' => new Date(new \DateTime())
             ];
             // Representative of all mutations
             $t->insert(self::TEST_TABLE_NAME, $row);
@@ -410,7 +409,7 @@ class TransactionTest extends SpannerTestCase
                     'parameters' => [
                         'id' => $id,
                         'name' => uniqid(self::TESTING_PREFIX),
-                        'birthday' => new Date(new \DateTime)
+                        'birthday' => new Date(new \DateTime())
                     ]
                 ]
             );
