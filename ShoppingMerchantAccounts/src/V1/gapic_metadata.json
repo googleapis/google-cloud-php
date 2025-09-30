@@ -462,6 +462,21 @@
                 "grpc": {
                     "libraryClient": "RegionsServiceGapicClient",
                     "rpcs": {
+                        "BatchCreateRegions": {
+                            "methods": [
+                                "batchCreateRegions"
+                            ]
+                        },
+                        "BatchDeleteRegions": {
+                            "methods": [
+                                "batchDeleteRegions"
+                            ]
+                        },
+                        "BatchUpdateRegions": {
+                            "methods": [
+                                "batchUpdateRegions"
+                            ]
+                        },
                         "CreateRegion": {
                             "methods": [
                                 "createRegion"

@@ -17,8 +17,13 @@
 
 namespace Google\Cloud\Spanner\Tests\System;
 
+use Google\Cloud\Core\Exception\BadRequestException;
+use Google\Cloud\Spanner\Date;
 use Google\Cloud\Spanner\Duration;
+use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Timestamp;
+use Google\Cloud\Spanner\V1\ReadRequest\LockHint;
+use Google\Cloud\Spanner\V1\ReadRequest\OrderBy;
 
 /**
  * @group spanner
@@ -235,6 +240,66 @@ class SnapshotTest extends SpannerTestCase
         $db->snapshot([
             'maxStaleness' => new Duration(1)
         ]);
+    }
+
+    public function testOrderByInSnapshot()
+    {
+        $db = self::$database;
+
+        $db->insertBatch(self::$tableName, [
+            [
+                'id' => rand(1, 346464),
+                'number' => 1
+            ],
+            [
+                'id' => rand(1, 346464),
+                'number' => 2
+            ]
+        ]);
+
+        $keySet = new KeySet([
+            'all' => true
+        ]);
+        $cols = ['id', 'number'];
+        $options = [
+            'orderBy' => OrderBy::ORDER_BY_PRIMARY_KEY,
+            'limit' => 2,
+        ];
+
+        $snapshot = $db->snapshot();
+        $res = $snapshot->read(self::$tableName, $keySet, $cols, $options);
+        $rows = iterator_to_array($res->rows());
+
+        // Assert that the returned rows are sorted by the 'id' property.
+        for ($i = 0; $i < count($rows) - 1; $i++) {
+            $this->assertLessThanOrEqual(
+                $rows[$i + 1]['id'],
+                $rows[$i]['id'],
+                'The array is not sorted by id in ascending order.'
+            );
+        }
+    }
+
+    public function testLockHintInSnapshotThrowsAnException()
+    {
+        $this->skipEmulatorTests();
+        $this->expectException(BadRequestException::class);
+        $db = self::$database;
+
+        $keySet = new KeySet([
+            'all' => true
+        ]);
+        $cols = ['id', 'number'];
+
+        // LockHint is only for read-write transactions
+        $options = [
+            'lockHint' => LockHint::LOCK_HINT_EXCLUSIVE,
+            'limit' => 2,
+        ];
+
+        $snapshot = $db->snapshot();
+        $res = $snapshot->read(self::$tableName, $keySet, $cols, $options);
+        $rows = iterator_to_array($res->rows());
     }
 
     private function getRow($client, $id)

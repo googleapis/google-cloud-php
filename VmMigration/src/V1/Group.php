@@ -46,6 +46,12 @@ class Group extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string display_name = 5;</code>
      */
     protected $display_name = '';
+    /**
+     * Immutable. The target type of this group.
+     *
+     * Generated from protobuf field <code>.google.cloud.vmmigration.v1.Group.MigrationTargetType migration_target_type = 6 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     */
+    protected $migration_target_type = 0;
 
     /**
      * Constructor.
@@ -63,6 +69,8 @@ class Group extends \Google\Protobuf\Internal\Message
      *           User-provided description of the group.
      *     @type string $display_name
      *           Display name is a user defined name for this group which can be updated.
+     *     @type int $migration_target_type
+     *           Immutable. The target type of this group.
      * }
      */
     public function __construct($data = NULL) {
@@ -216,6 +224,32 @@ class Group extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->display_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Immutable. The target type of this group.
+     *
+     * Generated from protobuf field <code>.google.cloud.vmmigration.v1.Group.MigrationTargetType migration_target_type = 6 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return int
+     */
+    public function getMigrationTargetType()
+    {
+        return $this->migration_target_type;
+    }
+
+    /**
+     * Immutable. The target type of this group.
+     *
+     * Generated from protobuf field <code>.google.cloud.vmmigration.v1.Group.MigrationTargetType migration_target_type = 6 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setMigrationTargetType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\VMMigration\V1\Group\MigrationTargetType::class);
+        $this->migration_target_type = $var;
 
         return $this;
     }

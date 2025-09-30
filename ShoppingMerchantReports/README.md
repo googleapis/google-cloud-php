@@ -37,9 +37,9 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ```php
 Google\ApiCore\ApiException;
 Google\ApiCore\PagedListResponse;
-Google\Shopping\Merchant\Reports\V1beta\Client\ReportServiceClient;
-Google\Shopping\Merchant\Reports\V1beta\ReportRow;
-Google\Shopping\Merchant\Reports\V1beta\SearchRequest;
+Google\Shopping\Merchant\Reports\V1\Client\ReportServiceClient;
+Google\Shopping\Merchant\Reports\V1\ReportRow;
+Google\Shopping\Merchant\Reports\V1\SearchRequest;
 
 // Create a client.
 $reportServiceClient = new ReportServiceClient();
@@ -72,7 +72,8 @@ for more information about the debugging tools.
 
 ### Version
 
-This component is considered alpha. As such, it is still a work-in-progress and is more likely to get backwards-incompatible updates.
+This component is considered GA (generally available). As such, it will not introduce backwards-incompatible changes in
+any minor or patch releases. We will address issues and requests with the highest priority.
 
 ### Next Steps
 

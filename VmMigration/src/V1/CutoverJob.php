@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * CutoverJob message describes a cutover of a migrating VM. The CutoverJob is
  * the operation of shutting down the VM, creating a snapshot and
- * clonning the VM using the replicated snapshot.
+ * cloning the VM using the replicated snapshot.
  *
  * Generated from protobuf message <code>google.cloud.vmmigration.v1.CutoverJob</code>
  */
@@ -84,6 +84,8 @@ class CutoverJob extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\VMMigration\V1\ComputeEngineTargetDetails $compute_engine_target_details
      *           Output only. Details of the target VM in Compute Engine.
+     *     @type \Google\Cloud\VMMigration\V1\ComputeEngineDisksTargetDetails $compute_engine_disks_target_details
+     *           Output only. Details of the target Persistent Disks in Compute Engine.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The time the cutover job was created (as an API call, not when
      *           it was actually created in the target).
@@ -139,6 +141,37 @@ class CutoverJob extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\VMMigration\V1\ComputeEngineTargetDetails::class);
         $this->writeOneof(14, $var);
+
+        return $this;
+    }
+
+    /**
+     * Output only. Details of the target Persistent Disks in Compute Engine.
+     *
+     * Generated from protobuf field <code>.google.cloud.vmmigration.v1.ComputeEngineDisksTargetDetails compute_engine_disks_target_details = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\VMMigration\V1\ComputeEngineDisksTargetDetails|null
+     */
+    public function getComputeEngineDisksTargetDetails()
+    {
+        return $this->readOneof(20);
+    }
+
+    public function hasComputeEngineDisksTargetDetails()
+    {
+        return $this->hasOneof(20);
+    }
+
+    /**
+     * Output only. Details of the target Persistent Disks in Compute Engine.
+     *
+     * Generated from protobuf field <code>.google.cloud.vmmigration.v1.ComputeEngineDisksTargetDetails compute_engine_disks_target_details = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\VMMigration\V1\ComputeEngineDisksTargetDetails $var
+     * @return $this
+     */
+    public function setComputeEngineDisksTargetDetails($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\VMMigration\V1\ComputeEngineDisksTargetDetails::class);
+        $this->writeOneof(20, $var);
 
         return $this;
     }

@@ -26,15 +26,19 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
+use Google\Cloud\BigQuery\AnalyticsHub\V1\ApproveQueryTemplateRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\Client\AnalyticsHubServiceClient;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\CreateDataExchangeRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\CreateListingRequest;
+use Google\Cloud\BigQuery\AnalyticsHub\V1\CreateQueryTemplateRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\DataExchange;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\DeleteDataExchangeRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\DeleteListingRequest;
+use Google\Cloud\BigQuery\AnalyticsHub\V1\DeleteQueryTemplateRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\DeleteSubscriptionRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\GetDataExchangeRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\GetListingRequest;
+use Google\Cloud\BigQuery\AnalyticsHub\V1\GetQueryTemplateRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\GetSubscriptionRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\ListDataExchangesRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\ListDataExchangesResponse;
@@ -42,15 +46,19 @@ use Google\Cloud\BigQuery\AnalyticsHub\V1\ListListingsRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\ListListingsResponse;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\ListOrgDataExchangesRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\ListOrgDataExchangesResponse;
+use Google\Cloud\BigQuery\AnalyticsHub\V1\ListQueryTemplatesRequest;
+use Google\Cloud\BigQuery\AnalyticsHub\V1\ListQueryTemplatesResponse;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\ListSharedResourceSubscriptionsRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\ListSharedResourceSubscriptionsResponse;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\ListSubscriptionsRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\ListSubscriptionsResponse;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\Listing;
+use Google\Cloud\BigQuery\AnalyticsHub\V1\QueryTemplate;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\RefreshSubscriptionRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\RefreshSubscriptionResponse;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\RevokeSubscriptionRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\RevokeSubscriptionResponse;
+use Google\Cloud\BigQuery\AnalyticsHub\V1\SubmitQueryTemplateRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\SubscribeDataExchangeRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\SubscribeDataExchangeResponse;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\SubscribeListingRequest;
@@ -58,6 +66,7 @@ use Google\Cloud\BigQuery\AnalyticsHub\V1\SubscribeListingResponse;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\Subscription;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\UpdateDataExchangeRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\UpdateListingRequest;
+use Google\Cloud\BigQuery\AnalyticsHub\V1\UpdateQueryTemplateRequest;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\SetIamPolicyRequest;
@@ -100,6 +109,94 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ];
         return new AnalyticsHubServiceClient($options);
+    }
+
+    /** @test */
+    public function approveQueryTemplateTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $displayName = 'displayName1615086568';
+        $description = 'description-1724546052';
+        $proposer = 'proposer-992842892';
+        $primaryContact = 'primaryContact203339491';
+        $documentation = 'documentation1587405498';
+        $expectedResponse = new QueryTemplate();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setProposer($proposer);
+        $expectedResponse->setPrimaryContact($primaryContact);
+        $expectedResponse->setDocumentation($documentation);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->queryTemplateName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[DATA_EXCHANGE]',
+            '[QUERY_TEMPLATE]'
+        );
+        $request = (new ApproveQueryTemplateRequest())->setName($formattedName);
+        $response = $gapicClient->approveQueryTemplate($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.bigquery.analyticshub.v1.AnalyticsHubService/ApproveQueryTemplate',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function approveQueryTemplateExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->queryTemplateName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[DATA_EXCHANGE]',
+            '[QUERY_TEMPLATE]'
+        );
+        $request = (new ApproveQueryTemplateRequest())->setName($formattedName);
+        try {
+            $gapicClient->approveQueryTemplate($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
@@ -302,6 +399,102 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function createQueryTemplateTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $displayName = 'displayName1615086568';
+        $description = 'description-1724546052';
+        $proposer = 'proposer-992842892';
+        $primaryContact = 'primaryContact203339491';
+        $documentation = 'documentation1587405498';
+        $expectedResponse = new QueryTemplate();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setProposer($proposer);
+        $expectedResponse->setPrimaryContact($primaryContact);
+        $expectedResponse->setDocumentation($documentation);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->dataExchangeName('[PROJECT]', '[LOCATION]', '[DATA_EXCHANGE]');
+        $queryTemplateId = 'queryTemplateId-1152440823';
+        $queryTemplate = new QueryTemplate();
+        $queryTemplateDisplayName = 'queryTemplateDisplayName-990303317';
+        $queryTemplate->setDisplayName($queryTemplateDisplayName);
+        $request = (new CreateQueryTemplateRequest())
+            ->setParent($formattedParent)
+            ->setQueryTemplateId($queryTemplateId)
+            ->setQueryTemplate($queryTemplate);
+        $response = $gapicClient->createQueryTemplate($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.bigquery.analyticshub.v1.AnalyticsHubService/CreateQueryTemplate',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getQueryTemplateId();
+        $this->assertProtobufEquals($queryTemplateId, $actualValue);
+        $actualValue = $actualRequestObject->getQueryTemplate();
+        $this->assertProtobufEquals($queryTemplate, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function createQueryTemplateExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->dataExchangeName('[PROJECT]', '[LOCATION]', '[DATA_EXCHANGE]');
+        $queryTemplateId = 'queryTemplateId-1152440823';
+        $queryTemplate = new QueryTemplate();
+        $queryTemplateDisplayName = 'queryTemplateDisplayName-990303317';
+        $queryTemplate->setDisplayName($queryTemplateDisplayName);
+        $request = (new CreateQueryTemplateRequest())
+            ->setParent($formattedParent)
+            ->setQueryTemplateId($queryTemplateId)
+            ->setQueryTemplate($queryTemplate);
+        try {
+            $gapicClient->createQueryTemplate($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function deleteDataExchangeTest()
     {
         $transport = $this->createTransport();
@@ -417,6 +610,81 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $request = (new DeleteListingRequest())->setName($formattedName);
         try {
             $gapicClient->deleteListing($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteQueryTemplateTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new GPBEmpty();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->queryTemplateName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[DATA_EXCHANGE]',
+            '[QUERY_TEMPLATE]'
+        );
+        $request = (new DeleteQueryTemplateRequest())->setName($formattedName);
+        $gapicClient->deleteQueryTemplate($request);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.bigquery.analyticshub.v1.AnalyticsHubService/DeleteQueryTemplate',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteQueryTemplateExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->queryTemplateName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[DATA_EXCHANGE]',
+            '[QUERY_TEMPLATE]'
+        );
+        $request = (new DeleteQueryTemplateRequest())->setName($formattedName);
+        try {
+            $gapicClient->deleteQueryTemplate($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -784,6 +1052,94 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function getQueryTemplateTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $displayName = 'displayName1615086568';
+        $description = 'description-1724546052';
+        $proposer = 'proposer-992842892';
+        $primaryContact = 'primaryContact203339491';
+        $documentation = 'documentation1587405498';
+        $expectedResponse = new QueryTemplate();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setProposer($proposer);
+        $expectedResponse->setPrimaryContact($primaryContact);
+        $expectedResponse->setDocumentation($documentation);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->queryTemplateName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[DATA_EXCHANGE]',
+            '[QUERY_TEMPLATE]'
+        );
+        $request = (new GetQueryTemplateRequest())->setName($formattedName);
+        $response = $gapicClient->getQueryTemplate($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.bigquery.analyticshub.v1.AnalyticsHubService/GetQueryTemplate',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getQueryTemplateExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->queryTemplateName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[DATA_EXCHANGE]',
+            '[QUERY_TEMPLATE]'
+        );
+        $request = (new GetQueryTemplateRequest())->setName($formattedName);
+        try {
+            $gapicClient->getQueryTemplate($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function getSubscriptionTest()
     {
         $transport = $this->createTransport();
@@ -1069,6 +1425,80 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $request = (new ListOrgDataExchangesRequest())->setOrganization($organization);
         try {
             $gapicClient->listOrgDataExchanges($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listQueryTemplatesTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $queryTemplatesElement = new QueryTemplate();
+        $queryTemplates = [$queryTemplatesElement];
+        $expectedResponse = new ListQueryTemplatesResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setQueryTemplates($queryTemplates);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->dataExchangeName('[PROJECT]', '[LOCATION]', '[DATA_EXCHANGE]');
+        $request = (new ListQueryTemplatesRequest())->setParent($formattedParent);
+        $response = $gapicClient->listQueryTemplates($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getQueryTemplates()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.bigquery.analyticshub.v1.AnalyticsHubService/ListQueryTemplates',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listQueryTemplatesExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->dataExchangeName('[PROJECT]', '[LOCATION]', '[DATA_EXCHANGE]');
+        $request = (new ListQueryTemplatesRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listQueryTemplates($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1479,6 +1909,94 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         try {
             $gapicClient->setIamPolicy($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function submitQueryTemplateTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $displayName = 'displayName1615086568';
+        $description = 'description-1724546052';
+        $proposer = 'proposer-992842892';
+        $primaryContact = 'primaryContact203339491';
+        $documentation = 'documentation1587405498';
+        $expectedResponse = new QueryTemplate();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setProposer($proposer);
+        $expectedResponse->setPrimaryContact($primaryContact);
+        $expectedResponse->setDocumentation($documentation);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->queryTemplateName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[DATA_EXCHANGE]',
+            '[QUERY_TEMPLATE]'
+        );
+        $request = (new SubmitQueryTemplateRequest())->setName($formattedName);
+        $response = $gapicClient->submitQueryTemplate($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.bigquery.analyticshub.v1.AnalyticsHubService/SubmitQueryTemplate',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function submitQueryTemplateExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->queryTemplateName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[DATA_EXCHANGE]',
+            '[QUERY_TEMPLATE]'
+        );
+        $request = (new SubmitQueryTemplateRequest())->setName($formattedName);
+        try {
+            $gapicClient->submitQueryTemplate($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1945,7 +2463,7 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function createDataExchangeAsyncTest()
+    public function updateQueryTemplateTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -1956,47 +2474,119 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $name = 'name3373707';
         $displayName = 'displayName1615086568';
         $description = 'description-1724546052';
+        $proposer = 'proposer-992842892';
         $primaryContact = 'primaryContact203339491';
         $documentation = 'documentation1587405498';
-        $listingCount = 1101038700;
-        $icon = '121';
-        $logLinkedDatasetQueryUserEmail = false;
-        $expectedResponse = new DataExchange();
+        $expectedResponse = new QueryTemplate();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
+        $expectedResponse->setProposer($proposer);
         $expectedResponse->setPrimaryContact($primaryContact);
         $expectedResponse->setDocumentation($documentation);
-        $expectedResponse->setListingCount($listingCount);
-        $expectedResponse->setIcon($icon);
-        $expectedResponse->setLogLinkedDatasetQueryUserEmail($logLinkedDatasetQueryUserEmail);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $dataExchangeId = 'dataExchangeId1402219426';
-        $dataExchange = new DataExchange();
-        $dataExchangeDisplayName = 'dataExchangeDisplayName-1195270080';
-        $dataExchange->setDisplayName($dataExchangeDisplayName);
-        $request = (new CreateDataExchangeRequest())
-            ->setParent($formattedParent)
-            ->setDataExchangeId($dataExchangeId)
-            ->setDataExchange($dataExchange);
-        $response = $gapicClient->createDataExchangeAsync($request)->wait();
+        $queryTemplate = new QueryTemplate();
+        $queryTemplateDisplayName = 'queryTemplateDisplayName-990303317';
+        $queryTemplate->setDisplayName($queryTemplateDisplayName);
+        $request = (new UpdateQueryTemplateRequest())->setQueryTemplate($queryTemplate);
+        $response = $gapicClient->updateQueryTemplate($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame(
-            '/google.cloud.bigquery.analyticshub.v1.AnalyticsHubService/CreateDataExchange',
+            '/google.cloud.bigquery.analyticshub.v1.AnalyticsHubService/UpdateQueryTemplate',
             $actualFuncCall
         );
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getDataExchangeId();
-        $this->assertProtobufEquals($dataExchangeId, $actualValue);
-        $actualValue = $actualRequestObject->getDataExchange();
-        $this->assertProtobufEquals($dataExchange, $actualValue);
+        $actualValue = $actualRequestObject->getQueryTemplate();
+        $this->assertProtobufEquals($queryTemplate, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateQueryTemplateExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $queryTemplate = new QueryTemplate();
+        $queryTemplateDisplayName = 'queryTemplateDisplayName-990303317';
+        $queryTemplate->setDisplayName($queryTemplateDisplayName);
+        $request = (new UpdateQueryTemplateRequest())->setQueryTemplate($queryTemplate);
+        try {
+            $gapicClient->updateQueryTemplate($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function approveQueryTemplateAsyncTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $displayName = 'displayName1615086568';
+        $description = 'description-1724546052';
+        $proposer = 'proposer-992842892';
+        $primaryContact = 'primaryContact203339491';
+        $documentation = 'documentation1587405498';
+        $expectedResponse = new QueryTemplate();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setProposer($proposer);
+        $expectedResponse->setPrimaryContact($primaryContact);
+        $expectedResponse->setDocumentation($documentation);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->queryTemplateName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[DATA_EXCHANGE]',
+            '[QUERY_TEMPLATE]'
+        );
+        $request = (new ApproveQueryTemplateRequest())->setName($formattedName);
+        $response = $gapicClient->approveQueryTemplateAsync($request)->wait();
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.bigquery.analyticshub.v1.AnalyticsHubService/ApproveQueryTemplate',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

@@ -62,6 +62,19 @@ class State
      * Generated from protobuf enum <code>PENDING_SVM_PEERING = 9;</code>
      */
     const PENDING_SVM_PEERING = 9;
+    /**
+     * Replication is waiting for Commands to be executed on Onprem ONTAP.
+     *
+     * Generated from protobuf enum <code>PENDING_REMOTE_RESYNC = 10;</code>
+     */
+    const PENDING_REMOTE_RESYNC = 10;
+    /**
+     * Onprem ONTAP is destination and Replication can only be managed from
+     * Onprem.
+     *
+     * Generated from protobuf enum <code>EXTERNALLY_MANAGED_REPLICATION = 11;</code>
+     */
+    const EXTERNALLY_MANAGED_REPLICATION = 11;
 
     private static $valueToName = [
         self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
@@ -72,6 +85,8 @@ class State
         self::ERROR => 'ERROR',
         self::PENDING_CLUSTER_PEERING => 'PENDING_CLUSTER_PEERING',
         self::PENDING_SVM_PEERING => 'PENDING_SVM_PEERING',
+        self::PENDING_REMOTE_RESYNC => 'PENDING_REMOTE_RESYNC',
+        self::EXTERNALLY_MANAGED_REPLICATION => 'EXTERNALLY_MANAGED_REPLICATION',
     ];
 
     public static function name($value)

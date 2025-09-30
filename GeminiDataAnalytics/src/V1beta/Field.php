@@ -40,6 +40,20 @@ class Field extends \Google\Protobuf\Internal\Message
      */
     protected $mode = '';
     /**
+     * Optional. A list of alternative names or synonyms that can be used to refer
+     * to this field. For example: ["id", "customerid", "cust_id"]
+     *
+     * Generated from protobuf field <code>repeated string synonyms = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $synonyms;
+    /**
+     * Optional. A list of tags or keywords associated with the field, used for
+     * categorization. For example: ["identifier", "customer", "pii"]
+     *
+     * Generated from protobuf field <code>repeated string tags = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $tags;
+    /**
      * Optional. Field display_name (same as label in
      *
      * Generated from protobuf field <code>string display_name = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -59,6 +73,14 @@ class Field extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string category = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $category = '';
+    /**
+     * Optional. Looker only. Value format of the field.
+     * Ref:
+     * https://cloud.google.com/looker/docs/reference/param-field-value-format
+     *
+     * Generated from protobuf field <code>string value_format = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $value_format = '';
 
     /**
      * Constructor.
@@ -74,6 +96,12 @@ class Field extends \Google\Protobuf\Internal\Message
      *           Optional. A brief description of the field.
      *     @type string $mode
      *           Optional. The mode of the field (e.g., NULLABLE, REPEATED).
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $synonyms
+     *           Optional. A list of alternative names or synonyms that can be used to refer
+     *           to this field. For example: ["id", "customerid", "cust_id"]
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tags
+     *           Optional. A list of tags or keywords associated with the field, used for
+     *           categorization. For example: ["identifier", "customer", "pii"]
      *     @type string $display_name
      *           Optional. Field display_name (same as label in
      *     @type array<\Google\Cloud\GeminiDataAnalytics\V1beta\Field>|\Google\Protobuf\Internal\RepeatedField $subfields
@@ -82,6 +110,10 @@ class Field extends \Google\Protobuf\Internal\Message
      *           Optional. Field category, not required, currently only useful for Looker.
      *           We are using a string to avoid depending on an external package and keep
      *           this package self-contained.
+     *     @type string $value_format
+     *           Optional. Looker only. Value format of the field.
+     *           Ref:
+     *           https://cloud.google.com/looker/docs/reference/param-field-value-format
      * }
      */
     public function __construct($data = NULL) {
@@ -194,6 +226,62 @@ class Field extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. A list of alternative names or synonyms that can be used to refer
+     * to this field. For example: ["id", "customerid", "cust_id"]
+     *
+     * Generated from protobuf field <code>repeated string synonyms = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getSynonyms()
+    {
+        return $this->synonyms;
+    }
+
+    /**
+     * Optional. A list of alternative names or synonyms that can be used to refer
+     * to this field. For example: ["id", "customerid", "cust_id"]
+     *
+     * Generated from protobuf field <code>repeated string synonyms = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setSynonyms($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->synonyms = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A list of tags or keywords associated with the field, used for
+     * categorization. For example: ["identifier", "customer", "pii"]
+     *
+     * Generated from protobuf field <code>repeated string tags = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    /**
+     * Optional. A list of tags or keywords associated with the field, used for
+     * categorization. For example: ["identifier", "customer", "pii"]
+     *
+     * Generated from protobuf field <code>repeated string tags = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setTags($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->tags = $arr;
+
+        return $this;
+    }
+
+    /**
      * Optional. Field display_name (same as label in
      *
      * Generated from protobuf field <code>string display_name = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -271,6 +359,36 @@ class Field extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->category = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Looker only. Value format of the field.
+     * Ref:
+     * https://cloud.google.com/looker/docs/reference/param-field-value-format
+     *
+     * Generated from protobuf field <code>string value_format = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getValueFormat()
+    {
+        return $this->value_format;
+    }
+
+    /**
+     * Optional. Looker only. Value format of the field.
+     * Ref:
+     * https://cloud.google.com/looker/docs/reference/param-field-value-format
+     *
+     * Generated from protobuf field <code>string value_format = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setValueFormat($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->value_format = $var;
 
         return $this;
     }

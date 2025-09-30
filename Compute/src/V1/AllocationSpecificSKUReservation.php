@@ -20,31 +20,31 @@ class AllocationSpecificSKUReservation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int64 assured_count = 281197645;</code>
      */
-    private $assured_count = null;
+    protected $assured_count = null;
     /**
      * Specifies the number of resources that are allocated.
      *
      * Generated from protobuf field <code>optional int64 count = 94851343;</code>
      */
-    private $count = null;
+    protected $count = null;
     /**
      * [Output Only] Indicates how many instances are in use.
      *
      * Generated from protobuf field <code>optional int64 in_use_count = 493458877;</code>
      */
-    private $in_use_count = null;
+    protected $in_use_count = null;
     /**
      * The instance properties for the reservation.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.AllocationSpecificSKUAllocationReservedInstanceProperties instance_properties = 215355165;</code>
      */
-    private $instance_properties = null;
+    protected $instance_properties = null;
     /**
      * Specifies the instance template to create the reservation. If you use this field, you must exclude the instanceProperties field. This field is optional, and it can be a full or partial URL. For example, the following are all valid URLs to an instance template: - https://www.googleapis.com/compute/v1/projects/project /global/instanceTemplates/instanceTemplate - projects/project/global/instanceTemplates/instanceTemplate - global/instanceTemplates/instanceTemplate 
      *
      * Generated from protobuf field <code>optional string source_instance_template = 332423616;</code>
      */
-    private $source_instance_template = null;
+    protected $source_instance_template = null;
 
     /**
      * Constructor.

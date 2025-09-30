@@ -251,11 +251,6 @@ return [
                     ],
                 ],
             ],
-            'CreateConnectedSiteTag' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1alpha/properties:createConnectedSiteTag',
-                'body' => '*',
-            ],
             'CreateConversionEvent' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1alpha/{parent=properties/*}/conversionEvents',
@@ -554,11 +549,6 @@ return [
                     ],
                 ],
             ],
-            'DeleteConnectedSiteTag' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1alpha/properties:deleteConnectedSiteTag',
-                'body' => '*',
-            ],
             'DeleteConversionEvent' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1alpha/{name=properties/*/conversionEvents/*}',
@@ -745,15 +735,6 @@ return [
                         ],
                     ],
                 ],
-            ],
-            'FetchAutomatedGa4ConfigurationOptOut' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1alpha/properties:fetchAutomatedGa4ConfigurationOptOut',
-                'body' => '*',
-            ],
-            'FetchConnectedGa4Property' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1alpha/properties:fetchConnectedGa4Property',
             ],
             'GetAccessBinding' => [
                 'method' => 'get',
@@ -1058,6 +1039,17 @@ return [
                     ],
                 ],
             ],
+            'GetReportingIdentitySettings' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{name=properties/*/reportingIdentitySettings}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetRollupPropertySourceLink' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{name=properties/*/rollupPropertySourceLinks/*}',
@@ -1192,11 +1184,6 @@ return [
                         ],
                     ],
                 ],
-            ],
-            'ListConnectedSiteTags' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1alpha/properties:listConnectedSiteTags',
-                'body' => '*',
             ],
             'ListConversionEvents' => [
                 'method' => 'get',
@@ -1466,11 +1453,6 @@ return [
                         ],
                     ],
                 ],
-            ],
-            'SetAutomatedGa4ConfigurationOptOut' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1alpha/properties:setAutomatedGa4ConfigurationOptOut',
-                'body' => '*',
             ],
             'SubmitUserDeletion' => [
                 'method' => 'post',

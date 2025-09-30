@@ -122,6 +122,7 @@ class EndpointServiceClientTest extends GeneratedTest
         $dedicatedEndpointDns = 'dedicatedEndpointDns598984655';
         $satisfiesPzs = false;
         $satisfiesPzi = false;
+        $privateModelServerEnabled = false;
         $expectedResponse = new Endpoint();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
@@ -134,6 +135,7 @@ class EndpointServiceClientTest extends GeneratedTest
         $expectedResponse->setDedicatedEndpointDns($dedicatedEndpointDns);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setSatisfiesPzi($satisfiesPzi);
+        $expectedResponse->setPrivateModelServerEnabled($privateModelServerEnabled);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -510,6 +512,7 @@ class EndpointServiceClientTest extends GeneratedTest
         $dedicatedEndpointDns = 'dedicatedEndpointDns598984655';
         $satisfiesPzs = false;
         $satisfiesPzi = false;
+        $privateModelServerEnabled = false;
         $expectedResponse = new Endpoint();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
@@ -522,6 +525,7 @@ class EndpointServiceClientTest extends GeneratedTest
         $expectedResponse->setDedicatedEndpointDns($dedicatedEndpointDns);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setSatisfiesPzi($satisfiesPzi);
+        $expectedResponse->setPrivateModelServerEnabled($privateModelServerEnabled);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
@@ -928,6 +932,7 @@ class EndpointServiceClientTest extends GeneratedTest
         $dedicatedEndpointDns = 'dedicatedEndpointDns598984655';
         $satisfiesPzs = false;
         $satisfiesPzi = false;
+        $privateModelServerEnabled = false;
         $expectedResponse = new Endpoint();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
@@ -940,6 +945,7 @@ class EndpointServiceClientTest extends GeneratedTest
         $expectedResponse->setDedicatedEndpointDns($dedicatedEndpointDns);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setSatisfiesPzi($satisfiesPzi);
+        $expectedResponse->setPrivateModelServerEnabled($privateModelServerEnabled);
         $transport->addResponse($expectedResponse);
         // Mock request
         $endpoint = new Endpoint();
@@ -1033,6 +1039,7 @@ class EndpointServiceClientTest extends GeneratedTest
         $dedicatedEndpointDns = 'dedicatedEndpointDns598984655';
         $satisfiesPzs = false;
         $satisfiesPzi = false;
+        $privateModelServerEnabled = false;
         $expectedResponse = new Endpoint();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
@@ -1045,6 +1052,7 @@ class EndpointServiceClientTest extends GeneratedTest
         $expectedResponse->setDedicatedEndpointDns($dedicatedEndpointDns);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setSatisfiesPzi($satisfiesPzi);
+        $expectedResponse->setPrivateModelServerEnabled($privateModelServerEnabled);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1514,6 +1522,7 @@ class EndpointServiceClientTest extends GeneratedTest
         $dedicatedEndpointDns = 'dedicatedEndpointDns598984655';
         $satisfiesPzs = false;
         $satisfiesPzi = false;
+        $privateModelServerEnabled = false;
         $expectedResponse = new Endpoint();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
@@ -1526,6 +1535,7 @@ class EndpointServiceClientTest extends GeneratedTest
         $expectedResponse->setDedicatedEndpointDns($dedicatedEndpointDns);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setSatisfiesPzi($satisfiesPzi);
+        $expectedResponse->setPrivateModelServerEnabled($privateModelServerEnabled);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();

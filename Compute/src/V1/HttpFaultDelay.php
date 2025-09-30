@@ -20,13 +20,13 @@ class HttpFaultDelay extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Duration fixed_delay = 317037816;</code>
      */
-    private $fixed_delay = null;
+    protected $fixed_delay = null;
     /**
      * The percentage of traffic for connections, operations, or requests for which a delay is introduced as part of fault injection. The value must be from 0.0 to 100.0 inclusive.
      *
      * Generated from protobuf field <code>optional double percentage = 151909018;</code>
      */
-    private $percentage = null;
+    protected $percentage = null;
 
     /**
      * Constructor.

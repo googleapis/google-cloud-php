@@ -20,7 +20,7 @@ class PathRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.CustomErrorResponsePolicy custom_error_response_policy = 202816619;</code>
      */
-    private $custom_error_response_policy = null;
+    protected $custom_error_response_policy = null;
     /**
      * The list of path patterns to match. Each must start with / and the only place a * is allowed is at the end following a /. The string fed to the path matcher does not include any text after the first ? or #, and those chars are not allowed here.
      *
@@ -32,19 +32,19 @@ class PathRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.HttpRouteAction route_action = 424563948;</code>
      */
-    private $route_action = null;
+    protected $route_action = null;
     /**
      * The full or partial URL of the backend service resource to which traffic is directed if this rule is matched. If routeAction is also specified, advanced routing actions, such as URL rewrites, take effect before sending the request to the backend. Only one of urlRedirect, service or routeAction.weightedBackendService can be set.
      *
      * Generated from protobuf field <code>optional string service = 373540533;</code>
      */
-    private $service = null;
+    protected $service = null;
     /**
      * When a path pattern is matched, the request is redirected to a URL specified by urlRedirect. Only one of urlRedirect, service or routeAction.weightedBackendService can be set. Not supported when the URL map is bound to a target gRPC proxy.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.HttpRedirectAction url_redirect = 405147820;</code>
      */
-    private $url_redirect = null;
+    protected $url_redirect = null;
 
     /**
      * Constructor.

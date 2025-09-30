@@ -24,7 +24,7 @@ class UrlMapValidationResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional bool load_succeeded = 128326216;</code>
      */
-    private $load_succeeded = null;
+    protected $load_succeeded = null;
     /**
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.TestFailure test_failures = 505934134;</code>
      */
@@ -34,7 +34,7 @@ class UrlMapValidationResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional bool test_passed = 192708797;</code>
      */
-    private $test_passed = null;
+    protected $test_passed = null;
 
     /**
      * Constructor.

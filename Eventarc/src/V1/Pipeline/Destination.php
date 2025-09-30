@@ -25,9 +25,9 @@ class Destination extends \Google\Protobuf\Internal\Message
     /**
      * Optional. An authentication config used to authenticate message requests,
      * such that destinations can verify the source. For example, this can be
-     * used with private GCP destinations that require GCP credentials to access
-     * like Cloud Run. This field is optional and should be set only by users
-     * interested in authenticated push
+     * used with private Google Cloud destinations that require Google Cloud
+     * credentials for access like Cloud Run. This field is optional and should
+     * be set only by users interested in authenticated push.
      *
      * Generated from protobuf field <code>.google.cloud.eventarc.v1.Pipeline.Destination.AuthenticationConfig authentication_config = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -75,9 +75,9 @@ class Destination extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Eventarc\V1\Pipeline\Destination\AuthenticationConfig $authentication_config
      *           Optional. An authentication config used to authenticate message requests,
      *           such that destinations can verify the source. For example, this can be
-     *           used with private GCP destinations that require GCP credentials to access
-     *           like Cloud Run. This field is optional and should be set only by users
-     *           interested in authenticated push
+     *           used with private Google Cloud destinations that require Google Cloud
+     *           credentials for access like Cloud Run. This field is optional and should
+     *           be set only by users interested in authenticated push.
      *     @type \Google\Cloud\Eventarc\V1\Pipeline\MessagePayloadFormat $output_payload_format
      *           Optional. The message format before it is delivered to the destination.
      *           If not set, the message will be delivered in the format it was originally
@@ -279,9 +279,9 @@ class Destination extends \Google\Protobuf\Internal\Message
     /**
      * Optional. An authentication config used to authenticate message requests,
      * such that destinations can verify the source. For example, this can be
-     * used with private GCP destinations that require GCP credentials to access
-     * like Cloud Run. This field is optional and should be set only by users
-     * interested in authenticated push
+     * used with private Google Cloud destinations that require Google Cloud
+     * credentials for access like Cloud Run. This field is optional and should
+     * be set only by users interested in authenticated push.
      *
      * Generated from protobuf field <code>.google.cloud.eventarc.v1.Pipeline.Destination.AuthenticationConfig authentication_config = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Eventarc\V1\Pipeline\Destination\AuthenticationConfig|null
@@ -304,9 +304,9 @@ class Destination extends \Google\Protobuf\Internal\Message
     /**
      * Optional. An authentication config used to authenticate message requests,
      * such that destinations can verify the source. For example, this can be
-     * used with private GCP destinations that require GCP credentials to access
-     * like Cloud Run. This field is optional and should be set only by users
-     * interested in authenticated push
+     * used with private Google Cloud destinations that require Google Cloud
+     * credentials for access like Cloud Run. This field is optional and should
+     * be set only by users interested in authenticated push.
      *
      * Generated from protobuf field <code>.google.cloud.eventarc.v1.Pipeline.Destination.AuthenticationConfig authentication_config = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Eventarc\V1\Pipeline\Destination\AuthenticationConfig $var

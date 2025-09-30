@@ -14,6 +14,10 @@ use Google\Protobuf\Internal\GPBUtil;
  * added or an existing spec is updated/deleted in a version.
  * Currently, an operation will be created only corresponding to OpenAPI spec as
  * parsing is supported for OpenAPI spec.
+ * Alternatively operations can be managed via create,update and delete APIs,
+ * creation of apiOperation can be possible only for version with no parsed
+ * operations and update/delete can be possible only for operations created via
+ * create API.
  *
  * Generated from protobuf message <code>google.cloud.apihub.v1.ApiOperation</code>
  */
@@ -28,17 +32,21 @@ class ApiOperation extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * Output only. The name of the spec from where the operation was parsed.
-     * Format is
+     * Output only. The name of the spec will be of the format:
      * `projects/{project}/locations/{location}/apis/{api}/versions/{version}/specs/{spec}`
+     * Note:The name of the spec will be empty if the operation is created via
+     * [CreateApiOperation][google.cloud.apihub.v1.ApiHub.CreateApiOperation] API.
      *
      * Generated from protobuf field <code>string spec = 2 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
     protected $spec = '';
     /**
-     * Output only. Operation details.
+     * Optional. Operation details.
+     * Note: Even though this field is optional, it is required for
+     * [CreateApiOperation][google.cloud.apihub.v1.ApiHub.CreateApiOperation]
+     * API and we will fail the request if not provided.
      *
-     * Generated from protobuf field <code>.google.cloud.apihub.v1.OperationDetails details = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>.google.cloud.apihub.v1.OperationDetails details = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $details = null;
     /**
@@ -62,6 +70,13 @@ class ApiOperation extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, .google.cloud.apihub.v1.AttributeValues> attributes = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $attributes;
+    /**
+     * Output only. The list of sources and metadata from the sources of the API
+     * operation.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.SourceMetadata source_metadata = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $source_metadata;
 
     /**
      * Constructor.
@@ -74,11 +89,15 @@ class ApiOperation extends \Google\Protobuf\Internal\Message
      *           Format:
      *           `projects/{project}/locations/{location}/apis/{api}/versions/{version}/operations/{operation}`
      *     @type string $spec
-     *           Output only. The name of the spec from where the operation was parsed.
-     *           Format is
+     *           Output only. The name of the spec will be of the format:
      *           `projects/{project}/locations/{location}/apis/{api}/versions/{version}/specs/{spec}`
+     *           Note:The name of the spec will be empty if the operation is created via
+     *           [CreateApiOperation][google.cloud.apihub.v1.ApiHub.CreateApiOperation] API.
      *     @type \Google\Cloud\ApiHub\V1\OperationDetails $details
-     *           Output only. Operation details.
+     *           Optional. Operation details.
+     *           Note: Even though this field is optional, it is required for
+     *           [CreateApiOperation][google.cloud.apihub.v1.ApiHub.CreateApiOperation]
+     *           API and we will fail the request if not provided.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The time at which the operation was created.
      *     @type \Google\Protobuf\Timestamp $update_time
@@ -88,6 +107,9 @@ class ApiOperation extends \Google\Protobuf\Internal\Message
      *           operation resource. The key is the attribute name. It will be of the
      *           format: `projects/{project}/locations/{location}/attributes/{attribute}`.
      *           The value is the attribute values associated with the resource.
+     *     @type array<\Google\Cloud\ApiHub\V1\SourceMetadata>|\Google\Protobuf\Internal\RepeatedField $source_metadata
+     *           Output only. The list of sources and metadata from the sources of the API
+     *           operation.
      * }
      */
     public function __construct($data = NULL) {
@@ -126,9 +148,10 @@ class ApiOperation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The name of the spec from where the operation was parsed.
-     * Format is
+     * Output only. The name of the spec will be of the format:
      * `projects/{project}/locations/{location}/apis/{api}/versions/{version}/specs/{spec}`
+     * Note:The name of the spec will be empty if the operation is created via
+     * [CreateApiOperation][google.cloud.apihub.v1.ApiHub.CreateApiOperation] API.
      *
      * Generated from protobuf field <code>string spec = 2 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @return string
@@ -139,9 +162,10 @@ class ApiOperation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The name of the spec from where the operation was parsed.
-     * Format is
+     * Output only. The name of the spec will be of the format:
      * `projects/{project}/locations/{location}/apis/{api}/versions/{version}/specs/{spec}`
+     * Note:The name of the spec will be empty if the operation is created via
+     * [CreateApiOperation][google.cloud.apihub.v1.ApiHub.CreateApiOperation] API.
      *
      * Generated from protobuf field <code>string spec = 2 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -156,9 +180,12 @@ class ApiOperation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Operation details.
+     * Optional. Operation details.
+     * Note: Even though this field is optional, it is required for
+     * [CreateApiOperation][google.cloud.apihub.v1.ApiHub.CreateApiOperation]
+     * API and we will fail the request if not provided.
      *
-     * Generated from protobuf field <code>.google.cloud.apihub.v1.OperationDetails details = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>.google.cloud.apihub.v1.OperationDetails details = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\ApiHub\V1\OperationDetails|null
      */
     public function getDetails()
@@ -177,9 +204,12 @@ class ApiOperation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Operation details.
+     * Optional. Operation details.
+     * Note: Even though this field is optional, it is required for
+     * [CreateApiOperation][google.cloud.apihub.v1.ApiHub.CreateApiOperation]
+     * API and we will fail the request if not provided.
      *
-     * Generated from protobuf field <code>.google.cloud.apihub.v1.OperationDetails details = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>.google.cloud.apihub.v1.OperationDetails details = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\ApiHub\V1\OperationDetails $var
      * @return $this
      */
@@ -291,6 +321,34 @@ class ApiOperation extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\ApiHub\V1\AttributeValues::class);
         $this->attributes = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The list of sources and metadata from the sources of the API
+     * operation.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.SourceMetadata source_metadata = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getSourceMetadata()
+    {
+        return $this->source_metadata;
+    }
+
+    /**
+     * Output only. The list of sources and metadata from the sources of the API
+     * operation.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.SourceMetadata source_metadata = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<\Google\Cloud\ApiHub\V1\SourceMetadata>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setSourceMetadata($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\ApiHub\V1\SourceMetadata::class);
+        $this->source_metadata = $arr;
 
         return $this;
     }

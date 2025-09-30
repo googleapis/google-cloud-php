@@ -21,7 +21,7 @@ class BackendServiceLocalityLoadBalancingPolicyConfigPolicy extends \Google\Prot
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
 
     /**
      * Constructor.

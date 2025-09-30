@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,6 +28,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
@@ -45,7 +46,6 @@ use Google\Cloud\Compute\V1\GetAssociationFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\GetFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\GetIamPolicyFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\GetRuleFirewallPolicyRequest;
-use Google\Cloud\Compute\V1\GlobalOrganizationOperationsClient;
 use Google\Cloud\Compute\V1\InsertFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\ListAssociationsFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\ListFirewallPoliciesRequest;
@@ -133,7 +133,6 @@ final class FirewallPoliciesClient
                     'restClientConfigPath' => __DIR__ . '/../resources/firewall_policies_rest_client_config.php',
                 ],
             ],
-            'operationsClientClass' => GlobalOrganizationOperationsClient::class,
         ];
     }
 
@@ -146,9 +145,7 @@ final class FirewallPoliciesClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -194,34 +191,56 @@ final class FirewallPoliciesClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : $this->getDefaultOperationDescriptor();
+        $options = $this->descriptors[$methodName]['longRunning'] ?? $this->getDefaultOperationDescriptor();
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
     }
 
     /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return GlobalOrganizationOperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new GlobalOrganizationOperationsClient($options);
+    }
+
+    /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'compute.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
-     *           *Important*: If you accept a credential configuration (credential
-     *           JSON/File/Stream) from an external source for authentication to Google Cloud
-     *           Platform, you must validate it before providing it to any Google API or library.
-     *           Providing an unvalidated credential configuration to Google APIs can compromise
-     *           the security of your systems and data. For more information {@see
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\Compute\V1\FirewallPoliciesClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new FirewallPoliciesClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
      *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
@@ -256,11 +275,13 @@ final class FirewallPoliciesClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -299,8 +320,10 @@ final class FirewallPoliciesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function addAssociation(AddAssociationFirewallPolicyRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function addAssociation(
+        AddAssociationFirewallPolicyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('AddAssociation', $request, $callOptions)->wait();
     }
 
@@ -429,8 +452,10 @@ final class FirewallPoliciesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getAssociation(GetAssociationFirewallPolicyRequest $request, array $callOptions = []): FirewallPolicyAssociation
-    {
+    public function getAssociation(
+        GetAssociationFirewallPolicyRequest $request,
+        array $callOptions = []
+    ): FirewallPolicyAssociation {
         return $this->startApiCall('GetAssociation', $request, $callOptions)->wait();
     }
 
@@ -559,8 +584,10 @@ final class FirewallPoliciesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listAssociations(ListAssociationsFirewallPolicyRequest $request, array $callOptions = []): FirewallPoliciesListAssociationsResponse
-    {
+    public function listAssociations(
+        ListAssociationsFirewallPolicyRequest $request,
+        array $callOptions = []
+    ): FirewallPoliciesListAssociationsResponse {
         return $this->startApiCall('ListAssociations', $request, $callOptions)->wait();
     }
 
@@ -663,8 +690,10 @@ final class FirewallPoliciesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function removeAssociation(RemoveAssociationFirewallPolicyRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function removeAssociation(
+        RemoveAssociationFirewallPolicyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('RemoveAssociation', $request, $callOptions)->wait();
     }
 
@@ -741,8 +770,10 @@ final class FirewallPoliciesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsFirewallPolicyRequest $request, array $callOptions = []): TestPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsFirewallPolicyRequest $request,
+        array $callOptions = []
+    ): TestPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

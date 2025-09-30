@@ -20,13 +20,13 @@ class BgpRouteNetworkLayerReachabilityInformation extends \Google\Protobuf\Inter
      *
      * Generated from protobuf field <code>optional uint32 path_id = 282287989;</code>
      */
-    private $path_id = null;
+    protected $path_id = null;
     /**
      * Human readable CIDR notation for a prefix. E.g. 10.42.0.0/16.
      *
      * Generated from protobuf field <code>optional string prefix = 93631122;</code>
      */
-    private $prefix = null;
+    protected $prefix = null;
 
     /**
      * Constructor.

@@ -2040,7 +2040,7 @@ class Database
      *     @type int $orderBy Set the OrderBy option for the ReadRequest.
      *           {@see \Google\Cloud\Spanner\V1\ReadRequest} and {@see \Google\Cloud\Spanner\V1\ReadRequest\OrderBy}
      *           for more information and available options.
-     *     @type int $lockHint Set the LockHint option for the ReadRequest.
+     *     @type int $lockHint Set the LockHint option for the ReadRequest. Only available when transactionType is read/write.
      *           {@see \Google\Cloud\Spanner\V1\ReadRequest} and {@see \Google\Cloud\Spanner\V1\ReadRequest\LockHint}
      *           for more information and available options.
      * }

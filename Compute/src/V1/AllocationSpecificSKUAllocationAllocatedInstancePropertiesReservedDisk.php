@@ -19,14 +19,14 @@ class AllocationSpecificSKUAllocationAllocatedInstancePropertiesReservedDisk ext
      *
      * Generated from protobuf field <code>optional int64 disk_size_gb = 316263735;</code>
      */
-    private $disk_size_gb = null;
+    protected $disk_size_gb = null;
     /**
      * Specifies the disk interface to use for attaching this disk, which is either SCSI or NVME. The default is SCSI. For performance characteristics of SCSI over NVMe, see Local SSD performance.
      * Check the Interface enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string interface = 502623545;</code>
      */
-    private $interface = null;
+    protected $interface = null;
 
     /**
      * Constructor.

@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListSpecsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The specs corresponding to an API.
+     * The specs corresponding to an API Version.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.Spec specs = 1;</code>
      */
@@ -36,7 +36,7 @@ class ListSpecsResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\ApiHub\V1\Spec>|\Google\Protobuf\Internal\RepeatedField $specs
-     *           The specs corresponding to an API.
+     *           The specs corresponding to an API Version.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
      *           If this field is omitted, there are no subsequent pages.
@@ -48,7 +48,7 @@ class ListSpecsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The specs corresponding to an API.
+     * The specs corresponding to an API Version.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.Spec specs = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -59,7 +59,7 @@ class ListSpecsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The specs corresponding to an API.
+     * The specs corresponding to an API Version.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.Spec specs = 1;</code>
      * @param array<\Google\Cloud\ApiHub\V1\Spec>|\Google\Protobuf\Internal\RepeatedField $var

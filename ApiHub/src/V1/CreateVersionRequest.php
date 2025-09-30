@@ -29,8 +29,11 @@ class CreateVersionRequest extends \Google\Protobuf\Internal\Message
      * * If provided, the same will be used. The service will throw an error if
      * the specified id is already used by another version in the API resource.
      * * If not provided, a system generated id will be used.
-     * This value should be 4-500 characters, and valid characters
-     * are /[a-z][A-Z][0-9]-_/.
+     * This value should be 4-500 characters, overall resource name which will be
+     * of format
+     * `projects/{project}/locations/{location}/apis/{api}/versions/{version}`,
+     * its length is limited to 700 characters and valid characters are
+     * /[a-z][A-Z][0-9]-_/.
      *
      * Generated from protobuf field <code>string version_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -54,8 +57,11 @@ class CreateVersionRequest extends \Google\Protobuf\Internal\Message
      *                                                   the specified id is already used by another version in the API resource.
      *                                                   * If not provided, a system generated id will be used.
      *
-     *                                                   This value should be 4-500 characters, and valid characters
-     *                                                   are /[a-z][A-Z][0-9]-_/.
+     *                                                   This value should be 4-500 characters, overall resource name which will be
+     *                                                   of format
+     *                                                   `projects/{project}/locations/{location}/apis/{api}/versions/{version}`,
+     *                                                   its length is limited to 700 characters and valid characters are
+     *                                                   /[a-z][A-Z][0-9]-_/.
      *
      * @return \Google\Cloud\ApiHub\V1\CreateVersionRequest
      *
@@ -84,8 +90,11 @@ class CreateVersionRequest extends \Google\Protobuf\Internal\Message
      *           * If provided, the same will be used. The service will throw an error if
      *           the specified id is already used by another version in the API resource.
      *           * If not provided, a system generated id will be used.
-     *           This value should be 4-500 characters, and valid characters
-     *           are /[a-z][A-Z][0-9]-_/.
+     *           This value should be 4-500 characters, overall resource name which will be
+     *           of format
+     *           `projects/{project}/locations/{location}/apis/{api}/versions/{version}`,
+     *           its length is limited to 700 characters and valid characters are
+     *           /[a-z][A-Z][0-9]-_/.
      *     @type \Google\Cloud\ApiHub\V1\Version $version
      *           Required. The version to create.
      * }
@@ -129,8 +138,11 @@ class CreateVersionRequest extends \Google\Protobuf\Internal\Message
      * * If provided, the same will be used. The service will throw an error if
      * the specified id is already used by another version in the API resource.
      * * If not provided, a system generated id will be used.
-     * This value should be 4-500 characters, and valid characters
-     * are /[a-z][A-Z][0-9]-_/.
+     * This value should be 4-500 characters, overall resource name which will be
+     * of format
+     * `projects/{project}/locations/{location}/apis/{api}/versions/{version}`,
+     * its length is limited to 700 characters and valid characters are
+     * /[a-z][A-Z][0-9]-_/.
      *
      * Generated from protobuf field <code>string version_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -146,8 +158,11 @@ class CreateVersionRequest extends \Google\Protobuf\Internal\Message
      * * If provided, the same will be used. The service will throw an error if
      * the specified id is already used by another version in the API resource.
      * * If not provided, a system generated id will be used.
-     * This value should be 4-500 characters, and valid characters
-     * are /[a-z][A-Z][0-9]-_/.
+     * This value should be 4-500 characters, overall resource name which will be
+     * of format
+     * `projects/{project}/locations/{location}/apis/{api}/versions/{version}`,
+     * its length is limited to 700 characters and valid characters are
+     * /[a-z][A-Z][0-9]-_/.
      *
      * Generated from protobuf field <code>string version_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

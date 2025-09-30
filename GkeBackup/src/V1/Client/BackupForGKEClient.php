@@ -28,6 +28,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -179,7 +180,9 @@ final class BackupForGKEClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+    ];
 
     private $operationsClient;
 
@@ -225,9 +228,7 @@ final class BackupForGKEClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning'])
-            ? $this->descriptors[$methodName]['longRunning']
-            : [];
+        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -322,12 +323,8 @@ final class BackupForGKEClient
      *
      * @return string The formatted backup_plan_binding resource.
      */
-    public static function backupPlanBindingName(
-        string $project,
-        string $location,
-        string $backupChannel,
-        string $backupPlanBinding
-    ): string {
+    public static function backupPlanBindingName(string $project, string $location, string $backupChannel, string $backupPlanBinding): string
+    {
         return self::getPathTemplate('backupPlanBinding')->render([
             'project' => $project,
             'location' => $location,
@@ -463,12 +460,8 @@ final class BackupForGKEClient
      *
      * @return string The formatted restore_plan_binding resource.
      */
-    public static function restorePlanBindingName(
-        string $project,
-        string $location,
-        string $restoreChannel,
-        string $restorePlanBinding
-    ): string {
+    public static function restorePlanBindingName(string $project, string $location, string $restoreChannel, string $restorePlanBinding): string
+    {
         return self::getPathTemplate('restorePlanBinding')->render([
             'project' => $project,
             'location' => $location,
@@ -489,13 +482,8 @@ final class BackupForGKEClient
      *
      * @return string The formatted volume_backup resource.
      */
-    public static function volumeBackupName(
-        string $project,
-        string $location,
-        string $backupPlan,
-        string $backup,
-        string $volumeBackup
-    ): string {
+    public static function volumeBackupName(string $project, string $location, string $backupPlan, string $backup, string $volumeBackup): string
+    {
         return self::getPathTemplate('volumeBackup')->render([
             'project' => $project,
             'location' => $location,
@@ -517,13 +505,8 @@ final class BackupForGKEClient
      *
      * @return string The formatted volume_restore resource.
      */
-    public static function volumeRestoreName(
-        string $project,
-        string $location,
-        string $restorePlan,
-        string $restore,
-        string $volumeRestore
-    ): string {
+    public static function volumeRestoreName(string $project, string $location, string $restorePlan, string $restore, string $volumeRestore): string
+    {
         return self::getPathTemplate('volumeRestore')->render([
             'project' => $project,
             'location' => $location,
@@ -572,25 +555,28 @@ final class BackupForGKEClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'gkebackup.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
-     *           *Important*: If you accept a credential configuration (credential
-     *           JSON/File/Stream) from an external source for authentication to Google Cloud
-     *           Platform, you must validate it before providing it to any Google API or library.
-     *           Providing an unvalidated credential configuration to Google APIs can compromise
-     *           the security of your systems and data. For more information {@see
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\GkeBackup\V1\BackupForGKEClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new BackupForGKEClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
      *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
@@ -628,11 +614,13 @@ final class BackupForGKEClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -667,7 +655,7 @@ final class BackupForGKEClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Backup>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -693,7 +681,7 @@ final class BackupForGKEClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<BackupChannel>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -719,7 +707,7 @@ final class BackupForGKEClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<BackupPlan>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -745,7 +733,7 @@ final class BackupForGKEClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Restore>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -771,14 +759,12 @@ final class BackupForGKEClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<RestoreChannel>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createRestoreChannel(
-        CreateRestoreChannelRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function createRestoreChannel(CreateRestoreChannelRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('CreateRestoreChannel', $request, $callOptions)->wait();
     }
 
@@ -799,7 +785,7 @@ final class BackupForGKEClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<RestorePlan>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -825,7 +811,7 @@ final class BackupForGKEClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -851,7 +837,7 @@ final class BackupForGKEClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -877,7 +863,7 @@ final class BackupForGKEClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -903,7 +889,7 @@ final class BackupForGKEClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -929,14 +915,12 @@ final class BackupForGKEClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteRestoreChannel(
-        DeleteRestoreChannelRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function deleteRestoreChannel(DeleteRestoreChannelRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('DeleteRestoreChannel', $request, $callOptions)->wait();
     }
 
@@ -957,7 +941,7 @@ final class BackupForGKEClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1040,10 +1024,8 @@ final class BackupForGKEClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getBackupIndexDownloadUrl(
-        GetBackupIndexDownloadUrlRequest $request,
-        array $callOptions = []
-    ): GetBackupIndexDownloadUrlResponse {
+    public function getBackupIndexDownloadUrl(GetBackupIndexDownloadUrlRequest $request, array $callOptions = []): GetBackupIndexDownloadUrlResponse
+    {
         return $this->startApiCall('GetBackupIndexDownloadUrl', $request, $callOptions)->wait();
     }
 
@@ -1094,10 +1076,8 @@ final class BackupForGKEClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getBackupPlanBinding(
-        GetBackupPlanBindingRequest $request,
-        array $callOptions = []
-    ): BackupPlanBinding {
+    public function getBackupPlanBinding(GetBackupPlanBindingRequest $request, array $callOptions = []): BackupPlanBinding
+    {
         return $this->startApiCall('GetBackupPlanBinding', $request, $callOptions)->wait();
     }
 
@@ -1200,10 +1180,8 @@ final class BackupForGKEClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getRestorePlanBinding(
-        GetRestorePlanBindingRequest $request,
-        array $callOptions = []
-    ): RestorePlanBinding {
+    public function getRestorePlanBinding(GetRestorePlanBindingRequest $request, array $callOptions = []): RestorePlanBinding
+    {
         return $this->startApiCall('GetRestorePlanBinding', $request, $callOptions)->wait();
     }
 
@@ -1306,10 +1284,8 @@ final class BackupForGKEClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listBackupPlanBindings(
-        ListBackupPlanBindingsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listBackupPlanBindings(ListBackupPlanBindingsRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListBackupPlanBindings', $request, $callOptions);
     }
 
@@ -1412,10 +1388,8 @@ final class BackupForGKEClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listRestorePlanBindings(
-        ListRestorePlanBindingsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listRestorePlanBindings(ListRestorePlanBindingsRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListRestorePlanBindings', $request, $callOptions);
     }
 
@@ -1540,7 +1514,7 @@ final class BackupForGKEClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Backup>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1566,7 +1540,7 @@ final class BackupForGKEClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<BackupChannel>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1592,7 +1566,7 @@ final class BackupForGKEClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<BackupPlan>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1618,7 +1592,7 @@ final class BackupForGKEClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Restore>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1644,14 +1618,12 @@ final class BackupForGKEClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<RestoreChannel>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateRestoreChannel(
-        UpdateRestoreChannelRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function updateRestoreChannel(UpdateRestoreChannelRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('UpdateRestoreChannel', $request, $callOptions)->wait();
     }
 
@@ -1672,7 +1644,7 @@ final class BackupForGKEClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<RestorePlan>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1817,10 +1789,8 @@ final class BackupForGKEClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(
-        TestIamPermissionsRequest $request,
-        array $callOptions = []
-    ): TestIamPermissionsResponse {
+    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
+    {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

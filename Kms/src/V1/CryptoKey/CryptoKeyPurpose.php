@@ -68,6 +68,15 @@ class CryptoKeyPurpose
      * Generated from protobuf enum <code>MAC = 9;</code>
      */
     const MAC = 9;
+    /**
+     * [CryptoKeys][google.cloud.kms.v1.CryptoKey] with this purpose may be used
+     * with
+     * [GetPublicKey][google.cloud.kms.v1.KeyManagementService.GetPublicKey]
+     * and [Decapsulate][google.cloud.kms.v1.KeyManagementService.Decapsulate].
+     *
+     * Generated from protobuf enum <code>KEY_ENCAPSULATION = 10;</code>
+     */
+    const KEY_ENCAPSULATION = 10;
 
     private static $valueToName = [
         self::CRYPTO_KEY_PURPOSE_UNSPECIFIED => 'CRYPTO_KEY_PURPOSE_UNSPECIFIED',
@@ -76,6 +85,7 @@ class CryptoKeyPurpose
         self::ASYMMETRIC_DECRYPT => 'ASYMMETRIC_DECRYPT',
         self::RAW_ENCRYPT_DECRYPT => 'RAW_ENCRYPT_DECRYPT',
         self::MAC => 'MAC',
+        self::KEY_ENCAPSULATION => 'KEY_ENCAPSULATION',
     ];
 
     public static function name($value)

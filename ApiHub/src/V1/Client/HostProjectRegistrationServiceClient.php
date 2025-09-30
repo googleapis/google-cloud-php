@@ -27,6 +27,7 @@ namespace Google\Cloud\ApiHub\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -85,7 +86,9 @@ final class HostProjectRegistrationServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+    ];
 
     private static function getClientDefaults()
     {
@@ -93,16 +96,14 @@ final class HostProjectRegistrationServiceClient
             'serviceName' => self::SERVICE_NAME,
             'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__ . '/../resources/host_project_registration_service_client_config.json',
-            'descriptorsConfigPath' =>
-                __DIR__ . '/../resources/host_project_registration_service_descriptor_config.php',
+            'descriptorsConfigPath' => __DIR__ . '/../resources/host_project_registration_service_descriptor_config.php',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
                 'useJwtAccessWithScope' => false,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' =>
-                        __DIR__ . '/../resources/host_project_registration_service_rest_client_config.php',
+                    'restClientConfigPath' => __DIR__ . '/../resources/host_project_registration_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -117,7 +118,9 @@ final class HostProjectRegistrationServiceClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return ['rest'];
+        return [
+            'rest',
+        ];
     }
 
     /**
@@ -130,11 +133,8 @@ final class HostProjectRegistrationServiceClient
      *
      * @return string The formatted host_project_registration resource.
      */
-    public static function hostProjectRegistrationName(
-        string $project,
-        string $location,
-        string $hostProjectRegistration
-    ): string {
+    public static function hostProjectRegistrationName(string $project, string $location, string $hostProjectRegistration): string
+    {
         return self::getPathTemplate('hostProjectRegistration')->render([
             'project' => $project,
             'location' => $location,
@@ -203,25 +203,28 @@ final class HostProjectRegistrationServiceClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'apihub.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
-     *           *Important*: If you accept a credential configuration (credential
-     *           JSON/File/Stream) from an external source for authentication to Google Cloud
-     *           Platform, you must validate it before providing it to any Google API or library.
-     *           Providing an unvalidated credential configuration to Google APIs can compromise
-     *           the security of your systems and data. For more information {@see
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\ApiHub\V1\HostProjectRegistrationServiceClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new HostProjectRegistrationServiceClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
      *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
@@ -256,11 +259,13 @@ final class HostProjectRegistrationServiceClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -304,10 +309,8 @@ final class HostProjectRegistrationServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createHostProjectRegistration(
-        CreateHostProjectRegistrationRequest $request,
-        array $callOptions = []
-    ): HostProjectRegistration {
+    public function createHostProjectRegistration(CreateHostProjectRegistrationRequest $request, array $callOptions = []): HostProjectRegistration
+    {
         return $this->startApiCall('CreateHostProjectRegistration', $request, $callOptions)->wait();
     }
 
@@ -333,10 +336,8 @@ final class HostProjectRegistrationServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getHostProjectRegistration(
-        GetHostProjectRegistrationRequest $request,
-        array $callOptions = []
-    ): HostProjectRegistration {
+    public function getHostProjectRegistration(GetHostProjectRegistrationRequest $request, array $callOptions = []): HostProjectRegistration
+    {
         return $this->startApiCall('GetHostProjectRegistration', $request, $callOptions)->wait();
     }
 
@@ -363,10 +364,8 @@ final class HostProjectRegistrationServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listHostProjectRegistrations(
-        ListHostProjectRegistrationsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listHostProjectRegistrations(ListHostProjectRegistrationsRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListHostProjectRegistrations', $request, $callOptions);
     }
 

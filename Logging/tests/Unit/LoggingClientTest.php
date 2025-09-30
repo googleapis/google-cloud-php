@@ -19,6 +19,7 @@ namespace Google\Cloud\Logging\Tests\Unit;
 
 use Google\Cloud\Core\Batch\BatchRunner;
 use Google\Cloud\Core\Batch\OpisClosureSerializer;
+use Google\Cloud\Core\Batch\OpisClosureSerializerV4;
 use Google\Cloud\Core\Report\EmptyMetadataProvider;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
@@ -313,6 +314,7 @@ class LoggingClientTest extends TestCase
 
     public function testOptionsArePassedToPsrLogger()
     {
+        $opisV4 = class_exists(OpisClosureSerializerV4::class);
         $options = [
             'metadataProvider' => new EmptyMetadataProvider,
             'batchEnabled' => true,
@@ -326,7 +328,7 @@ class LoggingClientTest extends TestCase
                 'projectId' => 'test'
             ],
             'batchRunner' => new BatchRunner,
-            'closureSerializer' => new OpisClosureSerializer,
+            'closureSerializer' => $opisV4 ? new OpisClosureSerializerV4 : new OpisClosureSerializer,
             'debugOutputResource' => fopen('php://temp', 'wb')
         ];
 
@@ -335,9 +337,8 @@ class LoggingClientTest extends TestCase
         $reflection = new \ReflectionClass($psrLogger);
         foreach ($options as $name => $value) {
             $attr = $reflection->getProperty($name);
-            $attr->setAccessible(true);
             $this->assertEquals(
-                $value,
+                $name === 'clientConfig' && $opisV4 ? serialize($value) : $value,
                 $attr->getValue($psrLogger),
                 "$name assertion failed."
             );

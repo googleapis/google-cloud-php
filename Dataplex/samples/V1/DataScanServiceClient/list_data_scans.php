@@ -35,7 +35,7 @@ use Google\Cloud\Dataplex\V1\ListDataScansRequest;
  * @param string $formattedParent The resource name of the parent location:
  *                                `projects/{project}/locations/{location_id}`
  *                                where `project` refers to a *project_id* or *project_number* and
- *                                `location_id` refers to a GCP region. Please see
+ *                                `location_id` refers to a Google Cloud region. Please see
  *                                {@see DataScanServiceClient::locationName()} for help formatting this field.
  */
 function list_data_scans_sample(string $formattedParent): void

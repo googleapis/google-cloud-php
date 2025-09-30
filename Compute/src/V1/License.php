@@ -26,31 +26,31 @@ class License extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional bool appendable_to_disk = 16959254;</code>
      */
-    private $appendable_to_disk = null;
+    protected $appendable_to_disk = null;
     /**
      * [Output Only] Deprecated. This field no longer reflects whether a license charges a usage fee.
      *
      * Generated from protobuf field <code>optional bool charges_use_fee = 372412622;</code>
      */
-    private $charges_use_fee = null;
+    protected $charges_use_fee = null;
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
-    private $creation_timestamp = null;
+    protected $creation_timestamp = null;
     /**
      * An optional textual description of the resource; provided by the client when the resource is created.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
-    private $description = null;
+    protected $description = null;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
-    private $id = null;
+    protected $id = null;
     /**
      * Specifies licenseCodes of licenses that are incompatible with this license. If a license is incompatible with this license, it cannot be attached to the same disk or image.
      *
@@ -62,43 +62,43 @@ class License extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
-    private $kind = null;
+    protected $kind = null;
     /**
      * [Output Only] The unique code used to attach this license to images, snapshots, and disks.
      *
      * Generated from protobuf field <code>optional uint64 license_code = 1467179;</code>
      */
-    private $license_code = null;
+    protected $license_code = null;
     /**
      * If set, this license will be unable to be removed or replaced once attached to a disk until the minimum_retention period has passed.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Duration minimum_retention = 155398189;</code>
      */
-    private $minimum_retention = null;
+    protected $minimum_retention = null;
     /**
      * If true, this license can only be used on VMs on multi tenant nodes.
      *
      * Generated from protobuf field <code>optional bool multi_tenant_only = 274395163;</code>
      */
-    private $multi_tenant_only = null;
+    protected $multi_tenant_only = null;
     /**
      * Name of the resource. The name must be 1-63 characters long and comply with RFC1035.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
     /**
      * If true, indicates this is an OS license. Only one OS license can be attached to a disk or image at a time.
      *
      * Generated from protobuf field <code>optional bool os_license = 487986406;</code>
      */
-    private $os_license = null;
+    protected $os_license = null;
     /**
      * If true, this license can be removed from a disk's set of licenses, with no replacement license needed.
      *
      * Generated from protobuf field <code>optional bool removable_from_disk = 25854638;</code>
      */
-    private $removable_from_disk = null;
+    protected $removable_from_disk = null;
     /**
      * Specifies the set of permissible coattached licenseCodes of licenses that satisfy the coattachment requirement of this license. At least one license from the set must be attached to the same disk or image as this license.
      *
@@ -110,37 +110,37 @@ class License extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.LicenseResourceRequirements resource_requirements = 214292769;</code>
      */
-    private $resource_requirements = null;
+    protected $resource_requirements = null;
     /**
      * [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
-    private $self_link = null;
+    protected $self_link = null;
     /**
      * [Output Only] Server-defined URL for this resource with the resource id.
      *
      * Generated from protobuf field <code>optional string self_link_with_id = 44520962;</code>
      */
-    private $self_link_with_id = null;
+    protected $self_link_with_id = null;
     /**
      * If true, this license can only be used on VMs on sole tenant nodes.
      *
      * Generated from protobuf field <code>optional bool sole_tenant_only = 427525559;</code>
      */
-    private $sole_tenant_only = null;
+    protected $sole_tenant_only = null;
     /**
      * If false, licenses will not be copied from the source resource when creating an image from a disk, disk from snapshot, or snapshot from disk.
      *
      * Generated from protobuf field <code>optional bool transferable = 4349893;</code>
      */
-    private $transferable = null;
+    protected $transferable = null;
     /**
      * [Output Only] Last update timestamp in RFC3339 text format.
      *
      * Generated from protobuf field <code>optional string update_timestamp = 120894752;</code>
      */
-    private $update_timestamp = null;
+    protected $update_timestamp = null;
 
     /**
      * Constructor.

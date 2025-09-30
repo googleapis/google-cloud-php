@@ -107,31 +107,13 @@ class UpdateComponentCommandTest extends TestCase
 
     public function testUpdateFailsWithInvalidComponentName()
     {
-        $this->expectException(\RuntimeException::class);
-        $this->expectExceptionMessage('Component \'NonExistantComponent\' not found.');
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage('Invalid component name provided: NonExistantComponent');
 
         $runProcess = $this->prophesize(RunProcess::class);
         $runProcess->execute(['which', 'docker'], null, self::DEFAULT_TIMEOUT)
             ->shouldBeCalledOnce()
             ->willReturn('/path/to/docker');
-
-        $findComponentCommand = [
-            'find',
-            self::$tmpDir,
-            '-mindepth',
-            '1',
-            '-maxdepth',
-            '1',
-            '-type',
-            'd',
-            '-name',
-            'NonExistantComponent',
-            '-printf',
-            '%f\n'
-        ];
-        $runProcess->execute($findComponentCommand, null, self::DEFAULT_TIMEOUT)
-            ->shouldBeCalledOnce()
-            ->willReturn('');
 
         $application = new Application();
         $application->add(new UpdateComponentCommand(self::$tmpDir, $runProcess->reveal()));
@@ -151,24 +133,6 @@ class UpdateComponentCommandTest extends TestCase
         $runProcess->execute(['which', 'docker'], null, self::DEFAULT_TIMEOUT)
             ->shouldBeCalledOnce()
             ->willReturn('/path/to/docker');
-        $findComponentCommand = [
-            'find',
-            self::$tmpDir,
-            '-mindepth',
-            '1',
-            '-maxdepth',
-            '1',
-            '-type',
-            'd',
-            '-name',
-            self::COMPONENT_NAME,
-            '-printf',
-            '%f\n'
-        ];
-
-        $runProcess->execute($findComponentCommand, null, self::DEFAULT_TIMEOUT)
-            ->shouldBeCalledOnce()
-            ->willReturn(self::COMPONENT_NAME);
 
         list($userId, $groupId) = [posix_getuid(), posix_getgid()];
         $owlbotPhpImage = self::OWLBOT_PHP_IMAGE . '@' . self::OWLBOT_PHP_DIGEST;

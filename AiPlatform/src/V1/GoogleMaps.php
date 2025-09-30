@@ -15,6 +15,12 @@ use Google\Protobuf\Internal\GPBUtil;
  */
 class GoogleMaps extends \Google\Protobuf\Internal\Message
 {
+    /**
+     * If true, include the widget context token in the response.
+     *
+     * Generated from protobuf field <code>bool enable_widget = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $enable_widget = false;
 
     /**
      * Constructor.
@@ -22,11 +28,39 @@ class GoogleMaps extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type bool $enable_widget
+     *           If true, include the widget context token in the response.
      * }
      */
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Aiplatform\V1\Tool::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * If true, include the widget context token in the response.
+     *
+     * Generated from protobuf field <code>bool enable_widget = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getEnableWidget()
+    {
+        return $this->enable_widget;
+    }
+
+    /**
+     * If true, include the widget context token in the response.
+     *
+     * Generated from protobuf field <code>bool enable_widget = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableWidget($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_widget = $var;
+
+        return $this;
     }
 
 }

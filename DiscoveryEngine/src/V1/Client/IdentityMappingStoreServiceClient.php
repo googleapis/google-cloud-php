@@ -28,6 +28,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -39,6 +40,7 @@ use Google\Cloud\DiscoveryEngine\V1\DeleteIdentityMappingStoreRequest;
 use Google\Cloud\DiscoveryEngine\V1\GetIdentityMappingStoreRequest;
 use Google\Cloud\DiscoveryEngine\V1\IdentityMappingStore;
 use Google\Cloud\DiscoveryEngine\V1\ImportIdentityMappingsRequest;
+use Google\Cloud\DiscoveryEngine\V1\ImportIdentityMappingsResponse;
 use Google\Cloud\DiscoveryEngine\V1\ListIdentityMappingStoresRequest;
 use Google\Cloud\DiscoveryEngine\V1\ListIdentityMappingsRequest;
 use Google\Cloud\DiscoveryEngine\V1\PurgeIdentityMappingsRequest;
@@ -91,7 +93,9 @@ final class IdentityMappingStoreServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+    ];
 
     private $operationsClient;
 
@@ -108,8 +112,7 @@ final class IdentityMappingStoreServiceClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' =>
-                        __DIR__ . '/../resources/identity_mapping_store_service_rest_client_config.php',
+                    'restClientConfigPath' => __DIR__ . '/../resources/identity_mapping_store_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -138,9 +141,7 @@ final class IdentityMappingStoreServiceClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning'])
-            ? $this->descriptors[$methodName]['longRunning']
-            : [];
+        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -194,13 +195,8 @@ final class IdentityMappingStoreServiceClient
      *
      * @return string The formatted crypto_key_versions resource.
      */
-    public static function cryptoKeyVersionsName(
-        string $project,
-        string $location,
-        string $keyRing,
-        string $cryptoKey,
-        string $cryptoKeyVersion
-    ): string {
+    public static function cryptoKeyVersionsName(string $project, string $location, string $keyRing, string $cryptoKey, string $cryptoKeyVersion): string
+    {
         return self::getPathTemplate('cryptoKeyVersions')->render([
             'project' => $project,
             'location' => $location,
@@ -241,11 +237,8 @@ final class IdentityMappingStoreServiceClient
      *
      * @return string The formatted identity_mapping_store resource.
      */
-    public static function identityMappingStoreName(
-        string $project,
-        string $location,
-        string $identityMappingStore
-    ): string {
+    public static function identityMappingStoreName(string $project, string $location, string $identityMappingStore): string
+    {
         return self::getPathTemplate('identityMappingStore')->render([
             'project' => $project,
             'location' => $location,
@@ -319,25 +312,28 @@ final class IdentityMappingStoreServiceClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'discoveryengine.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
-     *           *Important*: If you accept a credential configuration (credential
-     *           JSON/File/Stream) from an external source for authentication to Google Cloud
-     *           Platform, you must validate it before providing it to any Google API or library.
-     *           Providing an unvalidated credential configuration to Google APIs can compromise
-     *           the security of your systems and data. For more information {@see
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\DiscoveryEngine\V1\IdentityMappingStoreServiceClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new IdentityMappingStoreServiceClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
      *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
@@ -375,11 +371,13 @@ final class IdentityMappingStoreServiceClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -419,10 +417,8 @@ final class IdentityMappingStoreServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createIdentityMappingStore(
-        CreateIdentityMappingStoreRequest $request,
-        array $callOptions = []
-    ): IdentityMappingStore {
+    public function createIdentityMappingStore(CreateIdentityMappingStoreRequest $request, array $callOptions = []): IdentityMappingStore
+    {
         return $this->startApiCall('CreateIdentityMappingStore', $request, $callOptions)->wait();
     }
 
@@ -444,14 +440,12 @@ final class IdentityMappingStoreServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteIdentityMappingStore(
-        DeleteIdentityMappingStoreRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function deleteIdentityMappingStore(DeleteIdentityMappingStoreRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('DeleteIdentityMappingStore', $request, $callOptions)->wait();
     }
 
@@ -477,10 +471,8 @@ final class IdentityMappingStoreServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getIdentityMappingStore(
-        GetIdentityMappingStoreRequest $request,
-        array $callOptions = []
-    ): IdentityMappingStore {
+    public function getIdentityMappingStore(GetIdentityMappingStoreRequest $request, array $callOptions = []): IdentityMappingStore
+    {
         return $this->startApiCall('GetIdentityMappingStore', $request, $callOptions)->wait();
     }
 
@@ -502,14 +494,12 @@ final class IdentityMappingStoreServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<ImportIdentityMappingsResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function importIdentityMappings(
-        ImportIdentityMappingsRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function importIdentityMappings(ImportIdentityMappingsRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('ImportIdentityMappings', $request, $callOptions)->wait();
     }
 
@@ -535,10 +525,8 @@ final class IdentityMappingStoreServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listIdentityMappingStores(
-        ListIdentityMappingStoresRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listIdentityMappingStores(ListIdentityMappingStoresRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListIdentityMappingStores', $request, $callOptions);
     }
 
@@ -564,10 +552,8 @@ final class IdentityMappingStoreServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listIdentityMappings(
-        ListIdentityMappingsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listIdentityMappings(ListIdentityMappingsRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListIdentityMappings', $request, $callOptions);
     }
 
@@ -590,14 +576,12 @@ final class IdentityMappingStoreServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function purgeIdentityMappings(
-        PurgeIdentityMappingsRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function purgeIdentityMappings(PurgeIdentityMappingsRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('PurgeIdentityMappings', $request, $callOptions)->wait();
     }
 }

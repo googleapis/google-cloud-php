@@ -27,7 +27,7 @@ class LocationPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string target_shape = 338621299;</code>
      */
-    private $target_shape = null;
+    protected $target_shape = null;
 
     /**
      * Constructor.

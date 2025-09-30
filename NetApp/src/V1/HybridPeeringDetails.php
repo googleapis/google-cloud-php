@@ -16,50 +16,51 @@ use Google\Protobuf\Internal\GPBUtil;
 class HybridPeeringDetails extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. IP address of the subnet.
+     * Output only. IP address of the subnet.
      *
-     * Generated from protobuf field <code>string subnet_ip = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string subnet_ip = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $subnet_ip = '';
     /**
-     * Optional. Copy-paste-able commands to be used on user's ONTAP to accept
+     * Output only. Copy-paste-able commands to be used on user's ONTAP to accept
      * peering requests.
      *
-     * Generated from protobuf field <code>string command = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string command = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $command = '';
     /**
-     * Optional. Expiration time for the peering command to be executed on user's
-     * ONTAP.
+     * Output only. Expiration time for the peering command to be executed on
+     * user's ONTAP.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp command_expiry_time = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp command_expiry_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $command_expiry_time = null;
     /**
-     * Optional. Temporary passphrase generated to accept cluster peering command.
+     * Output only. Temporary passphrase generated to accept cluster peering
+     * command.
      *
-     * Generated from protobuf field <code>string passphrase = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string passphrase = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $passphrase = '';
     /**
-     * Optional. Name of the user's local source volume to be peered with the
+     * Output only. Name of the user's local source volume to be peered with the
      * destination volume.
      *
-     * Generated from protobuf field <code>string peer_volume_name = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string peer_volume_name = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $peer_volume_name = '';
     /**
-     * Optional. Name of the user's local source cluster to be peered with the
+     * Output only. Name of the user's local source cluster to be peered with the
      * destination cluster.
      *
-     * Generated from protobuf field <code>string peer_cluster_name = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string peer_cluster_name = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $peer_cluster_name = '';
     /**
-     * Optional. Name of the user's local source vserver svm to be peered with the
-     * destination vserver svm.
+     * Output only. Name of the user's local source vserver svm to be peered with
+     * the destination vserver svm.
      *
-     * Generated from protobuf field <code>string peer_svm_name = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string peer_svm_name = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $peer_svm_name = '';
 
@@ -70,24 +71,25 @@ class HybridPeeringDetails extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $subnet_ip
-     *           Optional. IP address of the subnet.
+     *           Output only. IP address of the subnet.
      *     @type string $command
-     *           Optional. Copy-paste-able commands to be used on user's ONTAP to accept
+     *           Output only. Copy-paste-able commands to be used on user's ONTAP to accept
      *           peering requests.
      *     @type \Google\Protobuf\Timestamp $command_expiry_time
-     *           Optional. Expiration time for the peering command to be executed on user's
-     *           ONTAP.
+     *           Output only. Expiration time for the peering command to be executed on
+     *           user's ONTAP.
      *     @type string $passphrase
-     *           Optional. Temporary passphrase generated to accept cluster peering command.
+     *           Output only. Temporary passphrase generated to accept cluster peering
+     *           command.
      *     @type string $peer_volume_name
-     *           Optional. Name of the user's local source volume to be peered with the
+     *           Output only. Name of the user's local source volume to be peered with the
      *           destination volume.
      *     @type string $peer_cluster_name
-     *           Optional. Name of the user's local source cluster to be peered with the
+     *           Output only. Name of the user's local source cluster to be peered with the
      *           destination cluster.
      *     @type string $peer_svm_name
-     *           Optional. Name of the user's local source vserver svm to be peered with the
-     *           destination vserver svm.
+     *           Output only. Name of the user's local source vserver svm to be peered with
+     *           the destination vserver svm.
      * }
      */
     public function __construct($data = NULL) {
@@ -96,9 +98,9 @@ class HybridPeeringDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. IP address of the subnet.
+     * Output only. IP address of the subnet.
      *
-     * Generated from protobuf field <code>string subnet_ip = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string subnet_ip = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getSubnetIp()
@@ -107,9 +109,9 @@ class HybridPeeringDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. IP address of the subnet.
+     * Output only. IP address of the subnet.
      *
-     * Generated from protobuf field <code>string subnet_ip = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string subnet_ip = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -122,10 +124,10 @@ class HybridPeeringDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Copy-paste-able commands to be used on user's ONTAP to accept
+     * Output only. Copy-paste-able commands to be used on user's ONTAP to accept
      * peering requests.
      *
-     * Generated from protobuf field <code>string command = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string command = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getCommand()
@@ -134,10 +136,10 @@ class HybridPeeringDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Copy-paste-able commands to be used on user's ONTAP to accept
+     * Output only. Copy-paste-able commands to be used on user's ONTAP to accept
      * peering requests.
      *
-     * Generated from protobuf field <code>string command = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string command = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -150,10 +152,10 @@ class HybridPeeringDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Expiration time for the peering command to be executed on user's
-     * ONTAP.
+     * Output only. Expiration time for the peering command to be executed on
+     * user's ONTAP.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp command_expiry_time = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp command_expiry_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
      */
     public function getCommandExpiryTime()
@@ -172,10 +174,10 @@ class HybridPeeringDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Expiration time for the peering command to be executed on user's
-     * ONTAP.
+     * Output only. Expiration time for the peering command to be executed on
+     * user's ONTAP.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp command_expiry_time = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp command_expiry_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -188,9 +190,10 @@ class HybridPeeringDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Temporary passphrase generated to accept cluster peering command.
+     * Output only. Temporary passphrase generated to accept cluster peering
+     * command.
      *
-     * Generated from protobuf field <code>string passphrase = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string passphrase = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getPassphrase()
@@ -199,9 +202,10 @@ class HybridPeeringDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Temporary passphrase generated to accept cluster peering command.
+     * Output only. Temporary passphrase generated to accept cluster peering
+     * command.
      *
-     * Generated from protobuf field <code>string passphrase = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string passphrase = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -214,10 +218,10 @@ class HybridPeeringDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Name of the user's local source volume to be peered with the
+     * Output only. Name of the user's local source volume to be peered with the
      * destination volume.
      *
-     * Generated from protobuf field <code>string peer_volume_name = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string peer_volume_name = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getPeerVolumeName()
@@ -226,10 +230,10 @@ class HybridPeeringDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Name of the user's local source volume to be peered with the
+     * Output only. Name of the user's local source volume to be peered with the
      * destination volume.
      *
-     * Generated from protobuf field <code>string peer_volume_name = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string peer_volume_name = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -242,10 +246,10 @@ class HybridPeeringDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Name of the user's local source cluster to be peered with the
+     * Output only. Name of the user's local source cluster to be peered with the
      * destination cluster.
      *
-     * Generated from protobuf field <code>string peer_cluster_name = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string peer_cluster_name = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getPeerClusterName()
@@ -254,10 +258,10 @@ class HybridPeeringDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Name of the user's local source cluster to be peered with the
+     * Output only. Name of the user's local source cluster to be peered with the
      * destination cluster.
      *
-     * Generated from protobuf field <code>string peer_cluster_name = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string peer_cluster_name = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -270,10 +274,10 @@ class HybridPeeringDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Name of the user's local source vserver svm to be peered with the
-     * destination vserver svm.
+     * Output only. Name of the user's local source vserver svm to be peered with
+     * the destination vserver svm.
      *
-     * Generated from protobuf field <code>string peer_svm_name = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string peer_svm_name = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getPeerSvmName()
@@ -282,10 +286,10 @@ class HybridPeeringDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Name of the user's local source vserver svm to be peered with the
-     * destination vserver svm.
+     * Output only. Name of the user's local source vserver svm to be peered with
+     * the destination vserver svm.
      *
-     * Generated from protobuf field <code>string peer_svm_name = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string peer_svm_name = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */

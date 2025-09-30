@@ -26,17 +26,17 @@ class Statement extends \Google\Protobuf\Internal\Message
      * A parameter placeholder consists of the `&#64;` character followed by the
      * parameter name (for example, `&#64;firstName`). Parameter names can contain
      * letters, numbers, and underscores.
-     * Parameters can appear anywhere that a literal value is expected.  The
+     * Parameters can appear anywhere that a literal value is expected. The
      * same parameter name can be used more than once, for example:
      * `"WHERE id > &#64;msg_id AND id < &#64;msg_id + 100"`
-     * It is an error to execute a SQL statement with unbound parameters.
+     * It's an error to execute a SQL statement with unbound parameters.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct params = 2;</code>
      */
     private $params = null;
     /**
-     * It is not always possible for Cloud Spanner to infer the right SQL type
-     * from a JSON value.  For example, values of type `BYTES` and values
+     * It isn't always possible for Cloud Spanner to infer the right SQL type
+     * from a JSON value. For example, values of type `BYTES` and values
      * of type `STRING` both appear in
      * [params][google.spanner.v1.ExecuteBatchDmlRequest.Statement.params] as
      * JSON strings.
@@ -62,13 +62,13 @@ class Statement extends \Google\Protobuf\Internal\Message
      *           A parameter placeholder consists of the `&#64;` character followed by the
      *           parameter name (for example, `&#64;firstName`). Parameter names can contain
      *           letters, numbers, and underscores.
-     *           Parameters can appear anywhere that a literal value is expected.  The
+     *           Parameters can appear anywhere that a literal value is expected. The
      *           same parameter name can be used more than once, for example:
      *           `"WHERE id > &#64;msg_id AND id < &#64;msg_id + 100"`
-     *           It is an error to execute a SQL statement with unbound parameters.
+     *           It's an error to execute a SQL statement with unbound parameters.
      *     @type array|\Google\Protobuf\Internal\MapField $param_types
-     *           It is not always possible for Cloud Spanner to infer the right SQL type
-     *           from a JSON value.  For example, values of type `BYTES` and values
+     *           It isn't always possible for Cloud Spanner to infer the right SQL type
+     *           from a JSON value. For example, values of type `BYTES` and values
      *           of type `STRING` both appear in
      *           [params][google.spanner.v1.ExecuteBatchDmlRequest.Statement.params] as
      *           JSON strings.
@@ -114,10 +114,10 @@ class Statement extends \Google\Protobuf\Internal\Message
      * A parameter placeholder consists of the `&#64;` character followed by the
      * parameter name (for example, `&#64;firstName`). Parameter names can contain
      * letters, numbers, and underscores.
-     * Parameters can appear anywhere that a literal value is expected.  The
+     * Parameters can appear anywhere that a literal value is expected. The
      * same parameter name can be used more than once, for example:
      * `"WHERE id > &#64;msg_id AND id < &#64;msg_id + 100"`
-     * It is an error to execute a SQL statement with unbound parameters.
+     * It's an error to execute a SQL statement with unbound parameters.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct params = 2;</code>
      * @return \Google\Protobuf\Struct|null
@@ -142,10 +142,10 @@ class Statement extends \Google\Protobuf\Internal\Message
      * A parameter placeholder consists of the `&#64;` character followed by the
      * parameter name (for example, `&#64;firstName`). Parameter names can contain
      * letters, numbers, and underscores.
-     * Parameters can appear anywhere that a literal value is expected.  The
+     * Parameters can appear anywhere that a literal value is expected. The
      * same parameter name can be used more than once, for example:
      * `"WHERE id > &#64;msg_id AND id < &#64;msg_id + 100"`
-     * It is an error to execute a SQL statement with unbound parameters.
+     * It's an error to execute a SQL statement with unbound parameters.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct params = 2;</code>
      * @param \Google\Protobuf\Struct $var
@@ -160,8 +160,8 @@ class Statement extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * It is not always possible for Cloud Spanner to infer the right SQL type
-     * from a JSON value.  For example, values of type `BYTES` and values
+     * It isn't always possible for Cloud Spanner to infer the right SQL type
+     * from a JSON value. For example, values of type `BYTES` and values
      * of type `STRING` both appear in
      * [params][google.spanner.v1.ExecuteBatchDmlRequest.Statement.params] as
      * JSON strings.
@@ -179,8 +179,8 @@ class Statement extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * It is not always possible for Cloud Spanner to infer the right SQL type
-     * from a JSON value.  For example, values of type `BYTES` and values
+     * It isn't always possible for Cloud Spanner to infer the right SQL type
+     * from a JSON value. For example, values of type `BYTES` and values
      * of type `STRING` both appear in
      * [params][google.spanner.v1.ExecuteBatchDmlRequest.Statement.params] as
      * JSON strings.

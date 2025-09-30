@@ -20,32 +20,32 @@ class DeprecationStatus extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string deleted = 476721177;</code>
      */
-    private $deleted = null;
+    protected $deleted = null;
     /**
      * An optional RFC3339 timestamp on or after which the state of this resource is intended to change to DEPRECATED. This is only informational and the status will not change unless the client explicitly changes it.
      *
      * Generated from protobuf field <code>optional string deprecated = 515138995;</code>
      */
-    private $deprecated = null;
+    protected $deprecated = null;
     /**
      * An optional RFC3339 timestamp on or after which the state of this resource is intended to change to OBSOLETE. This is only informational and the status will not change unless the client explicitly changes it.
      *
      * Generated from protobuf field <code>optional string obsolete = 357647769;</code>
      */
-    private $obsolete = null;
+    protected $obsolete = null;
     /**
      * The URL of the suggested replacement for a deprecated resource. The suggested replacement resource must be the same kind of resource as the deprecated resource.
      *
      * Generated from protobuf field <code>optional string replacement = 430919186;</code>
      */
-    private $replacement = null;
+    protected $replacement = null;
     /**
      * The deprecation state of this resource. This can be ACTIVE, DEPRECATED, OBSOLETE, or DELETED. Operations which communicate the end of life date for an image, can use ACTIVE. Operations which create a new resource using a DEPRECATED resource will return successfully, but with a warning indicating the deprecated resource and recommending its replacement. Operations which use OBSOLETE or DELETED resources will be rejected and result in an error.
      * Check the State enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string state = 109757585;</code>
      */
-    private $state = null;
+    protected $state = null;
 
     /**
      * Constructor.

@@ -16,22 +16,25 @@ use Google\Protobuf\Internal\GPBUtil;
 class BigQueryJob extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The project the job belongs to.
-     * See https://cloud.google.com/bigquery/docs/reference/rest/v2/JobReference
+     * Required. The project that the job belongs to.
+     * See
+     * [JobReference](https://cloud.google.com/bigquery/docs/reference/rest/v2/JobReference).
      *
      * Generated from protobuf field <code>string project_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $project_id = '';
     /**
      * Required. The ID of the job.
-     * See https://cloud.google.com/bigquery/docs/reference/rest/v2/JobReference
+     * See
+     * [JobReference](https://cloud.google.com/bigquery/docs/reference/rest/v2/JobReference).
      *
      * Generated from protobuf field <code>string job_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $job_id = '';
     /**
      * Optional. The location of the job.
-     * See https://cloud.google.com/bigquery/docs/reference/rest/v2/JobReference
+     * See
+     * [JobReference](https://cloud.google.com/bigquery/docs/reference/rest/v2/JobReference).
      *
      * Generated from protobuf field <code>string location = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -39,7 +42,7 @@ class BigQueryJob extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A reference to the destination table of the job's query results.
      * See
-     * https://cloud.google.com/bigquery/docs/reference/rest/v2/Job#jobconfigurationquery
+     * [JobConfigurationQuery](https://cloud.google.com/bigquery/docs/reference/rest/v2/Job#jobconfigurationquery).
      *
      * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.BigQueryTableReference destination_table = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -47,7 +50,7 @@ class BigQueryJob extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The schema of the job's query results.
      * See
-     * https://cloud.google.com/bigquery/docs/reference/rest/v2/Job#jobstatistics2
+     * [JobStatistics2](https://cloud.google.com/bigquery/docs/reference/rest/v2/Job#jobstatistics2).
      *
      * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.Schema schema = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -60,22 +63,25 @@ class BigQueryJob extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $project_id
-     *           Required. The project the job belongs to.
-     *           See https://cloud.google.com/bigquery/docs/reference/rest/v2/JobReference
+     *           Required. The project that the job belongs to.
+     *           See
+     *           [JobReference](https://cloud.google.com/bigquery/docs/reference/rest/v2/JobReference).
      *     @type string $job_id
      *           Required. The ID of the job.
-     *           See https://cloud.google.com/bigquery/docs/reference/rest/v2/JobReference
+     *           See
+     *           [JobReference](https://cloud.google.com/bigquery/docs/reference/rest/v2/JobReference).
      *     @type string $location
      *           Optional. The location of the job.
-     *           See https://cloud.google.com/bigquery/docs/reference/rest/v2/JobReference
+     *           See
+     *           [JobReference](https://cloud.google.com/bigquery/docs/reference/rest/v2/JobReference).
      *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\BigQueryTableReference $destination_table
      *           Optional. A reference to the destination table of the job's query results.
      *           See
-     *           https://cloud.google.com/bigquery/docs/reference/rest/v2/Job#jobconfigurationquery
+     *           [JobConfigurationQuery](https://cloud.google.com/bigquery/docs/reference/rest/v2/Job#jobconfigurationquery).
      *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\Schema $schema
      *           Optional. The schema of the job's query results.
      *           See
-     *           https://cloud.google.com/bigquery/docs/reference/rest/v2/Job#jobstatistics2
+     *           [JobStatistics2](https://cloud.google.com/bigquery/docs/reference/rest/v2/Job#jobstatistics2).
      * }
      */
     public function __construct($data = NULL) {
@@ -84,8 +90,9 @@ class BigQueryJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The project the job belongs to.
-     * See https://cloud.google.com/bigquery/docs/reference/rest/v2/JobReference
+     * Required. The project that the job belongs to.
+     * See
+     * [JobReference](https://cloud.google.com/bigquery/docs/reference/rest/v2/JobReference).
      *
      * Generated from protobuf field <code>string project_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -96,8 +103,9 @@ class BigQueryJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The project the job belongs to.
-     * See https://cloud.google.com/bigquery/docs/reference/rest/v2/JobReference
+     * Required. The project that the job belongs to.
+     * See
+     * [JobReference](https://cloud.google.com/bigquery/docs/reference/rest/v2/JobReference).
      *
      * Generated from protobuf field <code>string project_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -113,7 +121,8 @@ class BigQueryJob extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The ID of the job.
-     * See https://cloud.google.com/bigquery/docs/reference/rest/v2/JobReference
+     * See
+     * [JobReference](https://cloud.google.com/bigquery/docs/reference/rest/v2/JobReference).
      *
      * Generated from protobuf field <code>string job_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -125,7 +134,8 @@ class BigQueryJob extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The ID of the job.
-     * See https://cloud.google.com/bigquery/docs/reference/rest/v2/JobReference
+     * See
+     * [JobReference](https://cloud.google.com/bigquery/docs/reference/rest/v2/JobReference).
      *
      * Generated from protobuf field <code>string job_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -141,7 +151,8 @@ class BigQueryJob extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The location of the job.
-     * See https://cloud.google.com/bigquery/docs/reference/rest/v2/JobReference
+     * See
+     * [JobReference](https://cloud.google.com/bigquery/docs/reference/rest/v2/JobReference).
      *
      * Generated from protobuf field <code>string location = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -153,7 +164,8 @@ class BigQueryJob extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The location of the job.
-     * See https://cloud.google.com/bigquery/docs/reference/rest/v2/JobReference
+     * See
+     * [JobReference](https://cloud.google.com/bigquery/docs/reference/rest/v2/JobReference).
      *
      * Generated from protobuf field <code>string location = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -170,7 +182,7 @@ class BigQueryJob extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A reference to the destination table of the job's query results.
      * See
-     * https://cloud.google.com/bigquery/docs/reference/rest/v2/Job#jobconfigurationquery
+     * [JobConfigurationQuery](https://cloud.google.com/bigquery/docs/reference/rest/v2/Job#jobconfigurationquery).
      *
      * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.BigQueryTableReference destination_table = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\GeminiDataAnalytics\V1beta\BigQueryTableReference|null
@@ -193,7 +205,7 @@ class BigQueryJob extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A reference to the destination table of the job's query results.
      * See
-     * https://cloud.google.com/bigquery/docs/reference/rest/v2/Job#jobconfigurationquery
+     * [JobConfigurationQuery](https://cloud.google.com/bigquery/docs/reference/rest/v2/Job#jobconfigurationquery).
      *
      * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.BigQueryTableReference destination_table = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\GeminiDataAnalytics\V1beta\BigQueryTableReference $var
@@ -210,7 +222,7 @@ class BigQueryJob extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The schema of the job's query results.
      * See
-     * https://cloud.google.com/bigquery/docs/reference/rest/v2/Job#jobstatistics2
+     * [JobStatistics2](https://cloud.google.com/bigquery/docs/reference/rest/v2/Job#jobstatistics2).
      *
      * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.Schema schema = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\GeminiDataAnalytics\V1beta\Schema|null
@@ -233,7 +245,7 @@ class BigQueryJob extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The schema of the job's query results.
      * See
-     * https://cloud.google.com/bigquery/docs/reference/rest/v2/Job#jobstatistics2
+     * [JobStatistics2](https://cloud.google.com/bigquery/docs/reference/rest/v2/Job#jobstatistics2).
      *
      * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.Schema schema = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\GeminiDataAnalytics\V1beta\Schema $var

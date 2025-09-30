@@ -20,25 +20,25 @@ class ApplyUpdatesToInstancesRegionInstanceGroupManagerRequest extends \Google\P
      *
      * Generated from protobuf field <code>string instance_group_manager = 249363395 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $instance_group_manager = '';
+    protected $instance_group_manager = '';
     /**
      * Project ID for this request.
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "project"];</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * Name of the region scoping this request, should conform to RFC1035.
      *
      * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "region"];</code>
      */
-    private $region = '';
+    protected $region = '';
     /**
      * The body resource for this request
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.RegionInstanceGroupManagersApplyUpdatesRequest region_instance_group_managers_apply_updates_request_resource = 76248318 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $region_instance_group_managers_apply_updates_request_resource = null;
+    protected $region_instance_group_managers_apply_updates_request_resource = null;
 
     /**
      * @param string                                                                  $project                                                Project ID for this request.

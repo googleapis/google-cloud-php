@@ -90,6 +90,12 @@ class VmwareVmDetails extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.vmmigration.v1.VmwareVmDetails.BootOption boot_option = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $boot_option = 0;
+    /**
+     * Output only. The CPU architecture.
+     *
+     * Generated from protobuf field <code>.google.cloud.vmmigration.v1.VmwareVmDetails.VmArchitecture architecture = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $architecture = 0;
 
     /**
      * Constructor.
@@ -124,6 +130,8 @@ class VmwareVmDetails extends \Google\Protobuf\Internal\Message
      *           for types of strings this might hold.
      *     @type int $boot_option
      *           Output only. The VM Boot Option.
+     *     @type int $architecture
+     *           Output only. The CPU architecture.
      * }
      */
     public function __construct($data = NULL) {
@@ -445,6 +453,32 @@ class VmwareVmDetails extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\VMMigration\V1\VmwareVmDetails\BootOption::class);
         $this->boot_option = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The CPU architecture.
+     *
+     * Generated from protobuf field <code>.google.cloud.vmmigration.v1.VmwareVmDetails.VmArchitecture architecture = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getArchitecture()
+    {
+        return $this->architecture;
+    }
+
+    /**
+     * Output only. The CPU architecture.
+     *
+     * Generated from protobuf field <code>.google.cloud.vmmigration.v1.VmwareVmDetails.VmArchitecture architecture = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setArchitecture($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\VMMigration\V1\VmwareVmDetails\VmArchitecture::class);
+        $this->architecture = $var;
 
         return $this;
     }

@@ -24,7 +24,7 @@ class InterconnectAttachmentGroupLogicalStructureRegion extends \Google\Protobuf
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
      */
-    private $region = null;
+    protected $region = null;
 
     /**
      * Constructor.

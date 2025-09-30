@@ -20,19 +20,19 @@ class UrlMapTest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
-    private $description = null;
+    protected $description = null;
     /**
      * The expected output URL evaluated by the load balancer containing the scheme, host, path and query parameters. For rules that forward requests to backends, the test passes only when expectedOutputUrl matches the request forwarded by the load balancer to backends. For rules with urlRewrite, the test verifies that the forwarded request matches hostRewrite and pathPrefixRewrite in the urlRewrite action. When service is specified, expectedOutputUrl`s scheme is ignored. For rules with urlRedirect, the test passes only if expectedOutputUrl matches the URL in the load balancer's redirect response. If urlRedirect specifies https_redirect, the test passes only if the scheme in expectedOutputUrl is also set to HTTPS. If urlRedirect specifies strip_query, the test passes only if expectedOutputUrl does not contain any query parameters. expectedOutputUrl is optional when service is specified.
      *
      * Generated from protobuf field <code>optional string expected_output_url = 433967384;</code>
      */
-    private $expected_output_url = null;
+    protected $expected_output_url = null;
     /**
      * For rules with urlRedirect, the test passes only if expectedRedirectResponseCode matches the HTTP status code in load balancer's redirect response. expectedRedirectResponseCode cannot be set when service is set.
      *
      * Generated from protobuf field <code>optional int32 expected_redirect_response_code = 18888047;</code>
      */
-    private $expected_redirect_response_code = null;
+    protected $expected_redirect_response_code = null;
     /**
      * HTTP headers for this request. If headers contains a host header, then host must also match the header value.
      *
@@ -44,19 +44,19 @@ class UrlMapTest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string host = 3208616;</code>
      */
-    private $host = null;
+    protected $host = null;
     /**
      * Path portion of the URL.
      *
      * Generated from protobuf field <code>optional string path = 3433509;</code>
      */
-    private $path = null;
+    protected $path = null;
     /**
      * Expected BackendService or BackendBucket resource the given URL should be mapped to. The service field cannot be set if expectedRedirectResponseCode is set.
      *
      * Generated from protobuf field <code>optional string service = 373540533;</code>
      */
-    private $service = null;
+    protected $service = null;
 
     /**
      * Constructor.

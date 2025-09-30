@@ -28,9 +28,10 @@ class UpgradeStatus extends \Google\Protobuf\Internal\Message
      */
     protected $state = 0;
     /**
-     * Provides details on the state of the upgrade operation in case of an error.
+     * Output only. Provides details on the state of the upgrade operation in case
+     * of an error.
      *
-     * Generated from protobuf field <code>.google.rpc.Status error = 3;</code>
+     * Generated from protobuf field <code>.google.rpc.Status error = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $error = null;
     /**
@@ -57,7 +58,8 @@ class UpgradeStatus extends \Google\Protobuf\Internal\Message
      *     @type int $state
      *           The state of the upgradeAppliance operation.
      *     @type \Google\Rpc\Status $error
-     *           Provides details on the state of the upgrade operation in case of an error.
+     *           Output only. Provides details on the state of the upgrade operation in case
+     *           of an error.
      *     @type \Google\Protobuf\Timestamp $start_time
      *           The time the operation was started.
      *     @type string $previous_version
@@ -122,9 +124,10 @@ class UpgradeStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Provides details on the state of the upgrade operation in case of an error.
+     * Output only. Provides details on the state of the upgrade operation in case
+     * of an error.
      *
-     * Generated from protobuf field <code>.google.rpc.Status error = 3;</code>
+     * Generated from protobuf field <code>.google.rpc.Status error = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Rpc\Status|null
      */
     public function getError()
@@ -143,9 +146,10 @@ class UpgradeStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Provides details on the state of the upgrade operation in case of an error.
+     * Output only. Provides details on the state of the upgrade operation in case
+     * of an error.
      *
-     * Generated from protobuf field <code>.google.rpc.Status error = 3;</code>
+     * Generated from protobuf field <code>.google.rpc.Status error = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Rpc\Status $var
      * @return $this
      */
