@@ -20,32 +20,32 @@ class AutoscalingPolicyCustomMetricUtilization extends \Google\Protobuf\Internal
      *
      * Generated from protobuf field <code>optional string filter = 336120696;</code>
      */
-    private $filter = null;
+    protected $filter = null;
     /**
      * The identifier (type) of the Stackdriver Monitoring metric. The metric cannot have negative values. The metric must have a value type of INT64 or DOUBLE.
      *
      * Generated from protobuf field <code>optional string metric = 533067184;</code>
      */
-    private $metric = null;
+    protected $metric = null;
     /**
      * If scaling is based on a per-group metric value that represents the total amount of work to be done or resource usage, set this value to an amount assigned for a single instance of the scaled group. Autoscaler keeps the number of instances proportional to the value of this metric. The metric itself does not change value due to group resizing. A good metric to use with the target is for example pubsub.googleapis.com/subscription/num_undelivered_messages or a custom metric exporting the total number of requests coming to your instances. A bad example would be a metric exporting an average or median latency, since this value can't include a chunk assignable to a single instance, it could be better used with utilization_target instead.
      *
      * Generated from protobuf field <code>optional double single_instance_assignment = 504768064;</code>
      */
-    private $single_instance_assignment = null;
+    protected $single_instance_assignment = null;
     /**
      * The target value of the metric that autoscaler maintains. This must be a positive value. A utilization metric scales number of virtual machines handling requests to increase or decrease proportionally to the metric. For example, a good metric to use as a utilization_target is https://www.googleapis.com/compute/v1/instance/network/received_bytes_count. The autoscaler works to keep this value constant for each of the instances.
      *
      * Generated from protobuf field <code>optional double utilization_target = 215905870;</code>
      */
-    private $utilization_target = null;
+    protected $utilization_target = null;
     /**
      * Defines how target utilization value is expressed for a Stackdriver Monitoring metric. Either GAUGE, DELTA_PER_SECOND, or DELTA_PER_MINUTE.
      * Check the UtilizationTargetType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string utilization_target_type = 340169355;</code>
      */
-    private $utilization_target_type = null;
+    protected $utilization_target_type = null;
 
     /**
      * Constructor.

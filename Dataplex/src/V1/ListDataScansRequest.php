@@ -19,7 +19,7 @@ class ListDataScansRequest extends \Google\Protobuf\Internal\Message
      * Required. The resource name of the parent location:
      * `projects/{project}/locations/{location_id}`
      * where `project` refers to a *project_id* or *project_number* and
-     * `location_id` refers to a GCP region.
+     * `location_id` refers to a Google Cloud region.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -59,7 +59,7 @@ class ListDataScansRequest extends \Google\Protobuf\Internal\Message
      * @param string $parent Required. The resource name of the parent location:
      *                       `projects/{project}/locations/{location_id}`
      *                       where `project` refers to a *project_id* or *project_number* and
-     *                       `location_id` refers to a GCP region. Please see
+     *                       `location_id` refers to a Google Cloud region. Please see
      *                       {@see DataScanServiceClient::locationName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dataplex\V1\ListDataScansRequest
@@ -82,7 +82,7 @@ class ListDataScansRequest extends \Google\Protobuf\Internal\Message
      *           Required. The resource name of the parent location:
      *           `projects/{project}/locations/{location_id}`
      *           where `project` refers to a *project_id* or *project_number* and
-     *           `location_id` refers to a GCP region.
+     *           `location_id` refers to a Google Cloud region.
      *     @type int $page_size
      *           Optional. Maximum number of dataScans to return. The service may return
      *           fewer than this value. If unspecified, at most 500 scans will be returned.
@@ -108,7 +108,7 @@ class ListDataScansRequest extends \Google\Protobuf\Internal\Message
      * Required. The resource name of the parent location:
      * `projects/{project}/locations/{location_id}`
      * where `project` refers to a *project_id* or *project_number* and
-     * `location_id` refers to a GCP region.
+     * `location_id` refers to a Google Cloud region.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -122,7 +122,7 @@ class ListDataScansRequest extends \Google\Protobuf\Internal\Message
      * Required. The resource name of the parent location:
      * `projects/{project}/locations/{location_id}`
      * where `project` refers to a *project_id* or *project_number* and
-     * `location_id` refers to a GCP region.
+     * `location_id` refers to a Google Cloud region.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

@@ -20,13 +20,13 @@ class PreservedStatePreservedNetworkIp extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string auto_delete = 464761403;</code>
      */
-    private $auto_delete = null;
+    protected $auto_delete = null;
     /**
      * Ip address representation
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.PreservedStatePreservedNetworkIpIpAddress ip_address = 406272220;</code>
      */
-    private $ip_address = null;
+    protected $ip_address = null;
 
     /**
      * Constructor.

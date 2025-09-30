@@ -106,7 +106,15 @@ return [
                 ],
             ],
             'ListInstances' => [
-                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getInstances',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
                 'responseType' => 'Google\Cloud\Memorystore\V1beta\ListInstancesResponse',
                 'headerParams' => [
                     [

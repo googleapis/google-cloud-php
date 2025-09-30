@@ -30,6 +30,7 @@ use Google\Cloud\Core\Iam\IamManager;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\LongRunning\LongRunningClientConnection;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
+use Google\Cloud\Core\OptionsValidator;
 use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Retry;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
@@ -184,6 +185,7 @@ class Database
             ]
         );
 
+        $this->optionsValidator = new OptionsValidator($serializer);
         $this->directedReadOptions = $instance->directedReadOptions();
     }
 
@@ -2023,7 +2025,7 @@ class Database
      *     @type int $orderBy Set the OrderBy option for the ReadRequest.
      *           {@see \Google\Cloud\Spanner\V1\ReadRequest} and {@see \Google\Cloud\Spanner\V1\ReadRequest\OrderBy}
      *           for more information and available options.
-     *     @type int $lockHint Set the LockHint option for the ReadRequest.
+     *     @type int $lockHint Set the LockHint option for the ReadRequest. Only available when transactionType is read/write.
      *           {@see \Google\Cloud\Spanner\V1\ReadRequest} and {@see \Google\Cloud\Spanner\V1\ReadRequest\LockHint}
      *           for more information and available options.
      * }

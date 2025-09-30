@@ -19,13 +19,13 @@ class InstancesSetNameRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string current_name = 394983825;</code>
      */
-    private $current_name = null;
+    protected $current_name = null;
     /**
      * The name to be applied to the instance. Needs to be RFC 1035 compliant.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
 
     /**
      * Constructor.

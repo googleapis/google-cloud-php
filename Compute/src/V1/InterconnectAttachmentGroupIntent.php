@@ -21,7 +21,7 @@ class InterconnectAttachmentGroupIntent extends \Google\Protobuf\Internal\Messag
      *
      * Generated from protobuf field <code>optional string availability_sla = 472702020;</code>
      */
-    private $availability_sla = null;
+    protected $availability_sla = null;
 
     /**
      * Constructor.

@@ -22,6 +22,8 @@ class GoogleChannelConfig extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the config. Must be in the format of,
      * `projects/{project}/locations/{location}/googleChannelConfig`.
+     * In API responses, the config name always includes the projectID, regardless
+     * of whether the projectID or projectNumber was provided.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -41,6 +43,12 @@ class GoogleChannelConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string crypto_key_name = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     protected $crypto_key_name = '';
+    /**
+     * Optional. Resource labels.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $labels;
 
     /**
      * Constructor.
@@ -51,6 +59,8 @@ class GoogleChannelConfig extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. The resource name of the config. Must be in the format of,
      *           `projects/{project}/locations/{location}/googleChannelConfig`.
+     *           In API responses, the config name always includes the projectID, regardless
+     *           of whether the projectID or projectNumber was provided.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The last-modified time.
      *     @type string $crypto_key_name
@@ -58,6 +68,8 @@ class GoogleChannelConfig extends \Google\Protobuf\Internal\Message
      *           encrypt/decrypt their event data.
      *           It must match the pattern
      *           `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
+     *     @type array|\Google\Protobuf\Internal\MapField $labels
+     *           Optional. Resource labels.
      * }
      */
     public function __construct($data = NULL) {
@@ -68,6 +80,8 @@ class GoogleChannelConfig extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the config. Must be in the format of,
      * `projects/{project}/locations/{location}/googleChannelConfig`.
+     * In API responses, the config name always includes the projectID, regardless
+     * of whether the projectID or projectNumber was provided.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -80,6 +94,8 @@ class GoogleChannelConfig extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the config. Must be in the format of,
      * `projects/{project}/locations/{location}/googleChannelConfig`.
+     * In API responses, the config name always includes the projectID, regardless
+     * of whether the projectID or projectNumber was provided.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -157,6 +173,32 @@ class GoogleChannelConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->crypto_key_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Resource labels.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getLabels()
+    {
+        return $this->labels;
+    }
+
+    /**
+     * Optional. Resource labels.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setLabels($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->labels = $arr;
 
         return $this;
     }

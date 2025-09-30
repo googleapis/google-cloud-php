@@ -1458,6 +1458,11 @@ class NetAppClientTest extends GeneratedTest
         $customPerformanceEnabled = true;
         $totalThroughputMibps = 2085075953;
         $totalIops = 705711676;
+        $hotTierSizeGib = 369881037;
+        $enableHotTierAutoResize = false;
+        $availableThroughputMibps = 1.48766289e8;
+        $coldTierSizeUsedGib = 1242809254;
+        $hotTierSizeUsedGib = 151116719;
         $expectedResponse = new StoragePool();
         $expectedResponse->setName($name);
         $expectedResponse->setCapacityGib($capacityGib);
@@ -1479,6 +1484,11 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setCustomPerformanceEnabled($customPerformanceEnabled);
         $expectedResponse->setTotalThroughputMibps($totalThroughputMibps);
         $expectedResponse->setTotalIops($totalIops);
+        $expectedResponse->setHotTierSizeGib($hotTierSizeGib);
+        $expectedResponse->setEnableHotTierAutoResize($enableHotTierAutoResize);
+        $expectedResponse->setAvailableThroughputMibps($availableThroughputMibps);
+        $expectedResponse->setColdTierSizeUsedGib($coldTierSizeUsedGib);
+        $expectedResponse->setHotTierSizeUsedGib($hotTierSizeUsedGib);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1648,6 +1658,8 @@ class NetAppClientTest extends GeneratedTest
         $replicaZone = 'replicaZone1404354259';
         $zone = 'zone3744684';
         $coldTierSizeGib = 212809252;
+        $throughputMibps = 1.49869682e8;
+        $hotTierSizeUsedGib = 151116719;
         $expectedResponse = new Volume();
         $expectedResponse->setName($name);
         $expectedResponse->setStateDetails($stateDetails);
@@ -1671,6 +1683,8 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setReplicaZone($replicaZone);
         $expectedResponse->setZone($zone);
         $expectedResponse->setColdTierSizeGib($coldTierSizeGib);
+        $expectedResponse->setThroughputMibps($throughputMibps);
+        $expectedResponse->setHotTierSizeUsedGib($hotTierSizeUsedGib);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -3966,6 +3980,11 @@ class NetAppClientTest extends GeneratedTest
         $customPerformanceEnabled = true;
         $totalThroughputMibps = 2085075953;
         $totalIops = 705711676;
+        $hotTierSizeGib = 369881037;
+        $enableHotTierAutoResize = false;
+        $availableThroughputMibps = 1.48766289e8;
+        $coldTierSizeUsedGib = 1242809254;
+        $hotTierSizeUsedGib = 151116719;
         $expectedResponse = new StoragePool();
         $expectedResponse->setName($name2);
         $expectedResponse->setCapacityGib($capacityGib);
@@ -3987,6 +4006,11 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setCustomPerformanceEnabled($customPerformanceEnabled);
         $expectedResponse->setTotalThroughputMibps($totalThroughputMibps);
         $expectedResponse->setTotalIops($totalIops);
+        $expectedResponse->setHotTierSizeGib($hotTierSizeGib);
+        $expectedResponse->setEnableHotTierAutoResize($enableHotTierAutoResize);
+        $expectedResponse->setAvailableThroughputMibps($availableThroughputMibps);
+        $expectedResponse->setColdTierSizeUsedGib($coldTierSizeUsedGib);
+        $expectedResponse->setHotTierSizeUsedGib($hotTierSizeUsedGib);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->storagePoolName('[PROJECT]', '[LOCATION]', '[STORAGE_POOL]');
@@ -4071,6 +4095,8 @@ class NetAppClientTest extends GeneratedTest
         $replicaZone = 'replicaZone1404354259';
         $zone = 'zone3744684';
         $coldTierSizeGib = 212809252;
+        $throughputMibps = 1.49869682e8;
+        $hotTierSizeUsedGib = 151116719;
         $expectedResponse = new Volume();
         $expectedResponse->setName($name2);
         $expectedResponse->setStateDetails($stateDetails);
@@ -4094,6 +4120,8 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setReplicaZone($replicaZone);
         $expectedResponse->setZone($zone);
         $expectedResponse->setColdTierSizeGib($coldTierSizeGib);
+        $expectedResponse->setThroughputMibps($throughputMibps);
+        $expectedResponse->setHotTierSizeUsedGib($hotTierSizeUsedGib);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
@@ -5172,6 +5200,8 @@ class NetAppClientTest extends GeneratedTest
         $replicaZone = 'replicaZone1404354259';
         $zone = 'zone3744684';
         $coldTierSizeGib = 212809252;
+        $throughputMibps = 1.49869682e8;
+        $hotTierSizeUsedGib = 151116719;
         $expectedResponse = new Volume();
         $expectedResponse->setName($name2);
         $expectedResponse->setStateDetails($stateDetails);
@@ -5195,6 +5225,8 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setReplicaZone($replicaZone);
         $expectedResponse->setZone($zone);
         $expectedResponse->setColdTierSizeGib($coldTierSizeGib);
+        $expectedResponse->setThroughputMibps($throughputMibps);
+        $expectedResponse->setHotTierSizeUsedGib($hotTierSizeUsedGib);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -5476,6 +5508,11 @@ class NetAppClientTest extends GeneratedTest
         $customPerformanceEnabled = true;
         $totalThroughputMibps = 2085075953;
         $totalIops = 705711676;
+        $hotTierSizeGib = 369881037;
+        $enableHotTierAutoResize = false;
+        $availableThroughputMibps = 1.48766289e8;
+        $coldTierSizeUsedGib = 1242809254;
+        $hotTierSizeUsedGib = 151116719;
         $expectedResponse = new StoragePool();
         $expectedResponse->setName($name2);
         $expectedResponse->setCapacityGib($capacityGib);
@@ -5497,6 +5534,11 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setCustomPerformanceEnabled($customPerformanceEnabled);
         $expectedResponse->setTotalThroughputMibps($totalThroughputMibps);
         $expectedResponse->setTotalIops($totalIops);
+        $expectedResponse->setHotTierSizeGib($hotTierSizeGib);
+        $expectedResponse->setEnableHotTierAutoResize($enableHotTierAutoResize);
+        $expectedResponse->setAvailableThroughputMibps($availableThroughputMibps);
+        $expectedResponse->setColdTierSizeUsedGib($coldTierSizeUsedGib);
+        $expectedResponse->setHotTierSizeUsedGib($hotTierSizeUsedGib);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -6956,6 +6998,11 @@ class NetAppClientTest extends GeneratedTest
         $customPerformanceEnabled = true;
         $totalThroughputMibps = 2085075953;
         $totalIops = 705711676;
+        $hotTierSizeGib = 369881037;
+        $enableHotTierAutoResize = false;
+        $availableThroughputMibps = 1.48766289e8;
+        $coldTierSizeUsedGib = 1242809254;
+        $hotTierSizeUsedGib = 151116719;
         $expectedResponse = new StoragePool();
         $expectedResponse->setName($name);
         $expectedResponse->setCapacityGib($capacityGib);
@@ -6977,6 +7024,11 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setCustomPerformanceEnabled($customPerformanceEnabled);
         $expectedResponse->setTotalThroughputMibps($totalThroughputMibps);
         $expectedResponse->setTotalIops($totalIops);
+        $expectedResponse->setHotTierSizeGib($hotTierSizeGib);
+        $expectedResponse->setEnableHotTierAutoResize($enableHotTierAutoResize);
+        $expectedResponse->setAvailableThroughputMibps($availableThroughputMibps);
+        $expectedResponse->setColdTierSizeUsedGib($coldTierSizeUsedGib);
+        $expectedResponse->setHotTierSizeUsedGib($hotTierSizeUsedGib);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -7136,6 +7188,8 @@ class NetAppClientTest extends GeneratedTest
         $replicaZone = 'replicaZone1404354259';
         $zone = 'zone3744684';
         $coldTierSizeGib = 212809252;
+        $throughputMibps = 1.49869682e8;
+        $hotTierSizeUsedGib = 151116719;
         $expectedResponse = new Volume();
         $expectedResponse->setName($name);
         $expectedResponse->setStateDetails($stateDetails);
@@ -7159,6 +7213,8 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setReplicaZone($replicaZone);
         $expectedResponse->setZone($zone);
         $expectedResponse->setColdTierSizeGib($coldTierSizeGib);
+        $expectedResponse->setThroughputMibps($throughputMibps);
+        $expectedResponse->setHotTierSizeUsedGib($hotTierSizeUsedGib);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();

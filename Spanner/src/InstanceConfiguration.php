@@ -23,6 +23,7 @@ use Google\ApiCore\Options\CallOptions;
 use Google\ApiCore\ValidationException;
 use Google\Cloud\Core\LongRunning\LongRunningClientConnection;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
+use Google\Cloud\Core\OptionsValidator;
 use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\CreateInstanceConfigRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\DeleteInstanceConfigRequest;
@@ -73,6 +74,7 @@ class InstanceConfiguration
         private array $info = []
     ) {
         $this->name = $this->fullyQualifiedConfigName($name, $projectId);
+        $this->optionsValidator = new OptionsValidator($serializer);
     }
 
     /**

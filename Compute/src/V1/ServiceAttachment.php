@@ -27,7 +27,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string connection_preference = 285818076;</code>
      */
-    private $connection_preference = null;
+    protected $connection_preference = null;
     /**
      * Specifies which consumer projects or networks are allowed to connect to the service attachment. Each project or network has a connection limit. A given service attachment can manage connections at either the project or network level. Therefore, both the accept and reject lists for a given service attachment must contain either only projects or only networks or only endpoints.
      *
@@ -45,13 +45,13 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
-    private $creation_timestamp = null;
+    protected $creation_timestamp = null;
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
-    private $description = null;
+    protected $description = null;
     /**
      * If specified, the domain name will be used during the integration between the PSC connected endpoints and the Cloud DNS. For example, this is a valid domain name: "p.mycompany.com.". Current max number of domain names supported is 1.
      *
@@ -63,25 +63,25 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional bool enable_proxy_protocol = 363791237;</code>
      */
-    private $enable_proxy_protocol = null;
+    protected $enable_proxy_protocol = null;
     /**
      * Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a ServiceAttachment. An up-to-date fingerprint must be provided in order to patch/update the ServiceAttachment; otherwise, the request will fail with error 412 conditionNotMet. To see the latest fingerprint, make a get() request to retrieve the ServiceAttachment.
      *
      * Generated from protobuf field <code>optional string fingerprint = 234678500;</code>
      */
-    private $fingerprint = null;
+    protected $fingerprint = null;
     /**
      * [Output Only] The unique identifier for the resource type. The server generates this identifier.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
-    private $id = null;
+    protected $id = null;
     /**
      * [Output Only] Type of the resource. Always compute#serviceAttachment for service attachments.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
-    private $kind = null;
+    protected $kind = null;
     /**
      * Metadata of the service attachment.
      *
@@ -93,7 +93,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
     /**
      * An array of URLs where each entry is the URL of a subnet provided by the service producer to use for NAT in this service attachment.
      *
@@ -105,43 +105,43 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string producer_forwarding_rule = 247927889;</code>
      */
-    private $producer_forwarding_rule = null;
+    protected $producer_forwarding_rule = null;
     /**
      * The number of consumer spokes that connected Private Service Connect endpoints can be propagated to through Network Connectivity Center. This limit lets the service producer limit how many propagated Private Service Connect connections can be established to this service attachment from a single consumer. If the connection preference of the service attachment is ACCEPT_MANUAL, the limit applies to each project or network that is listed in the consumer accept list. If the connection preference of the service attachment is ACCEPT_AUTOMATIC, the limit applies to each project that contains a connected endpoint. If unspecified, the default propagated connection limit is 250.
      *
      * Generated from protobuf field <code>optional uint32 propagated_connection_limit = 332719230;</code>
      */
-    private $propagated_connection_limit = null;
+    protected $propagated_connection_limit = null;
     /**
      * [Output Only] An 128-bit global unique ID of the PSC service attachment.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Uint128 psc_service_attachment_id = 527695214;</code>
      */
-    private $psc_service_attachment_id = null;
+    protected $psc_service_attachment_id = null;
     /**
      * This flag determines whether a consumer accept/reject list change can reconcile the statuses of existing ACCEPTED or REJECTED PSC endpoints. - If false, connection policy update will only affect existing PENDING PSC endpoints. Existing ACCEPTED/REJECTED endpoints will remain untouched regardless how the connection policy is modified . - If true, update will affect both PENDING and ACCEPTED/REJECTED PSC endpoints. For example, an ACCEPTED PSC endpoint will be moved to REJECTED if its project is added to the reject list. For newly created service attachment, this boolean defaults to false.
      *
      * Generated from protobuf field <code>optional bool reconcile_connections = 125493732;</code>
      */
-    private $reconcile_connections = null;
+    protected $reconcile_connections = null;
     /**
      * [Output Only] URL of the region where the service attachment resides. This field applies only to the region resource. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
      */
-    private $region = null;
+    protected $region = null;
     /**
      * [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
-    private $self_link = null;
+    protected $self_link = null;
     /**
      * The URL of a service serving the endpoint identified by this service attachment.
      *
      * Generated from protobuf field <code>optional string target_service = 1293831;</code>
      */
-    private $target_service = null;
+    protected $target_service = null;
 
     /**
      * Constructor.

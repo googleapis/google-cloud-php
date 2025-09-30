@@ -34,7 +34,7 @@ use Google\Cloud\Dataplex\V1\GetDataScanRequest;
  * @param string $formattedName The resource name of the dataScan:
  *                              `projects/{project}/locations/{location_id}/dataScans/{data_scan_id}`
  *                              where `project` refers to a *project_id* or *project_number* and
- *                              `location_id` refers to a GCP region. Please see
+ *                              `location_id` refers to a Google Cloud region. Please see
  *                              {@see DataScanServiceClient::dataScanName()} for help formatting this field.
  */
 function get_data_scan_sample(string $formattedName): void

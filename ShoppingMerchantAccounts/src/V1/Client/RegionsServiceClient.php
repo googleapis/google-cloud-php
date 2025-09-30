@@ -27,12 +27,18 @@ namespace Google\Shopping\Merchant\Accounts\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Shopping\Merchant\Accounts\V1\BatchCreateRegionsRequest;
+use Google\Shopping\Merchant\Accounts\V1\BatchCreateRegionsResponse;
+use Google\Shopping\Merchant\Accounts\V1\BatchDeleteRegionsRequest;
+use Google\Shopping\Merchant\Accounts\V1\BatchUpdateRegionsRequest;
+use Google\Shopping\Merchant\Accounts\V1\BatchUpdateRegionsResponse;
 use Google\Shopping\Merchant\Accounts\V1\CreateRegionRequest;
 use Google\Shopping\Merchant\Accounts\V1\DeleteRegionRequest;
 use Google\Shopping\Merchant\Accounts\V1\GetRegionRequest;
@@ -57,6 +63,9 @@ use Psr\Log\LoggerInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
+ * @method PromiseInterface<BatchCreateRegionsResponse> batchCreateRegionsAsync(BatchCreateRegionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> batchDeleteRegionsAsync(BatchDeleteRegionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchUpdateRegionsResponse> batchUpdateRegionsAsync(BatchUpdateRegionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Region> createRegionAsync(CreateRegionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteRegionAsync(DeleteRegionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Region> getRegionAsync(GetRegionRequest $request, array $optionalArgs = [])
@@ -88,7 +97,9 @@ final class RegionsServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/content'];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/content',
+    ];
 
     private static function getClientDefaults()
     {
@@ -169,25 +180,28 @@ final class RegionsServiceClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'merchantapi.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
-     *           *Important*: If you accept a credential configuration (credential
-     *           JSON/File/Stream) from an external source for authentication to Google Cloud
-     *           Platform, you must validate it before providing it to any Google API or library.
-     *           Providing an unvalidated credential configuration to Google APIs can compromise
-     *           the security of your systems and data. For more information {@see
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Shopping\Merchant\Accounts\V1\RegionsServiceClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new RegionsServiceClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
      *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
@@ -225,11 +239,13 @@ final class RegionsServiceClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -244,6 +260,85 @@ final class RegionsServiceClient
 
         array_unshift($args, substr($method, 0, -5));
         return call_user_func_array([$this, 'startAsyncCall'], $args);
+    }
+
+    /**
+     * Creates one or more regions in your Merchant Center account.
+     * Executing this method requires admin access.
+     *
+     * The async variant is {@see RegionsServiceClient::batchCreateRegionsAsync()} .
+     *
+     * @example samples/V1/RegionsServiceClient/batch_create_regions.php
+     *
+     * @param BatchCreateRegionsRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchCreateRegionsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchCreateRegions(BatchCreateRegionsRequest $request, array $callOptions = []): BatchCreateRegionsResponse
+    {
+        return $this->startApiCall('BatchCreateRegions', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes multiple regions by name from your Merchant Center account.
+     * Executing this method requires admin access.
+     *
+     * The async variant is {@see RegionsServiceClient::batchDeleteRegionsAsync()} .
+     *
+     * @example samples/V1/RegionsServiceClient/batch_delete_regions.php
+     *
+     * @param BatchDeleteRegionsRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchDeleteRegions(BatchDeleteRegionsRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('BatchDeleteRegions', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates one or more regions in your Merchant Center account.
+     * Executing this method requires admin access.
+     *
+     * The async variant is {@see RegionsServiceClient::batchUpdateRegionsAsync()} .
+     *
+     * @example samples/V1/RegionsServiceClient/batch_update_regions.php
+     *
+     * @param BatchUpdateRegionsRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchUpdateRegionsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchUpdateRegions(BatchUpdateRegionsRequest $request, array $callOptions = []): BatchUpdateRegionsResponse
+    {
+        return $this->startApiCall('BatchUpdateRegions', $request, $callOptions)->wait();
     }
 
     /**

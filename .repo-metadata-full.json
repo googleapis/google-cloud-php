@@ -416,7 +416,7 @@
         "distribution_name": "google/common-protos",
         "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/common-protos/latest",
-        "library_type": "GAPIC_AUTO",
+        "library_type": "CORE",
         "api_shortname": ""
     },
     "Compute": {

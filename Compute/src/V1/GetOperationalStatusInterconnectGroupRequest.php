@@ -20,13 +20,13 @@ class GetOperationalStatusInterconnectGroupRequest extends \Google\Protobuf\Inte
      *
      * Generated from protobuf field <code>string interconnect_group = 388651918 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $interconnect_group = '';
+    protected $interconnect_group = '';
     /**
      * Project ID for this request.
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project = '';
+    protected $project = '';
 
     /**
      * @param string $project           Project ID for this request.

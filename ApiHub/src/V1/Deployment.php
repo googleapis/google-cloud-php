@@ -58,9 +58,12 @@ class Deployment extends \Google\Protobuf\Internal\Message
      */
     protected $deployment_type = null;
     /**
-     * Required. A URI to the runtime resource. This URI can be used to manage the
-     * resource. For example, if the runtime resource is of type APIGEE_PROXY,
-     * then this field will contain the URI to the management UI of the proxy.
+     * Required. The resource URI identifies the deployment within its gateway.
+     * For Apigee gateways, its recommended to use the format:
+     * organizations/{org}/environments/{env}/apis/{api}.
+     * For ex: if a proxy with name `orders` is deployed in `staging`
+     * environment of `cymbal` organization, the resource URI would be:
+     * `organizations/cymbal/environments/staging/apis/orders`.
      *
      * Generated from protobuf field <code>string resource_uri = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -128,6 +131,53 @@ class Deployment extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, .google.cloud.apihub.v1.AttributeValues> attributes = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $attributes;
+    /**
+     * Output only. The list of sources and metadata from the sources of the
+     * deployment.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.SourceMetadata source_metadata = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $source_metadata;
+    /**
+     * Optional. The uri where users can navigate to for the management of the
+     * deployment. This maps to the following system defined attribute:
+     * `projects/{project}/locations/{location}/attributes/system-management-url`
+     * The number of values for this attribute will be based on the
+     * cardinality of the attribute. The same can be retrieved via GetAttribute
+     * API. The value of the attribute should be a valid URL.
+     *
+     * Generated from protobuf field <code>.google.cloud.apihub.v1.AttributeValues management_url = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $management_url = null;
+    /**
+     * Optional. The uri where additional source specific information for this
+     * deployment can be found. This maps to the following system defined
+     * attribute:
+     * `projects/{project}/locations/{location}/attributes/system-source-uri`
+     * The number of values for this attribute will be based on the
+     * cardinality of the attribute. The same can be retrieved via GetAttribute
+     * API. The value of the attribute should be a valid URI, and in case
+     * of Cloud Storage URI, it should point to a Cloud Storage object,
+     * not a directory.
+     *
+     * Generated from protobuf field <code>.google.cloud.apihub.v1.AttributeValues source_uri = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $source_uri = null;
+    /**
+     * Optional. The project to which the deployment belongs.
+     * For GCP gateways, this will refer to the project identifier.
+     * For others like Edge/OPDK, this will refer to the org identifier.
+     *
+     * Generated from protobuf field <code>string source_project = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $source_project = '';
+    /**
+     * Optional. The environment at source for the deployment.
+     * For example: prod, dev, staging, etc.
+     *
+     * Generated from protobuf field <code>string source_environment = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $source_environment = '';
 
     /**
      * Constructor.
@@ -155,9 +205,12 @@ class Deployment extends \Google\Protobuf\Internal\Message
      *           API. All values should be from the list of allowed values defined for the
      *           attribute.
      *     @type string $resource_uri
-     *           Required. A URI to the runtime resource. This URI can be used to manage the
-     *           resource. For example, if the runtime resource is of type APIGEE_PROXY,
-     *           then this field will contain the URI to the management UI of the proxy.
+     *           Required. The resource URI identifies the deployment within its gateway.
+     *           For Apigee gateways, its recommended to use the format:
+     *           organizations/{org}/environments/{env}/apis/{api}.
+     *           For ex: if a proxy with name `orders` is deployed in `staging`
+     *           environment of `cymbal` organization, the resource URI would be:
+     *           `organizations/cymbal/environments/staging/apis/orders`.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $endpoints
      *           Required. The endpoints at which this deployment resource is listening for
      *           API requests. This could be a list of complete URIs, hostnames or an IP
@@ -193,6 +246,33 @@ class Deployment extends \Google\Protobuf\Internal\Message
      *           deployment resource. The key is the attribute name. It will be of the
      *           format: `projects/{project}/locations/{location}/attributes/{attribute}`.
      *           The value is the attribute values associated with the resource.
+     *     @type array<\Google\Cloud\ApiHub\V1\SourceMetadata>|\Google\Protobuf\Internal\RepeatedField $source_metadata
+     *           Output only. The list of sources and metadata from the sources of the
+     *           deployment.
+     *     @type \Google\Cloud\ApiHub\V1\AttributeValues $management_url
+     *           Optional. The uri where users can navigate to for the management of the
+     *           deployment. This maps to the following system defined attribute:
+     *           `projects/{project}/locations/{location}/attributes/system-management-url`
+     *           The number of values for this attribute will be based on the
+     *           cardinality of the attribute. The same can be retrieved via GetAttribute
+     *           API. The value of the attribute should be a valid URL.
+     *     @type \Google\Cloud\ApiHub\V1\AttributeValues $source_uri
+     *           Optional. The uri where additional source specific information for this
+     *           deployment can be found. This maps to the following system defined
+     *           attribute:
+     *           `projects/{project}/locations/{location}/attributes/system-source-uri`
+     *           The number of values for this attribute will be based on the
+     *           cardinality of the attribute. The same can be retrieved via GetAttribute
+     *           API. The value of the attribute should be a valid URI, and in case
+     *           of Cloud Storage URI, it should point to a Cloud Storage object,
+     *           not a directory.
+     *     @type string $source_project
+     *           Optional. The project to which the deployment belongs.
+     *           For GCP gateways, this will refer to the project identifier.
+     *           For others like Edge/OPDK, this will refer to the org identifier.
+     *     @type string $source_environment
+     *           Optional. The environment at source for the deployment.
+     *           For example: prod, dev, staging, etc.
      * }
      */
     public function __construct($data = NULL) {
@@ -369,9 +449,12 @@ class Deployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A URI to the runtime resource. This URI can be used to manage the
-     * resource. For example, if the runtime resource is of type APIGEE_PROXY,
-     * then this field will contain the URI to the management UI of the proxy.
+     * Required. The resource URI identifies the deployment within its gateway.
+     * For Apigee gateways, its recommended to use the format:
+     * organizations/{org}/environments/{env}/apis/{api}.
+     * For ex: if a proxy with name `orders` is deployed in `staging`
+     * environment of `cymbal` organization, the resource URI would be:
+     * `organizations/cymbal/environments/staging/apis/orders`.
      *
      * Generated from protobuf field <code>string resource_uri = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -382,9 +465,12 @@ class Deployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A URI to the runtime resource. This URI can be used to manage the
-     * resource. For example, if the runtime resource is of type APIGEE_PROXY,
-     * then this field will contain the URI to the management UI of the proxy.
+     * Required. The resource URI identifies the deployment within its gateway.
+     * For Apigee gateways, its recommended to use the format:
+     * organizations/{org}/environments/{env}/apis/{api}.
+     * For ex: if a proxy with name `orders` is deployed in `staging`
+     * environment of `cymbal` organization, the resource URI would be:
+     * `organizations/cymbal/environments/staging/apis/orders`.
      *
      * Generated from protobuf field <code>string resource_uri = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -658,6 +744,190 @@ class Deployment extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\ApiHub\V1\AttributeValues::class);
         $this->attributes = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The list of sources and metadata from the sources of the
+     * deployment.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.SourceMetadata source_metadata = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getSourceMetadata()
+    {
+        return $this->source_metadata;
+    }
+
+    /**
+     * Output only. The list of sources and metadata from the sources of the
+     * deployment.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.SourceMetadata source_metadata = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<\Google\Cloud\ApiHub\V1\SourceMetadata>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setSourceMetadata($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\ApiHub\V1\SourceMetadata::class);
+        $this->source_metadata = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The uri where users can navigate to for the management of the
+     * deployment. This maps to the following system defined attribute:
+     * `projects/{project}/locations/{location}/attributes/system-management-url`
+     * The number of values for this attribute will be based on the
+     * cardinality of the attribute. The same can be retrieved via GetAttribute
+     * API. The value of the attribute should be a valid URL.
+     *
+     * Generated from protobuf field <code>.google.cloud.apihub.v1.AttributeValues management_url = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\ApiHub\V1\AttributeValues|null
+     */
+    public function getManagementUrl()
+    {
+        return $this->management_url;
+    }
+
+    public function hasManagementUrl()
+    {
+        return isset($this->management_url);
+    }
+
+    public function clearManagementUrl()
+    {
+        unset($this->management_url);
+    }
+
+    /**
+     * Optional. The uri where users can navigate to for the management of the
+     * deployment. This maps to the following system defined attribute:
+     * `projects/{project}/locations/{location}/attributes/system-management-url`
+     * The number of values for this attribute will be based on the
+     * cardinality of the attribute. The same can be retrieved via GetAttribute
+     * API. The value of the attribute should be a valid URL.
+     *
+     * Generated from protobuf field <code>.google.cloud.apihub.v1.AttributeValues management_url = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\ApiHub\V1\AttributeValues $var
+     * @return $this
+     */
+    public function setManagementUrl($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\ApiHub\V1\AttributeValues::class);
+        $this->management_url = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The uri where additional source specific information for this
+     * deployment can be found. This maps to the following system defined
+     * attribute:
+     * `projects/{project}/locations/{location}/attributes/system-source-uri`
+     * The number of values for this attribute will be based on the
+     * cardinality of the attribute. The same can be retrieved via GetAttribute
+     * API. The value of the attribute should be a valid URI, and in case
+     * of Cloud Storage URI, it should point to a Cloud Storage object,
+     * not a directory.
+     *
+     * Generated from protobuf field <code>.google.cloud.apihub.v1.AttributeValues source_uri = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\ApiHub\V1\AttributeValues|null
+     */
+    public function getSourceUri()
+    {
+        return $this->source_uri;
+    }
+
+    public function hasSourceUri()
+    {
+        return isset($this->source_uri);
+    }
+
+    public function clearSourceUri()
+    {
+        unset($this->source_uri);
+    }
+
+    /**
+     * Optional. The uri where additional source specific information for this
+     * deployment can be found. This maps to the following system defined
+     * attribute:
+     * `projects/{project}/locations/{location}/attributes/system-source-uri`
+     * The number of values for this attribute will be based on the
+     * cardinality of the attribute. The same can be retrieved via GetAttribute
+     * API. The value of the attribute should be a valid URI, and in case
+     * of Cloud Storage URI, it should point to a Cloud Storage object,
+     * not a directory.
+     *
+     * Generated from protobuf field <code>.google.cloud.apihub.v1.AttributeValues source_uri = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\ApiHub\V1\AttributeValues $var
+     * @return $this
+     */
+    public function setSourceUri($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\ApiHub\V1\AttributeValues::class);
+        $this->source_uri = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The project to which the deployment belongs.
+     * For GCP gateways, this will refer to the project identifier.
+     * For others like Edge/OPDK, this will refer to the org identifier.
+     *
+     * Generated from protobuf field <code>string source_project = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getSourceProject()
+    {
+        return $this->source_project;
+    }
+
+    /**
+     * Optional. The project to which the deployment belongs.
+     * For GCP gateways, this will refer to the project identifier.
+     * For others like Edge/OPDK, this will refer to the org identifier.
+     *
+     * Generated from protobuf field <code>string source_project = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSourceProject($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->source_project = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The environment at source for the deployment.
+     * For example: prod, dev, staging, etc.
+     *
+     * Generated from protobuf field <code>string source_environment = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getSourceEnvironment()
+    {
+        return $this->source_environment;
+    }
+
+    /**
+     * Optional. The environment at source for the deployment.
+     * For example: prod, dev, staging, etc.
+     *
+     * Generated from protobuf field <code>string source_environment = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSourceEnvironment($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->source_environment = $var;
 
         return $this;
     }

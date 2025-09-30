@@ -20,19 +20,19 @@ class ResourcePolicyWeeklyCycleDayOfWeek extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>optional string day = 99228;</code>
      */
-    private $day = null;
+    protected $day = null;
     /**
      * [Output only] Duration of the time window, automatically chosen to be smallest possible in the given scenario.
      *
      * Generated from protobuf field <code>optional string duration = 155471252;</code>
      */
-    private $duration = null;
+    protected $duration = null;
     /**
      * Time within the window to start the operations. It must be in format "HH:MM", where HH : [00-23] and MM : [00-00] GMT.
      *
      * Generated from protobuf field <code>optional string start_time = 37467274;</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
 
     /**
      * Constructor.

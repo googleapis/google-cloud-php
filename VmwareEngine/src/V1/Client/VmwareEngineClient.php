@@ -28,6 +28,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -254,7 +255,9 @@ final class VmwareEngineClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+    ];
 
     private $operationsClient;
 
@@ -300,9 +303,7 @@ final class VmwareEngineClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning'])
-            ? $this->descriptors[$methodName]['longRunning']
-            : [];
+        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -395,12 +396,8 @@ final class VmwareEngineClient
      *
      * @return string The formatted external_access_rule resource.
      */
-    public static function externalAccessRuleName(
-        string $project,
-        string $location,
-        string $networkPolicy,
-        string $externalAccessRule
-    ): string {
+    public static function externalAccessRuleName(string $project, string $location, string $networkPolicy, string $externalAccessRule): string
+    {
         return self::getPathTemplate('externalAccessRule')->render([
             'project' => $project,
             'location' => $location,
@@ -420,12 +417,8 @@ final class VmwareEngineClient
      *
      * @return string The formatted external_address resource.
      */
-    public static function externalAddressName(
-        string $project,
-        string $location,
-        string $privateCloud,
-        string $externalAddress
-    ): string {
+    public static function externalAddressName(string $project, string $location, string $privateCloud, string $externalAddress): string
+    {
         return self::getPathTemplate('externalAddress')->render([
             'project' => $project,
             'location' => $location,
@@ -445,12 +438,8 @@ final class VmwareEngineClient
      *
      * @return string The formatted hcx_activation_key resource.
      */
-    public static function hcxActivationKeyName(
-        string $project,
-        string $location,
-        string $privateCloud,
-        string $hcxActivationKey
-    ): string {
+    public static function hcxActivationKeyName(string $project, string $location, string $privateCloud, string $hcxActivationKey): string
+    {
         return self::getPathTemplate('hcxActivationKey')->render([
             'project' => $project,
             'location' => $location,
@@ -487,12 +476,8 @@ final class VmwareEngineClient
      *
      * @return string The formatted logging_server resource.
      */
-    public static function loggingServerName(
-        string $project,
-        string $location,
-        string $privateCloud,
-        string $loggingServer
-    ): string {
+    public static function loggingServerName(string $project, string $location, string $privateCloud, string $loggingServer): string
+    {
         return self::getPathTemplate('loggingServer')->render([
             'project' => $project,
             'location' => $location,
@@ -512,12 +497,8 @@ final class VmwareEngineClient
      *
      * @return string The formatted management_dns_zone_binding resource.
      */
-    public static function managementDnsZoneBindingName(
-        string $project,
-        string $location,
-        string $privateCloud,
-        string $managementDnsZoneBinding
-    ): string {
+    public static function managementDnsZoneBindingName(string $project, string $location, string $privateCloud, string $managementDnsZoneBinding): string
+    {
         return self::getPathTemplate('managementDnsZoneBinding')->render([
             'project' => $project,
             'location' => $location,
@@ -593,13 +574,8 @@ final class VmwareEngineClient
      *
      * @return string The formatted node resource.
      */
-    public static function nodeName(
-        string $project,
-        string $location,
-        string $privateCloud,
-        string $cluster,
-        string $node
-    ): string {
+    public static function nodeName(string $project, string $location, string $privateCloud, string $cluster, string $node): string
+    {
         return self::getPathTemplate('node')->render([
             'project' => $project,
             'location' => $location,
@@ -697,11 +673,8 @@ final class VmwareEngineClient
      *
      * @return string The formatted vmware_engine_network resource.
      */
-    public static function vmwareEngineNetworkName(
-        string $project,
-        string $location,
-        string $vmwareEngineNetwork
-    ): string {
+    public static function vmwareEngineNetworkName(string $project, string $location, string $vmwareEngineNetwork): string
+    {
         return self::getPathTemplate('vmwareEngineNetwork')->render([
             'project' => $project,
             'location' => $location,
@@ -753,25 +726,28 @@ final class VmwareEngineClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'vmwareengine.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
-     *           *Important*: If you accept a credential configuration (credential
-     *           JSON/File/Stream) from an external source for authentication to Google Cloud
-     *           Platform, you must validate it before providing it to any Google API or library.
-     *           Providing an unvalidated credential configuration to Google APIs can compromise
-     *           the security of your systems and data. For more information {@see
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\VmwareEngine\V1\VmwareEngineClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new VmwareEngineClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
      *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
@@ -809,11 +785,13 @@ final class VmwareEngineClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -851,7 +829,7 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Cluster>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -878,14 +856,12 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<ExternalAccessRule>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createExternalAccessRule(
-        CreateExternalAccessRuleRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function createExternalAccessRule(CreateExternalAccessRuleRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('CreateExternalAccessRule', $request, $callOptions)->wait();
     }
 
@@ -908,14 +884,12 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<ExternalAddress>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createExternalAddress(
-        CreateExternalAddressRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function createExternalAddress(CreateExternalAddressRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('CreateExternalAddress', $request, $callOptions)->wait();
     }
 
@@ -936,14 +910,12 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<HcxActivationKey>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createHcxActivationKey(
-        CreateHcxActivationKeyRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function createHcxActivationKey(CreateHcxActivationKeyRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('CreateHcxActivationKey', $request, $callOptions)->wait();
     }
 
@@ -964,7 +936,7 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<LoggingServer>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -997,14 +969,12 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<ManagementDnsZoneBinding>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createManagementDnsZoneBinding(
-        CreateManagementDnsZoneBindingRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function createManagementDnsZoneBinding(CreateManagementDnsZoneBindingRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('CreateManagementDnsZoneBinding', $request, $callOptions)->wait();
     }
 
@@ -1027,14 +997,12 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<NetworkPeering>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createNetworkPeering(
-        CreateNetworkPeeringRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function createNetworkPeering(CreateNetworkPeeringRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('CreateNetworkPeering', $request, $callOptions)->wait();
     }
 
@@ -1057,7 +1025,7 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<NetworkPolicy>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1089,7 +1057,7 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<PrivateCloud>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1116,14 +1084,12 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<PrivateConnection>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createPrivateConnection(
-        CreatePrivateConnectionRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function createPrivateConnection(CreatePrivateConnectionRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('CreatePrivateConnection', $request, $callOptions)->wait();
     }
 
@@ -1145,14 +1111,12 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<VmwareEngineNetwork>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createVmwareEngineNetwork(
-        CreateVmwareEngineNetworkRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function createVmwareEngineNetwork(CreateVmwareEngineNetworkRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('CreateVmwareEngineNetwork', $request, $callOptions)->wait();
     }
 
@@ -1176,7 +1140,7 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1203,14 +1167,12 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteExternalAccessRule(
-        DeleteExternalAccessRuleRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function deleteExternalAccessRule(DeleteExternalAccessRuleRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('DeleteExternalAccessRule', $request, $callOptions)->wait();
     }
 
@@ -1233,14 +1195,12 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteExternalAddress(
-        DeleteExternalAddressRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function deleteExternalAddress(DeleteExternalAddressRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('DeleteExternalAddress', $request, $callOptions)->wait();
     }
 
@@ -1261,7 +1221,7 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1290,14 +1250,12 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteManagementDnsZoneBinding(
-        DeleteManagementDnsZoneBindingRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function deleteManagementDnsZoneBinding(DeleteManagementDnsZoneBindingRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('DeleteManagementDnsZoneBinding', $request, $callOptions)->wait();
     }
 
@@ -1321,14 +1279,12 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteNetworkPeering(
-        DeleteNetworkPeeringRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function deleteNetworkPeering(DeleteNetworkPeeringRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('DeleteNetworkPeering', $request, $callOptions)->wait();
     }
 
@@ -1351,7 +1307,7 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1391,7 +1347,7 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<PrivateCloud>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1419,14 +1375,12 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deletePrivateConnection(
-        DeletePrivateConnectionRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function deletePrivateConnection(DeletePrivateConnectionRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('DeletePrivateConnection', $request, $callOptions)->wait();
     }
 
@@ -1451,14 +1405,12 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteVmwareEngineNetwork(
-        DeleteVmwareEngineNetworkRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function deleteVmwareEngineNetwork(DeleteVmwareEngineNetworkRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('DeleteVmwareEngineNetwork', $request, $callOptions)->wait();
     }
 
@@ -1485,10 +1437,8 @@ final class VmwareEngineClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function fetchNetworkPolicyExternalAddresses(
-        FetchNetworkPolicyExternalAddressesRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function fetchNetworkPolicyExternalAddresses(FetchNetworkPolicyExternalAddressesRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('FetchNetworkPolicyExternalAddresses', $request, $callOptions);
     }
 
@@ -1541,10 +1491,8 @@ final class VmwareEngineClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getDnsBindPermission(
-        GetDnsBindPermissionRequest $request,
-        array $callOptions = []
-    ): DnsBindPermission {
+    public function getDnsBindPermission(GetDnsBindPermissionRequest $request, array $callOptions = []): DnsBindPermission
+    {
         return $this->startApiCall('GetDnsBindPermission', $request, $callOptions)->wait();
     }
 
@@ -1595,10 +1543,8 @@ final class VmwareEngineClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getExternalAccessRule(
-        GetExternalAccessRuleRequest $request,
-        array $callOptions = []
-    ): ExternalAccessRule {
+    public function getExternalAccessRule(GetExternalAccessRuleRequest $request, array $callOptions = []): ExternalAccessRule
+    {
         return $this->startApiCall('GetExternalAccessRule', $request, $callOptions)->wait();
     }
 
@@ -1702,10 +1648,8 @@ final class VmwareEngineClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getManagementDnsZoneBinding(
-        GetManagementDnsZoneBindingRequest $request,
-        array $callOptions = []
-    ): ManagementDnsZoneBinding {
+    public function getManagementDnsZoneBinding(GetManagementDnsZoneBindingRequest $request, array $callOptions = []): ManagementDnsZoneBinding
+    {
         return $this->startApiCall('GetManagementDnsZoneBinding', $request, $callOptions)->wait();
     }
 
@@ -1865,10 +1809,8 @@ final class VmwareEngineClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getPrivateConnection(
-        GetPrivateConnectionRequest $request,
-        array $callOptions = []
-    ): PrivateConnection {
+    public function getPrivateConnection(GetPrivateConnectionRequest $request, array $callOptions = []): PrivateConnection
+    {
         return $this->startApiCall('GetPrivateConnection', $request, $callOptions)->wait();
     }
 
@@ -1922,10 +1864,8 @@ final class VmwareEngineClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getVmwareEngineNetwork(
-        GetVmwareEngineNetworkRequest $request,
-        array $callOptions = []
-    ): VmwareEngineNetwork {
+    public function getVmwareEngineNetwork(GetVmwareEngineNetworkRequest $request, array $callOptions = []): VmwareEngineNetwork
+    {
         return $this->startApiCall('GetVmwareEngineNetwork', $request, $callOptions)->wait();
     }
 
@@ -1949,14 +1889,12 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<DnsBindPermission>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function grantDnsBindPermission(
-        GrantDnsBindPermissionRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function grantDnsBindPermission(GrantDnsBindPermissionRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('GrantDnsBindPermission', $request, $callOptions)->wait();
     }
 
@@ -2007,10 +1945,8 @@ final class VmwareEngineClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listExternalAccessRules(
-        ListExternalAccessRulesRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listExternalAccessRules(ListExternalAccessRulesRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListExternalAccessRules', $request, $callOptions);
     }
 
@@ -2036,10 +1972,8 @@ final class VmwareEngineClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listExternalAddresses(
-        ListExternalAddressesRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listExternalAddresses(ListExternalAddressesRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListExternalAddresses', $request, $callOptions);
     }
 
@@ -2064,10 +1998,8 @@ final class VmwareEngineClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listHcxActivationKeys(
-        ListHcxActivationKeysRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listHcxActivationKeys(ListHcxActivationKeysRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListHcxActivationKeys', $request, $callOptions);
     }
 
@@ -2120,10 +2052,8 @@ final class VmwareEngineClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listManagementDnsZoneBindings(
-        ListManagementDnsZoneBindingsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listManagementDnsZoneBindings(ListManagementDnsZoneBindingsRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListManagementDnsZoneBindings', $request, $callOptions);
     }
 
@@ -2307,10 +2237,8 @@ final class VmwareEngineClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listPrivateConnectionPeeringRoutes(
-        ListPrivateConnectionPeeringRoutesRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listPrivateConnectionPeeringRoutes(ListPrivateConnectionPeeringRoutesRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListPrivateConnectionPeeringRoutes', $request, $callOptions);
     }
 
@@ -2335,10 +2263,8 @@ final class VmwareEngineClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listPrivateConnections(
-        ListPrivateConnectionsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listPrivateConnections(ListPrivateConnectionsRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListPrivateConnections', $request, $callOptions);
     }
 
@@ -2390,10 +2316,8 @@ final class VmwareEngineClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listVmwareEngineNetworks(
-        ListVmwareEngineNetworksRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listVmwareEngineNetworks(ListVmwareEngineNetworksRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListVmwareEngineNetworks', $request, $callOptions);
     }
 
@@ -2416,14 +2340,12 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<ManagementDnsZoneBinding>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function repairManagementDnsZoneBinding(
-        RepairManagementDnsZoneBindingRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function repairManagementDnsZoneBinding(RepairManagementDnsZoneBindingRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('RepairManagementDnsZoneBinding', $request, $callOptions)->wait();
     }
 
@@ -2444,7 +2366,7 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<PrivateCloud>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -2470,14 +2392,12 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<PrivateCloud>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function resetVcenterCredentials(
-        ResetVcenterCredentialsRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function resetVcenterCredentials(ResetVcenterCredentialsRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('ResetVcenterCredentials', $request, $callOptions)->wait();
     }
 
@@ -2500,14 +2420,12 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<DnsBindPermission>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function revokeDnsBindPermission(
-        RevokeDnsBindPermissionRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function revokeDnsBindPermission(RevokeDnsBindPermissionRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('RevokeDnsBindPermission', $request, $callOptions)->wait();
     }
 
@@ -2583,14 +2501,12 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<PrivateCloud>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function undeletePrivateCloud(
-        UndeletePrivateCloudRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function undeletePrivateCloud(UndeletePrivateCloudRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('UndeletePrivateCloud', $request, $callOptions)->wait();
     }
 
@@ -2617,7 +2533,7 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Cluster>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -2644,7 +2560,7 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<DnsForwarding>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -2672,14 +2588,12 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<ExternalAccessRule>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateExternalAccessRule(
-        UpdateExternalAccessRuleRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function updateExternalAccessRule(UpdateExternalAccessRuleRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('UpdateExternalAccessRule', $request, $callOptions)->wait();
     }
 
@@ -2706,14 +2620,12 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<ExternalAddress>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateExternalAddress(
-        UpdateExternalAddressRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function updateExternalAddress(UpdateExternalAddressRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('UpdateExternalAddress', $request, $callOptions)->wait();
     }
 
@@ -2735,7 +2647,7 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<LoggingServer>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -2763,14 +2675,12 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<ManagementDnsZoneBinding>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateManagementDnsZoneBinding(
-        UpdateManagementDnsZoneBindingRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function updateManagementDnsZoneBinding(UpdateManagementDnsZoneBindingRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('UpdateManagementDnsZoneBinding', $request, $callOptions)->wait();
     }
 
@@ -2793,14 +2703,12 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<NetworkPeering>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateNetworkPeering(
-        UpdateNetworkPeeringRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function updateNetworkPeering(UpdateNetworkPeeringRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('UpdateNetworkPeering', $request, $callOptions)->wait();
     }
 
@@ -2832,7 +2740,7 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<NetworkPolicy>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -2865,7 +2773,7 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<PrivateCloud>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -2893,14 +2801,12 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<PrivateConnection>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updatePrivateConnection(
-        UpdatePrivateConnectionRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function updatePrivateConnection(UpdatePrivateConnectionRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('UpdatePrivateConnection', $request, $callOptions)->wait();
     }
 
@@ -2926,7 +2832,7 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Subnet>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -2955,14 +2861,12 @@ final class VmwareEngineClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<VmwareEngineNetwork>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateVmwareEngineNetwork(
-        UpdateVmwareEngineNetworkRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function updateVmwareEngineNetwork(UpdateVmwareEngineNetworkRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('UpdateVmwareEngineNetwork', $request, $callOptions)->wait();
     }
 
@@ -3102,10 +3006,8 @@ final class VmwareEngineClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(
-        TestIamPermissionsRequest $request,
-        array $callOptions = []
-    ): TestIamPermissionsResponse {
+    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
+    {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

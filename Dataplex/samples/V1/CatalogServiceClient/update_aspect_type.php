@@ -41,8 +41,8 @@ use Google\Rpc\Status;
  *                                               Primitive types:
  *
  *                                               * string
- *                                               * integer
- *                                               * boolean
+ *                                               * int
+ *                                               * bool
  *                                               * double
  *                                               * datetime. Must be of the format RFC3339 UTC "Zulu" (Examples:
  *                                               "2014-10-02T15:01:23Z" and "2014-10-02T15:01:23.045123456Z").

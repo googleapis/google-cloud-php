@@ -29,7 +29,7 @@ class CreateGoogleApiSourceRequest extends \Google\Protobuf\Internal\Message
     protected $google_api_source = null;
     /**
      * Required. The user-provided ID to be assigned to the GoogleApiSource. It
-     * should match the format (^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$).
+     * should match the format `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`.
      *
      * Generated from protobuf field <code>string google_api_source_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -47,7 +47,7 @@ class CreateGoogleApiSourceRequest extends \Google\Protobuf\Internal\Message
      *                                                                     {@see EventarcClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\Eventarc\V1\GoogleApiSource $googleApiSource   Required. The google api source to create.
      * @param string                                    $googleApiSourceId Required. The user-provided ID to be assigned to the GoogleApiSource. It
-     *                                                                     should match the format (^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$).
+     *                                                                     should match the format `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`.
      *
      * @return \Google\Cloud\Eventarc\V1\CreateGoogleApiSourceRequest
      *
@@ -73,7 +73,7 @@ class CreateGoogleApiSourceRequest extends \Google\Protobuf\Internal\Message
      *           Required. The google api source to create.
      *     @type string $google_api_source_id
      *           Required. The user-provided ID to be assigned to the GoogleApiSource. It
-     *           should match the format (^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$).
+     *           should match the format `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`.
      *     @type bool $validate_only
      *           Optional. If set, validate the request and preview the review, but do not
      *           post it.
@@ -148,7 +148,7 @@ class CreateGoogleApiSourceRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The user-provided ID to be assigned to the GoogleApiSource. It
-     * should match the format (^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$).
+     * should match the format `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`.
      *
      * Generated from protobuf field <code>string google_api_source_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -160,7 +160,7 @@ class CreateGoogleApiSourceRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The user-provided ID to be assigned to the GoogleApiSource. It
-     * should match the format (^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$).
+     * should match the format `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`.
      *
      * Generated from protobuf field <code>string google_api_source_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

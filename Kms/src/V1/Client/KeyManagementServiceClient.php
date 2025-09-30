@@ -27,6 +27,7 @@ namespace Google\Cloud\Kms\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -48,6 +49,8 @@ use Google\Cloud\Kms\V1\CreateImportJobRequest;
 use Google\Cloud\Kms\V1\CreateKeyRingRequest;
 use Google\Cloud\Kms\V1\CryptoKey;
 use Google\Cloud\Kms\V1\CryptoKeyVersion;
+use Google\Cloud\Kms\V1\DecapsulateRequest;
+use Google\Cloud\Kms\V1\DecapsulateResponse;
 use Google\Cloud\Kms\V1\DecryptRequest;
 use Google\Cloud\Kms\V1\DecryptResponse;
 use Google\Cloud\Kms\V1\DestroyCryptoKeyVersionRequest;
@@ -114,6 +117,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<CryptoKeyVersion> createCryptoKeyVersionAsync(CreateCryptoKeyVersionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ImportJob> createImportJobAsync(CreateImportJobRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<KeyRing> createKeyRingAsync(CreateKeyRingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DecapsulateResponse> decapsulateAsync(DecapsulateRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<DecryptResponse> decryptAsync(DecryptRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<CryptoKeyVersion> destroyCryptoKeyVersionAsync(DestroyCryptoKeyVersionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<EncryptResponse> encryptAsync(EncryptRequest $request, array $optionalArgs = [])
@@ -224,13 +228,8 @@ final class KeyManagementServiceClient
      *
      * @return string The formatted crypto_key_version resource.
      */
-    public static function cryptoKeyVersionName(
-        string $project,
-        string $location,
-        string $keyRing,
-        string $cryptoKey,
-        string $cryptoKeyVersion
-    ): string {
+    public static function cryptoKeyVersionName(string $project, string $location, string $keyRing, string $cryptoKey, string $cryptoKeyVersion): string
+    {
         return self::getPathTemplate('cryptoKeyVersion')->render([
             'project' => $project,
             'location' => $location,
@@ -328,25 +327,28 @@ final class KeyManagementServiceClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'cloudkms.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
-     *           *Important*: If you accept a credential configuration (credential
-     *           JSON/File/Stream) from an external source for authentication to Google Cloud
-     *           Platform, you must validate it before providing it to any Google API or library.
-     *           Providing an unvalidated credential configuration to Google APIs can compromise
-     *           the security of your systems and data. For more information {@see
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\Kms\V1\KeyManagementServiceClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new KeyManagementServiceClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
      *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
@@ -384,11 +386,13 @@ final class KeyManagementServiceClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -431,10 +435,8 @@ final class KeyManagementServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function asymmetricDecrypt(
-        AsymmetricDecryptRequest $request,
-        array $callOptions = []
-    ): AsymmetricDecryptResponse {
+    public function asymmetricDecrypt(AsymmetricDecryptRequest $request, array $callOptions = []): AsymmetricDecryptResponse
+    {
         return $this->startApiCall('AsymmetricDecrypt', $request, $callOptions)->wait();
     }
 
@@ -526,10 +528,8 @@ final class KeyManagementServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createCryptoKeyVersion(
-        CreateCryptoKeyVersionRequest $request,
-        array $callOptions = []
-    ): CryptoKeyVersion {
+    public function createCryptoKeyVersion(CreateCryptoKeyVersionRequest $request, array $callOptions = []): CryptoKeyVersion
+    {
         return $this->startApiCall('CreateCryptoKeyVersion', $request, $callOptions)->wait();
     }
 
@@ -588,6 +588,36 @@ final class KeyManagementServiceClient
     public function createKeyRing(CreateKeyRingRequest $request, array $callOptions = []): KeyRing
     {
         return $this->startApiCall('CreateKeyRing', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Decapsulates data that was encapsulated with a public key retrieved from
+     * [GetPublicKey][google.cloud.kms.v1.KeyManagementService.GetPublicKey]
+     * corresponding to a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]
+     * with [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose]
+     * KEY_ENCAPSULATION.
+     *
+     * The async variant is {@see KeyManagementServiceClient::decapsulateAsync()} .
+     *
+     * @example samples/V1/KeyManagementServiceClient/decapsulate.php
+     *
+     * @param DecapsulateRequest $request     A request to house fields associated with the call.
+     * @param array              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return DecapsulateResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function decapsulate(DecapsulateRequest $request, array $callOptions = []): DecapsulateResponse
+    {
+        return $this->startApiCall('Decapsulate', $request, $callOptions)->wait();
     }
 
     /**
@@ -661,10 +691,8 @@ final class KeyManagementServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function destroyCryptoKeyVersion(
-        DestroyCryptoKeyVersionRequest $request,
-        array $callOptions = []
-    ): CryptoKeyVersion {
+    public function destroyCryptoKeyVersion(DestroyCryptoKeyVersionRequest $request, array $callOptions = []): CryptoKeyVersion
+    {
         return $this->startApiCall('DestroyCryptoKeyVersion', $request, $callOptions)->wait();
     }
 
@@ -720,10 +748,8 @@ final class KeyManagementServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function generateRandomBytes(
-        GenerateRandomBytesRequest $request,
-        array $callOptions = []
-    ): GenerateRandomBytesResponse {
+    public function generateRandomBytes(GenerateRandomBytesRequest $request, array $callOptions = []): GenerateRandomBytesResponse
+    {
         return $this->startApiCall('GenerateRandomBytes', $request, $callOptions)->wait();
     }
 
@@ -895,10 +921,8 @@ final class KeyManagementServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function importCryptoKeyVersion(
-        ImportCryptoKeyVersionRequest $request,
-        array $callOptions = []
-    ): CryptoKeyVersion {
+    public function importCryptoKeyVersion(ImportCryptoKeyVersionRequest $request, array $callOptions = []): CryptoKeyVersion
+    {
         return $this->startApiCall('ImportCryptoKeyVersion', $request, $callOptions)->wait();
     }
 
@@ -924,10 +948,8 @@ final class KeyManagementServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listCryptoKeyVersions(
-        ListCryptoKeyVersionsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listCryptoKeyVersions(ListCryptoKeyVersionsRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListCryptoKeyVersions', $request, $callOptions);
     }
 
@@ -1156,10 +1178,8 @@ final class KeyManagementServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function restoreCryptoKeyVersion(
-        RestoreCryptoKeyVersionRequest $request,
-        array $callOptions = []
-    ): CryptoKeyVersion {
+    public function restoreCryptoKeyVersion(RestoreCryptoKeyVersionRequest $request, array $callOptions = []): CryptoKeyVersion
+    {
         return $this->startApiCall('RestoreCryptoKeyVersion', $request, $callOptions)->wait();
     }
 
@@ -1216,10 +1236,8 @@ final class KeyManagementServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateCryptoKeyPrimaryVersion(
-        UpdateCryptoKeyPrimaryVersionRequest $request,
-        array $callOptions = []
-    ): CryptoKey {
+    public function updateCryptoKeyPrimaryVersion(UpdateCryptoKeyPrimaryVersionRequest $request, array $callOptions = []): CryptoKey
+    {
         return $this->startApiCall('UpdateCryptoKeyPrimaryVersion', $request, $callOptions)->wait();
     }
 
@@ -1256,10 +1274,8 @@ final class KeyManagementServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateCryptoKeyVersion(
-        UpdateCryptoKeyVersionRequest $request,
-        array $callOptions = []
-    ): CryptoKeyVersion {
+    public function updateCryptoKeyVersion(UpdateCryptoKeyVersionRequest $request, array $callOptions = []): CryptoKeyVersion
+    {
         return $this->startApiCall('UpdateCryptoKeyVersion', $request, $callOptions)->wait();
     }
 
@@ -1400,10 +1416,8 @@ final class KeyManagementServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(
-        TestIamPermissionsRequest $request,
-        array $callOptions = []
-    ): TestIamPermissionsResponse {
+    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
+    {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

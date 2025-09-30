@@ -20,20 +20,20 @@ class NetworkPeeringConnectionStatus extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkPeeringConnectionStatusConsensusState consensus_state = 379772617;</code>
      */
-    private $consensus_state = null;
+    protected $consensus_state = null;
     /**
      * The active connectivity settings for the peering connection based on the settings of the network peerings.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkPeeringConnectionStatusTrafficConfiguration traffic_configuration = 133016116;</code>
      */
-    private $traffic_configuration = null;
+    protected $traffic_configuration = null;
     /**
      * The update strategy determines the update/delete semantics for this peering connection.
      * Check the UpdateStrategy enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string update_strategy = 6123049;</code>
      */
-    private $update_strategy = null;
+    protected $update_strategy = null;
 
     /**
      * Constructor.

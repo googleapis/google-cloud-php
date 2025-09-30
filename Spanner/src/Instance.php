@@ -25,6 +25,7 @@ use Google\Cloud\Core\Iam\IamManager;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\LongRunning\LongRunningClientConnection;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
+use Google\Cloud\Core\OptionsValidator;
 use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Database\V1\ListBackupOperationsRequest;
@@ -116,6 +117,7 @@ class Instance
         $this->returnInt64AsObject = $options['returnInt64AsObject'] ?? false;
         $this->cacheItemPool = $options['cacheItemPool'] ?? null;
         $this->projectName = InstanceAdminClient::projectName($projectId);
+        $this->optionsValidator = new OptionsValidator($serializer);
     }
 
     /**

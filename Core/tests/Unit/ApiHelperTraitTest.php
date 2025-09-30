@@ -21,9 +21,13 @@ use Google\ApiCore\Options\CallOptions;
 use Google\ApiCore\Serializer;
 use Google\ApiCore\Testing\MockRequest;
 use Google\Cloud\Core\Duration;
+use Google\Cloud\Core\OptionsValidator;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Tests\Unit\Stubs\ApiHelpersTraitImpl;
+use Google\Protobuf\Internal\Message;
+use LogicException;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
@@ -39,7 +43,6 @@ class ApiHelperTraitTest extends TestCase
     public function setUp(): void
     {
         $this->implementation = new ApiHelpersTraitImpl();
-        $this->implementation->serializer = new Serializer();
     }
 
     public function testFormatsTimestamp()
@@ -268,9 +271,32 @@ class ApiHelperTraitTest extends TestCase
      */
     public function testValidateOptions($options, $optionTypes, $expected)
     {
+        $implementation = new ApiHelpersTraitImpl();
         $this->assertEquals(
             $expected,
-            $this->implementation->validateOptions($options, ...$optionTypes)
+            $implementation->validateOptions($options, ...$optionTypes)
+        );
+    }
+
+    /**
+     * @dataProvider validateOptionsProvider
+     */
+    public function testValidateOptionsCustomSerializer($options, $optionTypes, $expected)
+    {
+        $numMessages = count(array_filter($expected, fn ($optionType) => $optionType instanceof Message));
+        $serializer = $this->prophesize(Serializer::class);
+        $serializer->decodeMessage(Argument::type(Message::class), Argument::type('array'))
+            ->shouldBeCalledTimes($numMessages)
+            ->will(function ($args) {
+                return (new Serializer())->decodeMessage($args[0], $args[1]);
+            });
+
+        // test using an implementation with custom serializer
+        $implementation = new ApiHelpersTraitImpl();
+        $implementation->setOptionsValidator(new OptionsValidator($serializer->reveal()));
+        $this->assertEquals(
+            $expected,
+            $implementation->validateOptions($options, ...$optionTypes)
         );
     }
 
@@ -354,5 +380,25 @@ class ApiHelperTraitTest extends TestCase
         ];
 
         $this->implementation->validateOptions($options, ['foo']);
+    }
+
+    public function testValidateOptionsWithClassnameThrowsException()
+    {
+        $this->expectException(LogicException::class);
+        $this->expectExceptionMessage('Invalid option type: ' . Blob::class);
+
+        $options = [
+            'foo' => 'bar',
+            'bar' => 'baz',
+        ];
+
+        [$blob, $validated] = $this->implementation->validateOptions(
+            $options,
+            Blob::class,
+            ['foo', 'bar']
+        );
+
+        $this->assertEquals([], $blob);
+        $this->assertEquals($options, $validated);
     }
 }

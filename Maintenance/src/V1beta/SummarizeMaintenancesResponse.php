@@ -9,6 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * Request message for SummarizeMaintenances custom method.
+ *
  * Generated from protobuf message <code>google.cloud.maintenance.api.v1beta.SummarizeMaintenancesResponse</code>
  */
 class SummarizeMaintenancesResponse extends \Google\Protobuf\Internal\Message

@@ -30,7 +30,8 @@ use Google\Cloud\GeminiDataAnalytics\V1beta\Client\DataChatServiceClient;
 use Google\Cloud\GeminiDataAnalytics\V1beta\Message;
 
 /**
- * Answers a data question by generating a stream of [Message]s.
+ * Answers a data question by generating a stream of
+ * [Message][google.cloud.geminidataanalytics.v1alpha.Message] objects.
  *
  * @param string $parent The parent value for chat request.
  *                       Pattern: `projects/{project}/locations/{location}`

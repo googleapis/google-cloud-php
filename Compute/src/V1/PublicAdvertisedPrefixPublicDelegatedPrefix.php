@@ -20,31 +20,31 @@ class PublicAdvertisedPrefixPublicDelegatedPrefix extends \Google\Protobuf\Inter
      *
      * Generated from protobuf field <code>optional string ip_range = 145092645;</code>
      */
-    private $ip_range = null;
+    protected $ip_range = null;
     /**
      * The name of the public delegated prefix
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
     /**
      * The project number of the public delegated prefix
      *
      * Generated from protobuf field <code>optional string project = 227560217;</code>
      */
-    private $project = null;
+    protected $project = null;
     /**
      * The region of the public delegated prefix if it is regional. If absent, the prefix is global.
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
      */
-    private $region = null;
+    protected $region = null;
     /**
      * The status of the public delegated prefix. Possible values are: INITIALIZING: The public delegated prefix is being initialized and addresses cannot be created yet. ANNOUNCED: The public delegated prefix is active.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>
      */
-    private $status = null;
+    protected $status = null;
 
     /**
      * Constructor.

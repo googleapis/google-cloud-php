@@ -77,7 +77,7 @@ trait TimeTrait
             $dateTime = clone $dateTime;
         }
         $dateTime = $dateTime->setTimeZone(new \DateTimeZone('UTC'));
-        if ($ns === null) {
+        if (is_null($ns)) {
             return $dateTime->format(Timestamp::FORMAT);
         } else {
             return sprintf(

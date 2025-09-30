@@ -19,7 +19,7 @@ class BackendServiceHAPolicyLeaderNetworkEndpoint extends \Google\Protobuf\Inter
      *
      * Generated from protobuf field <code>optional string instance = 18257045;</code>
      */
-    private $instance = null;
+    protected $instance = null;
 
     /**
      * Constructor.

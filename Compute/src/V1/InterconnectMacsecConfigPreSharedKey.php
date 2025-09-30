@@ -20,25 +20,25 @@ class InterconnectMacsecConfigPreSharedKey extends \Google\Protobuf\Internal\Mes
      *
      * Generated from protobuf field <code>optional string cak = 98253;</code>
      */
-    private $cak = null;
+    protected $cak = null;
     /**
      * An auto-generated Connectivity Association Key Name (CKN) for this key.
      *
      * Generated from protobuf field <code>optional string ckn = 98566;</code>
      */
-    private $ckn = null;
+    protected $ckn = null;
     /**
      * User provided name for this pre-shared key.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
     /**
      * User provided timestamp on or after which this key is valid.
      *
      * Generated from protobuf field <code>optional string start_time = 37467274;</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
 
     /**
      * Constructor.

@@ -20,19 +20,19 @@ class GetInstanceGroupManagerRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string instance_group_manager = 249363395 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $instance_group_manager = '';
+    protected $instance_group_manager = '';
     /**
      * Project ID for this request.
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * The name of the zone where the managed instance group is located.
      *
      * Generated from protobuf field <code>string zone = 3744684 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $zone = '';
+    protected $zone = '';
 
     /**
      * @param string $project              Project ID for this request.

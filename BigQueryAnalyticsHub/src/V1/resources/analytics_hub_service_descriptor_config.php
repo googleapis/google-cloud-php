@@ -80,6 +80,18 @@ return [
                     ],
                 ],
             ],
+            'ApproveQueryTemplate' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\BigQuery\AnalyticsHub\V1\QueryTemplate',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'CreateDataExchange' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\BigQuery\AnalyticsHub\V1\DataExchange',
@@ -104,6 +116,18 @@ return [
                     ],
                 ],
             ],
+            'CreateQueryTemplate' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\BigQuery\AnalyticsHub\V1\QueryTemplate',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteDataExchange' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Protobuf\GPBEmpty',
@@ -117,6 +141,18 @@ return [
                 ],
             ],
             'DeleteListing' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Protobuf\GPBEmpty',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteQueryTemplate' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Protobuf\GPBEmpty',
                 'headerParams' => [
@@ -155,6 +191,18 @@ return [
             'GetListing' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\BigQuery\AnalyticsHub\V1\Listing',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetQueryTemplate' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\BigQuery\AnalyticsHub\V1\QueryTemplate',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -236,6 +284,26 @@ return [
                     ],
                 ],
             ],
+            'ListQueryTemplates' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getQueryTemplates',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\BigQuery\AnalyticsHub\V1\ListQueryTemplatesResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListSharedResourceSubscriptions' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -300,6 +368,18 @@ return [
                     ],
                 ],
             ],
+            'SubmitQueryTemplate' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\BigQuery\AnalyticsHub\V1\QueryTemplate',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'SubscribeListing' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\BigQuery\AnalyticsHub\V1\SubscribeListingResponse',
@@ -350,12 +430,26 @@ return [
                     ],
                 ],
             ],
+            'UpdateQueryTemplate' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\BigQuery\AnalyticsHub\V1\QueryTemplate',
+                'headerParams' => [
+                    [
+                        'keyName' => 'query_template.name',
+                        'fieldAccessors' => [
+                            'getQueryTemplate',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'templateMap' => [
                 'dataExchange' => 'projects/{project}/locations/{location}/dataExchanges/{data_exchange}',
                 'dataset' => 'projects/{project}/datasets/{dataset}',
                 'listing' => 'projects/{project}/locations/{location}/dataExchanges/{data_exchange}/listings/{listing}',
                 'location' => 'projects/{project}/locations/{location}',
                 'managedService' => 'services/{service}',
+                'queryTemplate' => 'projects/{project}/locations/{location}/dataExchanges/{data_exchange}/queryTemplates/{query_template}',
                 'routine' => 'projects/{project}/datasets/{dataset}/routines/{routine}',
                 'subscription' => 'projects/{project}/locations/{location}/subscriptions/{subscription}',
                 'table' => 'projects/{project}/datasets/{dataset}/tables/{table}',

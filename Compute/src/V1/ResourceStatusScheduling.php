@@ -19,7 +19,7 @@ class ResourceStatusScheduling extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int32 availability_domain = 252514344;</code>
      */
-    private $availability_domain = null;
+    protected $availability_domain = null;
 
     /**
      * Constructor.

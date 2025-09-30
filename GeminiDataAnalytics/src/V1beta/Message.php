@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A message from an internaction between the user and the system.
+ * A message from an interaction between the user and the system.
  *
  * Generated from protobuf message <code>google.cloud.geminidataanalytics.v1beta.Message</code>
  */

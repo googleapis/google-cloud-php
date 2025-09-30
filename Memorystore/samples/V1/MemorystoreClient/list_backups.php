@@ -24,9 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START memorystore_v1_generated_Memorystore_ListBackups_sync]
 use Google\ApiCore\ApiException;
+use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Memorystore\V1\Client\MemorystoreClient;
 use Google\Cloud\Memorystore\V1\ListBackupsRequest;
-use Google\Cloud\Memorystore\V1\ListBackupsResponse;
 
 /**
  * Lists all backups owned by a backup collection.
@@ -46,9 +46,12 @@ function list_backups_sample(string $formattedParent): void
 
     // Call the API and handle any network failures.
     try {
-        /** @var ListBackupsResponse $response */
+        /** @var PagedListResponse $response */
         $response = $memorystoreClient->listBackups($request);
-        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+
+        foreach ($response as $element) {
+            printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
+        }
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }

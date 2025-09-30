@@ -32,8 +32,8 @@ use Google\Cloud\Dataplex\V1\MetadataJob\Type;
 use Google\Rpc\Status;
 
 /**
- * Creates a metadata job. For example, use a metadata job to import Dataplex
- * Catalog entries and aspects from a third-party system into Dataplex.
+ * Creates a metadata job. For example, use a metadata job to import metadata
+ * from a third-party system into Dataplex Universal Catalog.
  *
  * @param string $formattedParent The resource name of the parent location, in the format
  *                                `projects/{project_id_or_number}/locations/{location_id}`

@@ -21,20 +21,20 @@ class NatIpInfoNatIpInfoMapping extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string mode = 3357091;</code>
      */
-    private $mode = null;
+    protected $mode = null;
     /**
      * NAT IP address. For example: 203.0.113.11.
      *
      * Generated from protobuf field <code>optional string nat_ip = 21113093;</code>
      */
-    private $nat_ip = null;
+    protected $nat_ip = null;
     /**
      * Specifies whether NAT IP is currently serving at least one endpoint or not.
      * Check the Usage enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string usage = 111574433;</code>
      */
-    private $usage = null;
+    protected $usage = null;
 
     /**
      * Constructor.

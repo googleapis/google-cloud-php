@@ -20,41 +20,41 @@ class UpdateRegionCommitmentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string commitment = 482134805 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $commitment = '';
+    protected $commitment = '';
     /**
      * The body resource for this request
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Commitment commitment_resource = 244240888 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $commitment_resource = null;
+    protected $commitment_resource = null;
     /**
      * Generated from protobuf field <code>optional string paths = 106438894;</code>
      */
-    private $paths = null;
+    protected $paths = null;
     /**
      * Project ID for this request.
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "project"];</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * Name of the region for this request.
      *
      * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "region"];</code>
      */
-    private $region = '';
+    protected $region = '';
     /**
      * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *
      * Generated from protobuf field <code>optional string request_id = 37109963;</code>
      */
-    private $request_id = null;
+    protected $request_id = null;
     /**
      * update_mask indicates fields to be updated as part of this request.
      *
      * Generated from protobuf field <code>optional string update_mask = 500079778;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param string                              $project            Project ID for this request.

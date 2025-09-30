@@ -27,6 +27,7 @@ namespace Google\Cloud\Dlp\V2\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -204,7 +205,9 @@ final class DlpServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+    ];
 
     private static function getClientDefaults()
     {
@@ -235,11 +238,8 @@ final class DlpServiceClient
      *
      * @return string The formatted column_data_profile resource.
      */
-    public static function columnDataProfileName(
-        string $organization,
-        string $location,
-        string $columnDataProfile
-    ): string {
+    public static function columnDataProfileName(string $organization, string $location, string $columnDataProfile): string
+    {
         return self::getPathTemplate('columnDataProfile')->render([
             'organization' => $organization,
             'location' => $location,
@@ -329,11 +329,8 @@ final class DlpServiceClient
      *
      * @return string The formatted file_store_data_profile resource.
      */
-    public static function fileStoreDataProfileName(
-        string $organization,
-        string $location,
-        string $fileStoreDataProfile
-    ): string {
+    public static function fileStoreDataProfileName(string $organization, string $location, string $fileStoreDataProfile): string
+    {
         return self::getPathTemplate('fileStoreDataProfile')->render([
             'organization' => $organization,
             'location' => $location,
@@ -468,11 +465,8 @@ final class DlpServiceClient
      *
      * @return string The formatted organization_location_column_data_profile resource.
      */
-    public static function organizationLocationColumnDataProfileName(
-        string $organization,
-        string $location,
-        string $columnDataProfile
-    ): string {
+    public static function organizationLocationColumnDataProfileName(string $organization, string $location, string $columnDataProfile): string
+    {
         return self::getPathTemplate('organizationLocationColumnDataProfile')->render([
             'organization' => $organization,
             'location' => $location,
@@ -490,11 +484,8 @@ final class DlpServiceClient
      *
      * @return string The formatted organization_location_connection resource.
      */
-    public static function organizationLocationConnectionName(
-        string $organization,
-        string $location,
-        string $connection
-    ): string {
+    public static function organizationLocationConnectionName(string $organization, string $location, string $connection): string
+    {
         return self::getPathTemplate('organizationLocationConnection')->render([
             'organization' => $organization,
             'location' => $location,
@@ -512,11 +503,8 @@ final class DlpServiceClient
      *
      * @return string The formatted organization_location_deidentify_template resource.
      */
-    public static function organizationLocationDeidentifyTemplateName(
-        string $organization,
-        string $location,
-        string $deidentifyTemplate
-    ): string {
+    public static function organizationLocationDeidentifyTemplateName(string $organization, string $location, string $deidentifyTemplate): string
+    {
         return self::getPathTemplate('organizationLocationDeidentifyTemplate')->render([
             'organization' => $organization,
             'location' => $location,
@@ -534,11 +522,8 @@ final class DlpServiceClient
      *
      * @return string The formatted organization_location_file_store_data_profile resource.
      */
-    public static function organizationLocationFileStoreDataProfileName(
-        string $organization,
-        string $location,
-        string $fileStoreDataProfile
-    ): string {
+    public static function organizationLocationFileStoreDataProfileName(string $organization, string $location, string $fileStoreDataProfile): string
+    {
         return self::getPathTemplate('organizationLocationFileStoreDataProfile')->render([
             'organization' => $organization,
             'location' => $location,
@@ -556,11 +541,8 @@ final class DlpServiceClient
      *
      * @return string The formatted organization_location_inspect_template resource.
      */
-    public static function organizationLocationInspectTemplateName(
-        string $organization,
-        string $location,
-        string $inspectTemplate
-    ): string {
+    public static function organizationLocationInspectTemplateName(string $organization, string $location, string $inspectTemplate): string
+    {
         return self::getPathTemplate('organizationLocationInspectTemplate')->render([
             'organization' => $organization,
             'location' => $location,
@@ -578,11 +560,8 @@ final class DlpServiceClient
      *
      * @return string The formatted organization_location_project_data_profile resource.
      */
-    public static function organizationLocationProjectDataProfileName(
-        string $organization,
-        string $location,
-        string $projectDataProfile
-    ): string {
+    public static function organizationLocationProjectDataProfileName(string $organization, string $location, string $projectDataProfile): string
+    {
         return self::getPathTemplate('organizationLocationProjectDataProfile')->render([
             'organization' => $organization,
             'location' => $location,
@@ -600,11 +579,8 @@ final class DlpServiceClient
      *
      * @return string The formatted organization_location_stored_info_type resource.
      */
-    public static function organizationLocationStoredInfoTypeName(
-        string $organization,
-        string $location,
-        string $storedInfoType
-    ): string {
+    public static function organizationLocationStoredInfoTypeName(string $organization, string $location, string $storedInfoType): string
+    {
         return self::getPathTemplate('organizationLocationStoredInfoType')->render([
             'organization' => $organization,
             'location' => $location,
@@ -622,11 +598,8 @@ final class DlpServiceClient
      *
      * @return string The formatted organization_location_table_data_profile resource.
      */
-    public static function organizationLocationTableDataProfileName(
-        string $organization,
-        string $location,
-        string $tableDataProfile
-    ): string {
+    public static function organizationLocationTableDataProfileName(string $organization, string $location, string $tableDataProfile): string
+    {
         return self::getPathTemplate('organizationLocationTableDataProfile')->render([
             'organization' => $organization,
             'location' => $location,
@@ -676,11 +649,8 @@ final class DlpServiceClient
      *
      * @return string The formatted project_data_profile resource.
      */
-    public static function projectDataProfileName(
-        string $organization,
-        string $location,
-        string $projectDataProfile
-    ): string {
+    public static function projectDataProfileName(string $organization, string $location, string $projectDataProfile): string
+    {
         return self::getPathTemplate('projectDataProfile')->render([
             'organization' => $organization,
             'location' => $location,
@@ -766,11 +736,8 @@ final class DlpServiceClient
      *
      * @return string The formatted project_location_column_data_profile resource.
      */
-    public static function projectLocationColumnDataProfileName(
-        string $project,
-        string $location,
-        string $columnDataProfile
-    ): string {
+    public static function projectLocationColumnDataProfileName(string $project, string $location, string $columnDataProfile): string
+    {
         return self::getPathTemplate('projectLocationColumnDataProfile')->render([
             'project' => $project,
             'location' => $location,
@@ -807,11 +774,8 @@ final class DlpServiceClient
      *
      * @return string The formatted project_location_deidentify_template resource.
      */
-    public static function projectLocationDeidentifyTemplateName(
-        string $project,
-        string $location,
-        string $deidentifyTemplate
-    ): string {
+    public static function projectLocationDeidentifyTemplateName(string $project, string $location, string $deidentifyTemplate): string
+    {
         return self::getPathTemplate('projectLocationDeidentifyTemplate')->render([
             'project' => $project,
             'location' => $location,
@@ -848,11 +812,8 @@ final class DlpServiceClient
      *
      * @return string The formatted project_location_file_store_data_profile resource.
      */
-    public static function projectLocationFileStoreDataProfileName(
-        string $project,
-        string $location,
-        string $fileStoreDataProfile
-    ): string {
+    public static function projectLocationFileStoreDataProfileName(string $project, string $location, string $fileStoreDataProfile): string
+    {
         return self::getPathTemplate('projectLocationFileStoreDataProfile')->render([
             'project' => $project,
             'location' => $location,
@@ -870,11 +831,8 @@ final class DlpServiceClient
      *
      * @return string The formatted project_location_inspect_template resource.
      */
-    public static function projectLocationInspectTemplateName(
-        string $project,
-        string $location,
-        string $inspectTemplate
-    ): string {
+    public static function projectLocationInspectTemplateName(string $project, string $location, string $inspectTemplate): string
+    {
         return self::getPathTemplate('projectLocationInspectTemplate')->render([
             'project' => $project,
             'location' => $location,
@@ -911,11 +869,8 @@ final class DlpServiceClient
      *
      * @return string The formatted project_location_project_data_profile resource.
      */
-    public static function projectLocationProjectDataProfileName(
-        string $project,
-        string $location,
-        string $projectDataProfile
-    ): string {
+    public static function projectLocationProjectDataProfileName(string $project, string $location, string $projectDataProfile): string
+    {
         return self::getPathTemplate('projectLocationProjectDataProfile')->render([
             'project' => $project,
             'location' => $location,
@@ -933,11 +888,8 @@ final class DlpServiceClient
      *
      * @return string The formatted project_location_stored_info_type resource.
      */
-    public static function projectLocationStoredInfoTypeName(
-        string $project,
-        string $location,
-        string $storedInfoType
-    ): string {
+    public static function projectLocationStoredInfoTypeName(string $project, string $location, string $storedInfoType): string
+    {
         return self::getPathTemplate('projectLocationStoredInfoType')->render([
             'project' => $project,
             'location' => $location,
@@ -955,11 +907,8 @@ final class DlpServiceClient
      *
      * @return string The formatted project_location_table_data_profile resource.
      */
-    public static function projectLocationTableDataProfileName(
-        string $project,
-        string $location,
-        string $tableDataProfile
-    ): string {
+    public static function projectLocationTableDataProfileName(string $project, string $location, string $tableDataProfile): string
+    {
         return self::getPathTemplate('projectLocationTableDataProfile')->render([
             'project' => $project,
             'location' => $location,
@@ -1011,11 +960,8 @@ final class DlpServiceClient
      *
      * @return string The formatted table_data_profile resource.
      */
-    public static function tableDataProfileName(
-        string $organization,
-        string $location,
-        string $tableDataProfile
-    ): string {
+    public static function tableDataProfileName(string $organization, string $location, string $tableDataProfile): string
+    {
         return self::getPathTemplate('tableDataProfile')->render([
             'organization' => $organization,
             'location' => $location,
@@ -1090,25 +1036,28 @@ final class DlpServiceClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'dlp.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
-     *           *Important*: If you accept a credential configuration (credential
-     *           JSON/File/Stream) from an external source for authentication to Google Cloud
-     *           Platform, you must validate it before providing it to any Google API or library.
-     *           Providing an unvalidated credential configuration to Google APIs can compromise
-     *           the security of your systems and data. For more information {@see
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\Dlp\V2\DlpServiceClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new DlpServiceClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
      *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
@@ -1146,11 +1095,13 @@ final class DlpServiceClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -1276,10 +1227,8 @@ final class DlpServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createDeidentifyTemplate(
-        CreateDeidentifyTemplateRequest $request,
-        array $callOptions = []
-    ): DeidentifyTemplate {
+    public function createDeidentifyTemplate(CreateDeidentifyTemplateRequest $request, array $callOptions = []): DeidentifyTemplate
+    {
         return $this->startApiCall('CreateDeidentifyTemplate', $request, $callOptions)->wait();
     }
 
@@ -1304,10 +1253,8 @@ final class DlpServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createDiscoveryConfig(
-        CreateDiscoveryConfigRequest $request,
-        array $callOptions = []
-    ): DiscoveryConfig {
+    public function createDiscoveryConfig(CreateDiscoveryConfigRequest $request, array $callOptions = []): DiscoveryConfig
+    {
         return $this->startApiCall('CreateDiscoveryConfig', $request, $callOptions)->wait();
     }
 
@@ -1371,10 +1318,8 @@ final class DlpServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createInspectTemplate(
-        CreateInspectTemplateRequest $request,
-        array $callOptions = []
-    ): InspectTemplate {
+    public function createInspectTemplate(CreateInspectTemplateRequest $request, array $callOptions = []): InspectTemplate
+    {
         return $this->startApiCall('CreateInspectTemplate', $request, $callOptions)->wait();
     }
 
@@ -1466,10 +1411,8 @@ final class DlpServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deidentifyContent(
-        DeidentifyContentRequest $request,
-        array $callOptions = []
-    ): DeidentifyContentResponse {
+    public function deidentifyContent(DeidentifyContentRequest $request, array $callOptions = []): DeidentifyContentResponse
+    {
         return $this->startApiCall('DeidentifyContent', $request, $callOptions)->wait();
     }
 
@@ -1600,10 +1543,8 @@ final class DlpServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteFileStoreDataProfile(
-        DeleteFileStoreDataProfileRequest $request,
-        array $callOptions = []
-    ): void {
+    public function deleteFileStoreDataProfile(DeleteFileStoreDataProfileRequest $request, array $callOptions = []): void
+    {
         $this->startApiCall('DeleteFileStoreDataProfile', $request, $callOptions)->wait();
     }
 
@@ -1759,10 +1700,8 @@ final class DlpServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getColumnDataProfile(
-        GetColumnDataProfileRequest $request,
-        array $callOptions = []
-    ): ColumnDataProfile {
+    public function getColumnDataProfile(GetColumnDataProfileRequest $request, array $callOptions = []): ColumnDataProfile
+    {
         return $this->startApiCall('GetColumnDataProfile', $request, $callOptions)->wait();
     }
 
@@ -1816,10 +1755,8 @@ final class DlpServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getDeidentifyTemplate(
-        GetDeidentifyTemplateRequest $request,
-        array $callOptions = []
-    ): DeidentifyTemplate {
+    public function getDeidentifyTemplate(GetDeidentifyTemplateRequest $request, array $callOptions = []): DeidentifyTemplate
+    {
         return $this->startApiCall('GetDeidentifyTemplate', $request, $callOptions)->wait();
     }
 
@@ -1901,10 +1838,8 @@ final class DlpServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getFileStoreDataProfile(
-        GetFileStoreDataProfileRequest $request,
-        array $callOptions = []
-    ): FileStoreDataProfile {
+    public function getFileStoreDataProfile(GetFileStoreDataProfileRequest $request, array $callOptions = []): FileStoreDataProfile
+    {
         return $this->startApiCall('GetFileStoreDataProfile', $request, $callOptions)->wait();
     }
 
@@ -1987,10 +1922,8 @@ final class DlpServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getProjectDataProfile(
-        GetProjectDataProfileRequest $request,
-        array $callOptions = []
-    ): ProjectDataProfile {
+    public function getProjectDataProfile(GetProjectDataProfileRequest $request, array $callOptions = []): ProjectDataProfile
+    {
         return $this->startApiCall('GetProjectDataProfile', $request, $callOptions)->wait();
     }
 
@@ -2072,10 +2005,8 @@ final class DlpServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function hybridInspectDlpJob(
-        HybridInspectDlpJobRequest $request,
-        array $callOptions = []
-    ): HybridInspectResponse {
+    public function hybridInspectDlpJob(HybridInspectDlpJobRequest $request, array $callOptions = []): HybridInspectResponse
+    {
         return $this->startApiCall('HybridInspectDlpJob', $request, $callOptions)->wait();
     }
 
@@ -2102,10 +2033,8 @@ final class DlpServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function hybridInspectJobTrigger(
-        HybridInspectJobTriggerRequest $request,
-        array $callOptions = []
-    ): HybridInspectResponse {
+    public function hybridInspectJobTrigger(HybridInspectJobTriggerRequest $request, array $callOptions = []): HybridInspectResponse
+    {
         return $this->startApiCall('HybridInspectJobTrigger', $request, $callOptions)->wait();
     }
 
@@ -2166,10 +2095,8 @@ final class DlpServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listColumnDataProfiles(
-        ListColumnDataProfilesRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listColumnDataProfiles(ListColumnDataProfilesRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListColumnDataProfiles', $request, $callOptions);
     }
 
@@ -2224,10 +2151,8 @@ final class DlpServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listDeidentifyTemplates(
-        ListDeidentifyTemplatesRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listDeidentifyTemplates(ListDeidentifyTemplatesRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListDeidentifyTemplates', $request, $callOptions);
     }
 
@@ -2252,10 +2177,8 @@ final class DlpServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listDiscoveryConfigs(
-        ListDiscoveryConfigsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listDiscoveryConfigs(ListDiscoveryConfigsRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListDiscoveryConfigs', $request, $callOptions);
     }
 
@@ -2311,10 +2234,8 @@ final class DlpServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listFileStoreDataProfiles(
-        ListFileStoreDataProfilesRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listFileStoreDataProfiles(ListFileStoreDataProfilesRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListFileStoreDataProfiles', $request, $callOptions);
     }
 
@@ -2371,10 +2292,8 @@ final class DlpServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listInspectTemplates(
-        ListInspectTemplatesRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listInspectTemplates(ListInspectTemplatesRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListInspectTemplates', $request, $callOptions);
     }
 
@@ -2428,10 +2347,8 @@ final class DlpServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listProjectDataProfiles(
-        ListProjectDataProfilesRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listProjectDataProfiles(ListProjectDataProfilesRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListProjectDataProfiles', $request, $callOptions);
     }
 
@@ -2485,10 +2402,8 @@ final class DlpServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listTableDataProfiles(
-        ListTableDataProfilesRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listTableDataProfiles(ListTableDataProfilesRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListTableDataProfiles', $request, $callOptions);
     }
 
@@ -2553,10 +2468,8 @@ final class DlpServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function reidentifyContent(
-        ReidentifyContentRequest $request,
-        array $callOptions = []
-    ): ReidentifyContentResponse {
+    public function reidentifyContent(ReidentifyContentRequest $request, array $callOptions = []): ReidentifyContentResponse
+    {
         return $this->startApiCall('ReidentifyContent', $request, $callOptions)->wait();
     }
 
@@ -2636,10 +2549,8 @@ final class DlpServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateDeidentifyTemplate(
-        UpdateDeidentifyTemplateRequest $request,
-        array $callOptions = []
-    ): DeidentifyTemplate {
+    public function updateDeidentifyTemplate(UpdateDeidentifyTemplateRequest $request, array $callOptions = []): DeidentifyTemplate
+    {
         return $this->startApiCall('UpdateDeidentifyTemplate', $request, $callOptions)->wait();
     }
 
@@ -2664,10 +2575,8 @@ final class DlpServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateDiscoveryConfig(
-        UpdateDiscoveryConfigRequest $request,
-        array $callOptions = []
-    ): DiscoveryConfig {
+    public function updateDiscoveryConfig(UpdateDiscoveryConfigRequest $request, array $callOptions = []): DiscoveryConfig
+    {
         return $this->startApiCall('UpdateDiscoveryConfig', $request, $callOptions)->wait();
     }
 
@@ -2695,10 +2604,8 @@ final class DlpServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateInspectTemplate(
-        UpdateInspectTemplateRequest $request,
-        array $callOptions = []
-    ): InspectTemplate {
+    public function updateInspectTemplate(UpdateInspectTemplateRequest $request, array $callOptions = []): InspectTemplate
+    {
         return $this->startApiCall('UpdateInspectTemplate', $request, $callOptions)->wait();
     }
 

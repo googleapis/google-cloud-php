@@ -15,7 +15,7 @@ class LockHint
 {
     /**
      * Default value.
-     * LOCK_HINT_UNSPECIFIED is equivalent to LOCK_HINT_SHARED.
+     * `LOCK_HINT_UNSPECIFIED` is equivalent to `LOCK_HINT_SHARED`.
      *
      * Generated from protobuf enum <code>LOCK_HINT_UNSPECIFIED = 0;</code>
      */
@@ -49,8 +49,8 @@ class LockHint
      * multiple transactions try to act on the same data, they automatically get
      * serialized. Each transaction waits its turn to acquire the lock and
      * avoids getting into deadlock situations.
-     * Because the exclusive lock hint is just a hint, it should not be
-     * considered equivalent to a mutex. In other words, you should not use
+     * Because the exclusive lock hint is just a hint, it shouldn't be
+     * considered equivalent to a mutex. In other words, you shouldn't use
      * Spanner exclusive locks as a mutual exclusion mechanism for the execution
      * of code outside of Spanner.
      * **Note:** Request exclusive locks judiciously because they block others

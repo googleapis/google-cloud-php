@@ -18,15 +18,15 @@ class ResourcePolicySnapshotSchedulePolicySchedule extends \Google\Protobuf\Inte
     /**
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourcePolicyDailyCycle daily_schedule = 86159869;</code>
      */
-    private $daily_schedule = null;
+    protected $daily_schedule = null;
     /**
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourcePolicyHourlyCycle hourly_schedule = 38328485;</code>
      */
-    private $hourly_schedule = null;
+    protected $hourly_schedule = null;
     /**
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourcePolicyWeeklyCycle weekly_schedule = 359548053;</code>
      */
-    private $weekly_schedule = null;
+    protected $weekly_schedule = null;
 
     /**
      * Constructor.

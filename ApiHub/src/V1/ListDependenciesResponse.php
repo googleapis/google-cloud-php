@@ -19,7 +19,6 @@ class ListDependenciesResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * The dependency resources present in the API hub.
-     * Only following field will be populated in the response: name.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.Dependency dependencies = 1;</code>
      */
@@ -40,7 +39,6 @@ class ListDependenciesResponse extends \Google\Protobuf\Internal\Message
      *
      *     @type array<\Google\Cloud\ApiHub\V1\Dependency>|\Google\Protobuf\Internal\RepeatedField $dependencies
      *           The dependency resources present in the API hub.
-     *           Only following field will be populated in the response: name.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
      *           If this field is omitted, there are no subsequent pages.
@@ -53,7 +51,6 @@ class ListDependenciesResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * The dependency resources present in the API hub.
-     * Only following field will be populated in the response: name.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.Dependency dependencies = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -65,7 +62,6 @@ class ListDependenciesResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * The dependency resources present in the API hub.
-     * Only following field will be populated in the response: name.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.Dependency dependencies = 1;</code>
      * @param array<\Google\Cloud\ApiHub\V1\Dependency>|\Google\Protobuf\Internal\RepeatedField $var

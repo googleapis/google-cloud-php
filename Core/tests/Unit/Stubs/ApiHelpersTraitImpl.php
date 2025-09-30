@@ -19,6 +19,7 @@ namespace Google\Cloud\Core\Tests\Unit\Stubs;
 
 use Google\ApiCore\ArrayTrait;
 use Google\Cloud\Core\ApiHelperTrait;
+use Google\Cloud\Core\OptionsValidator;
 
 class ApiHelpersTraitImpl
 {
@@ -34,5 +35,8 @@ class ApiHelpersTraitImpl
         validateOptions as public;
     }
 
-    public $serializer;
+    public function setOptionsValidator(OptionsValidator $optionsValidator)
+    {
+        $this->optionsValidator = $optionsValidator;
+    }
 }

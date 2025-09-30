@@ -23,9 +23,9 @@ class SyncMode
     const SYNC_MODE_UNSPECIFIED = 0;
     /**
      * All resources in the job's scope are modified. If a resource exists in
-     * Dataplex but isn't included in the metadata import file, the resource
-     * is deleted when you run the metadata job. Use this mode to perform a
-     * full sync of the set of entries in the job scope.
+     * Dataplex Universal Catalog but isn't included in the metadata import
+     * file, the resource is deleted when you run the metadata job. Use this
+     * mode to perform a full sync of the set of entries in the job scope.
      * This sync mode is supported for entries.
      *
      * Generated from protobuf enum <code>FULL = 1;</code>

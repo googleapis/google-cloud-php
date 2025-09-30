@@ -240,9 +240,33 @@ return [
                     ],
                 ],
             ],
+            'CreateEntryLink' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Dataplex\V1\EntryLink',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteEntry' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Dataplex\V1\Entry',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteEntryLink' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Dataplex\V1\EntryLink',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -279,6 +303,18 @@ return [
             'GetEntryGroup' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Dataplex\V1\EntryGroup',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetEntryLink' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Dataplex\V1\EntryLink',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -534,7 +570,9 @@ return [
                 'aspectType' => 'projects/{project}/locations/{location}/aspectTypes/{aspect_type}',
                 'entry' => 'projects/{project}/locations/{location}/entryGroups/{entry_group}/entries/{entry}',
                 'entryGroup' => 'projects/{project}/locations/{location}/entryGroups/{entry_group}',
+                'entryLink' => 'projects/{project}/locations/{location}/entryGroups/{entry_group}/entryLinks/{entry_link}',
                 'entryType' => 'projects/{project}/locations/{location}/entryTypes/{entry_type}',
+                'glossary' => 'projects/{project}/locations/{location}/glossaries/{glossary}',
                 'location' => 'projects/{project}/locations/{location}',
                 'metadataJob' => 'projects/{project}/locations/{location}/metadataJobs/{metadataJob}',
                 'project' => 'projects/{project}',

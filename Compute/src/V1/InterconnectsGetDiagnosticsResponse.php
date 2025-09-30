@@ -18,7 +18,7 @@ class InterconnectsGetDiagnosticsResponse extends \Google\Protobuf\Internal\Mess
     /**
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectDiagnostics result = 139315229;</code>
      */
-    private $result = null;
+    protected $result = null;
 
     /**
      * Constructor.

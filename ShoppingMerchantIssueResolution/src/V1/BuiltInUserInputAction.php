@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * business. They can start the action only when they provided all required
  * inputs. The application will request processing of the action by calling the
  * [triggeraction
- * method](https://developers.google.com/merchant/api/reference/rest/issueresolution_v1beta/issueresolution/triggeraction).
+ * method](https://developers.google.com/merchant/api/reference/rest/issueresolution_v1/issueresolution/triggeraction).
  *
  * Generated from protobuf message <code>google.shopping.merchant.issueresolution.v1.BuiltInUserInputAction</code>
  */

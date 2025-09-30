@@ -27,6 +27,7 @@ namespace Google\Cloud\Retail\V2\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
@@ -86,7 +87,9 @@ final class GenerativeQuestionServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+    ];
 
     private static function getClientDefaults()
     {
@@ -101,8 +104,7 @@ final class GenerativeQuestionServiceClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' =>
-                        __DIR__ . '/../resources/generative_question_service_rest_client_config.php',
+                    'restClientConfigPath' => __DIR__ . '/../resources/generative_question_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -154,25 +156,28 @@ final class GenerativeQuestionServiceClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'retail.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
-     *           *Important*: If you accept a credential configuration (credential
-     *           JSON/File/Stream) from an external source for authentication to Google Cloud
-     *           Platform, you must validate it before providing it to any Google API or library.
-     *           Providing an unvalidated credential configuration to Google APIs can compromise
-     *           the security of your systems and data. For more information {@see
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\Retail\V2\GenerativeQuestionServiceClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new GenerativeQuestionServiceClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
      *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
@@ -210,11 +215,13 @@ final class GenerativeQuestionServiceClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -254,10 +261,8 @@ final class GenerativeQuestionServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function batchUpdateGenerativeQuestionConfigs(
-        BatchUpdateGenerativeQuestionConfigsRequest $request,
-        array $callOptions = []
-    ): BatchUpdateGenerativeQuestionConfigsResponse {
+    public function batchUpdateGenerativeQuestionConfigs(BatchUpdateGenerativeQuestionConfigsRequest $request, array $callOptions = []): BatchUpdateGenerativeQuestionConfigsResponse
+    {
         return $this->startApiCall('BatchUpdateGenerativeQuestionConfigs', $request, $callOptions)->wait();
     }
 
@@ -285,10 +290,8 @@ final class GenerativeQuestionServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getGenerativeQuestionsFeatureConfig(
-        GetGenerativeQuestionsFeatureConfigRequest $request,
-        array $callOptions = []
-    ): GenerativeQuestionsFeatureConfig {
+    public function getGenerativeQuestionsFeatureConfig(GetGenerativeQuestionsFeatureConfigRequest $request, array $callOptions = []): GenerativeQuestionsFeatureConfig
+    {
         return $this->startApiCall('GetGenerativeQuestionsFeatureConfig', $request, $callOptions)->wait();
     }
 
@@ -314,10 +317,8 @@ final class GenerativeQuestionServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listGenerativeQuestionConfigs(
-        ListGenerativeQuestionConfigsRequest $request,
-        array $callOptions = []
-    ): ListGenerativeQuestionConfigsResponse {
+    public function listGenerativeQuestionConfigs(ListGenerativeQuestionConfigsRequest $request, array $callOptions = []): ListGenerativeQuestionConfigsResponse
+    {
         return $this->startApiCall('ListGenerativeQuestionConfigs', $request, $callOptions)->wait();
     }
 
@@ -343,10 +344,8 @@ final class GenerativeQuestionServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateGenerativeQuestionConfig(
-        UpdateGenerativeQuestionConfigRequest $request,
-        array $callOptions = []
-    ): GenerativeQuestionConfig {
+    public function updateGenerativeQuestionConfig(UpdateGenerativeQuestionConfigRequest $request, array $callOptions = []): GenerativeQuestionConfig
+    {
         return $this->startApiCall('UpdateGenerativeQuestionConfig', $request, $callOptions)->wait();
     }
 
@@ -374,10 +373,8 @@ final class GenerativeQuestionServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateGenerativeQuestionsFeatureConfig(
-        UpdateGenerativeQuestionsFeatureConfigRequest $request,
-        array $callOptions = []
-    ): GenerativeQuestionsFeatureConfig {
+    public function updateGenerativeQuestionsFeatureConfig(UpdateGenerativeQuestionsFeatureConfigRequest $request, array $callOptions = []): GenerativeQuestionsFeatureConfig
+    {
         return $this->startApiCall('UpdateGenerativeQuestionsFeatureConfig', $request, $callOptions)->wait();
     }
 }

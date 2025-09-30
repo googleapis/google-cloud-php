@@ -20,13 +20,13 @@ class DeleteGlobalOrganizationOperationRequest extends \Google\Protobuf\Internal
      *
      * Generated from protobuf field <code>string operation = 52090215 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $operation = '';
+    protected $operation = '';
     /**
      * Parent ID for this request.
      *
      * Generated from protobuf field <code>optional string parent_id = 459714768;</code>
      */
-    private $parent_id = null;
+    protected $parent_id = null;
 
     /**
      * @param string $operation Name of the Operations resource to delete, or its unique numeric identifier.

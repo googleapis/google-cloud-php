@@ -26,7 +26,7 @@ class Service
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-¥`
+ªi
 .google/cloud/video/livestream/v1/service.proto google.cloud.video.livestream.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/field_info.protogoogle/api/resource.proto0google/cloud/video/livestream/v1/resources.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"µ
 CreateAssetRequest7
 parent (	B\'àAúA!livestream.googleapis.com/Asset;
@@ -94,7 +94,19 @@ request_id (	"a
 name (	B)àAúA#
 !livestream.googleapis.com/Channel
 
-request_id (	"µ
+request_id (	"”
+StartDistributionRequest7
+name (	B)àAúA#
+!livestream.googleapis.com/Channel
+distribution_keys (	BàA
+
+request_id (	BàAâŒÏ×"“
+StopDistributionRequest7
+name (	B)àAúA#
+!livestream.googleapis.com/Channel
+distribution_keys (	BàA
+
+request_id (	BàAâŒÏ×"µ
 CreateInputRequest7
 parent (	B\'àAúA!livestream.googleapis.com/Input;
 input (2\'.google.cloud.video.livestream.v1.InputBàA
@@ -220,7 +232,13 @@ request_id (	BàAâŒÏ×"ã
 update_mask (2.google.protobuf.FieldMask9
 pool (2&.google.cloud.video.livestream.v1.PoolBàA
 
-request_id (	2é1
+request_id (	"L
+PreviewInputRequest5
+name (	B\'àAúA!
+livestream.googleapis.com/Input"9
+PreviewInputResponse
+uri (	
+bearer_token (	2¸7
 LivestreamServiceà
 CreateChannel6.google.cloud.video.livestream.v1.CreateChannelRequest.google.longrunning.Operation"xÊA
 ChannelOperationMetadataÚAparent,channel,channel_id‚Óä“7",/v1/{parent=projects/*/locations/*}/channels:channel¼
@@ -234,7 +252,11 @@ GetChannel3.google.cloud.video.livestream.v1.GetChannelRequest).google.cloud.v
 StartChannel5.google.cloud.video.livestream.v1.StartChannelRequest.google.longrunning.Operation"tÊA-
 ChannelOperationResponseOperationMetadataÚAname‚Óä“7"2/v1/{name=projects/*/locations/*/channels/*}:start:*×
 StopChannel4.google.cloud.video.livestream.v1.StopChannelRequest.google.longrunning.Operation"sÊA-
-ChannelOperationResponseOperationMetadataÚAname‚Óä“6"1/v1/{name=projects/*/locations/*/channels/*}:stop:*Ò
+ChannelOperationResponseOperationMetadataÚAname‚Óä“6"1/v1/{name=projects/*/locations/*/channels/*}:stop:*ƒ
+StartDistribution:.google.cloud.video.livestream.v1.StartDistributionRequest.google.longrunning.Operation"’ÊA-
+ChannelOperationResponseOperationMetadataÚAname,distribution_keys‚Óä“C">/v1/{name=projects/*/locations/*/channels/*}:startdistribution:*€
+StopDistribution9.google.cloud.video.livestream.v1.StopDistributionRequest.google.longrunning.Operation"‘ÊA-
+ChannelOperationResponseOperationMetadataÚAname,distribution_keys‚Óä“B"=/v1/{name=projects/*/locations/*/channels/*}:stopdistribution:*Ò
 CreateInput4.google.cloud.video.livestream.v1.CreateInputRequest.google.longrunning.Operation"nÊA
 InputOperationMetadataÚAparent,input,input_id‚Óä“3"*/v1/{parent=projects/*/locations/*}/inputs:input´
 
@@ -243,7 +265,8 @@ ListInputs3.google.cloud.video.livestream.v1.ListInputsRequest4.google.cloud.v
 DeleteInput4.google.cloud.video.livestream.v1.DeleteInputRequest.google.longrunning.Operation"fÊA*
 google.protobuf.EmptyOperationMetadataÚAname‚Óä“,**/v1/{name=projects/*/locations/*/inputs/*}Ô
 UpdateInput4.google.cloud.video.livestream.v1.UpdateInputRequest.google.longrunning.Operation"pÊA
-InputOperationMetadataÚAinput,update_mask‚Óä“920/v1/{input.name=projects/*/locations/*/inputs/*}:inputÊ
+InputOperationMetadataÚAinput,update_mask‚Óä“920/v1/{input.name=projects/*/locations/*/inputs/*}:inputÃ
+PreviewInput5.google.cloud.video.livestream.v1.PreviewInputRequest6.google.cloud.video.livestream.v1.PreviewInputResponse"DÚAname‚Óä“7"2/v1/{name=projects/*/locations/*/inputs/*}:preview:*Ê
 CreateEvent4.google.cloud.video.livestream.v1.CreateEventRequest\'.google.cloud.video.livestream.v1.Event"\\ÚAparent,event,event_id‚Óä“>"5/v1/{parent=projects/*/locations/*/channels/*}/events:event¿
 
 ListEvents3.google.cloud.video.livestream.v1.ListEventsRequest4.google.cloud.video.livestream.v1.ListEventsResponse"FÚAparent‚Óä“75/v1/{parent=projects/*/locations/*/channels/*}/events¬

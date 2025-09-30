@@ -25,6 +25,7 @@ use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\LongRunning\LongRunningClientConnection;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
+use Google\Cloud\Core\OptionsValidator;
 use Google\Cloud\Spanner\Admin\Database\V1\Backup\State;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Database\V1\CopyBackupRequest;
@@ -76,6 +77,7 @@ class Backup
         private array $info = []
     ) {
         $this->name = $this->fullyQualifiedBackupName($name);
+        $this->optionsValidator = new OptionsValidator($serializer);
     }
 
     /**
