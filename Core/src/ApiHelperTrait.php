@@ -33,6 +33,8 @@ trait ApiHelperTrait
     use ArrayTrait;
     use TimeTrait;
 
+    private OptionsValidator $optionsValidator;
+
     /**
      * Format a struct for the API.
      *
@@ -276,40 +278,9 @@ trait ApiHelperTrait
      */
     private function validateOptions(array $options, array|Message|string ...$optionTypes): array
     {
-        $splitOptions = [];
-        foreach ($optionTypes as $optionType) {
-            if (is_array($optionType)) {
-                $splitOptions[] = $this->pluckArray($optionType, $options);
-            } elseif ($optionType === CallOptions::class) {
-                $callOptionKeys = array_keys((new CallOptions([]))->toArray());
-                $splitOptions[] = $this->pluckArray($callOptionKeys, $options);
-            } elseif ($optionType instanceof Message) {
-                $messageKeys = array_map(
-                    fn ($method) => lcfirst(substr($method, 3)),
-                    array_filter(
-                        get_class_methods($optionType),
-                        fn ($m) => 0 === strpos($m, 'get')
-                    )
-                );
-                $messageOptions = $this->pluckArray($messageKeys, $options);
-                if ($optionType instanceof Message) {
-                    $optionType->mergeFromJsonString(json_encode($messageOptions, JSON_FORCE_OBJECT));
-                    $validatedOptionGroup = $optionType;
-                } else {
-                    $validatedOptionGroup = $messageOptions;
-                }
-                $splitOptions[] = $validatedOptionGroup;
-            } else {
-                throw new LogicException(sprintf('Invalid option type: %s', $optionType));
-            }
+        if (!isset($this->optionsValidator)) {
+            $this->optionsValidator = new OptionsValidator();
         }
-
-        if (!empty($options)) {
-            throw new Exception(
-                'Unexpected option(s) provided: ' . implode(', ', array_keys($options))
-            );
-        }
-
-        return $splitOptions;
+        return $this->optionsValidator->validateOptions($options, ...$optionTypes);
     }
 }
