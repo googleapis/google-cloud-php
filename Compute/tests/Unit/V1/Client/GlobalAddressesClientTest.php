@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,11 +29,11 @@ use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Compute\V1\Address;
 use Google\Cloud\Compute\V1\AddressList;
 use Google\Cloud\Compute\V1\Client\GlobalAddressesClient;
+use Google\Cloud\Compute\V1\Client\GlobalOperationsClient;
 use Google\Cloud\Compute\V1\DeleteGlobalAddressRequest;
 use Google\Cloud\Compute\V1\GetGlobalAddressRequest;
 use Google\Cloud\Compute\V1\GetGlobalOperationRequest;
 use Google\Cloud\Compute\V1\GlobalAddressesMoveRequest;
-use Google\Cloud\Compute\V1\GlobalOperationsClient;
 use Google\Cloud\Compute\V1\GlobalSetLabelsRequest;
 use Google\Cloud\Compute\V1\InsertGlobalAddressRequest;
 use Google\Cloud\Compute\V1\ListGlobalAddressesRequest;
@@ -41,6 +41,9 @@ use Google\Cloud\Compute\V1\MoveGlobalAddressRequest;
 use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\Operation\Status;
 use Google\Cloud\Compute\V1\SetLabelsGlobalAddressRequest;
+use Google\Cloud\Compute\V1\TestIamPermissionsGlobalAddressRequest;
+use Google\Cloud\Compute\V1\TestPermissionsRequest;
+use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -60,7 +63,9 @@ class GlobalAddressesClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return GlobalAddressesClient */
@@ -100,9 +105,7 @@ class GlobalAddressesClientTest extends GeneratedTest
         // Mock request
         $address = 'address-1147692044';
         $project = 'project-309310695';
-        $request = (new DeleteGlobalAddressRequest())
-            ->setAddress($address)
-            ->setProject($project);
+        $request = (new DeleteGlobalAddressRequest())->setAddress($address)->setProject($project);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -159,19 +162,20 @@ class GlobalAddressesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $address = 'address-1147692044';
         $project = 'project-309310695';
-        $request = (new DeleteGlobalAddressRequest())
-            ->setAddress($address)
-            ->setProject($project);
+        $request = (new DeleteGlobalAddressRequest())->setAddress($address)->setProject($project);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -242,9 +246,7 @@ class GlobalAddressesClientTest extends GeneratedTest
         // Mock request
         $address = 'address-1147692044';
         $project = 'project-309310695';
-        $request = (new GetGlobalAddressRequest())
-            ->setAddress($address)
-            ->setProject($project);
+        $request = (new GetGlobalAddressRequest())->setAddress($address)->setProject($project);
         $response = $gapicClient->get($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -270,19 +272,20 @@ class GlobalAddressesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $address = 'address-1147692044';
         $project = 'project-309310695';
-        $request = (new GetGlobalAddressRequest())
-            ->setAddress($address)
-            ->setProject($project);
+        $request = (new GetGlobalAddressRequest())->setAddress($address)->setProject($project);
         try {
             $gapicClient->get($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -324,9 +327,7 @@ class GlobalAddressesClientTest extends GeneratedTest
         // Mock request
         $addressResource = new Address();
         $project = 'project-309310695';
-        $request = (new InsertGlobalAddressRequest())
-            ->setAddressResource($addressResource)
-            ->setProject($project);
+        $request = (new InsertGlobalAddressRequest())->setAddressResource($addressResource)->setProject($project);
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -383,19 +384,20 @@ class GlobalAddressesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $addressResource = new Address();
         $project = 'project-309310695';
-        $request = (new InsertGlobalAddressRequest())
-            ->setAddressResource($addressResource)
-            ->setProject($project);
+        $request = (new InsertGlobalAddressRequest())->setAddressResource($addressResource)->setProject($project);
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -430,9 +432,7 @@ class GlobalAddressesClientTest extends GeneratedTest
         $nextPageToken = '';
         $selfLink = 'selfLink-1691268851';
         $itemsElement = new Address();
-        $items = [
-            $itemsElement,
-        ];
+        $items = [$itemsElement];
         $expectedResponse = new AddressList();
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
@@ -442,8 +442,7 @@ class GlobalAddressesClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $project = 'project-309310695';
-        $request = (new ListGlobalAddressesRequest())
-            ->setProject($project);
+        $request = (new ListGlobalAddressesRequest())->setProject($project);
         $response = $gapicClient->list($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -470,17 +469,19 @@ class GlobalAddressesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';
-        $request = (new ListGlobalAddressesRequest())
-            ->setProject($project);
+        $request = (new ListGlobalAddressesRequest())->setProject($project);
         try {
             $gapicClient->list($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -585,12 +586,15 @@ class GlobalAddressesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $address = 'address-1147692044';
@@ -711,12 +715,15 @@ class GlobalAddressesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $globalSetLabelsRequestResource = new GlobalSetLabelsRequest();
@@ -747,6 +754,83 @@ class GlobalAddressesClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function testIamPermissionsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new TestPermissionsResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $project = 'project-309310695';
+        $resource = 'resource-341064690';
+        $testPermissionsRequestResource = new TestPermissionsRequest();
+        $request = (new TestIamPermissionsGlobalAddressRequest())
+            ->setProject($project)
+            ->setResource($resource)
+            ->setTestPermissionsRequestResource($testPermissionsRequestResource);
+        $response = $gapicClient->testIamPermissions($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.GlobalAddresses/TestIamPermissions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $actualValue = $actualRequestObject->getTestPermissionsRequestResource();
+        $this->assertProtobufEquals($testPermissionsRequestResource, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function testIamPermissionsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $project = 'project-309310695';
+        $resource = 'resource-341064690';
+        $testPermissionsRequestResource = new TestPermissionsRequest();
+        $request = (new TestIamPermissionsGlobalAddressRequest())
+            ->setProject($project)
+            ->setResource($resource)
+            ->setTestPermissionsRequestResource($testPermissionsRequestResource);
+        try {
+            $gapicClient->testIamPermissions($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function deleteAsyncTest()
     {
         $operationsTransport = $this->createTransport();
@@ -774,9 +858,7 @@ class GlobalAddressesClientTest extends GeneratedTest
         // Mock request
         $address = 'address-1147692044';
         $project = 'project-309310695';
-        $request = (new DeleteGlobalAddressRequest())
-            ->setAddress($address)
-            ->setProject($project);
+        $request = (new DeleteGlobalAddressRequest())->setAddress($address)->setProject($project);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();

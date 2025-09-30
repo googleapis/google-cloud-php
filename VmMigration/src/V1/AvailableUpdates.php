@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Holds informatiom about the available versions for upgrade.
+ * Holds information about the available versions for upgrade.
  *
  * Generated from protobuf message <code>google.cloud.vmmigration.v1.AvailableUpdates</code>
  */

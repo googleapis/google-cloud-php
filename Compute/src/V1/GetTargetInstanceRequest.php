@@ -20,19 +20,19 @@ class GetTargetInstanceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * Name of the TargetInstance resource to return.
      *
      * Generated from protobuf field <code>string target_instance = 289769347 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $target_instance = '';
+    protected $target_instance = '';
     /**
      * Name of the zone scoping this request.
      *
      * Generated from protobuf field <code>string zone = 3744684 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $zone = '';
+    protected $zone = '';
 
     /**
      * @param string $project        Project ID for this request.

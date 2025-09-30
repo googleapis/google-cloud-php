@@ -27,6 +27,7 @@ namespace Google\Cloud\Sql\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
@@ -170,25 +171,28 @@ final class SqlInstancesServiceClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'sqladmin.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
-     *           *Important*: If you accept a credential configuration (credential
-     *           JSON/File/Stream) from an external source for authentication to Google Cloud
-     *           Platform, you must validate it before providing it to any Google API or library.
-     *           Providing an unvalidated credential configuration to Google APIs can compromise
-     *           the security of your systems and data. For more information {@see
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\Sql\V1\SqlInstancesServiceClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new SqlInstancesServiceClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
      *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
@@ -226,11 +230,13 @@ final class SqlInstancesServiceClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -268,10 +274,8 @@ final class SqlInstancesServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function acquireSsrsLease(
-        SqlInstancesAcquireSsrsLeaseRequest $request,
-        array $callOptions = []
-    ): SqlInstancesAcquireSsrsLeaseResponse {
+    public function acquireSsrsLease(SqlInstancesAcquireSsrsLeaseRequest $request, array $callOptions = []): SqlInstancesAcquireSsrsLeaseResponse
+    {
         return $this->startApiCall('AcquireSsrsLease', $request, $callOptions)->wait();
     }
 
@@ -551,10 +555,8 @@ final class SqlInstancesServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getDiskShrinkConfig(
-        SqlInstancesGetDiskShrinkConfigRequest $request,
-        array $callOptions = []
-    ): SqlInstancesGetDiskShrinkConfigResponse {
+    public function getDiskShrinkConfig(SqlInstancesGetDiskShrinkConfigRequest $request, array $callOptions = []): SqlInstancesGetDiskShrinkConfigResponse
+    {
         return $this->startApiCall('GetDiskShrinkConfig', $request, $callOptions)->wait();
     }
 
@@ -580,10 +582,8 @@ final class SqlInstancesServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getLatestRecoveryTime(
-        SqlInstancesGetLatestRecoveryTimeRequest $request,
-        array $callOptions = []
-    ): SqlInstancesGetLatestRecoveryTimeResponse {
+    public function getLatestRecoveryTime(SqlInstancesGetLatestRecoveryTimeRequest $request, array $callOptions = []): SqlInstancesGetLatestRecoveryTimeResponse
+    {
         return $this->startApiCall('GetLatestRecoveryTime', $request, $callOptions)->wait();
     }
 
@@ -691,10 +691,8 @@ final class SqlInstancesServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listServerCas(
-        SqlInstancesListServerCasRequest $request,
-        array $callOptions = []
-    ): InstancesListServerCasResponse {
+    public function listServerCas(SqlInstancesListServerCasRequest $request, array $callOptions = []): InstancesListServerCasResponse
+    {
         return $this->startApiCall('ListServerCas', $request, $callOptions)->wait();
     }
 
@@ -827,10 +825,8 @@ final class SqlInstancesServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function releaseSsrsLease(
-        SqlInstancesReleaseSsrsLeaseRequest $request,
-        array $callOptions = []
-    ): SqlInstancesReleaseSsrsLeaseResponse {
+    public function releaseSsrsLease(SqlInstancesReleaseSsrsLeaseRequest $request, array $callOptions = []): SqlInstancesReleaseSsrsLeaseResponse
+    {
         return $this->startApiCall('ReleaseSsrsLease', $request, $callOptions)->wait();
     }
 
@@ -856,10 +852,8 @@ final class SqlInstancesServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function rescheduleMaintenance(
-        SqlInstancesRescheduleMaintenanceRequest $request,
-        array $callOptions = []
-    ): Operation {
+    public function rescheduleMaintenance(SqlInstancesRescheduleMaintenanceRequest $request, array $callOptions = []): Operation
+    {
         return $this->startApiCall('RescheduleMaintenance', $request, $callOptions)->wait();
     }
 
@@ -1180,10 +1174,8 @@ final class SqlInstancesServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function verifyExternalSyncSettings(
-        SqlInstancesVerifyExternalSyncSettingsRequest $request,
-        array $callOptions = []
-    ): SqlInstancesVerifyExternalSyncSettingsResponse {
+    public function verifyExternalSyncSettings(SqlInstancesVerifyExternalSyncSettingsRequest $request, array $callOptions = []): SqlInstancesVerifyExternalSyncSettingsResponse
+    {
         return $this->startApiCall('VerifyExternalSyncSettings', $request, $callOptions)->wait();
     }
 }

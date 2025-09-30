@@ -17,11 +17,14 @@
 
 namespace Google\Cloud\Spanner\Tests\System;
 
+use Google\Cloud\Core\Exception\BadRequestException;
 use Google\Cloud\Core\Exception\ConflictException;
 use Google\Cloud\Core\Exception\DeadlineExceededException;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Spanner\KeyRange;
 use Google\Cloud\Spanner\KeySet;
+use Google\Cloud\Spanner\Session\SessionPoolInterface;
+use Google\Cloud\Spanner\V1\ReadRequest\LockHint;
 use Google\Cloud\Spanner\V1\ReadRequest\OrderBy;
 
 /**
@@ -239,6 +242,36 @@ class ReadTest extends SpannerTestCase
                 'The array is not sorted by id in ascending order.'
             );
         }
+    }
+
+    public function testLockHintReadWriteTransaction()
+    {
+        $db = self::$database;
+        $limit = 10;
+
+        $res = $db->read(self::$rangeTableName, new KeySet(['all' => true]), array_keys(self::$dataset[0]), [
+            'begin' => true,
+            'transactionType' => SessionPoolInterface::CONTEXT_READWRITE,
+            'lockHint' => LockHint::LOCK_HINT_EXCLUSIVE,
+            'limit' => $limit,
+        ]);
+
+        $rows = iterator_to_array($res->rows());
+        $this->assertNotEmpty($rows);
+        $this->assertEquals($limit, count($rows));
+    }
+
+    public function testLockHintOnReadOnlyThrowsAnError()
+    {
+        $this->skipEmulatorTests();
+        $db = self::$database;
+        $this->expectException(BadRequestException::class);
+
+        $res = $db->read(self::$rangeTableName, new KeySet(['all' => true]), array_keys(self::$dataset[0]), [
+            'lockHint' => LockHint::LOCK_HINT_EXCLUSIVE
+        ]);
+
+        iterator_to_array($res->rows());
     }
 
     /**
@@ -552,7 +585,7 @@ class ReadTest extends SpannerTestCase
             $json = json_decode($e->getMessage(), true);
 
             if ($json['status'] == 'ALREADY_EXISTS') {
-                $this->insertUnorderedBatch($data);
+                $this->insertUnorderedBatch();
             } else {
                 throw $e;
             }

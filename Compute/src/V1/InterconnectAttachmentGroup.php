@@ -24,63 +24,63 @@ class InterconnectAttachmentGroup extends \Google\Protobuf\Internal\Message
     /**
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectAttachmentGroupConfigured configured = 295631422;</code>
      */
-    private $configured = null;
+    protected $configured = null;
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
-    private $creation_timestamp = null;
+    protected $creation_timestamp = null;
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
-    private $description = null;
+    protected $description = null;
     /**
      * Opaque system-generated token that uniquely identifies the configuration. If provided when patching a configuration in update mode, the provided token must match the current token or the update is rejected. This provides a reliable means of doing read-modify-write (optimistic locking) as described by AIP 154.
      *
      * Generated from protobuf field <code>optional string etag = 3123477;</code>
      */
-    private $etag = null;
+    protected $etag = null;
     /**
      * [Output Only] The unique identifier for the resource type. The server generates this identifier.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
-    private $id = null;
+    protected $id = null;
     /**
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectAttachmentGroupIntent intent = 426849948;</code>
      */
-    private $intent = null;
+    protected $intent = null;
     /**
      * The URL of an InterconnectGroup that groups these Attachments' Interconnects. Customers do not need to set this unless directed by Google Support.
      *
      * Generated from protobuf field <code>optional string interconnect_group = 388651918;</code>
      */
-    private $interconnect_group = null;
+    protected $interconnect_group = null;
     /**
      * [Output Only] Type of the resource. Always compute#interconnectAttachmentGroup.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
-    private $kind = null;
+    protected $kind = null;
     /**
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectAttachmentGroupLogicalStructure logical_structure = 142412989;</code>
      */
-    private $logical_structure = null;
+    protected $logical_structure = null;
     /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
     /**
      * [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
-    private $self_link = null;
+    protected $self_link = null;
 
     /**
      * Constructor.

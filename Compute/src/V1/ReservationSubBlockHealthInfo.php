@@ -20,32 +20,32 @@ class ReservationSubBlockHealthInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int32 degraded_host_count = 535025001;</code>
      */
-    private $degraded_host_count = null;
+    protected $degraded_host_count = null;
     /**
      * The number of degraded infrastructure (e.g NV link domain) in the reservation subblock.
      *
      * Generated from protobuf field <code>optional int32 degraded_infra_count = 138638927;</code>
      */
-    private $degraded_infra_count = null;
+    protected $degraded_infra_count = null;
     /**
      * The health status of the reservation subBlock.
      * Check the HealthStatus enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string health_status = 380545845;</code>
      */
-    private $health_status = null;
+    protected $health_status = null;
     /**
      * The number of healthy hosts in the reservation subBlock.
      *
      * Generated from protobuf field <code>optional int32 healthy_host_count = 40739738;</code>
      */
-    private $healthy_host_count = null;
+    protected $healthy_host_count = null;
     /**
      * The number of healthy infrastructure (e.g NV link domain) in the reservation subblock.
      *
      * Generated from protobuf field <code>optional int32 healthy_infra_count = 385052222;</code>
      */
-    private $healthy_infra_count = null;
+    protected $healthy_infra_count = null;
 
     /**
      * Constructor.

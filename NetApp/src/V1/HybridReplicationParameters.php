@@ -67,6 +67,24 @@ class HybridReplicationParameters extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, string> labels = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $labels;
+    /**
+     * Optional. Replication Schedule for the replication created.
+     *
+     * Generated from protobuf field <code>.google.cloud.netapp.v1.HybridReplicationSchedule replication_schedule = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $replication_schedule = 0;
+    /**
+     * Optional. Type of the hybrid replication.
+     *
+     * Generated from protobuf field <code>.google.cloud.netapp.v1.HybridReplicationParameters.VolumeHybridReplicationType hybrid_replication_type = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $hybrid_replication_type = 0;
+    /**
+     * Optional. Constituent volume count for large volume.
+     *
+     * Generated from protobuf field <code>int32 large_volume_constituent_count = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $large_volume_constituent_count = 0;
 
     /**
      * Constructor.
@@ -94,6 +112,12 @@ class HybridReplicationParameters extends \Google\Protobuf\Internal\Message
      *           Optional. Description of the replication.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional. Labels to be added to the replication as the key value pairs.
+     *     @type int $replication_schedule
+     *           Optional. Replication Schedule for the replication created.
+     *     @type int $hybrid_replication_type
+     *           Optional. Type of the hybrid replication.
+     *     @type int $large_volume_constituent_count
+     *           Optional. Constituent volume count for large volume.
      * }
      */
     public function __construct($data = NULL) {
@@ -313,6 +337,84 @@ class HybridReplicationParameters extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->labels = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Replication Schedule for the replication created.
+     *
+     * Generated from protobuf field <code>.google.cloud.netapp.v1.HybridReplicationSchedule replication_schedule = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getReplicationSchedule()
+    {
+        return $this->replication_schedule;
+    }
+
+    /**
+     * Optional. Replication Schedule for the replication created.
+     *
+     * Generated from protobuf field <code>.google.cloud.netapp.v1.HybridReplicationSchedule replication_schedule = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setReplicationSchedule($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\NetApp\V1\HybridReplicationSchedule::class);
+        $this->replication_schedule = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Type of the hybrid replication.
+     *
+     * Generated from protobuf field <code>.google.cloud.netapp.v1.HybridReplicationParameters.VolumeHybridReplicationType hybrid_replication_type = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getHybridReplicationType()
+    {
+        return $this->hybrid_replication_type;
+    }
+
+    /**
+     * Optional. Type of the hybrid replication.
+     *
+     * Generated from protobuf field <code>.google.cloud.netapp.v1.HybridReplicationParameters.VolumeHybridReplicationType hybrid_replication_type = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setHybridReplicationType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\NetApp\V1\HybridReplicationParameters\VolumeHybridReplicationType::class);
+        $this->hybrid_replication_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Constituent volume count for large volume.
+     *
+     * Generated from protobuf field <code>int32 large_volume_constituent_count = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getLargeVolumeConstituentCount()
+    {
+        return $this->large_volume_constituent_count;
+    }
+
+    /**
+     * Optional. Constituent volume count for large volume.
+     *
+     * Generated from protobuf field <code>int32 large_volume_constituent_count = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setLargeVolumeConstituentCount($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->large_volume_constituent_count = $var;
 
         return $this;
     }

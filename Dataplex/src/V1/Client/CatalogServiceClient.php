@@ -28,6 +28,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -38,18 +39,22 @@ use Google\Cloud\Dataplex\V1\AspectType;
 use Google\Cloud\Dataplex\V1\CancelMetadataJobRequest;
 use Google\Cloud\Dataplex\V1\CreateAspectTypeRequest;
 use Google\Cloud\Dataplex\V1\CreateEntryGroupRequest;
+use Google\Cloud\Dataplex\V1\CreateEntryLinkRequest;
 use Google\Cloud\Dataplex\V1\CreateEntryRequest;
 use Google\Cloud\Dataplex\V1\CreateEntryTypeRequest;
 use Google\Cloud\Dataplex\V1\CreateMetadataJobRequest;
 use Google\Cloud\Dataplex\V1\DeleteAspectTypeRequest;
 use Google\Cloud\Dataplex\V1\DeleteEntryGroupRequest;
+use Google\Cloud\Dataplex\V1\DeleteEntryLinkRequest;
 use Google\Cloud\Dataplex\V1\DeleteEntryRequest;
 use Google\Cloud\Dataplex\V1\DeleteEntryTypeRequest;
 use Google\Cloud\Dataplex\V1\Entry;
 use Google\Cloud\Dataplex\V1\EntryGroup;
+use Google\Cloud\Dataplex\V1\EntryLink;
 use Google\Cloud\Dataplex\V1\EntryType;
 use Google\Cloud\Dataplex\V1\GetAspectTypeRequest;
 use Google\Cloud\Dataplex\V1\GetEntryGroupRequest;
+use Google\Cloud\Dataplex\V1\GetEntryLinkRequest;
 use Google\Cloud\Dataplex\V1\GetEntryRequest;
 use Google\Cloud\Dataplex\V1\GetEntryTypeRequest;
 use Google\Cloud\Dataplex\V1\GetMetadataJobRequest;
@@ -80,10 +85,10 @@ use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The primary resources offered by this service are EntryGroups, EntryTypes,
- * AspectTypes, and Entries. They collectively let data administrators organize,
- * manage, secure, and catalog data located across cloud projects in their
- * organization in a variety of storage systems, including Cloud Storage and
- * BigQuery.
+ * AspectTypes, Entries and EntryLinks. They collectively let data
+ * administrators organize, manage, secure, and catalog data located across
+ * cloud projects in their organization in a variety of storage systems,
+ * including Cloud Storage and BigQuery.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
@@ -97,15 +102,18 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<OperationResponse> createAspectTypeAsync(CreateAspectTypeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Entry> createEntryAsync(CreateEntryRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createEntryGroupAsync(CreateEntryGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<EntryLink> createEntryLinkAsync(CreateEntryLinkRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createEntryTypeAsync(CreateEntryTypeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createMetadataJobAsync(CreateMetadataJobRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteAspectTypeAsync(DeleteAspectTypeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Entry> deleteEntryAsync(DeleteEntryRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteEntryGroupAsync(DeleteEntryGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<EntryLink> deleteEntryLinkAsync(DeleteEntryLinkRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteEntryTypeAsync(DeleteEntryTypeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<AspectType> getAspectTypeAsync(GetAspectTypeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Entry> getEntryAsync(GetEntryRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<EntryGroup> getEntryGroupAsync(GetEntryGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<EntryLink> getEntryLinkAsync(GetEntryLinkRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<EntryType> getEntryTypeAsync(GetEntryTypeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<MetadataJob> getMetadataJobAsync(GetMetadataJobRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listAspectTypesAsync(ListAspectTypesRequest $request, array $optionalArgs = [])
@@ -150,7 +158,9 @@ final class CatalogServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+    ];
 
     private $operationsClient;
 
@@ -196,9 +206,7 @@ final class CatalogServiceClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning'])
-            ? $this->descriptors[$methodName]['longRunning']
-            : [];
+        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -283,6 +291,27 @@ final class CatalogServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a entry_link
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $entryGroup
+     * @param string $entryLink
+     *
+     * @return string The formatted entry_link resource.
+     */
+    public static function entryLinkName(string $project, string $location, string $entryGroup, string $entryLink): string
+    {
+        return self::getPathTemplate('entryLink')->render([
+            'project' => $project,
+            'location' => $location,
+            'entry_group' => $entryGroup,
+            'entry_link' => $entryLink,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a entry_type
      * resource.
      *
@@ -298,6 +327,25 @@ final class CatalogServiceClient
             'project' => $project,
             'location' => $location,
             'entry_type' => $entryType,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a glossary
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $glossary
+     *
+     * @return string The formatted glossary resource.
+     */
+    public static function glossaryName(string $project, string $location, string $glossary): string
+    {
+        return self::getPathTemplate('glossary')->render([
+            'project' => $project,
+            'location' => $location,
+            'glossary' => $glossary,
         ]);
     }
 
@@ -359,7 +407,9 @@ final class CatalogServiceClient
      * - aspectType: projects/{project}/locations/{location}/aspectTypes/{aspect_type}
      * - entry: projects/{project}/locations/{location}/entryGroups/{entry_group}/entries/{entry}
      * - entryGroup: projects/{project}/locations/{location}/entryGroups/{entry_group}
+     * - entryLink: projects/{project}/locations/{location}/entryGroups/{entry_group}/entryLinks/{entry_link}
      * - entryType: projects/{project}/locations/{location}/entryTypes/{entry_type}
+     * - glossary: projects/{project}/locations/{location}/glossaries/{glossary}
      * - location: projects/{project}/locations/{location}
      * - metadataJob: projects/{project}/locations/{location}/metadataJobs/{metadataJob}
      * - project: projects/{project}
@@ -385,25 +435,28 @@ final class CatalogServiceClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'dataplex.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
-     *           *Important*: If you accept a credential configuration (credential
-     *           JSON/File/Stream) from an external source for authentication to Google Cloud
-     *           Platform, you must validate it before providing it to any Google API or library.
-     *           Providing an unvalidated credential configuration to Google APIs can compromise
-     *           the security of your systems and data. For more information {@see
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\Dataplex\V1\CatalogServiceClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new CatalogServiceClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
      *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
@@ -441,11 +494,13 @@ final class CatalogServiceClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -509,7 +564,7 @@ final class CatalogServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<AspectType>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -561,13 +616,39 @@ final class CatalogServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<EntryGroup>
      *
      * @throws ApiException Thrown if the API call fails.
      */
     public function createEntryGroup(CreateEntryGroupRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('CreateEntryGroup', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates an Entry Link.
+     *
+     * The async variant is {@see CatalogServiceClient::createEntryLinkAsync()} .
+     *
+     * @example samples/V1/CatalogServiceClient/create_entry_link.php
+     *
+     * @param CreateEntryLinkRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return EntryLink
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createEntryLink(CreateEntryLinkRequest $request, array $callOptions = []): EntryLink
+    {
+        return $this->startApiCall('CreateEntryLink', $request, $callOptions)->wait();
     }
 
     /**
@@ -587,7 +668,7 @@ final class CatalogServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<EntryType>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -597,8 +678,8 @@ final class CatalogServiceClient
     }
 
     /**
-     * Creates a metadata job. For example, use a metadata job to import Dataplex
-     * Catalog entries and aspects from a third-party system into Dataplex.
+     * Creates a metadata job. For example, use a metadata job to import metadata
+     * from a third-party system into Dataplex Universal Catalog.
      *
      * The async variant is {@see CatalogServiceClient::createMetadataJobAsync()} .
      *
@@ -614,7 +695,7 @@ final class CatalogServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<MetadataJob>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -640,7 +721,7 @@ final class CatalogServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -692,13 +773,39 @@ final class CatalogServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
     public function deleteEntryGroup(DeleteEntryGroupRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('DeleteEntryGroup', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes an Entry Link.
+     *
+     * The async variant is {@see CatalogServiceClient::deleteEntryLinkAsync()} .
+     *
+     * @example samples/V1/CatalogServiceClient/delete_entry_link.php
+     *
+     * @param DeleteEntryLinkRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return EntryLink
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteEntryLink(DeleteEntryLinkRequest $request, array $callOptions = []): EntryLink
+    {
+        return $this->startApiCall('DeleteEntryLink', $request, $callOptions)->wait();
     }
 
     /**
@@ -718,7 +825,7 @@ final class CatalogServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -803,6 +910,32 @@ final class CatalogServiceClient
     public function getEntryGroup(GetEntryGroupRequest $request, array $callOptions = []): EntryGroup
     {
         return $this->startApiCall('GetEntryGroup', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets an Entry Link.
+     *
+     * The async variant is {@see CatalogServiceClient::getEntryLinkAsync()} .
+     *
+     * @example samples/V1/CatalogServiceClient/get_entry_link.php
+     *
+     * @param GetEntryLinkRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return EntryLink
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getEntryLink(GetEntryLinkRequest $request, array $callOptions = []): EntryLink
+    {
+        return $this->startApiCall('GetEntryLink', $request, $callOptions)->wait();
     }
 
     /**
@@ -1056,7 +1189,7 @@ final class CatalogServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<AspectType>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1108,7 +1241,7 @@ final class CatalogServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<EntryGroup>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1134,7 +1267,7 @@ final class CatalogServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<EntryType>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1227,10 +1360,8 @@ final class CatalogServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(
-        TestIamPermissionsRequest $request,
-        array $callOptions = []
-    ): TestIamPermissionsResponse {
+    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
+    {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 

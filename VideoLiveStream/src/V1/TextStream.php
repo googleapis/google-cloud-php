@@ -20,10 +20,44 @@ class TextStream extends \Google\Protobuf\Internal\Message
      * Supported text codecs:
      * - `cea608`
      * - `cea708`
+     * - `webvtt`
      *
      * Generated from protobuf field <code>string codec = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $codec = '';
+    /**
+     * Optional. The BCP-47 language code, such as `en-US` or `sr-Latn`. For more
+     * information, see
+     * https://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     *
+     * Generated from protobuf field <code>string language_code = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $language_code = '';
+    /**
+     * Optional. The name for this particular text stream that will be added to
+     * the HLS/DASH manifest.
+     *
+     * Generated from protobuf field <code>string display_name = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $display_name = '';
+    /**
+     * Optional. The channel of the closed caption in the output stream.
+     * This field should only be set when textstream is used for partner
+     * distribution.
+     * Must be one of `CC1`, `CC2`, `CC3`, and `CC4`, if the
+     * [codec][google.cloud.video.livestream.v1.TextStream.codec] is `cea608`;
+     * Must be one between `SERVICE1` and `SERVICE63`, if the
+     * [codec][google.cloud.video.livestream.v1.TextStream.codec] is `cea708`.
+     *
+     * Generated from protobuf field <code>string output_cea_channel = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $output_cea_channel = '';
+    /**
+     * Optional. The mapping for the input streams and text tracks.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.video.livestream.v1.TextStream.TextMapping mapping = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $mapping;
 
     /**
      * Constructor.
@@ -36,6 +70,24 @@ class TextStream extends \Google\Protobuf\Internal\Message
      *           Supported text codecs:
      *           - `cea608`
      *           - `cea708`
+     *           - `webvtt`
+     *     @type string $language_code
+     *           Optional. The BCP-47 language code, such as `en-US` or `sr-Latn`. For more
+     *           information, see
+     *           https://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     *     @type string $display_name
+     *           Optional. The name for this particular text stream that will be added to
+     *           the HLS/DASH manifest.
+     *     @type string $output_cea_channel
+     *           Optional. The channel of the closed caption in the output stream.
+     *           This field should only be set when textstream is used for partner
+     *           distribution.
+     *           Must be one of `CC1`, `CC2`, `CC3`, and `CC4`, if the
+     *           [codec][google.cloud.video.livestream.v1.TextStream.codec] is `cea608`;
+     *           Must be one between `SERVICE1` and `SERVICE63`, if the
+     *           [codec][google.cloud.video.livestream.v1.TextStream.codec] is `cea708`.
+     *     @type array<\Google\Cloud\Video\LiveStream\V1\TextStream\TextMapping>|\Google\Protobuf\Internal\RepeatedField $mapping
+     *           Optional. The mapping for the input streams and text tracks.
      * }
      */
     public function __construct($data = NULL) {
@@ -48,6 +100,7 @@ class TextStream extends \Google\Protobuf\Internal\Message
      * Supported text codecs:
      * - `cea608`
      * - `cea708`
+     * - `webvtt`
      *
      * Generated from protobuf field <code>string codec = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -62,6 +115,7 @@ class TextStream extends \Google\Protobuf\Internal\Message
      * Supported text codecs:
      * - `cea608`
      * - `cea708`
+     * - `webvtt`
      *
      * Generated from protobuf field <code>string codec = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -71,6 +125,128 @@ class TextStream extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->codec = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The BCP-47 language code, such as `en-US` or `sr-Latn`. For more
+     * information, see
+     * https://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     *
+     * Generated from protobuf field <code>string language_code = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getLanguageCode()
+    {
+        return $this->language_code;
+    }
+
+    /**
+     * Optional. The BCP-47 language code, such as `en-US` or `sr-Latn`. For more
+     * information, see
+     * https://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     *
+     * Generated from protobuf field <code>string language_code = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLanguageCode($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->language_code = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The name for this particular text stream that will be added to
+     * the HLS/DASH manifest.
+     *
+     * Generated from protobuf field <code>string display_name = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getDisplayName()
+    {
+        return $this->display_name;
+    }
+
+    /**
+     * Optional. The name for this particular text stream that will be added to
+     * the HLS/DASH manifest.
+     *
+     * Generated from protobuf field <code>string display_name = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDisplayName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->display_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The channel of the closed caption in the output stream.
+     * This field should only be set when textstream is used for partner
+     * distribution.
+     * Must be one of `CC1`, `CC2`, `CC3`, and `CC4`, if the
+     * [codec][google.cloud.video.livestream.v1.TextStream.codec] is `cea608`;
+     * Must be one between `SERVICE1` and `SERVICE63`, if the
+     * [codec][google.cloud.video.livestream.v1.TextStream.codec] is `cea708`.
+     *
+     * Generated from protobuf field <code>string output_cea_channel = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getOutputCeaChannel()
+    {
+        return $this->output_cea_channel;
+    }
+
+    /**
+     * Optional. The channel of the closed caption in the output stream.
+     * This field should only be set when textstream is used for partner
+     * distribution.
+     * Must be one of `CC1`, `CC2`, `CC3`, and `CC4`, if the
+     * [codec][google.cloud.video.livestream.v1.TextStream.codec] is `cea608`;
+     * Must be one between `SERVICE1` and `SERVICE63`, if the
+     * [codec][google.cloud.video.livestream.v1.TextStream.codec] is `cea708`.
+     *
+     * Generated from protobuf field <code>string output_cea_channel = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setOutputCeaChannel($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->output_cea_channel = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The mapping for the input streams and text tracks.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.video.livestream.v1.TextStream.TextMapping mapping = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getMapping()
+    {
+        return $this->mapping;
+    }
+
+    /**
+     * Optional. The mapping for the input streams and text tracks.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.video.livestream.v1.TextStream.TextMapping mapping = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<\Google\Cloud\Video\LiveStream\V1\TextStream\TextMapping>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setMapping($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Video\LiveStream\V1\TextStream\TextMapping::class);
+        $this->mapping = $arr;
 
         return $this;
     }

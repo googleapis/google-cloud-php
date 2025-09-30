@@ -9,15 +9,22 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Leaves the value "as-is"
- * * Order-preserving? Yes
- * * Self-delimiting? No
- * * Compatibility? N/A
+ * Leaves the value as-is.
+ * Sorted mode: all values are supported.
+ * Distinct mode: all values are supported.
  *
  * Generated from protobuf message <code>google.bigtable.v2.Type.Bytes.Encoding.Raw</code>
  */
 class Raw extends \Google\Protobuf\Internal\Message
 {
+    /**
+     * If set, allows NULL values to be encoded as the empty string "".
+     * The actual empty string, or any value which only contains the
+     * null byte `0x00`, has one more null byte appended.
+     *
+     * Generated from protobuf field <code>bool escape_nulls = 1;</code>
+     */
+    protected $escape_nulls = false;
 
     /**
      * Constructor.
@@ -25,11 +32,45 @@ class Raw extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type bool $escape_nulls
+     *           If set, allows NULL values to be encoded as the empty string "".
+     *           The actual empty string, or any value which only contains the
+     *           null byte `0x00`, has one more null byte appended.
      * }
      */
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Bigtable\V2\Types::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * If set, allows NULL values to be encoded as the empty string "".
+     * The actual empty string, or any value which only contains the
+     * null byte `0x00`, has one more null byte appended.
+     *
+     * Generated from protobuf field <code>bool escape_nulls = 1;</code>
+     * @return bool
+     */
+    public function getEscapeNulls()
+    {
+        return $this->escape_nulls;
+    }
+
+    /**
+     * If set, allows NULL values to be encoded as the empty string "".
+     * The actual empty string, or any value which only contains the
+     * null byte `0x00`, has one more null byte appended.
+     *
+     * Generated from protobuf field <code>bool escape_nulls = 1;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEscapeNulls($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->escape_nulls = $var;
+
+        return $this;
     }
 
 }

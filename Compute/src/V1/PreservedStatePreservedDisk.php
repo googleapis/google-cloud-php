@@ -20,20 +20,20 @@ class PreservedStatePreservedDisk extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string auto_delete = 464761403;</code>
      */
-    private $auto_delete = null;
+    protected $auto_delete = null;
     /**
      * The mode in which to attach this disk, either READ_WRITE or READ_ONLY. If not specified, the default is to attach the disk in READ_WRITE mode.
      * Check the Mode enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string mode = 3357091;</code>
      */
-    private $mode = null;
+    protected $mode = null;
     /**
      * The URL of the disk resource that is stateful and should be attached to the VM instance.
      *
      * Generated from protobuf field <code>optional string source = 177235995;</code>
      */
-    private $source = null;
+    protected $source = null;
 
     /**
      * Constructor.

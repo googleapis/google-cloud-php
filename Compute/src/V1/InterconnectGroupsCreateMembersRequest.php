@@ -17,7 +17,7 @@ class InterconnectGroupsCreateMembersRequest extends \Google\Protobuf\Internal\M
     /**
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectGroupsCreateMembers request = 21951119;</code>
      */
-    private $request = null;
+    protected $request = null;
 
     /**
      * Constructor.

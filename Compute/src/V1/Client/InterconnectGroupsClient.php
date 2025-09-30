@@ -28,6 +28,8 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
+use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
@@ -37,11 +39,9 @@ use Google\Cloud\Compute\V1\DeleteInterconnectGroupRequest;
 use Google\Cloud\Compute\V1\GetIamPolicyInterconnectGroupRequest;
 use Google\Cloud\Compute\V1\GetInterconnectGroupRequest;
 use Google\Cloud\Compute\V1\GetOperationalStatusInterconnectGroupRequest;
-use Google\Cloud\Compute\V1\GlobalOperationsClient;
 use Google\Cloud\Compute\V1\InsertInterconnectGroupRequest;
 use Google\Cloud\Compute\V1\InterconnectGroup;
 use Google\Cloud\Compute\V1\InterconnectGroupsGetOperationalStatusResponse;
-use Google\Cloud\Compute\V1\InterconnectGroupsListResponse;
 use Google\Cloud\Compute\V1\ListInterconnectGroupsRequest;
 use Google\Cloud\Compute\V1\PatchInterconnectGroupRequest;
 use Google\Cloud\Compute\V1\Policy;
@@ -63,7 +63,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyInterconnectGroupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<InterconnectGroupsGetOperationalStatusResponse> getOperationalStatusAsync(GetOperationalStatusInterconnectGroupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> insertAsync(InsertInterconnectGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<InterconnectGroupsListResponse> listAsync(ListInterconnectGroupsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListInterconnectGroupsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> patchAsync(PatchInterconnectGroupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyInterconnectGroupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsInterconnectGroupRequest $request, array $optionalArgs = [])
@@ -115,7 +115,6 @@ final class InterconnectGroupsClient
                     'restClientConfigPath' => __DIR__ . '/../resources/interconnect_groups_rest_client_config.php',
                 ],
             ],
-            'operationsClientClass' => GlobalOperationsClient::class,
         ];
     }
 
@@ -128,9 +127,7 @@ final class InterconnectGroupsClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -147,9 +144,7 @@ final class InterconnectGroupsClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-            ],
+            'additionalArgumentMethods' => ['getProject'],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -177,34 +172,56 @@ final class InterconnectGroupsClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : $this->getDefaultOperationDescriptor();
+        $options = $this->descriptors[$methodName]['longRunning'] ?? $this->getDefaultOperationDescriptor();
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
     }
 
     /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return GlobalOperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new GlobalOperationsClient($options);
+    }
+
+    /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'compute.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
-     *           *Important*: If you accept a credential configuration (credential
-     *           JSON/File/Stream) from an external source for authentication to Google Cloud
-     *           Platform, you must validate it before providing it to any Google API or library.
-     *           Providing an unvalidated credential configuration to Google APIs can compromise
-     *           the security of your systems and data. For more information {@see
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\Compute\V1\InterconnectGroupsClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new InterconnectGroupsClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
      *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
@@ -239,11 +256,13 @@ final class InterconnectGroupsClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -282,8 +301,10 @@ final class InterconnectGroupsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createMembers(CreateMembersInterconnectGroupRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createMembers(
+        CreateMembersInterconnectGroupRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateMembers', $request, $callOptions)->wait();
     }
 
@@ -387,8 +408,10 @@ final class InterconnectGroupsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getOperationalStatus(GetOperationalStatusInterconnectGroupRequest $request, array $callOptions = []): InterconnectGroupsGetOperationalStatusResponse
-    {
+    public function getOperationalStatus(
+        GetOperationalStatusInterconnectGroupRequest $request,
+        array $callOptions = []
+    ): InterconnectGroupsGetOperationalStatusResponse {
         return $this->startApiCall('GetOperationalStatus', $request, $callOptions)->wait();
     }
 
@@ -435,13 +458,13 @@ final class InterconnectGroupsClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return InterconnectGroupsListResponse
+     * @return PagedListResponse
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function list(ListInterconnectGroupsRequest $request, array $callOptions = []): InterconnectGroupsListResponse
+    public function list(ListInterconnectGroupsRequest $request, array $callOptions = []): PagedListResponse
     {
-        return $this->startApiCall('List', $request, $callOptions)->wait();
+        return $this->startApiCall('List', $request, $callOptions);
     }
 
     /**
@@ -518,8 +541,10 @@ final class InterconnectGroupsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsInterconnectGroupRequest $request, array $callOptions = []): TestPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsInterconnectGroupRequest $request,
+        array $callOptions = []
+    ): TestPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

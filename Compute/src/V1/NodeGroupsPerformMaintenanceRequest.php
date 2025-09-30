@@ -25,7 +25,7 @@ class NodeGroupsPerformMaintenanceRequest extends \Google\Protobuf\Internal\Mess
      *
      * Generated from protobuf field <code>optional string start_time = 37467274;</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
 
     /**
      * Constructor.

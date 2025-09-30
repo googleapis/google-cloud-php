@@ -31,6 +31,18 @@ class MaintenanceReasons
      */
     const FAILURE_GPU = 467876919;
     /**
+     * Maintenance due to customer reported multiple faulty hosts via R&R Subblock API.
+     *
+     * Generated from protobuf enum <code>FAILURE_GPU_MULTIPLE_FAULTY_HOSTS_CUSTOMER_REPORTED = 223284959;</code>
+     */
+    const FAILURE_GPU_MULTIPLE_FAULTY_HOSTS_CUSTOMER_REPORTED = 223284959;
+    /**
+     * Maintenance due to customer reported NVLink switch failure via R&R Subblock API.
+     *
+     * Generated from protobuf enum <code>FAILURE_GPU_NVLINK_SWITCH_CUSTOMER_REPORTED = 88487838;</code>
+     */
+    const FAILURE_GPU_NVLINK_SWITCH_CUSTOMER_REPORTED = 88487838;
+    /**
      * Maintenance due to high GPU temperature.
      *
      * Generated from protobuf enum <code>FAILURE_GPU_TEMPERATURE = 24926540;</code>
@@ -73,6 +85,12 @@ class MaintenanceReasons
      */
     const FAILURE_NVLINK = 484426295;
     /**
+     * Maintenance due to redundant hardware fault.
+     *
+     * Generated from protobuf enum <code>FAILURE_REDUNDANT_HARDWARE_FAULT = 31000530;</code>
+     */
+    const FAILURE_REDUNDANT_HARDWARE_FAULT = 31000530;
+    /**
      * Maintenance due to infrastructure relocation.
      *
      * Generated from protobuf enum <code>INFRASTRUCTURE_RELOCATION = 359845636;</code>
@@ -101,6 +119,8 @@ class MaintenanceReasons
         self::UNDEFINED_MAINTENANCE_REASONS => 'UNDEFINED_MAINTENANCE_REASONS',
         self::FAILURE_DISK => 'FAILURE_DISK',
         self::FAILURE_GPU => 'FAILURE_GPU',
+        self::FAILURE_GPU_MULTIPLE_FAULTY_HOSTS_CUSTOMER_REPORTED => 'FAILURE_GPU_MULTIPLE_FAULTY_HOSTS_CUSTOMER_REPORTED',
+        self::FAILURE_GPU_NVLINK_SWITCH_CUSTOMER_REPORTED => 'FAILURE_GPU_NVLINK_SWITCH_CUSTOMER_REPORTED',
         self::FAILURE_GPU_TEMPERATURE => 'FAILURE_GPU_TEMPERATURE',
         self::FAILURE_GPU_XID => 'FAILURE_GPU_XID',
         self::FAILURE_INFRA => 'FAILURE_INFRA',
@@ -108,6 +128,7 @@ class MaintenanceReasons
         self::FAILURE_MEMORY => 'FAILURE_MEMORY',
         self::FAILURE_NETWORK => 'FAILURE_NETWORK',
         self::FAILURE_NVLINK => 'FAILURE_NVLINK',
+        self::FAILURE_REDUNDANT_HARDWARE_FAULT => 'FAILURE_REDUNDANT_HARDWARE_FAULT',
         self::INFRASTRUCTURE_RELOCATION => 'INFRASTRUCTURE_RELOCATION',
         self::MAINTENANCE_REASON_UNKNOWN => 'MAINTENANCE_REASON_UNKNOWN',
         self::PLANNED_NETWORK_UPDATE => 'PLANNED_NETWORK_UPDATE',

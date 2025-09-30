@@ -26,7 +26,7 @@ class RouteAsPath extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string path_segment_type = 513464992;</code>
      */
-    private $path_segment_type = null;
+    protected $path_segment_type = null;
 
     /**
      * Constructor.

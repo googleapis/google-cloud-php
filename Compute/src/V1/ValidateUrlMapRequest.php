@@ -20,19 +20,19 @@ class ValidateUrlMapRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * Name of the UrlMap resource to be validated as.
      *
      * Generated from protobuf field <code>string url_map = 367020684 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $url_map = '';
+    protected $url_map = '';
     /**
      * The body resource for this request
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.UrlMapsValidateRequest url_maps_validate_request_resource = 395913455 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $url_maps_validate_request_resource = null;
+    protected $url_maps_validate_request_resource = null;
 
     /**
      * @param string                                          $project                        Project ID for this request.

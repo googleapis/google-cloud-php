@@ -55,6 +55,15 @@ class BigQueryPublishingConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string location = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $location = '';
+    /**
+     * Optional. The project of the BigQuery dataset to publish BigLake external
+     * or non-BigLake external tables to. If not specified, the project of the
+     * Cloud Storage bucket will be used. The format is
+     * "projects/{project_id_or_number}".
+     *
+     * Generated from protobuf field <code>string project = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    protected $project = '';
 
     /**
      * Constructor.
@@ -90,6 +99,11 @@ class BigQueryPublishingConfig extends \Google\Protobuf\Internal\Message
      *           single region as the datascan.
      *           For supported values, refer to
      *           https://cloud.google.com/bigquery/docs/locations#supported_locations.
+     *     @type string $project
+     *           Optional. The project of the BigQuery dataset to publish BigLake external
+     *           or non-BigLake external tables to. If not specified, the project of the
+     *           Cloud Storage bucket will be used. The format is
+     *           "projects/{project_id_or_number}".
      * }
      */
     public function __construct($data = NULL) {
@@ -215,6 +229,38 @@ class BigQueryPublishingConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->location = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The project of the BigQuery dataset to publish BigLake external
+     * or non-BigLake external tables to. If not specified, the project of the
+     * Cloud Storage bucket will be used. The format is
+     * "projects/{project_id_or_number}".
+     *
+     * Generated from protobuf field <code>string project = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getProject()
+    {
+        return $this->project;
+    }
+
+    /**
+     * Optional. The project of the BigQuery dataset to publish BigLake external
+     * or non-BigLake external tables to. If not specified, the project of the
+     * Cloud Storage bucket will be used. The format is
+     * "projects/{project_id_or_number}".
+     *
+     * Generated from protobuf field <code>string project = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setProject($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->project = $var;
 
         return $this;
     }

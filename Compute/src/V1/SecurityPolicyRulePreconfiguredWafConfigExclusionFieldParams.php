@@ -20,13 +20,13 @@ class SecurityPolicyRulePreconfiguredWafConfigExclusionFieldParams extends \Goog
      *
      * Generated from protobuf field <code>optional string op = 3553;</code>
      */
-    private $op = null;
+    protected $op = null;
     /**
      * The value of the field.
      *
      * Generated from protobuf field <code>optional string val = 116513;</code>
      */
-    private $val = null;
+    protected $val = null;
 
     /**
      * Constructor.

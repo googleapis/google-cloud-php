@@ -7,7 +7,6 @@ namespace Google\Cloud\AIPlatform\V1;
 use UnexpectedValueException;
 
 /**
- * LINT: LEGACY_NAMES
  * Represents a hardware accelerator type.
  *
  * Protobuf type <code>google.cloud.aiplatform.v1.AcceleratorType</code>

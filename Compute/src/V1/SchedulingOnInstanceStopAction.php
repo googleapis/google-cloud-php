@@ -20,7 +20,7 @@ class SchedulingOnInstanceStopAction extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional bool discard_local_ssd = 319517903;</code>
      */
-    private $discard_local_ssd = null;
+    protected $discard_local_ssd = null;
 
     /**
      * Constructor.

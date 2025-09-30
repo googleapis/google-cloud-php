@@ -19,25 +19,25 @@ class RouterNatRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.RouterNatRuleAction action = 187661878;</code>
      */
-    private $action = null;
+    protected $action = null;
     /**
      * An optional description of this rule.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
-    private $description = null;
+    protected $description = null;
     /**
      * CEL expression that specifies the match condition that egress traffic from a VM is evaluated against. If it evaluates to true, the corresponding `action` is enforced. The following examples are valid match expressions for public NAT: `inIpRange(destination.ip, '1.1.0.0/16') || inIpRange(destination.ip, '2.2.0.0/16')` `destination.ip == '1.1.0.1' || destination.ip == '8.8.8.8'` The following example is a valid match expression for private NAT: `nexthop.hub == '//networkconnectivity.googleapis.com/projects/my-project/locations/global/hubs/hub-1'`
      *
      * Generated from protobuf field <code>optional string match = 103668165;</code>
      */
-    private $match = null;
+    protected $match = null;
     /**
      * An integer uniquely identifying a rule in the list. The rule number must be a positive value between 0 and 65000, and must be unique among rules within a NAT.
      *
      * Generated from protobuf field <code>optional uint32 rule_number = 535211500;</code>
      */
-    private $rule_number = null;
+    protected $rule_number = null;
 
     /**
      * Constructor.

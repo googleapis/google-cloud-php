@@ -23,6 +23,7 @@ use Google\ApiCore\Testing\MockRequest;
 use Google\Cloud\Core\Duration;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Tests\Unit\Stubs\ApiHelpersTraitImpl;
+use LogicException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -272,6 +273,11 @@ class ApiHelperTraitTest extends TestCase
             $expected,
             $this->implementation->validateOptions($options, ...$optionTypes)
         );
+        // test using an implementation without a serializer
+        $this->assertEquals(
+            $expected,
+            (new ApiHelpersTraitImpl)->validateOptions($options, ...$optionTypes)
+        );
     }
 
     public function validateOptionsProvider()
@@ -354,5 +360,25 @@ class ApiHelperTraitTest extends TestCase
         ];
 
         $this->implementation->validateOptions($options, ['foo']);
+    }
+
+    public function testValidateOptionsWithClassnameThrowsException()
+    {
+        $this->expectException(LogicException::class);
+        $this->expectExceptionMessage('Invalid option type: ' . Blob::class);
+
+        $options = [
+            'foo' => 'bar',
+            'bar' => 'baz',
+        ];
+
+        [$blob, $validated] = $this->implementation->validateOptions(
+            $options,
+            Blob::class,
+            ['foo', 'bar']
+        );
+
+        $this->assertEquals([], $blob);
+        $this->assertEquals($options, $validated);
     }
 }

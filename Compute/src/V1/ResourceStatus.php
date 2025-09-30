@@ -16,25 +16,31 @@ use Google\Protobuf\Internal\GPBUtil;
 class ResourceStatus extends \Google\Protobuf\Internal\Message
 {
     /**
+     * [Output Only] Effective metadata is a field that consolidates project, zonal instance settings, and instance-level predefined metadata keys to provide the overridden value for those metadata keys at the instance level.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourceStatusEffectiveInstanceMetadata effective_instance_metadata = 55052033;</code>
+     */
+    protected $effective_instance_metadata = null;
+    /**
      * [Output Only] The precise location of your instance within the zone's data center, including the block, sub-block, and host. The field is formatted as follows: blockId/subBlockId/hostId.
      *
      * Generated from protobuf field <code>optional string physical_host = 464370704;</code>
      */
-    private $physical_host = null;
+    protected $physical_host = null;
     /**
      * [Output Only] A series of fields containing the global name of the Compute Engine cluster, as well as the ID of the block, sub-block, and host on which the running instance is located.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourceStatusPhysicalHostTopology physical_host_topology = 390842814;</code>
      */
-    private $physical_host_topology = null;
+    protected $physical_host_topology = null;
     /**
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourceStatusScheduling scheduling = 386688404;</code>
      */
-    private $scheduling = null;
+    protected $scheduling = null;
     /**
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.UpcomingMaintenance upcoming_maintenance = 227348592;</code>
      */
-    private $upcoming_maintenance = null;
+    protected $upcoming_maintenance = null;
 
     /**
      * Constructor.
@@ -42,6 +48,8 @@ class ResourceStatus extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type \Google\Cloud\Compute\V1\ResourceStatusEffectiveInstanceMetadata $effective_instance_metadata
+     *           [Output Only] Effective metadata is a field that consolidates project, zonal instance settings, and instance-level predefined metadata keys to provide the overridden value for those metadata keys at the instance level.
      *     @type string $physical_host
      *           [Output Only] The precise location of your instance within the zone's data center, including the block, sub-block, and host. The field is formatted as follows: blockId/subBlockId/hostId.
      *     @type \Google\Cloud\Compute\V1\ResourceStatusPhysicalHostTopology $physical_host_topology
@@ -53,6 +61,42 @@ class ResourceStatus extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Compute\V1\Compute::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * [Output Only] Effective metadata is a field that consolidates project, zonal instance settings, and instance-level predefined metadata keys to provide the overridden value for those metadata keys at the instance level.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourceStatusEffectiveInstanceMetadata effective_instance_metadata = 55052033;</code>
+     * @return \Google\Cloud\Compute\V1\ResourceStatusEffectiveInstanceMetadata|null
+     */
+    public function getEffectiveInstanceMetadata()
+    {
+        return $this->effective_instance_metadata;
+    }
+
+    public function hasEffectiveInstanceMetadata()
+    {
+        return isset($this->effective_instance_metadata);
+    }
+
+    public function clearEffectiveInstanceMetadata()
+    {
+        unset($this->effective_instance_metadata);
+    }
+
+    /**
+     * [Output Only] Effective metadata is a field that consolidates project, zonal instance settings, and instance-level predefined metadata keys to provide the overridden value for those metadata keys at the instance level.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourceStatusEffectiveInstanceMetadata effective_instance_metadata = 55052033;</code>
+     * @param \Google\Cloud\Compute\V1\ResourceStatusEffectiveInstanceMetadata $var
+     * @return $this
+     */
+    public function setEffectiveInstanceMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\ResourceStatusEffectiveInstanceMetadata::class);
+        $this->effective_instance_metadata = $var;
+
+        return $this;
     }
 
     /**

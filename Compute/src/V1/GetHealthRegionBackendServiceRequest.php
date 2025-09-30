@@ -20,23 +20,23 @@ class GetHealthRegionBackendServiceRequest extends \Google\Protobuf\Internal\Mes
      *
      * Generated from protobuf field <code>string backend_service = 306946058 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $backend_service = '';
+    protected $backend_service = '';
     /**
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * Name of the region scoping this request.
      *
      * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $region = '';
+    protected $region = '';
     /**
      * The body resource for this request
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.ResourceGroupReference resource_group_reference_resource = 112951123 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $resource_group_reference_resource = null;
+    protected $resource_group_reference_resource = null;
 
     /**
      * @param string                                          $project

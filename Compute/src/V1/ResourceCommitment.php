@@ -20,20 +20,20 @@ class ResourceCommitment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string accelerator_type = 138031246;</code>
      */
-    private $accelerator_type = null;
+    protected $accelerator_type = null;
     /**
      * The quantity of the hardware resource that you want to commit to purchasing (in a type-dependent unit). - For vCPUs, you must specify an integer value. - For memory, you specify the amount of MB that you want. The value you specify must be a multiple of 256 MB, with up to 6.5 GB of memory per every vCPU. - For GPUs, you must specify an integer value. - For Local SSD disks, you must specify the amount in GB. The size of a single Local SSD disk is 375 GB. 
      *
      * Generated from protobuf field <code>optional int64 amount = 196759640;</code>
      */
-    private $amount = null;
+    protected $amount = null;
     /**
      * The type of hardware resource that you want to specify. You can specify any of the following values: - VCPU - MEMORY - LOCAL_SSD - ACCELERATOR Specify as a separate entry in the list for each individual resource type.
      * Check the Type enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string type = 3575610;</code>
      */
-    private $type = null;
+    protected $type = null;
 
     /**
      * Constructor.

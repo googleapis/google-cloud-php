@@ -32,7 +32,7 @@ class PacketMirroringFilter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string direction = 111150975;</code>
      */
-    private $direction = null;
+    protected $direction = null;
 
     /**
      * Constructor.

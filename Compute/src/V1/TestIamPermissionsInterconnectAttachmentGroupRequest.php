@@ -20,19 +20,19 @@ class TestIamPermissionsInterconnectAttachmentGroupRequest extends \Google\Proto
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * Name or id of the resource for this request.
      *
      * Generated from protobuf field <code>string resource = 195806222 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $resource = '';
+    protected $resource = '';
     /**
      * The body resource for this request
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.TestPermissionsRequest test_permissions_request_resource = 439214758 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $test_permissions_request_resource = null;
+    protected $test_permissions_request_resource = null;
 
     /**
      * @param string                                          $project                        Project ID for this request.

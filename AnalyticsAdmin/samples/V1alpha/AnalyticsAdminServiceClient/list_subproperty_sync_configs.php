@@ -30,7 +30,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 
 /**
- * List all Subproperty Sync Configs on a property.
+ * List all `SubpropertySyncConfig` resources for a property.
  *
  * @param string $formattedParent Resource name of the property.
  *                                Format: properties/property_id

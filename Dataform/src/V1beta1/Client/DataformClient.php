@@ -29,6 +29,7 @@ namespace Google\Cloud\Dataform\V1beta1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -263,12 +264,8 @@ final class DataformClient
      *
      * @experimental
      */
-    public static function compilationResultName(
-        string $project,
-        string $location,
-        string $repository,
-        string $compilationResult
-    ): string {
+    public static function compilationResultName(string $project, string $location, string $repository, string $compilationResult): string
+    {
         return self::getPathTemplate('compilationResult')->render([
             'project' => $project,
             'location' => $location,
@@ -333,13 +330,8 @@ final class DataformClient
      *
      * @experimental
      */
-    public static function cryptoKeyVersionName(
-        string $project,
-        string $location,
-        string $keyRing,
-        string $cryptoKey,
-        string $cryptoKeyVersion
-    ): string {
+    public static function cryptoKeyVersionName(string $project, string $location, string $keyRing, string $cryptoKey, string $cryptoKeyVersion): string
+    {
         return self::getPathTemplate('cryptoKeyVersion')->render([
             'project' => $project,
             'location' => $location,
@@ -380,11 +372,8 @@ final class DataformClient
      *
      * @experimental
      */
-    public static function notebookRuntimeTemplateName(
-        string $project,
-        string $location,
-        string $notebookRuntimeTemplate
-    ): string {
+    public static function notebookRuntimeTemplateName(string $project, string $location, string $notebookRuntimeTemplate): string
+    {
         return self::getPathTemplate('notebookRuntimeTemplate')->render([
             'project' => $project,
             'location' => $location,
@@ -405,12 +394,8 @@ final class DataformClient
      *
      * @experimental
      */
-    public static function releaseConfigName(
-        string $project,
-        string $location,
-        string $repository,
-        string $releaseConfig
-    ): string {
+    public static function releaseConfigName(string $project, string $location, string $repository, string $releaseConfig): string
+    {
         return self::getPathTemplate('releaseConfig')->render([
             'project' => $project,
             'location' => $location,
@@ -474,12 +459,8 @@ final class DataformClient
      *
      * @experimental
      */
-    public static function workflowConfigName(
-        string $project,
-        string $location,
-        string $repository,
-        string $workflowConfig
-    ): string {
+    public static function workflowConfigName(string $project, string $location, string $repository, string $workflowConfig): string
+    {
         return self::getPathTemplate('workflowConfig')->render([
             'project' => $project,
             'location' => $location,
@@ -501,12 +482,8 @@ final class DataformClient
      *
      * @experimental
      */
-    public static function workflowInvocationName(
-        string $project,
-        string $location,
-        string $repository,
-        string $workflowInvocation
-    ): string {
+    public static function workflowInvocationName(string $project, string $location, string $repository, string $workflowInvocation): string
+    {
         return self::getPathTemplate('workflowInvocation')->render([
             'project' => $project,
             'location' => $location,
@@ -528,12 +505,8 @@ final class DataformClient
      *
      * @experimental
      */
-    public static function workspaceName(
-        string $project,
-        string $location,
-        string $repository,
-        string $workspace
-    ): string {
+    public static function workspaceName(string $project, string $location, string $repository, string $workspace): string
+    {
         return self::getPathTemplate('workspace')->render([
             'project' => $project,
             'location' => $location,
@@ -582,25 +555,28 @@ final class DataformClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'dataform.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
-     *           *Important*: If you accept a credential configuration (credential
-     *           JSON/File/Stream) from an external source for authentication to Google Cloud
-     *           Platform, you must validate it before providing it to any Google API or library.
-     *           Providing an unvalidated credential configuration to Google APIs can compromise
-     *           the security of your systems and data. For more information {@see
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\Dataform\V1beta1\DataformClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new DataformClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
      *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
@@ -638,13 +614,15 @@ final class DataformClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      *
      * @experimental
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -684,10 +662,8 @@ final class DataformClient
      *
      * @experimental
      */
-    public function cancelWorkflowInvocation(
-        CancelWorkflowInvocationRequest $request,
-        array $callOptions = []
-    ): CancelWorkflowInvocationResponse {
+    public function cancelWorkflowInvocation(CancelWorkflowInvocationRequest $request, array $callOptions = []): CancelWorkflowInvocationResponse
+    {
         return $this->startApiCall('CancelWorkflowInvocation', $request, $callOptions)->wait();
     }
 
@@ -715,10 +691,8 @@ final class DataformClient
      *
      * @experimental
      */
-    public function commitRepositoryChanges(
-        CommitRepositoryChangesRequest $request,
-        array $callOptions = []
-    ): CommitRepositoryChangesResponse {
+    public function commitRepositoryChanges(CommitRepositoryChangesRequest $request, array $callOptions = []): CommitRepositoryChangesResponse
+    {
         return $this->startApiCall('CommitRepositoryChanges', $request, $callOptions)->wait();
     }
 
@@ -745,10 +719,8 @@ final class DataformClient
      *
      * @experimental
      */
-    public function commitWorkspaceChanges(
-        CommitWorkspaceChangesRequest $request,
-        array $callOptions = []
-    ): CommitWorkspaceChangesResponse {
+    public function commitWorkspaceChanges(CommitWorkspaceChangesRequest $request, array $callOptions = []): CommitWorkspaceChangesResponse
+    {
         return $this->startApiCall('CommitWorkspaceChanges', $request, $callOptions)->wait();
     }
 
@@ -776,10 +748,8 @@ final class DataformClient
      *
      * @experimental
      */
-    public function computeRepositoryAccessTokenStatus(
-        ComputeRepositoryAccessTokenStatusRequest $request,
-        array $callOptions = []
-    ): ComputeRepositoryAccessTokenStatusResponse {
+    public function computeRepositoryAccessTokenStatus(ComputeRepositoryAccessTokenStatusRequest $request, array $callOptions = []): ComputeRepositoryAccessTokenStatusResponse
+    {
         return $this->startApiCall('ComputeRepositoryAccessTokenStatus', $request, $callOptions)->wait();
     }
 
@@ -806,10 +776,8 @@ final class DataformClient
      *
      * @experimental
      */
-    public function createCompilationResult(
-        CreateCompilationResultRequest $request,
-        array $callOptions = []
-    ): CompilationResult {
+    public function createCompilationResult(CreateCompilationResultRequest $request, array $callOptions = []): CompilationResult
+    {
         return $this->startApiCall('CreateCompilationResult', $request, $callOptions)->wait();
     }
 
@@ -920,10 +888,8 @@ final class DataformClient
      *
      * @experimental
      */
-    public function createWorkflowInvocation(
-        CreateWorkflowInvocationRequest $request,
-        array $callOptions = []
-    ): WorkflowInvocation {
+    public function createWorkflowInvocation(CreateWorkflowInvocationRequest $request, array $callOptions = []): WorkflowInvocation
+    {
         return $this->startApiCall('CreateWorkflowInvocation', $request, $callOptions)->wait();
     }
 
@@ -1136,10 +1102,8 @@ final class DataformClient
      *
      * @experimental
      */
-    public function fetchFileGitStatuses(
-        FetchFileGitStatusesRequest $request,
-        array $callOptions = []
-    ): FetchFileGitStatusesResponse {
+    public function fetchFileGitStatuses(FetchFileGitStatusesRequest $request, array $callOptions = []): FetchFileGitStatusesResponse
+    {
         return $this->startApiCall('FetchFileGitStatuses', $request, $callOptions)->wait();
     }
 
@@ -1166,10 +1130,8 @@ final class DataformClient
      *
      * @experimental
      */
-    public function fetchGitAheadBehind(
-        FetchGitAheadBehindRequest $request,
-        array $callOptions = []
-    ): FetchGitAheadBehindResponse {
+    public function fetchGitAheadBehind(FetchGitAheadBehindRequest $request, array $callOptions = []): FetchGitAheadBehindResponse
+    {
         return $this->startApiCall('FetchGitAheadBehind', $request, $callOptions)->wait();
     }
 
@@ -1196,10 +1158,8 @@ final class DataformClient
      *
      * @experimental
      */
-    public function fetchRemoteBranches(
-        FetchRemoteBranchesRequest $request,
-        array $callOptions = []
-    ): FetchRemoteBranchesResponse {
+    public function fetchRemoteBranches(FetchRemoteBranchesRequest $request, array $callOptions = []): FetchRemoteBranchesResponse
+    {
         return $this->startApiCall('FetchRemoteBranches', $request, $callOptions)->wait();
     }
 
@@ -1227,10 +1187,8 @@ final class DataformClient
      *
      * @experimental
      */
-    public function fetchRepositoryHistory(
-        FetchRepositoryHistoryRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function fetchRepositoryHistory(FetchRepositoryHistoryRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('FetchRepositoryHistory', $request, $callOptions);
     }
 
@@ -1257,10 +1215,8 @@ final class DataformClient
      *
      * @experimental
      */
-    public function getCompilationResult(
-        GetCompilationResultRequest $request,
-        array $callOptions = []
-    ): CompilationResult {
+    public function getCompilationResult(GetCompilationResultRequest $request, array $callOptions = []): CompilationResult
+    {
         return $this->startApiCall('GetCompilationResult', $request, $callOptions)->wait();
     }
 
@@ -1399,10 +1355,8 @@ final class DataformClient
      *
      * @experimental
      */
-    public function getWorkflowInvocation(
-        GetWorkflowInvocationRequest $request,
-        array $callOptions = []
-    ): WorkflowInvocation {
+    public function getWorkflowInvocation(GetWorkflowInvocationRequest $request, array $callOptions = []): WorkflowInvocation
+    {
         return $this->startApiCall('GetWorkflowInvocation', $request, $callOptions)->wait();
     }
 
@@ -1457,10 +1411,8 @@ final class DataformClient
      *
      * @experimental
      */
-    public function installNpmPackages(
-        InstallNpmPackagesRequest $request,
-        array $callOptions = []
-    ): InstallNpmPackagesResponse {
+    public function installNpmPackages(InstallNpmPackagesRequest $request, array $callOptions = []): InstallNpmPackagesResponse
+    {
         return $this->startApiCall('InstallNpmPackages', $request, $callOptions)->wait();
     }
 
@@ -1487,10 +1439,8 @@ final class DataformClient
      *
      * @experimental
      */
-    public function listCompilationResults(
-        ListCompilationResultsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listCompilationResults(ListCompilationResultsRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListCompilationResults', $request, $callOptions);
     }
 
@@ -1604,10 +1554,8 @@ final class DataformClient
      *
      * @experimental
      */
-    public function listWorkflowInvocations(
-        ListWorkflowInvocationsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listWorkflowInvocations(ListWorkflowInvocationsRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListWorkflowInvocations', $request, $callOptions);
     }
 
@@ -1804,10 +1752,8 @@ final class DataformClient
      *
      * @experimental
      */
-    public function queryCompilationResultActions(
-        QueryCompilationResultActionsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function queryCompilationResultActions(QueryCompilationResultActionsRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('QueryCompilationResultActions', $request, $callOptions);
     }
 
@@ -1834,10 +1780,8 @@ final class DataformClient
      *
      * @experimental
      */
-    public function queryDirectoryContents(
-        QueryDirectoryContentsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function queryDirectoryContents(QueryDirectoryContentsRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('QueryDirectoryContents', $request, $callOptions);
     }
 
@@ -1866,10 +1810,8 @@ final class DataformClient
      *
      * @experimental
      */
-    public function queryRepositoryDirectoryContents(
-        QueryRepositoryDirectoryContentsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function queryRepositoryDirectoryContents(QueryRepositoryDirectoryContentsRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('QueryRepositoryDirectoryContents', $request, $callOptions);
     }
 
@@ -1897,10 +1839,8 @@ final class DataformClient
      *
      * @experimental
      */
-    public function queryWorkflowInvocationActions(
-        QueryWorkflowInvocationActionsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function queryWorkflowInvocationActions(QueryWorkflowInvocationActionsRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('QueryWorkflowInvocationActions', $request, $callOptions);
     }
 
@@ -1956,10 +1896,8 @@ final class DataformClient
      *
      * @experimental
      */
-    public function readRepositoryFile(
-        ReadRepositoryFileRequest $request,
-        array $callOptions = []
-    ): ReadRepositoryFileResponse {
+    public function readRepositoryFile(ReadRepositoryFileRequest $request, array $callOptions = []): ReadRepositoryFileResponse
+    {
         return $this->startApiCall('ReadRepositoryFile', $request, $callOptions)->wait();
     }
 
@@ -2042,10 +1980,8 @@ final class DataformClient
      *
      * @experimental
      */
-    public function resetWorkspaceChanges(
-        ResetWorkspaceChangesRequest $request,
-        array $callOptions = []
-    ): ResetWorkspaceChangesResponse {
+    public function resetWorkspaceChanges(ResetWorkspaceChangesRequest $request, array $callOptions = []): ResetWorkspaceChangesResponse
+    {
         return $this->startApiCall('ResetWorkspaceChanges', $request, $callOptions)->wait();
     }
 
@@ -2383,10 +2319,8 @@ final class DataformClient
      *
      * @experimental
      */
-    public function testIamPermissions(
-        TestIamPermissionsRequest $request,
-        array $callOptions = []
-    ): TestIamPermissionsResponse {
+    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
+    {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

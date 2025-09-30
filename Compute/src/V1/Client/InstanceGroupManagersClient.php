@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,6 +28,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
@@ -58,7 +59,6 @@ use Google\Cloud\Compute\V1\StartInstancesInstanceGroupManagerRequest;
 use Google\Cloud\Compute\V1\StopInstancesInstanceGroupManagerRequest;
 use Google\Cloud\Compute\V1\SuspendInstancesInstanceGroupManagerRequest;
 use Google\Cloud\Compute\V1\UpdatePerInstanceConfigsInstanceGroupManagerRequest;
-use Google\Cloud\Compute\V1\ZoneOperationsClient;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
@@ -140,7 +140,6 @@ final class InstanceGroupManagersClient
                     'restClientConfigPath' => __DIR__ . '/../resources/instance_group_managers_rest_client_config.php',
                 ],
             ],
-            'operationsClientClass' => ZoneOperationsClient::class,
         ];
     }
 
@@ -153,9 +152,7 @@ final class InstanceGroupManagersClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -172,10 +169,7 @@ final class InstanceGroupManagersClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-                'getZone',
-            ],
+            'additionalArgumentMethods' => ['getProject', 'getZone'],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -203,34 +197,56 @@ final class InstanceGroupManagersClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : $this->getDefaultOperationDescriptor();
+        $options = $this->descriptors[$methodName]['longRunning'] ?? $this->getDefaultOperationDescriptor();
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
     }
 
     /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return ZoneOperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new ZoneOperationsClient($options);
+    }
+
+    /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'compute.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
-     *           *Important*: If you accept a credential configuration (credential
-     *           JSON/File/Stream) from an external source for authentication to Google Cloud
-     *           Platform, you must validate it before providing it to any Google API or library.
-     *           Providing an unvalidated credential configuration to Google APIs can compromise
-     *           the security of your systems and data. For more information {@see
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\Compute\V1\InstanceGroupManagersClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new InstanceGroupManagersClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
      *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
@@ -265,11 +281,13 @@ final class InstanceGroupManagersClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -309,8 +327,10 @@ final class InstanceGroupManagersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function abandonInstances(AbandonInstancesInstanceGroupManagerRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function abandonInstances(
+        AbandonInstancesInstanceGroupManagerRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('AbandonInstances', $request, $callOptions)->wait();
     }
 
@@ -335,8 +355,10 @@ final class InstanceGroupManagersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function aggregatedList(AggregatedListInstanceGroupManagersRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function aggregatedList(
+        AggregatedListInstanceGroupManagersRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('AggregatedList', $request, $callOptions);
     }
 
@@ -362,8 +384,10 @@ final class InstanceGroupManagersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function applyUpdatesToInstances(ApplyUpdatesToInstancesInstanceGroupManagerRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function applyUpdatesToInstances(
+        ApplyUpdatesToInstancesInstanceGroupManagerRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('ApplyUpdatesToInstances', $request, $callOptions)->wait();
     }
 
@@ -389,8 +413,10 @@ final class InstanceGroupManagersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createInstances(CreateInstancesInstanceGroupManagerRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createInstances(
+        CreateInstancesInstanceGroupManagerRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateInstances', $request, $callOptions)->wait();
     }
 
@@ -442,8 +468,10 @@ final class InstanceGroupManagersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteInstances(DeleteInstancesInstanceGroupManagerRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteInstances(
+        DeleteInstancesInstanceGroupManagerRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteInstances', $request, $callOptions)->wait();
     }
 
@@ -469,8 +497,10 @@ final class InstanceGroupManagersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deletePerInstanceConfigs(DeletePerInstanceConfigsInstanceGroupManagerRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deletePerInstanceConfigs(
+        DeletePerInstanceConfigsInstanceGroupManagerRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeletePerInstanceConfigs', $request, $callOptions)->wait();
     }
 
@@ -573,8 +603,10 @@ final class InstanceGroupManagersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listErrors(ListErrorsInstanceGroupManagersRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listErrors(
+        ListErrorsInstanceGroupManagersRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListErrors', $request, $callOptions);
     }
 
@@ -600,8 +632,10 @@ final class InstanceGroupManagersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listManagedInstances(ListManagedInstancesInstanceGroupManagersRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listManagedInstances(
+        ListManagedInstancesInstanceGroupManagersRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListManagedInstances', $request, $callOptions);
     }
 
@@ -627,8 +661,10 @@ final class InstanceGroupManagersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listPerInstanceConfigs(ListPerInstanceConfigsInstanceGroupManagersRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listPerInstanceConfigs(
+        ListPerInstanceConfigsInstanceGroupManagersRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListPerInstanceConfigs', $request, $callOptions);
     }
 
@@ -680,8 +716,10 @@ final class InstanceGroupManagersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function patchPerInstanceConfigs(PatchPerInstanceConfigsInstanceGroupManagerRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function patchPerInstanceConfigs(
+        PatchPerInstanceConfigsInstanceGroupManagerRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('PatchPerInstanceConfigs', $request, $callOptions)->wait();
     }
 
@@ -707,8 +745,10 @@ final class InstanceGroupManagersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function recreateInstances(RecreateInstancesInstanceGroupManagerRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function recreateInstances(
+        RecreateInstancesInstanceGroupManagerRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('RecreateInstances', $request, $callOptions)->wait();
     }
 
@@ -760,8 +800,10 @@ final class InstanceGroupManagersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function resumeInstances(ResumeInstancesInstanceGroupManagerRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function resumeInstances(
+        ResumeInstancesInstanceGroupManagerRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('ResumeInstances', $request, $callOptions)->wait();
     }
 
@@ -787,8 +829,10 @@ final class InstanceGroupManagersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setInstanceTemplate(SetInstanceTemplateInstanceGroupManagerRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function setInstanceTemplate(
+        SetInstanceTemplateInstanceGroupManagerRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SetInstanceTemplate', $request, $callOptions)->wait();
     }
 
@@ -813,8 +857,10 @@ final class InstanceGroupManagersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setTargetPools(SetTargetPoolsInstanceGroupManagerRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function setTargetPools(
+        SetTargetPoolsInstanceGroupManagerRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SetTargetPools', $request, $callOptions)->wait();
     }
 
@@ -839,8 +885,10 @@ final class InstanceGroupManagersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function startInstances(StartInstancesInstanceGroupManagerRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function startInstances(
+        StartInstancesInstanceGroupManagerRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('StartInstances', $request, $callOptions)->wait();
     }
 
@@ -865,8 +913,10 @@ final class InstanceGroupManagersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function stopInstances(StopInstancesInstanceGroupManagerRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function stopInstances(
+        StopInstancesInstanceGroupManagerRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('StopInstances', $request, $callOptions)->wait();
     }
 
@@ -892,8 +942,10 @@ final class InstanceGroupManagersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function suspendInstances(SuspendInstancesInstanceGroupManagerRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function suspendInstances(
+        SuspendInstancesInstanceGroupManagerRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SuspendInstances', $request, $callOptions)->wait();
     }
 
@@ -919,8 +971,10 @@ final class InstanceGroupManagersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updatePerInstanceConfigs(UpdatePerInstanceConfigsInstanceGroupManagerRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function updatePerInstanceConfigs(
+        UpdatePerInstanceConfigsInstanceGroupManagerRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UpdatePerInstanceConfigs', $request, $callOptions)->wait();
     }
 }

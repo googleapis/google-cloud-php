@@ -35,6 +35,18 @@ return [
                     ],
                 ],
             ],
+            'CreateApiOperation' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/apis/*/versions/*}/operations',
+                'body' => 'api_operation',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateAttribute' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/attributes',
@@ -98,6 +110,17 @@ return [
             'DeleteApi' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/apis/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteApiOperation' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/apis/*/versions/*/operations/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -357,6 +380,22 @@ return [
                     'api.name' => [
                         'getters' => [
                             'getApi',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
+            'UpdateApiOperation' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{api_operation.name=projects/*/locations/*/apis/*/versions/*/operations/*}',
+                'body' => 'api_operation',
+                'placeholders' => [
+                    'api_operation.name' => [
+                        'getters' => [
+                            'getApiOperation',
                             'getName',
                         ],
                     ],

@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListMessageBusesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The parent collection to list triggers on.
+     * Required. The parent collection to list message buses on.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -55,7 +55,7 @@ class ListMessageBusesRequest extends \Google\Protobuf\Internal\Message
     protected $filter = '';
 
     /**
-     * @param string $parent Required. The parent collection to list triggers on. Please see
+     * @param string $parent Required. The parent collection to list message buses on. Please see
      *                       {@see EventarcClient::locationName()} for help formatting this field.
      *
      * @return \Google\Cloud\Eventarc\V1\ListMessageBusesRequest
@@ -75,7 +75,7 @@ class ListMessageBusesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The parent collection to list triggers on.
+     *           Required. The parent collection to list message buses on.
      *     @type int $page_size
      *           Optional. The maximum number of results to return on each page.
      *           Note: The service may send fewer.
@@ -100,7 +100,7 @@ class ListMessageBusesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent collection to list triggers on.
+     * Required. The parent collection to list message buses on.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -111,7 +111,7 @@ class ListMessageBusesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent collection to list triggers on.
+     * Required. The parent collection to list message buses on.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

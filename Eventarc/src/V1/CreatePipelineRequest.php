@@ -28,7 +28,8 @@ class CreatePipelineRequest extends \Google\Protobuf\Internal\Message
      */
     protected $pipeline = null;
     /**
-     * Required. The user-provided ID to be assigned to the Pipeline.
+     * Required. The user-provided ID to be assigned to the Pipeline. It should
+     * match the format `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`.
      *
      * Generated from protobuf field <code>string pipeline_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -45,7 +46,8 @@ class CreatePipelineRequest extends \Google\Protobuf\Internal\Message
      * @param string                             $parent     Required. The parent collection in which to add this pipeline. Please see
      *                                                       {@see EventarcClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\Eventarc\V1\Pipeline $pipeline   Required. The pipeline to create.
-     * @param string                             $pipelineId Required. The user-provided ID to be assigned to the Pipeline.
+     * @param string                             $pipelineId Required. The user-provided ID to be assigned to the Pipeline. It should
+     *                                                       match the format `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`.
      *
      * @return \Google\Cloud\Eventarc\V1\CreatePipelineRequest
      *
@@ -70,7 +72,8 @@ class CreatePipelineRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Eventarc\V1\Pipeline $pipeline
      *           Required. The pipeline to create.
      *     @type string $pipeline_id
-     *           Required. The user-provided ID to be assigned to the Pipeline.
+     *           Required. The user-provided ID to be assigned to the Pipeline. It should
+     *           match the format `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`.
      *     @type bool $validate_only
      *           Optional. If set, validate the request and preview the review, but do not
      *           post it.
@@ -144,7 +147,8 @@ class CreatePipelineRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The user-provided ID to be assigned to the Pipeline.
+     * Required. The user-provided ID to be assigned to the Pipeline. It should
+     * match the format `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`.
      *
      * Generated from protobuf field <code>string pipeline_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -155,7 +159,8 @@ class CreatePipelineRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The user-provided ID to be assigned to the Pipeline.
+     * Required. The user-provided ID to be assigned to the Pipeline. It should
+     * match the format `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`.
      *
      * Generated from protobuf field <code>string pipeline_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

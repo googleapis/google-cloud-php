@@ -20,21 +20,21 @@ class ResourcePolicyWorkloadPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string accelerator_topology = 389323203;</code>
      */
-    private $accelerator_topology = null;
+    protected $accelerator_topology = null;
     /**
      * Specifies the maximum distance between instances.
      * Check the MaxTopologyDistance enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string max_topology_distance = 7521706;</code>
      */
-    private $max_topology_distance = null;
+    protected $max_topology_distance = null;
     /**
      * Specifies the intent of the instance placement in the MIG.
      * Check the Type enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string type = 3575610;</code>
      */
-    private $type = null;
+    protected $type = null;
 
     /**
      * Constructor.

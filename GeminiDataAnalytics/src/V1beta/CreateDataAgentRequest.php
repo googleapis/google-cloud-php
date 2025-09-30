@@ -22,9 +22,9 @@ class CreateDataAgentRequest extends \Google\Protobuf\Internal\Message
      */
     protected $parent = '';
     /**
-     * Optional. Id of the requesting object.
-     * Must be unique within the parent.
+     * Optional. Id of the requesting object. Must be unique within the parent.
      * The allowed format is: `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`.
+     * If not provided, the server will auto-generate a value for the id.
      *
      * Generated from protobuf field <code>string data_agent_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -56,9 +56,9 @@ class CreateDataAgentRequest extends \Google\Protobuf\Internal\Message
      * @param string                                             $parent      Required. Value for parent. Please see
      *                                                                        {@see DataAgentServiceClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\GeminiDataAnalytics\V1beta\DataAgent $dataAgent   Required. The resource being created.
-     * @param string                                             $dataAgentId Optional. Id of the requesting object.
-     *                                                                        Must be unique within the parent.
+     * @param string                                             $dataAgentId Optional. Id of the requesting object. Must be unique within the parent.
      *                                                                        The allowed format is: `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`.
+     *                                                                        If not provided, the server will auto-generate a value for the id.
      *
      * @return \Google\Cloud\GeminiDataAnalytics\V1beta\CreateDataAgentRequest
      *
@@ -81,9 +81,9 @@ class CreateDataAgentRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. Value for parent.
      *     @type string $data_agent_id
-     *           Optional. Id of the requesting object.
-     *           Must be unique within the parent.
+     *           Optional. Id of the requesting object. Must be unique within the parent.
      *           The allowed format is: `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`.
+     *           If not provided, the server will auto-generate a value for the id.
      *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\DataAgent $data_agent
      *           Required. The resource being created.
      *     @type string $request_id
@@ -132,9 +132,9 @@ class CreateDataAgentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Id of the requesting object.
-     * Must be unique within the parent.
+     * Optional. Id of the requesting object. Must be unique within the parent.
      * The allowed format is: `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`.
+     * If not provided, the server will auto-generate a value for the id.
      *
      * Generated from protobuf field <code>string data_agent_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -145,9 +145,9 @@ class CreateDataAgentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Id of the requesting object.
-     * Must be unique within the parent.
+     * Optional. Id of the requesting object. Must be unique within the parent.
      * The allowed format is: `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`.
+     * If not provided, the server will auto-generate a value for the id.
      *
      * Generated from protobuf field <code>string data_agent_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

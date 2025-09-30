@@ -6,6 +6,7 @@ parameters:
         # Ignore deprecated classes
         - Core/src/Lock/SymfonyLockAdapter.php
         - Core/src/PhpArray.php
+        - Core/src/Batch/OpisClosureSerializer.php
         # Ignore Monolog3 for now, as these tests run using Monolog2
         - Logging/src/LogMessageProcessor/MonologV3MessageProcessor.php
         - Logging/src/LogMessageProcessor/MonologV3MessageProcessor.php

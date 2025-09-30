@@ -36,9 +36,8 @@ class DataQualityRule extends \Google\Protobuf\Internal\Message
     protected $ignore_null = false;
     /**
      * Required. The dimension a rule belongs to. Results are also aggregated at
-     * the dimension level. Supported dimensions are **["COMPLETENESS",
-     * "ACCURACY", "CONSISTENCY", "VALIDITY", "UNIQUENESS", "FRESHNESS",
-     * "VOLUME"]**
+     * the dimension level. Custom dimension name is supported with all uppercase
+     * letters and maximum length of 30 characters.
      *
      * Generated from protobuf field <code>string dimension = 502 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -123,9 +122,8 @@ class DataQualityRule extends \Google\Protobuf\Internal\Message
      *           * UniquenessExpectation
      *     @type string $dimension
      *           Required. The dimension a rule belongs to. Results are also aggregated at
-     *           the dimension level. Supported dimensions are **["COMPLETENESS",
-     *           "ACCURACY", "CONSISTENCY", "VALIDITY", "UNIQUENESS", "FRESHNESS",
-     *           "VOLUME"]**
+     *           the dimension level. Custom dimension name is supported with all uppercase
+     *           letters and maximum length of 30 characters.
      *     @type float $threshold
      *           Optional. The minimum ratio of **passing_rows / total_rows** required to
      *           pass this rule, with a range of [0.0, 1.0].
@@ -512,9 +510,8 @@ class DataQualityRule extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The dimension a rule belongs to. Results are also aggregated at
-     * the dimension level. Supported dimensions are **["COMPLETENESS",
-     * "ACCURACY", "CONSISTENCY", "VALIDITY", "UNIQUENESS", "FRESHNESS",
-     * "VOLUME"]**
+     * the dimension level. Custom dimension name is supported with all uppercase
+     * letters and maximum length of 30 characters.
      *
      * Generated from protobuf field <code>string dimension = 502 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -526,9 +523,8 @@ class DataQualityRule extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The dimension a rule belongs to. Results are also aggregated at
-     * the dimension level. Supported dimensions are **["COMPLETENESS",
-     * "ACCURACY", "CONSISTENCY", "VALIDITY", "UNIQUENESS", "FRESHNESS",
-     * "VOLUME"]**
+     * the dimension level. Custom dimension name is supported with all uppercase
+     * letters and maximum length of 30 characters.
      *
      * Generated from protobuf field <code>string dimension = 502 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

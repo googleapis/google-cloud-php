@@ -19,11 +19,11 @@ class RouterStatusResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
-    private $kind = null;
+    protected $kind = null;
     /**
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.RouterStatus result = 139315229;</code>
      */
-    private $result = null;
+    protected $result = null;
 
     /**
      * Constructor.

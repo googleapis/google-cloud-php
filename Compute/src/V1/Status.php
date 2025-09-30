@@ -20,7 +20,7 @@ class Status extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int32 code = 3059181;</code>
      */
-    private $code = null;
+    protected $code = null;
     /**
      * A list of messages that carry the error details. There is a common set of message types for APIs to use.
      *
@@ -32,7 +32,7 @@ class Status extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string message = 418054151;</code>
      */
-    private $message = null;
+    protected $message = null;
 
     /**
      * Constructor.

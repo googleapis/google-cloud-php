@@ -20,25 +20,25 @@ class AllocationResourceStatus extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.AllocationResourceStatusHealthInfo health_info = 235287729;</code>
      */
-    private $health_info = null;
+    protected $health_info = null;
     /**
      * The number of reservation blocks associated with this reservation.
      *
      * Generated from protobuf field <code>optional int32 reservation_block_count = 161835754;</code>
      */
-    private $reservation_block_count = null;
+    protected $reservation_block_count = null;
     /**
      * Maintenance information for this reservation
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.GroupMaintenanceInfo reservation_maintenance = 340607776;</code>
      */
-    private $reservation_maintenance = null;
+    protected $reservation_maintenance = null;
     /**
      * Allocation Properties of this reservation.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.AllocationResourceStatusSpecificSKUAllocation specific_sku_allocation = 196231151;</code>
      */
-    private $specific_sku_allocation = null;
+    protected $specific_sku_allocation = null;
 
     /**
      * Constructor.

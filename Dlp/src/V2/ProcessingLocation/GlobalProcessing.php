@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Processing will happen in the global region.
+ * Processing occurs in the global region.
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.ProcessingLocation.GlobalProcessing</code>
  */

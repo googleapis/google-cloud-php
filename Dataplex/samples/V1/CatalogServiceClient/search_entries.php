@@ -33,10 +33,10 @@ use Google\Cloud\Dataplex\V1\SearchEntriesResult;
  * Searches for Entries matching the given query and scope.
  *
  * @param string $formattedName The project to which the request should be attributed in the
- *                              following form: `projects/{project}/locations/{location}`. Please see
+ *                              following form: `projects/{project}/locations/global`. Please see
  *                              {@see CatalogServiceClient::locationName()} for help formatting this field.
  * @param string $query         The query against which entries in scope should be matched.
- *                              The query syntax is defined in [Search syntax for Dataplex
+ *                              The query syntax is defined in [Search syntax for Dataplex Universal
  *                              Catalog](https://cloud.google.com/dataplex/docs/search-syntax).
  */
 function search_entries_sample(string $formattedName, string $query): void

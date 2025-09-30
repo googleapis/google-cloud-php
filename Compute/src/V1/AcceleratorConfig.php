@@ -20,13 +20,13 @@ class AcceleratorConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int32 accelerator_count = 504879675;</code>
      */
-    private $accelerator_count = null;
+    protected $accelerator_count = null;
     /**
      * Full or partial URL of the accelerator type resource to attach to this instance. For example: projects/my-project/zones/us-central1-c/acceleratorTypes/nvidia-tesla-p100 If you are creating an instance template, specify only the accelerator name. See GPUs on Compute Engine for a full list of accelerator types.
      *
      * Generated from protobuf field <code>optional string accelerator_type = 138031246;</code>
      */
-    private $accelerator_type = null;
+    protected $accelerator_type = null;
 
     /**
      * Constructor.

@@ -18,11 +18,17 @@ use Google\Protobuf\Internal\GPBUtil;
 class ProcessingLocation extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Image processing will fall back using this configuration.
+     * Image processing falls back using this configuration.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.ProcessingLocation.ImageFallbackLocation image_fallback_location = 1;</code>
      */
     protected $image_fallback_location = null;
+    /**
+     * Document processing falls back using this configuration.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.ProcessingLocation.DocumentFallbackLocation document_fallback_location = 2;</code>
+     */
+    protected $document_fallback_location = null;
 
     /**
      * Constructor.
@@ -31,7 +37,9 @@ class ProcessingLocation extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Dlp\V2\ProcessingLocation\ImageFallbackLocation $image_fallback_location
-     *           Image processing will fall back using this configuration.
+     *           Image processing falls back using this configuration.
+     *     @type \Google\Cloud\Dlp\V2\ProcessingLocation\DocumentFallbackLocation $document_fallback_location
+     *           Document processing falls back using this configuration.
      * }
      */
     public function __construct($data = NULL) {
@@ -40,7 +48,7 @@ class ProcessingLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Image processing will fall back using this configuration.
+     * Image processing falls back using this configuration.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.ProcessingLocation.ImageFallbackLocation image_fallback_location = 1;</code>
      * @return \Google\Cloud\Dlp\V2\ProcessingLocation\ImageFallbackLocation|null
@@ -61,7 +69,7 @@ class ProcessingLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Image processing will fall back using this configuration.
+     * Image processing falls back using this configuration.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.ProcessingLocation.ImageFallbackLocation image_fallback_location = 1;</code>
      * @param \Google\Cloud\Dlp\V2\ProcessingLocation\ImageFallbackLocation $var
@@ -71,6 +79,42 @@ class ProcessingLocation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\ProcessingLocation\ImageFallbackLocation::class);
         $this->image_fallback_location = $var;
+
+        return $this;
+    }
+
+    /**
+     * Document processing falls back using this configuration.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.ProcessingLocation.DocumentFallbackLocation document_fallback_location = 2;</code>
+     * @return \Google\Cloud\Dlp\V2\ProcessingLocation\DocumentFallbackLocation|null
+     */
+    public function getDocumentFallbackLocation()
+    {
+        return $this->document_fallback_location;
+    }
+
+    public function hasDocumentFallbackLocation()
+    {
+        return isset($this->document_fallback_location);
+    }
+
+    public function clearDocumentFallbackLocation()
+    {
+        unset($this->document_fallback_location);
+    }
+
+    /**
+     * Document processing falls back using this configuration.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.ProcessingLocation.DocumentFallbackLocation document_fallback_location = 2;</code>
+     * @param \Google\Cloud\Dlp\V2\ProcessingLocation\DocumentFallbackLocation $var
+     * @return $this
+     */
+    public function setDocumentFallbackLocation($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\ProcessingLocation\DocumentFallbackLocation::class);
+        $this->document_fallback_location = $var;
 
         return $this;
     }

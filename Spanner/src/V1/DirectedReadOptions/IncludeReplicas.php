@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * An IncludeReplicas contains a repeated set of ReplicaSelection which
+ * An `IncludeReplicas` contains a repeated set of `ReplicaSelection` which
  * indicates the order in which replicas should be considered.
  *
  * Generated from protobuf message <code>google.spanner.v1.DirectedReadOptions.IncludeReplicas</code>
@@ -23,9 +23,9 @@ class IncludeReplicas extends \Google\Protobuf\Internal\Message
      */
     private $replica_selections;
     /**
-     * If true, Spanner will not route requests to a replica outside the
-     * include_replicas list when all of the specified replicas are unavailable
-     * or unhealthy. Default value is `false`.
+     * If `true`, Spanner doesn't route requests to a replica outside the
+     * <`include_replicas` list when all of the specified replicas are
+     * unavailable or unhealthy. Default value is `false`.
      *
      * Generated from protobuf field <code>bool auto_failover_disabled = 2;</code>
      */
@@ -40,9 +40,9 @@ class IncludeReplicas extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection>|\Google\Protobuf\Internal\RepeatedField $replica_selections
      *           The directed read replica selector.
      *     @type bool $auto_failover_disabled
-     *           If true, Spanner will not route requests to a replica outside the
-     *           include_replicas list when all of the specified replicas are unavailable
-     *           or unhealthy. Default value is `false`.
+     *           If `true`, Spanner doesn't route requests to a replica outside the
+     *           <`include_replicas` list when all of the specified replicas are
+     *           unavailable or unhealthy. Default value is `false`.
      * }
      */
     public function __construct($data = NULL) {
@@ -77,9 +77,9 @@ class IncludeReplicas extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If true, Spanner will not route requests to a replica outside the
-     * include_replicas list when all of the specified replicas are unavailable
-     * or unhealthy. Default value is `false`.
+     * If `true`, Spanner doesn't route requests to a replica outside the
+     * <`include_replicas` list when all of the specified replicas are
+     * unavailable or unhealthy. Default value is `false`.
      *
      * Generated from protobuf field <code>bool auto_failover_disabled = 2;</code>
      * @return bool
@@ -90,9 +90,9 @@ class IncludeReplicas extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If true, Spanner will not route requests to a replica outside the
-     * include_replicas list when all of the specified replicas are unavailable
-     * or unhealthy. Default value is `false`.
+     * If `true`, Spanner doesn't route requests to a replica outside the
+     * <`include_replicas` list when all of the specified replicas are
+     * unavailable or unhealthy. Default value is `false`.
      *
      * Generated from protobuf field <code>bool auto_failover_disabled = 2;</code>
      * @param bool $var

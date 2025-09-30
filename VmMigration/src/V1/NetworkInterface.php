@@ -16,31 +16,39 @@ use Google\Protobuf\Internal\GPBUtil;
 class NetworkInterface extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The network to connect the NIC to.
+     * Optional. The network to connect the NIC to.
      *
-     * Generated from protobuf field <code>string network = 1;</code>
+     * Generated from protobuf field <code>string network = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $network = '';
     /**
-     * The subnetwork to connect the NIC to.
+     * Optional. The subnetwork to connect the NIC to.
      *
-     * Generated from protobuf field <code>string subnetwork = 2;</code>
+     * Generated from protobuf field <code>string subnetwork = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $subnetwork = '';
     /**
-     * The internal IP to define in the NIC.
+     * Optional. The internal IP to define in the NIC.
      * The formats accepted are: `ephemeral` \ ipv4 address \ a named address
      * resource full path.
      *
-     * Generated from protobuf field <code>string internal_ip = 3;</code>
+     * Generated from protobuf field <code>string internal_ip = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $internal_ip = '';
     /**
-     * The external IP to define in the NIC.
+     * Optional. The external IP to define in the NIC.
      *
-     * Generated from protobuf field <code>string external_ip = 4;</code>
+     * Generated from protobuf field <code>string external_ip = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $external_ip = '';
+    /**
+     * Optional. The networking tier used for optimizing connectivity between
+     * instances and systems on the internet. Applies only for external ephemeral
+     * IP addresses. If left empty, will default to PREMIUM.
+     *
+     * Generated from protobuf field <code>.google.cloud.vmmigration.v1.ComputeEngineNetworkTier network_tier = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $network_tier = 0;
 
     /**
      * Constructor.
@@ -49,15 +57,19 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $network
-     *           The network to connect the NIC to.
+     *           Optional. The network to connect the NIC to.
      *     @type string $subnetwork
-     *           The subnetwork to connect the NIC to.
+     *           Optional. The subnetwork to connect the NIC to.
      *     @type string $internal_ip
-     *           The internal IP to define in the NIC.
+     *           Optional. The internal IP to define in the NIC.
      *           The formats accepted are: `ephemeral` \ ipv4 address \ a named address
      *           resource full path.
      *     @type string $external_ip
-     *           The external IP to define in the NIC.
+     *           Optional. The external IP to define in the NIC.
+     *     @type int $network_tier
+     *           Optional. The networking tier used for optimizing connectivity between
+     *           instances and systems on the internet. Applies only for external ephemeral
+     *           IP addresses. If left empty, will default to PREMIUM.
      * }
      */
     public function __construct($data = NULL) {
@@ -66,9 +78,9 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The network to connect the NIC to.
+     * Optional. The network to connect the NIC to.
      *
-     * Generated from protobuf field <code>string network = 1;</code>
+     * Generated from protobuf field <code>string network = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getNetwork()
@@ -77,9 +89,9 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The network to connect the NIC to.
+     * Optional. The network to connect the NIC to.
      *
-     * Generated from protobuf field <code>string network = 1;</code>
+     * Generated from protobuf field <code>string network = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -92,9 +104,9 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The subnetwork to connect the NIC to.
+     * Optional. The subnetwork to connect the NIC to.
      *
-     * Generated from protobuf field <code>string subnetwork = 2;</code>
+     * Generated from protobuf field <code>string subnetwork = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getSubnetwork()
@@ -103,9 +115,9 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The subnetwork to connect the NIC to.
+     * Optional. The subnetwork to connect the NIC to.
      *
-     * Generated from protobuf field <code>string subnetwork = 2;</code>
+     * Generated from protobuf field <code>string subnetwork = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -118,11 +130,11 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The internal IP to define in the NIC.
+     * Optional. The internal IP to define in the NIC.
      * The formats accepted are: `ephemeral` \ ipv4 address \ a named address
      * resource full path.
      *
-     * Generated from protobuf field <code>string internal_ip = 3;</code>
+     * Generated from protobuf field <code>string internal_ip = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getInternalIp()
@@ -131,11 +143,11 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The internal IP to define in the NIC.
+     * Optional. The internal IP to define in the NIC.
      * The formats accepted are: `ephemeral` \ ipv4 address \ a named address
      * resource full path.
      *
-     * Generated from protobuf field <code>string internal_ip = 3;</code>
+     * Generated from protobuf field <code>string internal_ip = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -148,9 +160,9 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The external IP to define in the NIC.
+     * Optional. The external IP to define in the NIC.
      *
-     * Generated from protobuf field <code>string external_ip = 4;</code>
+     * Generated from protobuf field <code>string external_ip = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getExternalIp()
@@ -159,9 +171,9 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The external IP to define in the NIC.
+     * Optional. The external IP to define in the NIC.
      *
-     * Generated from protobuf field <code>string external_ip = 4;</code>
+     * Generated from protobuf field <code>string external_ip = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -169,6 +181,36 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->external_ip = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The networking tier used for optimizing connectivity between
+     * instances and systems on the internet. Applies only for external ephemeral
+     * IP addresses. If left empty, will default to PREMIUM.
+     *
+     * Generated from protobuf field <code>.google.cloud.vmmigration.v1.ComputeEngineNetworkTier network_tier = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getNetworkTier()
+    {
+        return $this->network_tier;
+    }
+
+    /**
+     * Optional. The networking tier used for optimizing connectivity between
+     * instances and systems on the internet. Applies only for external ephemeral
+     * IP addresses. If left empty, will default to PREMIUM.
+     *
+     * Generated from protobuf field <code>.google.cloud.vmmigration.v1.ComputeEngineNetworkTier network_tier = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setNetworkTier($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\VMMigration\V1\ComputeEngineNetworkTier::class);
+        $this->network_tier = $var;
 
         return $this;
     }

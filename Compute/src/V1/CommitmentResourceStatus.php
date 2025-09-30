@@ -20,7 +20,7 @@ class CommitmentResourceStatus extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string custom_term_eligibility_end_timestamp = 363976187;</code>
      */
-    private $custom_term_eligibility_end_timestamp = null;
+    protected $custom_term_eligibility_end_timestamp = null;
 
     /**
      * Constructor.

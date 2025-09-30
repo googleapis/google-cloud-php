@@ -215,10 +215,6 @@ return [
                     ],
                 ],
             ],
-            'CreateConnectedSiteTag' => [
-                'callType' => \Google\ApiCore\Call::UNARY_CALL,
-                'responseType' => 'Google\Analytics\Admin\V1alpha\CreateConnectedSiteTagResponse',
-            ],
             'CreateConversionEvent' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Analytics\Admin\V1alpha\ConversionEvent',
@@ -515,10 +511,6 @@ return [
                     ],
                 ],
             ],
-            'DeleteConnectedSiteTag' => [
-                'callType' => \Google\ApiCore\Call::UNARY_CALL,
-                'responseType' => 'Google\Protobuf\GPBEmpty',
-            ],
             'DeleteConversionEvent' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Protobuf\GPBEmpty',
@@ -722,14 +714,6 @@ return [
                         ],
                     ],
                 ],
-            ],
-            'FetchAutomatedGa4ConfigurationOptOut' => [
-                'callType' => \Google\ApiCore\Call::UNARY_CALL,
-                'responseType' => 'Google\Analytics\Admin\V1alpha\FetchAutomatedGa4ConfigurationOptOutResponse',
-            ],
-            'FetchConnectedGa4Property' => [
-                'callType' => \Google\ApiCore\Call::UNARY_CALL,
-                'responseType' => 'Google\Analytics\Admin\V1alpha\FetchConnectedGa4PropertyResponse',
             ],
             'GetAccessBinding' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
@@ -1055,6 +1039,18 @@ return [
                     ],
                 ],
             ],
+            'GetReportingIdentitySettings' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Analytics\Admin\V1alpha\ReportingIdentitySettings',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetRollupPropertySourceLink' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Analytics\Admin\V1alpha\RollupPropertySourceLink',
@@ -1258,10 +1254,6 @@ return [
                         ],
                     ],
                 ],
-            ],
-            'ListConnectedSiteTags' => [
-                'callType' => \Google\ApiCore\Call::UNARY_CALL,
-                'responseType' => 'Google\Analytics\Admin\V1alpha\ListConnectedSiteTagsResponse',
             ],
             'ListConversionEvents' => [
                 'pageStreaming' => [
@@ -1707,10 +1699,6 @@ return [
                     ],
                 ],
             ],
-            'SetAutomatedGa4ConfigurationOptOut' => [
-                'callType' => \Google\ApiCore\Call::UNARY_CALL,
-                'responseType' => 'Google\Analytics\Admin\V1alpha\SetAutomatedGa4ConfigurationOptOutResponse',
-            ],
             'SubmitUserDeletion' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Analytics\Admin\V1alpha\SubmitUserDeletionResponse',
@@ -2120,6 +2108,7 @@ return [
                 'property' => 'properties/{property}',
                 'propertyAccessBinding' => 'properties/{property}/accessBindings/{access_binding}',
                 'reportingDataAnnotation' => 'properties/{property}/reportingDataAnnotations/{reporting_data_annotation}',
+                'reportingIdentitySettings' => 'properties/{property}/reportingIdentitySettings',
                 'rollupPropertySourceLink' => 'properties/{property}/rollupPropertySourceLinks/{rollup_property_source_link}',
                 'sKAdNetworkConversionValueSchema' => 'properties/{property}/dataStreams/{data_stream}/sKAdNetworkConversionValueSchema/{skadnetwork_conversion_value_schema}',
                 'searchAds360Link' => 'properties/{property}/searchAds360Links/{search_ads_360_link}',
