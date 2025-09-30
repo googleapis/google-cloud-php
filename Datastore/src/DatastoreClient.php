@@ -562,7 +562,11 @@ class DatastoreClient
      * @see https://cloud.google.com/datastore/reference/rest/v1/projects/allocateIds allocateIds
      *
      * @param Key[] $keys The incomplete keys.
-     * @param array $options [optional] Configuration options.
+     * @param array $options [optional] {
+     *      Configuration Options.
+     *
+     *      string $databaseId The ID of the database against which to make the request.
+     * }.
      * @return Key[]
      */
     public function allocateIds(array $keys, array $options = [])

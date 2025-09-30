@@ -307,7 +307,11 @@ class Operation
      *
      * @param array $transactionOptions
      *        [Transaction Options](https://cloud.google.com/datastore/docs/reference/data/rest/v1/projects/beginTransaction#TransactionOptions)
-     * @param array $options Configuration options.
+     * @param array $options {
+     *      Configuration Options.
+     *
+     *      string $databaseId The ID of the database against which to make the request.
+     * }
      * @return string
      */
     public function beginTransaction($transactionOptions, array $options = [])
@@ -315,12 +319,23 @@ class Operation
         $protoTransactionOptions = new TransactionOptions();
         $protoTransactionOptions->mergeFromJsonString(json_encode($transactionOptions));
 
-        $beginTransactionRequest = (new BeginTransactionRequest())
-            ->setProjectId($this->projectId)
-            ->setDatabaseId($options['databaseId'] ?? $this->databaseId)
-            ->setTransactionOptions($protoTransactionOptions);
+        $requestOptions = [
+            'databaseId' => $options['databaseId'] ?? $this->databaseId,
+            'projectId' => $this->projectId,
+            'transactionOptions' => $transactionOptions
+        ] + $options;
 
-        $res = $this->gapicClient->beginTransaction($beginTransactionRequest, $options);
+        /**
+         * @var BegintransactionRequest $beginTransactionRequest
+         * @var CallOptions $callOptions
+         */
+        [$beginTransactionRequest, $callOptions] = $this->validateOptions(
+            $requestOptions,
+            new BeginTransactionRequest(),
+            CallOptions::class
+        );
+
+        $res = $this->gapicClient->beginTransaction($beginTransactionRequest, $callOptions);
 
         return base64_encode($res->getTransaction());
     }
@@ -336,7 +351,11 @@ class Operation
      * @see https://cloud.google.com/datastore/reference/rest/v1/projects/allocateIds allocateIds
      *
      * @param Key[] $keys The incomplete keys.
-     * @param array $options [optional] Configuration Options.
+     * @param array $options [optional] {
+     *     Configuration Options
+     *
+     *     @type string $databaseId The ID of the database against which to make the request.
+     * }.
      * @return Key[]
      * @throws \InvalidArgumentException
      */
@@ -356,19 +375,29 @@ class Operation
             }
         });
 
+        $requestOptions = [
+            'projectId' => $this->projectId,
+            'databaseId' => $options['databaseId'] ?? $this->databaseId,
+        ] + $options;
+
         $serviceKeys = [];
         foreach ($keys as $key) {
-            $keyMessage = new protobufKey();
-            $keyMessage->mergeFromJsonString(json_encode($key->keyObject()));
-            $serviceKeys[] = $keyMessage;
+            $serviceKeys[] = $key->keyObject();
         }
 
-        $request = (new AllocateIdsRequest())
-            ->setProjectId($this->projectId)
-            ->setDatabaseId($options['databaseId'] ?? $this->databaseId)
-            ->setKeys($serviceKeys);
+        $requestOptions['keys'] = $serviceKeys;
 
-        $allocateIdsResponse = $this->gapicClient->allocateIds($request, $options);
+        /**
+         * @var AllocateIdsRequest $allocateIdsRequest
+         * @var CallOptions $callOptions
+         */
+        [$allocateIdsRequest, $callOptions] = $this->validateOptions(
+            $requestOptions,
+            new AllocateIdsRequest(),
+            CallOptions::class
+        );
+
+        $allocateIdsResponse = $this->gapicClient->allocateIds($allocateIdsRequest, $callOptions);
 
         /** @var protobufKey $responseKey */
         foreach ($allocateIdsResponse->getKeys() as $index => $responseKey) {
@@ -415,9 +444,12 @@ class Operation
      */
     public function lookup(array $keys, array $options = [])
     {
+        $className = $this->pluck('className', $options, false) ?? Entity::class;
+        $sort = $this->pluck('sort', $options, false) ?? false;
+
         $options += [
-            'className' => Entity::class,
-            'sort' => false
+            'databaseId' => $options['databaseId'] ?? $this->databaseId,
+            'projectId' => $this->projectId,
         ];
 
         $serviceKeys = [];
@@ -430,18 +462,35 @@ class Operation
                 ));
             }
 
-            $protobufKey = new protobufKey();
-            $protobufKey->mergeFromJsonString(json_encode($key->keyObject()));
-            $serviceKeys[] = $protobufKey;
+            $serviceKeys[] = $key->keyObject();
         });
+        $options['keys'] = $serviceKeys;
 
-        $lookupRequest = (new LookupRequest())
-            ->setDatabaseId($options['databaseId'] ?? $this->databaseId)
-            ->setProjectId($this->projectId)
-            ->setKeys($serviceKeys)
-            ->setReadOptions($this->createReadOptions($options));
+        $readOptions = $this->createReadOptions($this->pluckArray(
+            [
+                'readConsistency',
+                'transaction',
+                'readTime'
+            ],
+            $options,
+            false
+        ));
 
-        $lookupResponse = $this->gapicClient->lookup($lookupRequest, $options);
+        /**
+         * @var LookupRequest $lookupRequest
+         * @var CallOptions $callOptions
+         */
+        [$lookupRequest, $callOptions] = $this->validateOptions(
+            $options,
+            new LookupRequest(),
+            CallOptions::class
+        );
+
+        if ($readOptions) {
+            $lookupRequest->setReadOptions($readOptions);
+        }
+
+        $lookupResponse = $this->gapicClient->lookup($lookupRequest, $callOptions);
 
         $result = [
             'result' => [],
@@ -452,11 +501,11 @@ class Operation
         /** @var protoEntity $found */
         foreach ($lookupResponse->getFound() as $found) {
             $result['found'][] = $this->mapEntityResult(
-                $this->serializer->encodeMessage($found), $options['className']
+                $this->serializer->encodeMessage($found), $className
             );
         }
 
-        if ($options['sort']) {
+        if (!empty($sort)) {
             $result['found'] = $this->sortEntities($result['found'], $keys);
         }
 
@@ -504,8 +553,8 @@ class Operation
      */
     public function runQuery(QueryInterface $query, array $options = [])
     {
+        $className = $this->pluck('className', $options, false) ??  Entity::class;
         $options += [
-            'className' => Entity::class,
             'namespaceId' => $this->namespaceId,
             'databaseId' => $this->databaseId,
         ];
@@ -548,24 +597,49 @@ class Operation
                 $requestQueryArr['limit'] = $remainingLimit;
             }
 
+            $readOptions = $this->createReadOptions($this->pluckArray(
+                [
+                    'readConsistency',
+                    'transaction',
+                    'readTime'
+                ],
+                $options
+            ));
+
+            $databaseId = $this->pluck('databaseId', $options);
+
             $request = [
+                'databaseId' => $databaseId,
                 'projectId' => $this->projectId,
                 'partitionId' => $this->partitionId(
                     $this->projectId,
-                    $options['namespaceId'],
-                    $options['databaseId']
+                    $this->pluck('namespaceId', $options),
+                    $databaseId
                 ),
                 $runQueryObj->queryKey() => $requestQueryArr,
-            ] + $this->readOptions($options) + $options;
+            ] + $options;
 
-            $runQueryRequest = new RunQueryRequest();
+            $explainOptions = $this->pluck('explainOptions', $request, false);
 
-            if (isset($request['explainOptions'])) {
-                $runQueryRequest->setExplainOptions($request['explainOptions']);
+            /**
+             * @var RunQueryRequest $runQueryRequest
+             * @var CallOptions $callOptions
+             */
+            [$runQueryRequest, $callOptions] = $this->validateOptions(
+                $request,
+                new RunQueryRequest(),
+                CallOptions::class
+            );
+
+            if (!empty($explainOptions)) {
+                $runQueryRequest->setExplainOptions($explainOptions);
             }
 
-            $runQueryRequest->mergeFromJsonString(json_encode($request), true);
-            $runQueryResponse = $this->gapicClient->runQuery($runQueryRequest);
+            if (!empty($readOptions)) {
+                $runQueryRequest->setReadOptions($readOptions);
+            }
+
+            $runQueryResponse = $this->gapicClient->runQuery($runQueryRequest, $callOptions);
 
             $res = $this->serializer->encodeMessage($runQueryResponse);
 
@@ -596,8 +670,8 @@ class Operation
 
         return new EntityIterator(
             new EntityPageIterator(
-                function (array $entityResult) use ($options) {
-                    return $this->mapEntityResult($entityResult, $options['className']);
+                function (array $entityResult) use ($className) {
+                    return $this->mapEntityResult($entityResult, $className);
                 },
                 $runQueryFn,
                 [],
@@ -627,37 +701,53 @@ class Operation
     public function runAggregationQuery(AggregationQuery $runQueryObj, array $options = [])
     {
         $options += [
-            'namespaceId' => $this->namespaceId,
-            'databaseId' => $this->databaseId,
-        ];
-
-        $args = [
-            'query' => [],
-        ];
-        $requestQueryArr = $args['query'] + $runQueryObj->queryObject();
-        $request = [
             'projectId' => $this->projectId,
+            'databaseId' => $this->databaseId,
             'partitionId' => $this->partitionId(
                 $this->projectId,
-                $options['namespaceId'],
-                $options['databaseId']
+                $this->namespaceId,
+                $this->databaseId
             ),
-        ] + $requestQueryArr + $this->readOptions($options) + $options;
+        ] + $runQueryObj->queryObject();
 
-        $runAggregationQueryRequest = new RunAggregationQueryRequest();
+        $pluckedReadOptions = $this->pluckArray(
+            [
+                'readConsistency',
+                'transaction',
+                'readTime'
+            ],
+            $options
+        );
 
-        if (isset($options['explainOptions'])) {
-            if (!$options['explainOptions'] instanceof ExplainOptions) {
+        /**
+         * @var RunAggregationQueryRequest $runAggregationQueryRequest
+         * @var CallOptions $callOptions
+         */
+        [$runAggregationQueryRequest, $callOptions] = $this->validateOptions(
+            $options,
+            new RunAggregationQueryRequest(),
+            CallOptions::class
+        );
+
+        // Setting the readOptions as validateOptions is not able to serialize a Message type
+        $explainOptions = $this->pluck('explainOptions', $options, false);
+        if (!empty($explainOptions)) {
+            if (!$explainOptions instanceof ExplainOptions) {
                 throw new InvalidArgumentException(
                     'The explainOptions option needs to be an instance of the ExplainOptions class'
                 );
             }
 
-            $runAggregationQueryRequest->setExplainOptions($options['explainOptions']);
+            $runAggregationQueryRequest->setExplainOptions($explainOptions);
         }
 
-        $runAggregationQueryRequest->mergeFromJsonString(json_encode($request), true);
-        $runAggregationQueryResponse = $this->gapicClient->runAggregationQuery($runAggregationQueryRequest, $options);
+        $readOptions = $this->createReadOptions($pluckedReadOptions);
+
+        if (!empty($readOptions)) {
+            $runAggregationQueryRequest->setReadOptions($readOptions);
+        }
+
+        $runAggregationQueryResponse = $this->gapicClient->runAggregationQuery($runAggregationQueryRequest, $callOptions);
 
         $res = $this->serializer->encodeMessage($runAggregationQueryResponse);
 
@@ -900,42 +990,6 @@ class Operation
             'populatedByService' => true,
             'excludeFromIndexes' => $excludes,
             'meanings' => $meanings,
-        ]);
-    }
-
-    /**
-     * Format the readOptions
-     *
-     * @param array $options [optional] {
-     *      Read Options
-     *
-     *      @type string $transaction If set, query or lookup will run in transaction.
-     *      @type string $readConsistency See
-     *           [ReadConsistency](https://cloud.google.com/datastore/reference/rest/v1/ReadOptions#ReadConsistency).
-     *      @type Timestamp $readTime Reads entities as they were at the given timestamp.
-     * }
-     * @return array
-     */
-    private function readOptions(array $options = [])
-    {
-        $options += [
-            'readConsistency' => null,
-            'transaction' => null,
-            'readTime' => null
-        ];
-
-        $readOptions = array_filter([
-            'readConsistency' => $options['readConsistency'],
-            'transaction' => $options['transaction'],
-            'readTime' => $options['readTime']
-        ]);
-
-        if (count($readOptions) > 1) {
-            throw new InvalidArgumentException('ReadOptions can only be one of `readConsistency`, `transaction` or `readTime`.');
-        }
-
-        return array_filter([
-            'readOptions' => $readOptions,
         ]);
     }
 
