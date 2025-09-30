@@ -23,19 +23,48 @@ use Google\ApiCore\Serializer;
 use Google\Protobuf\Internal\Message;
 use LogicException;
 
+/**
+ * Helper used to validate options
+ *
+ * @internal
+ */
 class OptionsValidator
 {
     use ArrayTrait;
 
+    /**
+     * @param ?Serializer $serializer use a serializer to decode protobuf messages
+     *        instead of calling {@see Message::mergeFromJsonString()}.
+     */
     public function __construct(private ?Serializer $serializer = null)
     {
     }
 
     /**
-     * Helper method used to validate optons based on the supplied $optionTypes
+     * Validate an array of options based on the supplied `$optionTypes`.
      * $optionTypes can be an array of string keys, a protobuf Message classname, or a
      * the CallOptions classname. Parameters are split and returned in the order
      * that the options types are provided.
+     *
+     *  - If the option type is an array, any keys in $options matching the string values
+     *    of the array are returned.
+     *  - If the option type is {@see Message}, any keys matching getters will be set on the message.
+     *  - If the option type is string, and that string is a valid {@see CallOptions} option, those
+     *    options will be returned in an array
+     *
+     * ```
+     * [$customOps, $commitRequest, $callOptions] = $optionsValidator->vaidateOptions(
+     *     $options,
+     *     ['customOp1', 'customOp2'],
+     *     new CommitRequest(),
+     *     CallOptions::class,
+     * );
+     * ```
+     *
+     * @param array $options
+     * @param array|Message|string ...$optionTypes
+     * @return array
+     * @throws LogicException when a value exists which is not supported by any of the `$optionTypes`.
      */
     public function validateOptions(array $options, array|Message|string ...$optionTypes): array
     {
