@@ -1,5 +1,189 @@
 # Changelog
 
+## 0.303.0
+
+<details><summary>google/cloud-ai-platform 1.39.0</summary>
+
+
+
+### Features
+
+* [AiPlatform] add DeploymentTier enum to DeployedIndex ([#8622](https://github.com/googleapis/google-cloud-php/issues/8622)) ([fa7aed4](https://github.com/googleapis/google-cloud-php/commit/fa7aed4c695e77b1a805a55ee0d07bf97f100c4a))
+* [AiPlatform] Add enable_widget option in Google Maps and additional grounding information ([#8619](https://github.com/googleapis/google-cloud-php/issues/8619)) ([ecdcc10](https://github.com/googleapis/google-cloud-php/commit/ecdcc1037a482783cfe745dcbd0c2bf695fcd0e0))
+
+
+### Documentation
+
+* Remove legacy internal lint directives ([ecdcc10](https://github.com/googleapis/google-cloud-php/commit/ecdcc1037a482783cfe745dcbd0c2bf695fcd0e0))
+
+</details>
+
+<details><summary>google/cloud-alloydb 1.6.0</summary>
+
+
+
+### Features
+
+* [AlloyDb] add CRUD APIs on Databases ([#8621](https://github.com/googleapis/google-cloud-php/issues/8621)) ([0e07e30](https://github.com/googleapis/google-cloud-php/commit/0e07e30581c7ef7aa7b920a674e58ad7db6d5f28))
+
+</details>
+
+<details><summary>google/cloud-bigquery 1.34.2</summary>
+
+
+
+### Bug Fixes
+
+* Mark all keyFile and keyFilePath options deprecated ([#8617](https://github.com/googleapis/google-cloud-php/issues/8617)) ([5776416](https://github.com/googleapis/google-cloud-php/commit/5776416198168da4445afdc4f461c5888e026d37))
+
+</details>
+
+<details><summary>google/cloud-bigtable 2.19.1</summary>
+
+
+
+### Bug Fixes
+
+* Mark all keyFile and keyFilePath options deprecated ([#8617](https://github.com/googleapis/google-cloud-php/issues/8617)) ([5776416](https://github.com/googleapis/google-cloud-php/commit/5776416198168da4445afdc4f461c5888e026d37))
+
+</details>
+
+<details><summary>google/cloud-compute 2.1.0</summary>
+
+
+
+### Features
+
+* [Compute] Update Compute Engine v1 API to revision 20250909 ([#8623](https://github.com/googleapis/google-cloud-php/issues/8623)) ([4c0fb49](https://github.com/googleapis/google-cloud-php/commit/4c0fb4963ee4c0a961caa39e661b3285ab363701))
+
+</details>
+
+<details><summary>google/cloud-core 1.65.0</summary>
+
+
+
+### Features
+
+* **Core:** ApiHelperTrait::validateOptions ([54ffea3](https://github.com/googleapis/google-cloud-php/commit/54ffea3ff343a621b465ea284d18134784c07ef2))
+* Support ops/closure v4 ([#8559](https://github.com/googleapis/google-cloud-php/issues/8559)) ([eb38bb7](https://github.com/googleapis/google-cloud-php/commit/eb38bb7e5068e732dbf42e140d7b85af54646cca))
+
+
+### Bug Fixes
+
+* Mark all keyFile and keyFilePath options deprecated ([#8617](https://github.com/googleapis/google-cloud-php/issues/8617)) ([5776416](https://github.com/googleapis/google-cloud-php/commit/5776416198168da4445afdc4f461c5888e026d37))
+
+</details>
+
+<details><summary>google/cloud-dataproc 2.8.0</summary>
+
+
+
+### Features
+
+* [Dataproc] Added support for JUPYTER_KERNEL_GATEWAY component ([#8618](https://github.com/googleapis/google-cloud-php/issues/8618)) ([722181a](https://github.com/googleapis/google-cloud-php/commit/722181ae2b2bf1193c52ef6852ca54577824b739))
+
+</details>
+
+<details><summary>google/cloud-datastore 1.34.1</summary>
+
+
+
+### Bug Fixes
+
+* Mark all keyFile and keyFilePath options deprecated ([#8617](https://github.com/googleapis/google-cloud-php/issues/8617)) ([5776416](https://github.com/googleapis/google-cloud-php/commit/5776416198168da4445afdc4f461c5888e026d37))
+
+</details>
+
+<details><summary>google/cloud-error-reporting 0.25.0</summary>
+
+
+
+### Features
+
+* Support ops/closure v4 ([#8559](https://github.com/googleapis/google-cloud-php/issues/8559)) ([eb38bb7](https://github.com/googleapis/google-cloud-php/commit/eb38bb7e5068e732dbf42e140d7b85af54646cca))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.54.1</summary>
+
+
+
+### Bug Fixes
+
+* Mark all keyFile and keyFilePath options deprecated ([#8617](https://github.com/googleapis/google-cloud-php/issues/8617)) ([5776416](https://github.com/googleapis/google-cloud-php/commit/5776416198168da4445afdc4f461c5888e026d37))
+
+</details>
+
+<details><summary>google/cloud-logging 1.34.0</summary>
+
+
+
+### Features
+
+* Support ops/closure v4 ([#8559](https://github.com/googleapis/google-cloud-php/issues/8559)) ([eb38bb7](https://github.com/googleapis/google-cloud-php/commit/eb38bb7e5068e732dbf42e140d7b85af54646cca))
+
+
+### Bug Fixes
+
+* Mark all keyFile and keyFilePath options deprecated ([#8617](https://github.com/googleapis/google-cloud-php/issues/8617)) ([5776416](https://github.com/googleapis/google-cloud-php/commit/5776416198168da4445afdc4f461c5888e026d37))
+
+</details>
+
+<details><summary>google/cloud-pubsub 2.15.0</summary>
+
+
+
+### Features
+
+* [PubSub] support the protocol version in StreamingPullRequest ([#8624](https://github.com/googleapis/google-cloud-php/issues/8624)) ([7874b57](https://github.com/googleapis/google-cloud-php/commit/7874b574b61d789b61d44dbd397b8ec52aacb2b9))
+
+
+### Bug Fixes
+
+* Mark all keyFile and keyFilePath options deprecated ([#8617](https://github.com/googleapis/google-cloud-php/issues/8617)) ([5776416](https://github.com/googleapis/google-cloud-php/commit/5776416198168da4445afdc4f461c5888e026d37))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.105.1</summary>
+
+
+
+### Bug Fixes
+
+* Mark all keyFile and keyFilePath options deprecated ([#8617](https://github.com/googleapis/google-cloud-php/issues/8617)) ([5776416](https://github.com/googleapis/google-cloud-php/commit/5776416198168da4445afdc4f461c5888e026d37))
+
+</details>
+
+<details><summary>google/cloud-storage 1.48.4</summary>
+
+
+
+### Bug Fixes
+
+* Mark all keyFile and keyFilePath options deprecated ([#8617](https://github.com/googleapis/google-cloud-php/issues/8617)) ([5776416](https://github.com/googleapis/google-cloud-php/commit/5776416198168da4445afdc4f461c5888e026d37))
+
+</details>
+
+<details><summary>google/cloud-text-to-speech 2.5.0</summary>
+
+
+
+### Features
+
+* [TextToSpeech] add Gemini TTS Multispeaker API fields ([#8615](https://github.com/googleapis/google-cloud-php/issues/8615)) ([4fe529d](https://github.com/googleapis/google-cloud-php/commit/4fe529d3dd43bf7f36d127094d29daa36460f70b))
+
+</details>
+
+<details><summary>google/cloud-trace 1.9.1</summary>
+
+
+
+### Bug Fixes
+
+* Mark all keyFile and keyFilePath options deprecated ([#8617](https://github.com/googleapis/google-cloud-php/issues/8617)) ([5776416](https://github.com/googleapis/google-cloud-php/commit/5776416198168da4445afdc4f461c5888e026d37))
+
+</details>
+
 ## 0.302.0
 
 <details><summary>google/cloud-access-approval: 2.1.0</summary>
