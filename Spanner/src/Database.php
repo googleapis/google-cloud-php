@@ -51,6 +51,7 @@ use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Google\Cloud\Spanner\V1\Mutation;
 use Google\Cloud\Spanner\V1\Mutation\Delete;
 use Google\Cloud\Spanner\V1\Mutation\Write;
+use Google\Cloud\Spanner\V1\TransactionOptions\IsolationLevel;
 use Google\Cloud\Spanner\V1\TypeCode;
 use Google\LongRunning\ListOperationsRequest;
 use Google\LongRunning\Operation as OperationProto;
@@ -59,6 +60,7 @@ use Google\Protobuf\Struct;
 use Google\Protobuf\Value;
 use Google\Rpc\Code;
 use Psr\Cache\CacheItemPoolInterface;
+use InvalidArgumentException;
 
 /**
  * Represents a Cloud Spanner Database.
@@ -123,6 +125,7 @@ class Database
     private bool $returnInt64AsObject;
     private CacheItemPoolInterface $cacheItemPool;
     private array $info;
+    private int $isolationLevel;
 
     private const MUTATION_SETTERS = [
         'insert' => 'setInsert',
@@ -131,6 +134,7 @@ class Database
         'replace' => 'setReplace',
         'delete' => 'setDelete'
     ];
+
 
     /**
      * Create an object representing a Database.
@@ -156,6 +160,8 @@ class Database
      *     @type string $databaseRole The user created database role which
      *         creates the session.
      *     @type array $database The database info.
+     *     @type int $isolationLevel The level of Isolation for the transactions executed by this Client's instance.
+     *         **Defaults to** IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED
      * }
      */
     public function __construct(
@@ -187,6 +193,8 @@ class Database
 
         $this->optionsValidator = new OptionsValidator($serializer);
         $this->directedReadOptions = $instance->directedReadOptions();
+        $this->returnInt64AsObject = $returnInt64AsObject;
+        $this->isolationLevel = $options['isolationLevel'] ?? IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED;
     }
 
     /**
@@ -802,6 +810,8 @@ class Database
      *           Session labels may be applied using the `labels` key.
      *     @type string $tag A transaction tag. Requests made using this transaction will
      *           use this as the transaction tag.
+     *     @type int $isolationLevel The level of Isolation for the transactions executed by this Client's instance.
+     *           **Defaults to** IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED
      * }
      * @return Transaction
      * @throws \BadMethodCallException If attempting to call this method within
@@ -813,7 +823,9 @@ class Database
             throw new \BadMethodCallException('Nested transactions are not supported by this client.');
         }
 
-        $options['transactionOptions'] = $this->initReadWriteTransactionOptions();
+        $options['transactionOptions'] = $this->configureReadWriteTransactionOptions([
+            'isolationLevel' => $options['isolationLevel'] ?? $this->isolationLevel
+        ]);
 
         return $this->operation->transaction($this->session, $options);
     }
@@ -899,6 +911,9 @@ class Database
      *           Session labels may be applied using the `labels` key.
      *     @type string $tag A transaction tag. Requests made using this transaction will
      *           use this as the transaction tag.
+     *     @type array transactionOptions Options for the transaction.
+     *           {@see \Google\Cloud\Spanner\V1\TransactionOptions}
+     *           for available options
      * }
      * @return mixed The return value of `$operation`.
      * @throws \RuntimeException If a transaction is not committed or rolled back.
@@ -913,7 +928,12 @@ class Database
         $retrySettings = $options['retrySettings'] ?? ['maxRetries' => self::MAX_RETRIES];
         $maxRetries = $retrySettings instanceof RetrySettings
             ? $retrySettings->getMaxRetries()
-            : $retrySettings['maxRetries'];
+	    : $retrySettings['maxRetries'];
+        
+
+        if (!isset($options['transactionOptions']['isolationLevel'])) {
+            $options['transactionOptions']['isolationLevel'] = $this->isolationLevel;
+        }
 
         // Configure necessary readWrite nested and base options
         $options['transactionOptions'] = $this->configureReadWriteTransactionOptions(
@@ -924,6 +944,10 @@ class Database
         $startTransactionFn = function ($options) use (&$attempt) {
             // Initial attempt requires to set `begin` options (ILB).
             if ($attempt === 0) {
+                if (!isset($options['transactionOptions']['isolationLevel'])) {
+                    $options['transactionOptions']['isolationLevel'] = IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED;
+                }
+
                 // Partitioned DML does not support ILB.
                 if (!isset($options['transactionOptions']['partitionedDml'])) {
                     $options['begin'] = $options['transactionOptions'];
@@ -1614,7 +1638,7 @@ class Database
      *           timestamp.
      *     @type Duration $exactStaleness Represents a number of seconds. Executes
      *           all reads at a timestamp that is $exactStaleness old.
-     *     @type bool $begin If true, will begin a new transaction. If a
+     *     @type bool|array $begin If true, will begin a new transaction. If a
      *           read/write transaction is desired, set the value of
      *           $transactionType. If a transaction or snapshot is created, it
      *           will be returned as `$result->transaction()` or
@@ -1664,6 +1688,10 @@ class Database
             $options['transaction'],
             $options['transactionContext']
         ) = $this->transactionSelector($options);
+
+        if (isset($options['transaction']['readWrite'])) {
+            $options['transaction']['begin']['isolationLevel'] ??= $this->isolationLevel;
+        }
 
         $options['directedReadOptions'] = $this->configureDirectedReadOptions(
             $options,
@@ -1890,19 +1918,23 @@ class Database
     public function executePartitionedUpdate($statement, array $options = []): int
     {
         unset($options['requestOptions']['transactionTag']);
+        if (isset($options['transactionOptions']['isolationLevel'])) {
+            throw new InvalidArgumentException('Partitioned DML cannot be configured with an isolation level');
+        }
 
         $beginTransactionOptions = [
             'transactionOptions' => [
                 'partitionedDml' => [],
             ]
         ];
+
         if (isset($options['transactionOptions']['excludeTxnFromChangeStreams'])) {
             $beginTransactionOptions['transactionOptions']['excludeTxnFromChangeStreams'] =
                 $options['transactionOptions']['excludeTxnFromChangeStreams'];
             unset($options['transactionOptions']);
         }
-        $transaction = $this->operation->transaction($this->session, $beginTransactionOptions);
 
+        $transaction = $this->operation->transaction($this->session, $beginTransactionOptions);
         return $this->operation->executeUpdate($this->session, $transaction, $statement, [
             'statsItem' => 'rowCountLowerBound',
             'route-to-leader' => true,

@@ -61,6 +61,7 @@ use Google\Cloud\Spanner\V1\ResultSetStats;
 use Google\Cloud\Spanner\V1\RollbackRequest;
 use Google\Cloud\Spanner\V1\Session;
 use Google\Cloud\Spanner\V1\Transaction as TransactionProto;
+use Google\Cloud\Spanner\V1\TransactionOptions\IsolationLevel;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\ListOperationsResponse;
 use Google\LongRunning\Operation;
@@ -490,6 +491,10 @@ class DatabaseTest extends SnippetTestCase
                 $this->assertEquals(
                     $this->serializer->encodeMessage($request)['transaction']['begin']['readWrite'],
                     ['readLockMode' => 0, 'multiplexedSessionPreviousTransactionId' => '']
+                );
+                $this->assertEquals(
+                    $this->serializer->encodeMessage($request)['transaction']['begin']['isolationLevel'],
+                    IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED
                 );
                 return true;
             }),

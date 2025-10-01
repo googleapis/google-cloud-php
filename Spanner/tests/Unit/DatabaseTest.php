@@ -73,6 +73,7 @@ use Google\Cloud\Spanner\V1\Session;
 use Google\Cloud\Spanner\V1\StructType;
 use Google\Cloud\Spanner\V1\StructType\Field;
 use Google\Cloud\Spanner\V1\Transaction as TransactionProto;
+use Google\Cloud\Spanner\V1\TransactionOptions\IsolationLevel;
 use Google\Cloud\Spanner\V1\TransactionSelector;
 use Google\Cloud\Spanner\V1\Type as TypeProto;
 use Google\Protobuf\Duration;
@@ -108,7 +109,7 @@ class DatabaseTest extends TestCase
     const TRANSACTION_TAG = 'my-transaction-tag';
     const TEST_TABLE_NAME = 'Users';
     const TIMESTAMP = '2017-01-09T18:05:22.534799Z';
-    const BEGIN_RW_OPTIONS = ['begin' => ['readWrite' => []]];
+    const BEGIN_RW_OPTIONS = ['begin' => ['readWrite' => [], 'isolationLevel' => 0]];
 
     private const DIRECTED_READ_OPTIONS_INCLUDE_REPLICAS = [
         'includeReplicas' => [
@@ -936,6 +937,38 @@ class DatabaseTest extends TestCase
         $this->assertInstanceOf(Transaction::class, $t);
     }
 
+    public function testTransactionWithIsolationLevel()
+    {
+        $this->connection->beginTransaction(Argument::allOf(
+            Argument::withEntry('session', $this->session->name()),
+            Argument::withEntry(
+                'database',
+                DatabaseAdminClient::databaseName(
+                    self::PROJECT,
+                    self::INSTANCE,
+                    self::DATABASE
+                )
+            ),
+            Argument::withEntry('requestOptions', [
+                'transactionTag' => self::TRANSACTION_TAG,
+            ]),
+            Argument::withEntry('transactionOptions', [
+                'readWrite' => [],
+                'isolationLevel' => IsolationLevel::REPEATABLE_READ,
+            ])
+        ))
+            ->shouldBeCalled()
+            ->willReturn(['id' => self::TRANSACTION]);
+
+        $this->refreshOperation($this->database, $this->connection->reveal());
+
+        $t = $this->database->transaction([
+            'tag' => self::TRANSACTION_TAG,
+            'isolationLevel' => IsolationLevel::REPEATABLE_READ
+        ]);
+        $this->assertInstanceOf(Transaction::class, $t);
+    }
+
     public function testTransactionNestedTransaction()
     {
         $this->expectException(\BadMethodCallException::class);
@@ -1267,6 +1300,34 @@ class DatabaseTest extends TestCase
         $this->assertEquals(10, $rows[0]['ID']);
     }
 
+    public function testExecuteWithIsolationLevel()
+    {
+        $sql = 'SELECT * FROM Table';
+
+        $this->connection->executeStreamingSql(Argument::allOf(
+            Argument::withEntry('sql', $sql),
+            Argument::withEntry('headers', ['x-goog-spanner-route-to-leader' => ['true']]),
+            Argument::withEntry('transaction', [
+                'begin' => [
+                    'readWrite' => [],
+                    'isolationLevel' => IsolationLevel::REPEATABLE_READ
+                ]
+            ])
+        ))->shouldBeCalled()->willReturn($this->resultGenerator());
+
+        $this->refreshOperation($this->database, $this->connection->reveal());
+
+        $res = $this->database->execute($sql, [
+            'transactionType' => SessionPoolInterface::CONTEXT_READWRITE,
+            'begin' => [
+                'isolationLevel' => IsolationLevel::REPEATABLE_READ
+            ]
+        ]);
+        $this->assertInstanceOf(Result::class, $res);
+        $rows = iterator_to_array($res->rows());
+        $this->assertEquals(10, $rows[0]['ID']);
+    }
+
     public function testExecuteWithSingleSession()
     {
         $sql = 'SELECT * FROM Table';
@@ -1355,6 +1416,22 @@ class DatabaseTest extends TestCase
             ));
 
         $res = $this->database->executePartitionedUpdate($sql);
+
+        $this->assertEquals(1, $res);
+    }
+
+    public function testExecutePartitionedUpdateWithIsolationLevelShouldRaise()
+    {
+        $sql = 'UPDATE foo SET bar = @bar';
+
+        $this->refreshOperation($this->database, $this->connection->reveal());
+        $this->expectException(\InvalidArgumentException::class);
+
+        $res = $this->database->executePartitionedUpdate($sql, [
+            'transactionOptions' => [
+                'isolationLevel' => IsolationLevel::REPEATABLE_READ
+            ]
+        ]);
 
         $this->assertEquals(1, $res);
     }
@@ -2309,7 +2386,52 @@ class DatabaseTest extends TestCase
         ];
         $t = $this->database->transaction();
         $t->insert(self::TEST_TABLE_NAME, $row);
-        $t->commit();
+	$t->commit();
+    }
+
+    public function testRunTransactionIsolationLevel()
+    {
+        $gapic = $this->prophesize(SpannerClient::class);
+
+        $sessName = SpannerClient::sessionName(self::PROJECT, self::INSTANCE, self::DATABASE, self::SESSION);
+        $session = new SessionProto(['name' => $sessName]);
+        $resultSet = new ResultSet(['stats' => new ResultSetStats(['row_count_exact' => 0])]);
+        $gapic->createSession(Argument::cetera())->shouldBeCalled()->willReturn($session);
+        $gapic->deleteSession(Argument::cetera())->shouldBeCalled();
+
+        $sql = 'SELECT example FROM sql_query';
+        $stream = $this->prophesize(ServerStream::class);
+        $stream->readAll()->shouldBeCalledOnce()->willReturn([$resultSet]);
+        $gapic->executeStreamingSql($sessName, $sql, Argument::that(function (array $options) {
+            $this->assertArrayHasKey('transaction', $options);
+            $this->assertNotNull($transactionOptions = $options['transaction']->getBegin());
+            $this->assertEquals(IsolationLevel::REPEATABLE_READ, $transactionOptions->getIsolationLevel());
+            return true;
+        }))
+            ->shouldBeCalledOnce()
+            ->willReturn($stream->reveal());
+
+        $database = new Database(
+            new Grpc(['gapicSpannerClient' => $gapic->reveal()]),
+            $this->instance,
+            $this->lro->reveal(),
+            $this->lroCallables,
+            self::PROJECT,
+            self::DATABASE
+        );
+
+        $database->runTransaction(
+            function (Transaction $t) use ($sql) {
+                // Run a fake query
+                $t->executeUpdate($sql);
+
+                // Simulate calling Transaction::commmit()
+                $prop = new \ReflectionProperty($t, 'state');
+                $prop->setAccessible(true);
+                $prop->setValue($t, Transaction::STATE_COMMITTED);
+            },
+            ['transactionOptions' => ['isolationLevel' => IsolationLevel::REPEATABLE_READ]]
+        );
     }
 
     private function createStreamingAPIArgs()

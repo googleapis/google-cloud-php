@@ -40,6 +40,7 @@ use Google\Cloud\Spanner\Admin\Instance\V1\Instance\State;
 use Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceRequest;
 use Google\Cloud\Spanner\Session\SessionCache;
 use Google\Cloud\Spanner\V1\Client\SpannerClient as GapicSpannerClient;
+use Google\Cloud\Spanner\V1\TransactionOptions\IsolationLevel;
 use Google\LongRunning\ListOperationsRequest;
 use Google\LongRunning\Operation as OperationProto;
 use Psr\Cache\CacheItemPoolInterface;
@@ -74,6 +75,11 @@ class Instance
     private CacheItemPoolInterface|null $cacheItemPool;
 
     /**
+     * @var int
+     */
+    private $isolationLevel;
+
+    /**
      * Create an object representing a Cloud Spanner instance.
      *
      * @internal Instance is constructed by the {@see SpannerClient} class.
@@ -97,6 +103,8 @@ class Instance
      *           returned as a {@see \Google\Cloud\Core\Int64} object for 32 bit platform
      *           compatibility. **Defaults to** false.
      *     @type CacheItemPool $cacheItemPool
+     *     @type int $isolationLevel The level of Isolation for the transactions executed by this Client's instance.
+     *           **Defaults to** IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED
      * }
      * @param array $info A representation of the instance object.
      */
@@ -118,6 +126,7 @@ class Instance
         $this->cacheItemPool = $options['cacheItemPool'] ?? null;
         $this->projectName = InstanceAdminClient::projectName($projectId);
         $this->optionsValidator = new OptionsValidator($serializer);
+        $this->isolationLevel = $options['isolationLevel'] ?? IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED;
     }
 
     /**
@@ -551,7 +560,8 @@ class Instance
             $options + [
                 'routeToLeader' => $this->routeToLeader,
                 'defaultQueryOptions' => $this->defaultQueryOptions,
-                'returnInt64AsObject' => $this->returnInt64AsObject,
+		'returnInt64AsObject' => $this->returnInt64AsObject,
+		'isolationLevel' => $this->isolationLevel,
             ]
         );
     }
