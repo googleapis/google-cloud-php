@@ -19,12 +19,15 @@ namespace Google\Cloud\Datastore\Tests\Snippet;
 
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Datastore\Entity;
 use Google\Cloud\Datastore\EntityMapper;
 use Google\Cloud\Datastore\Key;
 use Google\Cloud\Datastore\Operation;
+use Google\Cloud\Datastore\Tests\Unit\ProtoEncodeTrait;
+use Google\Cloud\Datastore\V1\Client\DatastoreClient as GapicDatastoreClient;
+use Google\Cloud\Datastore\V1\CommitResponse;
+use Google\Cloud\Datastore\V1\LookupResponse;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -34,6 +37,7 @@ use Prophecy\PhpUnit\ProphecyTrait;
 class EntityTest extends SnippetTestCase
 {
     use ProphecyTrait;
+    use ProtoEncodeTrait;
 
     private $options;
     private $entity;
@@ -68,28 +72,35 @@ class EntityTest extends SnippetTestCase
 
     public function testClassEntityType()
     {
-        $client = TestHelpers::stub(DatastoreClient::class, [], [
-            'operation'
+        $gapicClient = $this->prophesize(GapicDatastoreClient::class);
+        $client = new DatastoreClient([
+            'datastoreClient' => $gapicClient->reveal()
         ]);
 
-        $connection = $this->prophesize(ConnectionInterface::class);
-        $connection->commit(Argument::any())->shouldBeCalled()->willReturn(['mutationResults' => [['version' => 1]]]);
-        $connection->lookup(Argument::any())->shouldBeCalled()->willReturn([
-            'found' => [
-                [
-                    'entity' => [
-                        'key' => [
-                            'path' => [['kind' => 'Business', 'name' => 'Google']]
-                        ],
-                        'properties' => [
-                            'name' => [
-                                'stringValue' => 'Google'
+        $gapicClient->commit(Argument::any(), Argument::any())
+            ->shouldBeCalled()
+            ->willReturn(self::generateProto(CommitResponse::class, [
+                'mutationResults' => [['version' => 1]]
+            ]));
+        $gapicClient->lookup(Argument::any(), Argument::any()
+            )->shouldBeCalled()
+            ->willReturn(self::generateProto(LookupResponse::class, [
+                'found' => [
+                    [
+                        'entity' => [
+                            'key' => [
+                                'path' => [['kind' => 'Business', 'name' => 'Google']]
                             ],
-                            'parent' => [
-                                'entityValue' => [
-                                    'properties' => [
-                                        'name' => [
-                                            'stringValue' => 'Alphabet'
+                            'properties' => [
+                                'name' => [
+                                    'stringValue' => 'Google'
+                                ],
+                                'parent' => [
+                                    'entityValue' => [
+                                        'properties' => [
+                                            'name' => [
+                                                'stringValue' => 'Alphabet'
+                                            ]
                                         ]
                                     ]
                                 ]
@@ -97,17 +108,14 @@ class EntityTest extends SnippetTestCase
                         ]
                     ]
                 ]
-            ]
-        ]);
+            ]));
 
         $operation = new Operation(
-            $connection->reveal(),
+            $gapicClient->reveal(),
             'example_project',
             'foo',
             new EntityMapper('example_project', false, false)
         );
-
-        $client->___setProperty('operation', $operation);
 
         $snippet = $this->snippetFromClass(Entity::class, 1);
         $snippet->addLocal('datastore', $client);

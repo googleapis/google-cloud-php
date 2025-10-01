@@ -5,13 +5,16 @@ namespace Google\Cloud\Datastore\Tests\Snippet;
 use Google\Cloud\Core\Testing\DatastoreOperationRefreshTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Datastore\EntityMapper;
 use Google\Cloud\Datastore\Operation;
 use Google\Cloud\Datastore\Query\Filter;
 use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Query\QueryInterface;
+use Google\Cloud\Datastore\Tests\Unit\ProtoEncodeTrait;
+use Google\Cloud\Datastore\V1\Client\DatastoreClient as GapicDatastoreClient;
+use Google\Cloud\Datastore\V1\QueryResultBatch\MoreResultsType;
+use Google\Cloud\Datastore\V1\RunQueryResponse;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -19,9 +22,10 @@ class FilterTest extends SnippetTestCase
 {
     use DatastoreOperationRefreshTrait;
     use ProphecyTrait;
+    use ProtoEncodeTrait;
 
     private const PROJECT = 'alpha-project';
-    private $connection;
+    private $gapicClient;
     private $datastore;
     private $operation;
     private $query;
@@ -31,13 +35,11 @@ class FilterTest extends SnippetTestCase
     {
         $entityMapper = new EntityMapper(self::PROJECT, false, false);
 
-        $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->gapicClient = $this->prophesize(GapicDatastoreClient::class);
 
-        $this->datastore = TestHelpers::stub(
-            DatastoreClient::class,
-            [],
-            ['operation']
-        );
+        $this->datastore = new DatastoreClient([
+            'datastoreClient' => $this->gapicClient->reveal()
+        ]);
 
         $this->query = TestHelpers::stub(Query::class, [$entityMapper]);
 
@@ -87,9 +89,9 @@ class FilterTest extends SnippetTestCase
 
     private function createConnectionProphecy()
     {
-        $this->connection->runQuery(Argument::any())
+        $this->gapicClient->runQuery(Argument::any(), Argument::any())
             ->shouldBeCalled()
-            ->willReturn([
+            ->willReturn(self::generateProto(RunQueryResponse::class, [
                 'batch' => [
                     'entityResults' => [
                         [
@@ -103,12 +105,8 @@ class FilterTest extends SnippetTestCase
                             ]
                         ]
                     ],
-                    'moreResults' => 'no'
+                    'moreResults' => MoreResultsType::NO_MORE_RESULTS
                 ]
-            ]);
-
-        $this->refreshOperation($this->datastore, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
+            ]));
     }
 }

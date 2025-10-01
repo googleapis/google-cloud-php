@@ -19,7 +19,6 @@ namespace Google\Cloud\Datastore\Tests\Snippet\Query;
 
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Datastore\EntityIterator;
 use Google\Cloud\Datastore\EntityMapper;
@@ -27,6 +26,11 @@ use Google\Cloud\Datastore\Key;
 use Google\Cloud\Datastore\Operation;
 use Google\Cloud\Datastore\Query\Filter;
 use Google\Cloud\Datastore\Query\Query;
+use Google\Cloud\Datastore\Tests\Unit\ProtoEncodeTrait;
+use Google\Cloud\Datastore\V1\Client\DatastoreClient as GapicDatastoreClient;
+use Google\Cloud\Datastore\V1\QueryResultBatch\MoreResultsType;
+use Google\Cloud\Datastore\V1\RunQueryRequest;
+use Google\Cloud\Datastore\V1\RunQueryResponse;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -36,23 +40,19 @@ use Prophecy\PhpUnit\ProphecyTrait;
 class QueryTest extends SnippetTestCase
 {
     use ProphecyTrait;
+    use ProtoEncodeTrait;
 
     private $datastore;
-    private $connection;
-    private $operation;
+    private $gapicClient;
     private $query;
 
     public function setUp(): void
     {
         $mapper = new EntityMapper('my-awesome-project', true, false);
 
-        $this->datastore = TestHelpers::stub(DatastoreClient::class, [], ['operation']);
-        $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->operation = TestHelpers::stub(Operation::class, [
-            $this->connection->reveal(),
-            'my-awesome-project',
-            '',
-            $mapper
+        $this->gapicClient = $this->prophesize(GapicDatastoreClient::class);
+        $this->datastore = new DatastoreClient([
+            'datastoreClient' => $this->gapicClient->reveal()
         ]);
 
         $this->query = new Query($mapper);
@@ -60,9 +60,9 @@ class QueryTest extends SnippetTestCase
 
     public function testClass()
     {
-        $this->connection->runQuery(Argument::any())
+        $this->gapicClient->runQuery(Argument::type(RunQueryRequest::class), Argument::any())
             ->shouldBeCalled()
-            ->willReturn([
+            ->willReturn(self::generateProto(RunQueryResponse::class, [
                 'batch' => [
                     'entityResults' => [
                         [
@@ -78,13 +78,9 @@ class QueryTest extends SnippetTestCase
                             ]
                         ]
                     ],
-                    'moreResults' => 'no'
+                    'moreResults' => MoreResultsType::NO_MORE_RESULTS
                 ]
-            ]);
-
-        $this->operation->___setProperty('connection', $this->connection->reveal());
-
-        $this->datastore->___setProperty('operation', $this->operation);
+            ]));
 
         $snippet = $this->snippetFromClass(Query::class);
         $snippet->replace('$datastore = new DatastoreClient();', '');

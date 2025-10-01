@@ -20,7 +20,6 @@ namespace Google\Cloud\Datastore\Tests\Snippet;
 use Google\Cloud\Core\Testing\DatastoreOperationRefreshTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Datastore\Entity;
 use Google\Cloud\Datastore\EntityMapper;
@@ -28,6 +27,14 @@ use Google\Cloud\Datastore\Key;
 use Google\Cloud\Datastore\Operation;
 use Google\Cloud\Datastore\Query\QueryInterface;
 use Google\Cloud\Datastore\ReadOnlyTransaction;
+use Google\Cloud\Datastore\Tests\Unit\ProtoEncodeTrait;
+use Google\Cloud\Datastore\V1\BeginTransactionResponse;
+use Google\Cloud\Datastore\V1\Client\DatastoreClient as GapicDatastoreClient;
+use Google\Cloud\Datastore\V1\LookupRequest;
+use Google\Cloud\Datastore\V1\LookupResponse;
+use Google\Cloud\Datastore\V1\RollbackRequest;
+use Google\Cloud\Datastore\V1\RunQueryRequest;
+use Google\Cloud\Datastore\V1\RunQueryResponse;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -38,33 +45,24 @@ class ReadOnlyTransactionTest extends SnippetTestCase
 {
     use DatastoreOperationRefreshTrait;
     use ProphecyTrait;
+    use ProtoEncodeTrait;
 
     const PROJECT = 'my-awesome-project';
     const TRANSACTION = 'transaction-id';
 
-    private $connection;
+    private $gapicClient;
     private $transaction;
     private $client;
     private $key;
 
     public function setUp(): void
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->gapicClient = $this->prophesize(GapicDatastoreClient::class);
 
-        $operation = new Operation(
-            $this->connection->reveal(),
-            self::PROJECT,
-            '',
-            new EntityMapper(self::PROJECT, false, false)
-        );
-
-        $this->transaction = TestHelpers::stub(ReadOnlyTransaction::class, [
-            $operation,
-            self::PROJECT,
-            self::TRANSACTION
-        ], ['operation']);
-
-        $this->client = TestHelpers::stub(DatastoreClient::class, [], ['operation']);
+        $this->client = new DatastoreClient([
+            'projectId' => self::PROJECT,
+            'datastoreClient' => $this->gapicClient->reveal()
+        ]);
 
         $this->key = new Key('my-awesome-project', [
             [
@@ -77,15 +75,11 @@ class ReadOnlyTransactionTest extends SnippetTestCase
 
     public function testClass()
     {
-        $this->connection->beginTransaction(Argument::any())
+        $this->gapicClient->beginTransaction(Argument::any(), Argument::any())
             ->shouldBeCalled()
-            ->willReturn([
-                'transaction' => 'foo'
-            ]);
-
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
+            ->willReturn(self::generateProto(BeginTransactionResponse::class, [
+                'transaction' => base64_encode('foo')
+            ]));
 
         $snippet = $this->snippetFromClass(ReadOnlyTransaction::class);
         $snippet->setLine(2, '');
@@ -97,22 +91,18 @@ class ReadOnlyTransactionTest extends SnippetTestCase
 
     public function testClassRollback()
     {
-        $this->connection->beginTransaction(Argument::any())
+        $this->gapicClient->beginTransaction(Argument::any(), Argument::any())
             ->shouldBeCalled()
-            ->willReturn([
-                'transaction' => 'foo'
-            ]);
-        $this->connection->lookup(Argument::any())
+            ->willReturn(self::generateProto(BeginTransactionResponse::class, [
+                'transaction' => base64_encode('foo')
+            ]));
+        $this->gapicClient->lookup(Argument::any(), Argument::any())
             ->shouldBeCalled()
-            ->willReturn([]);
-        $this->connection->rollback(Argument::any())
+            ->willReturn(self::generateProto(LookupResponse::class, []));
+        $this->gapicClient->rollback(Argument::any(), Argument::any())
             ->shouldBeCalled();
 
         $snippet = $this->snippetFromClass(ReadOnlyTransaction::class, 1);
-
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
 
         $transaction = $this->client->readOnlyTransaction();
 
@@ -124,13 +114,20 @@ class ReadOnlyTransactionTest extends SnippetTestCase
 
     public function testLookup()
     {
+        $this->gapicClient->beginTransaction(Argument::any(), Argument::any())
+            ->shouldBeCalled()
+            ->willReturn(self::generateProto(BeginTransactionResponse::class, ['transaction' => base64_encode(self::TRANSACTION)]));
+
         $snippet = $this->snippetFromMethod(ReadOnlyTransaction::class, 'lookup');
         $snippet->addLocal('datastore', $this->client);
-        $snippet->addLocal('transaction', $this->transaction);
+        $snippet->addLocal('transaction', $this->client->readOnlyTransaction());
 
-        $this->connection->lookup(Argument::withEntry('transaction', self::TRANSACTION))
+        $this->gapicClient->lookup(Argument::that(function (LookupRequest $request) {
+            $this->assertEquals(self::TRANSACTION, $request->getReadOptions()->getTransaction());
+            return true;
+        }), Argument::any())
             ->shouldBeCalled()
-            ->willReturn([
+            ->willReturn(self::generateProto(LookupResponse::class, [
                 'found' => [
                     [
                         'entity' => [
@@ -147,11 +144,7 @@ class ReadOnlyTransactionTest extends SnippetTestCase
                         ]
                     ]
                 ]
-            ]);
-
-        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
+            ]));
 
         $res = $snippet->invoke();
         $this->assertEquals('Bob', $res->output());
@@ -159,13 +152,20 @@ class ReadOnlyTransactionTest extends SnippetTestCase
 
     public function testLookupBatch()
     {
+        $this->gapicClient->beginTransaction(Argument::any(), Argument::any())
+            ->shouldBeCalled()
+            ->willReturn(self::generateProto(BeginTransactionResponse::class, ['transaction' => base64_encode(self::TRANSACTION)]));
+
         $snippet = $this->snippetFromMethod(ReadOnlyTransaction::class, 'lookupBatch');
         $snippet->addLocal('datastore', $this->client);
-        $snippet->addLocal('transaction', $this->transaction);
+        $snippet->addLocal('transaction', $this->client->readOnlyTransaction());
 
-        $this->connection->lookup(Argument::withEntry('transaction', self::TRANSACTION))
+        $this->gapicClient->lookup(Argument::that(function (LookupRequest $request) {
+            $this->assertEquals(self::TRANSACTION, $request->getReadOptions()->getTransaction());
+            return true;
+        }), Argument::any())
             ->shouldBeCalled()
-            ->willReturn([
+            ->willReturn(self::generateProto(LookupResponse::class, [
                 'found' => [
                     [
                         'entity' => [
@@ -196,11 +196,7 @@ class ReadOnlyTransactionTest extends SnippetTestCase
                         ]
                     ]
                 ]
-            ]);
-
-        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
+            ]));
 
         $res = $snippet->invoke();
         $this->assertEquals("Bob", explode("\n", $res->output())[0]);
@@ -209,18 +205,26 @@ class ReadOnlyTransactionTest extends SnippetTestCase
 
     public function testRunQuery()
     {
+        $this->gapicClient->beginTransaction(Argument::any(), Argument::any())
+            ->shouldBeCalled()
+            ->willReturn(self::generateProto(BeginTransactionResponse::class, ['transaction' => base64_encode(self::TRANSACTION)]));
+
         $snippet = $this->snippetFromMethod(ReadOnlyTransaction::class, 'runQuery');
         $snippet->addLocal('datastore', $this->client);
-        $snippet->addLocal('transaction', $this->transaction);
+        $snippet->addLocal('transaction', $this->client->readOnlyTransaction());
 
         $query = $this->prophesize(QueryInterface::class);
         $query->queryObject()->willReturn([]);
         $query->queryKey()->willReturn('query');
+        $query->canPaginate()->willReturn(false);
         $snippet->addLocal('query', $query->reveal());
 
-        $this->connection->runQuery(Argument::withEntry('transaction', self::TRANSACTION))
+        $this->gapicClient->runQuery(Argument::that(function (RunQueryRequest $request) {
+            $this->assertEquals(self::TRANSACTION, $request->getReadOptions()->getTransaction());
+            return true;
+        }), Argument::any())
             ->shouldBeCalled()
-            ->willReturn([
+            ->willReturn(self::generateProto(RunQueryResponse::class, [
                 'batch' => [
                     'entityResults' => [
                         [
@@ -239,11 +243,7 @@ class ReadOnlyTransactionTest extends SnippetTestCase
                         ]
                     ]
                 ]
-            ]);
-
-        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
+            ]));
 
         $res = $snippet->invoke('result');
         $this->assertEquals('Bob', $res->output());
@@ -251,15 +251,15 @@ class ReadOnlyTransactionTest extends SnippetTestCase
 
     public function testRollback()
     {
+        $this->gapicClient->beginTransaction(Argument::any(), Argument::any())
+            ->shouldBeCalled()
+            ->willReturn(self::generateProto(BeginTransactionResponse::class, ['transaction' => base64_encode(self::TRANSACTION)]));
+
         $snippet = $this->snippetFromMethod(ReadOnlyTransaction::class, 'rollback');
-        $snippet->addLocal('transaction', $this->transaction);
+        $snippet->addLocal('transaction', $this->client->readOnlyTransaction());
 
-        $this->connection->rollback(Argument::any())
+        $this->gapicClient->rollback(Argument::type(RollbackRequest::class), Argument::any())
             ->shouldBeCalled();
-
-        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
 
         $snippet->invoke();
     }
