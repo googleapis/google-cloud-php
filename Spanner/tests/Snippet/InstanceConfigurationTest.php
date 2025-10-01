@@ -62,7 +62,6 @@ class InstanceConfigurationTest extends SnippetTestCase
             $this->serializer,
             self::PROJECT,
             self::CONFIG,
-            [],
         );
     }
 
@@ -95,7 +94,6 @@ class InstanceConfigurationTest extends SnippetTestCase
             $this->serializer,
             self::PROJECT,
             self::CONFIG,
-            []
         );
         $snippet->addLocal('baseConfig', $baseConfig);
         $snippet->addLocal('options', []);

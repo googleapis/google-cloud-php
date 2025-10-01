@@ -90,7 +90,7 @@ class InstanceConfigurationTest extends TestCase
             $this->serializer,
             self::PROJECT_ID,
             self::NAME,
-            $info
+            ['instanceConfig' => $info],
         );
 
         $this->assertEquals($info, $instanceConfig->info());
@@ -173,7 +173,7 @@ class InstanceConfigurationTest extends TestCase
             $this->serializer,
             self::PROJECT_ID,
             self::NAME,
-            $expected1
+            ['instanceConfig' => $expected1],
         );
 
         $info1 = $instanceConfig->info();

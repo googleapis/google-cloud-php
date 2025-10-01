@@ -67,6 +67,7 @@ class Instance
     private bool $routeToLeader;
     private string $projectName;
     private bool $returnInt64AsObject;
+    private array $info;
 
     /**
      * Create an object representing a Cloud Spanner instance.
@@ -91,8 +92,8 @@ class Instance
      *     @type bool $returnInt64AsObject If true, 64 bit integers will be
      *           returned as a {@see \Google\Cloud\Core\Int64} object for 32 bit platform
      *           compatibility. **Defaults to** false.
+     *     @type array $instance An array representation of the instance object.
      * }
-     * @param array $info A representation of the instance object.
      */
     public function __construct(
         private GapicSpannerClient $spannerClient,
@@ -102,13 +103,13 @@ class Instance
         private string $projectId,
         private string $name,
         array $options = [],
-        private array $info = [],
     ) {
         $this->name = $this->fullyQualifiedInstanceName($name, $projectId);
         $this->directedReadOptions = $options['directedReadOptions'] ?? [];
         $this->routeToLeader = $options['routeToLeader'] ?? true;
         $this->defaultQueryOptions = $options['defaultQueryOptions'] ?? [];
         $this->returnInt64AsObject = $options['returnInt64AsObject'] ?? false;
+        $this->info = $options['instance'] ?? [];
         $this->projectName = InstanceAdminClient::projectName($projectId);
         $this->optionsValidator = new OptionsValidator($serializer);
     }
@@ -582,7 +583,7 @@ class Instance
             $this,
             $this->projectId,
             $name,
-            $backup
+            ['backup' => $backup]
         );
     }
 
@@ -892,8 +893,8 @@ class Instance
                     'routeToLeader' => $this->routeToLeader,
                     'defaultQueryOptions' => $this->defaultQueryOptions,
                     'returnInt64AsObject' => $this->returnInt64AsObject,
+                    'instance' => $result,
                 ],
-                $result,
             );
         };
     }

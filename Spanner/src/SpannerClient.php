@@ -443,7 +443,7 @@ class SpannerClient
             $this->serializer,
             $this->projectId,
             $name,
-            $info
+            ['instanceConfig' => $info]
         );
     }
 
@@ -561,8 +561,8 @@ class SpannerClient
                 'routeToLeader' => $this->routeToLeader,
                 'defaultQueryOptions' => $this->defaultQueryOptions,
                 'returnInt64AsObject' => $this->returnInt64AsObject,
+                'instance' => $instance,
             ],
-            $instance,
         );
     }
 
