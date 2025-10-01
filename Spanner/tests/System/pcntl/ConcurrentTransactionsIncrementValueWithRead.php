@@ -20,7 +20,7 @@ $callable = function ($dbName, KeySet $keyset, array $columns, $tableName) use (
     if (getenv('SPANNER_EMULATOR_HOST')) {
         // the emulator requires us to manually request a new session
         // presumably because multiplexed sessions aren't properly supported
-        $db->session()->refreshSession();
+        $db->session()->refresh();
     }
     $db->runTransaction(function ($transaction) use ($keyset, $columns, $tableName, &$iterations) {
         $iterations++;

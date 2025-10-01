@@ -106,7 +106,7 @@ class SessionCache
         return $this->session->getName();
     }
 
-    public function refreshSession(): Session
+    public function refresh(): Session
     {
         $session = $this->createSession();
         $expiresAtSeconds = time() + self::SESSION_EXPIRATION_SECONDS;
@@ -134,7 +134,7 @@ class SessionCache
                 // see if we now have a cache hit (in the event of a race condition)
                 if (!$this->getSessionFromCache()) {
                     // If there's still no cache hit, creata a new multiplex session
-                    $this->refreshSession();
+                    $this->refresh();
                 }
                 $this->lock->release();
             }

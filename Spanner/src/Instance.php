@@ -23,6 +23,7 @@ use Google\ApiCore\ValidationException;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Iam\IamManager;
 use Google\Cloud\Core\Iterator\ItemIterator;
+use Google\Cloud\Core\Lock\LockInterface;
 use Google\Cloud\Core\LongRunning\LongRunningClientConnection;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\OptionsValidator;
@@ -504,6 +505,7 @@ class Instance
      *         creates the session.
      *     @type array $database The database info.
      *     @type SessionCache $session
+     *     @type LockInterface $lock
      * }
      * @return Database
      */
@@ -516,6 +518,7 @@ class Instance
             'databaseRole',
             'database',
             'session',
+            'lock'
         ]);
 
         try {
@@ -535,6 +538,7 @@ class Instance
                 $databaseName,
                 [
                     'databaseRole' => $options['databaseRole'] ?? '',
+                    'lock' => $options['lock'] ?? null,
                     'routeToLeader' => $this->routeToLeader,
                     'cacheItemPool' => $this->cacheItemPool,
                 ]
