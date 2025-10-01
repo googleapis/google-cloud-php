@@ -1,0 +1,107 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.hypercomputecluster.v1alpha",
+    "libraryPackage": "Google\\Cloud\\HypercomputeCluster\\V1alpha",
+    "services": {
+        "HypercomputeCluster": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "HypercomputeClusterGapicClient",
+                    "rpcs": {
+                        "CreateCluster": {
+                            "methods": [
+                                "createCluster"
+                            ]
+                        },
+                        "DeleteCluster": {
+                            "methods": [
+                                "deleteCluster"
+                            ]
+                        },
+                        "GetCluster": {
+                            "methods": [
+                                "getCluster"
+                            ]
+                        },
+                        "ListClusters": {
+                            "methods": [
+                                "listClusters"
+                            ]
+                        },
+                        "UpdateCluster": {
+                            "methods": [
+                                "updateCluster"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "MachineLearningRuns": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "MachineLearningRunsGapicClient",
+                    "rpcs": {
+                        "CreateMachineLearningRun": {
+                            "methods": [
+                                "createMachineLearningRun"
+                            ]
+                        },
+                        "DeleteMachineLearningRun": {
+                            "methods": [
+                                "deleteMachineLearningRun"
+                            ]
+                        },
+                        "GetMachineLearningRun": {
+                            "methods": [
+                                "getMachineLearningRun"
+                            ]
+                        },
+                        "GetProfileSession": {
+                            "methods": [
+                                "getProfileSession"
+                            ]
+                        },
+                        "ListMachineLearningRuns": {
+                            "methods": [
+                                "listMachineLearningRuns"
+                            ]
+                        },
+                        "ListProfileSessions": {
+                            "methods": [
+                                "listProfileSessions"
+                            ]
+                        },
+                        "UpdateMachineLearningRun": {
+                            "methods": [
+                                "updateMachineLearningRun"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

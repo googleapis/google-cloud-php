@@ -807,6 +807,14 @@
         "library_type": "GAPIC_AUTO",
         "api_shortname": "containeranalysis"
     },
+    "HypercomputeCluster": {
+        "language": "php",
+        "distribution_name": "google/cloud-hypercomputecluster",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-hypercomputecluster/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "hypercomputecluster"
+    },
     "Iam": {
         "language": "php",
         "distribution_name": "google/cloud-iam",

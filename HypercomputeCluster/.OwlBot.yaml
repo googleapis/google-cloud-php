@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/cloud/hypercomputecluster/(v1alpha)/.*-php/(.*)
+      dest: /owl-bot-staging/HypercomputeCluster/$1/$2
+api-name: HypercomputeCluster
