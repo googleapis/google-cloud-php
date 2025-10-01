@@ -35,6 +35,18 @@ return [
                     ],
                 ],
             ],
+            'GetComment' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Support\V2beta\Comment',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ListComments' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',

@@ -42,6 +42,17 @@ return [
                     ],
                 ],
             ],
+            'GetComment' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2beta/{name=*/*/cases/*/comments/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ListComments' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2beta/{parent=projects/*/cases/*}/comments',

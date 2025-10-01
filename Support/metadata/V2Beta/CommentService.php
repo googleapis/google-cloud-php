@@ -21,8 +21,7 @@ class CommentService
         \GPBMetadata\Google\Cloud\Support\V2Beta\Comment::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ã
-
+Î
 1google/cloud/support/v2beta/comment_service.protogoogle.cloud.support.v2betagoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto)google/cloud/support/v2beta/comment.proto"v
 ListCommentsRequest8
 parent (	B(àAúA"
@@ -36,10 +35,15 @@ page_token (	"g
 CreateCommentRequest8
 parent (	B(àAúA"
  cloudsupport.googleapis.com/Case:
-comment (2$.google.cloud.support.v2beta.CommentBàA2Å
+comment (2$.google.cloud.support.v2beta.CommentBàA"N
+GetCommentRequest9
+name (	B+àAúA%
+#cloudsupport.googleapis.com/Comment2à
 CommentServiceç
 ListComments0.google.cloud.support.v2beta.ListCommentsRequest1.google.cloud.support.v2beta.ListCommentsResponse"rÚAparent‚Óä“c,/v2beta/{parent=projects/*/cases/*}/commentsZ31/v2beta/{parent=organizations/*/cases/*}/comments÷
-CreateComment1.google.cloud.support.v2beta.CreateCommentRequest$.google.cloud.support.v2beta.Comment"ŒÚAparent,comment‚Óä“u",/v2beta/{parent=projects/*/cases/*}/comments:commentZ<"1/v2beta/{parent=organizations/*/cases/*}/comments:commentOÊAcloudsupport.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBÐ
+CreateComment1.google.cloud.support.v2beta.CreateCommentRequest$.google.cloud.support.v2beta.Comment"ŒÚAparent,comment‚Óä“u",/v2beta/{parent=projects/*/cases/*}/comments:commentZ<"1/v2beta/{parent=organizations/*/cases/*}/comments:comment˜
+
+GetComment..google.cloud.support.v2beta.GetCommentRequest$.google.cloud.support.v2beta.Comment"4ÚAname‚Óä“\'%/v2beta/{name=*/*/cases/*/comments/*}OÊAcloudsupport.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBÐ
 com.google.cloud.support.v2betaBCommentServiceProtoPZ9cloud.google.com/go/support/apiv2beta/supportpb;supportpbªGoogle.Cloud.Support.V2BetaÊGoogle\\Cloud\\Support\\V2betaêGoogle::Cloud::Support::V2betabproto3'
         , true);
 

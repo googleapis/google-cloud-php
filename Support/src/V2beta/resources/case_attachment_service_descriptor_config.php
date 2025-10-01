@@ -23,6 +23,18 @@
 return [
     'interfaces' => [
         'google.cloud.support.v2beta.CaseAttachmentService' => [
+            'GetAttachment' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Support\V2beta\Attachment',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ListAttachments' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -44,9 +56,12 @@ return [
                 ],
             ],
             'templateMap' => [
+                'attachment' => 'organizations/{organization}/cases/{case}/attachments/{attachment_id}',
                 'case' => 'organizations/{organization}/cases/{case}',
                 'organizationCase' => 'organizations/{organization}/cases/{case}',
+                'organizationCaseAttachmentId' => 'organizations/{organization}/cases/{case}/attachments/{attachment_id}',
                 'projectCase' => 'projects/{project}/cases/{case}',
+                'projectCaseAttachmentId' => 'projects/{project}/cases/{case}/attachments/{attachment_id}',
             ],
         ],
     ],

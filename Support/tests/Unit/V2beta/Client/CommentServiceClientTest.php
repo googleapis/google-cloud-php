@@ -29,6 +29,7 @@ use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Support\V2beta\Client\CommentServiceClient;
 use Google\Cloud\Support\V2beta\Comment;
 use Google\Cloud\Support\V2beta\CreateCommentRequest;
+use Google\Cloud\Support\V2beta\GetCommentRequest;
 use Google\Cloud\Support\V2beta\ListCommentsRequest;
 use Google\Cloud\Support\V2beta\ListCommentsResponse;
 use Google\Rpc\Code;
@@ -126,6 +127,75 @@ class CommentServiceClientTest extends GeneratedTest
         $request = (new CreateCommentRequest())->setParent($formattedParent)->setComment($comment);
         try {
             $gapicClient->createComment($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getCommentTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $body = 'body3029410';
+        $plainTextBody = 'plainTextBody-2068348609';
+        $expectedResponse = new Comment();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setBody($body);
+        $expectedResponse->setPlainTextBody($plainTextBody);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->commentName('[ORGANIZATION]', '[CASE]', '[COMMENT]');
+        $request = (new GetCommentRequest())->setName($formattedName);
+        $response = $gapicClient->getComment($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.support.v2beta.CommentService/GetComment', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getCommentExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->commentName('[ORGANIZATION]', '[CASE]', '[COMMENT]');
+        $request = (new GetCommentRequest())->setName($formattedName);
+        try {
+            $gapicClient->getComment($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
