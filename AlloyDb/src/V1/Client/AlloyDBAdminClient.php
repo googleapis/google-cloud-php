@@ -167,9 +167,7 @@ final class AlloyDBAdminClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -279,6 +277,27 @@ final class AlloyDBAdminClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a crypto_key
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $keyRing
+     * @param string $cryptoKey
+     *
+     * @return string The formatted crypto_key resource.
+     */
+    public static function cryptoKeyName(string $project, string $location, string $keyRing, string $cryptoKey): string
+    {
+        return self::getPathTemplate('cryptoKey')->render([
+            'project' => $project,
+            'location' => $location,
+            'key_ring' => $keyRing,
+            'crypto_key' => $cryptoKey,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a
      * crypto_key_version resource.
      *
@@ -290,8 +309,13 @@ final class AlloyDBAdminClient
      *
      * @return string The formatted crypto_key_version resource.
      */
-    public static function cryptoKeyVersionName(string $project, string $location, string $keyRing, string $cryptoKey, string $cryptoKeyVersion): string
-    {
+    public static function cryptoKeyVersionName(
+        string $project,
+        string $location,
+        string $keyRing,
+        string $cryptoKey,
+        string $cryptoKeyVersion
+    ): string {
         return self::getPathTemplate('cryptoKeyVersion')->render([
             'project' => $project,
             'location' => $location,
@@ -357,6 +381,25 @@ final class AlloyDBAdminClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * service_attachment resource.
+     *
+     * @param string $project
+     * @param string $region
+     * @param string $serviceAttachment
+     *
+     * @return string The formatted service_attachment resource.
+     */
+    public static function serviceAttachmentName(string $project, string $region, string $serviceAttachment): string
+    {
+        return self::getPathTemplate('serviceAttachment')->render([
+            'project' => $project,
+            'region' => $region,
+            'service_attachment' => $serviceAttachment,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a user
      * resource.
      *
@@ -383,10 +426,12 @@ final class AlloyDBAdminClient
      * Template: Pattern
      * - backup: projects/{project}/locations/{location}/backups/{backup}
      * - cluster: projects/{project}/locations/{location}/clusters/{cluster}
+     * - cryptoKey: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
      * - cryptoKeyVersion: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}
      * - instance: projects/{project}/locations/{location}/clusters/{cluster}/instances/{instance}
      * - location: projects/{project}/locations/{location}
      * - network: projects/{project}/global/networks/{network}
+     * - serviceAttachment: projects/{project}/regions/{region}/serviceAttachments/{service_attachment}
      * - user: projects/{project}/locations/{location}/clusters/{cluster}/users/{user}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
@@ -523,8 +568,10 @@ final class AlloyDBAdminClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function batchCreateInstances(BatchCreateInstancesRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function batchCreateInstances(
+        BatchCreateInstancesRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('BatchCreateInstances', $request, $callOptions)->wait();
     }
 
@@ -628,8 +675,10 @@ final class AlloyDBAdminClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createSecondaryCluster(CreateSecondaryClusterRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createSecondaryCluster(
+        CreateSecondaryClusterRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateSecondaryCluster', $request, $callOptions)->wait();
     }
 
@@ -654,8 +703,10 @@ final class AlloyDBAdminClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createSecondaryInstance(CreateSecondaryInstanceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createSecondaryInstance(
+        CreateSecondaryInstanceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateSecondaryInstance', $request, $callOptions)->wait();
     }
 
@@ -894,8 +945,10 @@ final class AlloyDBAdminClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function generateClientCertificate(GenerateClientCertificateRequest $request, array $callOptions = []): GenerateClientCertificateResponse
-    {
+    public function generateClientCertificate(
+        GenerateClientCertificateRequest $request,
+        array $callOptions = []
+    ): GenerateClientCertificateResponse {
         return $this->startApiCall('GenerateClientCertificate', $request, $callOptions)->wait();
     }
 
@@ -1209,8 +1262,10 @@ final class AlloyDBAdminClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listSupportedDatabaseFlags(ListSupportedDatabaseFlagsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listSupportedDatabaseFlags(
+        ListSupportedDatabaseFlagsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListSupportedDatabaseFlags', $request, $callOptions);
     }
 
