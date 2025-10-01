@@ -47,14 +47,6 @@ class EntityMapper
     private $returnInt64AsObject;
 
     /**
-     * The connection type of the client. Required while mapping
-     * `INF`, `-INF` and `NAN` to datastore equivalent values.
-     *
-     * @var string
-     */
-    private $connectionType;
-
-    /**
      * Create an Entity Mapper
      *
      * @param string $projectId The datastore project ID
@@ -62,19 +54,15 @@ class EntityMapper
      * @param bool $returnInt64AsObject If true, 64 bit integers will be
      *        returned as a {@see \Google\Cloud\Core\Int64} object for 32 bit
      *        platform compatibility.
-     * @param string $connectionType [optional] The connection type of the client.
-     *        Can be `rest` or `grpc`, defaults to `grpc`.
      */
     public function __construct(
         $projectId,
         $encode,
-        $returnInt64AsObject,
-        $connectionType = 'grpc'
+        $returnInt64AsObject
     ) {
         $this->projectId = $projectId;
         $this->encode = $encode;
         $this->returnInt64AsObject = $returnInt64AsObject;
-        $this->connectionType = $connectionType;
     }
 
     /**
@@ -201,9 +189,6 @@ class EntityMapper
                 break;
 
             case 'doubleValue':
-                // Flow will enter this logic only when REST transport is used
-                // because gRPC response values are always parsed correctly. Therefore
-                // the default $connectionType is set to 'grpc'
                 if (is_string($value)) {
                     switch ($value) {
                         case 'Infinity':

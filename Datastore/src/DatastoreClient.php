@@ -239,7 +239,6 @@ class DatastoreClient
     {
         $emulatorHost = getenv('DATASTORE_EMULATOR_HOST');
         $this->validateConfigurationOptions($config);
-        $connectionType = $this->getConnectionType($config);
 
         $config += [
             'namespaceId' => null,
@@ -259,8 +258,7 @@ class DatastoreClient
         $this->entityMapper = new EntityMapper(
             $this->projectId,
             true,
-            $config['returnInt64AsObject'],
-            $connectionType
+            $config['returnInt64AsObject']
         );
         $this->operation = new Operation(
             $this->gapicClient,
