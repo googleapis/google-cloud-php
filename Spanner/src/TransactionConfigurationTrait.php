@@ -149,9 +149,13 @@ trait TransactionConfigurationTrait
     {
         $excludeTxn = $options instanceof TransactionOptions
             ? $options->getExcludeTxnFromChangeStreams()
-            : $options['excludeTxnFromChangeStreams'] ?? null;
+	    : $options['excludeTxnFromChangeStreams'] ?? null;
+        $isolationLevel = $options instanceof TransactionOptions
+            ? $options->getIsolationLevel()
+	    : $options['isolationLevel'] ?? null;
         return array_filter([
             'excludeTxnFromChangeStreams' => $excludeTxn,
+            'isolationLevel' => $isolationLevel,
         ]) + $this->initReadWriteTransactionOptions();
     }
 

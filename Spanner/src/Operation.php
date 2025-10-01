@@ -533,6 +533,7 @@ class Operation
      *           that commit mutations but do not perform any reads or queries. If not supplied,
      *           one of the mutations from the mutation set will be selected and sent as a part of
      *           this request.
+     *     @type int $isolationLevel The level of Isolation for the transactions executed by this Client's instance.
      * }
      * @return Transaction
      */

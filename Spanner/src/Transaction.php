@@ -93,6 +93,8 @@ class Transaction implements TransactionalReadInterface
      *     @type array $singleUse The singleUse Transaction options. See {@see V1\TransactionOptions}.
      *     @type array $requestOptions See {@see V1\RequestOptions}.
      *     @type array $transactionOptions See {@see V1\TransactionOptions}.
+     *     @type int $isolationLevel level of Isolation for this transaction instance
+     *           **Defaults to** IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED
      * }
      * @param ValueMapper $mapper Consumed internally for properly map mutation data.
      * @throws \InvalidArgumentException if a tag is specified on a single-use transaction.
@@ -241,6 +243,17 @@ class Transaction implements TransactionalReadInterface
                 . ' This option should be set at the transaction level.'
             );
         }
+
+        if ($this->type() === self::TYPE_SINGLE_USE &&
+            isset($options['transaction']['begin']['isolationLevel']) ||
+            isset($options['transaction']['single_use']['isolationLevel'])
+        ) {
+            throw new ValidationException(
+                'The isolation level can only be applied to read/write transactions.' .
+                'Single use transactions are not read/write',
+            );
+        }
+
         $options = $this->buildUpdateOptions($options);
         return $this->operation
             ->executeUpdate($this->session, $this, $sql, $options);

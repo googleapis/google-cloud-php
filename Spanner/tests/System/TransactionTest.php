@@ -426,7 +426,7 @@ class TransactionTest extends SpannerTestCase
                         'id' => $id,
                         'name' => uniqid(self::TESTING_PREFIX),
                         'birthday' => new Date(new \DateTime())
-                    ]
+                    ],
                 ]
             );
             $transactionId = $t->id();

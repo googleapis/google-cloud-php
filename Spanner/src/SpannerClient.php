@@ -39,6 +39,7 @@ use Google\Cloud\Spanner\Admin\Instance\V1\ReplicaInfo;
 use Google\Cloud\Spanner\Batch\BatchClient;
 use Google\Cloud\Spanner\Middleware\SpannerMiddleware;
 use Google\Cloud\Spanner\V1\Client\SpannerClient as GapicSpannerClient;
+use Google\Cloud\Spanner\V1\TransactionOptions\IsolationLevel;
 use Google\LongRunning\Operation as OperationProto;
 use Google\Protobuf\Duration;
 use Psr\Cache\CacheItemPoolInterface;
@@ -132,6 +133,11 @@ class SpannerClient
     private CacheItemPoolInterface|null $cacheItemPool;
 
     /**
+     * @var int
+     */
+    private $isolationLevel;
+
+    /**
      * Create a Spanner client. Please note that this client requires
      * [the gRPC extension](https://cloud.google.com/php/grpc).
      *
@@ -180,6 +186,8 @@ class SpannerClient
      *     @type string $universeDomain The expected universe of the credentials. Defaults to
      *            "googleapis.com"
      *     @type CacheItemPoolInterface $cacheItemPool
+     *     @type int $isolationLevel The level of Isolation for the transactions executed by this Client's instance.
+     *           **Defaults to** IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED
      * }
      * @throws GoogleException If the gRPC extension is not enabled.
      */
@@ -196,6 +204,7 @@ class SpannerClient
             'emulatorHost' => $emulatorHost,
             'queryOptions' => [],
             'cacheItemPool' => null,
+            'isolationLevel' => IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED,
         ];
 
         $this->returnInt64AsObject = $options['returnInt64AsObject'];
@@ -254,6 +263,7 @@ class SpannerClient
 
         $this->projectName = InstanceAdminClient::projectName($this->projectId);
         $this->cacheItemPool = $options['cacheItemPool'];
+        $this->isolationLevel = $config['isolationLevel'];
     }
 
     /**
@@ -561,6 +571,7 @@ class SpannerClient
                 'defaultQueryOptions' => $this->defaultQueryOptions,
                 'returnInt64AsObject' => $this->returnInt64AsObject,
                 'cacheItemPool' => $this->cacheItemPool,
+                'isolationLevel' => $this->isolationLevel,
             ],
             $instance,
         );
