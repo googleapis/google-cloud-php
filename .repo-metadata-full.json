@@ -1297,6 +1297,14 @@
         "library_type": "GAPIC_AUTO",
         "api_shortname": "securitycentermanagement"
     },
+    "SecurityCompliance": {
+        "language": "php",
+        "distribution_name": "google/cloud-cloudsecuritycompliance",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-cloudsecuritycompliance/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "cloudsecuritycompliance"
+    },
     "SecurityPrivateCa": {
         "language": "php",
         "distribution_name": "google/cloud-security-private-ca",

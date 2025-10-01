@@ -1,0 +1,127 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.cloudsecuritycompliance.v1",
+    "libraryPackage": "Google\\Cloud\\CloudSecurityCompliance\\V1",
+    "services": {
+        "Config": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ConfigGapicClient",
+                    "rpcs": {
+                        "CreateCloudControl": {
+                            "methods": [
+                                "createCloudControl"
+                            ]
+                        },
+                        "CreateFramework": {
+                            "methods": [
+                                "createFramework"
+                            ]
+                        },
+                        "DeleteCloudControl": {
+                            "methods": [
+                                "deleteCloudControl"
+                            ]
+                        },
+                        "DeleteFramework": {
+                            "methods": [
+                                "deleteFramework"
+                            ]
+                        },
+                        "GetCloudControl": {
+                            "methods": [
+                                "getCloudControl"
+                            ]
+                        },
+                        "GetFramework": {
+                            "methods": [
+                                "getFramework"
+                            ]
+                        },
+                        "ListCloudControls": {
+                            "methods": [
+                                "listCloudControls"
+                            ]
+                        },
+                        "ListFrameworks": {
+                            "methods": [
+                                "listFrameworks"
+                            ]
+                        },
+                        "UpdateCloudControl": {
+                            "methods": [
+                                "updateCloudControl"
+                            ]
+                        },
+                        "UpdateFramework": {
+                            "methods": [
+                                "updateFramework"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "Deployment": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "DeploymentGapicClient",
+                    "rpcs": {
+                        "CreateFrameworkDeployment": {
+                            "methods": [
+                                "createFrameworkDeployment"
+                            ]
+                        },
+                        "DeleteFrameworkDeployment": {
+                            "methods": [
+                                "deleteFrameworkDeployment"
+                            ]
+                        },
+                        "GetCloudControlDeployment": {
+                            "methods": [
+                                "getCloudControlDeployment"
+                            ]
+                        },
+                        "GetFrameworkDeployment": {
+                            "methods": [
+                                "getFrameworkDeployment"
+                            ]
+                        },
+                        "ListCloudControlDeployments": {
+                            "methods": [
+                                "listCloudControlDeployments"
+                            ]
+                        },
+                        "ListFrameworkDeployments": {
+                            "methods": [
+                                "listFrameworkDeployments"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
