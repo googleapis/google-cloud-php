@@ -42,7 +42,10 @@ class SessionCache
 
     private const CACHE_KEY_TEMPLATE = 'session_cache.%s.%s.%s.%s';
     private const CACHE_KEY_VALIDATION_REGEX = '/[^a-zA-Z0-9_\.! ]+/';
-    private const SESSION_LIFETIME_SECONDS = 28 * 24 * 3600; // 28 days
+    /**
+     * A multiplex session's actual lifetime is 28 days, but we set the expiration to only 7
+     * days to be consistent with the guidance from the Spanner team
+     */
     private const SESSION_EXPIRATION_SECONDS = 7 * 24 * 3600; // 7 days;
 
     private string $cacheKey;
