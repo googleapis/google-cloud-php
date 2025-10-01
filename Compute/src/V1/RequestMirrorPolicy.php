@@ -21,6 +21,12 @@ class RequestMirrorPolicy extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string backend_service = 306946058;</code>
      */
     protected $backend_service = null;
+    /**
+     * The percentage of requests to be mirrored to `backend_service`.
+     *
+     * Generated from protobuf field <code>optional double mirror_percent = 277432261;</code>
+     */
+    protected $mirror_percent = null;
 
     /**
      * Constructor.
@@ -30,6 +36,8 @@ class RequestMirrorPolicy extends \Google\Protobuf\Internal\Message
      *
      *     @type string $backend_service
      *           The full or partial URL to the BackendService resource being mirrored to. The backend service configured for a mirroring policy must reference backends that are of the same type as the original backend service matched in the URL map. Serverless NEG backends are not currently supported as a mirrored backend service. 
+     *     @type float $mirror_percent
+     *           The percentage of requests to be mirrored to `backend_service`.
      * }
      */
     public function __construct($data = NULL) {
@@ -69,6 +77,42 @@ class RequestMirrorPolicy extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->backend_service = $var;
+
+        return $this;
+    }
+
+    /**
+     * The percentage of requests to be mirrored to `backend_service`.
+     *
+     * Generated from protobuf field <code>optional double mirror_percent = 277432261;</code>
+     * @return float
+     */
+    public function getMirrorPercent()
+    {
+        return isset($this->mirror_percent) ? $this->mirror_percent : 0.0;
+    }
+
+    public function hasMirrorPercent()
+    {
+        return isset($this->mirror_percent);
+    }
+
+    public function clearMirrorPercent()
+    {
+        unset($this->mirror_percent);
+    }
+
+    /**
+     * The percentage of requests to be mirrored to `backend_service`.
+     *
+     * Generated from protobuf field <code>optional double mirror_percent = 277432261;</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setMirrorPercent($var)
+    {
+        GPBUtil::checkDouble($var);
+        $this->mirror_percent = $var;
 
         return $this;
     }
