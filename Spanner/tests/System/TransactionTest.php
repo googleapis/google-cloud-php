@@ -28,7 +28,6 @@ use Grpc\BaseStub;
 use ReflectionClass;
 use Google\Cloud\Spanner\V1\ReadRequest\LockHint;
 use Google\Cloud\Spanner\V1\ReadRequest\OrderBy;
-use Google\Cloud\Spanner\V1\TransactionOptions\IsolationLevel;
 
 /**
  * @group spanner
@@ -428,11 +427,6 @@ class TransactionTest extends SpannerTestCase
                         'name' => uniqid(self::TESTING_PREFIX),
                         'birthday' => new Date(new \DateTime())
                     ],
-                    'transaction' => [
-                        'begin' => [
-                            'isolationLevel' => IsolationLevel::REPEATABLE_READ,
-                        ]
-                    ]
                 ]
             );
             $transactionId = $t->id();

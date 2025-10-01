@@ -560,8 +560,8 @@ class Instance
             $options + [
                 'routeToLeader' => $this->routeToLeader,
                 'defaultQueryOptions' => $this->defaultQueryOptions,
-		'returnInt64AsObject' => $this->returnInt64AsObject,
-		'isolationLevel' => $this->isolationLevel,
+                'returnInt64AsObject' => $this->returnInt64AsObject,
+                'isolationLevel' => $this->isolationLevel,
             ]
         );
     }

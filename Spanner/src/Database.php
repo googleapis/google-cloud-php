@@ -193,7 +193,6 @@ class Database
 
         $this->optionsValidator = new OptionsValidator($serializer);
         $this->directedReadOptions = $instance->directedReadOptions();
-        $this->returnInt64AsObject = $returnInt64AsObject;
         $this->isolationLevel = $options['isolationLevel'] ?? IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED;
     }
 
@@ -929,7 +928,6 @@ class Database
         $maxRetries = $retrySettings instanceof RetrySettings
             ? $retrySettings->getMaxRetries()
 	    : $retrySettings['maxRetries'];
-        
 
         if (!isset($options['transactionOptions']['isolationLevel'])) {
             $options['transactionOptions']['isolationLevel'] = $this->isolationLevel;
@@ -1933,8 +1931,8 @@ class Database
                 $options['transactionOptions']['excludeTxnFromChangeStreams'];
             unset($options['transactionOptions']);
         }
-
         $transaction = $this->operation->transaction($this->session, $beginTransactionOptions);
+
         return $this->operation->executeUpdate($this->session, $transaction, $statement, [
             'statsItem' => 'rowCountLowerBound',
             'route-to-leader' => true,
