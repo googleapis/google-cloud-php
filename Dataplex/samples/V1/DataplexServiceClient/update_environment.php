@@ -36,7 +36,7 @@ use Google\Rpc\Status;
 /**
  * Update the environment resource.
  *
- * @param string $environmentInfrastructureSpecOsImageImageVersion Dataplex Image version.
+ * @param string $environmentInfrastructureSpecOsImageImageVersion Dataplex Universal Catalog Image version.
  */
 function update_environment_sample(string $environmentInfrastructureSpecOsImageImageVersion): void
 {

@@ -17,7 +17,7 @@ class TargetReference extends \Google\Protobuf\Internal\Message
     /**
      * Generated from protobuf field <code>optional string target = 192835985;</code>
      */
-    private $target = null;
+    protected $target = null;
 
     /**
      * Constructor.

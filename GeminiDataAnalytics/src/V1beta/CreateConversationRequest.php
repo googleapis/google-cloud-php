@@ -24,6 +24,9 @@ class CreateConversationRequest extends \Google\Protobuf\Internal\Message
     protected $parent = '';
     /**
      * Optional. The conversation id of the conversation to create.
+     * Must be unique within the parent.
+     * The allowed format is: `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`.
+     * If not provided, the server will auto-generate a value for the id.
      *
      * Generated from protobuf field <code>string conversation_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -50,6 +53,9 @@ class CreateConversationRequest extends \Google\Protobuf\Internal\Message
      *                                                                              Please see {@see DataChatServiceClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\GeminiDataAnalytics\V1beta\Conversation $conversation   Required. The conversation to create.
      * @param string                                                $conversationId Optional. The conversation id of the conversation to create.
+     *                                                                              Must be unique within the parent.
+     *                                                                              The allowed format is: `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`.
+     *                                                                              If not provided, the server will auto-generate a value for the id.
      *
      * @return \Google\Cloud\GeminiDataAnalytics\V1beta\CreateConversationRequest
      *
@@ -74,6 +80,9 @@ class CreateConversationRequest extends \Google\Protobuf\Internal\Message
      *           Format: `projects/{project}/locations/{location}`
      *     @type string $conversation_id
      *           Optional. The conversation id of the conversation to create.
+     *           Must be unique within the parent.
+     *           The allowed format is: `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`.
+     *           If not provided, the server will auto-generate a value for the id.
      *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\Conversation $conversation
      *           Required. The conversation to create.
      *     @type string $request_id
@@ -118,6 +127,9 @@ class CreateConversationRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The conversation id of the conversation to create.
+     * Must be unique within the parent.
+     * The allowed format is: `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`.
+     * If not provided, the server will auto-generate a value for the id.
      *
      * Generated from protobuf field <code>string conversation_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -129,6 +141,9 @@ class CreateConversationRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The conversation id of the conversation to create.
+     * Must be unique within the parent.
+     * The allowed format is: `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`.
+     * If not provided, the server will auto-generate a value for the id.
      *
      * Generated from protobuf field <code>string conversation_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

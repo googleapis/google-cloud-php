@@ -35,7 +35,13 @@ use Google\Apps\Chat\V1\Space;
  *
  * Requires [user
  * authentication with administrator
- * privileges](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user#admin-privileges).
+ * privileges](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user#admin-privileges)
+ * and one of the following [authorization
+ * scopes](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes):
+ *
+ * - `https://www.googleapis.com/auth/chat.admin.spaces.readonly`
+ * - `https://www.googleapis.com/auth/chat.admin.spaces`
+ *
  * In the request, set `use_admin_access` to `true`.
  *
  * @param string $query A search query.

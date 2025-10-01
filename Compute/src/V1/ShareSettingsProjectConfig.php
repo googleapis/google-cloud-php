@@ -20,7 +20,7 @@ class ShareSettingsProjectConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string project_id = 177513473;</code>
      */
-    private $project_id = null;
+    protected $project_id = null;
 
     /**
      * Constructor.

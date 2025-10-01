@@ -20,25 +20,25 @@ class GetHealthTargetPoolRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceReference instance_reference_resource = 292926060 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $instance_reference_resource = null;
+    protected $instance_reference_resource = null;
     /**
      * Project ID for this request.
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * Name of the region scoping this request.
      *
      * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $region = '';
+    protected $region = '';
     /**
      * Name of the TargetPool resource to which the queried instance belongs.
      *
      * Generated from protobuf field <code>string target_pool = 62796298 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $target_pool = '';
+    protected $target_pool = '';
 
     /**
      * @param string                                     $project                   Project ID for this request.

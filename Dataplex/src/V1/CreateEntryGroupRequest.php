@@ -18,7 +18,7 @@ class CreateEntryGroupRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the entryGroup, of the form:
      * projects/{project_number}/locations/{location_id}
-     * where `location_id` refers to a GCP region.
+     * where `location_id` refers to a Google Cloud region.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -46,7 +46,7 @@ class CreateEntryGroupRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                               $parent       Required. The resource name of the entryGroup, of the form:
      *                                                           projects/{project_number}/locations/{location_id}
-     *                                                           where `location_id` refers to a GCP region. Please see
+     *                                                           where `location_id` refers to a Google Cloud region. Please see
      *                                                           {@see CatalogServiceClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\Dataplex\V1\EntryGroup $entryGroup   Required. EntryGroup Resource.
      * @param string                               $entryGroupId Required. EntryGroup identifier.
@@ -72,7 +72,7 @@ class CreateEntryGroupRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The resource name of the entryGroup, of the form:
      *           projects/{project_number}/locations/{location_id}
-     *           where `location_id` refers to a GCP region.
+     *           where `location_id` refers to a Google Cloud region.
      *     @type string $entry_group_id
      *           Required. EntryGroup identifier.
      *     @type \Google\Cloud\Dataplex\V1\EntryGroup $entry_group
@@ -90,7 +90,7 @@ class CreateEntryGroupRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the entryGroup, of the form:
      * projects/{project_number}/locations/{location_id}
-     * where `location_id` refers to a GCP region.
+     * where `location_id` refers to a Google Cloud region.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -103,7 +103,7 @@ class CreateEntryGroupRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the entryGroup, of the form:
      * projects/{project_number}/locations/{location_id}
-     * where `location_id` refers to a GCP region.
+     * where `location_id` refers to a Google Cloud region.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

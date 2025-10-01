@@ -15,14 +15,14 @@ class SearchEntriesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The project to which the request should be attributed in the
-     * following form: `projects/{project}/locations/{location}`.
+     * following form: `projects/{project}/locations/global`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $name = '';
     /**
      * Required. The query against which entries in scope should be matched.
-     * The query syntax is defined in [Search syntax for Dataplex
+     * The query syntax is defined in [Search syntax for Dataplex Universal
      * Catalog](https://cloud.google.com/dataplex/docs/search-syntax).
      *
      * Generated from protobuf field <code>string query = 2 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -46,7 +46,7 @@ class SearchEntriesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Specifies the ordering of results.
      * Supported values are:
-     * * `relevance` (default)
+     * * `relevance`
      * * `last_modified_timestamp`
      * * `last_modified_timestamp asc`
      *
@@ -72,10 +72,10 @@ class SearchEntriesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name  Required. The project to which the request should be attributed in the
-     *                      following form: `projects/{project}/locations/{location}`. Please see
+     *                      following form: `projects/{project}/locations/global`. Please see
      *                      {@see CatalogServiceClient::locationName()} for help formatting this field.
      * @param string $query Required. The query against which entries in scope should be matched.
-     *                      The query syntax is defined in [Search syntax for Dataplex
+     *                      The query syntax is defined in [Search syntax for Dataplex Universal
      *                      Catalog](https://cloud.google.com/dataplex/docs/search-syntax).
      *
      * @return \Google\Cloud\Dataplex\V1\SearchEntriesRequest
@@ -97,10 +97,10 @@ class SearchEntriesRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. The project to which the request should be attributed in the
-     *           following form: `projects/{project}/locations/{location}`.
+     *           following form: `projects/{project}/locations/global`.
      *     @type string $query
      *           Required. The query against which entries in scope should be matched.
-     *           The query syntax is defined in [Search syntax for Dataplex
+     *           The query syntax is defined in [Search syntax for Dataplex Universal
      *           Catalog](https://cloud.google.com/dataplex/docs/search-syntax).
      *     @type int $page_size
      *           Optional. Number of results in the search page. If <=0, then defaults
@@ -112,7 +112,7 @@ class SearchEntriesRequest extends \Google\Protobuf\Internal\Message
      *     @type string $order_by
      *           Optional. Specifies the ordering of results.
      *           Supported values are:
-     *           * `relevance` (default)
+     *           * `relevance`
      *           * `last_modified_timestamp`
      *           * `last_modified_timestamp asc`
      *     @type string $scope
@@ -132,7 +132,7 @@ class SearchEntriesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The project to which the request should be attributed in the
-     * following form: `projects/{project}/locations/{location}`.
+     * following form: `projects/{project}/locations/global`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -144,7 +144,7 @@ class SearchEntriesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The project to which the request should be attributed in the
-     * following form: `projects/{project}/locations/{location}`.
+     * following form: `projects/{project}/locations/global`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -160,7 +160,7 @@ class SearchEntriesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The query against which entries in scope should be matched.
-     * The query syntax is defined in [Search syntax for Dataplex
+     * The query syntax is defined in [Search syntax for Dataplex Universal
      * Catalog](https://cloud.google.com/dataplex/docs/search-syntax).
      *
      * Generated from protobuf field <code>string query = 2 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -173,7 +173,7 @@ class SearchEntriesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The query against which entries in scope should be matched.
-     * The query syntax is defined in [Search syntax for Dataplex
+     * The query syntax is defined in [Search syntax for Dataplex Universal
      * Catalog](https://cloud.google.com/dataplex/docs/search-syntax).
      *
      * Generated from protobuf field <code>string query = 2 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -249,7 +249,7 @@ class SearchEntriesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Specifies the ordering of results.
      * Supported values are:
-     * * `relevance` (default)
+     * * `relevance`
      * * `last_modified_timestamp`
      * * `last_modified_timestamp asc`
      *
@@ -264,7 +264,7 @@ class SearchEntriesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Specifies the ordering of results.
      * Supported values are:
-     * * `relevance` (default)
+     * * `relevance`
      * * `last_modified_timestamp`
      * * `last_modified_timestamp asc`
      *

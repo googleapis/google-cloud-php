@@ -20,25 +20,25 @@ class ResourceStatusPhysicalHostTopology extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>optional string block = 93832333;</code>
      */
-    private $block = null;
+    protected $block = null;
     /**
      * [Output Only] The global name of the Compute Engine cluster where the running instance is located.
      *
      * Generated from protobuf field <code>optional string cluster = 335221242;</code>
      */
-    private $cluster = null;
+    protected $cluster = null;
     /**
      * [Output Only] The ID of the host on which the running instance is located. Instances on the same host experience the lowest possible network latency.
      *
      * Generated from protobuf field <code>optional string host = 3208616;</code>
      */
-    private $host = null;
+    protected $host = null;
     /**
      * [Output Only] The ID of the sub-block in which the running instance is located. Instances in the same sub-block experience lower network latency than instances in the same block.
      *
      * Generated from protobuf field <code>optional string subblock = 70446669;</code>
      */
-    private $subblock = null;
+    protected $subblock = null;
 
     /**
      * Constructor.

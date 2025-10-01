@@ -31,7 +31,11 @@ use Google\Cloud\SecureSourceManager\V1\PullRequestComment;
 use Google\Rpc\Status;
 
 /**
- * Creates a pull request comment.
+ * Creates a pull request comment. This function is used to create a single
+ * PullRequestComment of type Comment, or a single PullRequestComment of type
+ * Code that's replying to another PullRequestComment of type Code. Use
+ * BatchCreatePullRequestComments to create multiple PullRequestComments for
+ * code reviews.
  *
  * @param string $formattedParent The pull request in which to create the pull request comment.
  *                                Format:

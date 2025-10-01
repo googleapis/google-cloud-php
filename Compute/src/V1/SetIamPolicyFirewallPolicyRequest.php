@@ -20,13 +20,13 @@ class SetIamPolicyFirewallPolicyRequest extends \Google\Protobuf\Internal\Messag
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.GlobalOrganizationSetPolicyRequest global_organization_set_policy_request_resource = 177408606 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $global_organization_set_policy_request_resource = null;
+    protected $global_organization_set_policy_request_resource = null;
     /**
      * Name or id of the resource for this request.
      *
      * Generated from protobuf field <code>string resource = 195806222 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $resource = '';
+    protected $resource = '';
 
     /**
      * @param string                                                      $resource                                   Name or id of the resource for this request.

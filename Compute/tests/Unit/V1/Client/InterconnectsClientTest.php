@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,13 +26,13 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
+use Google\Cloud\Compute\V1\Client\GlobalOperationsClient;
 use Google\Cloud\Compute\V1\Client\InterconnectsClient;
 use Google\Cloud\Compute\V1\DeleteInterconnectRequest;
 use Google\Cloud\Compute\V1\GetDiagnosticsInterconnectRequest;
 use Google\Cloud\Compute\V1\GetGlobalOperationRequest;
 use Google\Cloud\Compute\V1\GetInterconnectRequest;
 use Google\Cloud\Compute\V1\GetMacsecConfigInterconnectRequest;
-use Google\Cloud\Compute\V1\GlobalOperationsClient;
 use Google\Cloud\Compute\V1\GlobalSetLabelsRequest;
 use Google\Cloud\Compute\V1\InsertInterconnectRequest;
 use Google\Cloud\Compute\V1\Interconnect;
@@ -63,7 +63,9 @@ class InterconnectsClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return InterconnectsClient */
@@ -103,9 +105,7 @@ class InterconnectsClientTest extends GeneratedTest
         // Mock request
         $interconnect = 'interconnect-849140594';
         $project = 'project-309310695';
-        $request = (new DeleteInterconnectRequest())
-            ->setInterconnect($interconnect)
-            ->setProject($project);
+        $request = (new DeleteInterconnectRequest())->setInterconnect($interconnect)->setProject($project);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -162,19 +162,20 @@ class InterconnectsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $interconnect = 'interconnect-849140594';
         $project = 'project-309310695';
-        $request = (new DeleteInterconnectRequest())
-            ->setInterconnect($interconnect)
-            ->setProject($project);
+        $request = (new DeleteInterconnectRequest())->setInterconnect($interconnect)->setProject($project);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -204,6 +205,7 @@ class InterconnectsClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
+        $aaiEnabled = false;
         $adminEnabled = false;
         $creationTimestamp = 'creationTimestamp567396278';
         $customerName = 'customerName-2143818164';
@@ -228,6 +230,7 @@ class InterconnectsClientTest extends GeneratedTest
         $selfLink = 'selfLink-1691268851';
         $state = 'state109757585';
         $expectedResponse = new Interconnect();
+        $expectedResponse->setAaiEnabled($aaiEnabled);
         $expectedResponse->setAdminEnabled($adminEnabled);
         $expectedResponse->setCreationTimestamp($creationTimestamp);
         $expectedResponse->setCustomerName($customerName);
@@ -255,9 +258,7 @@ class InterconnectsClientTest extends GeneratedTest
         // Mock request
         $interconnect = 'interconnect-849140594';
         $project = 'project-309310695';
-        $request = (new GetInterconnectRequest())
-            ->setInterconnect($interconnect)
-            ->setProject($project);
+        $request = (new GetInterconnectRequest())->setInterconnect($interconnect)->setProject($project);
         $response = $gapicClient->get($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -283,19 +284,20 @@ class InterconnectsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $interconnect = 'interconnect-849140594';
         $project = 'project-309310695';
-        $request = (new GetInterconnectRequest())
-            ->setInterconnect($interconnect)
-            ->setProject($project);
+        $request = (new GetInterconnectRequest())->setInterconnect($interconnect)->setProject($project);
         try {
             $gapicClient->get($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -323,9 +325,7 @@ class InterconnectsClientTest extends GeneratedTest
         // Mock request
         $interconnect = 'interconnect-849140594';
         $project = 'project-309310695';
-        $request = (new GetDiagnosticsInterconnectRequest())
-            ->setInterconnect($interconnect)
-            ->setProject($project);
+        $request = (new GetDiagnosticsInterconnectRequest())->setInterconnect($interconnect)->setProject($project);
         $response = $gapicClient->getDiagnostics($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -351,19 +351,20 @@ class InterconnectsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $interconnect = 'interconnect-849140594';
         $project = 'project-309310695';
-        $request = (new GetDiagnosticsInterconnectRequest())
-            ->setInterconnect($interconnect)
-            ->setProject($project);
+        $request = (new GetDiagnosticsInterconnectRequest())->setInterconnect($interconnect)->setProject($project);
         try {
             $gapicClient->getDiagnostics($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -393,9 +394,7 @@ class InterconnectsClientTest extends GeneratedTest
         // Mock request
         $interconnect = 'interconnect-849140594';
         $project = 'project-309310695';
-        $request = (new GetMacsecConfigInterconnectRequest())
-            ->setInterconnect($interconnect)
-            ->setProject($project);
+        $request = (new GetMacsecConfigInterconnectRequest())->setInterconnect($interconnect)->setProject($project);
         $response = $gapicClient->getMacsecConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -421,19 +420,20 @@ class InterconnectsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $interconnect = 'interconnect-849140594';
         $project = 'project-309310695';
-        $request = (new GetMacsecConfigInterconnectRequest())
-            ->setInterconnect($interconnect)
-            ->setProject($project);
+        $request = (new GetMacsecConfigInterconnectRequest())->setInterconnect($interconnect)->setProject($project);
         try {
             $gapicClient->getMacsecConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -534,12 +534,15 @@ class InterconnectsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $interconnectResource = new Interconnect();
@@ -581,9 +584,7 @@ class InterconnectsClientTest extends GeneratedTest
         $nextPageToken = '';
         $selfLink = 'selfLink-1691268851';
         $itemsElement = new Interconnect();
-        $items = [
-            $itemsElement,
-        ];
+        $items = [$itemsElement];
         $expectedResponse = new InterconnectList();
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
@@ -593,8 +594,7 @@ class InterconnectsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $project = 'project-309310695';
-        $request = (new ListInterconnectsRequest())
-            ->setProject($project);
+        $request = (new ListInterconnectsRequest())->setProject($project);
         $response = $gapicClient->list($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -621,17 +621,19 @@ class InterconnectsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';
-        $request = (new ListInterconnectsRequest())
-            ->setProject($project);
+        $request = (new ListInterconnectsRequest())->setProject($project);
         try {
             $gapicClient->list($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -736,12 +738,15 @@ class InterconnectsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $interconnect = 'interconnect-849140594';
@@ -862,12 +867,15 @@ class InterconnectsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $globalSetLabelsRequestResource = new GlobalSetLabelsRequest();
@@ -925,9 +933,7 @@ class InterconnectsClientTest extends GeneratedTest
         // Mock request
         $interconnect = 'interconnect-849140594';
         $project = 'project-309310695';
-        $request = (new DeleteInterconnectRequest())
-            ->setInterconnect($interconnect)
-            ->setProject($project);
+        $request = (new DeleteInterconnectRequest())->setInterconnect($interconnect)->setProject($project);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();

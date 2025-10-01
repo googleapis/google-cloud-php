@@ -23,9 +23,11 @@ class CreateClipRequest extends \Google\Protobuf\Internal\Message
      */
     protected $parent = '';
     /**
-     * Required. Id of the requesting object in the following form:
-     * 1. 1 character minimum, 63 characters maximum
-     * 2. Only contains letters, digits, underscores, and hyphens
+     * Required. The ID of the clip resource to be created.
+     * This value must be 1-63 characters, begin and end with a lower-case letter
+     * or a number, and consist of only lower-case letters, numbers, and hyphens.
+     * In other words, it must match the following regex:
+     * `^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?$`.
      *
      * Generated from protobuf field <code>string clip_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -58,10 +60,12 @@ class CreateClipRequest extends \Google\Protobuf\Internal\Message
      *                                                       `projects/{project}/locations/{location}/channels/{channel}`. Please see
      *                                                       {@see LivestreamServiceClient::channelName()} for help formatting this field.
      * @param \Google\Cloud\Video\LiveStream\V1\Clip $clip   Required. The resource being created
-     * @param string                                 $clipId Required. Id of the requesting object in the following form:
+     * @param string                                 $clipId Required. The ID of the clip resource to be created.
      *
-     *                                                       1. 1 character minimum, 63 characters maximum
-     *                                                       2. Only contains letters, digits, underscores, and hyphens
+     *                                                       This value must be 1-63 characters, begin and end with a lower-case letter
+     *                                                       or a number, and consist of only lower-case letters, numbers, and hyphens.
+     *                                                       In other words, it must match the following regex:
+     *                                                       `^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?$`.
      *
      * @return \Google\Cloud\Video\LiveStream\V1\CreateClipRequest
      *
@@ -85,9 +89,11 @@ class CreateClipRequest extends \Google\Protobuf\Internal\Message
      *           Required. The parent resource name, in the following form:
      *           `projects/{project}/locations/{location}/channels/{channel}`.
      *     @type string $clip_id
-     *           Required. Id of the requesting object in the following form:
-     *           1. 1 character minimum, 63 characters maximum
-     *           2. Only contains letters, digits, underscores, and hyphens
+     *           Required. The ID of the clip resource to be created.
+     *           This value must be 1-63 characters, begin and end with a lower-case letter
+     *           or a number, and consist of only lower-case letters, numbers, and hyphens.
+     *           In other words, it must match the following regex:
+     *           `^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?$`.
      *     @type \Google\Cloud\Video\LiveStream\V1\Clip $clip
      *           Required. The resource being created
      *     @type string $request_id
@@ -138,9 +144,11 @@ class CreateClipRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Id of the requesting object in the following form:
-     * 1. 1 character minimum, 63 characters maximum
-     * 2. Only contains letters, digits, underscores, and hyphens
+     * Required. The ID of the clip resource to be created.
+     * This value must be 1-63 characters, begin and end with a lower-case letter
+     * or a number, and consist of only lower-case letters, numbers, and hyphens.
+     * In other words, it must match the following regex:
+     * `^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?$`.
      *
      * Generated from protobuf field <code>string clip_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -151,9 +159,11 @@ class CreateClipRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Id of the requesting object in the following form:
-     * 1. 1 character minimum, 63 characters maximum
-     * 2. Only contains letters, digits, underscores, and hyphens
+     * Required. The ID of the clip resource to be created.
+     * This value must be 1-63 characters, begin and end with a lower-case letter
+     * or a number, and consist of only lower-case letters, numbers, and hyphens.
+     * In other words, it must match the following regex:
+     * `^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?$`.
      *
      * Generated from protobuf field <code>string clip_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

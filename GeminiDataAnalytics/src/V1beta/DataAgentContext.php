@@ -22,10 +22,11 @@ class DataAgentContext extends \Google\Protobuf\Internal\Message
      */
     protected $data_agent = '';
     /**
-     * Optional. The credentials to use when calling the looker datasource
-     * Currently supports both oauth token and api keys based credentials, as
+     * Optional. The credentials to use when calling the Looker data source.
+     * Currently supports both OAuth token and API key-based credentials, as
      * described in
-     * https://cloud.google.com/looker/docs/api-auth#authentication_with_an_sdk
+     * [Authentication with an
+     * SDK](https://cloud.google.com/looker/docs/api-auth#authentication_with_an_sdk).
      *
      * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.Credentials credentials = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -46,10 +47,11 @@ class DataAgentContext extends \Google\Protobuf\Internal\Message
      *     @type string $data_agent
      *           Required. The name of the data agent resource.
      *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\Credentials $credentials
-     *           Optional. The credentials to use when calling the looker datasource
-     *           Currently supports both oauth token and api keys based credentials, as
+     *           Optional. The credentials to use when calling the Looker data source.
+     *           Currently supports both OAuth token and API key-based credentials, as
      *           described in
-     *           https://cloud.google.com/looker/docs/api-auth#authentication_with_an_sdk
+     *           [Authentication with an
+     *           SDK](https://cloud.google.com/looker/docs/api-auth#authentication_with_an_sdk).
      *     @type int $context_version
      *           Optional. Version of context to be used by DCS (e.g. STAGING, PUBLISHED)
      * }
@@ -86,10 +88,11 @@ class DataAgentContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The credentials to use when calling the looker datasource
-     * Currently supports both oauth token and api keys based credentials, as
+     * Optional. The credentials to use when calling the Looker data source.
+     * Currently supports both OAuth token and API key-based credentials, as
      * described in
-     * https://cloud.google.com/looker/docs/api-auth#authentication_with_an_sdk
+     * [Authentication with an
+     * SDK](https://cloud.google.com/looker/docs/api-auth#authentication_with_an_sdk).
      *
      * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.Credentials credentials = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\GeminiDataAnalytics\V1beta\Credentials|null
@@ -110,10 +113,11 @@ class DataAgentContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The credentials to use when calling the looker datasource
-     * Currently supports both oauth token and api keys based credentials, as
+     * Optional. The credentials to use when calling the Looker data source.
+     * Currently supports both OAuth token and API key-based credentials, as
      * described in
-     * https://cloud.google.com/looker/docs/api-auth#authentication_with_an_sdk
+     * [Authentication with an
+     * SDK](https://cloud.google.com/looker/docs/api-auth#authentication_with_an_sdk).
      *
      * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.Credentials credentials = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\GeminiDataAnalytics\V1beta\Credentials $var

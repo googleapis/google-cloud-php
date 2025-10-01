@@ -19,7 +19,7 @@ class InstanceGroupManagerResourcePolicies extends \Google\Protobuf\Internal\Mes
      *
      * Generated from protobuf field <code>optional string workload_policy = 114721530;</code>
      */
-    private $workload_policy = null;
+    protected $workload_policy = null;
 
     /**
      * Constructor.

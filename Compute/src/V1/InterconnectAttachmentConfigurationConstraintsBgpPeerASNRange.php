@@ -17,11 +17,11 @@ class InterconnectAttachmentConfigurationConstraintsBgpPeerASNRange extends \Goo
     /**
      * Generated from protobuf field <code>optional uint32 max = 107876;</code>
      */
-    private $max = null;
+    protected $max = null;
     /**
      * Generated from protobuf field <code>optional uint32 min = 108114;</code>
      */
-    private $min = null;
+    protected $min = null;
 
     /**
      * Constructor.

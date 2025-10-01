@@ -28,6 +28,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\BidiStream;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -247,11 +248,8 @@ final class ParticipantsClient
      *
      * @return string The formatted project_conversation_message resource.
      */
-    public static function projectConversationMessageName(
-        string $project,
-        string $conversation,
-        string $message
-    ): string {
+    public static function projectConversationMessageName(string $project, string $conversation, string $message): string
+    {
         return self::getPathTemplate('projectConversationMessage')->render([
             'project' => $project,
             'conversation' => $conversation,
@@ -269,11 +267,8 @@ final class ParticipantsClient
      *
      * @return string The formatted project_conversation_participant resource.
      */
-    public static function projectConversationParticipantName(
-        string $project,
-        string $conversation,
-        string $participant
-    ): string {
+    public static function projectConversationParticipantName(string $project, string $conversation, string $participant): string
+    {
         return self::getPathTemplate('projectConversationParticipant')->render([
             'project' => $project,
             'conversation' => $conversation,
@@ -292,12 +287,8 @@ final class ParticipantsClient
      *
      * @return string The formatted project_environment_user_session resource.
      */
-    public static function projectEnvironmentUserSessionName(
-        string $project,
-        string $environment,
-        string $user,
-        string $session
-    ): string {
+    public static function projectEnvironmentUserSessionName(string $project, string $environment, string $user, string $session): string
+    {
         return self::getPathTemplate('projectEnvironmentUserSession')->render([
             'project' => $project,
             'environment' => $environment,
@@ -318,13 +309,8 @@ final class ParticipantsClient
      *
      * @return string The formatted project_environment_user_session_context resource.
      */
-    public static function projectEnvironmentUserSessionContextName(
-        string $project,
-        string $environment,
-        string $user,
-        string $session,
-        string $context
-    ): string {
+    public static function projectEnvironmentUserSessionContextName(string $project, string $environment, string $user, string $session, string $context): string
+    {
         return self::getPathTemplate('projectEnvironmentUserSessionContext')->render([
             'project' => $project,
             'environment' => $environment,
@@ -346,13 +332,8 @@ final class ParticipantsClient
      *
      * @return string The formatted project_environment_user_session_entity_type resource.
      */
-    public static function projectEnvironmentUserSessionEntityTypeName(
-        string $project,
-        string $environment,
-        string $user,
-        string $session,
-        string $entityType
-    ): string {
+    public static function projectEnvironmentUserSessionEntityTypeName(string $project, string $environment, string $user, string $session, string $entityType): string
+    {
         return self::getPathTemplate('projectEnvironmentUserSessionEntityType')->render([
             'project' => $project,
             'environment' => $environment,
@@ -372,11 +353,8 @@ final class ParticipantsClient
      *
      * @return string The formatted project_location_conversation resource.
      */
-    public static function projectLocationConversationName(
-        string $project,
-        string $location,
-        string $conversation
-    ): string {
+    public static function projectLocationConversationName(string $project, string $location, string $conversation): string
+    {
         return self::getPathTemplate('projectLocationConversation')->render([
             'project' => $project,
             'location' => $location,
@@ -395,12 +373,8 @@ final class ParticipantsClient
      *
      * @return string The formatted project_location_conversation_message resource.
      */
-    public static function projectLocationConversationMessageName(
-        string $project,
-        string $location,
-        string $conversation,
-        string $message
-    ): string {
+    public static function projectLocationConversationMessageName(string $project, string $location, string $conversation, string $message): string
+    {
         return self::getPathTemplate('projectLocationConversationMessage')->render([
             'project' => $project,
             'location' => $location,
@@ -420,12 +394,8 @@ final class ParticipantsClient
      *
      * @return string The formatted project_location_conversation_participant resource.
      */
-    public static function projectLocationConversationParticipantName(
-        string $project,
-        string $location,
-        string $conversation,
-        string $participant
-    ): string {
+    public static function projectLocationConversationParticipantName(string $project, string $location, string $conversation, string $participant): string
+    {
         return self::getPathTemplate('projectLocationConversationParticipant')->render([
             'project' => $project,
             'location' => $location,
@@ -446,13 +416,8 @@ final class ParticipantsClient
      *
      * @return string The formatted project_location_environment_user_session resource.
      */
-    public static function projectLocationEnvironmentUserSessionName(
-        string $project,
-        string $location,
-        string $environment,
-        string $user,
-        string $session
-    ): string {
+    public static function projectLocationEnvironmentUserSessionName(string $project, string $location, string $environment, string $user, string $session): string
+    {
         return self::getPathTemplate('projectLocationEnvironmentUserSession')->render([
             'project' => $project,
             'location' => $location,
@@ -475,14 +440,8 @@ final class ParticipantsClient
      *
      * @return string The formatted project_location_environment_user_session_context resource.
      */
-    public static function projectLocationEnvironmentUserSessionContextName(
-        string $project,
-        string $location,
-        string $environment,
-        string $user,
-        string $session,
-        string $context
-    ): string {
+    public static function projectLocationEnvironmentUserSessionContextName(string $project, string $location, string $environment, string $user, string $session, string $context): string
+    {
         return self::getPathTemplate('projectLocationEnvironmentUserSessionContext')->render([
             'project' => $project,
             'location' => $location,
@@ -506,14 +465,8 @@ final class ParticipantsClient
      *
      * @return string The formatted project_location_environment_user_session_entity_type resource.
      */
-    public static function projectLocationEnvironmentUserSessionEntityTypeName(
-        string $project,
-        string $location,
-        string $environment,
-        string $user,
-        string $session,
-        string $entityType
-    ): string {
+    public static function projectLocationEnvironmentUserSessionEntityTypeName(string $project, string $location, string $environment, string $user, string $session, string $entityType): string
+    {
         return self::getPathTemplate('projectLocationEnvironmentUserSessionEntityType')->render([
             'project' => $project,
             'location' => $location,
@@ -554,12 +507,8 @@ final class ParticipantsClient
      *
      * @return string The formatted project_location_session_context resource.
      */
-    public static function projectLocationSessionContextName(
-        string $project,
-        string $location,
-        string $session,
-        string $context
-    ): string {
+    public static function projectLocationSessionContextName(string $project, string $location, string $session, string $context): string
+    {
         return self::getPathTemplate('projectLocationSessionContext')->render([
             'project' => $project,
             'location' => $location,
@@ -579,12 +528,8 @@ final class ParticipantsClient
      *
      * @return string The formatted project_location_session_entity_type resource.
      */
-    public static function projectLocationSessionEntityTypeName(
-        string $project,
-        string $location,
-        string $session,
-        string $entityType
-    ): string {
+    public static function projectLocationSessionEntityTypeName(string $project, string $location, string $session, string $entityType): string
+    {
         return self::getPathTemplate('projectLocationSessionEntityType')->render([
             'project' => $project,
             'location' => $location,
@@ -735,25 +680,28 @@ final class ParticipantsClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'dialogflow.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
-     *           *Important*: If you accept a credential configuration (credential
-     *           JSON/File/Stream) from an external source for authentication to Google Cloud
-     *           Platform, you must validate it before providing it to any Google API or library.
-     *           Providing an unvalidated credential configuration to Google APIs can compromise
-     *           the security of your systems and data. For more information {@see
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\Dialogflow\V2\ParticipantsClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new ParticipantsClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
      *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
@@ -791,11 +739,13 @@ final class ParticipantsClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -1005,10 +955,8 @@ final class ParticipantsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function suggestFaqAnswers(
-        SuggestFaqAnswersRequest $request,
-        array $callOptions = []
-    ): SuggestFaqAnswersResponse {
+    public function suggestFaqAnswers(SuggestFaqAnswersRequest $request, array $callOptions = []): SuggestFaqAnswersResponse
+    {
         return $this->startApiCall('SuggestFaqAnswers', $request, $callOptions)->wait();
     }
 
@@ -1033,10 +981,8 @@ final class ParticipantsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function suggestKnowledgeAssist(
-        SuggestKnowledgeAssistRequest $request,
-        array $callOptions = []
-    ): SuggestKnowledgeAssistResponse {
+    public function suggestKnowledgeAssist(SuggestKnowledgeAssistRequest $request, array $callOptions = []): SuggestKnowledgeAssistResponse
+    {
         return $this->startApiCall('SuggestKnowledgeAssist', $request, $callOptions)->wait();
     }
 
@@ -1062,10 +1008,8 @@ final class ParticipantsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function suggestSmartReplies(
-        SuggestSmartRepliesRequest $request,
-        array $callOptions = []
-    ): SuggestSmartRepliesResponse {
+    public function suggestSmartReplies(SuggestSmartRepliesRequest $request, array $callOptions = []): SuggestSmartRepliesResponse
+    {
         return $this->startApiCall('SuggestSmartReplies', $request, $callOptions)->wait();
     }
 

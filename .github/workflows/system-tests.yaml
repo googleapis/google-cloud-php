@@ -1,6 +1,7 @@
 name: System Tests
 on:
-  pull_request:
+  # This is failing because we don't have a service account key
+  # they need to be moved to kokoro instead
   workflow_dispatch:
 jobs:
   # Run system tests on the release PR
@@ -11,7 +12,7 @@ jobs:
     env:
       ASSET_TEST_BUCKET: cloud-php-testdata
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0
       - name: Setup PHP

@@ -84,6 +84,12 @@ class Component
      */
     const JUPYTER = 1;
     /**
+     * The Jupyter Kernel Gateway.
+     *
+     * Generated from protobuf enum <code>JUPYTER_KERNEL_GATEWAY = 22;</code>
+     */
+    const JUPYTER_KERNEL_GATEWAY = 22;
+    /**
      * The Pig component.
      *
      * Generated from protobuf enum <code>PIG = 21;</code>
@@ -138,6 +144,7 @@ class Component
         self::HUDI => 'HUDI',
         self::ICEBERG => 'ICEBERG',
         self::JUPYTER => 'JUPYTER',
+        self::JUPYTER_KERNEL_GATEWAY => 'JUPYTER_KERNEL_GATEWAY',
         self::PIG => 'PIG',
         self::PRESTO => 'PRESTO',
         self::TRINO => 'TRINO',

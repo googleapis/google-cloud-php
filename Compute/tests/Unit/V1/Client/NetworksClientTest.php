@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,6 +27,7 @@ use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Compute\V1\AddPeeringNetworkRequest;
+use Google\Cloud\Compute\V1\Client\GlobalOperationsClient;
 use Google\Cloud\Compute\V1\Client\NetworksClient;
 use Google\Cloud\Compute\V1\DeleteNetworkRequest;
 use Google\Cloud\Compute\V1\ExchangedPeeringRoute;
@@ -34,7 +35,6 @@ use Google\Cloud\Compute\V1\ExchangedPeeringRoutesList;
 use Google\Cloud\Compute\V1\GetEffectiveFirewallsNetworkRequest;
 use Google\Cloud\Compute\V1\GetGlobalOperationRequest;
 use Google\Cloud\Compute\V1\GetNetworkRequest;
-use Google\Cloud\Compute\V1\GlobalOperationsClient;
 use Google\Cloud\Compute\V1\InsertNetworkRequest;
 use Google\Cloud\Compute\V1\ListNetworksRequest;
 use Google\Cloud\Compute\V1\ListPeeringRoutesNetworksRequest;
@@ -43,11 +43,13 @@ use Google\Cloud\Compute\V1\NetworkList;
 use Google\Cloud\Compute\V1\NetworksAddPeeringRequest;
 use Google\Cloud\Compute\V1\NetworksGetEffectiveFirewallsResponse;
 use Google\Cloud\Compute\V1\NetworksRemovePeeringRequest;
+use Google\Cloud\Compute\V1\NetworksRequestRemovePeeringRequest;
 use Google\Cloud\Compute\V1\NetworksUpdatePeeringRequest;
 use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\Operation\Status;
 use Google\Cloud\Compute\V1\PatchNetworkRequest;
 use Google\Cloud\Compute\V1\RemovePeeringNetworkRequest;
+use Google\Cloud\Compute\V1\RequestRemovePeeringNetworkRequest;
 use Google\Cloud\Compute\V1\SwitchToCustomModeNetworkRequest;
 use Google\Cloud\Compute\V1\UpdatePeeringNetworkRequest;
 use Google\Rpc\Code;
@@ -69,7 +71,9 @@ class NetworksClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return NetworksClient */
@@ -172,12 +176,15 @@ class NetworksClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $network = 'network1843485230';
@@ -235,9 +242,7 @@ class NetworksClientTest extends GeneratedTest
         // Mock request
         $network = 'network1843485230';
         $project = 'project-309310695';
-        $request = (new DeleteNetworkRequest())
-            ->setNetwork($network)
-            ->setProject($project);
+        $request = (new DeleteNetworkRequest())->setNetwork($network)->setProject($project);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -294,19 +299,20 @@ class NetworksClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $network = 'network1843485230';
         $project = 'project-309310695';
-        $request = (new DeleteNetworkRequest())
-            ->setNetwork($network)
-            ->setProject($project);
+        $request = (new DeleteNetworkRequest())->setNetwork($network)->setProject($project);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -373,9 +379,7 @@ class NetworksClientTest extends GeneratedTest
         // Mock request
         $network = 'network1843485230';
         $project = 'project-309310695';
-        $request = (new GetNetworkRequest())
-            ->setNetwork($network)
-            ->setProject($project);
+        $request = (new GetNetworkRequest())->setNetwork($network)->setProject($project);
         $response = $gapicClient->get($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -401,19 +405,20 @@ class NetworksClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $network = 'network1843485230';
         $project = 'project-309310695';
-        $request = (new GetNetworkRequest())
-            ->setNetwork($network)
-            ->setProject($project);
+        $request = (new GetNetworkRequest())->setNetwork($network)->setProject($project);
         try {
             $gapicClient->get($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -441,9 +446,7 @@ class NetworksClientTest extends GeneratedTest
         // Mock request
         $network = 'network1843485230';
         $project = 'project-309310695';
-        $request = (new GetEffectiveFirewallsNetworkRequest())
-            ->setNetwork($network)
-            ->setProject($project);
+        $request = (new GetEffectiveFirewallsNetworkRequest())->setNetwork($network)->setProject($project);
         $response = $gapicClient->getEffectiveFirewalls($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -469,19 +472,20 @@ class NetworksClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $network = 'network1843485230';
         $project = 'project-309310695';
-        $request = (new GetEffectiveFirewallsNetworkRequest())
-            ->setNetwork($network)
-            ->setProject($project);
+        $request = (new GetEffectiveFirewallsNetworkRequest())->setNetwork($network)->setProject($project);
         try {
             $gapicClient->getEffectiveFirewalls($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -523,9 +527,7 @@ class NetworksClientTest extends GeneratedTest
         // Mock request
         $networkResource = new Network();
         $project = 'project-309310695';
-        $request = (new InsertNetworkRequest())
-            ->setNetworkResource($networkResource)
-            ->setProject($project);
+        $request = (new InsertNetworkRequest())->setNetworkResource($networkResource)->setProject($project);
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -582,19 +584,20 @@ class NetworksClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $networkResource = new Network();
         $project = 'project-309310695';
-        $request = (new InsertNetworkRequest())
-            ->setNetworkResource($networkResource)
-            ->setProject($project);
+        $request = (new InsertNetworkRequest())->setNetworkResource($networkResource)->setProject($project);
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -629,9 +632,7 @@ class NetworksClientTest extends GeneratedTest
         $nextPageToken = '';
         $selfLink = 'selfLink-1691268851';
         $itemsElement = new Network();
-        $items = [
-            $itemsElement,
-        ];
+        $items = [$itemsElement];
         $expectedResponse = new NetworkList();
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
@@ -641,8 +642,7 @@ class NetworksClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $project = 'project-309310695';
-        $request = (new ListNetworksRequest())
-            ->setProject($project);
+        $request = (new ListNetworksRequest())->setProject($project);
         $response = $gapicClient->list($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -669,17 +669,19 @@ class NetworksClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';
-        $request = (new ListNetworksRequest())
-            ->setProject($project);
+        $request = (new ListNetworksRequest())->setProject($project);
         try {
             $gapicClient->list($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -707,9 +709,7 @@ class NetworksClientTest extends GeneratedTest
         $nextPageToken = '';
         $selfLink = 'selfLink-1691268851';
         $itemsElement = new ExchangedPeeringRoute();
-        $items = [
-            $itemsElement,
-        ];
+        $items = [$itemsElement];
         $expectedResponse = new ExchangedPeeringRoutesList();
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
@@ -720,9 +720,7 @@ class NetworksClientTest extends GeneratedTest
         // Mock request
         $network = 'network1843485230';
         $project = 'project-309310695';
-        $request = (new ListPeeringRoutesNetworksRequest())
-            ->setNetwork($network)
-            ->setProject($project);
+        $request = (new ListPeeringRoutesNetworksRequest())->setNetwork($network)->setProject($project);
         $response = $gapicClient->listPeeringRoutes($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -751,19 +749,20 @@ class NetworksClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $network = 'network1843485230';
         $project = 'project-309310695';
-        $request = (new ListPeeringRoutesNetworksRequest())
-            ->setNetwork($network)
-            ->setProject($project);
+        $request = (new ListPeeringRoutesNetworksRequest())->setNetwork($network)->setProject($project);
         try {
             $gapicClient->listPeeringRoutes($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -868,12 +867,15 @@ class NetworksClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $network = 'network1843485230';
@@ -994,12 +996,15 @@ class NetworksClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $network = 'network1843485230';
@@ -1010,6 +1015,135 @@ class NetworksClientTest extends GeneratedTest
             ->setNetworksRemovePeeringRequestResource($networksRemovePeeringRequestResource)
             ->setProject($project);
         $response = $gapicClient->removePeering($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function requestRemovePeeringTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new GlobalOperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/requestRemovePeeringTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
+        $completeOperation = new Operation();
+        $completeOperation->setName('customOperations/requestRemovePeeringTest');
+        $completeOperation->setStatus(Status::DONE);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $network = 'network1843485230';
+        $networksRequestRemovePeeringRequestResource = new NetworksRequestRemovePeeringRequest();
+        $project = 'project-309310695';
+        $request = (new RequestRemovePeeringNetworkRequest())
+            ->setNetwork($network)
+            ->setNetworksRequestRemovePeeringRequestResource($networksRequestRemovePeeringRequestResource)
+            ->setProject($project);
+        $response = $gapicClient->requestRemovePeering($request);
+        $this->assertFalse($response->isDone());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.Networks/RequestRemovePeering', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getNetwork();
+        $this->assertProtobufEquals($network, $actualValue);
+        $actualValue = $actualApiRequestObject->getNetworksRequestRemovePeeringRequestResource();
+        $this->assertProtobufEquals($networksRequestRemovePeeringRequestResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $expectedOperationsRequestObject = new GetGlobalOperationRequest();
+        $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.GlobalOperations/Get', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function requestRemovePeeringExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new GlobalOperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/requestRemovePeeringExceptionTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $network = 'network1843485230';
+        $networksRequestRemovePeeringRequestResource = new NetworksRequestRemovePeeringRequest();
+        $project = 'project-309310695';
+        $request = (new RequestRemovePeeringNetworkRequest())
+            ->setNetwork($network)
+            ->setNetworksRequestRemovePeeringRequestResource($networksRequestRemovePeeringRequestResource)
+            ->setProject($project);
+        $response = $gapicClient->requestRemovePeering($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -1057,9 +1191,7 @@ class NetworksClientTest extends GeneratedTest
         // Mock request
         $network = 'network1843485230';
         $project = 'project-309310695';
-        $request = (new SwitchToCustomModeNetworkRequest())
-            ->setNetwork($network)
-            ->setProject($project);
+        $request = (new SwitchToCustomModeNetworkRequest())->setNetwork($network)->setProject($project);
         $response = $gapicClient->switchToCustomMode($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -1116,19 +1248,20 @@ class NetworksClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $network = 'network1843485230';
         $project = 'project-309310695';
-        $request = (new SwitchToCustomModeNetworkRequest())
-            ->setNetwork($network)
-            ->setProject($project);
+        $request = (new SwitchToCustomModeNetworkRequest())->setNetwork($network)->setProject($project);
         $response = $gapicClient->switchToCustomMode($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1240,12 +1373,15 @@ class NetworksClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $network = 'network1843485230';

@@ -36,6 +36,9 @@ use Google\Cloud\Spanner\V1\PartialResultSet;
  * the size of the returned result set. However, no individual row in the
  * result set can exceed 100 MiB, and no column value can exceed 10 MiB.
  *
+ * The query string can be SQL or [Graph Query Language
+ * (GQL)](https://cloud.google.com/spanner/docs/reference/standard-sql/graph-intro).
+ *
  * @param string $formattedSession The session in which the SQL query should be performed. Please see
  *                                 {@see SpannerClient::sessionName()} for help formatting this field.
  * @param string $sql              The SQL string.

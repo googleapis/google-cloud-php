@@ -19,7 +19,7 @@ class InstanceGroupManagersSetInstanceTemplateRequest extends \Google\Protobuf\I
      *
      * Generated from protobuf field <code>optional string instance_template = 309248228;</code>
      */
-    private $instance_template = null;
+    protected $instance_template = null;
 
     /**
      * Constructor.

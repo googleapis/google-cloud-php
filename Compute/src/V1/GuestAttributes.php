@@ -20,37 +20,37 @@ class GuestAttributes extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
-    private $kind = null;
+    protected $kind = null;
     /**
      * The path to be queried. This can be the default namespace ('') or a nested namespace ('\/') or a specified key ('\/\').
      *
      * Generated from protobuf field <code>optional string query_path = 368591164;</code>
      */
-    private $query_path = null;
+    protected $query_path = null;
     /**
      * [Output Only] The value of the requested queried path.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.GuestAttributesValue query_value = 157570874;</code>
      */
-    private $query_value = null;
+    protected $query_value = null;
     /**
      * [Output Only] Server-defined URL for this resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
-    private $self_link = null;
+    protected $self_link = null;
     /**
      * The key to search for.
      *
      * Generated from protobuf field <code>optional string variable_key = 164364828;</code>
      */
-    private $variable_key = null;
+    protected $variable_key = null;
     /**
      * [Output Only] The value found for the requested key.
      *
      * Generated from protobuf field <code>optional string variable_value = 124582382;</code>
      */
-    private $variable_value = null;
+    protected $variable_value = null;
 
     /**
      * Constructor.

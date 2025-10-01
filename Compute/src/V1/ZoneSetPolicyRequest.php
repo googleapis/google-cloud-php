@@ -25,13 +25,13 @@ class ZoneSetPolicyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string etag = 3123477;</code>
      */
-    private $etag = null;
+    protected $etag = null;
     /**
      * REQUIRED: The complete policy to be applied to the 'resource'. The size of the policy is limited to a few 10s of KB. An empty policy is in general a valid policy but certain services (like Projects) might reject them.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Policy policy = 91071794;</code>
      */
-    private $policy = null;
+    protected $policy = null;
 
     /**
      * Constructor.

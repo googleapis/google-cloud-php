@@ -30,14 +30,14 @@ use Google\Analytics\Admin\V1alpha\UpdateSubpropertySyncConfigRequest;
 use Google\ApiCore\ApiException;
 
 /**
- * Updates a Subproperty Sync Config.
+ * Updates a `SubpropertySyncConfig`.
  *
  * @param int $subpropertySyncConfigCustomDimensionAndMetricSyncMode Specifies the Custom Dimension / Metric synchronization mode for
- *                                                                   the Subproperty.
+ *                                                                   the subproperty.
  *
  *                                                                   If set to ALL, Custom Dimension / Metric synchronization will be
  *                                                                   immediately enabled.  Local configuration of Custom Dimensions / Metrics
- *                                                                   will not be allowed on the Subproperty so long as the synchronization mode
+ *                                                                   will not be allowed on the subproperty so long as the synchronization mode
  *                                                                   is set to ALL.
  *
  *                                                                   If set to NONE, Custom Dimensions / Metric synchronization is disabled.

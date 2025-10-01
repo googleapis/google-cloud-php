@@ -26,7 +26,7 @@ class Context extends \Google\Protobuf\Internal\Message
      */
     protected $system_instruction = '';
     /**
-     * Required. Datasources available for answering the question.
+     * Required. Data sources that are available for answering the question.
      *
      * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.DatasourceReferences datasource_references = 7 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -37,6 +37,14 @@ class Context extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.ConversationOptions options = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $options = null;
+    /**
+     * Optional. A list of example queries, providing examples of relevant and
+     * commonly used SQL queries and their corresponding natural language queries
+     * optionally present.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.ExampleQuery example_queries = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $example_queries;
 
     /**
      * Constructor.
@@ -51,9 +59,13 @@ class Context extends \Google\Protobuf\Internal\Message
      *           is 65 in the USA, etc) and system instructions (e.g., answer like a Pirate)
      *           can help the model understand the business context around a user question.
      *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\DatasourceReferences $datasource_references
-     *           Required. Datasources available for answering the question.
+     *           Required. Data sources that are available for answering the question.
      *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\ConversationOptions $options
      *           Optional. Additional options for the conversation.
+     *     @type array<\Google\Cloud\GeminiDataAnalytics\V1beta\ExampleQuery>|\Google\Protobuf\Internal\RepeatedField $example_queries
+     *           Optional. A list of example queries, providing examples of relevant and
+     *           commonly used SQL queries and their corresponding natural language queries
+     *           optionally present.
      * }
      */
     public function __construct($data = NULL) {
@@ -96,7 +108,7 @@ class Context extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Datasources available for answering the question.
+     * Required. Data sources that are available for answering the question.
      *
      * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.DatasourceReferences datasource_references = 7 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\GeminiDataAnalytics\V1beta\DatasourceReferences|null
@@ -117,7 +129,7 @@ class Context extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Datasources available for answering the question.
+     * Required. Data sources that are available for answering the question.
      *
      * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.DatasourceReferences datasource_references = 7 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\GeminiDataAnalytics\V1beta\DatasourceReferences $var
@@ -163,6 +175,36 @@ class Context extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\GeminiDataAnalytics\V1beta\ConversationOptions::class);
         $this->options = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A list of example queries, providing examples of relevant and
+     * commonly used SQL queries and their corresponding natural language queries
+     * optionally present.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.ExampleQuery example_queries = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getExampleQueries()
+    {
+        return $this->example_queries;
+    }
+
+    /**
+     * Optional. A list of example queries, providing examples of relevant and
+     * commonly used SQL queries and their corresponding natural language queries
+     * optionally present.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.ExampleQuery example_queries = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<\Google\Cloud\GeminiDataAnalytics\V1beta\ExampleQuery>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setExampleQueries($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\GeminiDataAnalytics\V1beta\ExampleQuery::class);
+        $this->example_queries = $arr;
 
         return $this;
     }

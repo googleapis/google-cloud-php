@@ -20,13 +20,13 @@ class BackendServiceLocalityLoadBalancingPolicyConfigCustomPolicy extends \Googl
      *
      * Generated from protobuf field <code>optional string data = 3076010;</code>
      */
-    private $data = null;
+    protected $data = null;
     /**
      * Identifies the custom policy. The value should match the name of a custom implementation registered on the gRPC clients. It should follow protocol buffer message naming conventions and include the full path (for example, myorg.CustomLbPolicy). The maximum length is 256 characters. Do not specify the same custom policy more than once for a backend. If you do, the configuration is rejected. For an example of how to use this field, see Use a custom policy.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
 
     /**
      * Constructor.

@@ -60,7 +60,7 @@ class PartitionReadRequest extends \Google\Protobuf\Internal\Message
      * [index][google.spanner.v1.PartitionReadRequest.index] is present, then
      * [key_set][google.spanner.v1.PartitionReadRequest.key_set] instead names
      * index keys in [index][google.spanner.v1.PartitionReadRequest.index].
-     * It is not an error for the `key_set` to name rows that do not
+     * It isn't an error for the `key_set` to name rows that don't
      * exist in the database. Read yields nothing for nonexistent rows.
      *
      * Generated from protobuf field <code>.google.spanner.v1.KeySet key_set = 6 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -104,7 +104,7 @@ class PartitionReadRequest extends \Google\Protobuf\Internal\Message
      *           [index][google.spanner.v1.PartitionReadRequest.index] is present, then
      *           [key_set][google.spanner.v1.PartitionReadRequest.key_set] instead names
      *           index keys in [index][google.spanner.v1.PartitionReadRequest.index].
-     *           It is not an error for the `key_set` to name rows that do not
+     *           It isn't an error for the `key_set` to name rows that don't
      *           exist in the database. Read yields nothing for nonexistent rows.
      *     @type \Google\Cloud\Spanner\V1\PartitionOptions $partition_options
      *           Additional options that affect how many partitions are created.
@@ -277,7 +277,7 @@ class PartitionReadRequest extends \Google\Protobuf\Internal\Message
      * [index][google.spanner.v1.PartitionReadRequest.index] is present, then
      * [key_set][google.spanner.v1.PartitionReadRequest.key_set] instead names
      * index keys in [index][google.spanner.v1.PartitionReadRequest.index].
-     * It is not an error for the `key_set` to name rows that do not
+     * It isn't an error for the `key_set` to name rows that don't
      * exist in the database. Read yields nothing for nonexistent rows.
      *
      * Generated from protobuf field <code>.google.spanner.v1.KeySet key_set = 6 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -306,7 +306,7 @@ class PartitionReadRequest extends \Google\Protobuf\Internal\Message
      * [index][google.spanner.v1.PartitionReadRequest.index] is present, then
      * [key_set][google.spanner.v1.PartitionReadRequest.key_set] instead names
      * index keys in [index][google.spanner.v1.PartitionReadRequest.index].
-     * It is not an error for the `key_set` to name rows that do not
+     * It isn't an error for the `key_set` to name rows that don't
      * exist in the database. Read yields nothing for nonexistent rows.
      *
      * Generated from protobuf field <code>.google.spanner.v1.KeySet key_set = 6 [(.google.api.field_behavior) = REQUIRED];</code>

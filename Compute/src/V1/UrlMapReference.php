@@ -17,7 +17,7 @@ class UrlMapReference extends \Google\Protobuf\Internal\Message
     /**
      * Generated from protobuf field <code>optional string url_map = 367020684;</code>
      */
-    private $url_map = null;
+    protected $url_map = null;
 
     /**
      * Constructor.

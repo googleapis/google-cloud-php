@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Message representing references to LookerStudio datasources.
+ * Message representing references to Looker Studio datasources.
  *
  * Generated from protobuf message <code>google.cloud.geminidataanalytics.v1beta.StudioDatasourceReferences</code>
  */

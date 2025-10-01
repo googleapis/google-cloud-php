@@ -41,6 +41,12 @@ class InfoTypeDescription extends \Google\Protobuf\Internal\Message
      */
     protected $description = '';
     /**
+     * Locations at which this feature can be used. May change over time.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.LocationSupport location_support = 6;</code>
+     */
+    protected $location_support = null;
+    /**
      * A sample that is a true positive for this infoType.
      *
      * Generated from protobuf field <code>string example = 8;</code>
@@ -90,6 +96,8 @@ class InfoTypeDescription extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           Description of the infotype. Translated when language is provided in the
      *           request.
+     *     @type \Google\Cloud\Dlp\V2\LocationSupport $location_support
+     *           Locations at which this feature can be used. May change over time.
      *     @type string $example
      *           A sample that is a true positive for this infoType.
      *     @type array<\Google\Cloud\Dlp\V2\VersionDescription>|\Google\Protobuf\Internal\RepeatedField $versions
@@ -213,6 +221,42 @@ class InfoTypeDescription extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->description = $var;
+
+        return $this;
+    }
+
+    /**
+     * Locations at which this feature can be used. May change over time.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.LocationSupport location_support = 6;</code>
+     * @return \Google\Cloud\Dlp\V2\LocationSupport|null
+     */
+    public function getLocationSupport()
+    {
+        return $this->location_support;
+    }
+
+    public function hasLocationSupport()
+    {
+        return isset($this->location_support);
+    }
+
+    public function clearLocationSupport()
+    {
+        unset($this->location_support);
+    }
+
+    /**
+     * Locations at which this feature can be used. May change over time.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.LocationSupport location_support = 6;</code>
+     * @param \Google\Cloud\Dlp\V2\LocationSupport $var
+     * @return $this
+     */
+    public function setLocationSupport($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\LocationSupport::class);
+        $this->location_support = $var;
 
         return $this;
     }

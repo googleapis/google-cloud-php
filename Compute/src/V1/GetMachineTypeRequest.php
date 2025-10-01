@@ -20,19 +20,19 @@ class GetMachineTypeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string machine_type = 227711026 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $machine_type = '';
+    protected $machine_type = '';
     /**
      * Project ID for this request.
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * The name of the zone for this request.
      *
      * Generated from protobuf field <code>string zone = 3744684 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $zone = '';
+    protected $zone = '';
 
     /**
      * @param string $project     Project ID for this request.

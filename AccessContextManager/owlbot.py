@@ -51,7 +51,7 @@ subprocess.run([
     'npm',
     'exec',
     '--yes',
-    '--package=@prettier/plugin-php@^0.16',
+    '--package=@prettier/plugin-php@^0.19',
     '--',
     'prettier',
     '**/Client/*',

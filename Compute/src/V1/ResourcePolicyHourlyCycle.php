@@ -20,19 +20,19 @@ class ResourcePolicyHourlyCycle extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string duration = 155471252;</code>
      */
-    private $duration = null;
+    protected $duration = null;
     /**
      * Defines a schedule with units measured in hours. The value determines how many hours pass between the start of each cycle.
      *
      * Generated from protobuf field <code>optional int32 hours_in_cycle = 526763132;</code>
      */
-    private $hours_in_cycle = null;
+    protected $hours_in_cycle = null;
     /**
      * Time within the window to start the operations. It must be in format "HH:MM", where HH : [00-23] and MM : [00-00] GMT.
      *
      * Generated from protobuf field <code>optional string start_time = 37467274;</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
 
     /**
      * Constructor.

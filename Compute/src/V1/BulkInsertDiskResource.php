@@ -20,7 +20,7 @@ class BulkInsertDiskResource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string source_consistency_group_policy = 19616093;</code>
      */
-    private $source_consistency_group_policy = null;
+    protected $source_consistency_group_policy = null;
 
     /**
      * Constructor.

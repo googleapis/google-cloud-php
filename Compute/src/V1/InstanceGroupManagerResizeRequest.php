@@ -20,74 +20,74 @@ class InstanceGroupManagerResizeRequest extends \Google\Protobuf\Internal\Messag
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
-    private $creation_timestamp = null;
+    protected $creation_timestamp = null;
     /**
      * An optional description of this resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
-    private $description = null;
+    protected $description = null;
     /**
      * [Output Only] A unique identifier for this resource type. The server generates this identifier.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
-    private $id = null;
+    protected $id = null;
     /**
      * [Output Only] The resource type, which is always compute#instanceGroupManagerResizeRequest for resize requests.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
-    private $kind = null;
+    protected $kind = null;
     /**
      * The name of this resize request. The name must be 1-63 characters long, and comply with RFC1035.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
     /**
      * Requested run duration for instances that will be created by this request. At the end of the run duration instance will be deleted.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Duration requested_run_duration = 232146425;</code>
      */
-    private $requested_run_duration = null;
+    protected $requested_run_duration = null;
     /**
      * The number of instances to be created by this resize request. The group's target size will be increased by this number. This field cannot be used together with 'instances'.
      *
      * Generated from protobuf field <code>optional int32 resize_by = 533735362;</code>
      */
-    private $resize_by = null;
+    protected $resize_by = null;
     /**
      * [Output Only] The URL for this resize request. The server defines this URL.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
-    private $self_link = null;
+    protected $self_link = null;
     /**
      * [Output Only] Server-defined URL for this resource with the resource id.
      *
      * Generated from protobuf field <code>optional string self_link_with_id = 44520962;</code>
      */
-    private $self_link_with_id = null;
+    protected $self_link_with_id = null;
     /**
      * [Output only] Current state of the request.
      * Check the State enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string state = 109757585;</code>
      */
-    private $state = null;
+    protected $state = null;
     /**
      * [Output only] Status of the request.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerResizeRequestStatus status = 181260274;</code>
      */
-    private $status = null;
+    protected $status = null;
     /**
      * [Output Only] The URL of a zone where the resize request is located. Populated only for zonal resize requests.
      *
      * Generated from protobuf field <code>optional string zone = 3744684;</code>
      */
-    private $zone = null;
+    protected $zone = null;
 
     /**
      * Constructor.

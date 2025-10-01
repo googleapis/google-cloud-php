@@ -28,14 +28,14 @@ use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Google\Cloud\Spanner\V1\RollbackRequest;
 
 /**
- * Rolls back a transaction, releasing any locks it holds. It is a good
+ * Rolls back a transaction, releasing any locks it holds. It's a good
  * idea to call this for any transaction that includes one or more
  * [Read][google.spanner.v1.Spanner.Read] or
  * [ExecuteSql][google.spanner.v1.Spanner.ExecuteSql] requests and ultimately
  * decides not to commit.
  *
  * `Rollback` returns `OK` if it successfully aborts the transaction, the
- * transaction was already aborted, or the transaction is not
+ * transaction was already aborted, or the transaction isn't
  * found. `Rollback` never returns `ABORTED`.
  *
  * @param string $formattedSession The session in which the transaction to roll back is running. Please see

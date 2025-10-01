@@ -35,6 +35,18 @@ return [
                     ],
                 ],
             ],
+            'CloneDatabase' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*}/databases:clone',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateBackupSchedule' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/databases/*}/backupSchedules',

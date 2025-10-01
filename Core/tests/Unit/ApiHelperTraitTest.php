@@ -17,9 +17,13 @@
 
 namespace Google\Cloud\Core\Tests\Unit;
 
+use Google\ApiCore\Options\CallOptions;
+use Google\ApiCore\Serializer;
+use Google\ApiCore\Testing\MockRequest;
 use Google\Cloud\Core\Duration;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Tests\Unit\Stubs\ApiHelpersTraitImpl;
+use LogicException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -36,6 +40,7 @@ class ApiHelperTraitTest extends TestCase
     public function setUp(): void
     {
         $this->implementation = new ApiHelpersTraitImpl();
+        $this->implementation->serializer = new Serializer();
     }
 
     public function testFormatsTimestamp()
@@ -257,5 +262,123 @@ class ApiHelperTraitTest extends TestCase
                 ]
             ]
         ];
+    }
+
+    /**
+     * @dataProvider validateOptionsProvider
+     */
+    public function testValidateOptions($options, $optionTypes, $expected)
+    {
+        $this->assertEquals(
+            $expected,
+            $this->implementation->validateOptions($options, ...$optionTypes)
+        );
+        // test using an implementation without a serializer
+        $this->assertEquals(
+            $expected,
+            (new ApiHelpersTraitImpl)->validateOptions($options, ...$optionTypes)
+        );
+    }
+
+    public function validateOptionsProvider()
+    {
+        return [
+            [
+                [
+                    'foo' => 'bar',
+                    'baz' => 'bat',
+                    'qux' => 'quux',
+                ],
+                [
+                    ['foo', 'baz', 'qux'],
+                ],
+                [
+                    [
+                        'foo' => 'bar',
+                        'baz' => 'bat',
+                        'qux' => 'quux',
+                    ],
+                ]
+            ],
+            [
+                [
+                    'pageToken' => 'bat',
+                    'qux' => 'quux',
+                    'timeoutMillis' => 123,
+                ],
+                [
+                    CallOptions::class,
+                    new MockRequest(),
+                    ['qux'],
+                ],
+                [
+                    ['timeoutMillis' => 123],
+                    (new MockRequest())->setPageToken('bat'),
+                    ['qux' => 'quux'],
+                ]
+            ],
+            [
+                [
+                    'baz' => 'bat',
+                ],
+                [
+                    ['baz'],
+                    new MockRequest(),
+                    CallOptions::class,
+                ],
+                [
+                    ['baz' => 'bat'],
+                    new MockRequest(),
+                    [],
+                ]
+            ],
+            [
+                [
+                    'baz' => 'bat',
+                    'pageToken' => 'foo1',
+                ],
+                [
+                    ['baz'],
+                    new MockRequest(),
+                ],
+                [
+                    ['baz' => 'bat'],
+                    (new MockRequest())->setPageToken('foo1'),
+                ]
+            ],
+        ];
+    }
+
+    public function testValidateOptionsThrowsException()
+    {
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage('Unexpected option(s) provided: bar');
+
+        $options = [
+            'foo' => 'bar',
+            'bar' => 'baz',
+        ];
+
+        $this->implementation->validateOptions($options, ['foo']);
+    }
+
+    public function testValidateOptionsWithClassnameThrowsException()
+    {
+        $this->expectException(LogicException::class);
+        $this->expectExceptionMessage('Invalid option type: ' . Blob::class);
+
+        $options = [
+            'foo' => 'bar',
+            'bar' => 'baz',
+        ];
+
+        [$blob, $validated] = $this->implementation->validateOptions(
+            $options,
+            Blob::class,
+            ['foo', 'bar']
+        );
+
+        $this->assertEquals([], $blob);
+        $this->assertEquals($options, $validated);
     }
 }

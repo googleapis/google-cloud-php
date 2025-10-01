@@ -19,8 +19,8 @@ class Enrollment
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-å
-)google/cloud/eventarc/v1/enrollment.protogoogle.cloud.eventarc.v1google/api/resource.protogoogle/protobuf/timestamp.proto"æ
+è
+)google/cloud/eventarc/v1/enrollment.protogoogle.cloud.eventarc.v1google/api/resource.protogoogle/protobuf/timestamp.proto"¡
 
 Enrollment
 name (	B‡A
@@ -31,9 +31,9 @@ Enrollment
 labels (20.google.cloud.eventarc.v1.Enrollment.LabelsEntryB‡AO
 annotations (25.google.cloud.eventarc.v1.Enrollment.AnnotationsEntryB‡A
 display_name (	B‡A
-	cel_match	 (	B‡A?
+	cel_match	 (	B‡AB
 message_bus
- (	B*‡A˙A$
+ (	B-‡A‡A˙A$
 "eventarc.googleapis.com/MessageBus
 destination (	B‡A-
 LabelsEntry

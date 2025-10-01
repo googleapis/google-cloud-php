@@ -47,6 +47,30 @@ return [
                     ],
                 ],
             ],
+            'VerifyConfidentialGke' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\ConfidentialComputing\V1\VerifyConfidentialGkeResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'challenge',
+                        'fieldAccessors' => [
+                            'getChallenge',
+                        ],
+                    ],
+                ],
+            ],
+            'VerifyConfidentialSpace' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\ConfidentialComputing\V1\VerifyConfidentialSpaceResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'challenge',
+                        'fieldAccessors' => [
+                            'getChallenge',
+                        ],
+                    ],
+                ],
+            ],
             'GetLocation' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Location\Location',

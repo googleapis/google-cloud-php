@@ -37,9 +37,9 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ```php
 Google\ApiCore\ApiException;
 Google\ApiCore\PagedListResponse;
-Google\Shopping\Merchant\Quota\V1beta\Client\QuotaServiceClient;
-Google\Shopping\Merchant\Quota\V1beta\ListQuotaGroupsRequest;
-Google\Shopping\Merchant\Quota\V1beta\QuotaGroup;
+Google\Shopping\Merchant\Quota\V1\Client\QuotaServiceClient;
+Google\Shopping\Merchant\Quota\V1\ListQuotaGroupsRequest;
+Google\Shopping\Merchant\Quota\V1\QuotaGroup;
 
 // Create a client.
 $quotaServiceClient = new QuotaServiceClient();
@@ -71,7 +71,8 @@ for more information about the debugging tools.
 
 ### Version
 
-This component is considered alpha. As such, it is still a work-in-progress and is more likely to get backwards-incompatible updates.
+This component is considered GA (generally available). As such, it will not introduce backwards-incompatible changes in
+any minor or patch releases. We will address issues and requests with the highest priority.
 
 ### Next Steps
 

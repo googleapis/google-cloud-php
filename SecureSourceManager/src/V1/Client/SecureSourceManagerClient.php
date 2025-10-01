@@ -28,6 +28,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -43,6 +44,7 @@ use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
 use Google\Cloud\SecureSourceManager\V1\BatchCreatePullRequestCommentsRequest;
+use Google\Cloud\SecureSourceManager\V1\BatchCreatePullRequestCommentsResponse;
 use Google\Cloud\SecureSourceManager\V1\BranchRule;
 use Google\Cloud\SecureSourceManager\V1\CloseIssueRequest;
 use Google\Cloud\SecureSourceManager\V1\ClosePullRequestRequest;
@@ -92,7 +94,9 @@ use Google\Cloud\SecureSourceManager\V1\PullRequest;
 use Google\Cloud\SecureSourceManager\V1\PullRequestComment;
 use Google\Cloud\SecureSourceManager\V1\Repository;
 use Google\Cloud\SecureSourceManager\V1\ResolvePullRequestCommentsRequest;
+use Google\Cloud\SecureSourceManager\V1\ResolvePullRequestCommentsResponse;
 use Google\Cloud\SecureSourceManager\V1\UnresolvePullRequestCommentsRequest;
+use Google\Cloud\SecureSourceManager\V1\UnresolvePullRequestCommentsResponse;
 use Google\Cloud\SecureSourceManager\V1\UpdateBranchRuleRequest;
 use Google\Cloud\SecureSourceManager\V1\UpdateHookRequest;
 use Google\Cloud\SecureSourceManager\V1\UpdateIssueCommentRequest;
@@ -201,7 +205,9 @@ final class SecureSourceManagerClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+    ];
 
     private $operationsClient;
 
@@ -247,9 +253,7 @@ final class SecureSourceManagerClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning'])
-            ? $this->descriptors[$methodName]['longRunning']
-            : [];
+        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -285,12 +289,8 @@ final class SecureSourceManagerClient
      *
      * @return string The formatted branch_rule resource.
      */
-    public static function branchRuleName(
-        string $project,
-        string $location,
-        string $repository,
-        string $branchRule
-    ): string {
+    public static function branchRuleName(string $project, string $location, string $repository, string $branchRule): string
+    {
         return self::getPathTemplate('branchRule')->render([
             'project' => $project,
             'location' => $location,
@@ -412,13 +412,8 @@ final class SecureSourceManagerClient
      *
      * @return string The formatted issue_comment resource.
      */
-    public static function issueCommentName(
-        string $project,
-        string $location,
-        string $repository,
-        string $issue,
-        string $comment
-    ): string {
+    public static function issueCommentName(string $project, string $location, string $repository, string $issue, string $comment): string
+    {
         return self::getPathTemplate('issueComment')->render([
             'project' => $project,
             'location' => $location,
@@ -456,12 +451,8 @@ final class SecureSourceManagerClient
      *
      * @return string The formatted pull_request resource.
      */
-    public static function pullRequestName(
-        string $project,
-        string $location,
-        string $repository,
-        string $pullRequest
-    ): string {
+    public static function pullRequestName(string $project, string $location, string $repository, string $pullRequest): string
+    {
         return self::getPathTemplate('pullRequest')->render([
             'project' => $project,
             'location' => $location,
@@ -482,13 +473,8 @@ final class SecureSourceManagerClient
      *
      * @return string The formatted pull_request_comment resource.
      */
-    public static function pullRequestCommentName(
-        string $project,
-        string $location,
-        string $repository,
-        string $pullRequest,
-        string $comment
-    ): string {
+    public static function pullRequestCommentName(string $project, string $location, string $repository, string $pullRequest, string $comment): string
+    {
         return self::getPathTemplate('pullRequestComment')->render([
             'project' => $project,
             'location' => $location,
@@ -574,25 +560,28 @@ final class SecureSourceManagerClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'securesourcemanager.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
-     *           *Important*: If you accept a credential configuration (credential
-     *           JSON/File/Stream) from an external source for authentication to Google Cloud
-     *           Platform, you must validate it before providing it to any Google API or library.
-     *           Providing an unvalidated credential configuration to Google APIs can compromise
-     *           the security of your systems and data. For more information {@see
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\SecureSourceManager\V1\SecureSourceManagerClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new SecureSourceManagerClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
      *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
@@ -630,11 +619,13 @@ final class SecureSourceManagerClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -653,7 +644,11 @@ final class SecureSourceManagerClient
     }
 
     /**
-     * Batch creates pull request comments.
+     * Batch creates pull request comments. This function is used to create
+     * multiple PullRequestComments for code review. There needs to be exactly one
+     * PullRequestComment of type Review, and at most 100 PullRequestComments of
+     * type Code per request. The Postition of the code comments must be unique
+     * within the request.
      *
      * The async variant is
      * {@see SecureSourceManagerClient::batchCreatePullRequestCommentsAsync()} .
@@ -670,14 +665,12 @@ final class SecureSourceManagerClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<BatchCreatePullRequestCommentsResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function batchCreatePullRequestComments(
-        BatchCreatePullRequestCommentsRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function batchCreatePullRequestComments(BatchCreatePullRequestCommentsRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('BatchCreatePullRequestComments', $request, $callOptions)->wait();
     }
 
@@ -698,7 +691,7 @@ final class SecureSourceManagerClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Issue>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -724,7 +717,7 @@ final class SecureSourceManagerClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<PullRequest>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -750,7 +743,7 @@ final class SecureSourceManagerClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<BranchRule>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -776,7 +769,7 @@ final class SecureSourceManagerClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Hook>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -802,7 +795,7 @@ final class SecureSourceManagerClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Instance>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -828,7 +821,7 @@ final class SecureSourceManagerClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Issue>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -855,7 +848,7 @@ final class SecureSourceManagerClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<IssueComment>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -882,7 +875,7 @@ final class SecureSourceManagerClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<PullRequest>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -892,7 +885,11 @@ final class SecureSourceManagerClient
     }
 
     /**
-     * Creates a pull request comment.
+     * Creates a pull request comment. This function is used to create a single
+     * PullRequestComment of type Comment, or a single PullRequestComment of type
+     * Code that's replying to another PullRequestComment of type Code. Use
+     * BatchCreatePullRequestComments to create multiple PullRequestComments for
+     * code reviews.
      *
      * The async variant is
      * {@see SecureSourceManagerClient::createPullRequestCommentAsync()} .
@@ -909,14 +906,12 @@ final class SecureSourceManagerClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<PullRequestComment>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createPullRequestComment(
-        CreatePullRequestCommentRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function createPullRequestComment(CreatePullRequestCommentRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('CreatePullRequestComment', $request, $callOptions)->wait();
     }
 
@@ -940,7 +935,7 @@ final class SecureSourceManagerClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Repository>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -966,7 +961,7 @@ final class SecureSourceManagerClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -992,7 +987,7 @@ final class SecureSourceManagerClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1018,7 +1013,7 @@ final class SecureSourceManagerClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1044,7 +1039,7 @@ final class SecureSourceManagerClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1071,7 +1066,7 @@ final class SecureSourceManagerClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1098,14 +1093,12 @@ final class SecureSourceManagerClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deletePullRequestComment(
-        DeletePullRequestCommentRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function deletePullRequestComment(DeletePullRequestCommentRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('DeletePullRequestComment', $request, $callOptions)->wait();
     }
 
@@ -1126,7 +1119,7 @@ final class SecureSourceManagerClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1391,10 +1384,8 @@ final class SecureSourceManagerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getPullRequestComment(
-        GetPullRequestCommentRequest $request,
-        array $callOptions = []
-    ): PullRequestComment {
+    public function getPullRequestComment(GetPullRequestCommentRequest $request, array $callOptions = []): PullRequestComment
+    {
         return $this->startApiCall('GetPullRequestComment', $request, $callOptions)->wait();
     }
 
@@ -1577,10 +1568,8 @@ final class SecureSourceManagerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listPullRequestComments(
-        ListPullRequestCommentsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listPullRequestComments(ListPullRequestCommentsRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListPullRequestComments', $request, $callOptions);
     }
 
@@ -1606,10 +1595,8 @@ final class SecureSourceManagerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listPullRequestFileDiffs(
-        ListPullRequestFileDiffsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listPullRequestFileDiffs(ListPullRequestFileDiffsRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListPullRequestFileDiffs', $request, $callOptions);
     }
 
@@ -1685,7 +1672,7 @@ final class SecureSourceManagerClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<PullRequest>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1711,7 +1698,7 @@ final class SecureSourceManagerClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Issue>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1737,7 +1724,7 @@ final class SecureSourceManagerClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<PullRequest>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1747,7 +1734,10 @@ final class SecureSourceManagerClient
     }
 
     /**
-     * Resolves pull request comments.
+     * Resolves pull request comments. A list of PullRequestComment names must be
+     * provided. The PullRequestComment names must be in the same conversation
+     * thread. If auto_fill is set, all comments in the conversation thread will
+     * be resolved.
      *
      * The async variant is
      * {@see SecureSourceManagerClient::resolvePullRequestCommentsAsync()} .
@@ -1764,14 +1754,12 @@ final class SecureSourceManagerClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<ResolvePullRequestCommentsResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function resolvePullRequestComments(
-        ResolvePullRequestCommentsRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function resolvePullRequestComments(ResolvePullRequestCommentsRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('ResolvePullRequestComments', $request, $callOptions)->wait();
     }
 
@@ -1824,15 +1812,16 @@ final class SecureSourceManagerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissionsRepo(
-        TestIamPermissionsRequest $request,
-        array $callOptions = []
-    ): TestIamPermissionsResponse {
+    public function testIamPermissionsRepo(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
+    {
         return $this->startApiCall('TestIamPermissionsRepo', $request, $callOptions)->wait();
     }
 
     /**
-     * Unresolves pull request comment.
+     * Unresolves pull request comments. A list of PullRequestComment names must
+     * be provided. The PullRequestComment names must be in the same conversation
+     * thread. If auto_fill is set, all comments in the conversation thread will
+     * be unresolved.
      *
      * The async variant is
      * {@see SecureSourceManagerClient::unresolvePullRequestCommentsAsync()} .
@@ -1849,14 +1838,12 @@ final class SecureSourceManagerClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<UnresolvePullRequestCommentsResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function unresolvePullRequestComments(
-        UnresolvePullRequestCommentsRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function unresolvePullRequestComments(UnresolvePullRequestCommentsRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('UnresolvePullRequestComments', $request, $callOptions)->wait();
     }
 
@@ -1877,7 +1864,7 @@ final class SecureSourceManagerClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<BranchRule>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1903,7 +1890,7 @@ final class SecureSourceManagerClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Hook>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1929,7 +1916,7 @@ final class SecureSourceManagerClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Issue>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1956,7 +1943,7 @@ final class SecureSourceManagerClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<IssueComment>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1983,7 +1970,7 @@ final class SecureSourceManagerClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<PullRequest>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -2010,14 +1997,12 @@ final class SecureSourceManagerClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<PullRequestComment>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updatePullRequestComment(
-        UpdatePullRequestCommentRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function updatePullRequestComment(UpdatePullRequestCommentRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('UpdatePullRequestComment', $request, $callOptions)->wait();
     }
 
@@ -2038,7 +2023,7 @@ final class SecureSourceManagerClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Repository>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -2132,10 +2117,8 @@ final class SecureSourceManagerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(
-        TestIamPermissionsRequest $request,
-        array $callOptions = []
-    ): TestIamPermissionsResponse {
+    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
+    {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 

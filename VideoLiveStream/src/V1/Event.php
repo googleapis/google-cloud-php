@@ -105,6 +105,8 @@ class Event extends \Google\Protobuf\Internal\Message
      *           Mutes the stream.
      *     @type \Google\Cloud\Video\LiveStream\V1\Event\UnmuteTask $unmute
      *           Unmutes the stream.
+     *     @type \Google\Cloud\Video\LiveStream\V1\Event\UpdateEncryptionsTask $update_encryptions
+     *           Updates encryption settings.
      *     @type bool $execute_now
      *           When this field is set to true, the event will be executed at the earliest
      *           time that the server can schedule the event and
@@ -439,6 +441,37 @@ class Event extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Video\LiveStream\V1\Event\UnmuteTask::class);
         $this->writeOneof(16, $var);
+
+        return $this;
+    }
+
+    /**
+     * Updates encryption settings.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Event.UpdateEncryptionsTask update_encryptions = 17;</code>
+     * @return \Google\Cloud\Video\LiveStream\V1\Event\UpdateEncryptionsTask|null
+     */
+    public function getUpdateEncryptions()
+    {
+        return $this->readOneof(17);
+    }
+
+    public function hasUpdateEncryptions()
+    {
+        return $this->hasOneof(17);
+    }
+
+    /**
+     * Updates encryption settings.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Event.UpdateEncryptionsTask update_encryptions = 17;</code>
+     * @param \Google\Cloud\Video\LiveStream\V1\Event\UpdateEncryptionsTask $var
+     * @return $this
+     */
+    public function setUpdateEncryptions($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Video\LiveStream\V1\Event\UpdateEncryptionsTask::class);
+        $this->writeOneof(17, $var);
 
         return $this;
     }

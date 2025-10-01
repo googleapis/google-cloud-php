@@ -37,8 +37,8 @@ use Google\Rpc\Status;
  * @param string $formattedParent         Value for parent. Please see
  *                                        {@see ConfigDeliveryClient::releaseName()} for help formatting this field.
  * @param string $variantId               Id of the requesting object
- * @param string $variantResourcesElement Unordered list. resources contain the kubernetes manifests
- *                                        (YAMLs) for this variant.
+ * @param string $variantResourcesElement Input only. Unordered list. resources contain the kubernetes
+ *                                        manifests (YAMLs) for this variant.
  */
 function create_variant_sample(
     string $formattedParent,

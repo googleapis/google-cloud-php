@@ -1,5 +1,4549 @@
 # Changelog
 
+## 0.302.0
+
+<details><summary>google/cloud-access-approval: 2.1.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8596]
+* Support ClientOptions in client constructor
+
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/access-context-manager: 1.1.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8596]
+* Support ClientOptions in client constructor
+
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+</details>
+
+<details><summary>googleads/ad-manager: 0.4.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8596]
+* Support ClientOptions in client constructor
+
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+</details>
+
+<details><summary>googleads/marketingplatform-admin: 0.3.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8596]
+* Support ClientOptions in client constructor
+
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+</details>
+
+<details><summary>google/cloud-advisorynotifications: 1.2.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8596]
+* Support ClientOptions in client constructor
+
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+</details>
+
+<details><summary>google/cloud-ai-platform: 1.38.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8596]
+* Support ClientOptions in client constructor
+
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+</details>
+
+<details><summary>google/cloud-alloydb: 1.5.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8596]
+* Support ClientOptions in client constructor
+
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+</details>
+
+<details><summary>google/analytics-admin: 0.31.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8596]
+* Support ClientOptions in client constructor
+
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+</details>
+
+<details><summary>google/analytics-data: 0.23.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8596]
+* Support ClientOptions in client constructor
+
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+</details>
+
+<details><summary>google/cloud-api-gateway: 2.1.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8596]
+* Support ClientOptions in client constructor
+
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+</details>
+
+<details><summary>google/cloud-apihub: 0.4.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8596]
+* Support ClientOptions in client constructor
+
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+</details>
+
+<details><summary>google/cloud-api-keys: 1.1.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8596]
+* Support ClientOptions in client constructor
+
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+</details>
+
+<details><summary>google/cloud-apigee-connect: 2.1.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8596]
+* Support ClientOptions in client constructor
+
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+</details>
+
+<details><summary>google/cloud-apigee-registry: 1.1.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8596]
+* Support ClientOptions in client constructor
+
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+</details>
+
+<details><summary>google/cloud-appengine-admin: 2.1.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8596]
+* Support ClientOptions in client constructor
+
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+</details>
+
+<details><summary>google/cloud-apphub: 0.4.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8596]
+* Support ClientOptions in client constructor
+
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+</details>
+
+<details><summary>google/apps-chat: 0.13.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8596]
+* Support ClientOptions in client constructor
+
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+</details>
+
+<details><summary>google/apps-events-subscriptions: 0.4.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8596]
+* Support ClientOptions in client constructor
+
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+</details>
+
+<details><summary>google/apps-meet: 0.5.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8596]
+* Support ClientOptions in client constructor
+
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+</details>
+
+<details><summary>google/cloud-artifact-registry: 1.3.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8596]
+* Support ClientOptions in client constructor
+
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+</details>
+
+<details><summary>google/cloud-asset: 2.3.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8597]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-assured-workloads: 1.1.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8597]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-automl: 2.1.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8597]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-backupdr: 0.8.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8597]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-bare-metal-solution: 1.1.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8597]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-batch: 1.3.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8597]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-beyondcorp-appconnections: 1.1.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8597]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-beyondcorp-appconnectors: 1.1.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8597]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-beyondcorp-appgateways: 1.1.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8597]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-beyondcorp-clientconnectorservices: 1.1.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8597]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-beyondcorp-clientgateways: 1.1.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8597]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-bigquery-analyticshub: 1.4.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8597]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-bigquery-connection: 2.1.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8597]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-bigquery-data-exchange: 0.6.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8597]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-bigquery-datapolicies: 1.1.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8597]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-bigquerydatatransfer: 2.2.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8597]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-bigquery-migration: 1.2.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8597]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-bigquery-reservation: 2.5.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8597]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-bigquery-storage: 2.2.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8597]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-bigtable: 2.19.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8597]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-billing: 2.2.0</summary>
+
+
+
+### Features
+
+* Support ClientOptions in client constructor
+* Usage deprecation of credentials client option [#8598]
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-billing-budgets: 2.1.0</summary>
+
+
+
+### Features
+
+* Support ClientOptions in client constructor
+* Usage deprecation of credentials client option [#8598]
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-binary-authorization: 1.1.0</summary>
+
+
+
+### Features
+
+* Support ClientOptions in client constructor
+* Usage deprecation of credentials client option [#8598]
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-build: 1.1.0</summary>
+
+
+
+### Features
+
+* Support ClientOptions in client constructor
+* Usage deprecation of credentials client option [#8598]
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-certificate-manager: 1.1.0</summary>
+
+
+
+### Features
+
+* Support ClientOptions in client constructor
+* Usage deprecation of credentials client option [#8598]
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-channel: 2.3.0</summary>
+
+
+
+### Features
+
+* Support ClientOptions in client constructor
+* Usage deprecation of credentials client option [#8598]
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-chronicle: 0.2.0</summary>
+
+
+
+### Features
+
+* Support ClientOptions in client constructor
+* Usage deprecation of credentials client option [#8598]
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-common-protos: 0.8.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-commerce-consumer-procurement: 1.3.0</summary>
+
+
+
+### Features
+
+* Support ClientOptions in client constructor
+* Usage deprecation of credentials client option [#8598]
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/common-protos: 4.12.4</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-compute: 2.0.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Promote Compute to v2 [#8611]
+* add pagination for RPCs which missed them
+
+### Features
+
+* add pagination for RPCs which missed them [#1101]
+* Update Compute Engine v1 API to revision 20250902
+* Support ClientOptions in client constructor
+* Usage deprecation of credentials client option [#8598]
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+
+### Chores
+
+* Promote Compute to v2 [#8611]
+
+</details>
+
+<details><summary>google/cloud-confidentialcomputing: 1.6.0</summary>
+
+
+
+### Features
+
+* Support ClientOptions in client constructor
+* Usage deprecation of credentials client option [#8598]
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-config: 1.6.0</summary>
+
+
+
+### Features
+
+* Support ClientOptions in client constructor
+* Usage deprecation of credentials client option [#8598]
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-configdelivery: 0.3.0</summary>
+
+
+
+### Features
+
+* Support ClientOptions in client constructor
+* Usage deprecation of credentials client option [#8598]
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-contact-center-insights: 2.4.0</summary>
+
+
+
+### Features
+
+* Support ClientOptions in client constructor
+* Usage deprecation of credentials client option [#8598]
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-container: 2.6.0</summary>
+
+
+
+### Features
+
+* Support ClientOptions in client constructor
+* Usage deprecation of credentials client option [#8598]
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-container-analysis: 1.2.0</summary>
+
+
+
+### Features
+
+* Support ClientOptions in client constructor
+* Usage deprecation of credentials client option [#8598]
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-cloudcontrolspartner: 0.5.0</summary>
+
+
+
+### Features
+
+* Support ClientOptions in client constructor
+* Usage deprecation of credentials client option [#8598]
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-core: 1.64.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-data-catalog: 2.4.0</summary>
+
+
+
+### Features
+
+* Support ClientOptions in client constructor
+* Usage deprecation of credentials client option [#8598]
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-datacatalog-lineage: 1.2.0</summary>
+
+
+
+### Features
+
+* Support ClientOptions in client constructor
+* Usage deprecation of credentials client option [#8598]
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-data-fusion: 1.1.0</summary>
+
+
+
+### Features
+
+* Support ClientOptions in client constructor
+* Usage deprecation of credentials client option [#8598]
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-datalabeling: 0.7.0</summary>
+
+
+
+### Features
+
+* Support ClientOptions in client constructor
+* Usage deprecation of credentials client option [#8598]
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-dataflow: 0.9.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8599]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-dataform: 0.9.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8599]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-dataplex: 1.9.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8599]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-dataproc: 2.7.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8599]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-dataproc-metastore: 1.2.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8599]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-datastore: 1.34.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8599]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-datastore-admin: 1.1.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8599]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-datastream: 2.5.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8599]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-deploy: 1.6.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8599]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-developerconnect: 0.5.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8599]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-devicestreaming: 0.2.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8599]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-dialogflow: 2.2.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8599]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-dialogflow-cx: 0.9.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8599]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-discoveryengine: 1.9.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8599]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-dlp: 2.8.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8599]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-dms: 2.1.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8599]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-document-ai: 2.4.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8599]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-domains: 1.1.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8599]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-edgenetwork: 1.3.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8599]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-error-reporting: 0.24.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8599]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-essential-contacts: 1.1.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8600]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-eventarc: 2.2.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8595]
+
+</details>
+
+<details><summary>google/cloud-eventarc-publishing: 1.2.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8600]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-filestore: 2.2.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8600]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-financialservices: 0.2.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8600]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-firestore: 1.54.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8600]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-functions: 2.1.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8600]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-gsuite-addons: 1.1.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8600]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-geminidataanalytics: 0.3.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8600]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/geo-common-protos: 0.2.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-gke-backup: 1.3.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8600]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-gke-connect-gateway: 1.1.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8600]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-gke-hub: 1.2.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8600]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-gke-multi-cloud: 1.3.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8600]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/grafeas: 1.3.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8600]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-iam: 1.2.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8600]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-iam-credentials: 2.1.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8600]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-iap: 2.2.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8600]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-ids: 1.1.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8600]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-kms: 2.5.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8600]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-kms-inventory: 1.2.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8600]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-language: 1.1.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8600]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-licensemanager: 0.2.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8601]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-life-sciences: 0.8.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8601]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-logging: 1.33.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8601]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/longrunning: 0.5.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8601]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-lustre: 0.3.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8601]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-maintenance: 0.2.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8601]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-managed-identities: 2.1.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8601]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-managedkafka: 0.7.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8601]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-managedkafka-schemaregistry: 0.2.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8601]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/maps-fleetengine: 0.5.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8601]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/maps-fleetengine-delivery: 0.5.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8601]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/maps-routeoptimization: 0.5.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8601]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-media-translation: 0.6.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8601]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-memcache: 2.1.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8601]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-memorystore: 0.5.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* add pagination to MemorystoreClient::listInstances [#8613]
+
+### Features
+
+* usage deprecation of credentials client option [#8601]
+* add pagination to MemorystoreClient::listInstances [#8613]
+* Support ClientOptions in client constructor [db4aee9]
+
+</details>
+
+<details><summary>google/cloud-migrationcenter: 1.2.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8601]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-modelarmor: 0.5.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8601]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-monitoring: 2.2.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8601]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-netapp: 1.8.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8601]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-network-connectivity: 2.5.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8601]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-network-management: 2.6.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8602]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-network-security: 1.2.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8602]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-networkservices: 0.7.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8602]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-notebooks: 1.1.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8602]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-optimization: 1.1.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8602]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-oracledatabase: 0.7.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8602]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-orchestration-airflow: 2.2.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8602]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-org-policy: 1.3.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8602]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-osconfig: 2.2.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8602]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-oslogin: 2.1.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8602]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-parallelstore: 0.12.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8602]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-parametermanager: 0.5.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8602]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-policysimulator: 1.3.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8602]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-policy-troubleshooter: 2.1.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8602]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-policytroubleshooter-iam: 0.4.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8602]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-private-catalog: 0.6.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8602]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-privilegedaccessmanager: 0.4.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8602]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-profiler: 2.1.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8602]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-pubsub: 2.14.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8602]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-quotas: 1.5.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8602]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-rapidmigrationassessment: 1.2.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8603]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-recaptcha-enterprise: 2.2.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8603]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-recommendations-ai: 0.9.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8603]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-recommender: 2.1.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8603]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-redis: 2.2.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8603]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-redis-cluster: 0.6.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8603]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-resource-manager: 1.1.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8603]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-retail: 2.5.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8603]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-run: 1.10.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8603]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-scheduler: 2.1.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8603]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-secret-manager: 2.2.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8603]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-securesourcemanager: 1.6.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8603]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-security-center: 2.4.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8603]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-securitycentermanagement: 1.3.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8603]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-security-private-ca: 2.2.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8603]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-security-public-ca: 1.1.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8603]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-service-control: 2.1.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8603]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-service-directory: 2.1.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8603]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-servicehealth: 0.4.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8603]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-service-management: 2.1.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8603]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-service-usage: 2.1.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8604]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-shell: 2.1.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8604]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/shopping-common-protos: 0.4.3</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-css: 0.7.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8604]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/shopping-merchant-accounts: 1.2.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8604]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/shopping-merchant-conversions: 1.1.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8604]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/shopping-merchant-datasources: 1.1.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8604]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/shopping-merchant-inventories: 1.1.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8604]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/shopping-merchant-issueresolution: 1.1.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8604]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/shopping-merchant-lfp: 1.1.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8604]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/shopping-merchant-notifications: 1.1.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8604]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/shopping-merchant-ordertracking: 1.1.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8604]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/shopping-merchant-products: 1.1.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8604]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/shopping-merchant-promotions: 1.1.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8604]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/shopping-merchant-quota: 1.1.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8604]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/shopping-merchant-reports: 1.1.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8604]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/shopping-merchant-reviews: 0.5.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8604]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-spanner: 1.105.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8604]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+* Add documentation for Snapshot and Transaction for lockHint [#8612]
+
+</details>
+
+<details><summary>google/cloud-speech: 2.2.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8604]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-sql-admin: 1.3.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8604]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-storagebatchoperations: 0.2.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8604]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-storage-control: 1.6.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8605]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-storageinsights: 1.3.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8605]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-storage-transfer: 2.3.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8605]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-support: 1.3.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8605]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-talent: 2.2.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8605]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-tasks: 2.1.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8605]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-telcoautomation: 1.2.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8605]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-text-to-speech: 2.4.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8605]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-tpu: 2.2.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8605]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-trace: 1.9.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8605]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-translate: 2.1.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8605]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-videointelligence: 2.1.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8605]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-video-live-stream: 1.3.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8605]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+* Added H.265 (HEVC) codec support [#8610]
+
+</details>
+
+<details><summary>google/cloud-video-stitcher: 1.1.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8605]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-video-transcoder: 1.3.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8605]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-vision: 2.1.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8605]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-vm-migration: 1.2.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8605]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-vmware-engine: 1.2.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8605]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-vpc-access: 2.1.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8605]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-web-risk: 2.2.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8605]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-web-security-scanner: 1.1.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8606]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+<details><summary>google/cloud-workflows: 1.2.0</summary>
+
+
+
+### Features
+
+* usage deprecation of credentials client option [#8606]
+* Support ClientOptions in client constructor
+
+### Bug Fixes
+
+* document universeDomain client option
+* add "generic" phpdocs for OperationResponse and ServerStream
+* Update dependency google/protobuf to v4
+
+</details>
+
+## 0.301.0
+
+<details><summary>google/cloud-ai-platform 1.37.0</summary>
+
+
+
+### Features
+
+* [AiPlatform] add private_model_server_enabled to in Endpoint.proto ([#8589](https://github.com/googleapis/google-cloud-php/issues/8589)) ([93211a7](https://github.com/googleapis/google-cloud-php/commit/93211a7a88f17f78cb6b8ff3139552f3cedf0405))
+
+</details>
+
+<details><summary>google/cloud-apihub 0.3.0</summary>
+
+
+
+### Features
+
+* [ApiHub] Introduce new services for data collection (ApiHubCollect) and curation (ApiHubCurate) ([#8583](https://github.com/googleapis/google-cloud-php/issues/8583)) ([89de3fc](https://github.com/googleapis/google-cloud-php/commit/89de3fc508e6e68bff0a0ffc0bacc9e6a44f61c6))
+
+</details>
+
+<details><summary>google/cloud-bigtable 2.18.0</summary>
+
+
+
+### Features
+
+* [Bigtable] Add Type API updates needed to support structured keys in materialized views ([#8578](https://github.com/googleapis/google-cloud-php/issues/8578)) ([caa2737](https://github.com/googleapis/google-cloud-php/commit/caa273710ecffcdbe86c9727df94704887e5dd9d))
+
+</details>
+
+<details><summary>google/cloud-dataplex 1.8.0</summary>
+
+
+
+### Features
+
+* [Dataplex] A new service `BusinessGlossaryService` is added ([#8582](https://github.com/googleapis/google-cloud-php/issues/8582)) ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new field `catalog_publishing_enabled` is added to message `.google.cloud.dataplex.v1.DataQualitySpec` ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new field `catalog_publishing_status` is added to message `.google.cloud.dataplex.v1.DataQualityResult` ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new field `catalog_publishing_status` is added to message `.google.cloud.dataplex.v1.DataScanEvent` ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new field `created_entry_links` is added to message `.google.cloud.dataplex.v1.MetadataJob` ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new field `deleted_entry_links` is added to message `.google.cloud.dataplex.v1.MetadataJob` ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new field `dimensions` is added to message `.google.cloud.dataplex.v1.DataQualityColumnResult` ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new field `entry_link_types` is added to message `.google.cloud.dataplex.v1.MetadataJob` ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new field `entry_link` is added to message `.google.cloud.dataplex.v1.ImportItem` ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new field `glossaries` is added to message `.google.cloud.dataplex.v1.MetadataJob` ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new field `passed` is added to message `.google.cloud.dataplex.v1.DataQualityColumnResult` ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new field `project` is added to message `.google.cloud.dataplex.v1.DataDiscoverySpec` ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new field `referenced_entry_scopes` is added to message `.google.cloud.dataplex.v1.MetadataJob` ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new field `unchanged_entry_links` is added to message `.google.cloud.dataplex.v1.MetadataJob` ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new message `CreateEntryLinkRequest` is added ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new message `CreateGlossaryCategoryRequest` is added ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new message `CreateGlossaryRequest` is added ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new message `CreateGlossaryTermRequest` is added ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new message `DataScanCatalogPublishingStatus` is added ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new message `DeleteEntryLinkRequest` is added ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new message `DeleteGlossaryCategoryRequest` is added ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new message `DeleteGlossaryRequest` is added ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new message `DeleteGlossaryTermRequest` is added ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new message `EntryLink` is added ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new message `GetEntryLinkRequest` is added ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new message `GetGlossaryCategoryRequest` is added ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new message `GetGlossaryRequest` is added ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new message `GetGlossaryTermRequest` is added ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new message `Glossary` is added ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new message `GlossaryCategory` is added ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new message `GlossaryTerm` is added ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new message `ListGlossariesRequest` is added ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new message `ListGlossariesResponse` is added ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new message `ListGlossaryCategoriesRequest` is added ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new message `ListGlossaryCategoriesResponse` is added ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new message `ListGlossaryTermsRequest` is added ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new message `ListGlossaryTermsResponse` is added ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new message `UpdateGlossaryCategoryRequest` is added ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new message `UpdateGlossaryRequest` is added ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new message `UpdateGlossaryTermRequest` is added ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new method `CreateEntryLink` is added to service `CatalogService` ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new method `DeleteEntryLink` is added to service `CatalogService` ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new method `GetEntryLink` is added to service `CatalogService` ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new resource_definition `dataplex.googleapis.com/EntryLink` is added ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new resource_definition `dataplex.googleapis.com/Glossary` is added ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new resource_definition `dataplex.googleapis.com/GlossaryCategory` is added ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+* A new resource_definition `dataplex.googleapis.com/GlossaryTerm` is added ([db87072](https://github.com/googleapis/google-cloud-php/commit/db87072e8fe63b96864e991d9f885bbd80527f35))
+
+</details>
+
+<details><summary>google/cloud-discoveryengine 1.8.0</summary>
+
+
+
+### Features
+
+* [DiscoveryEngine] Added `ranking_expression_backed` and `rank_signals` fields related to the Custom Ranking feature ([#8579](https://github.com/googleapis/google-cloud-php/issues/8579)) ([37a3ed3](https://github.com/googleapis/google-cloud-php/commit/37a3ed395bfd48659cecdba03a2b4c97a56326f5))
+
+</details>
+
+<details><summary>google/cloud-dlp 2.7.0</summary>
+
+
+
+### Features
+
+* [Dlp] add LocationSupport,Domain,DocumentFallbackLocation ([#8577](https://github.com/googleapis/google-cloud-php/issues/8577)) ([e0f0406](https://github.com/googleapis/google-cloud-php/commit/e0f040675b18642017b4b9ebf5d011f66dba7cc5))
+
+</details>
+
+<details><summary>google/cloud-gke-hub 1.1.0</summary>
+
+
+
+### Features
+
+* [GkeHub] add `k8s_git_version` field ([#8586](https://github.com/googleapis/google-cloud-php/issues/8586)) ([1fae34a](https://github.com/googleapis/google-cloud-php/commit/1fae34a59c70d128460b71b69b7b92222a9b2afd))
+
+
+### Documentation
+
+* Correct comment for `k8s_version` field ([1fae34a](https://github.com/googleapis/google-cloud-php/commit/1fae34a59c70d128460b71b69b7b92222a9b2afd))
+
+</details>
+
+<details><summary>google/cloud-kms 2.4.0</summary>
+
+
+
+### Features
+
+* [Kms] Support KEY_ENCAPSULATION purpose and quantum-safe algorithms ML_KEM_768, ML_KEM_1024 and KEM_XWING ([#8580](https://github.com/googleapis/google-cloud-php/issues/8580)) ([e0cc9a8](https://github.com/googleapis/google-cloud-php/commit/e0cc9a84058da969221cd81bff5e891454b02145))
+
+</details>
+
+<details><summary>google/cloud-retail 2.4.0</summary>
+
+
+
+### Features
+
+* [Retail] release the conversational search public SDK ([#8573](https://github.com/googleapis/google-cloud-php/issues/8573)) ([dd9c5cd](https://github.com/googleapis/google-cloud-php/commit/dd9c5cd0570d362eba9ff8d6c1d0ae2dd482d003))
+
+</details>
+
+<details><summary>google/cloud-security-center 2.3.0</summary>
+
+
+
+### Features
+
+* [SecurityCenter] add GCE to DeploymentPlatform enum ([#8581](https://github.com/googleapis/google-cloud-php/issues/8581)) ([8a06f2c](https://github.com/googleapis/google-cloud-php/commit/8a06f2cacc676bc1399b760e0b6c50b8fb81e6fe))
+
+</details>
+
+<details><summary>google/cloud-storage-control 1.5.0</summary>
+
+
+
+### Features
+
+* [StorageControl] Add new GetIamPolicy, SetIamPolicy, and TestIamPermissions RPCs ([#8576](https://github.com/googleapis/google-cloud-php/issues/8576)) ([30bd552](https://github.com/googleapis/google-cloud-php/commit/30bd5526b39ab86858dcfe15c6b791f69ec39e7c))
+
+</details>
+
+## 0.300.0
+
+<details><summary>google/cloud-ai-platform 1.36.0</summary>
+
+
+
+### Features
+
+* [AiPlatform] add data foundry service synthetic data generation API for v1 ([#8531](https://github.com/googleapis/google-cloud-php/issues/8531)) ([95d8954](https://github.com/googleapis/google-cloud-php/commit/95d895419485425841463fee6c3a0dc8272ad56b))
+
+</details>
+
+<details><summary>google/analytics-admin 0.30.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Remove the `FetchAutomatedGa4ConfigurationOptOut` method
+* Remove the `CreateConnectedSiteTag` method
+* Remove the `DeleteConnectedSiteTag` method
+* Remove the `ListConnectedSiteTags` method
+* Remove the `FetchConnectedGa4Property` method
+* Remove the `SetAutomatedGa4ConfigurationOptOutRequest` resource
+* Remove the `SetAutomatedGa4ConfigurationOptOutResponse` resource
+* Remove the `FetchAutomatedGa4ConfigurationOptOutRequest` resource
+* Remove the `FetchAutomatedGa4ConfigurationOptOutResponse` resource
+* Remove the `CreateConnectedSiteTagRequest` resource
+* Remove the `CreateConnectedSiteTagResponse` resource
+* Remove the `DeleteConnectedSiteTagRequest` resource
+* Remove the `ListConnectedSiteTagsRequest` resource
+* Remove the `ListConnectedSiteTagsResponse` resource
+* Remove the `FetchConnectedGa4PropertyRequest` resource
+* Remove the `FetchConnectedGa4PropertyResponse` resource
+* Remove the `ConnectedSiteTag` resource
+* Remove the `SetAutomatedGa4ConfigurationOptOut` method ([#8532](https://github.com/googleapis/google-cloud-php/issues/8532))
+
+### Features
+
+* Add reporting_identity_settings` fields to the `ChangeHistoryResource` resource ([7de4a72](https://github.com/googleapis/google-cloud-php/commit/7de4a722e38ad67c727d7b5610c4952fb5004240))
+* Add the `GetReportingIdentitySettings` method ([7de4a72](https://github.com/googleapis/google-cloud-php/commit/7de4a722e38ad67c727d7b5610c4952fb5004240))
+* Add the `GetReportingIdentitySettingsRequest` resource ([7de4a72](https://github.com/googleapis/google-cloud-php/commit/7de4a722e38ad67c727d7b5610c4952fb5004240))
+* Add the `REPORTING_IDENTITY_SETTINGS` resource type to the `ChangeHistoryResourceType` enum ([7de4a72](https://github.com/googleapis/google-cloud-php/commit/7de4a722e38ad67c727d7b5610c4952fb5004240))
+* Add the `ReportingIdentitySettings` resource ([7de4a72](https://github.com/googleapis/google-cloud-php/commit/7de4a722e38ad67c727d7b5610c4952fb5004240))
+
+
+### Bug Fixes
+
+* Remove the `ConnectedSiteTag` resource ([7de4a72](https://github.com/googleapis/google-cloud-php/commit/7de4a722e38ad67c727d7b5610c4952fb5004240))
+* Remove the `CreateConnectedSiteTag` method ([7de4a72](https://github.com/googleapis/google-cloud-php/commit/7de4a722e38ad67c727d7b5610c4952fb5004240))
+* Remove the `CreateConnectedSiteTagRequest` resource ([7de4a72](https://github.com/googleapis/google-cloud-php/commit/7de4a722e38ad67c727d7b5610c4952fb5004240))
+* Remove the `CreateConnectedSiteTagResponse` resource ([7de4a72](https://github.com/googleapis/google-cloud-php/commit/7de4a722e38ad67c727d7b5610c4952fb5004240))
+* Remove the `DeleteConnectedSiteTag` method ([7de4a72](https://github.com/googleapis/google-cloud-php/commit/7de4a722e38ad67c727d7b5610c4952fb5004240))
+* Remove the `DeleteConnectedSiteTagRequest` resource ([7de4a72](https://github.com/googleapis/google-cloud-php/commit/7de4a722e38ad67c727d7b5610c4952fb5004240))
+* Remove the `FetchAutomatedGa4ConfigurationOptOut` method ([7de4a72](https://github.com/googleapis/google-cloud-php/commit/7de4a722e38ad67c727d7b5610c4952fb5004240))
+* Remove the `FetchAutomatedGa4ConfigurationOptOutRequest` resource ([7de4a72](https://github.com/googleapis/google-cloud-php/commit/7de4a722e38ad67c727d7b5610c4952fb5004240))
+* Remove the `FetchAutomatedGa4ConfigurationOptOutResponse` resource ([7de4a72](https://github.com/googleapis/google-cloud-php/commit/7de4a722e38ad67c727d7b5610c4952fb5004240))
+* Remove the `FetchConnectedGa4Property` method ([7de4a72](https://github.com/googleapis/google-cloud-php/commit/7de4a722e38ad67c727d7b5610c4952fb5004240))
+* Remove the `FetchConnectedGa4PropertyRequest` resource ([7de4a72](https://github.com/googleapis/google-cloud-php/commit/7de4a722e38ad67c727d7b5610c4952fb5004240))
+* Remove the `FetchConnectedGa4PropertyResponse` resource ([7de4a72](https://github.com/googleapis/google-cloud-php/commit/7de4a722e38ad67c727d7b5610c4952fb5004240))
+* Remove the `ListConnectedSiteTags` method ([7de4a72](https://github.com/googleapis/google-cloud-php/commit/7de4a722e38ad67c727d7b5610c4952fb5004240))
+* Remove the `ListConnectedSiteTagsRequest` resource ([7de4a72](https://github.com/googleapis/google-cloud-php/commit/7de4a722e38ad67c727d7b5610c4952fb5004240))
+* Remove the `ListConnectedSiteTagsResponse` resource ([7de4a72](https://github.com/googleapis/google-cloud-php/commit/7de4a722e38ad67c727d7b5610c4952fb5004240))
+* Remove the `SetAutomatedGa4ConfigurationOptOut` method ([#8532](https://github.com/googleapis/google-cloud-php/issues/8532)) ([7de4a72](https://github.com/googleapis/google-cloud-php/commit/7de4a722e38ad67c727d7b5610c4952fb5004240))
+* Remove the `SetAutomatedGa4ConfigurationOptOutRequest` resource ([7de4a72](https://github.com/googleapis/google-cloud-php/commit/7de4a722e38ad67c727d7b5610c4952fb5004240))
+* Remove the `SetAutomatedGa4ConfigurationOptOutResponse` resource ([7de4a72](https://github.com/googleapis/google-cloud-php/commit/7de4a722e38ad67c727d7b5610c4952fb5004240))
+
+
+### Documentation
+
+* Provide additional guidelines for the `user_provided_data` field in the `SubmitUserDeletionRequest` resource ([7de4a72](https://github.com/googleapis/google-cloud-php/commit/7de4a722e38ad67c727d7b5610c4952fb5004240))
+
+</details>
+
+<details><summary>google/apps-chat 0.12.1</summary>
+
+
+
+### Bug Fixes
+
+* [AppsChat] Changed field behavior for an existing field `name` in message `.google.chat.v1.QuotedMessageMetadata` ([#8540](https://github.com/googleapis/google-cloud-php/issues/8540)) ([3ae6bb8](https://github.com/googleapis/google-cloud-php/commit/3ae6bb817e68d31f08f94a7a003d5c683eee5442))
+* Changed field behavior for an existing field `last_update_time` in message `.google.chat.v1.QuotedMessageMetadata` ([3ae6bb8](https://github.com/googleapis/google-cloud-php/commit/3ae6bb817e68d31f08f94a7a003d5c683eee5442))
+
+
+### Documentation
+
+* A comment for field `customer` in message `.google.chat.v1.Space` is changed ([3ae6bb8](https://github.com/googleapis/google-cloud-php/commit/3ae6bb817e68d31f08f94a7a003d5c683eee5442))
+* A comment for field `last_update_time` in message `.google.chat.v1.QuotedMessageMetadata` is changed ([3ae6bb8](https://github.com/googleapis/google-cloud-php/commit/3ae6bb817e68d31f08f94a7a003d5c683eee5442))
+* A comment for field `name` in message `.google.chat.v1.QuotedMessageMetadata` is changed ([3ae6bb8](https://github.com/googleapis/google-cloud-php/commit/3ae6bb817e68d31f08f94a7a003d5c683eee5442))
+* A comment for field `quoted_message_metadata` in message `.google.chat.v1.Message` is changed ([3ae6bb8](https://github.com/googleapis/google-cloud-php/commit/3ae6bb817e68d31f08f94a7a003d5c683eee5442))
+* A comment for field `update_mask` in message `.google.chat.v1.UpdateMessageRequest` is changed ([3ae6bb8](https://github.com/googleapis/google-cloud-php/commit/3ae6bb817e68d31f08f94a7a003d5c683eee5442))
+* A comment for message `QuotedMessageMetadata` is changed ([3ae6bb8](https://github.com/googleapis/google-cloud-php/commit/3ae6bb817e68d31f08f94a7a003d5c683eee5442))
+
+</details>
+
+<details><summary>google/cloud-bigquery 1.34.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-bigquery-analyticshub 1.3.0</summary>
+
+
+
+### Features
+
+* [BigQueryAnalyticsHub] You can now configure listings for multiple regions for shared datasets and linked dataset replicas in BigQuery sharing ([#8555](https://github.com/googleapis/google-cloud-php/issues/8555)) ([10e6569](https://github.com/googleapis/google-cloud-php/commit/10e6569ad13f047c6575eea5d7fc7f2f0e490b2d))
+
+</details>
+
+<details><summary>google/cloud-bigquery-reservation 2.4.0</summary>
+
+
+
+### Features
+
+* [BigQueryReservation] Add a new field `soft_failover_start_time` in the existing `replication_status` in `.google.cloud.bigquery.reservation.v1.Reservation` to provide visibility into the state of ongoing soft failover operations on the reservation ([#8554](https://github.com/googleapis/google-cloud-php/issues/8554)) ([787cad3](https://github.com/googleapis/google-cloud-php/commit/787cad37c1578587896eb259e5b099cd11299793))
+
+</details>
+
+<details><summary>google/cloud-compute 1.36.0</summary>
+
+
+
+### Features
+
+* [Compute] Update Compute Engine v1 API to revision 20250807 ([#8538](https://github.com/googleapis/google-cloud-php/issues/8538)) ([6e4d3c2](https://github.com/googleapis/google-cloud-php/commit/6e4d3c227b10894e38388c3f998024b28ebb3a38))
+* [Compute] Update Compute Engine v1 API to revision 20250810 ([#1091](https://github.com/googleapis/google-cloud-php/issues/1091)) ([#8550](https://github.com/googleapis/google-cloud-php/issues/8550)) ([4e019e7](https://github.com/googleapis/google-cloud-php/commit/4e019e75830e543ca60831c1ff961e3cd934aa83))
+
+</details>
+
+<details><summary>google/cloud-confidentialcomputing 1.5.0</summary>
+
+
+
+### Features
+
+* [ConfidentialComputing] Add new `VerifyConfidentialSpace` and `VerifyConfidentialGke` rpcs and relevant fields ([#8549](https://github.com/googleapis/google-cloud-php/issues/8549)) ([a768f72](https://github.com/googleapis/google-cloud-php/commit/a768f72e70660d0e276104a7c9cc18d1fa1db7ab))
+
+</details>
+
+<details><summary>google/cloud-config 1.5.0</summary>
+
+
+
+### Features
+
+* [Config] added support for service maintained provider ([#8556](https://github.com/googleapis/google-cloud-php/issues/8556)) ([46ba8ed](https://github.com/googleapis/google-cloud-php/commit/46ba8ed11e74a3e17c4e3afaf065c0be8cfdc0ef))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.53.1</summary>
+
+
+
+### Bug Fixes
+
+* **Firestore:** Use x-goog-request-params header ([#8267](https://github.com/googleapis/google-cloud-php/issues/8267)) ([fd78680](https://github.com/googleapis/google-cloud-php/commit/fd78680fed84f0b9b9adf4259953208b8c89a7c9))
+
+</details>
+
+<details><summary>google/cloud-geminidataanalytics 0.2.0</summary>
+
+
+
+### Features
+
+* [GeminiDataAnalytics] An existing service `ContextRetrievalService` is removed ([#8533](https://github.com/googleapis/google-cloud-php/issues/8533)) ([50ee998](https://github.com/googleapis/google-cloud-php/commit/50ee998d6b215643e12dabfb6a6932e011cb3f2d))
+* A new enum `DataFilterType` is added ([50ee998](https://github.com/googleapis/google-cloud-php/commit/50ee998d6b215643e12dabfb6a6932e011cb3f2d))
+* A new field `description` is added to message `.google.cloud.geminidataanalytics.v1alpha.Schema` ([50ee998](https://github.com/googleapis/google-cloud-php/commit/50ee998d6b215643e12dabfb6a6932e011cb3f2d))
+* A new field `example_queries` is added to message `.google.cloud.geminidataanalytics.v1alpha.Context` ([50ee998](https://github.com/googleapis/google-cloud-php/commit/50ee998d6b215643e12dabfb6a6932e011cb3f2d))
+* A new field `filters` is added to message `.google.cloud.geminidataanalytics.v1alpha.Schema` ([50ee998](https://github.com/googleapis/google-cloud-php/commit/50ee998d6b215643e12dabfb6a6932e011cb3f2d))
+* A new field `schema` is added to message `.google.cloud.geminidataanalytics.v1alpha.BigQueryTableReference` ([50ee998](https://github.com/googleapis/google-cloud-php/commit/50ee998d6b215643e12dabfb6a6932e011cb3f2d))
+* A new field `synonyms` is added to message `.google.cloud.geminidataanalytics.v1alpha.Field` ([50ee998](https://github.com/googleapis/google-cloud-php/commit/50ee998d6b215643e12dabfb6a6932e011cb3f2d))
+* A new field `synonyms` is added to message `.google.cloud.geminidataanalytics.v1alpha.Schema` ([50ee998](https://github.com/googleapis/google-cloud-php/commit/50ee998d6b215643e12dabfb6a6932e011cb3f2d))
+* A new field `tags` is added to message `.google.cloud.geminidataanalytics.v1alpha.Field` ([50ee998](https://github.com/googleapis/google-cloud-php/commit/50ee998d6b215643e12dabfb6a6932e011cb3f2d))
+* A new field `tags` is added to message `.google.cloud.geminidataanalytics.v1alpha.Schema` ([50ee998](https://github.com/googleapis/google-cloud-php/commit/50ee998d6b215643e12dabfb6a6932e011cb3f2d))
+* A new field `value_format` is added to message `.google.cloud.geminidataanalytics.v1alpha.Field` ([50ee998](https://github.com/googleapis/google-cloud-php/commit/50ee998d6b215643e12dabfb6a6932e011cb3f2d))
+* A new message `DataFilter` is added ([50ee998](https://github.com/googleapis/google-cloud-php/commit/50ee998d6b215643e12dabfb6a6932e011cb3f2d))
+* A new message `ExampleQuery` is added ([50ee998](https://github.com/googleapis/google-cloud-php/commit/50ee998d6b215643e12dabfb6a6932e011cb3f2d))
+
+
+### Documentation
+
+* Many comment updates ([50ee998](https://github.com/googleapis/google-cloud-php/commit/50ee998d6b215643e12dabfb6a6932e011cb3f2d))
+
+</details>
+
+<details><summary>google/cloud-netapp 1.7.0</summary>
+
+
+
+### Features
+
+* [NetApp] add new fields for flex auto tiering ([#8564](https://github.com/googleapis/google-cloud-php/issues/8564)) ([fd337a1](https://github.com/googleapis/google-cloud-php/commit/fd337a185e5110688cfdd31c676bf1c5698c4c79))
+
+</details>
+
+<details><summary>google/cloud-network-connectivity 2.4.0</summary>
+
+
+
+### Features
+
+* [NetworkConnectivity] introduce DataTransfer APIs ([#8567](https://github.com/googleapis/google-cloud-php/issues/8567)) ([159be13](https://github.com/googleapis/google-cloud-php/commit/159be135e1513ac91e2eb6e2d7b215191824c259))
+
+</details>
+
+<details><summary>google/cloud-network-security 1.1.0</summary>
+
+
+
+### Features
+
+* [NetworkSecurity] add address groups API ([#8552](https://github.com/googleapis/google-cloud-php/issues/8552)) ([10b0fa1](https://github.com/googleapis/google-cloud-php/commit/10b0fa1f3d5b2cbd8eb90c3cc208bc8944f0eae0))
+
+</details>
+
+<details><summary>google/shopping-merchant-accounts 1.1.0</summary>
+
+
+
+### Features
+
+* **accounts:** [ShoppingMerchantAccounts] Add batch operations for custom regions ([#8544](https://github.com/googleapis/google-cloud-php/issues/8544)) ([3a1c213](https://github.com/googleapis/google-cloud-php/commit/3a1c2134ceb8b372a67f831c522eb57ca2a1bad5))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.104.1</summary>
+
+
+
+### Documentation
+
+* [Spanner] A comment for field `ranges` in message `.google.spanner.v1.KeySet` is changed ([#8548](https://github.com/googleapis/google-cloud-php/issues/8548)) ([1c04557](https://github.com/googleapis/google-cloud-php/commit/1c045571941516b067f5c1dfb35d6ab8c7982357))
+
+</details>
+
+<details><summary>google/cloud-text-to-speech 2.3.0</summary>
+
+
+
+### Features
+
+* [TextToSpeech] Add prompt to SynthesisInput ([#8561](https://github.com/googleapis/google-cloud-php/issues/8561)) ([8057064](https://github.com/googleapis/google-cloud-php/commit/8057064519a6350afc8fdfef226c20c65a010954))
+* [TextToSpeech] Support promptable voices by specifying a model name and a prompt ([#8542](https://github.com/googleapis/google-cloud-php/issues/8542)) ([c2dab4f](https://github.com/googleapis/google-cloud-php/commit/c2dab4f6aedf18413a08428bc330fe213667bcf3))
+
+</details>
+
+<details><summary>google/cloud-video-transcoder 1.2.0</summary>
+
+
+
+### Features
+
+* [VideoTranscoder] add support for automatically generating subtitle for input videos ([#8537](https://github.com/googleapis/google-cloud-php/issues/8537)) ([4f7aaa5](https://github.com/googleapis/google-cloud-php/commit/4f7aaa5af86731301d5c952e61ea291f0844cc89))
+
+</details>
+
+<details><summary>google/cloud-vm-migration 1.1.0</summary>
+
+
+
+### Features
+
+* [VmMigration] Azure as a source ([#8568](https://github.com/googleapis/google-cloud-php/issues/8568)) ([8616bac](https://github.com/googleapis/google-cloud-php/commit/8616bac83bb5a00b5695bd7507a13541b1797a18))
+
+</details>
+
+## 0.299.1
+
+<details><summary>google/shopping-merchant-accounts 1.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-conversions 1.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-datasources 1.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-inventories 1.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-issueresolution 1.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-lfp 1.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-notifications 1.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-ordertracking 1.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-products 1.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-promotions 1.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-quota 1.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-reports 1.0.0</summary>
+
+
+
+</details>
+
+## 0.299.0
+
+<details><summary>google/cloud-ai-platform 1.35.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* [AiPlatform] fields are not part of `oneof` ([#8521](https://github.com/googleapis/google-cloud-php/issues/8521))
+
+### Features
+
+* [AiPlatform] add option EndpointUserId and ModelUserId fields ([#8512](https://github.com/googleapis/google-cloud-php/issues/8512)) ([0e66bdd](https://github.com/googleapis/google-cloud-php/commit/0e66bddc8e21e172701eb7192e50d812da72d3d6))
+* Add support for CMEK, runtime controls, and PSC-I to Reasoning Engine protos ([0e66bdd](https://github.com/googleapis/google-cloud-php/commit/0e66bddc8e21e172701eb7192e50d812da72d3d6))
+* Added document_name for vertex ai search as part of retrieved context from grounding chunk ([0e66bdd](https://github.com/googleapis/google-cloud-php/commit/0e66bddc8e21e172701eb7192e50d812da72d3d6))
+* Migrate dedicated endpoint to be enabled by default ([0e66bdd](https://github.com/googleapis/google-cloud-php/commit/0e66bddc8e21e172701eb7192e50d812da72d3d6))
+
+
+### Bug Fixes
+
+* [AiPlatform] fields are not part of `oneof` ([#8521](https://github.com/googleapis/google-cloud-php/issues/8521)) ([18a4067](https://github.com/googleapis/google-cloud-php/commit/18a4067f49a4c020dabef31bb5251303313a8573))
+
+
+### Documentation
+
+* A comment for field `dedicated_endpoint_enabled` in message `.google.cloud.aiplatform.v1.DeployRequest` is changed ([0e66bdd](https://github.com/googleapis/google-cloud-php/commit/0e66bddc8e21e172701eb7192e50d812da72d3d6))
+* Add encryption_spec to ReasoningEngine ([0e66bdd](https://github.com/googleapis/google-cloud-php/commit/0e66bddc8e21e172701eb7192e50d812da72d3d6))
+* Add psc_interface_config, min/max_instances, resource_limits, container_concurrency to ReasoningEngineSpec ([0e66bdd](https://github.com/googleapis/google-cloud-php/commit/0e66bddc8e21e172701eb7192e50d812da72d3d6))
+
+</details>
+
+<details><summary>google/cloud-bigquery-reservation 2.3.0</summary>
+
+
+
+### Features
+
+* [BigQueryReservation] Add Reservation.max_slots field to Reservation proto, indicating the total max number of slots this reservation can use up to ([#8525](https://github.com/googleapis/google-cloud-php/issues/8525)) ([4046366](https://github.com/googleapis/google-cloud-php/commit/4046366b2525e66b4185caa5e825198e67b217b2))
+* Add Reservation.scaling_mode field and its corresponding enum message ScalingMode. This field should be used together with Reservation.max_slots ([4046366](https://github.com/googleapis/google-cloud-php/commit/4046366b2525e66b4185caa5e825198e67b217b2))
+
+</details>
+
+<details><summary>google/cloud-bigtable 2.17.1</summary>
+
+
+
+### Bug Fixes
+
+* [Bigtable] Add ReadRows/SampleRowKeys bindings for materialized views ([#8515](https://github.com/googleapis/google-cloud-php/issues/8515)) ([a05fe03](https://github.com/googleapis/google-cloud-php/commit/a05fe037ce52000ad3c8bb1cf08f064e4ff4773e))
+
+</details>
+
+<details><summary>google/cloud-common-protos 0.8.2</summary>
+
+
+
+</details>
+
+<details><summary>google/common-protos 4.12.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-compute 1.35.0</summary>
+
+
+
+### Features
+
+* [Compute] Update Compute Engine v1 API to revision 20250729 ([#1085](https://github.com/googleapis/google-cloud-php/issues/1085)) ([#8498](https://github.com/googleapis/google-cloud-php/issues/8498)) ([144095f](https://github.com/googleapis/google-cloud-php/commit/144095f1d12ec1fb42a2f80e7acc88e0ccd9dcd0))
+
+</details>
+
+<details><summary>google/cloud-core 1.64.2</summary>
+
+
+
+### Bug Fixes
+
+* Retry options for Storage Client. ([#8489](https://github.com/googleapis/google-cloud-php/issues/8489)) ([b6de1e9](https://github.com/googleapis/google-cloud-php/commit/b6de1e9d68da1ff7eb4190bad693b36fc9975781))
+
+</details>
+
+<details><summary>google/cloud-document-ai 2.3.0</summary>
+
+
+
+### Features
+
+* [DocumentAi] Added config options for derived fields and signature detection. Some annotation changes changes to mark fields explicitly output only (no changes in semantics just readability) ([#8526](https://github.com/googleapis/google-cloud-php/issues/8526)) ([6812039](https://github.com/googleapis/google-cloud-php/commit/681203987449167a6e0ebcec5608660965519e37))
+
+</details>
+
+<details><summary>google/cloud-gke-hub 1.0.6</summary>
+
+
+
+### Documentation
+
+* Reformat comments for several messages, including ListFeaturesRequest, CreateFeatureRequest, and OperationMetadata ([c0d0fcd](https://github.com/googleapis/google-cloud-php/commit/c0d0fcd0c6ac5421db4f9ee67d481b775e713b82))
+
+</details>
+
+<details><summary>google/cloud-network-management 2.5.0</summary>
+
+
+
+### Features
+
+* [NetworkManagement] add `service_uri` field to CloudRunRevisionEndpoint ([#8514](https://github.com/googleapis/google-cloud-php/issues/8514)) ([91d3e2b](https://github.com/googleapis/google-cloud-php/commit/91d3e2b773e6df7954bf1013c5c3faab5ddb4d83))
+
+</details>
+
+<details><summary>google/cloud-osconfig 2.1.0</summary>
+
+
+
+### Features
+
+* [OsConfig] Add highest_upgradable_cve_severity field to Vulnerability report ([#8513](https://github.com/googleapis/google-cloud-php/issues/8513)) ([9ba0a9a](https://github.com/googleapis/google-cloud-php/commit/9ba0a9a2f65f5d27e9dd0918423e95bfee01f86f))
+
+</details>
+
+<details><summary>google/cloud-run 1.9.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* A type of an existing resource_reference option of the field `worker_pool` in message `.google.cloud.run.v2.SubmitBuildRequest` is changed from `cloudbuild.googleapis.com/WorkerPool` to `cloudbuild.googleapis.com/BuildWorkerPool`
+* A type of an existing resource_reference option of the field `worker_pool` in message `.google.cloud.run.v2.BuildConfig` is changed from `cloudbuild.googleapis.com/WorkerPool` to `cloudbuild.googleapis.com/BuildWorkerPool`
+* [Run] An existing resource_definition `cloudbuild.googleapis.com/WorkerPool` is removed ([#8499](https://github.com/googleapis/google-cloud-php/issues/8499))
+
+### Features
+
+* Adding new resource tpye run.googleapis.com/WorkerPool. ([87293f8](https://github.com/googleapis/google-cloud-php/commit/87293f8f9ee7e4e7793008e3b7ed6e98eaebf03e))
+
+
+### Bug Fixes
+
+* [Run] An existing resource_definition `cloudbuild.googleapis.com/WorkerPool` is removed ([#8499](https://github.com/googleapis/google-cloud-php/issues/8499)) ([87293f8](https://github.com/googleapis/google-cloud-php/commit/87293f8f9ee7e4e7793008e3b7ed6e98eaebf03e))
+* A type of an existing resource_reference option of the field `worker_pool` in message `.google.cloud.run.v2.BuildConfig` is changed from `cloudbuild.googleapis.com/WorkerPool` to `cloudbuild.googleapis.com/BuildWorkerPool` ([87293f8](https://github.com/googleapis/google-cloud-php/commit/87293f8f9ee7e4e7793008e3b7ed6e98eaebf03e))
+* A type of an existing resource_reference option of the field `worker_pool` in message `.google.cloud.run.v2.SubmitBuildRequest` is changed from `cloudbuild.googleapis.com/WorkerPool` to `cloudbuild.googleapis.com/BuildWorkerPool` ([87293f8](https://github.com/googleapis/google-cloud-php/commit/87293f8f9ee7e4e7793008e3b7ed6e98eaebf03e))
+
+</details>
+
+<details><summary>google/shopping-common-protos 0.4.2</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-accounts 0.10.0</summary>
+
+
+
+### Features
+
+* Add V1 for ShoppingMerchantAccounts ([#8511](https://github.com/googleapis/google-cloud-php/issues/8511)) ([8ccf7ae](https://github.com/googleapis/google-cloud-php/commit/8ccf7aefe9b714cbb26bb72e3a1f535b363ec820))
+
+
+### Documentation
+
+* [ShoppingMerchantAccounts] fix comment for online return policy ([#8524](https://github.com/googleapis/google-cloud-php/issues/8524)) ([7422c50](https://github.com/googleapis/google-cloud-php/commit/7422c50d2318d16fa3674e1dd328a3189380c2e1))
+
+</details>
+
+<details><summary>google/shopping-merchant-datasources 0.6.0</summary>
+
+
+
+### Features
+
+* Add V1 for ShoppingMerchantDataSources ([#8501](https://github.com/googleapis/google-cloud-php/issues/8501)) ([daed1a1](https://github.com/googleapis/google-cloud-php/commit/daed1a1552508fdbb302f4c2a3dbadfcad838f42))
+
+</details>
+
+<details><summary>google/shopping-merchant-inventories 0.7.0</summary>
+
+
+
+### Features
+
+* Add the v1 version for ShoppingMerchantInventories ([#8500](https://github.com/googleapis/google-cloud-php/issues/8500)) ([925a4f0](https://github.com/googleapis/google-cloud-php/commit/925a4f0641f102be8dd08d1c39d167b34c1a2623))
+
+</details>
+
+<details><summary>google/shopping-merchant-issueresolution 0.1.0</summary>
+
+
+
+### Features
+
+* Add V1 for ShoppingMerchantIssueResolution ([#8505](https://github.com/googleapis/google-cloud-php/issues/8505)) ([a88f07b](https://github.com/googleapis/google-cloud-php/commit/a88f07b13bd530e75e389df060b48906c4644651))
+
+</details>
+
+<details><summary>google/shopping-merchant-lfp 0.4.0</summary>
+
+
+
+### Features
+
+* Add V1 for ShoppingMerchantLfp ([#8504](https://github.com/googleapis/google-cloud-php/issues/8504)) ([9bcb1d9](https://github.com/googleapis/google-cloud-php/commit/9bcb1d94685f6b76882c21ce05f15543f8ab42f2))
+
+</details>
+
+<details><summary>google/shopping-merchant-notifications 0.3.0</summary>
+
+
+
+### Features
+
+* Add V1 for ShoppingMerchantNotifications ([#8502](https://github.com/googleapis/google-cloud-php/issues/8502)) ([dba17ae](https://github.com/googleapis/google-cloud-php/commit/dba17aed64bd6d56aba2bef6c9bd1a4c53b4eb54))
+
+</details>
+
+<details><summary>google/shopping-merchant-ordertracking 0.2.0</summary>
+
+
+
+### Features
+
+* Add V1 for ShoppingMerchantOrderTracking ([#8508](https://github.com/googleapis/google-cloud-php/issues/8508)) ([eedcdbb](https://github.com/googleapis/google-cloud-php/commit/eedcdbbd15be5b186a417453ac85c91793858cd9))
+
+</details>
+
+<details><summary>google/shopping-merchant-products 0.7.0</summary>
+
+
+
+### Features
+
+* Add V1 for ShoppingMerchantProducts ([#8509](https://github.com/googleapis/google-cloud-php/issues/8509)) ([20a9e68](https://github.com/googleapis/google-cloud-php/commit/20a9e684476fccfc5b8bb430df0e77291541d000))
+
+</details>
+
+<details><summary>google/shopping-merchant-promotions 0.3.0</summary>
+
+
+
+### Features
+
+* Add V1 for ShoppingMerchantPromotions: ([#8506](https://github.com/googleapis/google-cloud-php/issues/8506)) ([55a133f](https://github.com/googleapis/google-cloud-php/commit/55a133ffb1b9208dae8920c0df77f7a9eec977b6))
+
+</details>
+
+<details><summary>google/shopping-merchant-quota 0.3.0</summary>
+
+
+
+### Features
+
+* Add V1 for ShoppingMerchantQuota ([#8503](https://github.com/googleapis/google-cloud-php/issues/8503)) ([5bb860e](https://github.com/googleapis/google-cloud-php/commit/5bb860ecd6accfaf768a0dbcb7eac4565c5b8f0b))
+
+</details>
+
+<details><summary>google/shopping-merchant-reports 0.10.0</summary>
+
+
+
+### Features
+
+* Add V1 for ShoppingMerchantReports ([#8510](https://github.com/googleapis/google-cloud-php/issues/8510)) ([2993b69](https://github.com/googleapis/google-cloud-php/commit/2993b69f5d385cfeec34122ee0debead78755e71))
+
+</details>
+
+<details><summary>google/cloud-storage 1.48.3</summary>
+
+
+
+### Bug Fixes
+
+* Retry options for Storage Client. ([#8489](https://github.com/googleapis/google-cloud-php/issues/8489)) ([b6de1e9](https://github.com/googleapis/google-cloud-php/commit/b6de1e9d68da1ff7eb4190bad693b36fc9975781))
+
+</details>
+
+## 0.298.0
+
+<details><summary>google/cloud-ai-platform 1.34.0</summary>
+
+
+
+### Features
+
+* [AiPlatform] add Grounding with Google Maps tool ([#8491](https://github.com/googleapis/google-cloud-php/issues/8491)) ([92966c7](https://github.com/googleapis/google-cloud-php/commit/92966c701a4738e37b3857c0ca476676c9900466))
+
+</details>
+
+<details><summary>google/cloud-bigtable 2.17.0</summary>
+
+
+
+### Features
+
+* [Bigtable] add tags field to Instance proto (stable branch) ([#8494](https://github.com/googleapis/google-cloud-php/issues/8494)) ([247d5e4](https://github.com/googleapis/google-cloud-php/commit/247d5e476bcab7b540b92d05bc2747800e10046d))
+
+</details>
+
+<details><summary>google/cloud-compute 1.34.0</summary>
+
+
+
+### Features
+
+* [Compute] Update Compute Engine v1 API to revision 20250728 ([#1081](https://github.com/googleapis/google-cloud-php/issues/1081)) ([#8495](https://github.com/googleapis/google-cloud-php/issues/8495)) ([3e4b2e8](https://github.com/googleapis/google-cloud-php/commit/3e4b2e8ac84e6c56e2ebf518b4109be6cae95718))
+
+</details>
+
+<details><summary>google/cloud-datastream 2.4.0</summary>
+
+
+
+### Features
+
+* [Datastream] Add new field `salesforce_org` to message `DiscoverConnectionProfileRequest` ([#8496](https://github.com/googleapis/google-cloud-php/issues/8496)) ([a8ccdd8](https://github.com/googleapis/google-cloud-php/commit/a8ccdd8cb85da9b4e94a7d617ab1429c0a70b3d7))
+
+</details>
+
+<details><summary>google/shopping-merchant-conversions 0.3.0</summary>
+
+
+
+### Features
+
+* [ShoppingMerchantConversions] add conversions API client libraries for v1 ([#8490](https://github.com/googleapis/google-cloud-php/issues/8490)) ([9c2f1fe](https://github.com/googleapis/google-cloud-php/commit/9c2f1fe7fb0a0fff0d4a56877672f2cc689978f7))
+
+</details>
+
+## 0.297.0
+
+<details><summary>google/cloud-ai-platform 1.33.0</summary>
+
+
+
+### Features
+
+* [AiPlatform] add `DeploymentStage` for CreateEndpointOperationMetadata and DeployModelOperationMetadata ([#8480](https://github.com/googleapis/google-cloud-php/issues/8480)) ([0ea9003](https://github.com/googleapis/google-cloud-php/commit/0ea9003b107a05faa4086f69d750dfdcbfc2edb2))
+* [AiPlatform] Add service_account to Reasoning Engine public protos ([#8463](https://github.com/googleapis/google-cloud-php/issues/8463)) ([247cebd](https://github.com/googleapis/google-cloud-php/commit/247cebd4aa22d0cf7bcb06675f850ff15a49bf49))
+* Add enable_datapoint_upsert_logging to google.cloud.aiplatform.v1.DeployedIndex ([0ea9003](https://github.com/googleapis/google-cloud-php/commit/0ea9003b107a05faa4086f69d750dfdcbfc2edb2))
+* Added the ability to use the Model Armor service for content sanitization ([0ea9003](https://github.com/googleapis/google-cloud-php/commit/0ea9003b107a05faa4086f69d750dfdcbfc2edb2))
+
+
+### Documentation
+
+* Update MutateDeployedModel documentation ([0ea9003](https://github.com/googleapis/google-cloud-php/commit/0ea9003b107a05faa4086f69d750dfdcbfc2edb2))
+
+</details>
+
+<details><summary>google/apps-chat 0.12.0</summary>
+
+
+
+### Features
+
+* [AppsChat] Addition of app auth support for chat api ([#8479](https://github.com/googleapis/google-cloud-php/issues/8479)) ([bbe4abc](https://github.com/googleapis/google-cloud-php/commit/bbe4abc29a9cf166d06649f6616ea0af609065f4))
+* [AppsChat] Exposing 1p integration message content (drive, calendar, huddle, meet chips) ([#8461](https://github.com/googleapis/google-cloud-php/issues/8461)) ([bb33d66](https://github.com/googleapis/google-cloud-php/commit/bb33d666dc773bffdf772e426477d808187d9790))
+
+</details>
+
+<details><summary>google/cloud-backupdr 0.7.0</summary>
+
+
+
+### Features
+
+* [BackupDr] Add support for Cloud SQL backup and restore ([#8462](https://github.com/googleapis/google-cloud-php/issues/8462)) ([e2bddbe](https://github.com/googleapis/google-cloud-php/commit/e2bddbea9860b63afaf82a7eebee973c7c58ec97))
+
+</details>
+
+<details><summary>google/cloud-bigquery 1.34.0</summary>
+
+
+
+### Features
+
+* **BigQuery:** Add missing setters for LoadJobConfiguration options ([#8468](https://github.com/googleapis/google-cloud-php/issues/8468)) ([e0d0469](https://github.com/googleapis/google-cloud-php/commit/e0d04692329518646f10e17b1e756cc53dd770fb))
+
+</details>
+
+<details><summary>google/cloud-bigtable 2.16.0</summary>
+
+
+
+### Features
+
+* [Bigtable] Publish Proto and Enum types to CBT data API ([#8460](https://github.com/googleapis/google-cloud-php/issues/8460)) ([018dc3e](https://github.com/googleapis/google-cloud-php/commit/018dc3e39726ab2d078e1bd7c8bd54bf898a51bc))
+
+
+### Bug Fixes
+
+* [Bigtable] update routing_parameters.path_template ([#8474](https://github.com/googleapis/google-cloud-php/issues/8474)) ([9041131](https://github.com/googleapis/google-cloud-php/commit/9041131b799ddb4b62c9e5fdb985ad67bc9c8206))
+
+</details>
+
+<details><summary>google/cloud-compute 1.33.0</summary>
+
+
+
+### Features
+
+* [Compute] Update Compute Engine v1 API to revision 20250717 ([#1074](https://github.com/googleapis/google-cloud-php/issues/1074)) ([#8486](https://github.com/googleapis/google-cloud-php/issues/8486)) ([5d79176](https://github.com/googleapis/google-cloud-php/commit/5d791760ffb7b9da271a8294c7aadf8023042f18))
+
+</details>
+
+<details><summary>google/cloud-configdelivery 0.2.1</summary>
+
+
+
+### Documentation
+
+* [ConfigDelivery] Mark Variant's resources field as input only ([#8481](https://github.com/googleapis/google-cloud-php/issues/8481)) ([9942122](https://github.com/googleapis/google-cloud-php/commit/99421227a298cd8b8ae81d7a97b374bb0ae49bb1))
+
+</details>
+
+<details><summary>google/cloud-discoveryengine 1.7.0</summary>
+
+
+
+### Features
+
+* [DiscoveryEngine] add SessionService ([#8464](https://github.com/googleapis/google-cloud-php/issues/8464)) ([c6eb732](https://github.com/googleapis/google-cloud-php/commit/c6eb732b170b5c7ad7212d23d26b73ac626f2168))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.53.0</summary>
+
+
+
+### Features
+
+* [Firestore] add Firestore CloneDatabase support ([#8485](https://github.com/googleapis/google-cloud-php/issues/8485)) ([4b5783a](https://github.com/googleapis/google-cloud-php/commit/4b5783ac82e19121d6745b3c3eca43d70dc05888))
+
+</details>
+
+<details><summary>google/cloud-geminidataanalytics 0.1.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-licensemanager 0.1.0</summary>
+
+
+
+### Features
+
+* Add LicenseManager component ([#8471](https://github.com/googleapis/google-cloud-php/issues/8471)) ([78ff024](https://github.com/googleapis/google-cloud-php/commit/78ff024d57c677cfc6a8688d96b21e2c84aadd70))
+
+</details>
+
+<details><summary>google/cloud-maintenance 0.1.0</summary>
+
+
+
+### Features
+
+* Introduce Maintenance ([#8397](https://github.com/googleapis/google-cloud-php/issues/8397)) ([4677d86](https://github.com/googleapis/google-cloud-php/commit/4677d865ca90e9c623539290cf4a6e912e0335cd))
+
+</details>
+
+<details><summary>google/cloud-modelarmor 0.4.0</summary>
+
+
+
+### Features
+
+* [ModelArmor] MultiLanguage Detection in Model Armor Floor Setting ([#8466](https://github.com/googleapis/google-cloud-php/issues/8466)) ([392324a](https://github.com/googleapis/google-cloud-php/commit/392324ad67646bcbc034b89fc617a4a3b7da0e85))
+* [ModelArmor] MultiLanguage Detection in Model Armor Floor Setting ([#8478](https://github.com/googleapis/google-cloud-php/issues/8478)) ([0b70793](https://github.com/googleapis/google-cloud-php/commit/0b70793ea4246d812f6015731367c0137b680091))
+
+</details>
+
+<details><summary>google/cloud-network-connectivity 2.3.0</summary>
+
+
+
+### Features
+
+* [NetworkConnectivity] add Network Connectivity Center APIs for Internal Range service ([#8456](https://github.com/googleapis/google-cloud-php/issues/8456)) ([a5162a5](https://github.com/googleapis/google-cloud-php/commit/a5162a5da9b4a94e495de6616909dc7f63b8e07f))
+
+</details>
+
+<details><summary>google/cloud-policysimulator 1.2.0</summary>
+
+
+
+### Features
+
+* [PolicySimulator] added OrgPolicyViolationsPreviewService v1 API to simulate Org Policy ([#8455](https://github.com/googleapis/google-cloud-php/issues/8455)) ([d6b162b](https://github.com/googleapis/google-cloud-php/commit/d6b162b1a60637221542b89c10699849027f224c))
+
+
+### Documentation
+
+* Fix proto reference links in comments ([d6b162b](https://github.com/googleapis/google-cloud-php/commit/d6b162b1a60637221542b89c10699849027f224c))
+
+</details>
+
+<details><summary>google/cloud-privilegedaccessmanager 0.3.0</summary>
+
+
+
+### Features
+
+* [PrivilegedAccessManager] Introducing new Grant states for Withdrawal operation ([#8482](https://github.com/googleapis/google-cloud-php/issues/8482)) ([5a5ddc6](https://github.com/googleapis/google-cloud-php/commit/5a5ddc61f8d77514ee1a3cfeb6eac51843db180b))
+
+</details>
+
+<details><summary>google/cloud-securesourcemanager 1.5.0</summary>
+
+
+
+### Features
+
+* [SecureSourceManager] add support for new API resources: Issues, IssueComments, PullRequests, PullRequestComments, Blobs ([#8467](https://github.com/googleapis/google-cloud-php/issues/8467)) ([f83d4f4](https://github.com/googleapis/google-cloud-php/commit/f83d4f4d884d324b654b4f1f0d68326e5ed29a65))
+
+
+### Documentation
+
+* Update comments ([#8477](https://github.com/googleapis/google-cloud-php/issues/8477)) ([82143c6](https://github.com/googleapis/google-cloud-php/commit/82143c6c67ef819d5ad2fa6243e3778502b8ffc9))
+
+</details>
+
+<details><summary>google/shopping-merchant-reviews 0.4.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* [ShoppingMerchantReviews] An existing field `attributes` is renamed to `merchant_review_attributes` in message `.google.shopping.merchant.reviews.v1beta.MerchantReview` ([#8470](https://github.com/googleapis/google-cloud-php/issues/8470))
+
+### Bug Fixes
+
+* [ShoppingMerchantReviews] An existing field `attributes` is renamed to `merchant_review_attributes` in message `.google.shopping.merchant.reviews.v1beta.MerchantReview` ([#8470](https://github.com/googleapis/google-cloud-php/issues/8470)) ([f9c26d3](https://github.com/googleapis/google-cloud-php/commit/f9c26d3cec9bc10e08c884be9115856a555ba2dc))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.104.0</summary>
+
+
+
+### Features
+
+* [Spanner] proto changes for an internal api ([#8465](https://github.com/googleapis/google-cloud-php/issues/8465)) ([2b96e11](https://github.com/googleapis/google-cloud-php/commit/2b96e1133fc63532cde43d45d9c96f0b4c09bff1))
+
+</details>
+
 ## 0.296.0
 
 <details><summary>google/cloud-access-approval 2.0.5</summary>

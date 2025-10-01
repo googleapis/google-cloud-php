@@ -33,8 +33,8 @@ use Google\Rpc\Status;
 /**
  * Updates the parameters of a single Variant.
  *
- * @param string $variantResourcesElement Unordered list. resources contain the kubernetes manifests
- *                                        (YAMLs) for this variant.
+ * @param string $variantResourcesElement Input only. Unordered list. resources contain the kubernetes
+ *                                        manifests (YAMLs) for this variant.
  */
 function update_variant_sample(string $variantResourcesElement): void
 {

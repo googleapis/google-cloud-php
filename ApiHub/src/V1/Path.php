@@ -16,15 +16,18 @@ use Google\Protobuf\Internal\GPBUtil;
 class Path extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. Complete path relative to server endpoint.
+     * Optional. Complete path relative to server endpoint.
+     * Note: Even though this field is optional, it is required for
+     * [CreateApiOperation][google.cloud.apihub.v1.ApiHub.CreateApiOperation]
+     * API and we will fail the request if not provided.
      *
-     * Generated from protobuf field <code>string path = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string path = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $path = '';
     /**
-     * Output only. A short description for the path applicable to all operations.
+     * Optional. A short description for the path applicable to all operations.
      *
-     * Generated from protobuf field <code>string description = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string description = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $description = '';
 
@@ -35,9 +38,12 @@ class Path extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $path
-     *           Output only. Complete path relative to server endpoint.
+     *           Optional. Complete path relative to server endpoint.
+     *           Note: Even though this field is optional, it is required for
+     *           [CreateApiOperation][google.cloud.apihub.v1.ApiHub.CreateApiOperation]
+     *           API and we will fail the request if not provided.
      *     @type string $description
-     *           Output only. A short description for the path applicable to all operations.
+     *           Optional. A short description for the path applicable to all operations.
      * }
      */
     public function __construct($data = NULL) {
@@ -46,9 +52,12 @@ class Path extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Complete path relative to server endpoint.
+     * Optional. Complete path relative to server endpoint.
+     * Note: Even though this field is optional, it is required for
+     * [CreateApiOperation][google.cloud.apihub.v1.ApiHub.CreateApiOperation]
+     * API and we will fail the request if not provided.
      *
-     * Generated from protobuf field <code>string path = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string path = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getPath()
@@ -57,9 +66,12 @@ class Path extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Complete path relative to server endpoint.
+     * Optional. Complete path relative to server endpoint.
+     * Note: Even though this field is optional, it is required for
+     * [CreateApiOperation][google.cloud.apihub.v1.ApiHub.CreateApiOperation]
+     * API and we will fail the request if not provided.
      *
-     * Generated from protobuf field <code>string path = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string path = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -72,9 +84,9 @@ class Path extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A short description for the path applicable to all operations.
+     * Optional. A short description for the path applicable to all operations.
      *
-     * Generated from protobuf field <code>string description = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string description = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getDescription()
@@ -83,9 +95,9 @@ class Path extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A short description for the path applicable to all operations.
+     * Optional. A short description for the path applicable to all operations.
      *
-     * Generated from protobuf field <code>string description = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string description = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

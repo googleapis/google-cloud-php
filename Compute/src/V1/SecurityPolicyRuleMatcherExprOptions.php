@@ -19,7 +19,7 @@ class SecurityPolicyRuleMatcherExprOptions extends \Google\Protobuf\Internal\Mes
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPolicyRuleMatcherExprOptionsRecaptchaOptions recaptcha_options = 389151558;</code>
      */
-    private $recaptcha_options = null;
+    protected $recaptcha_options = null;
 
     /**
      * Constructor.

@@ -26,6 +26,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Yaml\Yaml;
 use RuntimeException;
 use Exception;
+use Google\Cloud\Dev\Component;
 
 /**
  * Update Component Command
@@ -41,6 +42,7 @@ class UpdateComponentCommand extends Command
 
     private $rootPath;
     private RunProcess $runProcess;
+    private int $timeout;
 
     /**
      * @param string $rootPath The path to the repository root directory.
@@ -68,6 +70,13 @@ class UpdateComponentCommand extends Command
                 InputOption::VALUE_REQUIRED,
                 'Path to googleapis-gen repo',
                 $this->rootPath . '/../googleapis-gen'
+            )
+            ->addOption(
+                'timeout',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'The timeout limit for executing commands in seconds. Defaults to 60.',
+                120
             );
     }
 
@@ -75,6 +84,15 @@ class UpdateComponentCommand extends Command
     {
         $componentName = $input->getArgument('component');
         $googleApisGenDir = realpath($input->getOption('googleapis-gen-path'));
+        $unsafeTimeout = $input->getOption('timeout');
+
+        if (!is_numeric($unsafeTimeout)) {
+            throw new RuntimeException(
+                'Error: The timeout option must be a positive integer'
+            );
+        }
+
+        $this->timeout = (int) $unsafeTimeout;
 
         if (!$googleApisGenDir) {
             throw new RuntimeException(
@@ -86,27 +104,19 @@ class UpdateComponentCommand extends Command
         $this->checkDockerAvailable();
 
         // Find components to update
-        $components = $this->findComponents($componentName);
-
-        if (empty($components)) {
-            if ($componentName) {
-                throw new RuntimeException("Component '$componentName' not found.");
-            } else {
-                throw new RuntimeException("No components found.");
-            }
-        }
-
+        $components = Component::getComponents($componentName ? [$componentName] : []);
         foreach ($components as $component) {
-            $output->writeln("\n<info>Running Owlbot in $component</info>");
+            $componentName = $component->getName();
+            $output->writeln("\n<info>Running Owlbot in $componentName</info>");
 
             // Copy code from googleapis-gen
             $output->writeln("Copying code from googleapis-gen...");
-            $result = $this->owlbotCopyCode($component, $googleApisGenDir);
+            $result = $this->owlbotCopyCode($componentName, $googleApisGenDir);
             $output->writeln($result);
 
             // Copy bazel-bin files
             $output->writeln("Copying bazel-bin files...");
-            $result = $this->owlbotCopyBazelBin($component, $googleApisGenDir);
+            $result = $this->owlbotCopyBazelBin($componentName, $googleApisGenDir);
             $output->writeln($result);
         }
 
@@ -118,35 +128,6 @@ class UpdateComponentCommand extends Command
         $output->writeln("\n<info>Component update completed successfully!</info>");
 
         return Command::SUCCESS;
-    }
-
-    /**
-     * Find components to update based on the provided component name.
-     *
-     * @param string|null $componentName Optional component name to filter by.
-     * @return array List of component names to update.
-     */
-    private function findComponents(?string $componentName): array
-    {
-        $command = ['find', $this->rootPath, '-mindepth', '1', '-maxdepth', '1', '-type', 'd'];
-
-        if ($componentName) {
-            $command[] = '-name';
-            $command[] = $componentName;
-        }
-
-        $command[] = '-printf';
-        $command[] = '%f\n';
-
-        $output = $this->runProcess->execute($command);
-
-        // Filter to only include directories that start with an uppercase letter
-        $components = array_filter(
-            explode("\n", $output),
-            fn($dir) => $dir && preg_match('/^[A-Z]/', $dir)
-        );
-
-        return $components;
     }
 
     /**
@@ -173,7 +154,7 @@ class UpdateComponentCommand extends Command
             sprintf('--config-file=%s/.OwlBot.yaml', $componentName)
         ];
 
-        return $this->runProcess->execute($command);
+        return $this->runProcess->execute($command, null, $this->timeout);
     }
 
     /**
@@ -199,7 +180,7 @@ class UpdateComponentCommand extends Command
             '--dest', '/repo'
         ];
 
-        return $this->runProcess->execute($command);
+        return $this->runProcess->execute($command, null, $this->timeout);
     }
 
     /**
@@ -216,7 +197,7 @@ class UpdateComponentCommand extends Command
         $command = [
             'docker', 'pull', $owlbotPhpImage
         ];
-        $this->runProcess->execute($command);
+        $this->runProcess->execute($command, null, $this->timeout);
 
         $command = [
             'docker', 'run', '--rm',
@@ -226,7 +207,7 @@ class UpdateComponentCommand extends Command
             $owlbotPhpImage
         ];
 
-        return $this->runProcess->execute($command);
+        return $this->runProcess->execute($command, null, $this->timeout);
     }
 
     /**
@@ -237,7 +218,7 @@ class UpdateComponentCommand extends Command
     private function checkDockerAvailable(): void
     {
         $command = ['which', 'docker'];
-        $output = $this->runProcess->execute($command);
+        $output = $this->runProcess->execute($command, null, $this->timeout);
 
         if (strlen($output) == 0) {
             throw new RuntimeException('Error: Docker is not available.');

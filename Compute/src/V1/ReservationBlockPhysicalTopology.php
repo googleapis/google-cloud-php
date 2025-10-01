@@ -19,13 +19,13 @@ class ReservationBlockPhysicalTopology extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string block = 93832333;</code>
      */
-    private $block = null;
+    protected $block = null;
     /**
      * The cluster name of the reservation block.
      *
      * Generated from protobuf field <code>optional string cluster = 335221242;</code>
      */
-    private $cluster = null;
+    protected $cluster = null;
     /**
      * The detailed instances information for a given Block
      *

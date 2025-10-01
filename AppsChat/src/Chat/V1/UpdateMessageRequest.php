@@ -33,6 +33,7 @@ class UpdateMessageRequest extends \Google\Protobuf\Internal\Message
      * authentication](/chat/api/guides/auth/service-accounts).)
      * - `accessory_widgets`  (Requires [app
      * authentication](/chat/api/guides/auth/service-accounts).)
+     * - `quoted_message_metadata` (Only allows removal of the quoted message.)
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -67,6 +68,8 @@ class UpdateMessageRequest extends \Google\Protobuf\Internal\Message
      *                                                 - `accessory_widgets`  (Requires [app
      *                                                 authentication](/chat/api/guides/auth/service-accounts).)
      *
+     *                                                 - `quoted_message_metadata` (Only allows removal of the quoted message.)
+     *
      * @return \Google\Apps\Chat\V1\UpdateMessageRequest
      *
      * @experimental
@@ -98,6 +101,7 @@ class UpdateMessageRequest extends \Google\Protobuf\Internal\Message
      *           authentication](/chat/api/guides/auth/service-accounts).)
      *           - `accessory_widgets`  (Requires [app
      *           authentication](/chat/api/guides/auth/service-accounts).)
+     *           - `quoted_message_metadata` (Only allows removal of the quoted message.)
      *     @type bool $allow_missing
      *           Optional. If `true` and the message isn't found, a new message is created
      *           and `updateMask` is ignored. The specified message ID must be
@@ -158,6 +162,7 @@ class UpdateMessageRequest extends \Google\Protobuf\Internal\Message
      * authentication](/chat/api/guides/auth/service-accounts).)
      * - `accessory_widgets`  (Requires [app
      * authentication](/chat/api/guides/auth/service-accounts).)
+     * - `quoted_message_metadata` (Only allows removal of the quoted message.)
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -189,6 +194,7 @@ class UpdateMessageRequest extends \Google\Protobuf\Internal\Message
      * authentication](/chat/api/guides/auth/service-accounts).)
      * - `accessory_widgets`  (Requires [app
      * authentication](/chat/api/guides/auth/service-accounts).)
+     * - `quoted_message_metadata` (Only allows removal of the quoted message.)
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\FieldMask $var

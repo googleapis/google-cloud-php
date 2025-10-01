@@ -19,7 +19,7 @@ class LicensesListResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string id = 3355;</code>
      */
-    private $id = null;
+    protected $id = null;
     /**
      * A list of License resources.
      *
@@ -31,19 +31,19 @@ class LicensesListResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string next_page_token = 79797525;</code>
      */
-    private $next_page_token = null;
+    protected $next_page_token = null;
     /**
      * [Output Only] Server-defined URL for this resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
-    private $self_link = null;
+    protected $self_link = null;
     /**
      * [Output Only] Informational warning message.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warning warning = 50704284;</code>
      */
-    private $warning = null;
+    protected $warning = null;
 
     /**
      * Constructor.

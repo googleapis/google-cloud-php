@@ -22,24 +22,25 @@ class PartitionQueryRequest extends \Google\Protobuf\Internal\Message
      */
     private $session = '';
     /**
-     * Read only snapshot transactions are supported, read/write and single use
-     * transactions are not.
+     * Read-only snapshot transactions are supported, read and write and
+     * single-use transactions are not.
      *
      * Generated from protobuf field <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
      */
     private $transaction = null;
     /**
-     * Required. The query request to generate partitions for. The request will
-     * fail if the query is not root partitionable. For a query to be root
+     * Required. The query request to generate partitions for. The request fails
+     * if the query isn't root partitionable. For a query to be root
      * partitionable, it needs to satisfy a few conditions. For example, if the
      * query execution plan contains a distributed union operator, then it must be
      * the first operator in the plan. For more information about other
      * conditions, see [Read data in
      * parallel](https://cloud.google.com/spanner/docs/reads#read_data_in_parallel).
-     * The query request must not contain DML commands, such as INSERT, UPDATE, or
-     * DELETE. Use
-     * [ExecuteStreamingSql][google.spanner.v1.Spanner.ExecuteStreamingSql] with a
-     * PartitionedDml transaction for large, partition-friendly DML operations.
+     * The query request must not contain DML commands, such as `INSERT`,
+     * `UPDATE`, or `DELETE`. Use
+     * [`ExecuteStreamingSql`][google.spanner.v1.Spanner.ExecuteStreamingSql] with
+     * a `PartitionedDml` transaction for large, partition-friendly DML
+     * operations.
      *
      * Generated from protobuf field <code>string sql = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -49,17 +50,17 @@ class PartitionQueryRequest extends \Google\Protobuf\Internal\Message
      * A parameter placeholder consists of the `&#64;` character followed by the
      * parameter name (for example, `&#64;firstName`). Parameter names can contain
      * letters, numbers, and underscores.
-     * Parameters can appear anywhere that a literal value is expected.  The same
+     * Parameters can appear anywhere that a literal value is expected. The same
      * parameter name can be used more than once, for example:
      * `"WHERE id > &#64;msg_id AND id < &#64;msg_id + 100"`
-     * It is an error to execute a SQL statement with unbound parameters.
+     * It's an error to execute a SQL statement with unbound parameters.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct params = 4;</code>
      */
     private $params = null;
     /**
-     * It is not always possible for Cloud Spanner to infer the right SQL type
-     * from a JSON value.  For example, values of type `BYTES` and values
+     * It isn't always possible for Cloud Spanner to infer the right SQL type
+     * from a JSON value. For example, values of type `BYTES` and values
      * of type `STRING` both appear in
      * [params][google.spanner.v1.PartitionQueryRequest.params] as JSON strings.
      * In these cases, `param_types` can be used to specify the exact
@@ -86,32 +87,33 @@ class PartitionQueryRequest extends \Google\Protobuf\Internal\Message
      *     @type string $session
      *           Required. The session used to create the partitions.
      *     @type \Google\Cloud\Spanner\V1\TransactionSelector $transaction
-     *           Read only snapshot transactions are supported, read/write and single use
-     *           transactions are not.
+     *           Read-only snapshot transactions are supported, read and write and
+     *           single-use transactions are not.
      *     @type string $sql
-     *           Required. The query request to generate partitions for. The request will
-     *           fail if the query is not root partitionable. For a query to be root
+     *           Required. The query request to generate partitions for. The request fails
+     *           if the query isn't root partitionable. For a query to be root
      *           partitionable, it needs to satisfy a few conditions. For example, if the
      *           query execution plan contains a distributed union operator, then it must be
      *           the first operator in the plan. For more information about other
      *           conditions, see [Read data in
      *           parallel](https://cloud.google.com/spanner/docs/reads#read_data_in_parallel).
-     *           The query request must not contain DML commands, such as INSERT, UPDATE, or
-     *           DELETE. Use
-     *           [ExecuteStreamingSql][google.spanner.v1.Spanner.ExecuteStreamingSql] with a
-     *           PartitionedDml transaction for large, partition-friendly DML operations.
+     *           The query request must not contain DML commands, such as `INSERT`,
+     *           `UPDATE`, or `DELETE`. Use
+     *           [`ExecuteStreamingSql`][google.spanner.v1.Spanner.ExecuteStreamingSql] with
+     *           a `PartitionedDml` transaction for large, partition-friendly DML
+     *           operations.
      *     @type \Google\Protobuf\Struct $params
      *           Parameter names and values that bind to placeholders in the SQL string.
      *           A parameter placeholder consists of the `&#64;` character followed by the
      *           parameter name (for example, `&#64;firstName`). Parameter names can contain
      *           letters, numbers, and underscores.
-     *           Parameters can appear anywhere that a literal value is expected.  The same
+     *           Parameters can appear anywhere that a literal value is expected. The same
      *           parameter name can be used more than once, for example:
      *           `"WHERE id > &#64;msg_id AND id < &#64;msg_id + 100"`
-     *           It is an error to execute a SQL statement with unbound parameters.
+     *           It's an error to execute a SQL statement with unbound parameters.
      *     @type array|\Google\Protobuf\Internal\MapField $param_types
-     *           It is not always possible for Cloud Spanner to infer the right SQL type
-     *           from a JSON value.  For example, values of type `BYTES` and values
+     *           It isn't always possible for Cloud Spanner to infer the right SQL type
+     *           from a JSON value. For example, values of type `BYTES` and values
      *           of type `STRING` both appear in
      *           [params][google.spanner.v1.PartitionQueryRequest.params] as JSON strings.
      *           In these cases, `param_types` can be used to specify the exact
@@ -154,8 +156,8 @@ class PartitionQueryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Read only snapshot transactions are supported, read/write and single use
-     * transactions are not.
+     * Read-only snapshot transactions are supported, read and write and
+     * single-use transactions are not.
      *
      * Generated from protobuf field <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
      * @return \Google\Cloud\Spanner\V1\TransactionSelector|null
@@ -176,8 +178,8 @@ class PartitionQueryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Read only snapshot transactions are supported, read/write and single use
-     * transactions are not.
+     * Read-only snapshot transactions are supported, read and write and
+     * single-use transactions are not.
      *
      * Generated from protobuf field <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
      * @param \Google\Cloud\Spanner\V1\TransactionSelector $var
@@ -192,17 +194,18 @@ class PartitionQueryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The query request to generate partitions for. The request will
-     * fail if the query is not root partitionable. For a query to be root
+     * Required. The query request to generate partitions for. The request fails
+     * if the query isn't root partitionable. For a query to be root
      * partitionable, it needs to satisfy a few conditions. For example, if the
      * query execution plan contains a distributed union operator, then it must be
      * the first operator in the plan. For more information about other
      * conditions, see [Read data in
      * parallel](https://cloud.google.com/spanner/docs/reads#read_data_in_parallel).
-     * The query request must not contain DML commands, such as INSERT, UPDATE, or
-     * DELETE. Use
-     * [ExecuteStreamingSql][google.spanner.v1.Spanner.ExecuteStreamingSql] with a
-     * PartitionedDml transaction for large, partition-friendly DML operations.
+     * The query request must not contain DML commands, such as `INSERT`,
+     * `UPDATE`, or `DELETE`. Use
+     * [`ExecuteStreamingSql`][google.spanner.v1.Spanner.ExecuteStreamingSql] with
+     * a `PartitionedDml` transaction for large, partition-friendly DML
+     * operations.
      *
      * Generated from protobuf field <code>string sql = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -213,17 +216,18 @@ class PartitionQueryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The query request to generate partitions for. The request will
-     * fail if the query is not root partitionable. For a query to be root
+     * Required. The query request to generate partitions for. The request fails
+     * if the query isn't root partitionable. For a query to be root
      * partitionable, it needs to satisfy a few conditions. For example, if the
      * query execution plan contains a distributed union operator, then it must be
      * the first operator in the plan. For more information about other
      * conditions, see [Read data in
      * parallel](https://cloud.google.com/spanner/docs/reads#read_data_in_parallel).
-     * The query request must not contain DML commands, such as INSERT, UPDATE, or
-     * DELETE. Use
-     * [ExecuteStreamingSql][google.spanner.v1.Spanner.ExecuteStreamingSql] with a
-     * PartitionedDml transaction for large, partition-friendly DML operations.
+     * The query request must not contain DML commands, such as `INSERT`,
+     * `UPDATE`, or `DELETE`. Use
+     * [`ExecuteStreamingSql`][google.spanner.v1.Spanner.ExecuteStreamingSql] with
+     * a `PartitionedDml` transaction for large, partition-friendly DML
+     * operations.
      *
      * Generated from protobuf field <code>string sql = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -242,10 +246,10 @@ class PartitionQueryRequest extends \Google\Protobuf\Internal\Message
      * A parameter placeholder consists of the `&#64;` character followed by the
      * parameter name (for example, `&#64;firstName`). Parameter names can contain
      * letters, numbers, and underscores.
-     * Parameters can appear anywhere that a literal value is expected.  The same
+     * Parameters can appear anywhere that a literal value is expected. The same
      * parameter name can be used more than once, for example:
      * `"WHERE id > &#64;msg_id AND id < &#64;msg_id + 100"`
-     * It is an error to execute a SQL statement with unbound parameters.
+     * It's an error to execute a SQL statement with unbound parameters.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct params = 4;</code>
      * @return \Google\Protobuf\Struct|null
@@ -270,10 +274,10 @@ class PartitionQueryRequest extends \Google\Protobuf\Internal\Message
      * A parameter placeholder consists of the `&#64;` character followed by the
      * parameter name (for example, `&#64;firstName`). Parameter names can contain
      * letters, numbers, and underscores.
-     * Parameters can appear anywhere that a literal value is expected.  The same
+     * Parameters can appear anywhere that a literal value is expected. The same
      * parameter name can be used more than once, for example:
      * `"WHERE id > &#64;msg_id AND id < &#64;msg_id + 100"`
-     * It is an error to execute a SQL statement with unbound parameters.
+     * It's an error to execute a SQL statement with unbound parameters.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct params = 4;</code>
      * @param \Google\Protobuf\Struct $var
@@ -288,8 +292,8 @@ class PartitionQueryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * It is not always possible for Cloud Spanner to infer the right SQL type
-     * from a JSON value.  For example, values of type `BYTES` and values
+     * It isn't always possible for Cloud Spanner to infer the right SQL type
+     * from a JSON value. For example, values of type `BYTES` and values
      * of type `STRING` both appear in
      * [params][google.spanner.v1.PartitionQueryRequest.params] as JSON strings.
      * In these cases, `param_types` can be used to specify the exact
@@ -306,8 +310,8 @@ class PartitionQueryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * It is not always possible for Cloud Spanner to infer the right SQL type
-     * from a JSON value.  For example, values of type `BYTES` and values
+     * It isn't always possible for Cloud Spanner to infer the right SQL type
+     * from a JSON value. For example, values of type `BYTES` and values
      * of type `STRING` both appear in
      * [params][google.spanner.v1.PartitionQueryRequest.params] as JSON strings.
      * In these cases, `param_types` can be used to specify the exact
