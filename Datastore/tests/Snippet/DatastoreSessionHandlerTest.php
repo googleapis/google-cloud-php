@@ -20,9 +20,16 @@ namespace Google\Cloud\Datastore\Tests\Snippet;
 use Google\Cloud\Core\Testing\DatastoreOperationRefreshTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Datastore\DatastoreSessionHandler;
+use Google\Cloud\Datastore\Tests\Unit\ProtoEncodeTrait;
+use Google\Cloud\Datastore\V1\BeginTransactionRequest;
+use Google\Cloud\Datastore\V1\BeginTransactionResponse;
+use Google\Cloud\Datastore\V1\Client\DatastoreClient as GapicDatastoreClient;
+use Google\Cloud\Datastore\V1\CommitRequest;
+use Google\Cloud\Datastore\V1\CommitResponse;
+use Google\Cloud\Datastore\V1\LookupRequest;
+use Google\Cloud\Datastore\V1\LookupResponse;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -35,10 +42,11 @@ class DatastoreSessionHandlerTest extends SnippetTestCase
 {
     use DatastoreOperationRefreshTrait;
     use ProphecyTrait;
+    use ProtoEncodeTrait;
 
     const TRANSACTION = 'transaction-id';
 
-    private $connection;
+    private $gapicClient;
     private $client;
 
     public static function setUpBeforeClass(): void
@@ -55,9 +63,9 @@ class DatastoreSessionHandlerTest extends SnippetTestCase
 
     public function setUp(): void
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->client = TestHelpers::stub(DatastoreClient::class, [], [
-            'operation',
+        $this->gapicClient = $this->prophesize(GapicDatastoreClient::class);
+        $this->client = new DatastoreClient([
+            'datastoreClient' => $this->gapicClient->reveal()
         ]);
     }
 
@@ -66,37 +74,35 @@ class DatastoreSessionHandlerTest extends SnippetTestCase
         $snippet = $this->snippetFromClass(DatastoreSessionHandler::class);
         $snippet->replace('$datastore = new DatastoreClient();', '');
 
-        $this->connection->lookup(Argument::allOf(
-            Argument::withEntry('transaction', self::TRANSACTION),
-            Argument::that(function ($args) {
-                return $args['keys'][0]['partitionId']['namespaceId'] === 'sessions'
-                 && $args['keys'][0]['path'][0]['kind'] === 'PHPSESSID'
-                 && isset($args['keys'][0]['path'][0]['name']);
-            })
-        ))->shouldBeCalled()->willReturn([]);
+        $this->gapicClient->lookup(Argument::that(function (LookupRequest $request) {
+            $this->assertEquals(self::TRANSACTION, $request->getReadOptions()->getTransaction());
+            $this->assertEquals('sessions', $request->getKeys()[0]->getPartitionId()->getNamespaceId());
+            $this->assertEquals('PHPSESSID', $request->getKeys()[0]->getPath()[0]->getKind());
+            $this->assertNotEmpty($request->getKeys()[0]->getPath()[0]->getName());
+            return true;
+        }), Argument::any())
+            ->shouldBeCalled()
+            ->willReturn(self::generateProto(LookupResponse::class, []));
 
-        $this->connection->beginTransaction(Argument::withEntry(
-            'transactionOptions',
-            ['readWrite' => (object) []]
-        ))->shouldBeCalled()->willReturn([
-            'transaction' => self::TRANSACTION,
-        ]);
+        $this->gapicClient->beginTransaction(Argument::that(function (BeginTransactionRequest $request) {
+            $this->assertNotEmpty($request->getTransactionOptions()->getReadWrite());
+            return true;
+        }), Argument::any())->shouldBeCalled()->willReturn(self::generateProto(BeginTransactionResponse::class, [
+            'transaction' => base64_encode(self::TRANSACTION),
+        ]));
 
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('transaction', self::TRANSACTION),
-            Argument::withEntry('mode', 'TRANSACTIONAL'),
-            Argument::that(function ($args) {
-                $value = 'name|'.serialize('Bob');
+        $this->gapicClient->commit(Argument::that(function (CommitRequest $request) {
+            $value = 'name|'.serialize('Bob');
 
-                return $args['mutations'][0]['upsert']['key']['partitionId']['namespaceId'] === 'sessions'
-                    && $args['mutations'][0]['upsert']['key']['path'][0]['kind'] === 'PHPSESSID'
-                    && isset($args['mutations'][0]['upsert']['key']['path'][0]['name'])
-                    && $args['mutations'][0]['upsert']['properties']['data']['stringValue'] === $value
-                    && isset($args['mutations'][0]['upsert']['properties']['t']);
-            })
-        ))->shouldBeCalled()->willReturn([]);
+            $this->assertEquals('sessions', $request->getMutations()[0]->getUpsert()->getKey()->getPartitionId()->getNamespaceId());
+            $this->assertEquals('PHPSESSID', $request->getMutations()[0]->getUpsert()->getKey()->getPath()[0]->getKind());
+            $this->assertEquals($value, $request->getMutations()[0]->getUpsert()->getProperties()['data']->getStringValue());
+            $this->assertNotEmpty($request->getMutations()[0]->getUpsert()->getProperties()['t']);
+            return true;
+        }), Argument::any())
+            ->shouldBeCalled()
+            ->willReturn(self::generateProto(CommitResponse::class, []));
 
-        $this->refreshOperation($this->client, $this->connection->reveal());
         $snippet->addLocal('datastore', $this->client);
 
         $res = $snippet->invoke();
@@ -112,29 +118,34 @@ class DatastoreSessionHandlerTest extends SnippetTestCase
         $snippet = $this->snippetFromClass(DatastoreSessionHandler::class, 1);
         $snippet->replace('$datastore = new DatastoreClient();', '');
 
-        $this->connection->lookup(Argument::allOf(
-            Argument::withEntry('transaction', self::TRANSACTION),
-            Argument::that(function ($args) {
-                return $args['keys'][0]['partitionId']['namespaceId'] === 'sessions'
-                    && $args['keys'][0]['path'][0]['kind'] === 'PHPSESSID'
-                    && isset($args['keys'][0]['path'][0]['name']);
-            })
-        ))->shouldBeCalled()->willReturn([]);
+        $this->gapicClient->lookup(Argument::that(function (LookupRequest $request) {
+            $this->assertEquals('sessions', $request->getKeys()[0]->getPartitionId()->getNamespaceId());
+            $this->assertEquals('PHPSESSID', $request->getKeys()[0]->getPath()[0]->getKind());
+            $this->assertNotEmpty($request->getKeys()[0]->getPath()[0]->getName());
 
-        $this->connection->beginTransaction(Argument::withEntry(
-            'transactionOptions',
-            ['readWrite' => (object) []]
-        ))->shouldBeCalled()->willReturn([
-            'transaction' => self::TRANSACTION,
-        ]);
+            return true;
+        }), Argument::any())
+            ->shouldBeCalled()
+            ->willReturn(self::generateProto(LookupResponse::class, []));
 
-        $this->connection->commit(Argument::any())
+        $this->gapicClient->beginTransaction(
+            Argument::that(function (BeginTransactionRequest $request) {
+                $this->assertNotEmpty($request->getTransactionOptions());
+                $this->assertNotEmpty($request->getTransactionOptions()->getReadWrite());
+
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalled()->willReturn(self::generateProto(BeginTransactionResponse::class, [
+            'transaction' => base64_encode(self::TRANSACTION),
+        ]));
+
+        $this->gapicClient->commit(Argument::any(), Argument::any())
             ->shouldBeCalled()
             ->will(function () {
                 trigger_error('oops!', E_USER_WARNING);
             });
 
-        $this->refreshOperation($this->client, $this->connection->reveal());
         $snippet->addLocal('datastore', $this->client);
 
         $res = $snippet->invoke();
