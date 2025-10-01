@@ -55,6 +55,8 @@ class Backup
     const STATE_READY = State::READY;
     const STATE_CREATING = State::CREATING;
 
+    private array $info;
+
     /**
      * Create an object representing a Backup.
      *
@@ -66,7 +68,11 @@ class Backup
      * @param Instance $instance The instance in which the backup exists.
      * @param string $projectId The project ID.
      * @param string $name The backup name or ID.
-     * @param array $info [optional] An array representing the backup resource.
+     * @param array $options [Optional] {
+     *     Backup options.
+
+     *     @type array $backup The backup info.
+     * }
      */
     public function __construct(
         private DatabaseAdminClient $databaseAdminClient,
@@ -74,9 +80,10 @@ class Backup
         private Instance $instance,
         private string $projectId,
         private string $name,
-        private array $info = []
+        array $options = []
     ) {
         $this->name = $this->fullyQualifiedBackupName($name);
+        $this->info = $options['info'] ?? [];
         $this->optionsValidator = new OptionsValidator($serializer);
     }
 

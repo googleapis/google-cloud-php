@@ -72,6 +72,7 @@ class Instance
     private string $projectName;
     private bool $returnInt64AsObject;
     private CacheItemPoolInterface|null $cacheItemPool;
+    private array $info;
 
     /**
      * Create an object representing a Cloud Spanner instance.
@@ -97,8 +98,8 @@ class Instance
      *           returned as a {@see \Google\Cloud\Core\Int64} object for 32 bit platform
      *           compatibility. **Defaults to** false.
      *     @type CacheItemPool $cacheItemPool
+     *     @type array $instance An array representation of the instance object.
      * }
-     * @param array $info A representation of the instance object.
      */
     public function __construct(
         private GapicSpannerClient $spannerClient,
@@ -108,7 +109,6 @@ class Instance
         private string $projectId,
         private string $name,
         array $options = [],
-        private array $info = [],
     ) {
         $this->name = $this->fullyQualifiedInstanceName($name, $projectId);
         $this->directedReadOptions = $options['directedReadOptions'] ?? [];
@@ -116,6 +116,7 @@ class Instance
         $this->defaultQueryOptions = $options['defaultQueryOptions'] ?? [];
         $this->returnInt64AsObject = $options['returnInt64AsObject'] ?? false;
         $this->cacheItemPool = $options['cacheItemPool'] ?? null;
+        $this->info = $options['instance'] ?? [];
         $this->projectName = InstanceAdminClient::projectName($projectId);
         $this->optionsValidator = new OptionsValidator($serializer);
     }
@@ -621,7 +622,7 @@ class Instance
             $this,
             $this->projectId,
             $name,
-            $backup
+            ['backup' => $backup]
         );
     }
 
@@ -951,8 +952,8 @@ class Instance
                     'routeToLeader' => $this->routeToLeader,
                     'defaultQueryOptions' => $this->defaultQueryOptions,
                     'returnInt64AsObject' => $this->returnInt64AsObject,
+                    'instance' => $result,
                 ],
-                $result,
             );
         };
     }

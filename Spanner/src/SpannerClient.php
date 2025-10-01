@@ -442,7 +442,7 @@ class SpannerClient
             $this->serializer,
             $this->projectId,
             $name,
-            $info
+            ['instanceConfig' => $info]
         );
     }
 
@@ -561,8 +561,8 @@ class SpannerClient
                 'defaultQueryOptions' => $this->defaultQueryOptions,
                 'returnInt64AsObject' => $this->returnInt64AsObject,
                 'cacheItemPool' => $this->cacheItemPool,
+                'instance' => $instance,
             ],
-            $instance,
         );
     }
 

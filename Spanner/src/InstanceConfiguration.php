@@ -54,6 +54,8 @@ class InstanceConfiguration
 {
     use RequestTrait;
 
+    private array $info;
+
     /**
      * Create an instance configuration object.
      *
@@ -63,17 +65,21 @@ class InstanceConfiguration
      * @param Serializer $serializer The serializer instance to encode/decode messages.
      * @param string $projectId The current project ID.
      * @param string $name The configuration name or ID.
-     * @param array $info [optional] A service representation of the
-     *        configuration.
+     * @param array $options [Optional] {
+     *     Instance Configuration options.
+
+     *     @type array $instanceConfig The instance configuration info.
+     * }
      */
     public function __construct(
         private InstanceAdminClient $instanceAdminClient,
         private Serializer $serializer,
         private string $projectId,
         private string $name,
-        private array $info = []
+        private array $options = [],
     ) {
         $this->name = $this->fullyQualifiedConfigName($name, $projectId);
+        $this->info = $options['instanceConfig'] ?? [];
         $this->optionsValidator = new OptionsValidator($serializer);
     }
 
@@ -411,7 +417,7 @@ class InstanceConfiguration
                 $this->serializer,
                 $this->projectId,
                 $name['instance_config'],
-                $result
+                ['instanceConfig' => $result],
             );
         };
     }
