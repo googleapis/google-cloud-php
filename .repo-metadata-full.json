@@ -1299,9 +1299,9 @@
     },
     "SecurityCompliance": {
         "language": "php",
-        "distribution_name": "google/cloud-cloudsecuritycompliance",
+        "distribution_name": "google/cloud-securitycompliance",
         "release_level": "preview",
-        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-cloudsecuritycompliance/latest",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-securitycompliance/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "cloudsecuritycompliance"
     },

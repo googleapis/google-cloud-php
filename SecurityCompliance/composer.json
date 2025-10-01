@@ -1,6 +1,6 @@
 {
-    "name": "google/cloud-cloudsecuritycompliance",
-    "description": "Google Cloud Cloud Security Compliance Client for PHP",
+    "name": "google/cloud-securitycompliance",
+    "description": "Google Cloud Security Compliance Client for PHP",
     "license": "Apache-2.0",
     "minimum-stability": "stable",
     "autoload": {
@@ -11,9 +11,9 @@
     },
     "extra": {
         "component": {
-            "id": "cloud-cloudsecuritycompliance",
+            "id": "cloud-securitycompliance",
             "path": "SecurityCompliance",
-            "target": "googleapis/google-cloud-php-cloudsecuritycompliance"
+            "target": "googleapis/google-cloud-php-securitycompliance"
         }
     },
     "require": {

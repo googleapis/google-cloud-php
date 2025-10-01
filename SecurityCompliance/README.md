@@ -1,10 +1,10 @@
-# Google Cloud Cloud Security Compliance for PHP
+# Google Cloud Security Compliance for PHP
 
-> Idiomatic PHP client for [Google Cloud Cloud Security Compliance](https://cloud.google.com/security-command-center).
+> Idiomatic PHP client for [Google Cloud Security Compliance](https://cloud.google.com/security-command-center).
 
-[![Latest Stable Version](https://poser.pugx.org/google/cloud-cloudsecuritycompliance/v/stable)](https://packagist.org/packages/google/cloud-cloudsecuritycompliance) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-cloudsecuritycompliance.svg)](https://packagist.org/packages/google/cloud-cloudsecuritycompliance)
+[![Latest Stable Version](https://poser.pugx.org/google/cloud-securitycompliance/v/stable)](https://packagist.org/packages/google/cloud-securitycompliance) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-securitycompliance.svg)](https://packagist.org/packages/google/cloud-securitycompliance)
 
-* [API documentation](https://cloud.google.com/php/docs/reference/cloud-cloudsecuritycompliance/latest)
+* [API documentation](https://cloud.google.com/php/docs/reference/cloud-securitycompliance/latest)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to
@@ -17,7 +17,7 @@ To begin, install the preferred dependency manager for PHP, [Composer](https://g
 Now, install this component:
 
 ```sh
-$ composer require google/cloud-cloudsecuritycompliance
+$ composer require google/cloud-securitycompliance
 ```
 
 > Browse the complete list of [Google Cloud APIs](https://cloud.google.com/php/docs/reference)
@@ -57,7 +57,7 @@ try {
 }
 ```
 
-See the [samples directory](https://github.com/googleapis/google-cloud-php-cloudsecuritycompliance/tree/main/samples) for a canonical list of samples.
+See the [samples directory](https://github.com/googleapis/google-cloud-php-securitycompliance/tree/main/samples) for a canonical list of samples.
 
 ### Debugging
 
