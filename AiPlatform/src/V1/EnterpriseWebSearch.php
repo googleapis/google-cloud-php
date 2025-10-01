@@ -23,6 +23,13 @@ class EnterpriseWebSearch extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string exclude_domains = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $exclude_domains;
+    /**
+     * Optional. Sites with confidence level chosen & above this value will be
+     * blocked from the search results.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.Tool.PhishBlockThreshold blocking_confidence = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $blocking_confidence = null;
 
     /**
      * Constructor.
@@ -33,6 +40,9 @@ class EnterpriseWebSearch extends \Google\Protobuf\Internal\Message
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $exclude_domains
      *           Optional. List of domains to be excluded from the search results.
      *           The default limit is 2000 domains.
+     *     @type int $blocking_confidence
+     *           Optional. Sites with confidence level chosen & above this value will be
+     *           blocked from the search results.
      * }
      */
     public function __construct($data = NULL) {
@@ -64,6 +74,44 @@ class EnterpriseWebSearch extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->exclude_domains = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Sites with confidence level chosen & above this value will be
+     * blocked from the search results.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.Tool.PhishBlockThreshold blocking_confidence = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getBlockingConfidence()
+    {
+        return isset($this->blocking_confidence) ? $this->blocking_confidence : 0;
+    }
+
+    public function hasBlockingConfidence()
+    {
+        return isset($this->blocking_confidence);
+    }
+
+    public function clearBlockingConfidence()
+    {
+        unset($this->blocking_confidence);
+    }
+
+    /**
+     * Optional. Sites with confidence level chosen & above this value will be
+     * blocked from the search results.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.Tool.PhishBlockThreshold blocking_confidence = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setBlockingConfidence($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\AIPlatform\V1\Tool\PhishBlockThreshold::class);
+        $this->blocking_confidence = $var;
 
         return $this;
     }
