@@ -18,11 +18,15 @@
 namespace Google\Cloud\Datastore;
 
 use DomainException;
+use Google\ApiCore\ClientOptionsTrait;
+use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Options\ClientOptions;
+use Google\Auth\CredentialsLoader;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\ClientTrait;
+use Google\Cloud\Core\DetectProjectIdTrait;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\TimestampTrait;
 use Google\Cloud\Datastore\Query\AggregationQuery;
@@ -32,6 +36,7 @@ use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Query\QueryInterface;
 use Google\Cloud\Datastore\V1\Client\DatastoreClient as GapicDatastoreClient;
 use InvalidArgumentException;
+use Kreait\Firebase\Exception\Messaging\InvalidArgument;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\Http\Message\StreamInterface;
 
@@ -89,10 +94,11 @@ use Psr\Http\Message\StreamInterface;
  */
 class DatastoreClient
 {
-    use ClientTrait;
+    use DetectProjectIdTrait;
     use DatastoreTrait;
     use TimestampTrait;
     use ApiHelperTrait;
+    use ClientOptionsTrait;
 
     const VERSION = '1.34.2';
 
@@ -188,50 +194,6 @@ class DatastoreClient
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      *     @type string $universeDomain
      *           The service domain for the client. Defaults to 'googleapis.com'.
-     *     @type array $keyFile [DEPRECATED]
-     *           @deprecated This option is being deprecated because of a potential security risk.
-     *           This option does not validate the credential configuration. The security
-     *           risk occurs when a credential configuration is accepted from a source
-     *           that is not under your control and used without validation on your side.
-     *           If you know that you will be loading credential configurations of a
-     *           specific type, it is recommended to create the credentials directly and
-     *           configure them using the `credentialsFetcher` option instead.
-     *           ```
-     *           use Google\Auth\Credentials\ServiceAccountCredentials;
-     *           $credentialsFetcher = new ServiceAccountCredentials($scopes, $json);
-     *           $creds = new DatastoreClient(['credentialsFetcher' => $creds]);
-     *           ```
-     *           This will ensure that an unexpected credential type with potential for
-     *           malicious intent is not loaded unintentionally. You might still have to do
-     *           validation for certain credential types.
-     *           If you are loading your credential configuration from an untrusted source and have
-     *           not mitigated the risks (e.g. by validating the configuration yourself), make
-     *           these changes as soon as possible to prevent security risks to your environment.
-     *           Regardless of the method used, it is always your responsibility to validate
-     *           configurations received from external sources.
-     *           @see https://cloud.google.com/docs/authentication/external/externally-sourced-credentials
-    *     @type string $keyFilePath [DEPRECATED]
-     *           @deprecated This option is being deprecated because of a potential security risk.
-     *           This option does not validate the credential configuration. The security
-     *           risk occurs when a credential configuration is accepted from a source
-     *           that is not under your control and used without validation on your side.
-     *           If you know that you will be loading credential configurations of a
-     *           specific type, it is recommended to create the credentials directly and
-     *           configure them using the `credentialsFetcher` option instead.
-     *           ```
-     *           use Google\Auth\Credentials\ServiceAccountCredentials;
-     *           $credentialsFetcher = new ServiceAccountCredentials($scopes, $json);
-     *           $creds = new DatastoreClient(['credentialsFetcher' => $creds]);
-     *           ```
-     *           This will ensure that an unexpected credential type with potential for
-     *           malicious intent is not loaded unintentionally. You might still have to do
-     *           validation for certain credential types.
-     *           If you are loading your credential configuration from an untrusted source and have
-     *           not mitigated the risks (e.g. by validating the configuration yourself), make
-     *           these changes as soon as possible to prevent security risks to your environment.
-     *           Regardless of the method used, it is always your responsibility to validate
-     *           configurations received from external sources.
-     *           @see https://cloud.google.com/docs/authentication/external/externally-sourced-credentials
      * }
      * @throws \InvalidArgumentException
      */
@@ -247,11 +209,12 @@ class DatastoreClient
             'scopes' => [self::FULL_CONTROL_SCOPE],
             'projectIdRequired' => true,
             'hasEmulator' => (bool) $emulatorHost,
-            'emulatorHost' => $emulatorHost
+            'emulatorHost' => $emulatorHost,
         ];
 
-        $config = $this->configureAuthentication($config);
-        $this->gapicClient = $this->getGapicClient($config);
+        $gapicConfig = $this->buildClientOptions($config);
+        $this->projectId = $this->detectProjectId($gapicConfig);
+        $this->gapicClient = $this->getGapicClient($gapicConfig);
 
         // The second parameter here should change to a variable
         // when gRPC support is added for variable encoding.
@@ -1364,9 +1327,7 @@ class DatastoreClient
             'transportConfig',
             'clientCertSource',
             'logger',
-            'universeDomain',
-            'keyFile',
-            'keyFilePath',
+            'universeDomain'
         ];
 
         $this->validateOptions($config, $availableOptions);
