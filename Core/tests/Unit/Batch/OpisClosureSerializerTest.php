@@ -25,12 +25,13 @@ use PHPUnit\Framework\TestCase;
 /**
  * @group core
  * @group batch
+ * @runTestsInSeparateProcesses
  */
 class OpisClosureSerializerTest extends TestCase
 {
     public function testWrapAndUnwrapClosures()
     {
-        if (!method_exists(SerializableClosure::class, 'enterContext')) {
+        if (!@method_exists(SerializableClosure::class, 'enterContext')) {
             $this->markTestSkipped('Requires ops/serializer:v3');
         }
 
@@ -49,8 +50,8 @@ class OpisClosureSerializerTest extends TestCase
 
     public function testWrapAndUnwrapClosuresV4()
     {
-        if (!function_exists('Opis\Closure\serialize')) {
-            $this->markTestSkipped('Requires ops/serializer:v3');
+        if (@method_exists(SerializableClosure::class, 'enterContext')) {
+            $this->markTestSkipped('Requires ops/serializer:v4');
         }
 
         $data['closure'] = function () {

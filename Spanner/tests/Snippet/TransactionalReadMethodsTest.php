@@ -27,8 +27,7 @@ use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Result;
 use Google\Cloud\Spanner\Serializer;
-use Google\Cloud\Spanner\Session\Session;
-use Google\Cloud\Spanner\Session\SessionPoolInterface;
+use Google\Cloud\Spanner\Session\SessionCache;
 use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
 use Google\Cloud\Spanner\Timestamp;
@@ -37,8 +36,12 @@ use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
 use Google\Cloud\Spanner\V1\PartialResultSet;
 use Google\Cloud\Spanner\V1\ReadRequest;
+use Google\Cloud\Spanner\V1\Session;
+use Google\Protobuf\Timestamp as ProtobufTimestamp;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
+use Psr\Cache\CacheItemInterface;
+use Psr\Cache\CacheItemPoolInterface;
 
 /**
  * Much of the execute and read tests are duplicated, and often fall out of sync
@@ -51,15 +54,14 @@ use Prophecy\PhpUnit\ProphecyTrait;
  */
 class TransactionalReadMethodsTest extends SnippetTestCase
 {
-    use GrpcTestTrait;
-    use ProphecyTrait;
-    use ResultGeneratorTrait;
-
-    const PROJECT = 'my-awesome-project';
     const DATABASE = 'my-database';
     const INSTANCE = 'my-instance';
     const TRANSACTION = 'my-transaction';
     const SESSION = 'projects/my-awesome-project/instances/my-instance/databases/my-database/sessions/session-id';
+
+    use GrpcTestTrait;
+    use ProphecyTrait;
+    use ResultGeneratorTrait;
 
     private $spannerClient;
     private $databaseAdminClient;
@@ -76,14 +78,8 @@ class TransactionalReadMethodsTest extends SnippetTestCase
         parent::setUpBeforeClass();
 
         $this->serializer = new Serializer();
-        $this->session = $this->prophesize(Session::class);
-        $this->session->info()
-            ->willReturn([
-                'databaseName' => 'database'
-            ]);
-        $this->session->name()
-            ->willReturn('sessionName');
-        $this->session->setExpiration();
+        $this->session = $this->prophesize(SessionCache::class);
+        $this->session->name()->willReturn(self::SESSION);
         $this->spannerClient = $this->prophesize(SpannerClient::class);
         $this->operation = new Operation(
             $this->spannerClient->reveal(),
@@ -366,11 +362,8 @@ class TransactionalReadMethodsTest extends SnippetTestCase
         $instance->name()->willReturn(InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE));
         $instance->directedReadOptions()->willReturn([]);
 
-        $sessionPool = $this->prophesize(SessionPoolInterface::class);
-        $sessionPool->acquire(Argument::any())
-            ->willReturn($this->session->reveal());
-        $sessionPool->setDatabase(Argument::any())
-            ->willReturn(null);
+        $session = $this->prophesize(SessionCache::class);
+        $session->name()->willReturn(self::SESSION);
 
         return new Database(
             $this->spannerClient->reveal(),
@@ -379,7 +372,7 @@ class TransactionalReadMethodsTest extends SnippetTestCase
             $instance->reveal(),
             self::PROJECT,
             self::DATABASE,
-            ['sessionPool' => $sessionPool->reveal()]
+            $session->reveal(),
         );
     }
 
@@ -406,17 +399,6 @@ class TransactionalReadMethodsTest extends SnippetTestCase
 
     private function setupBatch()
     {
-        $sessData = SpannerClient::parseName(self::SESSION, 'session');
-        $this->session->name()->willReturn(self::SESSION);
-        $this->session->info()->willReturn($sessData + [
-            'name' => self::SESSION,
-            'databaseName' => SpannerClient::databaseName(
-                self::PROJECT,
-                self::INSTANCE,
-                self::DATABASE
-            )
-        ]);
-
         return new BatchSnapshot(
             new Operation($this->spannerClient->reveal(), $this->serializer),
             $this->session->reveal(),

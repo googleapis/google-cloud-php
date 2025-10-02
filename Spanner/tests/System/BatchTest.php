@@ -134,8 +134,6 @@ class BatchTest extends SpannerTestCase
 
         $partitions = $snapshot->partitionRead(self::$tableName, $keySet, ['id', 'decade']);
         $this->assertEquals(count($resultSet), $this->executePartitions($batch, $snapshot, $partitions));
-
-        $snapshot->close();
     }
 
     /**
@@ -170,6 +168,9 @@ class BatchTest extends SpannerTestCase
         try {
             $partitions = $snapshot->partitionQuery($query, ['parameters' => $parameters]);
         } catch (ServiceException $e) {
+            if (is_null($expected)) {
+                throw $e;
+            }
             $error = $e;
         }
 
@@ -178,7 +179,6 @@ class BatchTest extends SpannerTestCase
         } else {
             $this->assertEquals($error->getServiceException()->getStatus(), $expected);
         }
-        $snapshot->close();
     }
 
     private function executePartitions(BatchClient $client, BatchSnapshot $snapshot, array $partitions)

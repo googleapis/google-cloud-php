@@ -38,7 +38,7 @@ class SnapshotTest extends SnippetTestCase
     use ProphecyTrait;
     use ApiHelperTrait;
 
-    private const PROJECT = 'my-awesome-project';
+    const PROJECT = 'my-awesome-project';
     private const SNAPSHOT = 'projects/my-awesome-project/snapshots/my-snapshot';
     private const PROJECT_ID = 'my-awesome-project';
 
