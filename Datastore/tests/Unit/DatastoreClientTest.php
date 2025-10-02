@@ -82,6 +82,7 @@ class DatastoreClientTest extends TestCase
     {
         $this->gapicClient = $this->prophesize(GapicClient::class);
         $this->client = new DatastoreClient([
+            'credentials' => Fixtures::KEYFILE_STUB_FIXTURE(),
             'projectId' => self::PROJECT,
             'databaseId' => self::DATABASE,
             'datastoreClient' => $this->gapicClient->reveal()

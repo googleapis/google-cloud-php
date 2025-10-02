@@ -39,6 +39,7 @@ use Google\Cloud\Datastore\V1\CommitResponse;
 use Google\Cloud\Datastore\V1\LookupRequest;
 use Google\Cloud\Datastore\V1\LookupResponse;
 use Google\Cloud\Datastore\V1\RollbackRequest;
+use Google\Cloud\Datastore\V1\RollbackResponse;
 use Google\Cloud\Datastore\V1\RunAggregationQueryRequest;
 use Google\Cloud\Datastore\V1\RunAggregationQueryResponse;
 use Google\Cloud\Datastore\V1\RunQueryRequest;
@@ -312,7 +313,8 @@ class TransactionTest extends TestCase
         $this->gapicClient->rollback(Argument::that(function (RollbackRequest $request) {
             $this->assertEquals(base64_decode(self::TRANSACTION), $request->getTransaction());
             return true;
-        }))->shouldBeCalled(1);
+        }))->shouldBeCalled(1)
+            ->willReturn(new RollbackResponse());
 
         $transaction = $this->$transaction;
 
