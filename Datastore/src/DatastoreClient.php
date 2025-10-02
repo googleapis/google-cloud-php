@@ -226,12 +226,6 @@ class DatastoreClient
                 $gapicOptions,
                 $emulatorConfig
             );
-        } else {
-            $gapicOptions['credentials'] = $this->createCredentialsWrapper(
-                $gapicOptions['credentials'],
-                $gapicOptions['credentialsConfig'],
-                $gapicOptions['universeDomain']
-            );
         }
 
         $this->projectId = $this->detectProjectId($gapicOptions);
