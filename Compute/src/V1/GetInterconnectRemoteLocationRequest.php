@@ -20,13 +20,13 @@ class GetInterconnectRemoteLocationRequest extends \Google\Protobuf\Internal\Mes
      *
      * Generated from protobuf field <code>string interconnect_remote_location = 290153949 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $interconnect_remote_location = '';
+    protected $interconnect_remote_location = '';
     /**
      * Project ID for this request.
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project = '';
+    protected $project = '';
 
     /**
      * @param string $project                    Project ID for this request.

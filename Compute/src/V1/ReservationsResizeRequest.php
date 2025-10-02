@@ -19,7 +19,7 @@ class ReservationsResizeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int64 specific_sku_count = 13890720;</code>
      */
-    private $specific_sku_count = null;
+    protected $specific_sku_count = null;
 
     /**
      * Constructor.

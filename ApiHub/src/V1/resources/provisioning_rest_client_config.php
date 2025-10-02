@@ -35,6 +35,17 @@ return [
                     ],
                 ],
             ],
+            'DeleteApiHubInstance' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/apiHubInstances/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetApiHubInstance' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/apiHubInstances/*}',

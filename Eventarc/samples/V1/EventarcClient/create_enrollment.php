@@ -37,15 +37,15 @@ use Google\Rpc\Status;
  *                                              {@see EventarcClient::locationName()} for help formatting this field.
  * @param string $enrollmentCelMatch            A CEL expression identifying which messages this enrollment
  *                                              applies to.
- * @param string $formattedEnrollmentMessageBus Resource name of the message bus identifying the source of the
- *                                              messages. It matches the form
+ * @param string $formattedEnrollmentMessageBus Immutable. Resource name of the message bus identifying the
+ *                                              source of the messages. It matches the form
  *                                              projects/{project}/locations/{location}/messageBuses/{messageBus}. Please see
  *                                              {@see EventarcClient::messageBusName()} for help formatting this field.
  * @param string $enrollmentDestination         Destination is the Pipeline that the Enrollment is delivering to.
  *                                              It must point to the full resource name of a Pipeline. Format:
  *                                              "projects/{PROJECT_ID}/locations/{region}/pipelines/{PIPELINE_ID)"
  * @param string $enrollmentId                  The user-provided ID to be assigned to the Enrollment. It should
- *                                              match the format (^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$).
+ *                                              match the format `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`.
  */
 function create_enrollment_sample(
     string $formattedParent,

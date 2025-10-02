@@ -30,7 +30,8 @@ use Google\Cloud\VMMigration\V1\CutoverJob;
 use Google\Cloud\VMMigration\V1\ListCutoverJobsRequest;
 
 /**
- * Lists CutoverJobs of a given migrating VM.
+ * Lists the CutoverJobs of a migrating VM. Only 25 most recent CutoverJobs
+ * are listed.
  *
  * @param string $formattedParent The parent, which owns this collection of migrating VMs. Please see
  *                                {@see VmMigrationClient::migratingVmName()} for help formatting this field.

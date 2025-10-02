@@ -20,19 +20,19 @@ class GetRegionSslPolicyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * Name of the region scoping this request.
      *
      * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $region = '';
+    protected $region = '';
     /**
      * Name of the SSL policy to update. The name must be 1-63 characters long, and comply with RFC1035.
      *
      * Generated from protobuf field <code>string ssl_policy = 295190213 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $ssl_policy = '';
+    protected $ssl_policy = '';
 
     /**
      * @param string $project   Project ID for this request.

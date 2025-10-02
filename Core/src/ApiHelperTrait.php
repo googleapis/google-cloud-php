@@ -17,9 +17,12 @@
  */
 namespace Google\Cloud\Core;
 
+use Exception;
 use Google\ApiCore\ArrayTrait;
 use Google\ApiCore\Options\CallOptions;
+use Google\Protobuf\Internal\Message;
 use Google\Protobuf\NullValue;
+use LogicException;
 
 /**
  * @internal
@@ -260,8 +263,53 @@ trait ApiHelperTrait
         $callOptionFields = array_keys((new CallOptions([]))->toArray());
         $keys = array_merge($callOptionFields, $extraAllowedKeys);
 
-        $optionalArgs = $this->pluckArray($keys, $input);
+        $callOptions = $this->pluckArray($keys, $input);
 
-        return [$input, $optionalArgs];
+        return [$input, $callOptions];
+    }
+
+    /**
+     * Helper method used to validate optons based on the supplied $optionTypes
+     * $optionTypes can be an array of string keys, a protobuf Message classname, or a
+     * the CallOptions classname. Parameters are split and returned in the order
+     * that the options types are provided.
+     */
+    private function validateOptions(array $options, array|Message|string ...$optionTypes): array
+    {
+        $splitOptions = [];
+        foreach ($optionTypes as $optionType) {
+            if (is_array($optionType)) {
+                $splitOptions[] = $this->pluckArray($optionType, $options);
+            } elseif ($optionType === CallOptions::class) {
+                $callOptionKeys = array_keys((new CallOptions([]))->toArray());
+                $splitOptions[] = $this->pluckArray($callOptionKeys, $options);
+            } elseif ($optionType instanceof Message) {
+                $messageKeys = array_map(
+                    fn ($method) => lcfirst(substr($method, 3)),
+                    array_filter(
+                        get_class_methods($optionType),
+                        fn ($m) => 0 === strpos($m, 'get')
+                    )
+                );
+                $messageOptions = $this->pluckArray($messageKeys, $options);
+                if ($optionType instanceof Message) {
+                    $optionType->mergeFromJsonString(json_encode($messageOptions, JSON_FORCE_OBJECT));
+                    $validatedOptionGroup = $optionType;
+                } else {
+                    $validatedOptionGroup = $messageOptions;
+                }
+                $splitOptions[] = $validatedOptionGroup;
+            } else {
+                throw new LogicException(sprintf('Invalid option type: %s', $optionType));
+            }
+        }
+
+        if (!empty($options)) {
+            throw new Exception(
+                'Unexpected option(s) provided: ' . implode(', ', array_keys($options))
+            );
+        }
+
+        return $splitOptions;
     }
 }

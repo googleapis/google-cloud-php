@@ -13,23 +13,20 @@ use Google\Protobuf\Internal\GPBUtil;
  * in Bigtable. It is heavily based on the GoogleSQL standard to help maintain
  * familiarity and consistency across products and features.
  * For compatibility with Bigtable's existing untyped APIs, each `Type` includes
- * an `Encoding` which describes how to convert to/from the underlying data.
- * Each encoding also defines the following properties:
- *  * Order-preserving: Does the encoded value sort consistently with the
- *    original typed value? Note that Bigtable will always sort data based on
- *    the raw encoded value, *not* the decoded type.
- *     - Example: BYTES values sort in the same order as their raw encodings.
- *     - Counterexample: Encoding INT64 as a fixed-width decimal string does
- *       *not* preserve sort order when dealing with negative numbers.
- *       `INT64(1) > INT64(-1)`, but `STRING("-00001") > STRING("00001)`.
- *  * Self-delimiting: If we concatenate two encoded values, can we always tell
- *    where the first one ends and the second one begins?
- *     - Example: If we encode INT64s to fixed-width STRINGs, the first value
- *       will always contain exactly N digits, possibly preceded by a sign.
- *     - Counterexample: If we concatenate two UTF-8 encoded STRINGs, we have
- *       no way to tell where the first one ends.
- *  * Compatibility: Which other systems have matching encoding schemes? For
- *    example, does this encoding have a GoogleSQL equivalent? HBase? Java?
+ * an `Encoding` which describes how to convert to or from the underlying data.
+ * Each encoding can operate in one of two modes:
+ *  - Sorted: In this mode, Bigtable guarantees that `Encode(X) <= Encode(Y)`
+ *    if and only if `X <= Y`. This is useful anywhere sort order is important,
+ *    for example when encoding keys.
+ *  - Distinct: In this mode, Bigtable guarantees that if `X != Y` then
+ *   `Encode(X) != Encode(Y)`. However, the converse is not guaranteed. For
+ *    example, both `{'foo': '1', 'bar': '2'}` and `{'bar': '2', 'foo': '1'}`
+ *    are valid encodings of the same JSON value.
+ * The API clearly documents which mode is used wherever an encoding can be
+ * configured. Each encoding also documents which values are supported in which
+ * modes. For example, when encoding INT64 as a numeric STRING, negative numbers
+ * cannot be encoded in sorted mode. This is because `INT64(1) > INT64(-1)`, but
+ * `STRING("-00001") > STRING("00001")`.
  *
  * Generated from protobuf message <code>google.bigtable.v2.Type</code>
  */

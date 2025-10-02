@@ -25,31 +25,31 @@ class StoragePoolDisk extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
-    private $creation_timestamp = null;
+    protected $creation_timestamp = null;
     /**
      * [Output Only] The URL of the disk.
      *
      * Generated from protobuf field <code>optional string disk = 3083677;</code>
      */
-    private $disk = null;
+    protected $disk = null;
     /**
      * [Output Only] The name of the disk.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
     /**
      * [Output Only] The number of IOPS provisioned for the disk.
      *
      * Generated from protobuf field <code>optional int64 provisioned_iops = 186769108;</code>
      */
-    private $provisioned_iops = null;
+    protected $provisioned_iops = null;
     /**
      * [Output Only] The throughput provisioned for the disk.
      *
      * Generated from protobuf field <code>optional int64 provisioned_throughput = 526524181;</code>
      */
-    private $provisioned_throughput = null;
+    protected $provisioned_throughput = null;
     /**
      * [Output Only] Resource policies applied to disk for automatic snapshot creations.
      *
@@ -61,26 +61,26 @@ class StoragePoolDisk extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int64 size_gb = 494929369;</code>
      */
-    private $size_gb = null;
+    protected $size_gb = null;
     /**
      * [Output Only] The disk status.
      * Check the Status enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>
      */
-    private $status = null;
+    protected $status = null;
     /**
      * [Output Only] The disk type.
      *
      * Generated from protobuf field <code>optional string type = 3575610;</code>
      */
-    private $type = null;
+    protected $type = null;
     /**
      * [Output Only] Amount of disk space used.
      *
      * Generated from protobuf field <code>optional int64 used_bytes = 231640425;</code>
      */
-    private $used_bytes = null;
+    protected $used_bytes = null;
 
     /**
      * Constructor.

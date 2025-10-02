@@ -16,15 +16,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class Tag extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Key of tag.
+     * Required. Key of tag.
      *
-     * Generated from protobuf field <code>string key = 1;</code>
+     * Generated from protobuf field <code>string key = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $key = '';
     /**
-     * Value of tag.
+     * Required. Value of tag.
      *
-     * Generated from protobuf field <code>string value = 2;</code>
+     * Generated from protobuf field <code>string value = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $value = '';
 
@@ -35,9 +35,9 @@ class Tag extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $key
-     *           Key of tag.
+     *           Required. Key of tag.
      *     @type string $value
-     *           Value of tag.
+     *           Required. Value of tag.
      * }
      */
     public function __construct($data = NULL) {
@@ -46,9 +46,9 @@ class Tag extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Key of tag.
+     * Required. Key of tag.
      *
-     * Generated from protobuf field <code>string key = 1;</code>
+     * Generated from protobuf field <code>string key = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getKey()
@@ -57,9 +57,9 @@ class Tag extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Key of tag.
+     * Required. Key of tag.
      *
-     * Generated from protobuf field <code>string key = 1;</code>
+     * Generated from protobuf field <code>string key = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -72,9 +72,9 @@ class Tag extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Value of tag.
+     * Required. Value of tag.
      *
-     * Generated from protobuf field <code>string value = 2;</code>
+     * Generated from protobuf field <code>string value = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getValue()
@@ -83,9 +83,9 @@ class Tag extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Value of tag.
+     * Required. Value of tag.
      *
-     * Generated from protobuf field <code>string value = 2;</code>
+     * Generated from protobuf field <code>string value = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -320,6 +320,30 @@ return [
                         'keyName' => 'instance_group',
                         'fieldAccessors' => [
                             'getInstanceGroup',
+                        ],
+                    ],
+                ],
+            ],
+            'TestIamPermissions' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Compute\V1\TestPermissionsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'zone',
+                        'fieldAccessors' => [
+                            'getZone',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'resource',
+                        'fieldAccessors' => [
+                            'getResource',
                         ],
                     ],
                 ],

@@ -68,11 +68,18 @@ class ReplicationCycle extends \Google\Protobuf\Internal\Message
      */
     protected $state = 0;
     /**
-     * Provides details on the state of the cycle in case of an error.
+     * Output only. Provides details on the state of the cycle in case of an
+     * error.
      *
-     * Generated from protobuf field <code>.google.rpc.Status error = 12;</code>
+     * Generated from protobuf field <code>.google.rpc.Status error = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $error = null;
+    /**
+     * Output only. Warnings that occurred during the cycle.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.MigrationWarning warnings = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $warnings;
 
     /**
      * Constructor.
@@ -99,7 +106,10 @@ class ReplicationCycle extends \Google\Protobuf\Internal\Message
      *     @type int $state
      *           State of the ReplicationCycle.
      *     @type \Google\Rpc\Status $error
-     *           Provides details on the state of the cycle in case of an error.
+     *           Output only. Provides details on the state of the cycle in case of an
+     *           error.
+     *     @type array<\Google\Cloud\VMMigration\V1\MigrationWarning>|\Google\Protobuf\Internal\RepeatedField $warnings
+     *           Output only. Warnings that occurred during the cycle.
      * }
      */
     public function __construct($data = NULL) {
@@ -356,9 +366,10 @@ class ReplicationCycle extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Provides details on the state of the cycle in case of an error.
+     * Output only. Provides details on the state of the cycle in case of an
+     * error.
      *
-     * Generated from protobuf field <code>.google.rpc.Status error = 12;</code>
+     * Generated from protobuf field <code>.google.rpc.Status error = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Rpc\Status|null
      */
     public function getError()
@@ -377,9 +388,10 @@ class ReplicationCycle extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Provides details on the state of the cycle in case of an error.
+     * Output only. Provides details on the state of the cycle in case of an
+     * error.
      *
-     * Generated from protobuf field <code>.google.rpc.Status error = 12;</code>
+     * Generated from protobuf field <code>.google.rpc.Status error = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Rpc\Status $var
      * @return $this
      */
@@ -387,6 +399,32 @@ class ReplicationCycle extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Rpc\Status::class);
         $this->error = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Warnings that occurred during the cycle.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.MigrationWarning warnings = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getWarnings()
+    {
+        return $this->warnings;
+    }
+
+    /**
+     * Output only. Warnings that occurred during the cycle.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.MigrationWarning warnings = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<\Google\Cloud\VMMigration\V1\MigrationWarning>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setWarnings($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\VMMigration\V1\MigrationWarning::class);
+        $this->warnings = $arr;
 
         return $this;
     }

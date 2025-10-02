@@ -22,6 +22,14 @@ class FailoverReservationRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $name = '';
+    /**
+     * Optional. A parameter that determines how writes that are pending
+     * replication are handled after a failover is initiated. If not specified,
+     * HARD failover mode is used by default.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.FailoverMode failover_mode = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $failover_mode = 0;
 
     /**
      * Constructor.
@@ -32,6 +40,10 @@ class FailoverReservationRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. Resource name of the reservation to failover. E.g.,
      *              `projects/myproject/locations/US/reservations/team1-prod`
+     *     @type int $failover_mode
+     *           Optional. A parameter that determines how writes that are pending
+     *           replication are handled after a failover is initiated. If not specified,
+     *           HARD failover mode is used by default.
      * }
      */
     public function __construct($data = NULL) {
@@ -63,6 +75,36 @@ class FailoverReservationRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A parameter that determines how writes that are pending
+     * replication are handled after a failover is initiated. If not specified,
+     * HARD failover mode is used by default.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.FailoverMode failover_mode = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getFailoverMode()
+    {
+        return $this->failover_mode;
+    }
+
+    /**
+     * Optional. A parameter that determines how writes that are pending
+     * replication are handled after a failover is initiated. If not specified,
+     * HARD failover mode is used by default.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.FailoverMode failover_mode = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setFailoverMode($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\BigQuery\Reservation\V1\FailoverMode::class);
+        $this->failover_mode = $var;
 
         return $this;
     }

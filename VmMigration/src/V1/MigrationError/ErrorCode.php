@@ -20,61 +20,78 @@ class ErrorCode
      */
     const ERROR_CODE_UNSPECIFIED = 0;
     /**
-     * Migrate for Compute encountered an unknown error.
+     * Migrate to Virtual Machines encountered an unknown error.
      *
      * Generated from protobuf enum <code>UNKNOWN_ERROR = 1;</code>
      */
     const UNKNOWN_ERROR = 1;
     /**
-     * Migrate for Compute encountered an error while validating replication
-     * source health.
+     * Migrate to Virtual Machines encountered an error while validating
+     * replication source health.
      *
      * Generated from protobuf enum <code>SOURCE_VALIDATION_ERROR = 2;</code>
      */
     const SOURCE_VALIDATION_ERROR = 2;
     /**
-     * Migrate for Compute encountered an error during source data operation.
+     * Migrate to Virtual Machines encountered an error during source data
+     * operation.
      *
      * Generated from protobuf enum <code>SOURCE_REPLICATION_ERROR = 3;</code>
      */
     const SOURCE_REPLICATION_ERROR = 3;
     /**
-     * Migrate for Compute encountered an error during target data operation.
+     * Migrate to Virtual Machines encountered an error during target data
+     * operation.
      *
      * Generated from protobuf enum <code>TARGET_REPLICATION_ERROR = 4;</code>
      */
     const TARGET_REPLICATION_ERROR = 4;
     /**
-     * Migrate for Compute encountered an error during OS adaptation.
+     * Migrate to Virtual Machines encountered an error during OS adaptation.
      *
      * Generated from protobuf enum <code>OS_ADAPTATION_ERROR = 5;</code>
      */
     const OS_ADAPTATION_ERROR = 5;
     /**
-     * Migrate for Compute encountered an error in clone operation.
+     * Migrate to Virtual Machines encountered an error in clone operation.
      *
      * Generated from protobuf enum <code>CLONE_ERROR = 6;</code>
      */
     const CLONE_ERROR = 6;
     /**
-     * Migrate for Compute encountered an error in cutover operation.
+     * Migrate to Virtual Machines encountered an error in cutover operation.
      *
      * Generated from protobuf enum <code>CUTOVER_ERROR = 7;</code>
      */
     const CUTOVER_ERROR = 7;
     /**
-     * Migrate for Compute encountered an error during utilization report
-     * creation.
+     * Migrate to Virtual Machines encountered an error during utilization
+     * report creation.
      *
      * Generated from protobuf enum <code>UTILIZATION_REPORT_ERROR = 8;</code>
      */
     const UTILIZATION_REPORT_ERROR = 8;
     /**
-     * Migrate for Compute encountered an error during appliance upgrade.
+     * Migrate to Virtual Machines encountered an error during appliance
+     * upgrade.
      *
      * Generated from protobuf enum <code>APPLIANCE_UPGRADE_ERROR = 9;</code>
      */
     const APPLIANCE_UPGRADE_ERROR = 9;
+    /**
+     * Migrate to Virtual Machines encountered an error in image import
+     * operation.
+     *
+     * Generated from protobuf enum <code>IMAGE_IMPORT_ERROR = 10;</code>
+     */
+    const IMAGE_IMPORT_ERROR = 10;
+    /**
+     * Migrate to Virtual Machines encountered an error in disk migration
+     * operation.
+     *
+     * Generated from protobuf enum <code>DISK_MIGRATION_ERROR = 11;</code>
+     */
+    const DISK_MIGRATION_ERROR = 11;
 
     private static $valueToName = [
         self::ERROR_CODE_UNSPECIFIED => 'ERROR_CODE_UNSPECIFIED',
@@ -87,6 +104,8 @@ class ErrorCode
         self::CUTOVER_ERROR => 'CUTOVER_ERROR',
         self::UTILIZATION_REPORT_ERROR => 'UTILIZATION_REPORT_ERROR',
         self::APPLIANCE_UPGRADE_ERROR => 'APPLIANCE_UPGRADE_ERROR',
+        self::IMAGE_IMPORT_ERROR => 'IMAGE_IMPORT_ERROR',
+        self::DISK_MIGRATION_ERROR => 'DISK_MIGRATION_ERROR',
     ];
 
     public static function name($value)

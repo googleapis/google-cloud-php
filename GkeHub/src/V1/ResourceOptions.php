@@ -33,13 +33,21 @@ class ResourceOptions extends \Google\Protobuf\Internal\Message
      */
     protected $v1beta1_crd = false;
     /**
-     * Optional. Major version of the Kubernetes cluster. This is only used to
-     * determine which version to use for the CustomResourceDefinition resources,
-     * `apiextensions/v1beta1` or`apiextensions/v1`.
+     * Optional. Major and minor version of the Kubernetes cluster. This is only
+     * used to determine which version to use for the CustomResourceDefinition
+     * resources, `apiextensions/v1beta1` or`apiextensions/v1`.
      *
      * Generated from protobuf field <code>string k8s_version = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $k8s_version = '';
+    /**
+     * Optional. Git version of the Kubernetes cluster. This is only used to gate
+     * the Connect Agent migration to svc.id.goog on GDC-SO 1.33.100 patch and
+     * above.
+     *
+     * Generated from protobuf field <code>string k8s_git_version = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $k8s_git_version = '';
 
     /**
      * Constructor.
@@ -57,9 +65,13 @@ class ResourceOptions extends \Google\Protobuf\Internal\Message
      *           This option should be set for clusters with Kubernetes apiserver versions
      *           <1.16.
      *     @type string $k8s_version
-     *           Optional. Major version of the Kubernetes cluster. This is only used to
-     *           determine which version to use for the CustomResourceDefinition resources,
-     *           `apiextensions/v1beta1` or`apiextensions/v1`.
+     *           Optional. Major and minor version of the Kubernetes cluster. This is only
+     *           used to determine which version to use for the CustomResourceDefinition
+     *           resources, `apiextensions/v1beta1` or`apiextensions/v1`.
+     *     @type string $k8s_git_version
+     *           Optional. Git version of the Kubernetes cluster. This is only used to gate
+     *           the Connect Agent migration to svc.id.goog on GDC-SO 1.33.100 patch and
+     *           above.
      * }
      */
     public function __construct($data = NULL) {
@@ -130,9 +142,9 @@ class ResourceOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Major version of the Kubernetes cluster. This is only used to
-     * determine which version to use for the CustomResourceDefinition resources,
-     * `apiextensions/v1beta1` or`apiextensions/v1`.
+     * Optional. Major and minor version of the Kubernetes cluster. This is only
+     * used to determine which version to use for the CustomResourceDefinition
+     * resources, `apiextensions/v1beta1` or`apiextensions/v1`.
      *
      * Generated from protobuf field <code>string k8s_version = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -143,9 +155,9 @@ class ResourceOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Major version of the Kubernetes cluster. This is only used to
-     * determine which version to use for the CustomResourceDefinition resources,
-     * `apiextensions/v1beta1` or`apiextensions/v1`.
+     * Optional. Major and minor version of the Kubernetes cluster. This is only
+     * used to determine which version to use for the CustomResourceDefinition
+     * resources, `apiextensions/v1beta1` or`apiextensions/v1`.
      *
      * Generated from protobuf field <code>string k8s_version = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -155,6 +167,36 @@ class ResourceOptions extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->k8s_version = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Git version of the Kubernetes cluster. This is only used to gate
+     * the Connect Agent migration to svc.id.goog on GDC-SO 1.33.100 patch and
+     * above.
+     *
+     * Generated from protobuf field <code>string k8s_git_version = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getK8SGitVersion()
+    {
+        return $this->k8s_git_version;
+    }
+
+    /**
+     * Optional. Git version of the Kubernetes cluster. This is only used to gate
+     * the Connect Agent migration to svc.id.goog on GDC-SO 1.33.100 patch and
+     * above.
+     *
+     * Generated from protobuf field <code>string k8s_git_version = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setK8SGitVersion($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->k8s_git_version = $var;
 
         return $this;
     }

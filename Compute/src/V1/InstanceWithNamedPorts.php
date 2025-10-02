@@ -19,7 +19,7 @@ class InstanceWithNamedPorts extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string instance = 18257045;</code>
      */
-    private $instance = null;
+    protected $instance = null;
     /**
      * [Output Only] The named ports that belong to this instance group.
      *
@@ -32,7 +32,7 @@ class InstanceWithNamedPorts extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>
      */
-    private $status = null;
+    protected $status = null;
 
     /**
      * Constructor.

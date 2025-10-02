@@ -19,13 +19,13 @@ class SourceDiskEncryptionKey extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.CustomerEncryptionKey disk_encryption_key = 271660677;</code>
      */
-    private $disk_encryption_key = null;
+    protected $disk_encryption_key = null;
     /**
      * URL of the disk attached to the source instance. This can be a full or valid partial URL. For example, the following are valid values: - https://www.googleapis.com/compute/v1/projects/project/zones/zone /disks/disk - projects/project/zones/zone/disks/disk - zones/zone/disks/disk 
      *
      * Generated from protobuf field <code>optional string source_disk = 451753793;</code>
      */
-    private $source_disk = null;
+    protected $source_disk = null;
 
     /**
      * Constructor.

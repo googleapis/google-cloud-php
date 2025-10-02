@@ -39,6 +39,7 @@ class UpdateComponentCommandTest extends TestCase
     private const OWLBOT_PHP_IMAGE = 'gcr.io/fake-owlbot-image/owlbot-php';
     private const OWLBOT_PHP_DIGEST = 'sha256:12345';
     private const OWLBOT_CLI_IMAGE = 'gcr.io/cloud-devrel-public-resources/owlbot-cli:latest';
+    private const DEFAULT_TIMEOUT = 120;
 
     public static function setUpBeforeClass(): void
     {
@@ -90,7 +91,7 @@ class UpdateComponentCommandTest extends TestCase
         $this->expectExceptionMessage('Error: Docker is not available.');
 
         $runProcess = $this->prophesize(RunProcess::class);
-        $runProcess->execute(['which', 'docker'])
+        $runProcess->execute(['which', 'docker'], null, self::DEFAULT_TIMEOUT)
             ->shouldBeCalledOnce()
             ->willReturn('');
 
@@ -106,31 +107,13 @@ class UpdateComponentCommandTest extends TestCase
 
     public function testUpdateFailsWithInvalidComponentName()
     {
-        $this->expectException(\RuntimeException::class);
-        $this->expectExceptionMessage('Component \'NonExistantComponent\' not found.');
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage('Invalid component name provided: NonExistantComponent');
 
         $runProcess = $this->prophesize(RunProcess::class);
-        $runProcess->execute(['which', 'docker'])
+        $runProcess->execute(['which', 'docker'], null, self::DEFAULT_TIMEOUT)
             ->shouldBeCalledOnce()
             ->willReturn('/path/to/docker');
-
-        $findComponentCommand = [
-            'find',
-            self::$tmpDir,
-            '-mindepth',
-            '1',
-            '-maxdepth',
-            '1',
-            '-type',
-            'd',
-            '-name',
-            'NonExistantComponent',
-            '-printf',
-            '%f\n'
-        ];
-        $runProcess->execute($findComponentCommand)
-            ->shouldBeCalledOnce()
-            ->willReturn('');
 
         $application = new Application();
         $application->add(new UpdateComponentCommand(self::$tmpDir, $runProcess->reveal()));
@@ -147,27 +130,9 @@ class UpdateComponentCommandTest extends TestCase
         $googleapisGenPath = self::$tmpDir;
 
         $runProcess = $this->prophesize(RunProcess::class);
-        $runProcess->execute(['which', 'docker'])
+        $runProcess->execute(['which', 'docker'], null, self::DEFAULT_TIMEOUT)
             ->shouldBeCalledOnce()
             ->willReturn('/path/to/docker');
-        $findComponentCommand = [
-            'find',
-            self::$tmpDir,
-            '-mindepth',
-            '1',
-            '-maxdepth',
-            '1',
-            '-type',
-            'd',
-            '-name',
-            self::COMPONENT_NAME,
-            '-printf',
-            '%f\n'
-        ];
-
-        $runProcess->execute($findComponentCommand)
-            ->shouldBeCalledOnce()
-            ->willReturn(self::COMPONENT_NAME);
 
         list($userId, $groupId) = [posix_getuid(), posix_getgid()];
         $owlbotPhpImage = self::OWLBOT_PHP_IMAGE . '@' . self::OWLBOT_PHP_DIGEST;
@@ -185,7 +150,9 @@ class UpdateComponentCommandTest extends TestCase
             sprintf('--config-file=%s/.OwlBot.yaml', self::COMPONENT_NAME)
         ];
 
-        $runProcess->execute($copyCodeCommand)->shouldBeCalledOnce()->willReturn('');
+        $runProcess->execute($copyCodeCommand, null, self::DEFAULT_TIMEOUT)
+            ->shouldBeCalledOnce()
+            ->willReturn('');
 
         $copyBazelBinCommand = [
             'docker', 'run', '--rm',
@@ -198,9 +165,13 @@ class UpdateComponentCommandTest extends TestCase
             '--source-dir', '/bazel-bin',
             '--dest', '/repo'
         ];
-        $runProcess->execute($copyBazelBinCommand)->shouldBeCalledOnce()->willReturn('');
+        $runProcess->execute($copyBazelBinCommand, null, self::DEFAULT_TIMEOUT)
+            ->shouldBeCalledOnce()
+            ->willReturn('');
 
-        $runProcess->execute(['docker', 'pull', $owlbotPhpImage])->shouldBeCalledOnce()->willReturn('');
+        $runProcess->execute(['docker', 'pull', $owlbotPhpImage], null, self::DEFAULT_TIMEOUT)
+            ->shouldBeCalledOnce()
+            ->willReturn('');
 
         $postProcessCommand = [
             'docker', 'run', '--rm',
@@ -209,7 +180,9 @@ class UpdateComponentCommandTest extends TestCase
             '-w', '/repo',
             $owlbotPhpImage
         ];
-        $runProcess->execute($postProcessCommand)->shouldBeCalledOnce()->willReturn('');
+        $runProcess->execute($postProcessCommand, null, self::DEFAULT_TIMEOUT)
+            ->shouldBeCalledOnce()
+            ->willReturn('');
 
         $application = new Application();
         $application->add(new UpdateComponentCommand(self::$tmpDir, $runProcess->reveal()));
@@ -225,5 +198,23 @@ class UpdateComponentCommandTest extends TestCase
             'Component update completed successfully!',
             $commandTester->getDisplay()
         );
+    }
+
+    public function testUpdateComponentErrorsWithNonNumericTimeout()
+    {
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('Error: The timeout option must be a positive integer');
+
+        $application = new Application();
+        $application->add(new UpdateComponentCommand(self::$tmpDir));
+
+        $commandTester = new CommandTester($application->get('update-component'));
+        $commandTester->setInputs([
+            'Y' // Does this information look correct? [Y/n]
+        ]);
+        $commandTester->execute([
+            'component' => self::COMPONENT_NAME,
+            '--timeout' => 'not-a-number',
+        ]);
     }
 }

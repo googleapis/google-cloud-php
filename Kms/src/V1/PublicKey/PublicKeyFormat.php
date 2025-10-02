@@ -38,6 +38,13 @@ class PublicKeyFormat
      */
     const PEM = 1;
     /**
+     * The returned public key will be encoded in DER format (the
+     * PrivateKeyInfo structure from RFC 5208).
+     *
+     * Generated from protobuf enum <code>DER = 2;</code>
+     */
+    const DER = 2;
+    /**
      * This is supported only for PQC algorithms.
      * The key material is returned in the format defined by NIST PQC
      * standards (FIPS 203, FIPS 204, and FIPS 205).
@@ -45,11 +52,20 @@ class PublicKeyFormat
      * Generated from protobuf enum <code>NIST_PQC = 3;</code>
      */
     const NIST_PQC = 3;
+    /**
+     * The returned public key is in raw bytes format defined in its standard
+     * https://datatracker.ietf.org/doc/draft-connolly-cfrg-xwing-kem.
+     *
+     * Generated from protobuf enum <code>XWING_RAW_BYTES = 4;</code>
+     */
+    const XWING_RAW_BYTES = 4;
 
     private static $valueToName = [
         self::PUBLIC_KEY_FORMAT_UNSPECIFIED => 'PUBLIC_KEY_FORMAT_UNSPECIFIED',
         self::PEM => 'PEM',
+        self::DER => 'DER',
         self::NIST_PQC => 'NIST_PQC',
+        self::XWING_RAW_BYTES => 'XWING_RAW_BYTES',
     ];
 
     public static function name($value)

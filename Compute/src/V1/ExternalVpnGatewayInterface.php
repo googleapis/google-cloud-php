@@ -20,19 +20,19 @@ class ExternalVpnGatewayInterface extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional uint32 id = 3355;</code>
      */
-    private $id = null;
+    protected $id = null;
     /**
      * IP address of the interface in the external VPN gateway. Only IPv4 is supported. This IP address can be either from your on-premise gateway or another Cloud provider's VPN gateway, it cannot be an IP address from Google Compute Engine.
      *
      * Generated from protobuf field <code>optional string ip_address = 406272220;</code>
      */
-    private $ip_address = null;
+    protected $ip_address = null;
     /**
      * IPv6 address of the interface in the external VPN gateway. This IPv6 address can be either from your on-premise gateway or another Cloud provider's VPN gateway, it cannot be an IP address from Google Compute Engine. Must specify an IPv6 address (not IPV4-mapped) using any format described in RFC 4291 (e.g. 2001:db8:0:0:2d9:51:0:0). The output format is RFC 5952 format (e.g. 2001:db8::2d9:51:0:0).
      *
      * Generated from protobuf field <code>optional string ipv6_address = 341563804;</code>
      */
-    private $ipv6_address = null;
+    protected $ipv6_address = null;
 
     /**
      * Constructor.

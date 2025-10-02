@@ -31,11 +31,27 @@ class HybridReplicationType
      * Generated from protobuf enum <code>CONTINUOUS_REPLICATION = 2;</code>
      */
     const CONTINUOUS_REPLICATION = 2;
+    /**
+     * New field for reversible OnPrem replication, to be used for data
+     * protection.
+     *
+     * Generated from protobuf enum <code>ONPREM_REPLICATION = 3;</code>
+     */
+    const ONPREM_REPLICATION = 3;
+    /**
+     * Hybrid replication type for incremental Transfer in the reverse direction
+     * (GCNV is source and Onprem is destination)
+     *
+     * Generated from protobuf enum <code>REVERSE_ONPREM_REPLICATION = 4;</code>
+     */
+    const REVERSE_ONPREM_REPLICATION = 4;
 
     private static $valueToName = [
         self::HYBRID_REPLICATION_TYPE_UNSPECIFIED => 'HYBRID_REPLICATION_TYPE_UNSPECIFIED',
         self::MIGRATION => 'MIGRATION',
         self::CONTINUOUS_REPLICATION => 'CONTINUOUS_REPLICATION',
+        self::ONPREM_REPLICATION => 'ONPREM_REPLICATION',
+        self::REVERSE_ONPREM_REPLICATION => 'REVERSE_ONPREM_REPLICATION',
     ];
 
     public static function name($value)

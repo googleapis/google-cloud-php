@@ -37,12 +37,19 @@ class DataType
      * Generated from protobuf enum <code>STRING = 3;</code>
      */
     const STRING = 3;
+    /**
+     * Attribute's value is of type uri.
+     *
+     * Generated from protobuf enum <code>URI = 4;</code>
+     */
+    const URI = 4;
 
     private static $valueToName = [
         self::DATA_TYPE_UNSPECIFIED => 'DATA_TYPE_UNSPECIFIED',
         self::ENUM => 'ENUM',
         self::JSON => 'JSON',
         self::STRING => 'STRING',
+        self::URI => 'URI',
     ];
 
     public static function name($value)

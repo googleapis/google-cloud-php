@@ -42,6 +42,12 @@ class Property extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.documentai.v1.DocumentSchema.EntityType.Property.OccurrenceType occurrence_type = 3;</code>
      */
     protected $occurrence_type = 0;
+    /**
+     * Specifies how the entity's value is obtained.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.DocumentSchema.EntityType.Property.Method method = 8;</code>
+     */
+    protected $method = 0;
 
     /**
      * Constructor.
@@ -60,6 +66,8 @@ class Property extends \Google\Protobuf\Internal\Message
      *     @type int $occurrence_type
      *           Occurrence type limits the number of instances an entity type appears
      *           in the document.
+     *     @type int $method
+     *           Specifies how the entity's value is obtained.
      * }
      */
     public function __construct($data = NULL) {
@@ -173,6 +181,32 @@ class Property extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\DocumentAI\V1\DocumentSchema\EntityType\Property\OccurrenceType::class);
         $this->occurrence_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Specifies how the entity's value is obtained.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.DocumentSchema.EntityType.Property.Method method = 8;</code>
+     * @return int
+     */
+    public function getMethod()
+    {
+        return $this->method;
+    }
+
+    /**
+     * Specifies how the entity's value is obtained.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.DocumentSchema.EntityType.Property.Method method = 8;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setMethod($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\DocumentAI\V1\DocumentSchema\EntityType\Property\Method::class);
+        $this->method = $var;
 
         return $this;
     }

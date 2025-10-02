@@ -36,15 +36,15 @@ use Google\Cloud\Spanner\V1\Mutation;
  * transactions. All mutations in a group are committed atomically. However,
  * mutations across groups can be committed non-atomically in an unspecified
  * order and thus, they must be independent of each other. Partial failure is
- * possible, i.e., some groups may have been committed successfully, while
- * some may have failed. The results of individual batches are streamed into
- * the response as the batches are applied.
+ * possible, that is, some groups might have been committed successfully,
+ * while some might have failed. The results of individual batches are
+ * streamed into the response as the batches are applied.
  *
- * BatchWrite requests are not replay protected, meaning that each mutation
- * group may be applied more than once. Replays of non-idempotent mutations
- * may have undesirable effects. For example, replays of an insert mutation
- * may produce an already exists error or if you use generated or commit
- * timestamp-based keys, it may result in additional rows being added to the
+ * `BatchWrite` requests are not replay protected, meaning that each mutation
+ * group can be applied more than once. Replays of non-idempotent mutations
+ * can have undesirable effects. For example, replays of an insert mutation
+ * can produce an already exists error or if you use generated or commit
+ * timestamp-based keys, it can result in additional rows being added to the
  * mutation's table. We recommend structuring your mutation groups to be
  * idempotent to avoid this issue.
  *

@@ -1,0 +1,48 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.shopping.merchant.notifications.v1",
+    "libraryPackage": "Google\\Shopping\\Merchant\\Notifications\\V1",
+    "services": {
+        "NotificationsApiService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "NotificationsApiServiceGapicClient",
+                    "rpcs": {
+                        "CreateNotificationSubscription": {
+                            "methods": [
+                                "createNotificationSubscription"
+                            ]
+                        },
+                        "DeleteNotificationSubscription": {
+                            "methods": [
+                                "deleteNotificationSubscription"
+                            ]
+                        },
+                        "GetNotificationSubscription": {
+                            "methods": [
+                                "getNotificationSubscription"
+                            ]
+                        },
+                        "GetNotificationSubscriptionHealthMetrics": {
+                            "methods": [
+                                "getNotificationSubscriptionHealthMetrics"
+                            ]
+                        },
+                        "ListNotificationSubscriptions": {
+                            "methods": [
+                                "listNotificationSubscriptions"
+                            ]
+                        },
+                        "UpdateNotificationSubscription": {
+                            "methods": [
+                                "updateNotificationSubscription"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

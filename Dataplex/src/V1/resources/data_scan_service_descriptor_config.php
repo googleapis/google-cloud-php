@@ -249,6 +249,7 @@ return [
                 'dataset' => 'projects/{project}/datasets/{dataset}',
                 'entity' => 'projects/{project}/locations/{location}/lakes/{lake}/zones/{zone}/entities/{entity}',
                 'location' => 'projects/{project}/locations/{location}',
+                'project' => 'projects/{project}',
             ],
         ],
     ],

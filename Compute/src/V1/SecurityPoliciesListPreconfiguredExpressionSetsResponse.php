@@ -17,7 +17,7 @@ class SecurityPoliciesListPreconfiguredExpressionSetsResponse extends \Google\Pr
     /**
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPoliciesWafConfig preconfigured_expression_sets = 536200826;</code>
      */
-    private $preconfigured_expression_sets = null;
+    protected $preconfigured_expression_sets = null;
 
     /**
      * Constructor.

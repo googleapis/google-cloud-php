@@ -7,7 +7,7 @@ namespace Google\Analytics\Admin\V1alpha\SubpropertySyncConfig;
 use UnexpectedValueException;
 
 /**
- * Synchronization modes for a Subproperty
+ * Synchronization modes for a subproperty
  *
  * Protobuf type <code>google.analytics.admin.v1alpha.SubpropertySyncConfig.SynchronizationMode</code>
  */
@@ -21,14 +21,14 @@ class SynchronizationMode
     const SYNCHRONIZATION_MODE_UNSPECIFIED = 0;
     /**
      * Entities are not synchronized.
-     * Local edits are allowed on the Subproperty.
+     * Local edits are allowed on the subproperty.
      *
      * Generated from protobuf enum <code>NONE = 1;</code>
      */
     const NONE = 1;
     /**
-     * Entities are synchronized from Parent Property.
-     * Local mutations are not allowed on the Subproperty (Create / Update /
+     * Entities are synchronized from parent property.
+     * Local mutations are not allowed on the subproperty (Create / Update /
      * Delete)
      *
      * Generated from protobuf enum <code>ALL = 2;</code>

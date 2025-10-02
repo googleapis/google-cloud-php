@@ -19,13 +19,13 @@ class SecurityPolicyRuleRateLimitOptionsThreshold extends \Google\Protobuf\Inter
      *
      * Generated from protobuf field <code>optional int32 count = 94851343;</code>
      */
-    private $count = null;
+    protected $count = null;
     /**
      * Interval over which the threshold is computed.
      *
      * Generated from protobuf field <code>optional int32 interval_sec = 41084375;</code>
      */
-    private $interval_sec = null;
+    protected $interval_sec = null;
 
     /**
      * Constructor.

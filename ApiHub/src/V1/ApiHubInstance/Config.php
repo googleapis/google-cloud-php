@@ -16,14 +16,37 @@ use Google\Protobuf\Internal\GPBUtil;
 class Config extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The Customer Managed Encryption Key (CMEK) used for data
+     * Optional. The Customer Managed Encryption Key (CMEK) used for data
      * encryption. The CMEK name should follow the format of
      * `projects/([^/]+)/locations/([^/]+)/keyRings/([^/]+)/cryptoKeys/([^/]+)`,
      * where the location must match the instance location.
+     * If the CMEK is not provided, a GMEK will be created for the instance.
      *
-     * Generated from protobuf field <code>string cmek_key_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string cmek_key_name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $cmek_key_name = '';
+    /**
+     * Optional. If true, the search will be disabled for the instance. The
+     * default value is false.
+     *
+     * Generated from protobuf field <code>bool disable_search = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $disable_search = false;
+    /**
+     * Optional. The name of the Vertex AI location where the data store is
+     * stored.
+     *
+     * Generated from protobuf field <code>string vertex_location = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $vertex_location = '';
+    /**
+     * Optional. Encryption type for the region. If the encryption type is CMEK,
+     * the cmek_key_name must be provided. If no encryption type is provided,
+     * GMEK will be used.
+     *
+     * Generated from protobuf field <code>.google.cloud.apihub.v1.ApiHubInstance.Config.EncryptionType encryption_type = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $encryption_type = 0;
 
     /**
      * Constructor.
@@ -32,10 +55,21 @@ class Config extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $cmek_key_name
-     *           Required. The Customer Managed Encryption Key (CMEK) used for data
+     *           Optional. The Customer Managed Encryption Key (CMEK) used for data
      *           encryption. The CMEK name should follow the format of
      *           `projects/([^/]+)/locations/([^/]+)/keyRings/([^/]+)/cryptoKeys/([^/]+)`,
      *           where the location must match the instance location.
+     *           If the CMEK is not provided, a GMEK will be created for the instance.
+     *     @type bool $disable_search
+     *           Optional. If true, the search will be disabled for the instance. The
+     *           default value is false.
+     *     @type string $vertex_location
+     *           Optional. The name of the Vertex AI location where the data store is
+     *           stored.
+     *     @type int $encryption_type
+     *           Optional. Encryption type for the region. If the encryption type is CMEK,
+     *           the cmek_key_name must be provided. If no encryption type is provided,
+     *           GMEK will be used.
      * }
      */
     public function __construct($data = NULL) {
@@ -44,12 +78,13 @@ class Config extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The Customer Managed Encryption Key (CMEK) used for data
+     * Optional. The Customer Managed Encryption Key (CMEK) used for data
      * encryption. The CMEK name should follow the format of
      * `projects/([^/]+)/locations/([^/]+)/keyRings/([^/]+)/cryptoKeys/([^/]+)`,
      * where the location must match the instance location.
+     * If the CMEK is not provided, a GMEK will be created for the instance.
      *
-     * Generated from protobuf field <code>string cmek_key_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string cmek_key_name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getCmekKeyName()
@@ -58,12 +93,13 @@ class Config extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The Customer Managed Encryption Key (CMEK) used for data
+     * Optional. The Customer Managed Encryption Key (CMEK) used for data
      * encryption. The CMEK name should follow the format of
      * `projects/([^/]+)/locations/([^/]+)/keyRings/([^/]+)/cryptoKeys/([^/]+)`,
      * where the location must match the instance location.
+     * If the CMEK is not provided, a GMEK will be created for the instance.
      *
-     * Generated from protobuf field <code>string cmek_key_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string cmek_key_name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -71,6 +107,92 @@ class Config extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->cmek_key_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If true, the search will be disabled for the instance. The
+     * default value is false.
+     *
+     * Generated from protobuf field <code>bool disable_search = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getDisableSearch()
+    {
+        return $this->disable_search;
+    }
+
+    /**
+     * Optional. If true, the search will be disabled for the instance. The
+     * default value is false.
+     *
+     * Generated from protobuf field <code>bool disable_search = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDisableSearch($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->disable_search = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The name of the Vertex AI location where the data store is
+     * stored.
+     *
+     * Generated from protobuf field <code>string vertex_location = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getVertexLocation()
+    {
+        return $this->vertex_location;
+    }
+
+    /**
+     * Optional. The name of the Vertex AI location where the data store is
+     * stored.
+     *
+     * Generated from protobuf field <code>string vertex_location = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setVertexLocation($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->vertex_location = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Encryption type for the region. If the encryption type is CMEK,
+     * the cmek_key_name must be provided. If no encryption type is provided,
+     * GMEK will be used.
+     *
+     * Generated from protobuf field <code>.google.cloud.apihub.v1.ApiHubInstance.Config.EncryptionType encryption_type = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getEncryptionType()
+    {
+        return $this->encryption_type;
+    }
+
+    /**
+     * Optional. Encryption type for the region. If the encryption type is CMEK,
+     * the cmek_key_name must be provided. If no encryption type is provided,
+     * GMEK will be used.
+     *
+     * Generated from protobuf field <code>.google.cloud.apihub.v1.ApiHubInstance.Config.EncryptionType encryption_type = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setEncryptionType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\ApiHub\V1\ApiHubInstance\Config\EncryptionType::class);
+        $this->encryption_type = $var;
 
         return $this;
     }

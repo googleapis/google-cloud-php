@@ -25,7 +25,7 @@ class FirewallPoliciesListAssociationsResponse extends \Google\Protobuf\Internal
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
-    private $kind = null;
+    protected $kind = null;
 
     /**
      * Constructor.

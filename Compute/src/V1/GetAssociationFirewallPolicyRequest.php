@@ -20,13 +20,13 @@ class GetAssociationFirewallPolicyRequest extends \Google\Protobuf\Internal\Mess
      *
      * Generated from protobuf field <code>string firewall_policy = 498173265 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $firewall_policy = '';
+    protected $firewall_policy = '';
     /**
      * The name of the association to get from the firewall policy.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
 
     /**
      * @param string $firewallPolicy Name of the firewall policy to which the queried rule belongs.

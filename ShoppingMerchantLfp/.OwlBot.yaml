@@ -1,4 +1,4 @@
 deep-copy-regex:
-    - source: /google/shopping/merchant/lfp/(v1beta)/.*-php/(.*)
+    - source: /google/shopping/merchant/lfp/(v1beta|v1)/.*-php/(.*)
       dest: /owl-bot-staging/ShoppingMerchantLfp/$1/$2
 api-name: ShoppingMerchantLfp

@@ -20,31 +20,31 @@ class GetGuestAttributesInstanceRequest extends \Google\Protobuf\Internal\Messag
      *
      * Generated from protobuf field <code>string instance = 18257045 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $instance = '';
+    protected $instance = '';
     /**
      * Project ID for this request.
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * Specifies the guest attributes path to be queried.
      *
      * Generated from protobuf field <code>optional string query_path = 368591164;</code>
      */
-    private $query_path = null;
+    protected $query_path = null;
     /**
      * Specifies the key for the guest attributes entry.
      *
      * Generated from protobuf field <code>optional string variable_key = 164364828;</code>
      */
-    private $variable_key = null;
+    protected $variable_key = null;
     /**
      * The name of the zone for this request.
      *
      * Generated from protobuf field <code>string zone = 3744684 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $zone = '';
+    protected $zone = '';
 
     /**
      * @param string $project  Project ID for this request.

@@ -69,12 +69,12 @@ class Channel extends \Google\Protobuf\Internal\Message
      */
     protected $activation_token = '';
     /**
-     * Resource name of a KMS crypto key (managed by the user) used to
+     * Optional. Resource name of a KMS crypto key (managed by the user) used to
      * encrypt/decrypt their event data.
      * It must match the pattern
      * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
      *
-     * Generated from protobuf field <code>string crypto_key_name = 11 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string crypto_key_name = 11 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     protected $crypto_key_name = '';
     /**
@@ -84,6 +84,12 @@ class Channel extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool satisfies_pzs = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $satisfies_pzs = false;
+    /**
+     * Optional. Resource labels.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $labels;
     protected $transport;
 
     /**
@@ -119,13 +125,15 @@ class Channel extends \Google\Protobuf\Internal\Message
      *           Output only. The activation token for the channel. The token must be used
      *           by the provider to register the channel for publishing.
      *     @type string $crypto_key_name
-     *           Resource name of a KMS crypto key (managed by the user) used to
+     *           Optional. Resource name of a KMS crypto key (managed by the user) used to
      *           encrypt/decrypt their event data.
      *           It must match the pattern
      *           `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
      *     @type bool $satisfies_pzs
      *           Output only. Whether or not this Channel satisfies the requirements of
      *           physical zone separation
+     *     @type array|\Google\Protobuf\Internal\MapField $labels
+     *           Optional. Resource labels.
      * }
      */
     public function __construct($data = NULL) {
@@ -387,12 +395,12 @@ class Channel extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Resource name of a KMS crypto key (managed by the user) used to
+     * Optional. Resource name of a KMS crypto key (managed by the user) used to
      * encrypt/decrypt their event data.
      * It must match the pattern
      * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
      *
-     * Generated from protobuf field <code>string crypto_key_name = 11 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string crypto_key_name = 11 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getCryptoKeyName()
@@ -401,12 +409,12 @@ class Channel extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Resource name of a KMS crypto key (managed by the user) used to
+     * Optional. Resource name of a KMS crypto key (managed by the user) used to
      * encrypt/decrypt their event data.
      * It must match the pattern
      * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
      *
-     * Generated from protobuf field <code>string crypto_key_name = 11 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string crypto_key_name = 11 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -442,6 +450,32 @@ class Channel extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->satisfies_pzs = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Resource labels.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getLabels()
+    {
+        return $this->labels;
+    }
+
+    /**
+     * Optional. Resource labels.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setLabels($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->labels = $arr;
 
         return $this;
     }

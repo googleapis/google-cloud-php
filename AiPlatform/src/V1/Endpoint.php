@@ -197,6 +197,12 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.GenAiAdvancedFeaturesConfig gen_ai_advanced_features_config = 29 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $gen_ai_advanced_features_config = null;
+    /**
+     * If true, the model server will be isolated from the external internet.
+     *
+     * Generated from protobuf field <code>bool private_model_server_enabled = 30;</code>
+     */
+    protected $private_model_server_enabled = false;
 
     /**
      * Constructor.
@@ -300,6 +306,8 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      *           Optional. Configuration for GenAiAdvancedFeatures. If the endpoint is
      *           serving GenAI models, advanced features like native RAG integration can be
      *           configured. Currently, only Model Garden models are supported.
+     *     @type bool $private_model_server_enabled
+     *           If true, the model server will be isolated from the external internet.
      * }
      */
     public function __construct($data = NULL) {
@@ -1033,6 +1041,32 @@ class Endpoint extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\GenAiAdvancedFeaturesConfig::class);
         $this->gen_ai_advanced_features_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * If true, the model server will be isolated from the external internet.
+     *
+     * Generated from protobuf field <code>bool private_model_server_enabled = 30;</code>
+     * @return bool
+     */
+    public function getPrivateModelServerEnabled()
+    {
+        return $this->private_model_server_enabled;
+    }
+
+    /**
+     * If true, the model server will be isolated from the external internet.
+     *
+     * Generated from protobuf field <code>bool private_model_server_enabled = 30;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setPrivateModelServerEnabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->private_model_server_enabled = $var;
 
         return $this;
     }

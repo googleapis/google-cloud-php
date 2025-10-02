@@ -83,6 +83,8 @@ class ChangeHistoryResource extends \Google\Protobuf\Internal\Message
      *           A snapshot of a ReportingDataAnnotation resource in change history.
      *     @type \Google\Analytics\Admin\V1alpha\SubpropertySyncConfig $subproperty_sync_config
      *           A snapshot of a SubpropertySyncConfig resource in change history.
+     *     @type \Google\Analytics\Admin\V1alpha\ReportingIdentitySettings $reporting_identity_settings
+     *           A snapshot of a ReportingIdentitySettings resource in change history.
      * }
      */
     public function __construct($data = NULL) {
@@ -960,6 +962,37 @@ class ChangeHistoryResource extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Analytics\Admin\V1alpha\SubpropertySyncConfig::class);
         $this->writeOneof(33, $var);
+
+        return $this;
+    }
+
+    /**
+     * A snapshot of a ReportingIdentitySettings resource in change history.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.ReportingIdentitySettings reporting_identity_settings = 34;</code>
+     * @return \Google\Analytics\Admin\V1alpha\ReportingIdentitySettings|null
+     */
+    public function getReportingIdentitySettings()
+    {
+        return $this->readOneof(34);
+    }
+
+    public function hasReportingIdentitySettings()
+    {
+        return $this->hasOneof(34);
+    }
+
+    /**
+     * A snapshot of a ReportingIdentitySettings resource in change history.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.ReportingIdentitySettings reporting_identity_settings = 34;</code>
+     * @param \Google\Analytics\Admin\V1alpha\ReportingIdentitySettings $var
+     * @return $this
+     */
+    public function setReportingIdentitySettings($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Analytics\Admin\V1alpha\ReportingIdentitySettings::class);
+        $this->writeOneof(34, $var);
 
         return $this;
     }

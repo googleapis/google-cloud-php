@@ -2,7 +2,7 @@
   "name": "google/common-protos",
   "type": "library",
   "description": "Google API Common Protos for PHP",
-  "version": "4.12.2",
+  "version": "4.12.4",
   "keywords": [
     "google"
   ],
@@ -10,7 +10,7 @@
   "license": "Apache-2.0",
   "require": {
     "php": "^8.1",
-    "google/protobuf": "^v3.25.3||^4.26.1"
+    "google/protobuf": "^4.31"
   },
   "require-dev": {
     "phpunit/phpunit": "^9.6"

@@ -18,11 +18,11 @@ class BackendServiceLocalityLoadBalancingPolicyConfig extends \Google\Protobuf\I
     /**
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.BackendServiceLocalityLoadBalancingPolicyConfigCustomPolicy custom_policy = 4818368;</code>
      */
-    private $custom_policy = null;
+    protected $custom_policy = null;
     /**
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.BackendServiceLocalityLoadBalancingPolicyConfigPolicy policy = 91071794;</code>
      */
-    private $policy = null;
+    protected $policy = null;
 
     /**
      * Constructor.

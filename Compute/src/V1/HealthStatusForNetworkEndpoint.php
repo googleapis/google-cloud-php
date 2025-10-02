@@ -19,39 +19,39 @@ class HealthStatusForNetworkEndpoint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.BackendServiceReference backend_service = 306946058;</code>
      */
-    private $backend_service = null;
+    protected $backend_service = null;
     /**
      * URL of the forwarding rule associated with the health state of the network endpoint.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ForwardingRuleReference forwarding_rule = 269964030;</code>
      */
-    private $forwarding_rule = null;
+    protected $forwarding_rule = null;
     /**
      * URL of the health check associated with the health state of the network endpoint.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.HealthCheckReference health_check = 308876645;</code>
      */
-    private $health_check = null;
+    protected $health_check = null;
     /**
      * URL of the health check service associated with the health state of the network endpoint.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.HealthCheckServiceReference health_check_service = 408374747;</code>
      */
-    private $health_check_service = null;
+    protected $health_check_service = null;
     /**
      * Health state of the network endpoint determined based on the health checks configured.
      * Check the HealthState enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string health_state = 324007150;</code>
      */
-    private $health_state = null;
+    protected $health_state = null;
     /**
      * Health state of the ipv6 network endpoint determined based on the health checks configured.
      * Check the Ipv6HealthState enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string ipv6_health_state = 190316614;</code>
      */
-    private $ipv6_health_state = null;
+    protected $ipv6_health_state = null;
 
     /**
      * Constructor.

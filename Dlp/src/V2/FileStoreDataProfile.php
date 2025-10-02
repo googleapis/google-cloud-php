@@ -198,6 +198,12 @@ class FileStoreDataProfile extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.RelatedResource related_resources = 26;</code>
      */
     private $related_resources;
+    /**
+     * Domains associated with the profile.
+     *
+     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Domain domains = 27;</code>
+     */
+    private $domains;
 
     /**
      * Constructor.
@@ -282,6 +288,8 @@ class FileStoreDataProfile extends \Google\Protobuf\Internal\Message
      *           profiling.
      *     @type array<\Google\Cloud\Dlp\V2\RelatedResource>|\Google\Protobuf\Internal\RepeatedField $related_resources
      *           Resources related to this profile.
+     *     @type array<\Google\Cloud\Dlp\V2\Domain>|\Google\Protobuf\Internal\RepeatedField $domains
+     *           Domains associated with the profile.
      * }
      */
     public function __construct($data = NULL) {
@@ -1101,6 +1109,32 @@ class FileStoreDataProfile extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dlp\V2\RelatedResource::class);
         $this->related_resources = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Domains associated with the profile.
+     *
+     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Domain domains = 27;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getDomains()
+    {
+        return $this->domains;
+    }
+
+    /**
+     * Domains associated with the profile.
+     *
+     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Domain domains = 27;</code>
+     * @param array<\Google\Cloud\Dlp\V2\Domain>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setDomains($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dlp\V2\Domain::class);
+        $this->domains = $arr;
 
         return $this;
     }

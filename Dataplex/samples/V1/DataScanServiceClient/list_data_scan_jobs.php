@@ -35,7 +35,7 @@ use Google\Cloud\Dataplex\V1\ListDataScanJobsRequest;
  * @param string $formattedParent The resource name of the parent environment:
  *                                `projects/{project}/locations/{location_id}/dataScans/{data_scan_id}`
  *                                where `project` refers to a *project_id* or *project_number* and
- *                                `location_id` refers to a GCP region. Please see
+ *                                `location_id` refers to a Google Cloud region. Please see
  *                                {@see DataScanServiceClient::dataScanName()} for help formatting this field.
  */
 function list_data_scan_jobs_sample(string $formattedParent): void

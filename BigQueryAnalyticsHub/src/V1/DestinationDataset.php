@@ -51,6 +51,14 @@ class DestinationDataset extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string location = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $location = '';
+    /**
+     * Optional. The geographic locations where the dataset should be replicated.
+     * See [BigQuery locations](https://cloud.google.com/bigquery/docs/locations)
+     * for supported locations.
+     *
+     * Generated from protobuf field <code>repeated string replica_locations = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $replica_locations;
 
     /**
      * Constructor.
@@ -74,6 +82,10 @@ class DestinationDataset extends \Google\Protobuf\Internal\Message
      *           Required. The geographic location where the dataset should reside. See
      *           https://cloud.google.com/bigquery/docs/locations for supported
      *           locations.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $replica_locations
+     *           Optional. The geographic locations where the dataset should be replicated.
+     *           See [BigQuery locations](https://cloud.google.com/bigquery/docs/locations)
+     *           for supported locations.
      * }
      */
     public function __construct($data = NULL) {
@@ -303,6 +315,36 @@ class DestinationDataset extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->location = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The geographic locations where the dataset should be replicated.
+     * See [BigQuery locations](https://cloud.google.com/bigquery/docs/locations)
+     * for supported locations.
+     *
+     * Generated from protobuf field <code>repeated string replica_locations = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getReplicaLocations()
+    {
+        return $this->replica_locations;
+    }
+
+    /**
+     * Optional. The geographic locations where the dataset should be replicated.
+     * See [BigQuery locations](https://cloud.google.com/bigquery/docs/locations)
+     * for supported locations.
+     *
+     * Generated from protobuf field <code>repeated string replica_locations = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setReplicaLocations($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->replica_locations = $arr;
 
         return $this;
     }

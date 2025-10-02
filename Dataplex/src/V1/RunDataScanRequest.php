@@ -19,7 +19,7 @@ class RunDataScanRequest extends \Google\Protobuf\Internal\Message
      * Required. The resource name of the DataScan:
      * `projects/{project}/locations/{location_id}/dataScans/{data_scan_id}`.
      * where `project` refers to a *project_id* or *project_number* and
-     * `location_id` refers to a GCP region.
+     * `location_id` refers to a Google Cloud region.
      * Only **OnDemand** data scans are allowed.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -30,7 +30,7 @@ class RunDataScanRequest extends \Google\Protobuf\Internal\Message
      * @param string $name Required. The resource name of the DataScan:
      *                     `projects/{project}/locations/{location_id}/dataScans/{data_scan_id}`.
      *                     where `project` refers to a *project_id* or *project_number* and
-     *                     `location_id` refers to a GCP region.
+     *                     `location_id` refers to a Google Cloud region.
      *
      *                     Only **OnDemand** data scans are allowed. Please see
      *                     {@see DataScanServiceClient::dataScanName()} for help formatting this field.
@@ -55,7 +55,7 @@ class RunDataScanRequest extends \Google\Protobuf\Internal\Message
      *           Required. The resource name of the DataScan:
      *           `projects/{project}/locations/{location_id}/dataScans/{data_scan_id}`.
      *           where `project` refers to a *project_id* or *project_number* and
-     *           `location_id` refers to a GCP region.
+     *           `location_id` refers to a Google Cloud region.
      *           Only **OnDemand** data scans are allowed.
      * }
      */
@@ -68,7 +68,7 @@ class RunDataScanRequest extends \Google\Protobuf\Internal\Message
      * Required. The resource name of the DataScan:
      * `projects/{project}/locations/{location_id}/dataScans/{data_scan_id}`.
      * where `project` refers to a *project_id* or *project_number* and
-     * `location_id` refers to a GCP region.
+     * `location_id` refers to a Google Cloud region.
      * Only **OnDemand** data scans are allowed.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -83,7 +83,7 @@ class RunDataScanRequest extends \Google\Protobuf\Internal\Message
      * Required. The resource name of the DataScan:
      * `projects/{project}/locations/{location_id}/dataScans/{data_scan_id}`.
      * where `project` refers to a *project_id* or *project_number* and
-     * `location_id` refers to a GCP region.
+     * `location_id` refers to a Google Cloud region.
      * Only **OnDemand** data scans are allowed.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

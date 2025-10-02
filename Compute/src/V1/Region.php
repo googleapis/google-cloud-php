@@ -20,43 +20,43 @@ class Region extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
-    private $creation_timestamp = null;
+    protected $creation_timestamp = null;
     /**
      * [Output Only] The deprecation status associated with this region.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.DeprecationStatus deprecated = 515138995;</code>
      */
-    private $deprecated = null;
+    protected $deprecated = null;
     /**
      * [Output Only] Textual description of the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
-    private $description = null;
+    protected $description = null;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
-    private $id = null;
+    protected $id = null;
     /**
      * [Output Only] Type of the resource. Always compute#region for regions.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
-    private $kind = null;
+    protected $kind = null;
     /**
      * [Output Only] Name of the resource.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
     /**
      * [Output Only] Warning of fetching the `quotas` field for this region. This field is populated only if fetching of the `quotas` field fails.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.QuotaStatusWarning quota_status_warning = 302941430;</code>
      */
-    private $quota_status_warning = null;
+    protected $quota_status_warning = null;
     /**
      * [Output Only] Quotas assigned to this region.
      *
@@ -68,20 +68,20 @@ class Region extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
-    private $self_link = null;
+    protected $self_link = null;
     /**
      * [Output Only] Status of the region, either UP or DOWN.
      * Check the Status enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>
      */
-    private $status = null;
+    protected $status = null;
     /**
      * [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool supports_pzs = 83983214;</code>
      */
-    private $supports_pzs = null;
+    protected $supports_pzs = null;
     /**
      * [Output Only] A list of zones available in this region, in the form of resource URLs.
      *

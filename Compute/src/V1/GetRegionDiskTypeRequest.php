@@ -20,19 +20,19 @@ class GetRegionDiskTypeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string disk_type = 93009052 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $disk_type = '';
+    protected $disk_type = '';
     /**
      * Project ID for this request.
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * The name of the region for this request.
      *
      * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $region = '';
+    protected $region = '';
 
     /**
      * @param string $project  Project ID for this request.

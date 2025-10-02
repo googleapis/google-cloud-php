@@ -43,6 +43,8 @@ use Google\Cloud\Kms\V1\CreateKeyRingRequest;
 use Google\Cloud\Kms\V1\CryptoKey;
 use Google\Cloud\Kms\V1\CryptoKeyVersion;
 use Google\Cloud\Kms\V1\CryptoKeyVersion\CryptoKeyVersionAlgorithm;
+use Google\Cloud\Kms\V1\DecapsulateRequest;
+use Google\Cloud\Kms\V1\DecapsulateResponse;
 use Google\Cloud\Kms\V1\DecryptRequest;
 use Google\Cloud\Kms\V1\DecryptResponse;
 use Google\Cloud\Kms\V1\DestroyCryptoKeyVersionRequest;
@@ -611,6 +613,93 @@ class KeyManagementServiceClientTest extends GeneratedTest
             ->setKeyRing($keyRing);
         try {
             $gapicClient->createKeyRing($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function decapsulateTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $sharedSecret = '-54';
+        $sharedSecretCrc32c = 1482306981;
+        $verifiedCiphertextCrc32c = true;
+        $expectedResponse = new DecapsulateResponse();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setSharedSecret($sharedSecret);
+        $expectedResponse->setSharedSecretCrc32c($sharedSecretCrc32c);
+        $expectedResponse->setVerifiedCiphertextCrc32c($verifiedCiphertextCrc32c);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->cryptoKeyVersionName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[KEY_RING]',
+            '[CRYPTO_KEY]',
+            '[CRYPTO_KEY_VERSION]'
+        );
+        $ciphertext = '-72';
+        $request = (new DecapsulateRequest())->setName($formattedName)->setCiphertext($ciphertext);
+        $response = $gapicClient->decapsulate($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.kms.v1.KeyManagementService/Decapsulate', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getCiphertext();
+        $this->assertProtobufEquals($ciphertext, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function decapsulateExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->cryptoKeyVersionName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[KEY_RING]',
+            '[CRYPTO_KEY]',
+            '[CRYPTO_KEY_VERSION]'
+        );
+        $ciphertext = '-72';
+        $request = (new DecapsulateRequest())->setName($formattedName)->setCiphertext($ciphertext);
+        try {
+            $gapicClient->decapsulate($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

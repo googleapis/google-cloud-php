@@ -27,6 +27,7 @@ namespace Google\Cloud\Run\V2\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
@@ -75,7 +76,9 @@ final class BuildsClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+    ];
 
     private static function getClientDefaults()
     {
@@ -97,18 +100,18 @@ final class BuildsClient
     }
 
     /**
-     * Formats a string containing the fully-qualified path to represent a worker_pool
-     * resource.
+     * Formats a string containing the fully-qualified path to represent a
+     * build_worker_pool resource.
      *
      * @param string $project
      * @param string $location
      * @param string $workerPool
      *
-     * @return string The formatted worker_pool resource.
+     * @return string The formatted build_worker_pool resource.
      */
-    public static function workerPoolName(string $project, string $location, string $workerPool): string
+    public static function buildWorkerPoolName(string $project, string $location, string $workerPool): string
     {
-        return self::getPathTemplate('workerPool')->render([
+        return self::getPathTemplate('buildWorkerPool')->render([
             'project' => $project,
             'location' => $location,
             'worker_pool' => $workerPool,
@@ -119,7 +122,7 @@ final class BuildsClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
-     * - workerPool: projects/{project}/locations/{location}/workerPools/{worker_pool}
+     * - buildWorkerPool: projects/{project}/locations/{location}/workerPools/{worker_pool}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -142,25 +145,28 @@ final class BuildsClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'run.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
-     *           *Important*: If you accept a credential configuration (credential
-     *           JSON/File/Stream) from an external source for authentication to Google Cloud
-     *           Platform, you must validate it before providing it to any Google API or library.
-     *           Providing an unvalidated credential configuration to Google APIs can compromise
-     *           the security of your systems and data. For more information {@see
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\Run\V2\BuildsClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new BuildsClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
      *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
@@ -198,11 +204,13 @@ final class BuildsClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);

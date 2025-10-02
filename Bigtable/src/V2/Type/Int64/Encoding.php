@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Rules used to convert to/from lower level types.
+ * Rules used to convert to or from lower level types.
  *
  * Generated from protobuf message <code>google.bigtable.v2.Type.Int64.Encoding</code>
  */
@@ -25,6 +25,8 @@ class Encoding extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Bigtable\V2\Type\Int64\Encoding\BigEndianBytes $big_endian_bytes
      *           Use `BigEndianBytes` encoding.
+     *     @type \Google\Cloud\Bigtable\V2\Type\Int64\Encoding\OrderedCodeBytes $ordered_code_bytes
+     *           Use `OrderedCodeBytes` encoding.
      * }
      */
     public function __construct($data = NULL) {
@@ -59,6 +61,37 @@ class Encoding extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\V2\Type\Int64\Encoding\BigEndianBytes::class);
         $this->writeOneof(1, $var);
+
+        return $this;
+    }
+
+    /**
+     * Use `OrderedCodeBytes` encoding.
+     *
+     * Generated from protobuf field <code>.google.bigtable.v2.Type.Int64.Encoding.OrderedCodeBytes ordered_code_bytes = 2;</code>
+     * @return \Google\Cloud\Bigtable\V2\Type\Int64\Encoding\OrderedCodeBytes|null
+     */
+    public function getOrderedCodeBytes()
+    {
+        return $this->readOneof(2);
+    }
+
+    public function hasOrderedCodeBytes()
+    {
+        return $this->hasOneof(2);
+    }
+
+    /**
+     * Use `OrderedCodeBytes` encoding.
+     *
+     * Generated from protobuf field <code>.google.bigtable.v2.Type.Int64.Encoding.OrderedCodeBytes ordered_code_bytes = 2;</code>
+     * @param \Google\Cloud\Bigtable\V2\Type\Int64\Encoding\OrderedCodeBytes $var
+     * @return $this
+     */
+    public function setOrderedCodeBytes($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\V2\Type\Int64\Encoding\OrderedCodeBytes::class);
+        $this->writeOneof(2, $var);
 
         return $this;
     }

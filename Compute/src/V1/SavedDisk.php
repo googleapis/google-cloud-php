@@ -21,32 +21,32 @@ class SavedDisk extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string architecture = 302803283;</code>
      */
-    private $architecture = null;
+    protected $architecture = null;
     /**
      * [Output Only] Type of the resource. Always compute#savedDisk for attached disks.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
-    private $kind = null;
+    protected $kind = null;
     /**
      * Specifies a URL of the disk attached to the source instance.
      *
      * Generated from protobuf field <code>optional string source_disk = 451753793;</code>
      */
-    private $source_disk = null;
+    protected $source_disk = null;
     /**
      * [Output Only] Size of the individual disk snapshot used by this machine image.
      *
      * Generated from protobuf field <code>optional int64 storage_bytes = 424631719;</code>
      */
-    private $storage_bytes = null;
+    protected $storage_bytes = null;
     /**
      * [Output Only] An indicator whether storageBytes is in a stable state or it is being adjusted as a result of shared storage reallocation. This status can either be UPDATING, meaning the size of the snapshot is being updated, or UP_TO_DATE, meaning the size of the snapshot is up-to-date.
      * Check the StorageBytesStatus enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string storage_bytes_status = 490739082;</code>
      */
-    private $storage_bytes_status = null;
+    protected $storage_bytes_status = null;
 
     /**
      * Constructor.

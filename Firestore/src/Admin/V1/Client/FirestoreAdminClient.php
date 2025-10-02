@@ -29,6 +29,7 @@ use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -38,6 +39,9 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Firestore\Admin\V1\Backup;
 use Google\Cloud\Firestore\Admin\V1\BackupSchedule;
 use Google\Cloud\Firestore\Admin\V1\BulkDeleteDocumentsRequest;
+use Google\Cloud\Firestore\Admin\V1\BulkDeleteDocumentsResponse;
+use Google\Cloud\Firestore\Admin\V1\CloneDatabaseMetadata;
+use Google\Cloud\Firestore\Admin\V1\CloneDatabaseRequest;
 use Google\Cloud\Firestore\Admin\V1\CreateBackupScheduleRequest;
 use Google\Cloud\Firestore\Admin\V1\CreateDatabaseRequest;
 use Google\Cloud\Firestore\Admin\V1\CreateIndexRequest;
@@ -51,6 +55,7 @@ use Google\Cloud\Firestore\Admin\V1\DeleteUserCredsRequest;
 use Google\Cloud\Firestore\Admin\V1\DisableUserCredsRequest;
 use Google\Cloud\Firestore\Admin\V1\EnableUserCredsRequest;
 use Google\Cloud\Firestore\Admin\V1\ExportDocumentsRequest;
+use Google\Cloud\Firestore\Admin\V1\ExportDocumentsResponse;
 use Google\Cloud\Firestore\Admin\V1\Field;
 use Google\Cloud\Firestore\Admin\V1\FieldOperationMetadata;
 use Google\Cloud\Firestore\Admin\V1\GetBackupRequest;
@@ -122,6 +127,7 @@ use Psr\Log\LoggerInterface;
  * contained within formatted names that are returned by the API.
  *
  * @method PromiseInterface<OperationResponse> bulkDeleteDocumentsAsync(BulkDeleteDocumentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> cloneDatabaseAsync(CloneDatabaseRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<BackupSchedule> createBackupScheduleAsync(CreateBackupScheduleRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createDatabaseAsync(CreateDatabaseRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createIndexAsync(CreateIndexRequest $request, array $optionalArgs = [])
@@ -227,7 +233,7 @@ final class FirestoreAdminClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -455,25 +461,28 @@ final class FirestoreAdminClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'firestore.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
-     *           *Important*: If you accept a credential configuration (credential
-     *           JSON/File/Stream) from an external source for authentication to Google Cloud
-     *           Platform, you must validate it before providing it to any Google API or library.
-     *           Providing an unvalidated credential configuration to Google APIs can compromise
-     *           the security of your systems and data. For more information {@see
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\Firestore\Admin\V1\FirestoreAdminClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new FirestoreAdminClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
      *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
@@ -511,11 +520,13 @@ final class FirestoreAdminClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -557,13 +568,55 @@ final class FirestoreAdminClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<BulkDeleteDocumentsResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
     public function bulkDeleteDocuments(BulkDeleteDocumentsRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('BulkDeleteDocuments', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates a new database by cloning an existing one.
+     *
+     * The new database must be in the same cloud region or multi-region location
+     * as the existing database. This behaves similar to
+     * [FirestoreAdmin.CreateDatabase][google.firestore.admin.v1.FirestoreAdmin.CreateDatabase]
+     * except instead of creating a new empty database, a new database is created
+     * with the database type, index configuration, and documents from an existing
+     * database.
+     *
+     * The [long-running operation][google.longrunning.Operation] can be used to
+     * track the progress of the clone, with the Operation's
+     * [metadata][google.longrunning.Operation.metadata] field type being the
+     * [CloneDatabaseMetadata][google.firestore.admin.v1.CloneDatabaseMetadata].
+     * The [response][google.longrunning.Operation.response] type is the
+     * [Database][google.firestore.admin.v1.Database] if the clone was
+     * successful. The new database is not readable or writeable until the LRO has
+     * completed.
+     *
+     * The async variant is {@see FirestoreAdminClient::cloneDatabaseAsync()} .
+     *
+     * @example samples/V1/FirestoreAdminClient/clone_database.php
+     *
+     * @param CloneDatabaseRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<Database>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function cloneDatabase(CloneDatabaseRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('CloneDatabase', $request, $callOptions)->wait();
     }
 
     /**
@@ -611,7 +664,7 @@ final class FirestoreAdminClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Database>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -641,7 +694,7 @@ final class FirestoreAdminClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Index>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -741,7 +794,7 @@ final class FirestoreAdminClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Database>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -877,7 +930,7 @@ final class FirestoreAdminClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<ExportDocumentsResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1064,7 +1117,7 @@ final class FirestoreAdminClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1297,7 +1350,7 @@ final class FirestoreAdminClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Database>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1349,7 +1402,7 @@ final class FirestoreAdminClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Database>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1390,7 +1443,7 @@ final class FirestoreAdminClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Field>
      *
      * @throws ApiException Thrown if the API call fails.
      */

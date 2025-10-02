@@ -23,9 +23,67 @@
 return [
     'interfaces' => [
         'google.cloud.apihub.v1.ApiHubPlugin' => [
+            'CreatePlugin' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/plugins',
+                'body' => 'plugin',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreatePluginInstance' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/plugins/*}/instances',
+                'body' => 'plugin_instance',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'DeletePlugin' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/plugins/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeletePluginInstance' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/plugins/*/instances/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DisablePlugin' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/plugins/*}:disable',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DisablePluginInstanceAction' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/plugins/*/instances/*}:disableAction',
                 'body' => '*',
                 'placeholders' => [
                     'name' => [
@@ -47,12 +105,82 @@ return [
                     ],
                 ],
             ],
+            'EnablePluginInstanceAction' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/plugins/*/instances/*}:enableAction',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ExecutePluginInstanceAction' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/plugins/*/instances/*}:executeAction',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetPlugin' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/plugins/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetPluginInstance' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/plugins/*/instances/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListPluginInstances' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/plugins/*}/instances',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListPlugins' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/plugins',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdatePluginInstance' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{plugin_instance.name=projects/*/locations/*/plugins/*/instances/*}',
+                'body' => 'plugin_instance',
+                'placeholders' => [
+                    'plugin_instance.name' => [
+                        'getters' => [
+                            'getPluginInstance',
                             'getName',
                         ],
                     ],

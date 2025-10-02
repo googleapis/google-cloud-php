@@ -58,6 +58,13 @@ class Tool extends \Google\Protobuf\Internal\Message
      */
     protected $google_search_retrieval = null;
     /**
+     * Optional. GoogleMaps tool type.
+     * Tool to support Google Maps in Model.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.GoogleMaps google_maps = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $google_maps = null;
+    /**
      * Optional. Tool to support searching public web data, powered by Vertex AI
      * Search and Sec4 compliance.
      *
@@ -113,6 +120,9 @@ class Tool extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\AIPlatform\V1\GoogleSearchRetrieval $google_search_retrieval
      *           Optional. GoogleSearchRetrieval tool type.
      *           Specialized retrieval tool that is powered by Google search.
+     *     @type \Google\Cloud\AIPlatform\V1\GoogleMaps $google_maps
+     *           Optional. GoogleMaps tool type.
+     *           Tool to support Google Maps in Model.
      *     @type \Google\Cloud\AIPlatform\V1\EnterpriseWebSearch $enterprise_web_search
      *           Optional. Tool to support searching public web data, powered by Vertex AI
      *           Search and Sec4 compliance.
@@ -288,6 +298,44 @@ class Tool extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\GoogleSearchRetrieval::class);
         $this->google_search_retrieval = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. GoogleMaps tool type.
+     * Tool to support Google Maps in Model.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.GoogleMaps google_maps = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AIPlatform\V1\GoogleMaps|null
+     */
+    public function getGoogleMaps()
+    {
+        return $this->google_maps;
+    }
+
+    public function hasGoogleMaps()
+    {
+        return isset($this->google_maps);
+    }
+
+    public function clearGoogleMaps()
+    {
+        unset($this->google_maps);
+    }
+
+    /**
+     * Optional. GoogleMaps tool type.
+     * Tool to support Google Maps in Model.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.GoogleMaps google_maps = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AIPlatform\V1\GoogleMaps $var
+     * @return $this
+     */
+    public function setGoogleMaps($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\GoogleMaps::class);
+        $this->google_maps = $var;
 
         return $this;
     }

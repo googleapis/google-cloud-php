@@ -10,7 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * A response once an attestation has been successfully verified, containing a
- * signed OIDC token.
+ * signed attestation token.
  *
  * Generated from protobuf message <code>google.cloud.confidentialcomputing.v1.VerifyAttestationResponse</code>
  */

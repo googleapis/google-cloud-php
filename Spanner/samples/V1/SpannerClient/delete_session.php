@@ -28,9 +28,9 @@ use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Google\Cloud\Spanner\V1\DeleteSessionRequest;
 
 /**
- * Ends a session, releasing server resources associated with it. This will
- * asynchronously trigger cancellation of any operations that are running with
- * this session.
+ * Ends a session, releasing server resources associated with it. This
+ * asynchronously triggers the cancellation of any operations that are running
+ * with this session.
  *
  * @param string $formattedName The name of the session to delete. Please see
  *                              {@see SpannerClient::sessionName()} for help formatting this field.

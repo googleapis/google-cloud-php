@@ -41,7 +41,7 @@ use Google\Rpc\Status;
  *                                                    "projects/{PROJECT_ID}/locations/{region}/messagesBuses/{MESSAGE_BUS_ID)
  *                                                    Please see {@see EventarcClient::messageBusName()} for help formatting this field.
  * @param string $googleApiSourceId                   The user-provided ID to be assigned to the GoogleApiSource. It
- *                                                    should match the format (^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$).
+ *                                                    should match the format `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`.
  */
 function create_google_api_source_sample(
     string $formattedParent,

@@ -19,13 +19,13 @@ class BackendServiceHAPolicyLeader extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string backend_group = 457777428;</code>
      */
-    private $backend_group = null;
+    protected $backend_group = null;
     /**
      * The network endpoint within the leader.backendGroup that is designated as the leader. This network endpoint cannot be detached from the NEG specified in the haPolicy.leader.backendGroup until the leader is updated with another network endpoint, or the leader is removed from the haPolicy.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.BackendServiceHAPolicyLeaderNetworkEndpoint network_endpoint = 56789126;</code>
      */
-    private $network_endpoint = null;
+    protected $network_endpoint = null;
 
     /**
      * Constructor.

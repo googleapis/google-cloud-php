@@ -16,8 +16,16 @@ use Google\Protobuf\Internal\GPBUtil;
 class Conversation extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. Identifier. The unique resource name of a conversation.
-     * It's not expected to be set when creating a conversation.
+     * Optional. Identifier. The unique resource name of a conversation. Format:
+     * `projects/{project}/locations/{location}/conversations/{conversation_id}`
+     * `{conversation_id}` is the resource id and should be 63 characters or less
+     * and must match the format described in
+     * https://google.aip.dev/122#resource-id-segments
+     * Example:
+     * `projects/1234567890/locations/us-central1/conversations/my-conversation`.
+     * It is recommended to skip setting this field during conversation creation
+     * as it will be inferred automatically and overwritten with the
+     * {parent}/conversations/{conversation_id}.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IDENTIFIER];</code>
      */
@@ -59,8 +67,16 @@ class Conversation extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Optional. Identifier. The unique resource name of a conversation.
-     *           It's not expected to be set when creating a conversation.
+     *           Optional. Identifier. The unique resource name of a conversation. Format:
+     *           `projects/{project}/locations/{location}/conversations/{conversation_id}`
+     *           `{conversation_id}` is the resource id and should be 63 characters or less
+     *           and must match the format described in
+     *           https://google.aip.dev/122#resource-id-segments
+     *           Example:
+     *           `projects/1234567890/locations/us-central1/conversations/my-conversation`.
+     *           It is recommended to skip setting this field during conversation creation
+     *           as it will be inferred automatically and overwritten with the
+     *           {parent}/conversations/{conversation_id}.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $agents
      *           Required. Agent(s) in the conversation.
      *           Currently, only one agent is supported. This field is repeated to allow
@@ -82,8 +98,16 @@ class Conversation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Identifier. The unique resource name of a conversation.
-     * It's not expected to be set when creating a conversation.
+     * Optional. Identifier. The unique resource name of a conversation. Format:
+     * `projects/{project}/locations/{location}/conversations/{conversation_id}`
+     * `{conversation_id}` is the resource id and should be 63 characters or less
+     * and must match the format described in
+     * https://google.aip.dev/122#resource-id-segments
+     * Example:
+     * `projects/1234567890/locations/us-central1/conversations/my-conversation`.
+     * It is recommended to skip setting this field during conversation creation
+     * as it will be inferred automatically and overwritten with the
+     * {parent}/conversations/{conversation_id}.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -94,8 +118,16 @@ class Conversation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Identifier. The unique resource name of a conversation.
-     * It's not expected to be set when creating a conversation.
+     * Optional. Identifier. The unique resource name of a conversation. Format:
+     * `projects/{project}/locations/{location}/conversations/{conversation_id}`
+     * `{conversation_id}` is the resource id and should be 63 characters or less
+     * and must match the format described in
+     * https://google.aip.dev/122#resource-id-segments
+     * Example:
+     * `projects/1234567890/locations/us-central1/conversations/my-conversation`.
+     * It is recommended to skip setting this field during conversation creation
+     * as it will be inferred automatically and overwritten with the
+     * {parent}/conversations/{conversation_id}.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var

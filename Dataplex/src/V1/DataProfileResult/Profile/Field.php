@@ -16,34 +16,35 @@ use Google\Protobuf\Internal\GPBUtil;
 class Field extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The name of the field.
+     * Output only. The name of the field.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $name = '';
     /**
-     * The data type retrieved from the schema of the data source. For
-     * instance, for a BigQuery native table, it is the [BigQuery Table
+     * Output only. The data type retrieved from the schema of the data
+     * source. For instance, for a BigQuery native table, it is the [BigQuery
+     * Table
      * Schema](https://cloud.google.com/bigquery/docs/reference/rest/v2/tables#tablefieldschema).
-     * For a Dataplex Entity, it is the [Entity
+     * For a Dataplex Universal Catalog Entity, it is the [Entity
      * Schema](https://cloud.google.com/dataplex/docs/reference/rpc/google.cloud.dataplex.v1#type_3).
      *
-     * Generated from protobuf field <code>string type = 2;</code>
+     * Generated from protobuf field <code>string type = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $type = '';
     /**
-     * The mode of the field. Possible values include:
+     * Output only. The mode of the field. Possible values include:
      * * REQUIRED, if it is a required field.
      * * NULLABLE, if it is an optional field.
      * * REPEATED, if it is a repeated field.
      *
-     * Generated from protobuf field <code>string mode = 3;</code>
+     * Generated from protobuf field <code>string mode = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $mode = '';
     /**
-     * Profile information for the corresponding field.
+     * Output only. Profile information for the corresponding field.
      *
-     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataProfileResult.Profile.Field.ProfileInfo profile = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataProfileResult.Profile.Field.ProfileInfo profile = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $profile = null;
 
@@ -54,20 +55,21 @@ class Field extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The name of the field.
+     *           Output only. The name of the field.
      *     @type string $type
-     *           The data type retrieved from the schema of the data source. For
-     *           instance, for a BigQuery native table, it is the [BigQuery Table
+     *           Output only. The data type retrieved from the schema of the data
+     *           source. For instance, for a BigQuery native table, it is the [BigQuery
+     *           Table
      *           Schema](https://cloud.google.com/bigquery/docs/reference/rest/v2/tables#tablefieldschema).
-     *           For a Dataplex Entity, it is the [Entity
+     *           For a Dataplex Universal Catalog Entity, it is the [Entity
      *           Schema](https://cloud.google.com/dataplex/docs/reference/rpc/google.cloud.dataplex.v1#type_3).
      *     @type string $mode
-     *           The mode of the field. Possible values include:
+     *           Output only. The mode of the field. Possible values include:
      *           * REQUIRED, if it is a required field.
      *           * NULLABLE, if it is an optional field.
      *           * REPEATED, if it is a repeated field.
      *     @type \Google\Cloud\Dataplex\V1\DataProfileResult\Profile\Field\ProfileInfo $profile
-     *           Profile information for the corresponding field.
+     *           Output only. Profile information for the corresponding field.
      * }
      */
     public function __construct($data = NULL) {
@@ -76,9 +78,9 @@ class Field extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the field.
+     * Output only. The name of the field.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getName()
@@ -87,9 +89,9 @@ class Field extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the field.
+     * Output only. The name of the field.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -102,13 +104,14 @@ class Field extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The data type retrieved from the schema of the data source. For
-     * instance, for a BigQuery native table, it is the [BigQuery Table
+     * Output only. The data type retrieved from the schema of the data
+     * source. For instance, for a BigQuery native table, it is the [BigQuery
+     * Table
      * Schema](https://cloud.google.com/bigquery/docs/reference/rest/v2/tables#tablefieldschema).
-     * For a Dataplex Entity, it is the [Entity
+     * For a Dataplex Universal Catalog Entity, it is the [Entity
      * Schema](https://cloud.google.com/dataplex/docs/reference/rpc/google.cloud.dataplex.v1#type_3).
      *
-     * Generated from protobuf field <code>string type = 2;</code>
+     * Generated from protobuf field <code>string type = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getType()
@@ -117,13 +120,14 @@ class Field extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The data type retrieved from the schema of the data source. For
-     * instance, for a BigQuery native table, it is the [BigQuery Table
+     * Output only. The data type retrieved from the schema of the data
+     * source. For instance, for a BigQuery native table, it is the [BigQuery
+     * Table
      * Schema](https://cloud.google.com/bigquery/docs/reference/rest/v2/tables#tablefieldschema).
-     * For a Dataplex Entity, it is the [Entity
+     * For a Dataplex Universal Catalog Entity, it is the [Entity
      * Schema](https://cloud.google.com/dataplex/docs/reference/rpc/google.cloud.dataplex.v1#type_3).
      *
-     * Generated from protobuf field <code>string type = 2;</code>
+     * Generated from protobuf field <code>string type = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -136,12 +140,12 @@ class Field extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The mode of the field. Possible values include:
+     * Output only. The mode of the field. Possible values include:
      * * REQUIRED, if it is a required field.
      * * NULLABLE, if it is an optional field.
      * * REPEATED, if it is a repeated field.
      *
-     * Generated from protobuf field <code>string mode = 3;</code>
+     * Generated from protobuf field <code>string mode = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getMode()
@@ -150,12 +154,12 @@ class Field extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The mode of the field. Possible values include:
+     * Output only. The mode of the field. Possible values include:
      * * REQUIRED, if it is a required field.
      * * NULLABLE, if it is an optional field.
      * * REPEATED, if it is a repeated field.
      *
-     * Generated from protobuf field <code>string mode = 3;</code>
+     * Generated from protobuf field <code>string mode = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -168,9 +172,9 @@ class Field extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Profile information for the corresponding field.
+     * Output only. Profile information for the corresponding field.
      *
-     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataProfileResult.Profile.Field.ProfileInfo profile = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataProfileResult.Profile.Field.ProfileInfo profile = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\Dataplex\V1\DataProfileResult\Profile\Field\ProfileInfo|null
      */
     public function getProfile()
@@ -189,9 +193,9 @@ class Field extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Profile information for the corresponding field.
+     * Output only. Profile information for the corresponding field.
      *
-     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataProfileResult.Profile.Field.ProfileInfo profile = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataProfileResult.Profile.Field.ProfileInfo profile = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Dataplex\V1\DataProfileResult\Profile\Field\ProfileInfo $var
      * @return $this
      */

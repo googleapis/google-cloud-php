@@ -20,7 +20,7 @@ class BackendBucketCdnPolicyBypassCacheOnRequestHeader extends \Google\Protobuf\
      *
      * Generated from protobuf field <code>optional string header_name = 110223613;</code>
      */
-    private $header_name = null;
+    protected $header_name = null;
 
     /**
      * Constructor.

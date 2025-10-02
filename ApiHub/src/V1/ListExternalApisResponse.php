@@ -18,8 +18,6 @@ class ListExternalApisResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * The External API resources present in the API hub.
-     * Only following fields will be populated in the response: name,
-     * display_name, documentation.external_uri.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.ExternalApi external_apis = 1;</code>
      */
@@ -40,8 +38,6 @@ class ListExternalApisResponse extends \Google\Protobuf\Internal\Message
      *
      *     @type array<\Google\Cloud\ApiHub\V1\ExternalApi>|\Google\Protobuf\Internal\RepeatedField $external_apis
      *           The External API resources present in the API hub.
-     *           Only following fields will be populated in the response: name,
-     *           display_name, documentation.external_uri.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
      *           If this field is omitted, there are no subsequent pages.
@@ -54,8 +50,6 @@ class ListExternalApisResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * The External API resources present in the API hub.
-     * Only following fields will be populated in the response: name,
-     * display_name, documentation.external_uri.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.ExternalApi external_apis = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -67,8 +61,6 @@ class ListExternalApisResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * The External API resources present in the API hub.
-     * Only following fields will be populated in the response: name,
-     * display_name, documentation.external_uri.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.ExternalApi external_apis = 1;</code>
      * @param array<\Google\Cloud\ApiHub\V1\ExternalApi>|\Google\Protobuf\Internal\RepeatedField $var

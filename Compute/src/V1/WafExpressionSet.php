@@ -31,7 +31,7 @@ class WafExpressionSet extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string id = 3355;</code>
      */
-    private $id = null;
+    protected $id = null;
 
     /**
      * Constructor.

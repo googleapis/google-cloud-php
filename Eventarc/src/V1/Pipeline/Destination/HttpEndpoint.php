@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class HttpEndpoint extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The URI of the HTTP enpdoint.
+     * Required. The URI of the HTTP endpoint.
      * The value must be a RFC2396 URI string.
      * Examples: `https://svc.us-central1.p.local:8080/route`.
      * Only the HTTPS protocol is supported.
@@ -29,10 +29,11 @@ class HttpEndpoint extends \Google\Protobuf\Internal\Message
      * HTTP request is constructed.
      * If a binding expression is not specified here, the message
      * is treated as a CloudEvent and is mapped to the HTTP request according
-     * to the CloudEvent HTTP Protocol Binding Binary Content Mode. In this
-     * representation, all fields except the `data` and `datacontenttype`
-     * field on the message are mapped to HTTP request headers with a prefix
-     * of `ce-`.
+     * to the CloudEvent HTTP Protocol Binding Binary Content Mode
+     * (https://github.com/cloudevents/spec/blob/main/cloudevents/bindings/http-protocol-binding.md#31-binary-content-mode).
+     * In this representation, all fields except the `data` and
+     * `datacontenttype` field on the message are mapped to HTTP request
+     * headers with a prefix of `ce-`.
      * To construct the HTTP request payload and the value of the content-type
      * HTTP header, the payload format is defined as follows:
      * 1) Use the output_payload_format_type on the Pipeline.Destination if it
@@ -59,7 +60,7 @@ class HttpEndpoint extends \Google\Protobuf\Internal\Message
      * - If a map named `headers` exists on the result of the expression,
      * then its key/value pairs are directly mapped to the HTTP request
      * headers. The headers values are constructed from the corresponding
-     * value type’s canonical representation. If the `headers` field doesn’t
+     * value type's canonical representation. If the `headers` field doesn't
      * exist then the resulting HTTP request will be the headers of the
      * CloudEvent HTTP Binding Binary Content Mode representation of the final
      * message. Note: If the specified binding expression, has updated the
@@ -99,6 +100,11 @@ class HttpEndpoint extends \Google\Protobuf\Internal\Message
      *   "body": "new-body"
      * }
      * ```
+     * - The default binding for the message payload can be accessed using the
+     * `body` variable. It conatins a string representation of the message
+     * payload in the format specified by the `output_payload_format` field.
+     * If the `input_payload_format` field is not set, the `body`
+     * variable contains the same message payload bytes that were published.
      * Additionally, the following CEL extension functions are provided for
      * use in this CEL expression:
      * - toBase64Url:
@@ -155,32 +161,27 @@ class HttpEndpoint extends \Google\Protobuf\Internal\Message
      * - toMap:
      *   [map1, map2, ...].toMap() -> map
      *     - Converts a CEL list of CEL maps to a single CEL map
-     * - toDestinationPayloadFormat():
-     *   message.data.toDestinationPayloadFormat() -> string or bytes
-     *     - Converts the message data to the destination payload format
-     *     specified in Pipeline.Destination.output_payload_format
-     *     - This function is meant to be applied to the message.data field.
-     *     - If the destination payload format is not set, the function will
-     *     return the message data unchanged.
      * - toCloudEventJsonWithPayloadFormat:
      *   message.toCloudEventJsonWithPayloadFormat() -> map
      *     - Converts a message to the corresponding structure of JSON
-     *     format for CloudEvents
-     *     - This function applies toDestinationPayloadFormat() to the
-     *     message data. It also sets the corresponding datacontenttype of
+     *     format for CloudEvents.
+     *     - It converts `data` to destination payload format
+     *     specified in `output_payload_format`. If `output_payload_format` is
+     *     not set, the data will remain unchanged.
+     *     - It also sets the corresponding datacontenttype of
      *     the CloudEvent, as indicated by
-     *     Pipeline.Destination.output_payload_format. If no
-     *     output_payload_format is set it will use the existing
-     *     datacontenttype on the CloudEvent if present, else leave
-     *     datacontenttype absent.
+     *     `output_payload_format`. If no
+     *     `output_payload_format` is set it will use the value of the
+     *     "datacontenttype" attribute on the CloudEvent if present, else
+     *     remove "datacontenttype" attribute.
      *     - This function expects that the content of the message will
-     *     adhere to the standard CloudEvent format. If it doesn’t then this
+     *     adhere to the standard CloudEvent format. If it doesn't then this
      *     function will fail.
      *     - The result is a CEL map that corresponds to the JSON
      *     representation of the CloudEvent. To convert that data to a JSON
      *     string it can be chained with the toJsonString function.
      * The Pipeline expects that the message it receives adheres to the
-     * standard CloudEvent format. If it doesn’t then the outgoing message
+     * standard CloudEvent format. If it doesn't then the outgoing message
      * request may fail with a persistent error.
      *
      * Generated from protobuf field <code>string message_binding_template = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -194,7 +195,7 @@ class HttpEndpoint extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $uri
-     *           Required. The URI of the HTTP enpdoint.
+     *           Required. The URI of the HTTP endpoint.
      *           The value must be a RFC2396 URI string.
      *           Examples: `https://svc.us-central1.p.local:8080/route`.
      *           Only the HTTPS protocol is supported.
@@ -203,10 +204,11 @@ class HttpEndpoint extends \Google\Protobuf\Internal\Message
      *           HTTP request is constructed.
      *           If a binding expression is not specified here, the message
      *           is treated as a CloudEvent and is mapped to the HTTP request according
-     *           to the CloudEvent HTTP Protocol Binding Binary Content Mode. In this
-     *           representation, all fields except the `data` and `datacontenttype`
-     *           field on the message are mapped to HTTP request headers with a prefix
-     *           of `ce-`.
+     *           to the CloudEvent HTTP Protocol Binding Binary Content Mode
+     *           (https://github.com/cloudevents/spec/blob/main/cloudevents/bindings/http-protocol-binding.md#31-binary-content-mode).
+     *           In this representation, all fields except the `data` and
+     *           `datacontenttype` field on the message are mapped to HTTP request
+     *           headers with a prefix of `ce-`.
      *           To construct the HTTP request payload and the value of the content-type
      *           HTTP header, the payload format is defined as follows:
      *           1) Use the output_payload_format_type on the Pipeline.Destination if it
@@ -233,7 +235,7 @@ class HttpEndpoint extends \Google\Protobuf\Internal\Message
      *           - If a map named `headers` exists on the result of the expression,
      *           then its key/value pairs are directly mapped to the HTTP request
      *           headers. The headers values are constructed from the corresponding
-     *           value type’s canonical representation. If the `headers` field doesn’t
+     *           value type's canonical representation. If the `headers` field doesn't
      *           exist then the resulting HTTP request will be the headers of the
      *           CloudEvent HTTP Binding Binary Content Mode representation of the final
      *           message. Note: If the specified binding expression, has updated the
@@ -273,6 +275,11 @@ class HttpEndpoint extends \Google\Protobuf\Internal\Message
      *             "body": "new-body"
      *           }
      *           ```
+     *           - The default binding for the message payload can be accessed using the
+     *           `body` variable. It conatins a string representation of the message
+     *           payload in the format specified by the `output_payload_format` field.
+     *           If the `input_payload_format` field is not set, the `body`
+     *           variable contains the same message payload bytes that were published.
      *           Additionally, the following CEL extension functions are provided for
      *           use in this CEL expression:
      *           - toBase64Url:
@@ -329,32 +336,27 @@ class HttpEndpoint extends \Google\Protobuf\Internal\Message
      *           - toMap:
      *             [map1, map2, ...].toMap() -> map
      *               - Converts a CEL list of CEL maps to a single CEL map
-     *           - toDestinationPayloadFormat():
-     *             message.data.toDestinationPayloadFormat() -> string or bytes
-     *               - Converts the message data to the destination payload format
-     *               specified in Pipeline.Destination.output_payload_format
-     *               - This function is meant to be applied to the message.data field.
-     *               - If the destination payload format is not set, the function will
-     *               return the message data unchanged.
      *           - toCloudEventJsonWithPayloadFormat:
      *             message.toCloudEventJsonWithPayloadFormat() -> map
      *               - Converts a message to the corresponding structure of JSON
-     *               format for CloudEvents
-     *               - This function applies toDestinationPayloadFormat() to the
-     *               message data. It also sets the corresponding datacontenttype of
+     *               format for CloudEvents.
+     *               - It converts `data` to destination payload format
+     *               specified in `output_payload_format`. If `output_payload_format` is
+     *               not set, the data will remain unchanged.
+     *               - It also sets the corresponding datacontenttype of
      *               the CloudEvent, as indicated by
-     *               Pipeline.Destination.output_payload_format. If no
-     *               output_payload_format is set it will use the existing
-     *               datacontenttype on the CloudEvent if present, else leave
-     *               datacontenttype absent.
+     *               `output_payload_format`. If no
+     *               `output_payload_format` is set it will use the value of the
+     *               "datacontenttype" attribute on the CloudEvent if present, else
+     *               remove "datacontenttype" attribute.
      *               - This function expects that the content of the message will
-     *               adhere to the standard CloudEvent format. If it doesn’t then this
+     *               adhere to the standard CloudEvent format. If it doesn't then this
      *               function will fail.
      *               - The result is a CEL map that corresponds to the JSON
      *               representation of the CloudEvent. To convert that data to a JSON
      *               string it can be chained with the toJsonString function.
      *           The Pipeline expects that the message it receives adheres to the
-     *           standard CloudEvent format. If it doesn’t then the outgoing message
+     *           standard CloudEvent format. If it doesn't then the outgoing message
      *           request may fail with a persistent error.
      * }
      */
@@ -364,7 +366,7 @@ class HttpEndpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The URI of the HTTP enpdoint.
+     * Required. The URI of the HTTP endpoint.
      * The value must be a RFC2396 URI string.
      * Examples: `https://svc.us-central1.p.local:8080/route`.
      * Only the HTTPS protocol is supported.
@@ -378,7 +380,7 @@ class HttpEndpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The URI of the HTTP enpdoint.
+     * Required. The URI of the HTTP endpoint.
      * The value must be a RFC2396 URI string.
      * Examples: `https://svc.us-central1.p.local:8080/route`.
      * Only the HTTPS protocol is supported.
@@ -400,10 +402,11 @@ class HttpEndpoint extends \Google\Protobuf\Internal\Message
      * HTTP request is constructed.
      * If a binding expression is not specified here, the message
      * is treated as a CloudEvent and is mapped to the HTTP request according
-     * to the CloudEvent HTTP Protocol Binding Binary Content Mode. In this
-     * representation, all fields except the `data` and `datacontenttype`
-     * field on the message are mapped to HTTP request headers with a prefix
-     * of `ce-`.
+     * to the CloudEvent HTTP Protocol Binding Binary Content Mode
+     * (https://github.com/cloudevents/spec/blob/main/cloudevents/bindings/http-protocol-binding.md#31-binary-content-mode).
+     * In this representation, all fields except the `data` and
+     * `datacontenttype` field on the message are mapped to HTTP request
+     * headers with a prefix of `ce-`.
      * To construct the HTTP request payload and the value of the content-type
      * HTTP header, the payload format is defined as follows:
      * 1) Use the output_payload_format_type on the Pipeline.Destination if it
@@ -430,7 +433,7 @@ class HttpEndpoint extends \Google\Protobuf\Internal\Message
      * - If a map named `headers` exists on the result of the expression,
      * then its key/value pairs are directly mapped to the HTTP request
      * headers. The headers values are constructed from the corresponding
-     * value type’s canonical representation. If the `headers` field doesn’t
+     * value type's canonical representation. If the `headers` field doesn't
      * exist then the resulting HTTP request will be the headers of the
      * CloudEvent HTTP Binding Binary Content Mode representation of the final
      * message. Note: If the specified binding expression, has updated the
@@ -470,6 +473,11 @@ class HttpEndpoint extends \Google\Protobuf\Internal\Message
      *   "body": "new-body"
      * }
      * ```
+     * - The default binding for the message payload can be accessed using the
+     * `body` variable. It conatins a string representation of the message
+     * payload in the format specified by the `output_payload_format` field.
+     * If the `input_payload_format` field is not set, the `body`
+     * variable contains the same message payload bytes that were published.
      * Additionally, the following CEL extension functions are provided for
      * use in this CEL expression:
      * - toBase64Url:
@@ -526,32 +534,27 @@ class HttpEndpoint extends \Google\Protobuf\Internal\Message
      * - toMap:
      *   [map1, map2, ...].toMap() -> map
      *     - Converts a CEL list of CEL maps to a single CEL map
-     * - toDestinationPayloadFormat():
-     *   message.data.toDestinationPayloadFormat() -> string or bytes
-     *     - Converts the message data to the destination payload format
-     *     specified in Pipeline.Destination.output_payload_format
-     *     - This function is meant to be applied to the message.data field.
-     *     - If the destination payload format is not set, the function will
-     *     return the message data unchanged.
      * - toCloudEventJsonWithPayloadFormat:
      *   message.toCloudEventJsonWithPayloadFormat() -> map
      *     - Converts a message to the corresponding structure of JSON
-     *     format for CloudEvents
-     *     - This function applies toDestinationPayloadFormat() to the
-     *     message data. It also sets the corresponding datacontenttype of
+     *     format for CloudEvents.
+     *     - It converts `data` to destination payload format
+     *     specified in `output_payload_format`. If `output_payload_format` is
+     *     not set, the data will remain unchanged.
+     *     - It also sets the corresponding datacontenttype of
      *     the CloudEvent, as indicated by
-     *     Pipeline.Destination.output_payload_format. If no
-     *     output_payload_format is set it will use the existing
-     *     datacontenttype on the CloudEvent if present, else leave
-     *     datacontenttype absent.
+     *     `output_payload_format`. If no
+     *     `output_payload_format` is set it will use the value of the
+     *     "datacontenttype" attribute on the CloudEvent if present, else
+     *     remove "datacontenttype" attribute.
      *     - This function expects that the content of the message will
-     *     adhere to the standard CloudEvent format. If it doesn’t then this
+     *     adhere to the standard CloudEvent format. If it doesn't then this
      *     function will fail.
      *     - The result is a CEL map that corresponds to the JSON
      *     representation of the CloudEvent. To convert that data to a JSON
      *     string it can be chained with the toJsonString function.
      * The Pipeline expects that the message it receives adheres to the
-     * standard CloudEvent format. If it doesn’t then the outgoing message
+     * standard CloudEvent format. If it doesn't then the outgoing message
      * request may fail with a persistent error.
      *
      * Generated from protobuf field <code>string message_binding_template = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -567,10 +570,11 @@ class HttpEndpoint extends \Google\Protobuf\Internal\Message
      * HTTP request is constructed.
      * If a binding expression is not specified here, the message
      * is treated as a CloudEvent and is mapped to the HTTP request according
-     * to the CloudEvent HTTP Protocol Binding Binary Content Mode. In this
-     * representation, all fields except the `data` and `datacontenttype`
-     * field on the message are mapped to HTTP request headers with a prefix
-     * of `ce-`.
+     * to the CloudEvent HTTP Protocol Binding Binary Content Mode
+     * (https://github.com/cloudevents/spec/blob/main/cloudevents/bindings/http-protocol-binding.md#31-binary-content-mode).
+     * In this representation, all fields except the `data` and
+     * `datacontenttype` field on the message are mapped to HTTP request
+     * headers with a prefix of `ce-`.
      * To construct the HTTP request payload and the value of the content-type
      * HTTP header, the payload format is defined as follows:
      * 1) Use the output_payload_format_type on the Pipeline.Destination if it
@@ -597,7 +601,7 @@ class HttpEndpoint extends \Google\Protobuf\Internal\Message
      * - If a map named `headers` exists on the result of the expression,
      * then its key/value pairs are directly mapped to the HTTP request
      * headers. The headers values are constructed from the corresponding
-     * value type’s canonical representation. If the `headers` field doesn’t
+     * value type's canonical representation. If the `headers` field doesn't
      * exist then the resulting HTTP request will be the headers of the
      * CloudEvent HTTP Binding Binary Content Mode representation of the final
      * message. Note: If the specified binding expression, has updated the
@@ -637,6 +641,11 @@ class HttpEndpoint extends \Google\Protobuf\Internal\Message
      *   "body": "new-body"
      * }
      * ```
+     * - The default binding for the message payload can be accessed using the
+     * `body` variable. It conatins a string representation of the message
+     * payload in the format specified by the `output_payload_format` field.
+     * If the `input_payload_format` field is not set, the `body`
+     * variable contains the same message payload bytes that were published.
      * Additionally, the following CEL extension functions are provided for
      * use in this CEL expression:
      * - toBase64Url:
@@ -693,32 +702,27 @@ class HttpEndpoint extends \Google\Protobuf\Internal\Message
      * - toMap:
      *   [map1, map2, ...].toMap() -> map
      *     - Converts a CEL list of CEL maps to a single CEL map
-     * - toDestinationPayloadFormat():
-     *   message.data.toDestinationPayloadFormat() -> string or bytes
-     *     - Converts the message data to the destination payload format
-     *     specified in Pipeline.Destination.output_payload_format
-     *     - This function is meant to be applied to the message.data field.
-     *     - If the destination payload format is not set, the function will
-     *     return the message data unchanged.
      * - toCloudEventJsonWithPayloadFormat:
      *   message.toCloudEventJsonWithPayloadFormat() -> map
      *     - Converts a message to the corresponding structure of JSON
-     *     format for CloudEvents
-     *     - This function applies toDestinationPayloadFormat() to the
-     *     message data. It also sets the corresponding datacontenttype of
+     *     format for CloudEvents.
+     *     - It converts `data` to destination payload format
+     *     specified in `output_payload_format`. If `output_payload_format` is
+     *     not set, the data will remain unchanged.
+     *     - It also sets the corresponding datacontenttype of
      *     the CloudEvent, as indicated by
-     *     Pipeline.Destination.output_payload_format. If no
-     *     output_payload_format is set it will use the existing
-     *     datacontenttype on the CloudEvent if present, else leave
-     *     datacontenttype absent.
+     *     `output_payload_format`. If no
+     *     `output_payload_format` is set it will use the value of the
+     *     "datacontenttype" attribute on the CloudEvent if present, else
+     *     remove "datacontenttype" attribute.
      *     - This function expects that the content of the message will
-     *     adhere to the standard CloudEvent format. If it doesn’t then this
+     *     adhere to the standard CloudEvent format. If it doesn't then this
      *     function will fail.
      *     - The result is a CEL map that corresponds to the JSON
      *     representation of the CloudEvent. To convert that data to a JSON
      *     string it can be chained with the toJsonString function.
      * The Pipeline expects that the message it receives adheres to the
-     * standard CloudEvent format. If it doesn’t then the outgoing message
+     * standard CloudEvent format. If it doesn't then the outgoing message
      * request may fail with a persistent error.
      *
      * Generated from protobuf field <code>string message_binding_template = 3 [(.google.api.field_behavior) = OPTIONAL];</code>

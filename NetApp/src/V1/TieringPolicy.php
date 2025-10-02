@@ -29,6 +29,13 @@ class TieringPolicy extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional int32 cooling_threshold_days = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $cooling_threshold_days = null;
+    /**
+     * Optional. Flag indicating that the hot tier bypass mode is enabled. Default
+     * is false. This is only applicable to Flex service level.
+     *
+     * Generated from protobuf field <code>optional bool hot_tier_bypass_mode_enabled = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $hot_tier_bypass_mode_enabled = null;
 
     /**
      * Constructor.
@@ -42,6 +49,9 @@ class TieringPolicy extends \Google\Protobuf\Internal\Message
      *     @type int $cooling_threshold_days
      *           Optional. Time in days to mark the volume's data block as cold and make it
      *           eligible for tiering, can be range from 2-183. Default is 31.
+     *     @type bool $hot_tier_bypass_mode_enabled
+     *           Optional. Flag indicating that the hot tier bypass mode is enabled. Default
+     *           is false. This is only applicable to Flex service level.
      * }
      */
     public function __construct($data = NULL) {
@@ -121,6 +131,44 @@ class TieringPolicy extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->cooling_threshold_days = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Flag indicating that the hot tier bypass mode is enabled. Default
+     * is false. This is only applicable to Flex service level.
+     *
+     * Generated from protobuf field <code>optional bool hot_tier_bypass_mode_enabled = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getHotTierBypassModeEnabled()
+    {
+        return isset($this->hot_tier_bypass_mode_enabled) ? $this->hot_tier_bypass_mode_enabled : false;
+    }
+
+    public function hasHotTierBypassModeEnabled()
+    {
+        return isset($this->hot_tier_bypass_mode_enabled);
+    }
+
+    public function clearHotTierBypassModeEnabled()
+    {
+        unset($this->hot_tier_bypass_mode_enabled);
+    }
+
+    /**
+     * Optional. Flag indicating that the hot tier bypass mode is enabled. Default
+     * is false. This is only applicable to Flex service level.
+     *
+     * Generated from protobuf field <code>optional bool hot_tier_bypass_mode_enabled = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setHotTierBypassModeEnabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->hot_tier_bypass_mode_enabled = $var;
 
         return $this;
     }

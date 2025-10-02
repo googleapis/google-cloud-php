@@ -29,19 +29,22 @@ class ApiHubResource extends \Google\Protobuf\Internal\Message
      *           description and owner fields are populated in search results.
      *     @type \Google\Cloud\ApiHub\V1\ApiOperation $operation
      *           This represents ApiOperation resource in search results. Only name,
-     *           and description fields are populated in search results.
+     *           description, spec and details fields are populated in search results.
      *     @type \Google\Cloud\ApiHub\V1\Deployment $deployment
      *           This represents Deployment resource in search results. Only name,
-     *           display_name and description fields are populated in search results.
+     *           display_name, description, deployment_type and api_versions fields are
+     *           populated in search results.
      *     @type \Google\Cloud\ApiHub\V1\Spec $spec
      *           This represents Spec resource in search results. Only name,
-     *           display_name and description fields are populated in search results.
+     *           display_name, description, spec_type and documentation fields are
+     *           populated in search results.
      *     @type \Google\Cloud\ApiHub\V1\Definition $definition
      *           This represents Definition resource in search results.
      *           Only name field is populated in search results.
      *     @type \Google\Cloud\ApiHub\V1\Version $version
      *           This represents Version resource in search results. Only name,
-     *           display_name and description fields are populated in search results.
+     *           display_name, description, lifecycle, compliance and accreditation fields
+     *           are populated in search results.
      * }
      */
     public function __construct($data = NULL) {
@@ -84,7 +87,7 @@ class ApiHubResource extends \Google\Protobuf\Internal\Message
 
     /**
      * This represents ApiOperation resource in search results. Only name,
-     * and description fields are populated in search results.
+     * description, spec and details fields are populated in search results.
      *
      * Generated from protobuf field <code>.google.cloud.apihub.v1.ApiOperation operation = 2;</code>
      * @return \Google\Cloud\ApiHub\V1\ApiOperation|null
@@ -101,7 +104,7 @@ class ApiHubResource extends \Google\Protobuf\Internal\Message
 
     /**
      * This represents ApiOperation resource in search results. Only name,
-     * and description fields are populated in search results.
+     * description, spec and details fields are populated in search results.
      *
      * Generated from protobuf field <code>.google.cloud.apihub.v1.ApiOperation operation = 2;</code>
      * @param \Google\Cloud\ApiHub\V1\ApiOperation $var
@@ -117,7 +120,8 @@ class ApiHubResource extends \Google\Protobuf\Internal\Message
 
     /**
      * This represents Deployment resource in search results. Only name,
-     * display_name and description fields are populated in search results.
+     * display_name, description, deployment_type and api_versions fields are
+     * populated in search results.
      *
      * Generated from protobuf field <code>.google.cloud.apihub.v1.Deployment deployment = 3;</code>
      * @return \Google\Cloud\ApiHub\V1\Deployment|null
@@ -134,7 +138,8 @@ class ApiHubResource extends \Google\Protobuf\Internal\Message
 
     /**
      * This represents Deployment resource in search results. Only name,
-     * display_name and description fields are populated in search results.
+     * display_name, description, deployment_type and api_versions fields are
+     * populated in search results.
      *
      * Generated from protobuf field <code>.google.cloud.apihub.v1.Deployment deployment = 3;</code>
      * @param \Google\Cloud\ApiHub\V1\Deployment $var
@@ -150,7 +155,8 @@ class ApiHubResource extends \Google\Protobuf\Internal\Message
 
     /**
      * This represents Spec resource in search results. Only name,
-     * display_name and description fields are populated in search results.
+     * display_name, description, spec_type and documentation fields are
+     * populated in search results.
      *
      * Generated from protobuf field <code>.google.cloud.apihub.v1.Spec spec = 4;</code>
      * @return \Google\Cloud\ApiHub\V1\Spec|null
@@ -167,7 +173,8 @@ class ApiHubResource extends \Google\Protobuf\Internal\Message
 
     /**
      * This represents Spec resource in search results. Only name,
-     * display_name and description fields are populated in search results.
+     * display_name, description, spec_type and documentation fields are
+     * populated in search results.
      *
      * Generated from protobuf field <code>.google.cloud.apihub.v1.Spec spec = 4;</code>
      * @param \Google\Cloud\ApiHub\V1\Spec $var
@@ -216,7 +223,8 @@ class ApiHubResource extends \Google\Protobuf\Internal\Message
 
     /**
      * This represents Version resource in search results. Only name,
-     * display_name and description fields are populated in search results.
+     * display_name, description, lifecycle, compliance and accreditation fields
+     * are populated in search results.
      *
      * Generated from protobuf field <code>.google.cloud.apihub.v1.Version version = 6;</code>
      * @return \Google\Cloud\ApiHub\V1\Version|null
@@ -233,7 +241,8 @@ class ApiHubResource extends \Google\Protobuf\Internal\Message
 
     /**
      * This represents Version resource in search results. Only name,
-     * display_name and description fields are populated in search results.
+     * display_name, description, lifecycle, compliance and accreditation fields
+     * are populated in search results.
      *
      * Generated from protobuf field <code>.google.cloud.apihub.v1.Version version = 6;</code>
      * @param \Google\Cloud\ApiHub\V1\Version $var

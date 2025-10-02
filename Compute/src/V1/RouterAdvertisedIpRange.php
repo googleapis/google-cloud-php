@@ -20,13 +20,13 @@ class RouterAdvertisedIpRange extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
-    private $description = null;
+    protected $description = null;
     /**
      * The IP range to advertise. The value must be a CIDR-formatted string.
      *
      * Generated from protobuf field <code>optional string range = 108280125;</code>
      */
-    private $range = null;
+    protected $range = null;
 
     /**
      * Constructor.

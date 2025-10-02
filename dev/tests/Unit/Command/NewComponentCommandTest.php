@@ -108,6 +108,7 @@ class NewComponentCommandTest extends TestCase
     public function testNewComponentWithCustomOptions()
     {
         self::$commandTester->setInputs([
+            'Y',                                                            // Component already exists. Overwrite it? ? [Y/n]
             'n',                                                            // Does this information look correct? [Y/n]
             'google.custom.proto.package',                                  // custom value for "protoPackage"
             'Google\Cloud\CustomNamespace',                                 // custom value for "phpNamespace"
@@ -159,6 +160,7 @@ class NewComponentCommandTest extends TestCase
 
         $this->assertComposerJson('CustomInput');
     }
+
     public function testNewComponentWithUpdateComponent()
     {
         $dummyCommand = $this->prophesize(Command::class);
@@ -220,6 +222,46 @@ class NewComponentCommandTest extends TestCase
         $repoMetadataFull = json_decode(file_get_contents(self::$tmpDir . '/.repo-metadata-full.json'), true);
         $this->assertArrayHasKey('SecretManager', $repoMetadataFull);
         $this->assertComposerJson('SecretManager');
+    }
+
+    public function testNewComponentWithExistingComponent()
+    {
+        $application = new Application();
+        $application->add(new NewComponentCommand(self::$tmpDir));
+
+        // Add dummy command for update-command and add-sample-to-readme to ensure they're called
+        $commandTester = new CommandTester($application->get('new-component'));
+        $commandTester->setInputs([
+            'n'    // Component already exists. Overwrite it? ? [Y/n]
+        ]);
+
+        $commandTester->execute([
+            'proto' => 'google/cloud/secretmanager/v1/service.proto',
+        ]);
+
+        // confirm expected output
+        $this->assertEquals(
+            "\nComponent SecretManager already exists. Overwrite it? [Y/n]",
+            $commandTester->getDisplay()
+        );
+    }
+
+    public function testNewComponentErrorsWithNonNumericTimeout()
+    {
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('Error: The timeout option must be a positive integer');
+
+        $application = new Application();
+        $application->add(new NewComponentCommand(self::$tmpDir));
+
+        $commandTester = new CommandTester($application->get('new-component'));
+        $commandTester->setInputs([
+            'Y' // Does this information look correct? [Y/n]
+        ]);
+        $commandTester->execute([
+            'proto' => 'google/cloud/secretmanager/v1/service.proto',
+            '--timeout' => 'not-a-number'
+        ]);
     }
 
     private function assertComposerJson(string $componentName)

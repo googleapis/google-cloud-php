@@ -154,6 +154,12 @@ class Revision extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.config.v1.QuotaValidation quota_validation = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $quota_validation = 0;
+    /**
+     * Output only. This field specifies the provider configurations.
+     *
+     * Generated from protobuf field <code>.google.cloud.config.v1.ProviderConfig provider_config = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $provider_config = null;
     protected $blueprint;
 
     /**
@@ -226,6 +232,8 @@ class Revision extends \Google\Protobuf\Internal\Message
      *           Optional. Input to control quota checks for resources in terraform
      *           configuration files. There are limited resources on which quota validation
      *           applies.
+     *     @type \Google\Cloud\Config\V1\ProviderConfig $provider_config
+     *           Output only. This field specifies the provider configurations.
      * }
      */
     public function __construct($data = NULL) {
@@ -832,6 +840,42 @@ class Revision extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Config\V1\QuotaValidation::class);
         $this->quota_validation = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. This field specifies the provider configurations.
+     *
+     * Generated from protobuf field <code>.google.cloud.config.v1.ProviderConfig provider_config = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Config\V1\ProviderConfig|null
+     */
+    public function getProviderConfig()
+    {
+        return $this->provider_config;
+    }
+
+    public function hasProviderConfig()
+    {
+        return isset($this->provider_config);
+    }
+
+    public function clearProviderConfig()
+    {
+        unset($this->provider_config);
+    }
+
+    /**
+     * Output only. This field specifies the provider configurations.
+     *
+     * Generated from protobuf field <code>.google.cloud.config.v1.ProviderConfig provider_config = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Config\V1\ProviderConfig $var
+     * @return $this
+     */
+    public function setProviderConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Config\V1\ProviderConfig::class);
+        $this->provider_config = $var;
 
         return $this;
     }

@@ -20,26 +20,26 @@ class ResourcePolicyGroupPlacementPolicy extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>optional int32 availability_domain_count = 12453432;</code>
      */
-    private $availability_domain_count = null;
+    protected $availability_domain_count = null;
     /**
      * Specifies network collocation
      * Check the Collocation enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string collocation = 511156533;</code>
      */
-    private $collocation = null;
+    protected $collocation = null;
     /**
      * Specifies the shape of the GPU slice, in slice based GPU families eg. A4X.
      *
      * Generated from protobuf field <code>optional string gpu_topology = 247948450;</code>
      */
-    private $gpu_topology = null;
+    protected $gpu_topology = null;
     /**
      * Number of VMs in this placement group. Google does not recommend that you use this field unless you use a compact policy and you want your policy to work only if it contains this exact number of VMs.
      *
      * Generated from protobuf field <code>optional int32 vm_count = 261463431;</code>
      */
-    private $vm_count = null;
+    protected $vm_count = null;
 
     /**
      * Constructor.

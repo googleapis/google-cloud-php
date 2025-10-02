@@ -63,9 +63,9 @@ class Processor extends \Google\Protobuf\Internal\Message
      */
     protected $process_endpoint = '';
     /**
-     * The time the processor was created.
+     * Output only. The time the processor was created.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $create_time = null;
     /**
@@ -113,7 +113,7 @@ class Processor extends \Google\Protobuf\Internal\Message
      *           Output only. Immutable. The http endpoint that can be called to invoke
      *           processing.
      *     @type \Google\Protobuf\Timestamp $create_time
-     *           The time the processor was created.
+     *           Output only. The time the processor was created.
      *     @type string $kms_key_name
      *           The [KMS key](https://cloud.google.com/security-key-management) used for
      *           encryption and decryption in CMEK scenarios.
@@ -319,9 +319,9 @@ class Processor extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time the processor was created.
+     * Output only. The time the processor was created.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
@@ -340,9 +340,9 @@ class Processor extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time the processor was created.
+     * Output only. The time the processor was created.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */

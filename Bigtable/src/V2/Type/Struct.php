@@ -24,6 +24,12 @@ class Struct extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.bigtable.v2.Type.Struct.Field fields = 1;</code>
      */
     private $fields;
+    /**
+     * The encoding to use when converting to or from lower level types.
+     *
+     * Generated from protobuf field <code>.google.bigtable.v2.Type.Struct.Encoding encoding = 2;</code>
+     */
+    protected $encoding = null;
 
     /**
      * Constructor.
@@ -33,6 +39,8 @@ class Struct extends \Google\Protobuf\Internal\Message
      *
      *     @type array<\Google\Cloud\Bigtable\V2\Type\Struct\Field>|\Google\Protobuf\Internal\RepeatedField $fields
      *           The names and types of the fields in this struct.
+     *     @type \Google\Cloud\Bigtable\V2\Type\Struct\Encoding $encoding
+     *           The encoding to use when converting to or from lower level types.
      * }
      */
     public function __construct($data = NULL) {
@@ -62,6 +70,42 @@ class Struct extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Bigtable\V2\Type\Struct\Field::class);
         $this->fields = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The encoding to use when converting to or from lower level types.
+     *
+     * Generated from protobuf field <code>.google.bigtable.v2.Type.Struct.Encoding encoding = 2;</code>
+     * @return \Google\Cloud\Bigtable\V2\Type\Struct\Encoding|null
+     */
+    public function getEncoding()
+    {
+        return $this->encoding;
+    }
+
+    public function hasEncoding()
+    {
+        return isset($this->encoding);
+    }
+
+    public function clearEncoding()
+    {
+        unset($this->encoding);
+    }
+
+    /**
+     * The encoding to use when converting to or from lower level types.
+     *
+     * Generated from protobuf field <code>.google.bigtable.v2.Type.Struct.Encoding encoding = 2;</code>
+     * @param \Google\Cloud\Bigtable\V2\Type\Struct\Encoding $var
+     * @return $this
+     */
+    public function setEncoding($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\V2\Type\Struct\Encoding::class);
+        $this->encoding = $var;
 
         return $this;
     }

@@ -20,7 +20,7 @@ class Tags extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string fingerprint = 234678500;</code>
      */
-    private $fingerprint = null;
+    protected $fingerprint = null;
     /**
      * An array of tags. Each tag must be 1-63 characters long, and comply with RFC1035.
      *

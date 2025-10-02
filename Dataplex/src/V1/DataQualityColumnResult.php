@@ -31,6 +31,18 @@ class DataQualityColumnResult extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional float score = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $score = null;
+    /**
+     * Output only. Whether the column passed or failed.
+     *
+     * Generated from protobuf field <code>bool passed = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $passed = false;
+    /**
+     * Output only. The dimension-level results for this column.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataQualityDimensionResult dimensions = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $dimensions;
 
     /**
      * Constructor.
@@ -45,6 +57,10 @@ class DataQualityColumnResult extends \Google\Protobuf\Internal\Message
      *           and only if the 'column' field is set.
      *           The score ranges between between [0, 100] (up to two decimal
      *           points).
+     *     @type bool $passed
+     *           Output only. Whether the column passed or failed.
+     *     @type array<\Google\Cloud\Dataplex\V1\DataQualityDimensionResult>|\Google\Protobuf\Internal\RepeatedField $dimensions
+     *           Output only. The dimension-level results for this column.
      * }
      */
     public function __construct($data = NULL) {
@@ -116,6 +132,58 @@ class DataQualityColumnResult extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkFloat($var);
         $this->score = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Whether the column passed or failed.
+     *
+     * Generated from protobuf field <code>bool passed = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getPassed()
+    {
+        return $this->passed;
+    }
+
+    /**
+     * Output only. Whether the column passed or failed.
+     *
+     * Generated from protobuf field <code>bool passed = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setPassed($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->passed = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The dimension-level results for this column.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataQualityDimensionResult dimensions = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getDimensions()
+    {
+        return $this->dimensions;
+    }
+
+    /**
+     * Output only. The dimension-level results for this column.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataQualityDimensionResult dimensions = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<\Google\Cloud\Dataplex\V1\DataQualityDimensionResult>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setDimensions($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dataplex\V1\DataQualityDimensionResult::class);
+        $this->dimensions = $arr;
 
         return $this;
     }
