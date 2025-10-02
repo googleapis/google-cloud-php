@@ -123,6 +123,20 @@ class Serializer extends ApiCoreSerializer
                 }
                 return $v;
             },
+            'google.protobuf.FieldMask' => function ($v) {
+                if (isset($v['paths'])) {
+                    return $v;
+                }
+                $fieldMask = [];
+                if (is_array($v)) {
+                    foreach (array_values($v) as $field) {
+                        $fieldMask[] = $this->serializer::toSnakeCase($field);
+                    }
+                } else {
+                    $fieldMask[] = $this->serializer::toSnakeCase($v);
+                }
+                return ['paths' => $fieldMask];
+            }
         ];
         $customEncoders = [
             // A custom encoder that short-circuits the encodeMessage in Serializer class,

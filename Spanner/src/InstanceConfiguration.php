@@ -222,28 +222,29 @@ class InstanceConfiguration
      */
     public function create(InstanceConfiguration $baseConfig, array $replicas, array $options = [])
     {
-        [$data, $callOptions] = $this->splitOptionalArgs($options);
+        $leaderOptions = $baseConfig->info()['leaderOptions'] ?? [];
+        $options['leaderOptions'] = $leaderOptions;
+        $options['replicas'] = $replicas;
+        $options['baseConfig'] = $baseConfig->name();
 
-        $leaderOptions = $baseConfig->__debugInfo()['info']['leaderOptions'] ?? [];
-        $validateOnly = $data['validateOnly'] ?? false;
-        unset($data['validateOnly']);
-        $data += [
-            'replicas' => $replicas,
-            'baseConfig' => $baseConfig->name(),
-            'leaderOptions' => $leaderOptions
-        ];
-        $instanceConfig = $this->instanceConfigArray($data);
-        $requestArray = [
-            'parent' => InstanceAdminClient::projectName($this->projectId),
-            'instanceConfigId' => InstanceAdminClient::parseName($this->name)['instance_config'],
-            'instanceConfig' => $instanceConfig,
-            'validateOnly' => $validateOnly
-        ];
-
-        $request = $this->serializer->decodeMessage(
-            new CreateInstanceConfigRequest(),
-            $requestArray
+        [$instanceConfig, $callOptions] = $this->validateOptions(
+            $options,
+            new InstanceConfig(),
+            CallOptions::class
         );
+
+        $instanceConfig->setName($this->name);
+        if (!$instanceConfig->getDisplayName()) {
+            $instanceConfig->setDisplayName(InstanceAdminClient::parseName($this->name)['instance_config']);
+        }
+        $instanceConfig->setConfigType(InstanceConfig\Type::USER_MANAGED);
+
+        $request = new CreateInstanceConfigRequest([
+            'parent' => InstanceAdminClient::projectName($this->projectId),
+            'instance_config_id' => InstanceAdminClient::parseName($this->name)['instance_config'],
+            'instance_config' => $instanceConfig,
+            'validate_only' => $options['validateOnly'] ?? false
+        ]);
 
         $operation = $this->instanceAdminClient->createInstanceConfig(
             $request,
@@ -282,15 +283,16 @@ class InstanceConfiguration
      */
     public function update(array $options = [])
     {
-        [$data, $callOptions] = $this->splitOptionalArgs($options);
-        $validateOnly = $data['validateOnly'] ?? false;
-        unset($data['validateOnly']);
+        $validateOnly = $options['validateOnly'] ?? false;
+        unset($options['validateOnly']);
 
-        $request = $this->serializer->decodeMessage(new UpdateInstanceConfigRequest(), [
-            'instanceConfig' => $data + ['name' => $this->name],
-            'updateMask' => $this->fieldMask($data),
-            'validateOnly' => $validateOnly
-        ]);
+        $options['name'] = $this->name;
+
+        [$request, $callOptions] = $this->validateOptions(
+            ['instanceConfig' => $options, 'validateOnly' => $validateOnly],
+            new UpdateInstanceConfigRequest(),
+            CallOptions::class
+        );
 
         $operation = $this->instanceAdminClient->updateInstanceConfig(
             $request,
