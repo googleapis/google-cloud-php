@@ -27,6 +27,7 @@ use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\DetectProjectIdTrait;
+use Google\Cloud\Core\EmulatorTrait;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\TimestampTrait;
 use Google\Cloud\Datastore\Query\AggregationQuery;
@@ -99,6 +100,7 @@ class DatastoreClient
     use TimestampTrait;
     use ApiHelperTrait;
     use ClientOptionsTrait;
+    use EmulatorTrait;
 
     const VERSION = '1.34.2';
 
@@ -212,9 +214,33 @@ class DatastoreClient
             'emulatorHost' => $emulatorHost,
         ];
 
-        $gapicConfig = $this->buildClientOptions($config);
-        $this->projectId = $this->detectProjectId($gapicConfig);
-        $this->gapicClient = $this->getGapicClient($gapicConfig);
+        $gapicOptions = $this->buildClientOptions($config);
+
+        if (isset($gapicOptions['credentialsConfig']['scopes'])) {
+            $options['credentialsConfig']['scopes'] = array_merge(
+                $gapicOptions['credentialsConfig']['scopes'],
+                $config['scopes']
+            );
+        } else {
+            $options['credentialsConfig']['scopes'] = $config['scopes'];
+        }
+
+        if ($emulatorHost) {
+            $emulatorConfig = $this->emulatorGapicConfig($emulatorHost);
+            $gapicOptions = array_merge(
+                $gapicOptions,
+                $emulatorConfig
+            );
+        } else {
+            $gapicOptions['credentials'] = $this->createCredentialsWrapper(
+                $gapicOptions['credentials'],
+                $gapicOptions['credentialsConfig'],
+                $gapicOptions['universeDomain']
+            );
+        }
+
+        $this->projectId = $this->detectProjectId($gapicOptions);
+        $this->gapicClient = $this->getGapicClient($gapicOptions);
 
         // The second parameter here should change to a variable
         // when gRPC support is added for variable encoding.
