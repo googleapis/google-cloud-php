@@ -24,7 +24,7 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.spanner.admin.instance.v1.Instance instance = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $instance = null;
+    protected $instance = null;
     /**
      * Required. A mask specifying which fields in
      * [Instance][google.spanner.admin.instance.v1.Instance] should be updated.
@@ -34,7 +34,7 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $field_mask = null;
+    protected $field_mask = null;
 
     /**
      * @param \Google\Cloud\Spanner\Admin\Instance\V1\Instance $instance  Required. The instance to update, which must always include the instance
