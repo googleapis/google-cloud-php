@@ -220,7 +220,7 @@ class DatastoreClient
             $options['credentialsConfig']['scopes'] = $config['scopes'];
         }
 
-       if ($emulatorHost) {
+        if ($emulatorHost) {
             $emulatorConfig = $this->emulatorGapicConfig($emulatorHost);
             $gapicOptions = array_merge(
                 $gapicOptions,
