@@ -155,7 +155,7 @@ class SaveAndModifyTest extends DatastoreMultipleDbTestCase
     {
         $entity = $client->entity('Person', [
             'listVal' => [],
-            'entityVal' => (object) [],
+            'entityVal' => [],
             'n' => [
                 'foo',
                 []

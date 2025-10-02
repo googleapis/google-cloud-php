@@ -293,7 +293,9 @@ trait ApiHelperTrait
                 );
                 $messageOptions = $this->pluckArray($messageKeys, $options);
                 if ($optionType instanceof Message) {
-                    $optionType->mergeFromJsonString(json_encode($messageOptions, JSON_FORCE_OBJECT));
+                    $serializer = new \Google\Cloud\Datastore\Serializer;
+                    $optionType = $serializer->decodeMessage($optionType, $messageOptions);
+                    // $optionType->mergeFromJsonString(json_encode($messageOptions))
                     $validatedOptionGroup = $optionType;
                 } else {
                     $validatedOptionGroup = $messageOptions;

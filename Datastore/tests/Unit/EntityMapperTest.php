@@ -751,7 +751,7 @@ class EntityMapperTest extends TestCase
             'foo' => [
                 ['a' => 'b'],
                 ['a' => 'c'],
-                (object) [],
+                [],
                 []
             ]
         ]);

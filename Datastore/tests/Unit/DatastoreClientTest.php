@@ -331,8 +331,7 @@ class DatastoreClientTest extends TestCase
 
     public function testReadOnlyTransactionWithOptions()
     {
-        $dateTime = new DateTime();
-        $timestamp = new Timestamp($dateTime);
+        $timestamp = new ProtobufTimestamp(['seconds' => time()]);
         $options = ['readTime' => $timestamp];
         $expectedTransaction = new ReadOnlyTransaction(
             $this->getOperationMock(),

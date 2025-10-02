@@ -77,7 +77,7 @@ class DatastoreSessionHandlerTest extends SnippetTestCase
 
         $this->connection->beginTransaction(Argument::withEntry(
             'transactionOptions',
-            ['readWrite' => (object) []]
+            ['readWrite' => []]
         ))->shouldBeCalled()->willReturn([
             'transaction' => self::TRANSACTION,
         ]);
@@ -123,7 +123,7 @@ class DatastoreSessionHandlerTest extends SnippetTestCase
 
         $this->connection->beginTransaction(Argument::withEntry(
             'transactionOptions',
-            ['readWrite' => (object) []]
+            ['readWrite' => []]
         ))->shouldBeCalled()->willReturn([
             'transaction' => self::TRANSACTION,
         ]);

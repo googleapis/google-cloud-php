@@ -26,6 +26,10 @@ trait ProtoEncodeTrait
     {
         /** @var Message */
         $message = new $message();
+        if (extension_loaded('protobuf')) {
+            $serializer = new \Google\Cloud\Datastore\Serializer;
+            return $serializer->decodeMessage($message, $data);
+        }
         $json = json_encode($data);
 
         if ($json === false) {

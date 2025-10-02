@@ -885,7 +885,7 @@ class OperationTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
 
-        $this->operation->mutation('foo', (object) [], \stdClass::class);
+        $this->operation->mutation('foo', new \stdClass(), \stdClass::class);
     }
 
     public function testCheckOverwrite()

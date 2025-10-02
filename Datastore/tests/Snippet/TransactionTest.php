@@ -28,6 +28,7 @@ use Google\Cloud\Datastore\Operation;
 use Google\Cloud\Datastore\Query\AggregationQuery;
 use Google\Cloud\Datastore\Query\QueryInterface;
 use Google\Cloud\Datastore\Transaction;
+use Google\Cloud\Datastore\V1\RollbackResponse;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -466,7 +467,8 @@ class TransactionTest extends SnippetTestCase
         $snippet->addLocal('transaction', $this->transaction);
 
         $this->connection->rollback(Argument::any())
-            ->shouldBeCalled();
+            ->shouldBeCalled()
+            ->willReturn(new RollbackResponse());
 
         $this->refreshOperation($this->transaction, $this->connection->reveal(), [
             'projectId' => self::PROJECT
