@@ -290,7 +290,8 @@ class OperationTest extends TestCase
             'found' => $body,
         ];
 
-        $this->gapicClient->lookup(Argument::any(), Argument::any())->willReturn(self::generateProto(LookupResponse::class, $responseData));
+        $this->gapicClient->lookup(Argument::any(), Argument::any())
+            ->willReturn(self::generateProto(LookupResponse::class, $responseData));
 
         $key = $this->operation->key('Kind', 'ID');
         $res = $this->operation->lookup([$key]);
@@ -326,9 +327,10 @@ class OperationTest extends TestCase
     public function testLookupDeferred()
     {
         $body = json_decode(file_get_contents(Fixtures::ENTITY_BATCH_LOOKUP_FIXTURE()), true);
-        $this->gapicClient->lookup(Argument::any(), Argument::any())->willReturn(self::generateProto(LookupResponse::class, [
-            'deferred' => [$body[0]['entity']['key']],
-        ]));
+        $this->gapicClient->lookup(Argument::any(), Argument::any())
+            ->willReturn(self::generateProto(LookupResponse::class, [
+                'deferred' => [$body[0]['entity']['key']],
+            ]));
 
         $key = $this->operation->key('Kind', 'ID');
 
@@ -1074,7 +1076,9 @@ class OperationTest extends TestCase
                 }),
                 Argument::any()
             )
-            ->willReturn(self::generateProto(BeginTransactionResponse::class, ['transaction' => base64_encode($rawTransactionId)]));
+            ->willReturn(self::generateProto(BeginTransactionResponse::class, [
+                'transaction' => base64_encode($rawTransactionId)
+            ]));
 
         $transactionId = $this->operation->beginTransaction(
             [],

@@ -116,7 +116,9 @@ class ReadOnlyTransactionTest extends SnippetTestCase
     {
         $this->gapicClient->beginTransaction(Argument::any(), Argument::any())
             ->shouldBeCalled()
-            ->willReturn(self::generateProto(BeginTransactionResponse::class, ['transaction' => base64_encode(self::TRANSACTION)]));
+            ->willReturn(self::generateProto(BeginTransactionResponse::class, [
+                'transaction' => base64_encode(self::TRANSACTION)
+            ]));
 
         $snippet = $this->snippetFromMethod(ReadOnlyTransaction::class, 'lookup');
         $snippet->addLocal('datastore', $this->client);
@@ -154,7 +156,9 @@ class ReadOnlyTransactionTest extends SnippetTestCase
     {
         $this->gapicClient->beginTransaction(Argument::any(), Argument::any())
             ->shouldBeCalled()
-            ->willReturn(self::generateProto(BeginTransactionResponse::class, ['transaction' => base64_encode(self::TRANSACTION)]));
+            ->willReturn(self::generateProto(BeginTransactionResponse::class, [
+                'transaction' => base64_encode(self::TRANSACTION)
+            ]));
 
         $snippet = $this->snippetFromMethod(ReadOnlyTransaction::class, 'lookupBatch');
         $snippet->addLocal('datastore', $this->client);
@@ -207,7 +211,9 @@ class ReadOnlyTransactionTest extends SnippetTestCase
     {
         $this->gapicClient->beginTransaction(Argument::any(), Argument::any())
             ->shouldBeCalled()
-            ->willReturn(self::generateProto(BeginTransactionResponse::class, ['transaction' => base64_encode(self::TRANSACTION)]));
+            ->willReturn(self::generateProto(BeginTransactionResponse::class, [
+                'transaction' => base64_encode(self::TRANSACTION)
+            ]));
 
         $snippet = $this->snippetFromMethod(ReadOnlyTransaction::class, 'runQuery');
         $snippet->addLocal('datastore', $this->client);
@@ -253,7 +259,9 @@ class ReadOnlyTransactionTest extends SnippetTestCase
     {
         $this->gapicClient->beginTransaction(Argument::any(), Argument::any())
             ->shouldBeCalled()
-            ->willReturn(self::generateProto(BeginTransactionResponse::class, ['transaction' => base64_encode(self::TRANSACTION)]));
+            ->willReturn(self::generateProto(BeginTransactionResponse::class, [
+                'transaction' => base64_encode(self::TRANSACTION)
+            ]));
 
         $snippet = $this->snippetFromMethod(ReadOnlyTransaction::class, 'rollback');
         $snippet->addLocal('transaction', $this->client->readOnlyTransaction());

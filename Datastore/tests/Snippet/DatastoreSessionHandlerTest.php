@@ -94,9 +94,18 @@ class DatastoreSessionHandlerTest extends SnippetTestCase
         $this->gapicClient->commit(Argument::that(function (CommitRequest $request) {
             $value = 'name|'.serialize('Bob');
 
-            $this->assertEquals('sessions', $request->getMutations()[0]->getUpsert()->getKey()->getPartitionId()->getNamespaceId());
-            $this->assertEquals('PHPSESSID', $request->getMutations()[0]->getUpsert()->getKey()->getPath()[0]->getKind());
-            $this->assertEquals($value, $request->getMutations()[0]->getUpsert()->getProperties()['data']->getStringValue());
+            $this->assertEquals(
+                'sessions',
+                $request->getMutations()[0]->getUpsert()->getKey()->getPartitionId()->getNamespaceId()
+            );
+            $this->assertEquals(
+                'PHPSESSID',
+                $request->getMutations()[0]->getUpsert()->getKey()->getPath()[0]->getKind()
+            );
+            $this->assertEquals(
+                $value,
+                $request->getMutations()[0]->getUpsert()->getProperties()['data']->getStringValue()
+            );
             $this->assertNotEmpty($request->getMutations()[0]->getUpsert()->getProperties()['t']);
             return true;
         }), Argument::any())

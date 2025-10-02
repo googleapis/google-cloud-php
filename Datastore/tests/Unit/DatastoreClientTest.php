@@ -235,8 +235,12 @@ class DatastoreClientTest extends TestCase
             $v1CompleteKey2
         ];
 
-        $request = (new AllocateIdsRequest())->setProjectId(self::PROJECT)->setDatabaseId(self::DATABASE)->setKeys($v1IncompleteKeys);
-        $response = (new AllocateIdsResponse())->setKeys($v1CompleteKeys);
+        $request = (new AllocateIdsRequest())
+            ->setProjectId(self::PROJECT)
+            ->setDatabaseId(self::DATABASE)
+            ->setKeys($v1IncompleteKeys);
+        $response = (new AllocateIdsResponse())
+            ->setKeys($v1CompleteKeys);
 
         $this->gapicClient->allocateIds($request, [])->shouldBeCalled(1)->willReturn($response);
 
@@ -311,7 +315,7 @@ class DatastoreClientTest extends TestCase
 
         $response = (new BeginTransactionResponse())->setTransaction('transaction-id');
 
-        $this->gapicClient->beginTransaction(Argument::that(function(BeginTransactionRequest $request){
+        $this->gapicClient->beginTransaction(Argument::that(function (BeginTransactionRequest $request) {
             $this->assertEquals($request->getProjectId(), self::PROJECT);
             $this->assertEquals($request->getDatabaseId(), self::DATABASE);
             $previousTransaction = $request->getTransactionOptions()
@@ -344,16 +348,19 @@ class DatastoreClientTest extends TestCase
         $response = new BeginTransactionResponse();
         $response->setTransaction(self::TRANSACTION);
 
-        $this->gapicClient->beginTransaction(Argument::that(function(BeginTransactionRequest $request) use ($timestamp) {
-            $this->assertEquals($request->getProjectId(), self::PROJECT);
-            $this->assertEquals($request->getDatabaseId(), self::DATABASE);
-            $readTime = $request->getTransactionOptions()
-                ->getReadOnly()
-                ->getReadTime();
-            $this->assertNotEmpty($readTime);
-            $this->assertNull($request->getTransactionOptions()->getReadWrite());
-            return true;
-        }), [])->shouldBeCalled(1)->willReturn(
+        $this->gapicClient->beginTransaction(
+            Argument::that(function (BeginTransactionRequest $request) use ($timestamp) {
+                $this->assertEquals($request->getProjectId(), self::PROJECT);
+                $this->assertEquals($request->getDatabaseId(), self::DATABASE);
+                $readTime = $request->getTransactionOptions()
+                    ->getReadOnly()
+                    ->getReadTime();
+                $this->assertNotEmpty($readTime);
+                $this->assertNull($request->getTransactionOptions()->getReadWrite());
+                return true;
+            }),
+            []
+        )->shouldBeCalled(1)->willReturn(
             $response
         );
 
@@ -373,7 +380,7 @@ class DatastoreClientTest extends TestCase
         $commitResponse->mergeFromJsonString(json_encode($this->commitResponse()));
 
         // 1. Test Insert
-        $this->gapicClient->commit(Argument::that(function(CommitRequest $request) {
+        $this->gapicClient->commit(Argument::that(function (CommitRequest $request) {
             switch ($request->getMutations()[0]->getOperation()) {
                 case 'insert':
                 case 'update':
@@ -423,25 +430,33 @@ class DatastoreClientTest extends TestCase
         // Set all expectations up front
         $this->gapicClient->commit(Argument::that(function (CommitRequest $request) {
             $mutations = $request->getMutations();
-            if (count($mutations) !== 2) return false;
+            if (count($mutations) !== 2) {
+                return false;
+            }
             return $mutations[0]->getOperation() == 'insert' && $mutations[1]->getOperation() == 'insert';
         }), Argument::any())->shouldBeCalledTimes(1)->willReturn($commitResponse);
 
         $this->gapicClient->commit(Argument::that(function (CommitRequest $request) {
             $mutations = $request->getMutations();
-            if (count($mutations) !== 2) return false;
+            if (count($mutations) !== 2) {
+                return false;
+            }
             return $mutations[0]->getOperation() == 'update' && $mutations[1]->getOperation() == 'update';
         }), Argument::any())->shouldBeCalledTimes(1)->willReturn($commitResponse);
 
         $this->gapicClient->commit(Argument::that(function (CommitRequest $request) {
             $mutations = $request->getMutations();
-            if (count($mutations) !== 2) return false;
+            if (count($mutations) !== 2) {
+                return false;
+            }
             return $mutations[0]->getOperation() == 'upsert' && $mutations[1]->getOperation() == 'upsert';
         }), Argument::any())->shouldBeCalledTimes(1)->willReturn($commitResponse);
 
         $this->gapicClient->commit(Argument::that(function (CommitRequest $request) {
             $mutations = $request->getMutations();
-            if (count($mutations) !== 2) return false;
+            if (count($mutations) !== 2) {
+                return false;
+            }
             return $mutations[0]->getOperation() == 'delete' && $mutations[1]->getOperation() == 'delete';
         }), Argument::any())->shouldBeCalledTimes(1)->willReturn($commitResponse);
 
@@ -481,7 +496,8 @@ class DatastoreClientTest extends TestCase
                 return false;
             }
 
-            return $request->getMutations()[0]->getOperation() == 'insert' && $request->getMutations()[1]->getOperation() == 'insert';
+            return $request->getMutations()[0]->getOperation() == 'insert'
+                && $request->getMutations()[1]->getOperation() == 'insert';
         }), Argument::any())
             ->shouldBeCalled(1)
             ->willReturn($commitResponse);
@@ -507,7 +523,8 @@ class DatastoreClientTest extends TestCase
                 return false;
             }
 
-            return $request->getMutations()[0]->getOperation() == 'upsert' && $request->getMutations()[1]->getOperation() == 'upsert';
+            return $request->getMutations()[0]->getOperation() == 'upsert'
+                && $request->getMutations()[1]->getOperation() == 'upsert';
         }), Argument::any())
             ->shouldBeCalled(1)
             ->willReturn($commitResponse);
@@ -630,7 +647,7 @@ class DatastoreClientTest extends TestCase
         $response = new LookupResponse();
         $response->mergeFromJsonString(json_encode($data));
 
-        $this->gapicClient->lookup(Argument::that(function(LookupRequest $request) use ($protoTime) {
+        $this->gapicClient->lookup(Argument::that(function (LookupRequest $request) use ($protoTime) {
             return $request->getReadOptions()->getReadTime()->getSeconds() === $protoTime->getSeconds();
         }), Argument::any())
             ->shouldBeCalled(1)
@@ -658,7 +675,7 @@ class DatastoreClientTest extends TestCase
         $response = new LookupResponse();
         $response->mergeFromJsonString(json_encode($data));
 
-        $this->gapicClient->lookup(Argument::that(function(LookupRequest $request) use ($protoTime) {
+        $this->gapicClient->lookup(Argument::that(function (LookupRequest $request) use ($protoTime) {
             return $request->getReadOptions()->getReadTime()->getSeconds() === $protoTime->getSeconds();
         }), Argument::any())
             ->shouldBeCalled(1)
