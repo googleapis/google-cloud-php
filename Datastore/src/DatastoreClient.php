@@ -21,11 +21,8 @@ use DomainException;
 use Google\ApiCore\ClientOptionsTrait;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Options\ClientOptions;
-use Google\Auth\CredentialsLoader;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Core\ApiHelperTrait;
-use Google\Cloud\Core\ArrayTrait;
-use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\DetectProjectIdTrait;
 use Google\Cloud\Core\EmulatorTrait;
 use Google\Cloud\Core\Int64;
@@ -37,8 +34,6 @@ use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Query\QueryInterface;
 use Google\Cloud\Datastore\V1\Client\DatastoreClient as GapicDatastoreClient;
 use InvalidArgumentException;
-use Kreait\Firebase\Exception\Messaging\InvalidArgument;
-use Psr\Cache\CacheItemPoolInterface;
 use Psr\Http\Message\StreamInterface;
 
 /**
@@ -989,7 +984,8 @@ class DatastoreClient
 
         $mutations = [];
         foreach ($keys as $key) {
-            $mutations[] = $this->operation->mutation('delete', $key, Key::class, $this->pluck('baseVersion', $options, false));
+            $mutations[] = $this->operation
+                ->mutation('delete', $key, Key::class, $this->pluck('baseVersion', $options, false));
         }
 
         return $this->operation->commit($mutations, $options);
@@ -1330,7 +1326,9 @@ class DatastoreClient
     private function getGapicClient(array $config): GapicDatastoreClient
     {
         if (isset($config['datastoreClient']) && (!$config['datastoreClient'] instanceof GapicDatastoreClient)) {
-            throw new InvalidArgumentException('The client configuration option must be an instance of ' . GapicDatastoreClient::class);
+            throw new InvalidArgumentException(
+                'The client configuration option must be an instance of ' . GapicDatastoreClient::class
+            );
         }
 
         return $config['datastoreClient'] ?? new GapicDatastoreClient($config);

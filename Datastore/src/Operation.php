@@ -29,22 +29,20 @@ use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Query\QueryInterface;
 use Google\Cloud\Datastore\V1\AllocateIdsRequest;
 use Google\Cloud\Datastore\V1\BeginTransactionRequest;
-use Google\Cloud\Datastore\V1\ExplainOptions;
-use Google\Cloud\Datastore\V1\QueryResultBatch\MoreResultsType;
 use Google\Cloud\Datastore\V1\Client\DatastoreClient;
 use Google\Cloud\Datastore\V1\CommitRequest;
 use Google\Cloud\Datastore\V1\CommitRequest\Mode;
 use Google\Cloud\Datastore\V1\EntityResult;
+use Google\Cloud\Datastore\V1\ExplainOptions;
 use Google\Cloud\Datastore\V1\Key as ProtobufKey;
 use Google\Cloud\Datastore\V1\LookupRequest;
 use Google\Cloud\Datastore\V1\Mutation;
+use Google\Cloud\Datastore\V1\QueryResultBatch\MoreResultsType;
 use Google\Cloud\Datastore\V1\ReadOptions;
-use Google\Cloud\Datastore\V1\ReadOptions_ReadConsistency;
 use Google\Cloud\Datastore\V1\RollbackRequest;
 use Google\Cloud\Datastore\V1\RunAggregationQueryRequest;
 use Google\Cloud\Datastore\V1\RunQueryRequest;
 use Google\Cloud\Datastore\V1\TransactionOptions;
-use Google\Protobuf\RepeatedField;
 use Google\Protobuf\Timestamp as ProtobufTimestamp;
 use InvalidArgumentException;
 
@@ -128,7 +126,7 @@ class Operation
             'cursor' => function ($v) {
                 return base64_encode($v);
             }
-        ],[
+        ], [
             'google.protobuf.Duration' => function ($v) {
                 return $this->formatDurationFromApi($v);
             }
@@ -403,7 +401,6 @@ class Operation
         foreach ($allocateIdsResponse->getKeys() as $index => $responseKey) {
             $path = $responseKey->getPath();
 
-            // @phpstan-ignore argument.type
             $lastPathElement = count($path) - 1;
 
             $id = $path[$lastPathElement]->getId();
@@ -498,10 +495,11 @@ class Operation
             'deferred' => [],
         ];
 
-        /** @var protoEntity $found */
+        /** @var EntityResult $found */
         foreach ($lookupResponse->getFound() as $found) {
             $result['found'][] = $this->mapEntityResult(
-                $this->serializer->encodeMessage($found), $className
+                $this->serializer->encodeMessage($found),
+                $className
             );
         }
 
@@ -747,7 +745,8 @@ class Operation
             $runAggregationQueryRequest->setReadOptions($readOptions);
         }
 
-        $runAggregationQueryResponse = $this->gapicClient->runAggregationQuery($runAggregationQueryRequest, $callOptions);
+        $runAggregationQueryResponse = $this->gapicClient
+            ->runAggregationQuery($runAggregationQueryRequest, $callOptions);
 
         $res = $this->serializer->encodeMessage($runAggregationQueryResponse);
 
@@ -1049,7 +1048,9 @@ class Operation
         }
 
         if ($totalSet > 1) {
-            throw new InvalidArgumentException('Only one of `readConsistency`, `transaction` or `readTime` may be set.');
+            throw new InvalidArgumentException(
+                'Only one of `readConsistency`, `transaction` or `readTime` may be set.'
+            );
         }
 
         return $readOptions;
