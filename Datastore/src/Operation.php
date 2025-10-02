@@ -397,7 +397,7 @@ class Operation
 
         $allocateIdsResponse = $this->gapicClient->allocateIds($allocateIdsRequest, $callOptions);
 
-        /** @var protobufKey $responseKey */
+        /** @var ProtobufKey $responseKey */
         foreach ($allocateIdsResponse->getKeys() as $index => $responseKey) {
             $path = $responseKey->getPath();
 
@@ -515,7 +515,7 @@ class Operation
             );
         }
 
-        /** @var protobufKey $deferred */
+        /** @var ProtobufKey $deferred */
         foreach ($lookupResponse->getDeferred() as $deferred) {
             $result['deferred'][] = $this->key(
                 $deferred->getPath(),
