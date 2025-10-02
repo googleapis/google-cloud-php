@@ -82,8 +82,7 @@ class EntityTest extends SnippetTestCase
             ->willReturn(self::generateProto(CommitResponse::class, [
                 'mutationResults' => [['version' => 1]]
             ]));
-        $gapicClient->lookup(Argument::any(), Argument::any()
-            )->shouldBeCalled()
+        $gapicClient->lookup(Argument::any(), Argument::any())->shouldBeCalled()
             ->willReturn(self::generateProto(LookupResponse::class, [
                 'found' => [
                     [

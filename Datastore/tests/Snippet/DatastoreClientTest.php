@@ -342,7 +342,7 @@ class DatastoreClientTest extends SnippetTestCase
                         ]
                     ]
                 ]
-                                ));
+            ));
 
         $res = $snippet->invoke('keyWithAllocatedId');
 
