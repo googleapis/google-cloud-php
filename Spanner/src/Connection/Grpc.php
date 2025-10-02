@@ -20,6 +20,7 @@ namespace Google\Cloud\Spanner\Connection;
 use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Serializer;
+use Google\ApiCore\ValidationException;
 use Google\Auth\GetUniverseDomainInterface;
 use Google\Cloud\Core\EmulatorTrait;
 use Google\Cloud\Core\GrpcRequestWrapper;
