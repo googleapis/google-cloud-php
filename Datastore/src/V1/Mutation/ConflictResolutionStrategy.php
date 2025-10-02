@@ -59,6 +59,4 @@ class ConflictResolutionStrategy
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ConflictResolutionStrategy::class, \Google\Cloud\Datastore\V1\Mutation_ConflictResolutionStrategy::class);
 

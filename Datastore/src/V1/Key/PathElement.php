@@ -28,7 +28,7 @@ class PathElement extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      */
-    private $kind = '';
+    protected $kind = '';
     protected $id_type;
 
     /**
@@ -190,6 +190,4 @@ class PathElement extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(PathElement::class, \Google\Cloud\Datastore\V1\Key_PathElement::class);
 

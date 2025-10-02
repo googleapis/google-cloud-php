@@ -21,14 +21,14 @@ class Value extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 meaning = 14;</code>
      */
-    private $meaning = 0;
+    protected $meaning = 0;
     /**
      * If the value should be excluded from all indexes including those defined
      * explicitly.
      *
      * Generated from protobuf field <code>bool exclude_from_indexes = 19;</code>
      */
-    private $exclude_from_indexes = false;
+    protected $exclude_from_indexes = false;
     protected $value_type;
 
     /**

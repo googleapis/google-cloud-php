@@ -21,7 +21,7 @@ class BeginTransactionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project_id = 8 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
     /**
      * The ID of the database against which to make the request.
      * '(default)' is not allowed; please use empty string '' to refer the default
@@ -29,13 +29,13 @@ class BeginTransactionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string database_id = 9;</code>
      */
-    private $database_id = '';
+    protected $database_id = '';
     /**
      * Options for a new transaction.
      *
      * Generated from protobuf field <code>.google.datastore.v1.TransactionOptions transaction_options = 10;</code>
      */
-    private $transaction_options = null;
+    protected $transaction_options = null;
 
     /**
      * @param string $projectId Required. The ID of the project against which to make the request.

@@ -35,7 +35,7 @@ class Sum extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.datastore.v1.PropertyReference property = 1;</code>
      */
-    private $property = null;
+    protected $property = null;
 
     /**
      * Constructor.
@@ -90,6 +90,4 @@ class Sum extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Sum::class, \Google\Cloud\Datastore\V1\AggregationQuery_Aggregation_Sum::class);
 

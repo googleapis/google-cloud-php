@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -130,22 +130,19 @@ final class DatastoreClient
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'datastore.googleapis.com:443'.
-     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           This option should only be used with a pre-constructed
-     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
-     *           when one of these objects are provided, any settings in $credentialsConfig will
-     *           be ignored.
-     *           **Important**: If you are providing a path to a credentials file, or a decoded
-     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
-     *           unvalidated credential configuration to Google APIs can compromise the security
-     *           of your systems and data. It is recommended to create the credentials explicitly
-     *           ```
-     *           use Google\Auth\Credentials\ServiceAccountCredentials;
-     *           use Google\Cloud\Datastore\V1\DatastoreClient;
-     *           $creds = new ServiceAccountCredentials($scopes, $json);
-     *           $options = new DatastoreClient(['credentials' => $creds]);
-     *           ```
-     *           {@see
+     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           The credentials to be used by the client to authorize API calls. This option
+     *           accepts either a path to a credentials file, or a decoded credentials file as a
+     *           PHP array.
+     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
+     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
+     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
+     *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
      *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
@@ -254,8 +251,10 @@ final class DatastoreClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function beginTransaction(BeginTransactionRequest $request, array $callOptions = []): BeginTransactionResponse
-    {
+    public function beginTransaction(
+        BeginTransactionRequest $request,
+        array $callOptions = []
+    ): BeginTransactionResponse {
         return $this->startApiCall('BeginTransaction', $request, $callOptions)->wait();
     }
 
@@ -386,8 +385,10 @@ final class DatastoreClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function runAggregationQuery(RunAggregationQueryRequest $request, array $callOptions = []): RunAggregationQueryResponse
-    {
+    public function runAggregationQuery(
+        RunAggregationQueryRequest $request,
+        array $callOptions = []
+    ): RunAggregationQueryResponse {
         return $this->startApiCall('RunAggregationQuery', $request, $callOptions)->wait();
     }
 

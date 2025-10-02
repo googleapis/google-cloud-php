@@ -34,7 +34,7 @@ class Count extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value up_to = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $up_to = null;
+    protected $up_to = null;
 
     /**
      * Constructor.
@@ -116,7 +116,7 @@ class Count extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Int64Value up_to = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int|string|null
      */
-    public function getUpToValue()
+    public function getUpToUnwrapped()
     {
         return $this->readWrapperValue("up_to");
     }
@@ -169,13 +169,11 @@ class Count extends \Google\Protobuf\Internal\Message
      * @param int|string|null $var
      * @return $this
      */
-    public function setUpToValue($var)
+    public function setUpToUnwrapped($var)
     {
         $this->writeWrapperValue("up_to", $var);
         return $this;}
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Count::class, \Google\Cloud\Datastore\V1\AggregationQuery_Aggregation_Count::class);
 
