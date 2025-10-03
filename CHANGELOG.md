@@ -1,5 +1,57 @@
 # Changelog
 
+## 0.304.0
+
+<details><summary>google/cloud-core 1.66.0</summary>
+
+
+
+### Features
+
+* **Core:** Add OptionsValidator ([#8627](https://github.com/googleapis/google-cloud-php/issues/8627)) ([96be3cb](https://github.com/googleapis/google-cloud-php/commit/96be3cb8f23b0baf2d16bceae5c17547444ab4dd))
+
+</details>
+
+<details><summary>google/cloud-eventarc-publishing 1.2.1</summary>
+
+
+
+### Documentation
+
+* [EventarcPublishing] Update comment in Eventarc Publishing API ([#8634](https://github.com/googleapis/google-cloud-php/issues/8634)) ([9629b46](https://github.com/googleapis/google-cloud-php/commit/9629b46d438dc58fc1dfe8aa8f83653b5b58aa3f))
+
+</details>
+
+<details><summary>google/cloud-securitycompliance 0.1.0</summary>
+
+
+
+### Features
+
+* Introduce SecurityCompliance ([#8632](https://github.com/googleapis/google-cloud-php/issues/8632)) ([67d0372](https://github.com/googleapis/google-cloud-php/commit/67d03724960e18d0f7e66dca0eac06c854ad0e0a))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.106.0</summary>
+
+
+
+### Features
+
+* Support for Spanner ReadLockMode ([#8419](https://github.com/googleapis/google-cloud-php/issues/8419)) ([8a3db2c](https://github.com/googleapis/google-cloud-php/commit/8a3db2cfc39c2d92434531fce4a4a9aa85dc8248))
+
+</details>
+
+<details><summary>google/cloud-support 1.4.0</summary>
+
+
+
+### Features
+
+* **Support:** Add v2beta ([#8523](https://github.com/googleapis/google-cloud-php/issues/8523)) ([5103ddd](https://github.com/googleapis/google-cloud-php/commit/5103ddd5b3c88b8693437084465ef644387c7e42))
+
+</details>
+
 ## 0.303.0
 
 <details><summary>google/cloud-ai-platform 1.39.0</summary>
