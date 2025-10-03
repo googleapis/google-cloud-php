@@ -154,7 +154,7 @@ class Instance
      *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions}
      *           If using the `replicaSelection::type` setting, utilize the constants available in
      *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type} to set a value.
-     * @param int $isolationLevel The level of Isolation for the transactions executed by this Client's instance.
+     *     @type int $isolationLevel The level of Isolation for the transactions executed by this Client's instance.
      *           **Defaults to** IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED
      * }
      */
@@ -524,6 +524,8 @@ class Instance
      *     @type SessionPoolInterface $sessionPool A pool used to manage
      *           sessions.
      *     @type string $databaseRole The user created database role which creates the session.
+     *     @type int $isolationLevel The IsolationLevel set for the transaction.
+     *           Check {@see IsolationLevel} for more details.
      * }
      * @return Database
      */

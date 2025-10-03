@@ -18,6 +18,7 @@
 namespace Google\Cloud\Spanner\Tests\Unit;
 
 use Google\ApiCore\ServerStream;
+use Google\ApiCore\ValidationException;
 use Google\Cloud\Core\Exception\AbortedException;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Exception\ServerException;
@@ -59,7 +60,6 @@ use Prophecy\PhpUnit\ProphecyTrait;
 use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Spanner\V1\TransactionOptions\IsolationLevel;
 use InvalidArgumentException;
-use Kreait\Firebase\Exception\Messaging\InvalidArgument;
 use Google\Cloud\Spanner\V1\ReadRequest\LockHint;
 use Google\Cloud\Spanner\V1\ReadRequest\OrderBy;
 
@@ -1402,7 +1402,7 @@ class DatabaseTest extends TestCase
         $sql = 'UPDATE foo SET bar = @bar';
 
         $this->refreshOperation($this->database, $this->connection->reveal());
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(ValidationException::class);
 
         $res = $this->database->executePartitionedUpdate($sql, [
             'transactionOptions' => [

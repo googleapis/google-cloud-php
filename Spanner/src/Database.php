@@ -1932,13 +1932,14 @@ class Database
      *           {@see V1\TransactionOptions}
      * }
      * @return int The number of rows modified.
+     * @throws ValidationException
      */
     public function executePartitionedUpdate($statement, array $options = [])
     {
         unset($options['requestOptions']['transactionTag']);
 
         if (isset($options['transactionOptions']['isolationLevel'])) {
-            throw new InvalidArgumentException('Partitioned DML cannot be configured with an isolation level');
+            throw new ValidationException('Partitioned DML cannot be configured with an isolation level');
         }
 
         $session = $this->selectSession(SessionPoolInterface::CONTEXT_READWRITE);

@@ -239,6 +239,7 @@ class Transaction implements TransactionalReadInterface
      *         been set when creating the transaction.
      * }
      * @return int The number of rows modified.
+     * @throws ValidationException
      */
     public function executeUpdate($sql, array $options = [])
     {
