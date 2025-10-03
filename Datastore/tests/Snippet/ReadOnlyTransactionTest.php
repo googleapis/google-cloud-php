@@ -33,6 +33,7 @@ use Google\Cloud\Datastore\V1\Client\DatastoreClient as GapicDatastoreClient;
 use Google\Cloud\Datastore\V1\LookupRequest;
 use Google\Cloud\Datastore\V1\LookupResponse;
 use Google\Cloud\Datastore\V1\RollbackRequest;
+use Google\Cloud\Datastore\V1\RollbackResponse;
 use Google\Cloud\Datastore\V1\RunQueryRequest;
 use Google\Cloud\Datastore\V1\RunQueryResponse;
 use Prophecy\Argument;
@@ -100,7 +101,8 @@ class ReadOnlyTransactionTest extends SnippetTestCase
             ->shouldBeCalled()
             ->willReturn(self::generateProto(LookupResponse::class, []));
         $this->gapicClient->rollback(Argument::any(), Argument::any())
-            ->shouldBeCalled();
+            ->shouldBeCalled()
+            ->willReturn(self::generateProto(RollbackResponse::class, []));
 
         $snippet = $this->snippetFromClass(ReadOnlyTransaction::class, 1);
 
@@ -267,7 +269,8 @@ class ReadOnlyTransactionTest extends SnippetTestCase
         $snippet->addLocal('transaction', $this->client->readOnlyTransaction());
 
         $this->gapicClient->rollback(Argument::type(RollbackRequest::class), Argument::any())
-            ->shouldBeCalled();
+            ->shouldBeCalled()
+            ->willReturn(self::generateProto(RollbackResponse::class, []));
 
         $snippet->invoke();
     }

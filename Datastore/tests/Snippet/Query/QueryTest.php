@@ -28,6 +28,7 @@ use Google\Cloud\Datastore\Query\Filter;
 use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Tests\Unit\ProtoEncodeTrait;
 use Google\Cloud\Datastore\V1\Client\DatastoreClient as GapicDatastoreClient;
+use Google\Cloud\Datastore\V1\PropertyOrder\Direction;
 use Google\Cloud\Datastore\V1\QueryResultBatch\MoreResultsType;
 use Google\Cloud\Datastore\V1\RunQueryRequest;
 use Google\Cloud\Datastore\V1\RunQueryResponse;
@@ -194,7 +195,7 @@ class QueryTest extends SnippetTestCase
         $snippet->invoke();
 
         $this->assertEquals('birthDate', $this->query->queryObject()['order'][0]['property']['name']);
-        $this->assertEquals('DESCENDING', $this->query->queryObject()['order'][0]['direction']);
+        $this->assertEquals(Direction::DESCENDING, $this->query->queryObject()['order'][0]['direction']);
     }
 
     public function testDistinctOn()
@@ -246,7 +247,7 @@ class QueryTest extends SnippetTestCase
 
         $snippet->invoke();
 
-        $this->assertEquals(50, $this->query->queryObject()['limit']);
+        $this->assertEquals(50, $this->query->queryObject()['limit']['value']);
     }
 
     // ***** HELPERS

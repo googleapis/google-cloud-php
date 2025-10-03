@@ -23,6 +23,7 @@ use Google\Cloud\Datastore\Entity;
 use Google\Cloud\Datastore\EntityMapper;
 use Google\Cloud\Datastore\GeoPoint;
 use Google\Cloud\Datastore\Key;
+use Google\Protobuf\NullValue;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -687,16 +688,6 @@ class EntityMapperTest extends TestCase
         $this->assertEquals(1, $int['integerValue']);
     }
 
-    /**
-     * @dataProvider valueObjectDoubleForRestCases
-     */
-    public function testValueObjectDoubleForRestClient($input, $expected)
-    {
-        $mapper = new EntityMapper('foo', true, false, 'rest');
-        $double = $mapper->valueObject($input);
-        $this->compareResult($expected, $double['doubleValue']);
-    }
-
     public function testValueObjectString()
     {
         $string = $this->mapper->valueObject('foo');
@@ -742,7 +733,7 @@ class EntityMapperTest extends TestCase
     {
         $null = $this->mapper->valueObject(null);
 
-        $this->assertNull($null['nullValue']);
+        $this->assertEquals(NullValue::NULL_VALUE, $null['nullValue']);
     }
 
     public function testValueObjectNestedArrays()
@@ -936,16 +927,6 @@ class EntityMapperTest extends TestCase
             [1.1, 1.1],
             [-INF, -INF],
             [NAN, NAN]
-        ];
-    }
-
-    public function valueObjectDoubleForRestCases()
-    {
-        return [
-            [INF, 'Infinity'],
-            [1.1, 1.1],
-            [-INF, '-Infinity'],
-            [NAN, 'NaN']
         ];
     }
 

@@ -624,7 +624,7 @@ class DatastoreClient
     {
         $transaction = $this->operation->beginTransaction([
             // if empty, force request to encode as {} rather than [].
-            'readWrite' => $this->pluck('transactionOptions', $options, false) ?: (object) []
+            'readWrite' => $this->pluck('transactionOptions', $options, false) ?: []
         ], $options);
 
         return new Transaction(
@@ -663,7 +663,7 @@ class DatastoreClient
     {
         $transaction = $this->operation->beginTransaction([
             // if empty, force request to encode as {} rather than [].
-            'readOnly' => $this->pluck('transactionOptions', $options, false) ?: (object) []
+            'readOnly' => $this->pluck('transactionOptions', $options, false) ?: []
         ], $options);
 
         return new ReadOnlyTransaction(

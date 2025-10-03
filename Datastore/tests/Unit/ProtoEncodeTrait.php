@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Datastore\Tests\Unit;
 
+use Google\Cloud\Datastore\Serializer;
 use Google\Protobuf\Internal\Message;
 use InvalidArgumentException;
 
@@ -26,14 +27,8 @@ trait ProtoEncodeTrait
     {
         /** @var Message */
         $message = new $message();
-        $json = json_encode($data);
 
-        if ($json === false) {
-            throw new InvalidArgumentException('The data given cannot be serialized into Json');
-        }
-
-        $message->mergeFromJsonString($json);
-
-        return $message;
+        $serializer = new Serializer();
+        return $serializer->decodeMessage($message, $data);
     }
 }
