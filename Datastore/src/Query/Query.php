@@ -24,7 +24,6 @@ use Google\Cloud\Datastore\Key;
 use Google\Cloud\Datastore\V1\CompositeFilter\Operator as CompositeFilterOperator;
 use Google\Cloud\Datastore\V1\PropertyFilter\Operator;
 use Google\Cloud\Datastore\V1\PropertyOrder\Direction;
-use Google\Cloud\Datastore\V1\RunQueryResponse;
 use InvalidArgumentException;
 
 /**

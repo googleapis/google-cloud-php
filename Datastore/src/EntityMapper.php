@@ -19,8 +19,6 @@ namespace Google\Cloud\Datastore;
 
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Int64;
-use Google\Cloud\Datastore\V1\Value as V1Value;
-use Google\Protobuf\DoubleValue;
 use Google\Protobuf\NullValue;
 use Google\Protobuf\Value;
 
