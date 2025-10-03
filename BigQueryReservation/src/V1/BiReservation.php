@@ -16,11 +16,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class BiReservation extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The resource name of the singleton BI reservation.
+     * Identifier. The resource name of the singleton BI reservation.
      * Reservation names have the form
      * `projects/{project_id}/locations/{location_id}/biReservation`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
@@ -30,15 +30,15 @@ class BiReservation extends \Google\Protobuf\Internal\Message
      */
     protected $update_time = null;
     /**
-     * Size of a reservation, in bytes.
+     * Optional. Size of a reservation, in bytes.
      *
-     * Generated from protobuf field <code>int64 size = 4;</code>
+     * Generated from protobuf field <code>int64 size = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $size = 0;
     /**
-     * Preferred tables to use BI capacity for.
+     * Optional. Preferred tables to use BI capacity for.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.bigquery.reservation.v1.TableReference preferred_tables = 5;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.bigquery.reservation.v1.TableReference preferred_tables = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $preferred_tables;
 
@@ -49,15 +49,15 @@ class BiReservation extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The resource name of the singleton BI reservation.
+     *           Identifier. The resource name of the singleton BI reservation.
      *           Reservation names have the form
      *           `projects/{project_id}/locations/{location_id}/biReservation`.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The last update timestamp of a reservation.
      *     @type int|string $size
-     *           Size of a reservation, in bytes.
+     *           Optional. Size of a reservation, in bytes.
      *     @type array<\Google\Cloud\BigQuery\Reservation\V1\TableReference>|\Google\Protobuf\Internal\RepeatedField $preferred_tables
-     *           Preferred tables to use BI capacity for.
+     *           Optional. Preferred tables to use BI capacity for.
      * }
      */
     public function __construct($data = NULL) {
@@ -66,11 +66,11 @@ class BiReservation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the singleton BI reservation.
+     * Identifier. The resource name of the singleton BI reservation.
      * Reservation names have the form
      * `projects/{project_id}/locations/{location_id}/biReservation`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -79,11 +79,11 @@ class BiReservation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the singleton BI reservation.
+     * Identifier. The resource name of the singleton BI reservation.
      * Reservation names have the form
      * `projects/{project_id}/locations/{location_id}/biReservation`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */
@@ -132,9 +132,9 @@ class BiReservation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Size of a reservation, in bytes.
+     * Optional. Size of a reservation, in bytes.
      *
-     * Generated from protobuf field <code>int64 size = 4;</code>
+     * Generated from protobuf field <code>int64 size = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int|string
      */
     public function getSize()
@@ -143,9 +143,9 @@ class BiReservation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Size of a reservation, in bytes.
+     * Optional. Size of a reservation, in bytes.
      *
-     * Generated from protobuf field <code>int64 size = 4;</code>
+     * Generated from protobuf field <code>int64 size = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int|string $var
      * @return $this
      */
@@ -158,9 +158,9 @@ class BiReservation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Preferred tables to use BI capacity for.
+     * Optional. Preferred tables to use BI capacity for.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.bigquery.reservation.v1.TableReference preferred_tables = 5;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.bigquery.reservation.v1.TableReference preferred_tables = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getPreferredTables()
@@ -169,9 +169,9 @@ class BiReservation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Preferred tables to use BI capacity for.
+     * Optional. Preferred tables to use BI capacity for.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.bigquery.reservation.v1.TableReference preferred_tables = 5;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.bigquery.reservation.v1.TableReference preferred_tables = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<\Google\Cloud\BigQuery\Reservation\V1\TableReference>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

@@ -17,21 +17,21 @@ use Google\Protobuf\Internal\GPBUtil;
 class TableReference extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The assigned project ID of the project.
+     * Optional. The assigned project ID of the project.
      *
-     * Generated from protobuf field <code>string project_id = 1;</code>
+     * Generated from protobuf field <code>string project_id = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $project_id = '';
     /**
-     * The ID of the dataset in the above project.
+     * Optional. The ID of the dataset in the above project.
      *
-     * Generated from protobuf field <code>string dataset_id = 2;</code>
+     * Generated from protobuf field <code>string dataset_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $dataset_id = '';
     /**
-     * The ID of the table in the above dataset.
+     * Optional. The ID of the table in the above dataset.
      *
-     * Generated from protobuf field <code>string table_id = 3;</code>
+     * Generated from protobuf field <code>string table_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $table_id = '';
 
@@ -42,11 +42,11 @@ class TableReference extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $project_id
-     *           The assigned project ID of the project.
+     *           Optional. The assigned project ID of the project.
      *     @type string $dataset_id
-     *           The ID of the dataset in the above project.
+     *           Optional. The ID of the dataset in the above project.
      *     @type string $table_id
-     *           The ID of the table in the above dataset.
+     *           Optional. The ID of the table in the above dataset.
      * }
      */
     public function __construct($data = NULL) {
@@ -55,9 +55,9 @@ class TableReference extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The assigned project ID of the project.
+     * Optional. The assigned project ID of the project.
      *
-     * Generated from protobuf field <code>string project_id = 1;</code>
+     * Generated from protobuf field <code>string project_id = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getProjectId()
@@ -66,9 +66,9 @@ class TableReference extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The assigned project ID of the project.
+     * Optional. The assigned project ID of the project.
      *
-     * Generated from protobuf field <code>string project_id = 1;</code>
+     * Generated from protobuf field <code>string project_id = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -81,9 +81,9 @@ class TableReference extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The ID of the dataset in the above project.
+     * Optional. The ID of the dataset in the above project.
      *
-     * Generated from protobuf field <code>string dataset_id = 2;</code>
+     * Generated from protobuf field <code>string dataset_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getDatasetId()
@@ -92,9 +92,9 @@ class TableReference extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The ID of the dataset in the above project.
+     * Optional. The ID of the dataset in the above project.
      *
-     * Generated from protobuf field <code>string dataset_id = 2;</code>
+     * Generated from protobuf field <code>string dataset_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -107,9 +107,9 @@ class TableReference extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The ID of the table in the above dataset.
+     * Optional. The ID of the table in the above dataset.
      *
-     * Generated from protobuf field <code>string table_id = 3;</code>
+     * Generated from protobuf field <code>string table_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getTableId()
@@ -118,9 +118,9 @@ class TableReference extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The ID of the table in the above dataset.
+     * Optional. The ID of the table in the above dataset.
      *
-     * Generated from protobuf field <code>string table_id = 3;</code>
+     * Generated from protobuf field <code>string table_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

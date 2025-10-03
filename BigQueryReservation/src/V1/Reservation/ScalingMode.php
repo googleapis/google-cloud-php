@@ -28,7 +28,8 @@ class ScalingMode
      * ScalingMode to AUTOSCALE_ONLY, then autoscalerg will scale up to 800
      * slots and no idle slots will be used.
      * Please note, in this mode, the ignore_idle_slots field must be set to
-     * true.
+     * true. Otherwise the request will be rejected with error code
+     * `google.rpc.Code.INVALID_ARGUMENT`.
      *
      * Generated from protobuf enum <code>AUTOSCALE_ONLY = 1;</code>
      */
@@ -50,7 +51,8 @@ class ScalingMode
      * Please note, in this mode, the reservation might not be able to scale up
      * to max_slots.
      * Please note, in this mode, the ignore_idle_slots field must be set to
-     * false.
+     * false. Otherwise the request will be rejected with error code
+     * `google.rpc.Code.INVALID_ARGUMENT`.
      *
      * Generated from protobuf enum <code>IDLE_SLOTS_ONLY = 2;</code>
      */
@@ -70,7 +72,8 @@ class ScalingMode
      * 3. if there are no idle slots available in other reservations, it will
      * scale up to 1000 slots with 200 baseline and 800 autoscaling slots.
      * Please note, in this mode, the ignore_idle_slots field must be set to
-     * false.
+     * false. Otherwise the request will be rejected with error code
+     * `google.rpc.Code.INVALID_ARGUMENT`.
      *
      * Generated from protobuf enum <code>ALL_SLOTS = 3;</code>
      */

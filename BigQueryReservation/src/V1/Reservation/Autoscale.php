@@ -26,9 +26,9 @@ class Autoscale extends \Google\Protobuf\Internal\Message
      */
     protected $current_slots = 0;
     /**
-     * Number of slots to be scaled when needed.
+     * Optional. Number of slots to be scaled when needed.
      *
-     * Generated from protobuf field <code>int64 max_slots = 2;</code>
+     * Generated from protobuf field <code>int64 max_slots = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $max_slots = 0;
 
@@ -45,7 +45,7 @@ class Autoscale extends \Google\Protobuf\Internal\Message
      *           current_slots may stay in the original value and could be larger than
      *           max_slots for that brief period (less than one minute)
      *     @type int|string $max_slots
-     *           Number of slots to be scaled when needed.
+     *           Optional. Number of slots to be scaled when needed.
      * }
      */
     public function __construct($data = NULL) {
@@ -88,9 +88,9 @@ class Autoscale extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Number of slots to be scaled when needed.
+     * Optional. Number of slots to be scaled when needed.
      *
-     * Generated from protobuf field <code>int64 max_slots = 2;</code>
+     * Generated from protobuf field <code>int64 max_slots = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int|string
      */
     public function getMaxSlots()
@@ -99,9 +99,9 @@ class Autoscale extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Number of slots to be scaled when needed.
+     * Optional. Number of slots to be scaled when needed.
      *
-     * Generated from protobuf field <code>int64 max_slots = 2;</code>
+     * Generated from protobuf field <code>int64 max_slots = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int|string $var
      * @return $this
      */

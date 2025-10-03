@@ -25,6 +25,11 @@
                                 "createReservation"
                             ]
                         },
+                        "CreateReservationGroup": {
+                            "methods": [
+                                "createReservationGroup"
+                            ]
+                        },
                         "DeleteAssignment": {
                             "methods": [
                                 "deleteAssignment"
@@ -38,6 +43,11 @@
                         "DeleteReservation": {
                             "methods": [
                                 "deleteReservation"
+                            ]
+                        },
+                        "DeleteReservationGroup": {
+                            "methods": [
+                                "deleteReservationGroup"
                             ]
                         },
                         "FailoverReservation": {
@@ -55,9 +65,19 @@
                                 "getCapacityCommitment"
                             ]
                         },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
                         "GetReservation": {
                             "methods": [
                                 "getReservation"
+                            ]
+                        },
+                        "GetReservationGroup": {
+                            "methods": [
+                                "getReservationGroup"
                             ]
                         },
                         "ListAssignments": {
@@ -68,6 +88,11 @@
                         "ListCapacityCommitments": {
                             "methods": [
                                 "listCapacityCommitments"
+                            ]
+                        },
+                        "ListReservationGroups": {
+                            "methods": [
+                                "listReservationGroups"
                             ]
                         },
                         "ListReservations": {
@@ -95,9 +120,19 @@
                                 "searchAssignments"
                             ]
                         },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
                         "SplitCapacityCommitment": {
                             "methods": [
                                 "splitCapacityCommitment"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
                             ]
                         },
                         "UpdateAssignment": {

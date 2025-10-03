@@ -8,7 +8,7 @@ use UnexpectedValueException;
 
 /**
  * The failover mode when a user initiates a failover on a reservation
- * determines how writes that arepending replication are handled after the
+ * determines how writes that are pending replication are handled after the
  * failover is initiated.
  *
  * Protobuf type <code>google.cloud.bigquery.reservation.v1.FailoverMode</code>

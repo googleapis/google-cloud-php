@@ -59,6 +59,21 @@ return [
                     ],
                 ],
             ],
+            'CreateReservationGroup' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/reservationGroups',
+                'body' => 'reservation_group',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'reservation_group_id',
+                ],
+            ],
             'DeleteAssignment' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/reservations/*/assignments/*}',
@@ -84,6 +99,17 @@ return [
             'DeleteReservation' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/reservations/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteReservationGroup' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/reservationGroups/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -126,9 +152,37 @@ return [
                     ],
                 ],
             ],
+            'GetIamPolicy' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{resource=projects/*/locations/*/reservations/*}:getIamPolicy',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/reservations/*/assignments/*}:getIamPolicy',
+                    ],
+                ],
+                'placeholders' => [
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+            ],
             'GetReservation' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/reservations/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetReservationGroup' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/reservationGroups/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -151,6 +205,17 @@ return [
             'ListCapacityCommitments' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/capacityCommitments',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListReservationGroups' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/reservationGroups',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -216,6 +281,25 @@ return [
                     ],
                 ],
             ],
+            'SetIamPolicy' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{resource=projects/*/locations/*/reservations/*}:setIamPolicy',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/reservations/*/assignments/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+            ],
             'SplitCapacityCommitment' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/capacityCommitments/*}:split',
@@ -224,6 +308,25 @@ return [
                     'name' => [
                         'getters' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'TestIamPermissions' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{resource=projects/*/locations/*/reservations/*}:testIamPermissions',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/reservations/*/assignments/*}:testIamPermissions',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
                         ],
                     ],
                 ],
