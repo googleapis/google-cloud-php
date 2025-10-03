@@ -26,16 +26,16 @@ class Assignment extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * The resource which will use the reservation. E.g.
+     * Optional. The resource which will use the reservation. E.g.
      * `projects/myproject`, `folders/123`, or `organizations/456`.
      *
-     * Generated from protobuf field <code>string assignee = 4;</code>
+     * Generated from protobuf field <code>string assignee = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $assignee = '';
     /**
-     * Which type of jobs will use the reservation.
+     * Optional. Which type of jobs will use the reservation.
      *
-     * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.Assignment.JobType job_type = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.Assignment.JobType job_type = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $job_type = 0;
     /**
@@ -57,6 +57,16 @@ class Assignment extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool enable_gemini_in_bigquery = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $enable_gemini_in_bigquery = false;
+    /**
+     * Optional. The scheduling policy to use for jobs and queries of this
+     * assignee when running under the associated reservation. The scheduling
+     * policy controls how the reservation's resources are distributed. This
+     * overrides the default scheduling policy specified on the reservation.
+     * This feature is not yet generally available.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.SchedulingPolicy scheduling_policy = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $scheduling_policy = null;
 
     /**
      * Constructor.
@@ -70,10 +80,10 @@ class Assignment extends \Google\Protobuf\Internal\Message
      *           The assignment_id must only contain lower case alphanumeric characters or
      *           dashes and the max length is 64 characters.
      *     @type string $assignee
-     *           The resource which will use the reservation. E.g.
+     *           Optional. The resource which will use the reservation. E.g.
      *           `projects/myproject`, `folders/123`, or `organizations/456`.
      *     @type int $job_type
-     *           Which type of jobs will use the reservation.
+     *           Optional. Which type of jobs will use the reservation.
      *     @type int $state
      *           Output only. State of the assignment.
      *     @type bool $enable_gemini_in_bigquery
@@ -85,6 +95,12 @@ class Assignment extends \Google\Protobuf\Internal\Message
      *           the parent reservation edition is ENTERPRISE_PLUS, then the assignment will
      *           give the grantee project/organization access to "Gemini in BigQuery"
      *           features.
+     *     @type \Google\Cloud\BigQuery\Reservation\V1\SchedulingPolicy $scheduling_policy
+     *           Optional. The scheduling policy to use for jobs and queries of this
+     *           assignee when running under the associated reservation. The scheduling
+     *           policy controls how the reservation's resources are distributed. This
+     *           overrides the default scheduling policy specified on the reservation.
+     *           This feature is not yet generally available.
      * }
      */
     public function __construct($data = NULL) {
@@ -125,10 +141,10 @@ class Assignment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource which will use the reservation. E.g.
+     * Optional. The resource which will use the reservation. E.g.
      * `projects/myproject`, `folders/123`, or `organizations/456`.
      *
-     * Generated from protobuf field <code>string assignee = 4;</code>
+     * Generated from protobuf field <code>string assignee = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getAssignee()
@@ -137,10 +153,10 @@ class Assignment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource which will use the reservation. E.g.
+     * Optional. The resource which will use the reservation. E.g.
      * `projects/myproject`, `folders/123`, or `organizations/456`.
      *
-     * Generated from protobuf field <code>string assignee = 4;</code>
+     * Generated from protobuf field <code>string assignee = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -153,9 +169,9 @@ class Assignment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Which type of jobs will use the reservation.
+     * Optional. Which type of jobs will use the reservation.
      *
-     * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.Assignment.JobType job_type = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.Assignment.JobType job_type = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getJobType()
@@ -164,9 +180,9 @@ class Assignment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Which type of jobs will use the reservation.
+     * Optional. Which type of jobs will use the reservation.
      *
-     * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.Assignment.JobType job_type = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.Assignment.JobType job_type = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -240,6 +256,50 @@ class Assignment extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->enable_gemini_in_bigquery = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The scheduling policy to use for jobs and queries of this
+     * assignee when running under the associated reservation. The scheduling
+     * policy controls how the reservation's resources are distributed. This
+     * overrides the default scheduling policy specified on the reservation.
+     * This feature is not yet generally available.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.SchedulingPolicy scheduling_policy = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\BigQuery\Reservation\V1\SchedulingPolicy|null
+     */
+    public function getSchedulingPolicy()
+    {
+        return $this->scheduling_policy;
+    }
+
+    public function hasSchedulingPolicy()
+    {
+        return isset($this->scheduling_policy);
+    }
+
+    public function clearSchedulingPolicy()
+    {
+        unset($this->scheduling_policy);
+    }
+
+    /**
+     * Optional. The scheduling policy to use for jobs and queries of this
+     * assignee when running under the associated reservation. The scheduling
+     * policy controls how the reservation's resources are distributed. This
+     * overrides the default scheduling policy specified on the reservation.
+     * This feature is not yet generally available.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.SchedulingPolicy scheduling_policy = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\BigQuery\Reservation\V1\SchedulingPolicy $var
+     * @return $this
+     */
+    public function setSchedulingPolicy($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\Reservation\V1\SchedulingPolicy::class);
+        $this->scheduling_policy = $var;
 
         return $this;
     }
