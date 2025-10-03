@@ -22,6 +22,8 @@ use Google\Cloud\Datastore\Query\Aggregation;
 use Google\Cloud\Datastore\Query\AggregationQuery;
 use Google\Cloud\Datastore\Query\GqlQuery;
 use Google\Cloud\Datastore\Query\Query;
+use Google\Cloud\Datastore\V1\CompositeFilter\Operator;
+use Google\Cloud\Datastore\V1\PropertyFilter\Operator as PropertyFilterOperator;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -45,11 +47,11 @@ class AggregationQueryTest extends TestCase
         $expectedQuery = [
             'filter' => [
                 'compositeFilter' => [
-                    'op' => 'AND',
+                    'op' => Operator::PBAND,
                     'filters' => [
                         [
                             'propertyFilter' => [
-                                'op' => 'EQUAL',
+                                'op' => PropertyFilterOperator::EQUAL,
                                 'property' => ['name' => 'foo'],
                                 'value' => ['stringValue' => 'bar'],
                             ]
@@ -83,7 +85,9 @@ class AggregationQueryTest extends TestCase
         $self = $this->query->limit(2);
         $this->assertInstanceOf(Query::class, $this->query);
         $expectedQuery = [
-            'limit' => 2
+            'limit' => [
+                'value' => 2
+            ]
         ];
 
         $query = new AggregationQuery($self);

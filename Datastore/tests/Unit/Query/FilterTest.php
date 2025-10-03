@@ -18,6 +18,8 @@
 namespace Google\Cloud\Datastore\Tests\Unit\Query;
 
 use Google\Cloud\Datastore\Query\Filter;
+use Google\Cloud\Datastore\V1\CompositeFilter\Operator;
+use Google\Cloud\Datastore\V1\PropertyFilter\Operator as PropertyFilterOperator;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -29,7 +31,7 @@ class FilterTest extends TestCase
     /**
      * @dataProvider getCompositeFilterCases
      */
-    public function testCompositeFilterMethods($methodName, $filters)
+    public function testCompositeFilterMethods(string $methodName, int $mappedOperator, array $filters)
     {
         $filter = Filter::$methodName($filters);
 
@@ -38,7 +40,7 @@ class FilterTest extends TestCase
 
         $this->assertEquals($compositeFilter['filters'], $filters);
 
-        $this->assertEquals($compositeFilter['op'], strtoupper($methodName));
+        $this->assertEquals($compositeFilter['op'], $mappedOperator);
     }
 
     /**
@@ -46,12 +48,12 @@ class FilterTest extends TestCase
      */
     public function testWhere($value)
     {
-        $filter = Filter::where('foo', 'test_op', $value);
+        $filter = Filter::where('foo', '>', $value);
         $this->assertArrayHasKey('propertyFilter', $filter);
         $propertyFilter = $filter['propertyFilter'];
 
         $this->assertEquals($propertyFilter['property'], 'foo');
-        $this->assertEquals($propertyFilter['op'], 'test_op');
+        $this->assertEquals(PropertyFilterOperator::GREATER_THAN, $propertyFilter['op']);
         $this->assertEquals($propertyFilter['value'], $value);
     }
 
@@ -71,8 +73,8 @@ class FilterTest extends TestCase
     public function getCompositeFilterCases()
     {
         $cases = [
-            ['and', [['foo' => 'bar1'], ['foo' => 'bar2']]],
-            ['or', [['foo' => 'bar1'], ['foo' => 'bar2']]]
+            ['and', Operator::PBAND, [['foo' => 'bar1'], ['foo' => 'bar2']]],
+            ['or', Operator::PBOR, [['foo' => 'bar1'], ['foo' => 'bar2']]]
         ];
         return $cases;
     }

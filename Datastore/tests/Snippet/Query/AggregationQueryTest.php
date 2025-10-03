@@ -19,12 +19,15 @@ namespace Google\Cloud\Datastore\Tests\Snippet\Query;
 
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Datastore\EntityMapper;
 use Google\Cloud\Datastore\Operation;
 use Google\Cloud\Datastore\Query\AggregationQuery;
 use Google\Cloud\Datastore\Query\AggregationQueryResult;
+use Google\Cloud\Datastore\Tests\Unit\ProtoEncodeTrait;
+use Google\Cloud\Datastore\V1\Client\DatastoreClient as GapicDatastoreClient;
+use Google\Cloud\Datastore\V1\RunAggregationQueryRequest;
+use Google\Cloud\Datastore\V1\RunAggregationQueryResponse;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -34,44 +37,42 @@ use Prophecy\PhpUnit\ProphecyTrait;
 class AggregationQueryTest extends SnippetTestCase
 {
     use ProphecyTrait;
+    use ProtoEncodeTrait;
 
     private $datastore;
-    private $connection;
+    private $gapicClient;
     private $operation;
 
     public function setUp(): void
     {
         $mapper = new EntityMapper('my-awesome-project', true, false);
-        $this->datastore = TestHelpers::stub(DatastoreClient::class, [], ['operation']);
-        $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->operation = TestHelpers::stub(Operation::class, [
-            $this->connection->reveal(),
-            'my-awesome-project',
-            '',
-            $mapper
+        $this->gapicClient = $this->prophesize(GapicDatastoreClient::class);
+        $this->datastore = new DatastoreClient([
+            'datastoreClient' => $this->gapicClient->reveal()
         ]);
     }
 
     public function testClass()
     {
-        $this->connection->runAggregationQuery(Argument::any())
+        $this->gapicClient->runAggregationQuery(Argument::type(RunAggregationQueryRequest::class), Argument::any())
             ->shouldBeCalled()
-            ->willReturn([
+            ->willReturn(self::generateProto(RunAggregationQueryResponse::class, [
                 'batch' => [
                     'aggregationResults' => [
                         [
                             'aggregateProperties' => [
-                                'total' => 200,
+                                'total' => [
+                                    'integerValue' => 200
+                                ],
                             ]
                         ]
                     ],
-                    'readTime' => (new \DateTime())->format('Y-m-d\TH:i:s') .'.000001Z'
+                    'readTime' => [
+                        'seconds' => 1,
+                        'nanos' => 2
+                    ]
                 ]
-            ]);
-
-        $this->operation->___setProperty('connection', $this->connection->reveal());
-
-        $this->datastore->___setProperty('operation', $this->operation);
+            ]));
 
         $snippet = $this->snippetFromClass(AggregationQuery::class);
         $snippet->replace('$datastore = new DatastoreClient();', '');
@@ -84,24 +85,25 @@ class AggregationQueryTest extends SnippetTestCase
 
     public function testClassWithOverAggregation()
     {
-        $this->connection->runAggregationQuery(Argument::any())
+        $this->gapicClient->runAggregationQuery(Argument::type(RunAggregationQueryRequest::class), Argument::any())
             ->shouldBeCalled()
-            ->willReturn([
+            ->willReturn(self::generateProto(RunAggregationQueryResponse::class, [
                 'batch' => [
                     'aggregationResults' => [
                         [
                             'aggregateProperties' => [
-                                'total_upto_100' => 100,
+                                'total_upto_100' => [
+                                    'integerValue' => 100
+                                ],
                             ]
                         ]
                     ],
-                    'readTime' => (new \DateTime())->format('Y-m-d\TH:i:s') .'.000001Z'
+                    'readTime' => [
+                        'seconds' => 1,
+                        'nanos' => 2,
+                    ]
                 ]
-            ]);
-
-        $this->operation->___setProperty('connection', $this->connection->reveal());
-
-        $this->datastore->___setProperty('operation', $this->operation);
+            ]));
 
         $snippet = $this->snippetFromClass(AggregationQuery::class, 1);
         $snippet->replace('$datastore = new DatastoreClient();', '');

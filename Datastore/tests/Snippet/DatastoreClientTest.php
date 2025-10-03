@@ -23,7 +23,6 @@ use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Datastore\Blob;
-use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\Cursor;
 use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Datastore\Entity;
@@ -34,7 +33,19 @@ use Google\Cloud\Datastore\Query\AggregationQuery;
 use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Query\QueryInterface;
 use Google\Cloud\Datastore\ReadOnlyTransaction;
+use Google\Cloud\Datastore\Tests\Unit\ProtoEncodeTrait;
 use Google\Cloud\Datastore\Transaction;
+use Google\Cloud\Datastore\V1\AllocateIdsResponse;
+use Google\Cloud\Datastore\V1\BeginTransactionRequest;
+use Google\Cloud\Datastore\V1\BeginTransactionResponse;
+use Google\Cloud\Datastore\V1\Client\DatastoreClient as GapicDatastoreClient;
+use Google\Cloud\Datastore\V1\CommitRequest;
+use Google\Cloud\Datastore\V1\CommitResponse;
+use Google\Cloud\Datastore\V1\LookupResponse;
+use Google\Cloud\Datastore\V1\RunAggregationQueryRequest;
+use Google\Cloud\Datastore\V1\RunAggregationQueryResponse;
+use Google\Cloud\Datastore\V1\RunQueryRequest;
+use Google\Cloud\Datastore\V1\RunQueryResponse;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -45,18 +56,21 @@ class DatastoreClientTest extends SnippetTestCase
 {
     use DatastoreOperationRefreshTrait;
     use ProphecyTrait;
+    use ProtoEncodeTrait;
 
     const PROJECT = 'example-project';
 
-    private $connection;
+    private $gapicClient;
     private $operation;
     private $client;
     private $key;
 
     public function setUp(): void
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->client = TestHelpers::stub(DatastoreClient::class, [], ['operation']);
+        $this->gapicClient = $this->prophesize(GapicDatastoreClient::class);
+        $this->client = new DatastoreClient([
+            'datastoreClient' => $this->gapicClient->reveal()
+        ]);
 
         $this->key = new Key('my-awesome-project', [
             [
@@ -312,10 +326,23 @@ class DatastoreClientTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(DatastoreClient::class, 'allocateId');
         $snippet->addLocal('datastore', $this->client);
 
-        $this->allocateIdsConnectionMock();
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
+        $this->gapicClient->allocateids(Argument::any(), Argument::any())
+            ->shouldBeCalled()
+            ->willReturn(self::generateProto(
+                AllocateIdsResponse::class,
+                [
+                    'keys' => [
+                        [
+                            'path' => [
+                                [
+                                    'kind' => 'Person',
+                                    'id' => '4682475895'
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ));
 
         $res = $snippet->invoke('keyWithAllocatedId');
 
@@ -330,9 +357,6 @@ class DatastoreClientTest extends SnippetTestCase
         $snippet->addLocal('datastore', $this->client);
 
         $this->allocateIdsConnectionMock();
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
 
         $res = $snippet->invoke('keysWithAllocatedIds');
 
@@ -347,15 +371,11 @@ class DatastoreClientTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(DatastoreClient::class, 'transaction');
         $snippet->addLocal('datastore', $this->client);
 
-        $this->connection->beginTransaction($this->validateTransactionOptions('readWrite'))
+        $this->gapicClient->beginTransaction(Argument::type(BeginTransactionRequest::class), Argument::any())
             ->shouldBeCalled()
-            ->willReturn([
+            ->willReturn(self::generateProto(BeginTransactionResponse::class, [
                 'transaction' => 'foo'
-            ]);
-
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
+            ]));
 
         $res = $snippet->invoke('transaction');
         $this->assertInstanceOf(Transaction::class, $res->returnVal());
@@ -365,14 +385,12 @@ class DatastoreClientTest extends SnippetTestCase
     {
         $snippet = $this->snippetFromMethod(DatastoreClient::class, 'readOnlyTransaction');
         $snippet->addLocal('datastore', $this->client);
-        $this->connection->beginTransaction($this->validateTransactionOptions('readOnly'))
+        $this->gapicClient->beginTransaction($this->validateTransactionOptions('readOnly'), Argument::any())
             ->shouldBeCalled()
-            ->willReturn([
+            ->willReturn(self::generateProto(BeginTransactionResponse::class, [
                 'transaction' => 'foo'
-            ]);
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
+            ]));
+
         $res = $snippet->invoke('transaction');
         $this->assertInstanceOf(ReadOnlyTransaction::class, $res->returnVal());
 
@@ -388,19 +406,16 @@ class DatastoreClientTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(DatastoreClient::class, 'insert');
         $snippet->addLocal('datastore', $this->client);
 
-        $this->connection->commit(Argument::that(function ($args) {
-            return array_keys($args['mutations'][0])[0] === 'insert';
-        }))
+        $this->gapicClient->commit(Argument::that(function (CommitRequest $request) {
+            $this->assertEquals('insert', $request->getMutations()[0]->getOperation());
+            return true;
+        }), Argument::any())
             ->shouldBeCalled()
-            ->willReturn([
+            ->willReturn(self::generateProto(CommitResponse::class, [
                 'mutationResults' => [
                     ['version' => 1]
                 ]
-            ]);
-
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
+            ]));
 
         $res = $snippet->invoke('entity');
 
@@ -412,16 +427,14 @@ class DatastoreClientTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(DatastoreClient::class, 'insertBatch');
         $snippet->addLocal('datastore', $this->client);
 
-        $this->connection->commit(Argument::that(function ($args) {
-            return array_keys($args['mutations'][0])[0] === 'insert';
-        }))
-            ->shouldBeCalled();
+        $this->gapicClient->commit(Argument::that(function (CommitRequest $request) {
+            $this->assertEquals('insert', $request->getMutations()[0]->getOperation());
+            return true;
+        }), Argument::any())
+            ->shouldBeCalled()
+            ->willReturn(self::generateProto(CommitResponse::class, []));
 
         $this->allocateIdsConnectionMock();
-
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
 
         $res = $snippet->invoke('entities');
 
@@ -436,19 +449,16 @@ class DatastoreClientTest extends SnippetTestCase
             'populatedByService' => true
         ]));
 
-        $this->connection->commit(Argument::that(function ($args) {
-            return array_keys($args['mutations'][0])[0] === 'update';
-        }))
+        $this->gapicClient->commit(Argument::that(function (CommitRequest $request) {
+            $this->assertEquals('update', $request->getMutations()[0]->getOperation());
+            return true;
+        }), Argument::any())
             ->shouldBeCalled()
-            ->willReturn([
+            ->willReturn(self::generateProto(CommitResponse::class, [
                 'mutationResults' => [
                     ['version' => 1]
                 ]
-            ]);
-
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
+            ]));
 
         $res = $snippet->invoke();
     }
@@ -462,13 +472,15 @@ class DatastoreClientTest extends SnippetTestCase
             $this->client->entity($this->client->key('Person', 'John'), [], ['populatedByService' => true])
         ]);
 
-        $this->connection->commit(Argument::that(function ($args) {
-            return array_keys($args['mutations'][0])[0] === 'update';
-        }))->shouldBeCalled();
-
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
+        $this->gapicClient->commit(Argument::that(function (CommitRequest $request) {
+            $this->assertEquals('update', $request->getMutations()[0]->getOperation());
+            return true;
+        }), Argument::any())->shouldBeCalled()
+            ->willReturn(self::generateProto(CommitResponse::class, [
+                'mutationResults' => [
+                    ['version' => 1]
+                ]
+            ]));
 
         $res = $snippet->invoke();
     }
@@ -478,19 +490,16 @@ class DatastoreClientTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(DatastoreClient::class, 'upsert');
         $snippet->addLocal('datastore', $this->client);
 
-        $this->connection->commit(Argument::that(function ($args) {
-            return array_keys($args['mutations'][0])[0] === 'upsert';
-        }))
+        $this->gapicClient->commit(Argument::that(function (CommitRequest $request) {
+            $this->assertEquals('upsert', $request->getMutations()[0]->getOperation());
+            return true;
+        }), Argument::any())
             ->shouldBeCalled()
-            ->willReturn([
+            ->willReturn(self::generateProto(CommitResponse::class, [
                 'mutationResults' => [
                     ['version' => 1]
                 ]
-            ]);
-
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
+            ]));
 
         $res = $snippet->invoke();
     }
@@ -500,13 +509,15 @@ class DatastoreClientTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(DatastoreClient::class, 'upsertBatch');
         $snippet->addLocal('datastore', $this->client);
 
-        $this->connection->commit(Argument::that(function ($args) {
-            return array_keys($args['mutations'][0])[0] === 'upsert';
-        }))->shouldBeCalled();
-
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
+        $this->gapicClient->commit(Argument::that(function (CommitRequest $request) {
+            $this->assertEquals('upsert', $request->getMutations()[0]->getOperation());
+            return true;
+        }), Argument::any())->shouldBeCalled()
+            ->willReturn(self::generateProto(CommitResponse::class, [
+                'mutationResults' => [
+                    ['version' => 1]
+                ]
+            ]));
 
         $res = $snippet->invoke();
     }
@@ -516,19 +527,16 @@ class DatastoreClientTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(DatastoreClient::class, 'delete');
         $snippet->addLocal('datastore', $this->client);
 
-        $this->connection->commit(Argument::that(function ($args) {
-            return array_keys($args['mutations'][0])[0] === 'delete';
-        }))
+        $this->gapicClient->commit(Argument::that(function (CommitRequest $request) {
+            $this->assertEquals('delete', $request->getMutations()[0]->getOperation());
+            return true;
+        }), Argument::any())
             ->shouldBeCalled()
-            ->willReturn([
+            ->willReturn(self::generateProto(CommitResponse::class, [
                 'mutationResults' => [
                     ['version' => 1]
                 ]
-            ]);
-
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
+            ]));
 
         $res = $snippet->invoke();
     }
@@ -538,13 +546,17 @@ class DatastoreClientTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(DatastoreClient::class, 'deleteBatch');
         $snippet->addLocal('datastore', $this->client);
 
-        $this->connection->commit(Argument::that(function ($args) {
-            return array_keys($args['mutations'][0])[0] === 'delete';
-        }))->shouldBeCalled();
+        $this->gapicClient->commit(Argument::that(function (CommitRequest $request) {
+            $this->assertEquals('delete', $request->getMutations()[0]->getOperation());
+            return true;
+        }), Argument::any())
+            ->shouldBeCalled()
+            ->willReturn(self::generateProto(CommitResponse::class, [
+                'mutationResults' => [
+                    ['version' => 1]
+                ]
+            ]));
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
 
         $res = $snippet->invoke();
     }
@@ -554,9 +566,9 @@ class DatastoreClientTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(DatastoreClient::class, 'lookup');
         $snippet->addLocal('datastore', $this->client);
 
-        $this->connection->lookup(Argument::any())
+        $this->gapicClient->lookup(Argument::any(), Argument::any())
             ->shouldBeCalled()
-            ->willReturn([
+            ->willReturn(self::generateProto(LookupResponse::class, [
                 'found' => [
                     [
                         'entity' => [
@@ -573,11 +585,7 @@ class DatastoreClientTest extends SnippetTestCase
                         ]
                     ]
                 ]
-            ]);
-
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
+            ]));
 
         $res = $snippet->invoke();
         $this->assertEquals('Bob', $res->output());
@@ -594,9 +602,9 @@ class DatastoreClientTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(DatastoreClient::class, 'lookupBatch');
         $snippet->addLocal('datastore', $this->client);
 
-        $this->connection->lookup(Argument::any())
+         $this->gapicClient->lookup(Argument::any(), Argument::any())
             ->shouldBeCalled()
-            ->willReturn([
+            ->willReturn(self::generateProto(LookupResponse::class, [
                 'found' => [
                     [
                         'entity' => [
@@ -627,11 +635,7 @@ class DatastoreClientTest extends SnippetTestCase
                         ]
                     ]
                 ]
-            ]);
-
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
+            ]));
 
         $res = $snippet->invoke();
         $this->assertEquals("Bob", explode("\n", $res->output())[0]);
@@ -683,11 +687,12 @@ class DatastoreClientTest extends SnippetTestCase
         $query = $this->prophesize(QueryInterface::class);
         $query->queryObject()->willReturn([]);
         $query->queryKey()->willReturn('query');
+        $query->canPaginate()->willReturn(false);
         $snippet->addLocal('query', $query->reveal());
 
-        $this->connection->runQuery(Argument::any())
+        $this->gapicClient->runQuery(Argument::type(RunQueryRequest::class), Argument::any())
             ->shouldBeCalled()
-            ->willReturn([
+            ->willReturn(self::generateProto(RunQueryResponse::class, [
                 'batch' => [
                     'entityResults' => [
                         [
@@ -706,11 +711,7 @@ class DatastoreClientTest extends SnippetTestCase
                         ]
                     ]
                 ]
-            ]);
-
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
+            ]));
 
         $res = $snippet->invoke('result');
         $this->assertEquals('Bob', $res->output());
@@ -725,6 +726,7 @@ class DatastoreClientTest extends SnippetTestCase
 
     public function testRunAggregationQuery()
     {
+        $time = new Timestamp(new \DateTime());
         $snippet = $this->snippetFromMethod(DatastoreClient::class, 'runAggregationQuery');
         $snippet->addLocal('datastore', $this->client);
 
@@ -732,24 +734,22 @@ class DatastoreClientTest extends SnippetTestCase
         $query->queryObject()->willReturn([]);
         $snippet->addLocal('query', $query->reveal());
 
-        $this->connection->runAggregationQuery(Argument::any())
+        $this->gapicClient->runAggregationQuery(Argument::type(RunAggregationQueryRequest::class), Argument::any())
             ->shouldBeCalled()
-            ->willReturn([
+            ->willReturn(self::generateProto(RunAggregationQueryResponse::class, [
                 'batch' => [
                     'aggregationResults' => [
                         [
                             'aggregateProperties' => [
-                                'property_1' => 1,
+                                'property_1' => [
+                                    'integerValue' => 1
+                                ]
                             ]
                         ]
                     ],
-                    'readTime' => (new \DateTime)->format('Y-m-d\TH:i:s') .'.000001Z'
+                    'readTime' => $time
                 ]
-            ]);
-
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
+            ]));
 
         $res = $snippet->invoke();
         $this->assertEquals('1', $res->output());
@@ -766,53 +766,45 @@ class DatastoreClientTest extends SnippetTestCase
 
     private function allocateIdsConnectionMock()
     {
-        $this->connection->allocateIds(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
-                'keys' => [
-                    [
-                        'path' => [
-                            [
-                                'kind' => 'Person',
-                                'id' => '4682475895'
-                            ]
+        $responseArray = [
+            'keys' => [
+                [
+                    'path' => [
+                        [
+                            'kind' => 'Person',
+                            'id' => '4682475895'
                         ]
-                    ],
-                    [
-                        'path' => [
-                            [
-                                'kind' => 'Person',
-                                'id' => '4682475896'
-                            ]
+                    ]
+                ],
+                [
+                    'path' => [
+                        [
+                            'kind' => 'Person',
+                            'id' => '4682475896'
                         ]
                     ]
                 ]
-            ]);
+            ]
+        ];
+
+        $this->gapicClient->allocateIds(Argument::any(), Argument::any())
+            ->shouldBeCalled()
+            ->willReturn(self::generateProto(AllocateIdsResponse::class, $responseArray));
     }
 
     private function validateTransactionOptions($type, array $options = [])
     {
-        return Argument::that(function ($args) use ($type, $options) {
-            if (!isset($args['transactionOptions'])) {
+        return Argument::that(function (BeginTransactionRequest $request) use ($type, $options) {
+            if (empty($request->getTransactionOptions())) {
                 echo 'missing opts';
                 return false;
             }
-            if (!array_key_exists($type, $args['transactionOptions'])) {
-                echo 'missing key';
-                return false;
-            }
 
-            if (!empty((array) $options)) {
-                return $options === $args['transactionOptions'][$type];
-            } else {
-                if (is_array($args['transactionOptions'][$type]) and
-                isset($args['transactionOptions'][$type]['readTime'])) {
-                    return true;
+            if ($type === 'readOnly') {
+                if (empty($request->getTransactionOptions()->getReadOnly())) {
+                    return false;
                 }
-                return is_object($args['transactionOptions'][$type])
-                    && empty((array) $args['transactionOptions'][$type]);
             }
-
             return true;
         });
     }

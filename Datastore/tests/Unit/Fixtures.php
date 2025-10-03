@@ -20,6 +20,11 @@ namespace Google\Cloud\Datastore\Tests\Unit;
 //@codingStandardsIgnoreStart
 class Fixtures
 {
+    public static function KEYFILE_STUB_FIXTURE()
+    {
+        return __DIR__ . '/fixtures/keyfile-stub.json';
+    }
+
     public static function ENTITY_BATCH_LOOKUP_FIXTURE()
     {
         return __DIR__ . '/fixtures/entity-batch-lookup.json';

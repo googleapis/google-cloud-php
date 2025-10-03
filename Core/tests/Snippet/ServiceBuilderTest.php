@@ -51,7 +51,6 @@ class ServiceBuilderTest extends SnippetTestCase
     {
         return [
             ['bigQuery', BigQueryClient::class, 'bigQuery'],
-            ['datastore', DatastoreClient::class, 'datastore'],
             ['firestore', FirestoreClient::class, 'firestore', true],
             ['logging', LoggingClient::class, 'logging'],
             ['language', LanguageClient::class, 'language'],
