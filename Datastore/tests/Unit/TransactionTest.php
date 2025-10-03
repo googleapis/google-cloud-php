@@ -273,7 +273,10 @@ class TransactionTest extends TestCase
                                 'aggregateProperties' => ['property_1' => ['integerValue' => 1]]
                             ]
                         ],
-                        'readTime' => (new \DateTime)->format('Y-m-d\TH:i:s') .'.000001Z'
+                        'readTime' => [
+                            'seconds' => 10,
+                            'nanos' => 10
+                        ]
                     ]
                 ]));
 

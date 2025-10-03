@@ -67,7 +67,10 @@ class AggregationQueryTest extends SnippetTestCase
                             ]
                         ]
                     ],
-                    'readTime' => (new \DateTime())->format('Y-m-d\TH:i:s') .'.000001Z'
+                    'readTime' => [
+                        'seconds' => 1,
+                        'nanos' => 2
+                    ]
                 ]
             ]));
 
@@ -95,7 +98,10 @@ class AggregationQueryTest extends SnippetTestCase
                             ]
                         ]
                     ],
-                    'readTime' => (new \DateTime())->format('Y-m-d\TH:i:s') .'.000001Z'
+                    'readTime' => [
+                        'seconds' => 1,
+                        'nanos' => 2,
+                    ]
                 ]
             ]));
 

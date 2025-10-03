@@ -19,6 +19,10 @@ namespace Google\Cloud\Datastore;
 
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Int64;
+use Google\Cloud\Datastore\V1\Value as V1Value;
+use Google\Protobuf\DoubleValue;
+use Google\Protobuf\NullValue;
+use Google\Protobuf\Value;
 
 /**
  * Utility methods for mapping between datastore and {@see \Google\Cloud\Datastore\Entity}.
@@ -352,14 +356,6 @@ class EntityMapper
                 break;
 
             case 'double':
-                if ($value == INF) {
-                    $value = 'Infinity';
-                } elseif ($value == -INF) {
-                    $value = '-Infinity';
-                } elseif (is_nan($value)) {
-                    $value = 'NaN';
-                }
-
                 $propertyValue = [
                     'doubleValue' => $value
                 ];
@@ -398,7 +394,7 @@ class EntityMapper
 
             case 'NULL':
                 $propertyValue = [
-                    'nullValue' => null
+                    'nullValue' => NullValue::NULL_VALUE
                 ];
                 break;
 
@@ -471,8 +467,12 @@ class EntityMapper
                 break;
 
             case $value instanceof GeoPoint:
+                $point = $value->point();
                 return [
-                    'geoPointValue' => $value->point()
+                    'geoPointValue' => [
+                        'latitude' => $point['latitude'] ?? 0.0,
+                        'longitude' => $point['longitude'] ?? 0.0
+                    ]
                 ];
 
                 break;

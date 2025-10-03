@@ -293,7 +293,12 @@ trait ApiHelperTrait
                 );
                 $messageOptions = $this->pluckArray($messageKeys, $options);
                 if ($optionType instanceof Message) {
-                    $optionType->mergeFromJsonString(json_encode($messageOptions, JSON_FORCE_OBJECT));
+                    if (!empty($this->serializer)){
+                        $optionType = $this->serializer->decodeMessage($optionType, $messageOptions);
+                    } else {
+                        $optionType->mergeFromJsonString(json_encode($messageOptions, JSON_FORCE_OBJECT));
+                    }
+
                     $validatedOptionGroup = $optionType;
                 } else {
                     $validatedOptionGroup = $messageOptions;

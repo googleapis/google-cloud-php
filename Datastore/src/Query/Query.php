@@ -17,9 +17,14 @@
 
 namespace Google\Cloud\Datastore\Query;
 
+use Google\ApiCore\Serializer;
 use Google\Cloud\Datastore\DatastoreTrait;
 use Google\Cloud\Datastore\EntityMapper;
 use Google\Cloud\Datastore\Key;
+use Google\Cloud\Datastore\V1\CompositeFilter\Operator as CompositeFilterOperator;
+use Google\Cloud\Datastore\V1\PropertyFilter\Operator;
+use Google\Cloud\Datastore\V1\PropertyOrder\Direction;
+use Google\Cloud\Datastore\V1\RunQueryResponse;
 use InvalidArgumentException;
 
 /**
@@ -78,19 +83,19 @@ class Query implements QueryInterface
     use DatastoreTrait;
 
     const OP_DEFAULT                = self::OP_EQUALS;
-    const OP_LESS_THAN              = 'LESS_THAN';
-    const OP_LESS_THAN_OR_EQUAL     = 'LESS_THAN_OR_EQUAL';
-    const OP_GREATER_THAN           = 'GREATER_THAN';
-    const OP_GREATER_THAN_OR_EQUAL  = 'GREATER_THAN_OR_EQUAL';
-    const OP_EQUALS                 = 'EQUAL';
-    const OP_NOT_EQUALS             = 'NOT_EQUAL';
-    const OP_IN                     = 'IN';
-    const OP_NOT_IN                 = 'NOT_IN';
-    const OP_HAS_ANCESTOR           = 'HAS_ANCESTOR';
+    const OP_LESS_THAN              = Operator::LESS_THAN;
+    const OP_LESS_THAN_OR_EQUAL     = Operator::LESS_THAN_OR_EQUAL;
+    const OP_GREATER_THAN           = Operator::GREATER_THAN;
+    const OP_GREATER_THAN_OR_EQUAL  = Operator::GREATER_THAN_OR_EQUAL;
+    const OP_EQUALS                 = Operator::EQUAL;
+    const OP_NOT_EQUALS             = Operator::NOT_EQUAL;
+    const OP_IN                     = Operator::IN;
+    const OP_NOT_IN                 = Operator::NOT_IN;
+    const OP_HAS_ANCESTOR           = Operator::HAS_ANCESTOR;
 
     const ORDER_DEFAULT             = self::ORDER_ASCENDING;
-    const ORDER_DESCENDING          = 'DESCENDING';
-    const ORDER_ASCENDING           = 'ASCENDING';
+    const ORDER_DESCENDING          = Direction::DESCENDING;
+    const ORDER_ASCENDING           = Direction::ASCENDING;
 
     /**
      * @var array A list of all operators supported by datastore
@@ -138,6 +143,11 @@ class Query implements QueryInterface
      * @var array
      */
     private $query;
+
+    /**
+     * @var Serializer
+     */
+    private Serializer $serializer;
 
     /**
      * @codingStandardsIgnoreStart
@@ -473,7 +483,7 @@ class Query implements QueryInterface
      */
     public function limit($num)
     {
-        $this->query['limit'] = $num;
+        $this->query['limit'] = [ 'value' => $num ];
 
         return $this;
     }
@@ -537,7 +547,7 @@ class Query implements QueryInterface
         $this->query['filter'] = [
             'compositeFilter' => [
                 'filters' => [],
-                'op' => 'AND'
+                'op' => CompositeFilterOperator::PBAND
             ]
         ];
     }

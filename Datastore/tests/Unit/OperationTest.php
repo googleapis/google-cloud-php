@@ -44,6 +44,7 @@ use Google\Cloud\Datastore\V1\RollbackRequest;
 use Google\Cloud\Datastore\V1\RollbackResponse;
 use Google\Cloud\Datastore\V1\RunQueryRequest;
 use Google\Cloud\Datastore\V1\RunQueryResponse;
+use Google\Protobuf\Timestamp as ProtobufTimestamp;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
@@ -801,18 +802,22 @@ class OperationTest extends TestCase
     public function testMutateWithBaseVersion()
     {
         $timestamp = new Timestamp(new \DateTime());
+        $pTimestamp = new ProtobufTimestamp([
+            'seconds' => $timestamp->get()->getTimestamp(),
+            'nanos' => $timestamp->nanoSeconds()
+        ]);
         $commitResponseData = [
             'mutationResults' => [
                 [
                     'version' => 2,
                     'conflictDetected' => false,
-                    'createTime' => $timestamp,
-                    'updateTime' => $timestamp,
+                    'createTime' => $pTimestamp,
+                    'updateTime' => $pTimestamp,
                     'transformResults' => [],
                 ]
             ],
             'indexUpdates' => 1,
-            'commitTime' => $timestamp,
+            'commitTime' => $pTimestamp,
         ];
 
         $this->gapicClient->commit(Argument::that(function (CommitRequest $request) {
@@ -842,6 +847,10 @@ class OperationTest extends TestCase
     public function testMutateWithKey()
     {
         $timestamp = new Timestamp(new \DateTime());
+        $pTimestamp = new ProtobufTimestamp([
+            'seconds' => $timestamp->get()->getTimestamp(),
+            'nanos' => $timestamp->nanoSeconds()
+        ]);
         $commitResponseData = [
             'mutationResults' => [
                 [
@@ -852,7 +861,7 @@ class OperationTest extends TestCase
                 ]
             ],
             'indexUpdates' => 1,
-            'commitTime' => $timestamp,
+            'commitTime' => $pTimestamp,
         ];
 
         $this->gapicClient->commit(Argument::that(function (CommitRequest $request) {
