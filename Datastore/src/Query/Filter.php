@@ -129,7 +129,7 @@ class Filter
 
     private static function mapStringToProtoEnum(string $operator): int
     {
-        switch($operator) {
+        switch ($operator) {
             case '=':
                 return Query::OP_EQUALS;
                 break;
