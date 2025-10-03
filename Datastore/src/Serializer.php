@@ -54,11 +54,13 @@ class Serializer extends ApiCoreSerializer
                 'cursor' => function ($v) {
                     return base64_encode($v);
                 },
-            ], [
+            ],
+            [
                 'google.protobuf.Duration' => function ($v) {
                     return $this->formatDurationFromApi($v);
                 }
-            ], [
+            ],
+            [
                 'transaction' => function ($v) {
                     return base64_decode($v);
                 },
@@ -77,7 +79,8 @@ class Serializer extends ApiCoreSerializer
                 'timestamp_value' => function ($v) {
                     return $this->formatTimestampForApi($v);
                 },
-            ], [
+            ],
+            [
                 'google.protobuf.Timestamp' => function ($v) {
                     if ($v instanceof Timestamp) {
                         return $v->formatForApi();
