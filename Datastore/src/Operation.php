@@ -629,7 +629,10 @@ class Operation
             // query. This is done by replacing the GQL object with a Query
             // instance prior to the next iteration of the page.
             if (!empty($runQueryResponse->getQuery())) {
-                $queryArray = (array) json_decode($runQueryResponse->getQuery()->serializeToJsonString(PrintOptions::ALWAYS_PRINT_ENUMS_AS_INTS), true);
+                $queryArray = json_decode(
+                    $runQueryResponse->getQuery()->serializeToJsonString(PrintOptions::ALWAYS_PRINT_ENUMS_AS_INTS),
+                    true
+                );
 
                 $runQueryObj = new Query($this->entityMapper, $queryArray);
 

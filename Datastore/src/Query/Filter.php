@@ -18,7 +18,6 @@
 namespace Google\Cloud\Datastore\Query;
 
 use Google\Cloud\Datastore\V1\CompositeFilter\Operator;
-use Google\Cloud\Datastore\V1\PropertyFilter\Operator as PropertyFilterOperator;
 use InvalidArgumentException;
 
 /**
