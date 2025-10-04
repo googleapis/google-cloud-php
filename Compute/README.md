@@ -30,13 +30,27 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-require 'vendor/autoload.php';
+use Google\ApiCore\ApiException;
+use Google\Cloud\Compute\V1\AcceleratorType;
+use Google\Cloud\Compute\V1\Client\AcceleratorTypesClient;
+use Google\Cloud\Compute\V1\GetAcceleratorTypeRequest;
 
-use Google\Cloud\Compute\V1\InstancesClient;
+// Create a client.
+$acceleratorTypesClient = new AcceleratorTypesClient();
 
-$instances = new InstancesClient();
-foreach ($instances->list('[MY_PROJECT_ID]', 'us-west1') as $instance) {
-    print($instance->getName() . PHP_EOL);
+// Prepare the request message.
+$request = (new GetAcceleratorTypeRequest())
+    ->setAcceleratorType($acceleratorType)
+    ->setProject($project)
+    ->setZone($zone);
+
+// Call the API and handle any network failures.
+try {
+    /** @var AcceleratorType $response */
+    $response = $acceleratorTypesClient->get($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
 }
 ```
 

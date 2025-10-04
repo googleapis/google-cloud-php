@@ -33,10 +33,10 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-Google\ApiCore\ApiException;
-Google\Cloud\ErrorReporting\V1beta1\Client\ErrorGroupServiceClient;
-Google\Cloud\ErrorReporting\V1beta1\ErrorGroup;
-Google\Cloud\ErrorReporting\V1beta1\GetGroupRequest;
+use Google\ApiCore\ApiException;
+use Google\Cloud\ErrorReporting\V1beta1\Client\ErrorGroupServiceClient;
+use Google\Cloud\ErrorReporting\V1beta1\ErrorGroup;
+use Google\Cloud\ErrorReporting\V1beta1\GetGroupRequest;
 
 // Create a client.
 $errorGroupServiceClient = new ErrorGroupServiceClient();
@@ -52,51 +52,6 @@ try {
     printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
 } catch (ApiException $ex) {
     printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
-}
-```
-
-The Stackdriver Error Reporting client provides APIs allowing you to easily configure your application to send errors and exceptions automatically to Stackdriver, or to manually report and manage errors and statistics.
-
-#### Reporting errors from your application:
-
-```php
-require 'vendor/autoload.php';
-
-use Google\Cloud\ErrorReporting\Bootstrap;
-use Google\Cloud\Logging\LoggingClient;
-use Google\Cloud\Core\Report\SimpleMetadataProvider;
-
-$projectId = '[PROJECT]';
-$service = '[SERVICE_NAME]';
-$version = '[APP_VERSION]';
-
-$logging = new LoggingClient();
-$metadata = new SimpleMetadataProvider([], $projectId, $service, $version);
-$psrLogger = $logging->psrLogger('error-log', [
-    'metadataProvider' => $metadata
-]);
-
-// Register the logger as a PHP exception and error handler.
-// This will begin logging application exceptions and errors to Stackdriver.
-Bootstrap::init($psrLogger);
-```
-
-#### Using the Error Reporting API:
-
-```php
-require 'vendor/autoload.php';
-
-use Google\Cloud\ErrorReporting\V1beta1\ReportErrorsServiceClient;
-use Google\Cloud\ErrorReporting\V1beta1\ReportedErrorEvent;
-
-$reportErrorsServiceClient = new ReportErrorsServiceClient();
-$formattedProjectName = $reportErrorsServiceClient->projectName('[PROJECT]');
-$event = new ReportedErrorEvent();
-
-try {
-    $response = $reportErrorsServiceClient->reportErrorEvent($formattedProjectName, $event);
-} finally {
-    $reportErrorsServiceClient->close();
 }
 ```
 

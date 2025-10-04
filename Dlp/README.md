@@ -33,34 +33,25 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-require 'vendor/autoload.php';
+use Google\ApiCore\ApiException;
+use Google\Cloud\Dlp\V2\Client\DlpServiceClient;
+use Google\Cloud\Dlp\V2\ColumnDataProfile;
+use Google\Cloud\Dlp\V2\GetColumnDataProfileRequest;
 
-use Google\Cloud\Dlp\V2\DlpServiceClient;
-use Google\Cloud\Dlp\V2\ContentItem;
-use Google\Cloud\Dlp\V2\InfoType;
-use Google\Cloud\Dlp\V2\InspectConfig;
-
+// Create a client.
 $dlpServiceClient = new DlpServiceClient();
-$infoTypesElement = (new InfoType())
-    ->setName('EMAIL_ADDRESS');
-$inspectConfig = (new InspectConfig())
-    ->setInfoTypes([$infoTypesElement]);
-$item = (new ContentItem())
-    ->setValue('My email is example@example.com.');
-$formattedParent = $dlpServiceClient
-    ->projectName('[PROJECT_ID]');
 
-$response = $dlpServiceClient->inspectContent($formattedParent, [
-    'inspectConfig' => $inspectConfig,
-    'item' => $item
-]);
+// Prepare the request message.
+$request = (new GetColumnDataProfileRequest())
+    ->setName($formattedName);
 
-$findings = $response->getResult()
-    ->getFindings();
-
-foreach ($findings as $finding) {
-    print $finding->getInfoType()
-        ->getName() . PHP_EOL;
+// Call the API and handle any network failures.
+try {
+    /** @var ColumnDataProfile $response */
+    $response = $dlpServiceClient->getColumnDataProfile($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
 }
 ```
 

@@ -35,22 +35,22 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-Google\ApiCore\ApiException;
-Google\Cloud\Redis\Cluster\V1\Client\CloudRedisClusterClient;
-Google\Cloud\Redis\Cluster\V1\Cluster;
-Google\Cloud\Redis\Cluster\V1\GetClusterRequest;
+use Google\ApiCore\ApiException;
+use Google\Cloud\Redis\Cluster\V1\Backup;
+use Google\Cloud\Redis\Cluster\V1\Client\CloudRedisClusterClient;
+use Google\Cloud\Redis\Cluster\V1\GetBackupRequest;
 
 // Create a client.
 $cloudRedisClusterClient = new CloudRedisClusterClient();
 
 // Prepare the request message.
-$request = (new GetClusterRequest())
+$request = (new GetBackupRequest())
     ->setName($formattedName);
 
 // Call the API and handle any network failures.
 try {
-    /** @var Cluster $response */
-    $response = $cloudRedisClusterClient->getCluster($request);
+    /** @var Backup $response */
+    $response = $cloudRedisClusterClient->getBackup($request);
     printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
 } catch (ApiException $ex) {
     printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

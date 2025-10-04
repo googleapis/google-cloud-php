@@ -35,10 +35,10 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-Google\ApiCore\ApiException;
-Google\Cloud\Commerce\Consumer\Procurement\V1\Client\ConsumerProcurementServiceClient;
-Google\Cloud\Commerce\Consumer\Procurement\V1\GetOrderRequest;
-Google\Cloud\Commerce\Consumer\Procurement\V1\Order;
+use Google\ApiCore\ApiException;
+use Google\Cloud\Commerce\Consumer\Procurement\V1\Client\ConsumerProcurementServiceClient;
+use Google\Cloud\Commerce\Consumer\Procurement\V1\GetOrderRequest;
+use Google\Cloud\Commerce\Consumer\Procurement\V1\Order;
 
 // Create a client.
 $consumerProcurementServiceClient = new ConsumerProcurementServiceClient();

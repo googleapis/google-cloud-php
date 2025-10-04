@@ -28,6 +28,31 @@ please see our [gRPC installation guide](https://cloud.google.com/php/grpc).
 Please see our [Authentication guide](https://github.com/googleapis/google-cloud-php/blob/main/AUTHENTICATION.md) for more information
 on authenticating your client. Once authenticated, you'll be ready to start making requests.
 
+### Sample
+
+```php
+use Google\ApiCore\ApiException;
+use Google\Cloud\NetworkSecurity\V1\AuthorizationPolicy;
+use Google\Cloud\NetworkSecurity\V1\Client\NetworkSecurityClient;
+use Google\Cloud\NetworkSecurity\V1\GetAuthorizationPolicyRequest;
+
+// Create a client.
+$networkSecurityClient = new NetworkSecurityClient();
+
+// Prepare the request message.
+$request = (new GetAuthorizationPolicyRequest())
+    ->setName($formattedName);
+
+// Call the API and handle any network failures.
+try {
+    /** @var AuthorizationPolicy $response */
+    $response = $networkSecurityClient->getAuthorizationPolicy($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
+```
+
 ### Debugging
 
 Please see our [Debugging guide](https://github.com/googleapis/google-cloud-php/blob/main/DEBUG.md)

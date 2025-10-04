@@ -35,10 +35,10 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-Google\ApiCore\ApiException;
-Google\Cloud\MigrationCenter\V1\Asset;
-Google\Cloud\MigrationCenter\V1\Client\MigrationCenterClient;
-Google\Cloud\MigrationCenter\V1\GetAssetRequest;
+use Google\ApiCore\ApiException;
+use Google\Cloud\MigrationCenter\V1\Asset;
+use Google\Cloud\MigrationCenter\V1\Client\MigrationCenterClient;
+use Google\Cloud\MigrationCenter\V1\GetAssetRequest;
 
 // Create a client.
 $migrationCenterClient = new MigrationCenterClient();

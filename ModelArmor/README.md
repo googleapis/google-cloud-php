@@ -35,10 +35,10 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-Google\ApiCore\ApiException;
-Google\Cloud\ModelArmor\V1\Client\ModelArmorClient;
-Google\Cloud\ModelArmor\V1\FloorSetting;
-Google\Cloud\ModelArmor\V1\GetFloorSettingRequest;
+use Google\ApiCore\ApiException;
+use Google\Cloud\ModelArmor\V1\Client\ModelArmorClient;
+use Google\Cloud\ModelArmor\V1\FloorSetting;
+use Google\Cloud\ModelArmor\V1\GetFloorSettingRequest;
 
 // Create a client.
 $modelArmorClient = new ModelArmorClient();

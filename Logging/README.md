@@ -34,25 +34,25 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-require 'vendor/autoload.php';
+use Google\ApiCore\ApiException;
+use Google\Cloud\Logging\V2\Client\ConfigServiceV2Client;
+use Google\Cloud\Logging\V2\GetBucketRequest;
+use Google\Cloud\Logging\V2\LogBucket;
 
-use Google\Cloud\Logging\LoggingClient;
+// Create a client.
+$configServiceV2Client = new ConfigServiceV2Client();
 
-$logging = new LoggingClient();
+// Prepare the request message.
+$request = (new GetBucketRequest())
+    ->setName($formattedName);
 
-// Get a logger instance.
-$logger = $logging->logger('my_log');
-
-// Write a log entry.
-$logger->write('my message');
-
-// List log entries from a specific log.
-$entries = $logging->entries([
-    'filter' => 'logName = projects/my_project/logs/my_log'
-]);
-
-foreach ($entries as $entry) {
-    echo $entry->info()['textPayload'] . "\n";
+// Call the API and handle any network failures.
+try {
+    /** @var LogBucket $response */
+    $response = $configServiceV2Client->getBucket($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
 }
 ```
 

@@ -28,6 +28,31 @@ please see our [gRPC installation guide](https://cloud.google.com/php/grpc).
 Please see our [Authentication guide](https://github.com/googleapis/google-cloud-php/blob/main/AUTHENTICATION.md) for more information
 on authenticating your client. Once authenticated, you'll be ready to start making requests.
 
+### Sample
+
+```php
+use Google\ApiCore\ApiException;
+use Google\Cloud\Iap\V1\Client\IdentityAwareProxyAdminServiceClient;
+use Google\Cloud\Iap\V1\GetIapSettingsRequest;
+use Google\Cloud\Iap\V1\IapSettings;
+
+// Create a client.
+$identityAwareProxyAdminServiceClient = new IdentityAwareProxyAdminServiceClient();
+
+// Prepare the request message.
+$request = (new GetIapSettingsRequest())
+    ->setName($name);
+
+// Call the API and handle any network failures.
+try {
+    /** @var IapSettings $response */
+    $response = $identityAwareProxyAdminServiceClient->getIapSettings($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
+```
+
 ### Debugging
 
 Please see our [Debugging guide](https://github.com/googleapis/google-cloud-php/blob/main/DEBUG.md)

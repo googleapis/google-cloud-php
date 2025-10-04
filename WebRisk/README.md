@@ -31,23 +31,27 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
+use Google\ApiCore\ApiException;
+use Google\Cloud\WebRisk\V1\Client\WebRiskServiceClient;
+use Google\Cloud\WebRisk\V1\SearchHashesRequest;
+use Google\Cloud\WebRisk\V1\SearchHashesResponse;
 use Google\Cloud\WebRisk\V1\ThreatType;
-use Google\Cloud\WebRisk\V1\WebRiskServiceClient;
 
-$webrisk = new WebRiskServiceClient();
+// Create a client.
+$webRiskServiceClient = new WebRiskServiceClient();
 
-$uri = 'http://testsafebrowsing.appspot.com/s/malware.html';
-$response = $webrisk->searchUris($uri, [
-    ThreatType::MALWARE,
-    ThreatType::SOCIAL_ENGINEERING
-]);
+// Prepare the request message.
+$threatTypes = [$threatTypesElement,];
+$request = (new SearchHashesRequest())
+    ->setThreatTypes($threatTypes);
 
-$threats = $response->getThreat();
-if ($threats) {
-    echo $uri . ' has the following threats:' . PHP_EOL;
-    foreach ($threats->getThreatTypes() as $threat) {
-        echo ThreatType::name($threat) . PHP_EOL;
-    }
+// Call the API and handle any network failures.
+try {
+    /** @var SearchHashesResponse $response */
+    $response = $webRiskServiceClient->searchHashes($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
 }
 ```
 
