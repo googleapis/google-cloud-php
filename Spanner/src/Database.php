@@ -41,7 +41,6 @@ use Google\Cloud\Spanner\V1\TransactionOptions;
 use Google\Cloud\Spanner\V1\TransactionOptions\IsolationLevel;
 use Google\Cloud\Spanner\V1\TypeCode;
 use Google\Rpc\Code;
-use InvalidArgumentException;
 
 /**
  * Represents a Cloud Spanner Database.
