@@ -36,6 +36,7 @@ use Google\Cloud\Spanner\Connection\Grpc;
 use Google\Cloud\Spanner\Connection\LongRunningConnection;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\V1\SpannerClient as GapicSpannerClient;
+use Google\Cloud\Spanner\V1\TransactionOptions\IsolationLevel;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\Http\StreamInterface;
 
@@ -139,6 +140,11 @@ class SpannerClient
     private $directedReadOptions;
 
     /**
+     * @var int
+     */
+    private $isolationLevel;
+
+    /**
      * Create a Spanner client. Please note that this client requires
      * [the gRPC extension](https://cloud.google.com/php/grpc).
      *
@@ -239,6 +245,8 @@ class SpannerClient
      *           **Defaults to** `true` (enabled).
      *     @type string $universeDomain The expected universe of the credentials. Defaults to
      *            "googleapis.com"
+     *     @type int $isolationLevel The level of Isolation for the transactions executed by this Client's instance.
+     *           **Defaults to** IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED
      * }
      * @throws GoogleException If the gRPC extension is not enabled.
      */
@@ -256,7 +264,8 @@ class SpannerClient
             'projectIdRequired' => true,
             'hasEmulator' => (bool) $emulatorHost,
             'emulatorHost' => $emulatorHost,
-            'queryOptions' => []
+            'queryOptions' => [],
+            'isolationLevel' => IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED,
         ];
 
         if (!empty($config['useDiscreteBackoffs'])) {
@@ -317,6 +326,7 @@ class SpannerClient
         ]);
 
         $this->directedReadOptions = $config['directedReadOptions'] ?? [];
+        $this->isolationLevel = $config['isolationLevel'];
     }
 
     /**
@@ -596,7 +606,10 @@ class SpannerClient
             $name,
             $this->returnInt64AsObject,
             $instance,
-            ['directedReadOptions' => $this->directedReadOptions]
+            [
+                'directedReadOptions' => $this->directedReadOptions,
+                'isolationLevel' => $this->isolationLevel
+            ]
         );
     }
 
