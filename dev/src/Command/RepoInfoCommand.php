@@ -19,6 +19,7 @@ namespace Google\Cloud\Dev\Command;
 
 use Google\Cloud\Dev\Component;
 use Google\Cloud\Dev\GitHub;
+use Google\Cloud\Dev\Packagist;
 use Google\Cloud\Dev\RunShell;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\Table;
@@ -36,16 +37,8 @@ use GuzzleHttp\Client;
 class RepoInfoCommand extends Command
 {
     private GitHub $github;
+    private Packagist $packagist;
 
-    private static $allFields = [
-        'name' => 'Name',
-        'has_issues' => 'Has Issues',
-        'has_projects' => 'Has Projects',
-        'has_wiki' => 'Has Wiki',
-        'has_pages' => 'Has Pages',
-        'has_discussions' => 'Has Discussions',
-        'teams'   => 'Teams',
-    ];
     protected function configure()
     {
         $this->setName('repo-info')
@@ -61,10 +54,17 @@ class RepoInfoCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         // Create github client wrapper
-        $this->github = new GitHub(new RunShell(), new Client(), $input->getOption('token'), $output);
+        $http = new Client();
+        $this->github = new GitHub(new RunShell(), $http, $input->getOption('token'), $output);
+        $this->packagist = new Packagist($http, '', '');
 
         $nextPageQuestion = new ConfirmationQuestion('Next Page (enter)', true);
-        $table = (new Table($output))->setHeaders(self::$allFields);
+        $table = (new Table($output))->setHeaders([
+            'name' => 'Name',
+            'repo_config' => 'Repo Config',
+            'packagist_config' => 'Packagist Config',
+            'teams' => 'Teams',
+        ]);
         if ($componentName = $input->getArgument('component')) {
             $table->setVertical();
         }
@@ -91,6 +91,9 @@ class RepoInfoCommand extends Command
                 $refreshDetails = false;
                 if (!$this->checkSettingsCompliance($details)) {
                     $refreshDetails |= $this->askFixSettingsCompliance($input, $output, $details);
+                }
+                if (!$this->checkPackagistCompliance($details)) {
+                    $refreshDetails |= $this->askFixPackagistCompliance($input, $output, $component->getRepoName());
                 }
                 if (!$this->checkTeamCompliance($details)) {
                     $refreshDetails |= $this->askFixTeamCompliance($input, $output, $component->getRepoName());
@@ -141,6 +144,19 @@ class RepoInfoCommand extends Command
         return false;
     }
 
+    private function checkPackagistCompliance(array $details)
+    {
+        return !empty(array_filter(
+            explode("\n", $details['packagist_config']),
+            fn ($team) => $team === 'google-cloud'
+        ));
+    }
+
+    private function askFixPackagistCompliance(InputInterface $input, OutputInterface $output, array $details)
+    {
+        throw new \Exception('not implemented');
+    }
+
     private function askFixTeamCompliance(InputInterface $input, OutputInterface $output, string $repoName)
     {
         $question = new ConfirmationQuestion(sprintf(
@@ -155,18 +171,26 @@ class RepoInfoCommand extends Command
 
     private function getRepoDetails(Component $component): array
     {
+        $repoDetails = (array) $this->github->getRepoDetails($component->getRepoName());
         // use "array_intersect_key" to filter out fields that were not requested.
         $fields = array_map(
-            fn ($field) => is_bool($field) ? var_export($field, true) : $field,
+            fn ($field) => var_export($field, true),
             array_intersect_key(
-                (array) $this->github->getRepoDetails($component->getRepoName()),
-                self::$allFields
+                $repoDetails,
+                array_flip(['has_issues', 'has_projects', 'has_wiki', 'has_pages', 'has_discussions'])
             )
         );
 
-        $fields['teams'] = $this->getRepoTeamDetails($component);
-
-        return $fields;
+        return [
+            'name' => $repoDetails['name'],
+            'repo_config' => implode("\n", array_map(
+                fn ($v, $k) => sprintf('%s: %s', str_replace('has_', '', $k), $v),
+                $fields,
+                array_keys($fields),
+            )),
+            'packagist_config' => implode("\n", $this->packagist->getMaintainers($component->getPackageName())),
+            'teams' => $this->getRepoTeamDetails($component),
+        ];
     }
 
     private function getRepoTeamDetails(Component $component)

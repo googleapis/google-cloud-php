@@ -91,6 +91,16 @@ class Packagist
         return $data['downloads']['total'] ?? 0;
     }
 
+    public function getMaintainers(string $packageName): array
+    {
+        $response = $this->client->get("https://packagist.org/packages/$packageName.json");
+        $data = json_decode($response->getBody()->getContents(), true);
+        return array_map(
+            fn ($m) => $m['name'],
+            $data['package']['maintainers']
+        );
+    }
+
     /**
      * Log an exception
      *

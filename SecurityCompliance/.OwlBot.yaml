@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/cloud/cloudsecuritycompliance/(v1)/.*-php/(.*)
+      dest: /owl-bot-staging/SecurityCompliance/$1/$2
+api-name: SecurityCompliance

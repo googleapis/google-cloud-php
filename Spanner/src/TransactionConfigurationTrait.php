@@ -19,6 +19,7 @@ namespace Google\Cloud\Spanner;
 
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
+use Google\Cloud\Spanner\V1\TransactionOptions\ReadWrite\ReadLockMode as ReadLockMode;
 
 /**
  * Configure transaction selection for read, executeSql, rollback and commit.
@@ -154,6 +155,15 @@ trait TransactionConfigurationTrait
 
         if (isset($options['isolationLevel'])) {
             $transactionOptions['isolationLevel'] = $options['isolationLevel'];
+        }
+
+        // Allow for proper configuring of the `readLockMode` if it's set as a base or nested option
+        if (isset($options['readLockMode'])) {
+            $transactionOptions['readWrite']['readLockMode'] = $options['readLockMode'];
+        }
+
+        if (isset($options['readWrite']['readLockMode'])) {
+            $transactionOptions['readWrite']['readLockMode'] = $options['readWrite']['readLockMode'];
         }
 
         return $transactionOptions;
