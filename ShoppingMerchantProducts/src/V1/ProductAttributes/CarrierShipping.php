@@ -892,6 +892,4 @@ class CarrierShipping extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CarrierShipping::class, \Google\Shopping\Merchant\Products\V1\ProductAttributes_CarrierShipping::class);
 

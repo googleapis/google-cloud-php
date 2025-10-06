@@ -472,6 +472,4 @@ class CarrierPriceOption
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CarrierPriceOption::class, \Google\Shopping\Merchant\Products\V1\ProductAttributes_CarrierPriceOption::class);
 
