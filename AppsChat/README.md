@@ -35,10 +35,10 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-Google\ApiCore\ApiException;
-Google\Apps\Chat\V1\Attachment;
-Google\Apps\Chat\V1\Client\ChatServiceClient;
-Google\Apps\Chat\V1\GetAttachmentRequest;
+use Google\ApiCore\ApiException;
+use Google\Apps\Chat\V1\Attachment;
+use Google\Apps\Chat\V1\Client\ChatServiceClient;
+use Google\Apps\Chat\V1\GetAttachmentRequest;
 
 // Create a client.
 $chatServiceClient = new ChatServiceClient();

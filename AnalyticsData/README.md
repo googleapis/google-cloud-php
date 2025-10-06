@@ -31,22 +31,25 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-require 'vendor/autoload.php';
-
+use Google\Analytics\Data\V1beta\AudienceExport;
 use Google\Analytics\Data\V1beta\Client\BetaAnalyticsDataClient;
-use Google\Analytics\Data\V1beta\RunReportRequest;
+use Google\Analytics\Data\V1beta\GetAudienceExportRequest;
+use Google\ApiCore\ApiException;
 
-$client = new BetaAnalyticsDataClient();
+// Create a client.
+$betaAnalyticsDataClient = new BetaAnalyticsDataClient();
 
-$request = new RunReportRequest([
-    'property' => 'properties/[YOUR_PROPERTY_ID]'
-]);
-$response = $client->runReport($request);
+// Prepare the request message.
+$request = (new GetAudienceExportRequest())
+    ->setName($formattedName);
 
-foreach ($response->getRows() as $row) {
-    foreach ($row->getDimensionValues() as $dimensionValue) {
-        print 'Dimension Value: ' . $dimensionValue->getValue() . PHP_EOL;
-    }
+// Call the API and handle any network failures.
+try {
+    /** @var AudienceExport $response */
+    $response = $betaAnalyticsDataClient->getAudienceExport($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
 }
 ```
 

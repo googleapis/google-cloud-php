@@ -247,9 +247,9 @@ class NewComponentCommand extends Command
             if ($returnCode !== Command::SUCCESS) {
                 return $returnCode;
             }
-            $addSamplesArgs = ['--component' => [$new->componentName]];
-            $addSampleCommand = $this->getApplication()->find('add-sample-to-readme');
-            $returnCode = $addSampleCommand->run(new ArrayInput($addSamplesArgs), $output);
+            $updateReadmeSampleArgs = ['--component' => [$new->componentName]];
+            $updateReadmeSampleCommand = $this->getApplication()->find('update-readme-sample');
+            $returnCode = $updateReadmeSampleCommand->run(new ArrayInput($updateReadmeSampleArgs), $output);
             if ($returnCode !== Command::SUCCESS) {
                 return $returnCode;
             }

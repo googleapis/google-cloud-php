@@ -35,10 +35,10 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-Google\ApiCore\ApiException;
-Google\Cloud\Location\GetLocationRequest;
-Google\Cloud\Location\Location;
-Google\Cloud\ParameterManager\V1\Client\ParameterManagerClient;
+use Google\ApiCore\ApiException;
+use Google\Cloud\Location\GetLocationRequest;
+use Google\Cloud\Location\Location;
+use Google\Cloud\ParameterManager\V1\Client\ParameterManagerClient;
 
 // Create a client.
 $parameterManagerClient = new ParameterManagerClient();

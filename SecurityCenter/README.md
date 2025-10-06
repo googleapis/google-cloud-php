@@ -28,17 +28,26 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-use Google\Cloud\SecurityCenter\V1\SecurityCenterClient;
-use Google\Cloud\SecurityCenter\V1\Source;
+use Google\ApiCore\ApiException;
+use Google\Cloud\SecurityCenter\V2\BigQueryExport;
+use Google\Cloud\SecurityCenter\V2\Client\SecurityCenterClient;
+use Google\Cloud\SecurityCenter\V2\GetBigQueryExportRequest;
 
-$security = new SecurityCenterClient();
-$parent = SecurityCenterClient::organizationName('[YOUR ORGANIZATION]');
-$source = new Source([
-    'name' => SecurityCenterClient::sourceName('[YOUR ORGANIZATION]', '[YOUR SOURCE]'),
-    'displayName' => '[YOUR SOURCE]'
-]);
+// Create a client.
+$securityCenterClient = new SecurityCenterClient();
 
-$res = $security->createSource($parent, $source);
+// Prepare the request message.
+$request = (new GetBigQueryExportRequest())
+    ->setName($formattedName);
+
+// Call the API and handle any network failures.
+try {
+    /** @var BigQueryExport $response */
+    $response = $securityCenterClient->getBigQueryExport($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
 ```
 
 ### Debugging

@@ -117,11 +117,11 @@ class AddVersionCommand extends Command
         if ($returnCode !== Command::SUCCESS) {
             return $returnCode;
         }
-        // Run "add-sample-to-readme" command to ensure our README contains the latest version's sample.
-        $addSamplesArgs = ['--component' => [$componentName], '--update' => true];
-        if (!$addSampleCommand = $this->getApplication()->find('add-sample-to-readme')) {
+        // Run "update-readme-sample" command to ensure our README contains the latest version's sample.
+        $updateReadmeSampleArgs = ['--component' => [$componentName], '--update' => true];
+        if (!$updateReadmeSampleCommand = $this->getApplication()->find('update-readme-sample')) {
             throw new \RuntimeException('Application does not have an add-samples-to-readme command.');
         }
-        return $addSampleCommand->run(new ArrayInput($addSamplesArgs), $output);
+        return $updateReadmeSampleCommand->run(new ArrayInput($updateReadmeSampleArgs), $output);
     }
 }

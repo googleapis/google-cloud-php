@@ -35,11 +35,11 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-Google\ApiCore\ApiException;
-Google\ApiCore\PagedListResponse;
-Google\Shopping\Merchant\Reports\V1\Client\ReportServiceClient;
-Google\Shopping\Merchant\Reports\V1\ReportRow;
-Google\Shopping\Merchant\Reports\V1\SearchRequest;
+use Google\ApiCore\ApiException;
+use Google\ApiCore\PagedListResponse;
+use Google\Shopping\Merchant\Reports\V1\Client\ReportServiceClient;
+use Google\Shopping\Merchant\Reports\V1\ReportRow;
+use Google\Shopping\Merchant\Reports\V1\SearchRequest;
 
 // Create a client.
 $reportServiceClient = new ReportServiceClient();

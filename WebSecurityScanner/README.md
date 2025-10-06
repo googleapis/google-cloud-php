@@ -31,25 +31,25 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-require 'vendor/autoload.php';
+use Google\ApiCore\ApiException;
+use Google\Cloud\WebSecurityScanner\V1\Client\WebSecurityScannerClient;
+use Google\Cloud\WebSecurityScanner\V1\Finding;
+use Google\Cloud\WebSecurityScanner\V1\GetFindingRequest;
 
-use Google\Cloud\WebSecurityScanner\V1beta\ScanConfig;
-use Google\Cloud\WebSecurityScanner\V1beta\ScanConfig\UserAgent;
-use Google\Cloud\WebSecurityScanner\V1beta\ScanRun\ExecutionState;
-use Google\Cloud\WebSecurityScanner\V1beta\WebSecurityScannerClient;
+// Create a client.
+$webSecurityScannerClient = new WebSecurityScannerClient();
 
-$client = new WebSecurityScannerClient();
-$scanConfig = $client->createScanConfig(
-    WebSecurityScannerClient::projectName('[MY_PROJECT_ID'),
-    new ScanConfig([
-        'display_name' => 'Test Scan',
-        'starting_urls' => ['https://[MY_APPLICATION_ID].appspot.com/'],
-        'user_agent' => UserAgent::CHROME_LINUX
-    ])
-);
-$scanRun = $client->startScanRun($scanConfig->getName());
+// Prepare the request message.
+$request = new GetFindingRequest();
 
-echo 'Scan execution state: ' . ExecutionState::name($scanRun->getExecutionState()) . PHP_EOL;
+// Call the API and handle any network failures.
+try {
+    /** @var Finding $response */
+    $response = $webSecurityScannerClient->getFinding($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
 ```
 
 ### Debugging

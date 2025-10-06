@@ -35,10 +35,10 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-Google\ApiCore\ApiException;
-Google\Cloud\EdgeNetwork\V1\Client\EdgeNetworkClient;
-Google\Cloud\EdgeNetwork\V1\GetInterconnectRequest;
-Google\Cloud\EdgeNetwork\V1\Interconnect;
+use Google\ApiCore\ApiException;
+use Google\Cloud\EdgeNetwork\V1\Client\EdgeNetworkClient;
+use Google\Cloud\EdgeNetwork\V1\GetInterconnectRequest;
+use Google\Cloud\EdgeNetwork\V1\Interconnect;
 
 // Create a client.
 $edgeNetworkClient = new EdgeNetworkClient();

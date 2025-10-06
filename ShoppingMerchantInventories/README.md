@@ -35,9 +35,9 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-Google\ApiCore\ApiException;
-Google\Shopping\Merchant\Inventories\V1\Client\LocalInventoryServiceClient;
-Google\Shopping\Merchant\Inventories\V1\DeleteLocalInventoryRequest;
+use Google\ApiCore\ApiException;
+use Google\Shopping\Merchant\Inventories\V1\Client\LocalInventoryServiceClient;
+use Google\Shopping\Merchant\Inventories\V1\DeleteLocalInventoryRequest;
 
 // Create a client.
 $localInventoryServiceClient = new LocalInventoryServiceClient();

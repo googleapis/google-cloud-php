@@ -31,32 +31,25 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-require 'vendor/autoload.php';
+use Google\ApiCore\ApiException;
+use Google\Cloud\Location\GetLocationRequest;
+use Google\Cloud\Location\Location;
+use Google\Cloud\ServiceDirectory\V1\Client\LookupServiceClient;
 
-use Google\Cloud\ServiceDirectory\V1\RegistrationServiceClient;
-use Google\Cloud\ServiceDirectory\V1\Service;
+// Create a client.
+$lookupServiceClient = new LookupServiceClient();
 
-$client = new RegistrationServiceClient();
+// Prepare the request message.
+$request = new GetLocationRequest();
 
-$projectId = '[YOUR_PROJECT_ID]';
-$location = 'us-central1';
-$serviceId = '[YOUR_SERVICE_ID]';
-$namespace = '[YOUR_NAMESPACE]';
-
-$service = $client->createService(
-    RegistrationServiceClient::namespaceName(
-        $projectId,
-        $location,
-        $namespace
-    ),
-    $serviceId,
-    new Service()
-);
-
-printf(
-    'Created service: %s' . PHP_EOL,
-    $service->getName()
-);
+// Call the API and handle any network failures.
+try {
+    /** @var Location $response */
+    $response = $lookupServiceClient->getLocation($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
 ```
 
 ### Debugging

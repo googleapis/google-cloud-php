@@ -35,10 +35,10 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-Google\ApiCore\ApiException;
-Google\Shopping\Merchant\Conversions\V1\Client\ConversionSourcesServiceClient;
-Google\Shopping\Merchant\Conversions\V1\ConversionSource;
-Google\Shopping\Merchant\Conversions\V1\GetConversionSourceRequest;
+use Google\ApiCore\ApiException;
+use Google\Shopping\Merchant\Conversions\V1\Client\ConversionSourcesServiceClient;
+use Google\Shopping\Merchant\Conversions\V1\ConversionSource;
+use Google\Shopping\Merchant\Conversions\V1\GetConversionSourceRequest;
 
 // Create a client.
 $conversionSourcesServiceClient = new ConversionSourcesServiceClient();

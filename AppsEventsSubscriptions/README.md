@@ -35,10 +35,10 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-Google\ApiCore\ApiException;
-Google\Apps\Events\Subscriptions\V1\Client\SubscriptionsServiceClient;
-Google\Apps\Events\Subscriptions\V1\GetSubscriptionRequest;
-Google\Apps\Events\Subscriptions\V1\Subscription;
+use Google\ApiCore\ApiException;
+use Google\Apps\Events\Subscriptions\V1\Client\SubscriptionsServiceClient;
+use Google\Apps\Events\Subscriptions\V1\GetSubscriptionRequest;
+use Google\Apps\Events\Subscriptions\V1\Subscription;
 
 // Create a client.
 $subscriptionsServiceClient = new SubscriptionsServiceClient();

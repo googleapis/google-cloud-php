@@ -35,22 +35,22 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-Google\ApiCore\ApiException;
-Google\Shopping\Merchant\Accounts\V1\AccountTax;
-Google\Shopping\Merchant\Accounts\V1\Client\AccountTaxServiceClient;
-Google\Shopping\Merchant\Accounts\V1\GetAccountTaxRequest;
+use Google\ApiCore\ApiException;
+use Google\Shopping\Merchant\Accounts\V1\AccountRelationship;
+use Google\Shopping\Merchant\Accounts\V1\Client\AccountRelationshipsServiceClient;
+use Google\Shopping\Merchant\Accounts\V1\GetAccountRelationshipRequest;
 
 // Create a client.
-$accountTaxServiceClient = new AccountTaxServiceClient();
+$accountRelationshipsServiceClient = new AccountRelationshipsServiceClient();
 
 // Prepare the request message.
-$request = (new GetAccountTaxRequest())
+$request = (new GetAccountRelationshipRequest())
     ->setName($formattedName);
 
 // Call the API and handle any network failures.
 try {
-    /** @var AccountTax $response */
-    $response = $accountTaxServiceClient->getAccountTax($request);
+    /** @var AccountRelationship $response */
+    $response = $accountRelationshipsServiceClient->getAccountRelationship($request);
     printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
 } catch (ApiException $ex) {
     printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

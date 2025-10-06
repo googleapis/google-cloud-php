@@ -36,29 +36,26 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-require 'vendor/autoload.php';
+use Google\ApiCore\ApiException;
+use Google\Cloud\Dataproc\V1\AutoscalingPolicy;
+use Google\Cloud\Dataproc\V1\Client\AutoscalingPolicyServiceClient;
+use Google\Cloud\Dataproc\V1\GetAutoscalingPolicyRequest;
 
-use Google\Cloud\Dataproc\V1\JobControllerClient;
-use Google\Cloud\Dataproc\V1\Job;
-use Google\Cloud\Dataproc\V1\HadoopJob;
-use Google\Cloud\Dataproc\V1\JobPlacement;
+// Create a client.
+$autoscalingPolicyServiceClient = new AutoscalingPolicyServiceClient();
 
-$projectId = '[MY_PROJECT_ID]';
-$region = 'global';
-$clusterName = '[MY_CLUSTER]';
+// Prepare the request message.
+$request = (new GetAutoscalingPolicyRequest())
+    ->setName($formattedName);
 
-$jobPlacement = new JobPlacement();
-$jobPlacement->setClusterName($clusterName);
-
-$hadoopJob = new HadoopJob();
-$hadoopJob->setMainJarFileUri('gs://my-bucket/my-hadoop-job.jar');
-
-$job = new Job();
-$job->setPlacement($jobPlacement);
-$job->setHadoopJob($hadoopJob);
-
-$jobControllerClient = new JobControllerClient();
-$submittedJob = $jobControllerClient->submitJob($projectId, $region, $job);
+// Call the API and handle any network failures.
+try {
+    /** @var AutoscalingPolicy $response */
+    $response = $autoscalingPolicyServiceClient->getAutoscalingPolicy($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
 ```
 
 ### Debugging

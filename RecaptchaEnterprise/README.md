@@ -31,39 +31,23 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-require 'vendor/autoload.php';
-
 use Google\ApiCore\ApiException;
 use Google\Cloud\RecaptchaEnterprise\V1\Client\RecaptchaEnterpriseServiceClient;
-use Google\Cloud\RecaptchaEnterprise\V1\CreateKeyRequest;
-use Google\Cloud\RecaptchaEnterprise\V1\Key;
-use Google\Cloud\RecaptchaEnterprise\V1\WebKeySettings;
-use Google\Cloud\RecaptchaEnterprise\V1\WebKeySettings\IntegrationType;
-
-$formattedParent = RecaptchaEnterpriseServiceClient::projectName('[PROJECT]');
-$keyDisplayName = '[DISPLAY_NAME]';
+use Google\Cloud\RecaptchaEnterprise\V1\FirewallPolicy;
+use Google\Cloud\RecaptchaEnterprise\V1\GetFirewallPolicyRequest;
 
 // Create a client.
 $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
 
 // Prepare the request message.
-$webKeySettings = (new WebKeySettings())
-    ->setAllowedDomains(['example.com'])
-    ->setAllowAmpTraffic(false)
-    ->setIntegrationType(IntegrationType::CHECKBOX);
-$key = (new Key())
-    ->setWebSettings($webKeySettings)
-    ->setDisplayName($keyDisplayName)
-    ->setName('my_key');
-$request = (new CreateKeyRequest())
-    ->setParent($formattedParent)
-    ->setKey($key);
+$request = (new GetFirewallPolicyRequest())
+    ->setName($formattedName);
 
 // Call the API and handle any network failures.
 try {
-    /** @var Key $response */
-    $response = $recaptchaEnterpriseServiceClient->createKey($request);
-    printf('Created key: %s' . PHP_EOL, $response->getName());
+    /** @var FirewallPolicy $response */
+    $response = $recaptchaEnterpriseServiceClient->getFirewallPolicy($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
 } catch (ApiException $ex) {
     printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
 }

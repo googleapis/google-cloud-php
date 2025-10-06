@@ -31,13 +31,24 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-use Google\Cloud\Datastore\Admin\V1\DatastoreAdminClient;
+use Google\ApiCore\ApiException;
+use Google\Cloud\Datastore\Admin\V1\Client\DatastoreAdminClient;
+use Google\Cloud\Datastore\Admin\V1\GetIndexRequest;
+use Google\Cloud\Datastore\Admin\V1\Index;
 
-$admin = new DatastoreAdminClient();
+// Create a client.
+$datastoreAdminClient = new DatastoreAdminClient();
 
-$indexes = $admin->listIndexes();
-foreach ($indexes as $index) {
-    echo "Index ID: " . $index->getIndexId() . PHP_EOL;
+// Prepare the request message.
+$request = new GetIndexRequest();
+
+// Call the API and handle any network failures.
+try {
+    /** @var Index $response */
+    $response = $datastoreAdminClient->getIndex($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
 }
 ```
 

@@ -28,6 +28,32 @@ please see our [gRPC installation guide](https://cloud.google.com/php/grpc).
 Please see our [Authentication guide](https://github.com/googleapis/google-cloud-php/blob/main/AUTHENTICATION.md) for more information
 on authenticating your client. Once authenticated, you'll be ready to start making requests.
 
+### Sample
+
+```php
+use Google\ApiCore\ApiException;
+use Google\Cloud\Iam\Credentials\V1\Client\IAMCredentialsClient;
+use Google\Cloud\Iam\Credentials\V1\SignBlobRequest;
+use Google\Cloud\Iam\Credentials\V1\SignBlobResponse;
+
+// Create a client.
+$iAMCredentialsClient = new IAMCredentialsClient();
+
+// Prepare the request message.
+$request = (new SignBlobRequest())
+    ->setName($formattedName)
+    ->setPayload($payload);
+
+// Call the API and handle any network failures.
+try {
+    /** @var SignBlobResponse $response */
+    $response = $iAMCredentialsClient->signBlob($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
+```
+
 ### Debugging
 
 Please see our [Debugging guide](https://github.com/googleapis/google-cloud-php/blob/main/DEBUG.md)

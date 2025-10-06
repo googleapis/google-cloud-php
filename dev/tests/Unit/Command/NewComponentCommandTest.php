@@ -173,10 +173,10 @@ class NewComponentCommandTest extends TestCase
         $application = new Application();
         $application->add(new NewComponentCommand(self::$tmpDir));
 
-        // Add dummy command for update-command and add-sample-to-readme to ensure they're called
+        // Add dummy command for update-command and update-readme-sample to ensure they're called
         $dummyCommand->getName()->willReturn('update-component');
         $application->add($dummyCommand->reveal());
-        $dummyCommand->getName()->willReturn('add-sample-to-readme');
+        $dummyCommand->getName()->willReturn('update-readme-sample');
         $application->add($dummyCommand->reveal());
         $dummyCommand->run(Argument::cetera())
             ->willReturn(0)

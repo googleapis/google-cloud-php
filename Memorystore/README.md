@@ -35,22 +35,22 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-Google\ApiCore\ApiException;
-Google\Cloud\Memorystore\V1\CertificateAuthority;
-Google\Cloud\Memorystore\V1\Client\MemorystoreClient;
-Google\Cloud\Memorystore\V1\GetCertificateAuthorityRequest;
+use Google\ApiCore\ApiException;
+use Google\Cloud\Memorystore\V1\Backup;
+use Google\Cloud\Memorystore\V1\Client\MemorystoreClient;
+use Google\Cloud\Memorystore\V1\GetBackupRequest;
 
 // Create a client.
 $memorystoreClient = new MemorystoreClient();
 
 // Prepare the request message.
-$request = (new GetCertificateAuthorityRequest())
+$request = (new GetBackupRequest())
     ->setName($formattedName);
 
 // Call the API and handle any network failures.
 try {
-    /** @var CertificateAuthority $response */
-    $response = $memorystoreClient->getCertificateAuthority($request);
+    /** @var Backup $response */
+    $response = $memorystoreClient->getBackup($request);
     printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
 } catch (ApiException $ex) {
     printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

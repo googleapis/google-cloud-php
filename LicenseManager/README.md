@@ -35,10 +35,10 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-Google\ApiCore\ApiException;
-Google\Cloud\LicenseManager\V1\Client\LicenseManagerClient;
-Google\Cloud\LicenseManager\V1\Configuration;
-Google\Cloud\LicenseManager\V1\GetConfigurationRequest;
+use Google\ApiCore\ApiException;
+use Google\Cloud\LicenseManager\V1\Client\LicenseManagerClient;
+use Google\Cloud\LicenseManager\V1\Configuration;
+use Google\Cloud\LicenseManager\V1\GetConfigurationRequest;
 
 // Create a client.
 $licenseManagerClient = new LicenseManagerClient();

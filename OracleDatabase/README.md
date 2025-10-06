@@ -35,10 +35,10 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-Google\ApiCore\ApiException;
-Google\Cloud\OracleDatabase\V1\AutonomousDatabase;
-Google\Cloud\OracleDatabase\V1\Client\OracleDatabaseClient;
-Google\Cloud\OracleDatabase\V1\GetAutonomousDatabaseRequest;
+use Google\ApiCore\ApiException;
+use Google\Cloud\OracleDatabase\V1\AutonomousDatabase;
+use Google\Cloud\OracleDatabase\V1\Client\OracleDatabaseClient;
+use Google\Cloud\OracleDatabase\V1\GetAutonomousDatabaseRequest;
 
 // Create a client.
 $oracleDatabaseClient = new OracleDatabaseClient();

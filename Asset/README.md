@@ -31,30 +31,25 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-require_once __DIR__ . '/vendor/autoload.php';
+use Google\ApiCore\ApiException;
+use Google\Cloud\Asset\V1\Client\AssetServiceClient;
+use Google\Cloud\Asset\V1\Feed;
+use Google\Cloud\Asset\V1\GetFeedRequest;
 
-use Google\Cloud\Asset\V1\AssetServiceClient;
-use Google\Cloud\Asset\V1\GcsDestination;
-use Google\Cloud\Asset\V1\OutputConfig;
+// Create a client.
+$assetServiceClient = new AssetServiceClient();
 
-$objectPath = 'gs://your-bucket/cai-export';
-// Now you need to change this with your project number (numeric id)
-$project = 'example-project';
+// Prepare the request message.
+$request = (new GetFeedRequest())
+    ->setName($formattedName);
 
-$client = new AssetServiceClient();
-
-$gcsDestination = new GcsDestination(['uri' => $objectPath]);
-$outputConfig = new OutputConfig(['gcs_destination' => $gcsDestination]);
-
-$resp = $client->exportAssets("projects/$project", $outputConfig);
-
-$resp->pollUntilComplete();
-
-if ($resp->operationSucceeded()) {
-    echo "The result is dumped to $objectPath successfully." . PHP_EOL;
-} else {
-    $error = $resp->getError();
-    // handleError($error)
+// Call the API and handle any network failures.
+try {
+    /** @var Feed $response */
+    $response = $assetServiceClient->getFeed($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
 }
 ```
 
