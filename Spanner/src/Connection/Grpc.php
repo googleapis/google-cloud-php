@@ -20,6 +20,7 @@ namespace Google\Cloud\Spanner\Connection;
 use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Serializer;
+use Google\ApiCore\ValidationException;
 use Google\Auth\GetUniverseDomainInterface;
 use Google\Cloud\Core\EmulatorTrait;
 use Google\Cloud\Core\GrpcRequestWrapper;
@@ -1104,6 +1105,12 @@ class Grpc implements ConnectionInterface
             $readWrite = new ReadWrite();
             $options->setReadWrite($readWrite);
             $args = $this->addLarHeader($args, $this->larEnabled);
+
+            if (isset($transactionOptions['readWrite']['readLockMode'])) {
+                // Nested option `readLockMode` inside `readWrite` transactions
+                $readLockModeOption = $transactionOptions['readWrite']['readLockMode'];
+                $options->getReadWrite()->setReadLockMode($readLockModeOption);
+            }
         } elseif (isset($transactionOptions['partitionedDml'])) {
             $pdml = new PartitionedDml();
             $options->setPartitionedDml($pdml);
@@ -1573,6 +1580,32 @@ class Grpc implements ConnectionInterface
             $transactionOptions['readOnly'] = $ro;
         }
 
+        if (isset($transactionOptions['readLockMode'])) {
+            if (isset($transactionOptions['readOnly'])) {
+                throw new ValidationException(
+                    'The readLockMode option is only valid for readWrite transactions.'
+                );
+            }
+
+            if (!isset($transactionOptions['readWrite'])) {
+                $transactionOptions['readWrite'] = [];
+            }
+        }
+
+        if (isset($transactionOptions['readWrite'])) {
+            $rw = $transactionOptions['readWrite'];
+
+            // Format nested options inside readWrite transaction
+            if (isset($transactionOptions['readLockMode'])) {
+                $rw['readLockMode'] = $transactionOptions['readLockMode'];
+
+                // Unset the readLockMode key on the base options array.
+                // If we don't do this it causes issues in the serializer for TransactionOptions
+                unset($transactionOptions['readLockMode']);
+            }
+
+            $transactionOptions['readWrite'] = $rw;
+        }
         return $transactionOptions;
     }
 

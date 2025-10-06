@@ -23,6 +23,18 @@
 return [
     'interfaces' => [
         'google.cloud.bigquery.analyticshub.v1.AnalyticsHubService' => [
+            'ApproveQueryTemplate' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/dataExchanges/*/queryTemplates/*}:approve',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'CreateDataExchange' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/dataExchanges',
@@ -53,6 +65,21 @@ return [
                     'listing_id',
                 ],
             ],
+            'CreateQueryTemplate' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/dataExchanges/*}/queryTemplates',
+                'body' => 'query_template',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'query_template_id',
+                ],
+            ],
             'DeleteDataExchange' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/dataExchanges/*}',
@@ -67,6 +94,17 @@ return [
             'DeleteListing' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/dataExchanges/*/listings/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteQueryTemplate' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/dataExchanges/*/queryTemplates/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -132,6 +170,17 @@ return [
                     ],
                 ],
             ],
+            'GetQueryTemplate' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/dataExchanges/*/queryTemplates/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetSubscription' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/subscriptions/*}',
@@ -172,6 +221,17 @@ return [
                     'organization' => [
                         'getters' => [
                             'getOrganization',
+                        ],
+                    ],
+                ],
+            ],
+            'ListQueryTemplates' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/dataExchanges/*}/queryTemplates',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
                         ],
                     ],
                 ],
@@ -252,6 +312,18 @@ return [
                     ],
                 ],
             ],
+            'SubmitQueryTemplate' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/dataExchanges/*/queryTemplates/*}:submit',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'SubscribeDataExchange' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/dataExchanges/*}:subscribe',
@@ -325,6 +397,19 @@ return [
                 ],
                 'queryParams' => [
                     'update_mask',
+                ],
+            ],
+            'UpdateQueryTemplate' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{query_template.name=projects/*/locations/*/dataExchanges/*/queryTemplates/*}',
+                'body' => 'query_template',
+                'placeholders' => [
+                    'query_template.name' => [
+                        'getters' => [
+                            'getQueryTemplate',
+                            'getName',
+                        ],
+                    ],
                 ],
             ],
         ],

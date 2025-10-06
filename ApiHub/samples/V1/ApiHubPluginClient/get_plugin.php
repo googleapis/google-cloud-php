@@ -29,7 +29,7 @@ use Google\Cloud\ApiHub\V1\GetPluginRequest;
 use Google\Cloud\ApiHub\V1\Plugin;
 
 /**
- * Get details about an API Hub plugin.
+ * Get an API Hub plugin.
  *
  * @param string $formattedName The name of the plugin to retrieve.
  *                              Format: `projects/{project}/locations/{location}/plugins/{plugin}`. Please see

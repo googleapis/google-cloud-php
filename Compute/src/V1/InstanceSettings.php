@@ -20,25 +20,25 @@ class InstanceSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string fingerprint = 234678500;</code>
      */
-    private $fingerprint = null;
+    protected $fingerprint = null;
     /**
      * [Output Only] Type of the resource. Always compute#instance_settings for instance settings.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
-    private $kind = null;
+    protected $kind = null;
     /**
      * The metadata key/value pairs assigned to all the instances in the corresponding scope.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceSettingsMetadata metadata = 86866735;</code>
      */
-    private $metadata = null;
+    protected $metadata = null;
     /**
      * [Output Only] URL of the zone where the resource resides You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
      *
      * Generated from protobuf field <code>optional string zone = 3744684;</code>
      */
-    private $zone = null;
+    protected $zone = null;
 
     /**
      * Constructor.

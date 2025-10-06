@@ -44,7 +44,7 @@ class State
      */
     const CANCELLED = 4;
     /**
-     * Data scan job was createed.
+     * Data scan job was created.
      *
      * Generated from protobuf enum <code>CREATED = 5;</code>
      */

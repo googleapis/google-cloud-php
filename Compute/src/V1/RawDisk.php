@@ -21,19 +21,19 @@ class RawDisk extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string container_type = 318809144;</code>
      */
-    private $container_type = null;
+    protected $container_type = null;
     /**
      * [Deprecated] This field is deprecated. An optional SHA1 checksum of the disk image before unpackaging provided by the client when the disk image is created.
      *
      * Generated from protobuf field <code>optional string sha1_checksum = 314444349;</code>
      */
-    private $sha1_checksum = null;
+    protected $sha1_checksum = null;
     /**
      * The full Google Cloud Storage URL where the raw disk image archive is stored. The following are valid formats for the URL: - https://storage.googleapis.com/bucket_name/image_archive_name - https://storage.googleapis.com/bucket_name/folder_name/ image_archive_name In order to create an image, you must provide the full or partial URL of one of the following: - The rawDisk.source URL - The sourceDisk URL - The sourceImage URL - The sourceSnapshot URL 
      *
      * Generated from protobuf field <code>optional string source = 177235995;</code>
      */
-    private $source = null;
+    protected $source = null;
 
     /**
      * Constructor.

@@ -20,7 +20,7 @@ class ServiceAccount extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string email = 96619420;</code>
      */
-    private $email = null;
+    protected $email = null;
     /**
      * The list of scopes to be made available for this service account.
      *

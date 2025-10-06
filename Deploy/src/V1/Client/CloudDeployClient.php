@@ -28,6 +28,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -199,7 +200,9 @@ final class CloudDeployClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+    ];
 
     private $operationsClient;
 
@@ -245,9 +248,7 @@ final class CloudDeployClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning'])
-            ? $this->descriptors[$methodName]['longRunning']
-            : [];
+        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -283,12 +284,8 @@ final class CloudDeployClient
      *
      * @return string The formatted automation resource.
      */
-    public static function automationName(
-        string $project,
-        string $location,
-        string $deliveryPipeline,
-        string $automation
-    ): string {
+    public static function automationName(string $project, string $location, string $deliveryPipeline, string $automation): string
+    {
         return self::getPathTemplate('automation')->render([
             'project' => $project,
             'location' => $location,
@@ -308,12 +305,8 @@ final class CloudDeployClient
      *
      * @return string The formatted automation_run resource.
      */
-    public static function automationRunName(
-        string $project,
-        string $location,
-        string $deliveryPipeline,
-        string $automationRun
-    ): string {
+    public static function automationRunName(string $project, string $location, string $deliveryPipeline, string $automationRun): string
+    {
         return self::getPathTemplate('automationRun')->render([
             'project' => $project,
             'location' => $location,
@@ -466,14 +459,8 @@ final class CloudDeployClient
      *
      * @return string The formatted job_run resource.
      */
-    public static function jobRunName(
-        string $project,
-        string $location,
-        string $deliveryPipeline,
-        string $release,
-        string $rollout,
-        string $jobRun
-    ): string {
+    public static function jobRunName(string $project, string $location, string $deliveryPipeline, string $release, string $rollout, string $jobRun): string
+    {
         return self::getPathTemplate('jobRun')->render([
             'project' => $project,
             'location' => $location,
@@ -531,12 +518,8 @@ final class CloudDeployClient
      *
      * @return string The formatted release resource.
      */
-    public static function releaseName(
-        string $project,
-        string $location,
-        string $deliveryPipeline,
-        string $release
-    ): string {
+    public static function releaseName(string $project, string $location, string $deliveryPipeline, string $release): string
+    {
         return self::getPathTemplate('release')->render([
             'project' => $project,
             'location' => $location,
@@ -556,12 +539,8 @@ final class CloudDeployClient
      *
      * @return string The formatted repository resource.
      */
-    public static function repositoryName(
-        string $project,
-        string $location,
-        string $connection,
-        string $repository
-    ): string {
+    public static function repositoryName(string $project, string $location, string $connection, string $repository): string
+    {
         return self::getPathTemplate('repository')->render([
             'project' => $project,
             'location' => $location,
@@ -582,13 +561,8 @@ final class CloudDeployClient
      *
      * @return string The formatted rollout resource.
      */
-    public static function rolloutName(
-        string $project,
-        string $location,
-        string $deliveryPipeline,
-        string $release,
-        string $rollout
-    ): string {
+    public static function rolloutName(string $project, string $location, string $deliveryPipeline, string $release, string $rollout): string
+    {
         return self::getPathTemplate('rollout')->render([
             'project' => $project,
             'location' => $location,
@@ -699,25 +673,28 @@ final class CloudDeployClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'clouddeploy.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
-     *           *Important*: If you accept a credential configuration (credential
-     *           JSON/File/Stream) from an external source for authentication to Google Cloud
-     *           Platform, you must validate it before providing it to any Google API or library.
-     *           Providing an unvalidated credential configuration to Google APIs can compromise
-     *           the security of your systems and data. For more information {@see
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\Deploy\V1\CloudDeployClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new CloudDeployClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
      *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
@@ -755,11 +732,13 @@ final class CloudDeployClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -879,10 +858,8 @@ final class CloudDeployClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function cancelAutomationRun(
-        CancelAutomationRunRequest $request,
-        array $callOptions = []
-    ): CancelAutomationRunResponse {
+    public function cancelAutomationRun(CancelAutomationRunRequest $request, array $callOptions = []): CancelAutomationRunResponse
+    {
         return $this->startApiCall('CancelAutomationRun', $request, $callOptions)->wait();
     }
 
@@ -929,7 +906,7 @@ final class CloudDeployClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Automation>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -955,14 +932,12 @@ final class CloudDeployClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<CustomTargetType>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createCustomTargetType(
-        CreateCustomTargetTypeRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function createCustomTargetType(CreateCustomTargetTypeRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('CreateCustomTargetType', $request, $callOptions)->wait();
     }
 
@@ -983,14 +958,12 @@ final class CloudDeployClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<DeliveryPipeline>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createDeliveryPipeline(
-        CreateDeliveryPipelineRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function createDeliveryPipeline(CreateDeliveryPipelineRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('CreateDeliveryPipeline', $request, $callOptions)->wait();
     }
 
@@ -1011,7 +984,7 @@ final class CloudDeployClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<DeployPolicy>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1037,7 +1010,7 @@ final class CloudDeployClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Release>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1063,7 +1036,7 @@ final class CloudDeployClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Rollout>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1089,7 +1062,7 @@ final class CloudDeployClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Target>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1115,7 +1088,7 @@ final class CloudDeployClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1141,14 +1114,12 @@ final class CloudDeployClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteCustomTargetType(
-        DeleteCustomTargetTypeRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function deleteCustomTargetType(DeleteCustomTargetTypeRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('DeleteCustomTargetType', $request, $callOptions)->wait();
     }
 
@@ -1169,14 +1140,12 @@ final class CloudDeployClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteDeliveryPipeline(
-        DeleteDeliveryPipelineRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function deleteDeliveryPipeline(DeleteDeliveryPipelineRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('DeleteDeliveryPipeline', $request, $callOptions)->wait();
     }
 
@@ -1197,7 +1166,7 @@ final class CloudDeployClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1223,7 +1192,7 @@ final class CloudDeployClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1591,10 +1560,8 @@ final class CloudDeployClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listCustomTargetTypes(
-        ListCustomTargetTypesRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listCustomTargetTypes(ListCustomTargetTypesRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListCustomTargetTypes', $request, $callOptions);
     }
 
@@ -1619,10 +1586,8 @@ final class CloudDeployClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listDeliveryPipelines(
-        ListDeliveryPipelinesRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listDeliveryPipelines(ListDeliveryPipelinesRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListDeliveryPipelines', $request, $callOptions);
     }
 
@@ -1851,7 +1816,7 @@ final class CloudDeployClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Automation>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1877,14 +1842,12 @@ final class CloudDeployClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<CustomTargetType>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateCustomTargetType(
-        UpdateCustomTargetTypeRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function updateCustomTargetType(UpdateCustomTargetTypeRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('UpdateCustomTargetType', $request, $callOptions)->wait();
     }
 
@@ -1905,14 +1868,12 @@ final class CloudDeployClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<DeliveryPipeline>
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateDeliveryPipeline(
-        UpdateDeliveryPipelineRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
+    public function updateDeliveryPipeline(UpdateDeliveryPipelineRequest $request, array $callOptions = []): OperationResponse
+    {
         return $this->startApiCall('UpdateDeliveryPipeline', $request, $callOptions)->wait();
     }
 
@@ -1933,7 +1894,7 @@ final class CloudDeployClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<DeployPolicy>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -1959,7 +1920,7 @@ final class CloudDeployClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<Target>
      *
      * @throws ApiException Thrown if the API call fails.
      */
@@ -2104,10 +2065,8 @@ final class CloudDeployClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(
-        TestIamPermissionsRequest $request,
-        array $callOptions = []
-    ): TestIamPermissionsResponse {
+    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
+    {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

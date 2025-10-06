@@ -19,14 +19,14 @@ class FileContentBuffer extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string content = 414659705;</code>
      */
-    private $content = null;
+    protected $content = null;
     /**
      * The file type of source file.
      * Check the FileType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string file_type = 294346781;</code>
      */
-    private $file_type = null;
+    protected $file_type = null;
 
     /**
      * Constructor.

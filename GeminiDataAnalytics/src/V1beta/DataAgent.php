@@ -16,13 +16,16 @@ use Google\Protobuf\Internal\GPBUtil;
 class DataAgent extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. Identifier. The unique resource name of a Agent.
+     * Optional. Identifier. The unique resource name of a DataAgent.
      * Format:
      * `projects/{project}/locations/{location}/dataAgents/{data_agent_id}`
      * `{data_agent}` is the resource id and should be 63 characters or less and
      * must match the format described in
      * https://google.aip.dev/122#resource-id-segments
      * Example: `projects/1234567890/locations/us-central1/dataAgents/my-agent`.
+     * It is recommended to skip setting this field during agent creation as it
+     * will be inferred automatically and overwritten with the
+     * {parent}/dataAgents/{data_agent_id}.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IDENTIFIER];</code>
      */
@@ -43,10 +46,11 @@ class DataAgent extends \Google\Protobuf\Internal\Message
     protected $description = '';
     /**
      * Optional. Labels to help users filter related agents.
-     * E.g. "sales", "business", "etl", etc.
-     * Note labels are only used for filtering and not for policies.
-     * See https://cloud.google.com/resource-manager/docs/labels-overview for more
-     * details on label usage.
+     * For example, "sales", "business", "etl", and so on.
+     * Note labels are used only for filtering and not for policies.
+     * See the [labels
+     * documentation](https://cloud.google.com/resource-manager/docs/labels-overview)
+     * for more details on label usage.
      *
      * Generated from protobuf field <code>map<string, string> labels = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -88,13 +92,16 @@ class DataAgent extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\DataAnalyticsAgent $data_analytics_agent
      *           Data analytics agent.
      *     @type string $name
-     *           Optional. Identifier. The unique resource name of a Agent.
+     *           Optional. Identifier. The unique resource name of a DataAgent.
      *           Format:
      *           `projects/{project}/locations/{location}/dataAgents/{data_agent_id}`
      *           `{data_agent}` is the resource id and should be 63 characters or less and
      *           must match the format described in
      *           https://google.aip.dev/122#resource-id-segments
      *           Example: `projects/1234567890/locations/us-central1/dataAgents/my-agent`.
+     *           It is recommended to skip setting this field during agent creation as it
+     *           will be inferred automatically and overwritten with the
+     *           {parent}/dataAgents/{data_agent_id}.
      *     @type string $display_name
      *           Optional. User friendly display name.
      *           * Must be between 1-256 characters.
@@ -103,10 +110,11 @@ class DataAgent extends \Google\Protobuf\Internal\Message
      *           * Must be between 1-1024 characters.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional. Labels to help users filter related agents.
-     *           E.g. "sales", "business", "etl", etc.
-     *           Note labels are only used for filtering and not for policies.
-     *           See https://cloud.google.com/resource-manager/docs/labels-overview for more
-     *           details on label usage.
+     *           For example, "sales", "business", "etl", and so on.
+     *           Note labels are used only for filtering and not for policies.
+     *           See the [labels
+     *           documentation](https://cloud.google.com/resource-manager/docs/labels-overview)
+     *           for more details on label usage.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The time when the data agent was created.
      *     @type \Google\Protobuf\Timestamp $update_time
@@ -156,13 +164,16 @@ class DataAgent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Identifier. The unique resource name of a Agent.
+     * Optional. Identifier. The unique resource name of a DataAgent.
      * Format:
      * `projects/{project}/locations/{location}/dataAgents/{data_agent_id}`
      * `{data_agent}` is the resource id and should be 63 characters or less and
      * must match the format described in
      * https://google.aip.dev/122#resource-id-segments
      * Example: `projects/1234567890/locations/us-central1/dataAgents/my-agent`.
+     * It is recommended to skip setting this field during agent creation as it
+     * will be inferred automatically and overwritten with the
+     * {parent}/dataAgents/{data_agent_id}.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -173,13 +184,16 @@ class DataAgent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Identifier. The unique resource name of a Agent.
+     * Optional. Identifier. The unique resource name of a DataAgent.
      * Format:
      * `projects/{project}/locations/{location}/dataAgents/{data_agent_id}`
      * `{data_agent}` is the resource id and should be 63 characters or less and
      * must match the format described in
      * https://google.aip.dev/122#resource-id-segments
      * Example: `projects/1234567890/locations/us-central1/dataAgents/my-agent`.
+     * It is recommended to skip setting this field during agent creation as it
+     * will be inferred automatically and overwritten with the
+     * {parent}/dataAgents/{data_agent_id}.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
@@ -251,10 +265,11 @@ class DataAgent extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Labels to help users filter related agents.
-     * E.g. "sales", "business", "etl", etc.
-     * Note labels are only used for filtering and not for policies.
-     * See https://cloud.google.com/resource-manager/docs/labels-overview for more
-     * details on label usage.
+     * For example, "sales", "business", "etl", and so on.
+     * Note labels are used only for filtering and not for policies.
+     * See the [labels
+     * documentation](https://cloud.google.com/resource-manager/docs/labels-overview)
+     * for more details on label usage.
      *
      * Generated from protobuf field <code>map<string, string> labels = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -266,10 +281,11 @@ class DataAgent extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Labels to help users filter related agents.
-     * E.g. "sales", "business", "etl", etc.
-     * Note labels are only used for filtering and not for policies.
-     * See https://cloud.google.com/resource-manager/docs/labels-overview for more
-     * details on label usage.
+     * For example, "sales", "business", "etl", and so on.
+     * Note labels are used only for filtering and not for policies.
+     * See the [labels
+     * documentation](https://cloud.google.com/resource-manager/docs/labels-overview)
+     * for more details on label usage.
      *
      * Generated from protobuf field <code>map<string, string> labels = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

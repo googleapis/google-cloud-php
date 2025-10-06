@@ -19,20 +19,20 @@ class NodeGroupAutoscalingPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int32 max_nodes = 297762838;</code>
      */
-    private $max_nodes = null;
+    protected $max_nodes = null;
     /**
      * The minimum number of nodes that the group should have.
      *
      * Generated from protobuf field <code>optional int32 min_nodes = 533370500;</code>
      */
-    private $min_nodes = null;
+    protected $min_nodes = null;
     /**
      * The autoscaling mode. Set to one of: ON, OFF, or ONLY_SCALE_OUT. For more information, see Autoscaler modes.
      * Check the Mode enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string mode = 3357091;</code>
      */
-    private $mode = null;
+    protected $mode = null;
 
     /**
      * Constructor.

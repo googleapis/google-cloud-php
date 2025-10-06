@@ -27,6 +27,7 @@ namespace Google\Cloud\AppEngine\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
@@ -106,25 +107,28 @@ final class AuthorizedCertificatesClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'appengine.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
-     *           *Important*: If you accept a credential configuration (credential
-     *           JSON/File/Stream) from an external source for authentication to Google Cloud
-     *           Platform, you must validate it before providing it to any Google API or library.
-     *           Providing an unvalidated credential configuration to Google APIs can compromise
-     *           the security of your systems and data. For more information {@see
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\AppEngine\V1\AuthorizedCertificatesClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new AuthorizedCertificatesClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
      *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
@@ -162,11 +166,13 @@ final class AuthorizedCertificatesClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -205,10 +211,8 @@ final class AuthorizedCertificatesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createAuthorizedCertificate(
-        CreateAuthorizedCertificateRequest $request,
-        array $callOptions = []
-    ): AuthorizedCertificate {
+    public function createAuthorizedCertificate(CreateAuthorizedCertificateRequest $request, array $callOptions = []): AuthorizedCertificate
+    {
         return $this->startApiCall('CreateAuthorizedCertificate', $request, $callOptions)->wait();
     }
 
@@ -232,10 +236,8 @@ final class AuthorizedCertificatesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteAuthorizedCertificate(
-        DeleteAuthorizedCertificateRequest $request,
-        array $callOptions = []
-    ): void {
+    public function deleteAuthorizedCertificate(DeleteAuthorizedCertificateRequest $request, array $callOptions = []): void
+    {
         $this->startApiCall('DeleteAuthorizedCertificate', $request, $callOptions)->wait();
     }
 
@@ -261,10 +263,8 @@ final class AuthorizedCertificatesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getAuthorizedCertificate(
-        GetAuthorizedCertificateRequest $request,
-        array $callOptions = []
-    ): AuthorizedCertificate {
+    public function getAuthorizedCertificate(GetAuthorizedCertificateRequest $request, array $callOptions = []): AuthorizedCertificate
+    {
         return $this->startApiCall('GetAuthorizedCertificate', $request, $callOptions)->wait();
     }
 
@@ -290,10 +290,8 @@ final class AuthorizedCertificatesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listAuthorizedCertificates(
-        ListAuthorizedCertificatesRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
+    public function listAuthorizedCertificates(ListAuthorizedCertificatesRequest $request, array $callOptions = []): PagedListResponse
+    {
         return $this->startApiCall('ListAuthorizedCertificates', $request, $callOptions);
     }
 
@@ -323,10 +321,8 @@ final class AuthorizedCertificatesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateAuthorizedCertificate(
-        UpdateAuthorizedCertificateRequest $request,
-        array $callOptions = []
-    ): AuthorizedCertificate {
+    public function updateAuthorizedCertificate(UpdateAuthorizedCertificateRequest $request, array $callOptions = []): AuthorizedCertificate
+    {
         return $this->startApiCall('UpdateAuthorizedCertificate', $request, $callOptions)->wait();
     }
 }

@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class ChatRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. The GCP project to be used for quota and billing.
+     * Optional. The Google Cloud project to be used for quota and billing.
      *
      * Generated from protobuf field <code>string project = 1 [deprecated = true, (.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @deprecated
@@ -54,7 +54,7 @@ class ChatRequest extends \Google\Protobuf\Internal\Message
      *           Optional. Context for the chat request. Use this to chat with an Agent
      *           statelessly, without managed conversation persistence.
      *     @type string $project
-     *           Optional. The GCP project to be used for quota and billing.
+     *           Optional. The Google Cloud project to be used for quota and billing.
      *     @type string $parent
      *           Required. The parent value for chat request.
      *           Pattern: `projects/{project}/locations/{location}`
@@ -169,7 +169,7 @@ class ChatRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The GCP project to be used for quota and billing.
+     * Optional. The Google Cloud project to be used for quota and billing.
      *
      * Generated from protobuf field <code>string project = 1 [deprecated = true, (.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
@@ -184,7 +184,7 @@ class ChatRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The GCP project to be used for quota and billing.
+     * Optional. The Google Cloud project to be used for quota and billing.
      *
      * Generated from protobuf field <code>string project = 1 [deprecated = true, (.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var

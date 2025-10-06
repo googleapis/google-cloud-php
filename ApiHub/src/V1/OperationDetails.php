@@ -16,25 +16,25 @@ use Google\Protobuf\Internal\GPBUtil;
 class OperationDetails extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. Description of the operation behavior.
+     * Optional. Description of the operation behavior.
      * For OpenAPI spec, this will map to `operation.description` in the
      * spec, in case description is empty, `operation.summary` will be used.
      *
-     * Generated from protobuf field <code>string description = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string description = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $description = '';
     /**
-     * Output only. Additional external documentation for this operation.
+     * Optional. Additional external documentation for this operation.
      * For OpenAPI spec, this will map to `operation.documentation` in the spec.
      *
-     * Generated from protobuf field <code>.google.cloud.apihub.v1.Documentation documentation = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>.google.cloud.apihub.v1.Documentation documentation = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $documentation = null;
     /**
-     * Output only. For OpenAPI spec, this will be set if `operation.deprecated`is
+     * Optional. For OpenAPI spec, this will be set if `operation.deprecated`is
      * marked as `true` in the spec.
      *
-     * Generated from protobuf field <code>bool deprecated = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>bool deprecated = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $deprecated = false;
     protected $operation;
@@ -48,14 +48,14 @@ class OperationDetails extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\ApiHub\V1\HttpOperation $http_operation
      *           The HTTP Operation.
      *     @type string $description
-     *           Output only. Description of the operation behavior.
+     *           Optional. Description of the operation behavior.
      *           For OpenAPI spec, this will map to `operation.description` in the
      *           spec, in case description is empty, `operation.summary` will be used.
      *     @type \Google\Cloud\ApiHub\V1\Documentation $documentation
-     *           Output only. Additional external documentation for this operation.
+     *           Optional. Additional external documentation for this operation.
      *           For OpenAPI spec, this will map to `operation.documentation` in the spec.
      *     @type bool $deprecated
-     *           Output only. For OpenAPI spec, this will be set if `operation.deprecated`is
+     *           Optional. For OpenAPI spec, this will be set if `operation.deprecated`is
      *           marked as `true` in the spec.
      * }
      */
@@ -96,11 +96,11 @@ class OperationDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Description of the operation behavior.
+     * Optional. Description of the operation behavior.
      * For OpenAPI spec, this will map to `operation.description` in the
      * spec, in case description is empty, `operation.summary` will be used.
      *
-     * Generated from protobuf field <code>string description = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string description = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getDescription()
@@ -109,11 +109,11 @@ class OperationDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Description of the operation behavior.
+     * Optional. Description of the operation behavior.
      * For OpenAPI spec, this will map to `operation.description` in the
      * spec, in case description is empty, `operation.summary` will be used.
      *
-     * Generated from protobuf field <code>string description = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string description = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -126,10 +126,10 @@ class OperationDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Additional external documentation for this operation.
+     * Optional. Additional external documentation for this operation.
      * For OpenAPI spec, this will map to `operation.documentation` in the spec.
      *
-     * Generated from protobuf field <code>.google.cloud.apihub.v1.Documentation documentation = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>.google.cloud.apihub.v1.Documentation documentation = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\ApiHub\V1\Documentation|null
      */
     public function getDocumentation()
@@ -148,10 +148,10 @@ class OperationDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Additional external documentation for this operation.
+     * Optional. Additional external documentation for this operation.
      * For OpenAPI spec, this will map to `operation.documentation` in the spec.
      *
-     * Generated from protobuf field <code>.google.cloud.apihub.v1.Documentation documentation = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>.google.cloud.apihub.v1.Documentation documentation = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\ApiHub\V1\Documentation $var
      * @return $this
      */
@@ -164,10 +164,10 @@ class OperationDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. For OpenAPI spec, this will be set if `operation.deprecated`is
+     * Optional. For OpenAPI spec, this will be set if `operation.deprecated`is
      * marked as `true` in the spec.
      *
-     * Generated from protobuf field <code>bool deprecated = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>bool deprecated = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getDeprecated()
@@ -176,10 +176,10 @@ class OperationDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. For OpenAPI spec, this will be set if `operation.deprecated`is
+     * Optional. For OpenAPI spec, this will be set if `operation.deprecated`is
      * marked as `true` in the spec.
      *
-     * Generated from protobuf field <code>bool deprecated = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>bool deprecated = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */

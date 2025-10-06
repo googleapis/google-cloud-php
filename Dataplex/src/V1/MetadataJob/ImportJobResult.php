@@ -51,6 +51,26 @@ class ImportJobResult extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $update_time = null;
+    /**
+     * Output only. The total number of entry links that were successfully
+     * deleted.
+     *
+     * Generated from protobuf field <code>int64 deleted_entry_links = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $deleted_entry_links = 0;
+    /**
+     * Output only. The total number of entry links that were successfully
+     * created.
+     *
+     * Generated from protobuf field <code>int64 created_entry_links = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $created_entry_links = 0;
+    /**
+     * Output only. The total number of entry links that were left unchanged.
+     *
+     * Generated from protobuf field <code>int64 unchanged_entry_links = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $unchanged_entry_links = 0;
 
     /**
      * Constructor.
@@ -70,6 +90,14 @@ class ImportJobResult extends \Google\Protobuf\Internal\Message
      *           Output only. The total number of entries that were recreated.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The time when the status was updated.
+     *     @type int|string $deleted_entry_links
+     *           Output only. The total number of entry links that were successfully
+     *           deleted.
+     *     @type int|string $created_entry_links
+     *           Output only. The total number of entry links that were successfully
+     *           created.
+     *     @type int|string $unchanged_entry_links
+     *           Output only. The total number of entry links that were left unchanged.
      * }
      */
     public function __construct($data = NULL) {
@@ -239,6 +267,88 @@ class ImportJobResult extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->update_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The total number of entry links that were successfully
+     * deleted.
+     *
+     * Generated from protobuf field <code>int64 deleted_entry_links = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int|string
+     */
+    public function getDeletedEntryLinks()
+    {
+        return $this->deleted_entry_links;
+    }
+
+    /**
+     * Output only. The total number of entry links that were successfully
+     * deleted.
+     *
+     * Generated from protobuf field <code>int64 deleted_entry_links = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setDeletedEntryLinks($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->deleted_entry_links = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The total number of entry links that were successfully
+     * created.
+     *
+     * Generated from protobuf field <code>int64 created_entry_links = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int|string
+     */
+    public function getCreatedEntryLinks()
+    {
+        return $this->created_entry_links;
+    }
+
+    /**
+     * Output only. The total number of entry links that were successfully
+     * created.
+     *
+     * Generated from protobuf field <code>int64 created_entry_links = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setCreatedEntryLinks($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->created_entry_links = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The total number of entry links that were left unchanged.
+     *
+     * Generated from protobuf field <code>int64 unchanged_entry_links = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int|string
+     */
+    public function getUnchangedEntryLinks()
+    {
+        return $this->unchanged_entry_links;
+    }
+
+    /**
+     * Output only. The total number of entry links that were left unchanged.
+     *
+     * Generated from protobuf field <code>int64 unchanged_entry_links = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setUnchangedEntryLinks($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->unchanged_entry_links = $var;
 
         return $this;
     }

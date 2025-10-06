@@ -80,6 +80,44 @@ return [
                     ],
                 ],
             ],
+            'CancelDiskMigrationJob' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\VMMigration\V1\CancelDiskMigrationJobResponse',
+                    'metadataReturnType' => '\Google\Cloud\VMMigration\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'CancelImageImportJob' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\VMMigration\V1\CancelImageImportJobResponse',
+                    'metadataReturnType' => '\Google\Cloud\VMMigration\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'CreateCloneJob' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\VMMigration\V1\CloneJob',
@@ -137,9 +175,47 @@ return [
                     ],
                 ],
             ],
+            'CreateDiskMigrationJob' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\VMMigration\V1\DiskMigrationJob',
+                    'metadataReturnType' => '\Google\Cloud\VMMigration\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateGroup' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\VMMigration\V1\Group',
+                    'metadataReturnType' => '\Google\Cloud\VMMigration\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateImageImport' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\VMMigration\V1\ImageImport',
                     'metadataReturnType' => '\Google\Cloud\VMMigration\V1\OperationMetadata',
                     'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',
@@ -251,7 +327,45 @@ return [
                     ],
                 ],
             ],
+            'DeleteDiskMigrationJob' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\VMMigration\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteGroup' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\VMMigration\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteImageImport' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',
                     'metadataReturnType' => '\Google\Cloud\VMMigration\V1\OperationMetadata',
@@ -346,6 +460,25 @@ return [
                     ],
                 ],
             ],
+            'ExtendMigration' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\VMMigration\V1\ExtendMigrationResponse',
+                    'metadataReturnType' => '\Google\Cloud\VMMigration\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'migrating_vm',
+                        'fieldAccessors' => [
+                            'getMigratingVm',
+                        ],
+                    ],
+                ],
+            ],
             'FinalizeMigration' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\VMMigration\V1\FinalizeMigrationResponse',
@@ -422,6 +555,25 @@ return [
                     ],
                 ],
             ],
+            'RunDiskMigrationJob' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\VMMigration\V1\RunDiskMigrationJobResponse',
+                    'metadataReturnType' => '\Google\Cloud\VMMigration\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'StartMigration' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\VMMigration\V1\StartMigrationResponse',
@@ -437,6 +589,26 @@ return [
                         'keyName' => 'migrating_vm',
                         'fieldAccessors' => [
                             'getMigratingVm',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateDiskMigrationJob' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\VMMigration\V1\DiskMigrationJob',
+                    'metadataReturnType' => '\Google\Cloud\VMMigration\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'disk_migration_job.name',
+                        'fieldAccessors' => [
+                            'getDiskMigrationJob',
+                            'getName',
                         ],
                     ],
                 ],
@@ -552,6 +724,26 @@ return [
                     ],
                 ],
             ],
+            'FetchStorageInventory' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getResources',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\VMMigration\V1\FetchStorageInventoryResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'source',
+                        'fieldAccessors' => [
+                            'getSource',
+                        ],
+                    ],
+                ],
+            ],
             'GetCloneJob' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\VMMigration\V1\CloneJob',
@@ -588,9 +780,45 @@ return [
                     ],
                 ],
             ],
+            'GetDiskMigrationJob' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\VMMigration\V1\DiskMigrationJob',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetGroup' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\VMMigration\V1\Group',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetImageImport' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\VMMigration\V1\ImageImport',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetImageImportJob' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\VMMigration\V1\ImageImportJob',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -720,6 +948,26 @@ return [
                     ],
                 ],
             ],
+            'ListDiskMigrationJobs' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getDiskMigrationJobs',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\VMMigration\V1\ListDiskMigrationJobsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListGroups' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -731,6 +979,46 @@ return [
                 ],
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
                 'responseType' => 'Google\Cloud\VMMigration\V1\ListGroupsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListImageImportJobs' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getImageImportJobs',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\VMMigration\V1\ListImageImportJobsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListImageImports' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getImageImports',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\VMMigration\V1\ListImageImportsResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'parent',
@@ -876,12 +1164,18 @@ return [
             ],
             'templateMap' => [
                 'cloneJob' => 'projects/{project}/locations/{location}/sources/{source}/migratingVms/{migrating_vm}/cloneJobs/{clone_job}',
+                'cryptoKey' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}',
                 'cutoverJob' => 'projects/{project}/locations/{location}/sources/{source}/migratingVms/{migrating_vm}/cutoverJobs/{cutover_job}',
                 'datacenterConnector' => 'projects/{project}/locations/{location}/sources/{source}/datacenterConnectors/{datacenter_connector}',
+                'diskMigrationJob' => 'projects/{project}/locations/{location}/sources/{source}/diskMigrationJobs/{disk_migration_job}',
                 'group' => 'projects/{project}/locations/{location}/groups/{group}',
+                'image' => 'projects/{project}/global/images/{image}',
+                'imageImport' => 'projects/{project}/locations/{location}/imageImports/{job}',
+                'imageImportJob' => 'projects/{project}/locations/{location}/imageImports/{job}/imageImportJobs/{result}',
                 'location' => 'projects/{project}/locations/{location}',
                 'migratingVm' => 'projects/{project}/locations/{location}/sources/{source}/migratingVms/{migrating_vm}',
                 'replicationCycle' => 'projects/{project}/locations/{location}/sources/{source}/migratingVms/{migrating_vm}/replicationCycles/{replication_cycle}',
+                'serviceAccount' => 'projects/{project}/serviceAccounts/{service_account}',
                 'source' => 'projects/{project}/locations/{location}/sources/{source}',
                 'targetProject' => 'projects/{project}/locations/{location}/targetProjects/{target_project}',
                 'utilizationReport' => 'projects/{project}/locations/{location}/sources/{source}/utilizationReports/{utilization_report}',

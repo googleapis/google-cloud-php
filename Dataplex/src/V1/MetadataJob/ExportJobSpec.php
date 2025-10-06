@@ -26,9 +26,9 @@ class ExportJobSpec extends \Google\Protobuf\Internal\Message
      * metadata to, in the format `gs://{bucket}/`. You can optionally specify a
      * custom prefix after the bucket name, in the format
      * `gs://{bucket}/{prefix}/`. The maximum length of the custom prefix is 128
-     * characters. Dataplex constructs the object path for the exported files by
-     * using the bucket name and prefix that you provide, followed by a
-     * system-generated path.
+     * characters. Dataplex Universal Catalog constructs the object path for the
+     * exported files by using the bucket name and prefix that you provide,
+     * followed by a system-generated path.
      * The bucket must be in the same VPC Service Controls perimeter as the job.
      *
      * Generated from protobuf field <code>string output_path = 3 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -48,9 +48,9 @@ class ExportJobSpec extends \Google\Protobuf\Internal\Message
      *           metadata to, in the format `gs://{bucket}/`. You can optionally specify a
      *           custom prefix after the bucket name, in the format
      *           `gs://{bucket}/{prefix}/`. The maximum length of the custom prefix is 128
-     *           characters. Dataplex constructs the object path for the exported files by
-     *           using the bucket name and prefix that you provide, followed by a
-     *           system-generated path.
+     *           characters. Dataplex Universal Catalog constructs the object path for the
+     *           exported files by using the bucket name and prefix that you provide,
+     *           followed by a system-generated path.
      *           The bucket must be in the same VPC Service Controls perimeter as the job.
      * }
      */
@@ -100,9 +100,9 @@ class ExportJobSpec extends \Google\Protobuf\Internal\Message
      * metadata to, in the format `gs://{bucket}/`. You can optionally specify a
      * custom prefix after the bucket name, in the format
      * `gs://{bucket}/{prefix}/`. The maximum length of the custom prefix is 128
-     * characters. Dataplex constructs the object path for the exported files by
-     * using the bucket name and prefix that you provide, followed by a
-     * system-generated path.
+     * characters. Dataplex Universal Catalog constructs the object path for the
+     * exported files by using the bucket name and prefix that you provide,
+     * followed by a system-generated path.
      * The bucket must be in the same VPC Service Controls perimeter as the job.
      *
      * Generated from protobuf field <code>string output_path = 3 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -118,9 +118,9 @@ class ExportJobSpec extends \Google\Protobuf\Internal\Message
      * metadata to, in the format `gs://{bucket}/`. You can optionally specify a
      * custom prefix after the bucket name, in the format
      * `gs://{bucket}/{prefix}/`. The maximum length of the custom prefix is 128
-     * characters. Dataplex constructs the object path for the exported files by
-     * using the bucket name and prefix that you provide, followed by a
-     * system-generated path.
+     * characters. Dataplex Universal Catalog constructs the object path for the
+     * exported files by using the bucket name and prefix that you provide,
+     * followed by a system-generated path.
      * The bucket must be in the same VPC Service Controls perimeter as the job.
      *
      * Generated from protobuf field <code>string output_path = 3 [(.google.api.field_behavior) = REQUIRED];</code>

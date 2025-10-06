@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -50,7 +50,9 @@ class InterconnectRemoteLocationsClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return InterconnectRemoteLocationsClient */
@@ -83,6 +85,7 @@ class InterconnectRemoteLocationsClientTest extends GeneratedTest
         $lacp = 'lacp3313826';
         $maxLagSize100Gbps = 828522571;
         $maxLagSize10Gbps = 294007573;
+        $maxLagSize400Gbps = 104941138;
         $name = 'name3373707';
         $peeringdbFacilityId = 'peeringdbFacilityId-303818';
         $remoteService = 'remoteService-1218658372';
@@ -101,6 +104,7 @@ class InterconnectRemoteLocationsClientTest extends GeneratedTest
         $expectedResponse->setLacp($lacp);
         $expectedResponse->setMaxLagSize100Gbps($maxLagSize100Gbps);
         $expectedResponse->setMaxLagSize10Gbps($maxLagSize10Gbps);
+        $expectedResponse->setMaxLagSize400Gbps($maxLagSize400Gbps);
         $expectedResponse->setName($name);
         $expectedResponse->setPeeringdbFacilityId($peeringdbFacilityId);
         $expectedResponse->setRemoteService($remoteService);
@@ -138,12 +142,15 @@ class InterconnectRemoteLocationsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $interconnectRemoteLocation = 'interconnectRemoteLocation1363895773';
@@ -178,9 +185,7 @@ class InterconnectRemoteLocationsClientTest extends GeneratedTest
         $nextPageToken = '';
         $selfLink = 'selfLink-1691268851';
         $itemsElement = new InterconnectRemoteLocation();
-        $items = [
-            $itemsElement,
-        ];
+        $items = [$itemsElement];
         $expectedResponse = new InterconnectRemoteLocationList();
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
@@ -190,8 +195,7 @@ class InterconnectRemoteLocationsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $project = 'project-309310695';
-        $request = (new ListInterconnectRemoteLocationsRequest())
-            ->setProject($project);
+        $request = (new ListInterconnectRemoteLocationsRequest())->setProject($project);
         $response = $gapicClient->list($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -218,17 +222,19 @@ class InterconnectRemoteLocationsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';
-        $request = (new ListInterconnectRemoteLocationsRequest())
-            ->setProject($project);
+        $request = (new ListInterconnectRemoteLocationsRequest())->setProject($project);
         try {
             $gapicClient->list($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -263,6 +269,7 @@ class InterconnectRemoteLocationsClientTest extends GeneratedTest
         $lacp = 'lacp3313826';
         $maxLagSize100Gbps = 828522571;
         $maxLagSize10Gbps = 294007573;
+        $maxLagSize400Gbps = 104941138;
         $name = 'name3373707';
         $peeringdbFacilityId = 'peeringdbFacilityId-303818';
         $remoteService = 'remoteService-1218658372';
@@ -281,6 +288,7 @@ class InterconnectRemoteLocationsClientTest extends GeneratedTest
         $expectedResponse->setLacp($lacp);
         $expectedResponse->setMaxLagSize100Gbps($maxLagSize100Gbps);
         $expectedResponse->setMaxLagSize10Gbps($maxLagSize10Gbps);
+        $expectedResponse->setMaxLagSize400Gbps($maxLagSize400Gbps);
         $expectedResponse->setName($name);
         $expectedResponse->setPeeringdbFacilityId($peeringdbFacilityId);
         $expectedResponse->setRemoteService($remoteService);

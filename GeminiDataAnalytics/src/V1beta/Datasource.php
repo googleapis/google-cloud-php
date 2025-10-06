@@ -32,7 +32,7 @@ class Datasource extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\BigQueryTableReference $bigquery_table_reference
      *           A reference to a BigQuery table.
      *     @type string $studio_datasource_id
-     *           A reference to a LookerStudio datasource.
+     *           A reference to a Looker Studio datasource.
      *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\LookerExploreReference $looker_explore_reference
      *           A reference to a Looker explore.
      *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\Schema $schema
@@ -76,7 +76,7 @@ class Datasource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A reference to a LookerStudio datasource.
+     * A reference to a Looker Studio datasource.
      *
      * Generated from protobuf field <code>string studio_datasource_id = 2;</code>
      * @return string
@@ -92,7 +92,7 @@ class Datasource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A reference to a LookerStudio datasource.
+     * A reference to a Looker Studio datasource.
      *
      * Generated from protobuf field <code>string studio_datasource_id = 2;</code>
      * @param string $var

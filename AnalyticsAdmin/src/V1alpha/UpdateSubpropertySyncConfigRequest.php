@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateSubpropertySyncConfigRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The SubpropertySyncConfig to update.
+     * Required. The `SubpropertySyncConfig` to update.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.SubpropertySyncConfig subproperty_sync_config = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -32,7 +32,7 @@ class UpdateSubpropertySyncConfigRequest extends \Google\Protobuf\Internal\Messa
     protected $update_mask = null;
 
     /**
-     * @param \Google\Analytics\Admin\V1alpha\SubpropertySyncConfig $subpropertySyncConfig Required. The SubpropertySyncConfig to update.
+     * @param \Google\Analytics\Admin\V1alpha\SubpropertySyncConfig $subpropertySyncConfig Required. The `SubpropertySyncConfig` to update.
      * @param \Google\Protobuf\FieldMask                            $updateMask            Optional. The list of fields to update. Field names must be in snake case
      *                                                                                     (for example, "field_to_update"). Omitted fields will not be updated. To
      *                                                                                     replace the entire entity, use one path with the string "*" to match all
@@ -56,7 +56,7 @@ class UpdateSubpropertySyncConfigRequest extends \Google\Protobuf\Internal\Messa
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Analytics\Admin\V1alpha\SubpropertySyncConfig $subproperty_sync_config
-     *           Required. The SubpropertySyncConfig to update.
+     *           Required. The `SubpropertySyncConfig` to update.
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Optional. The list of fields to update. Field names must be in snake case
      *           (for example, "field_to_update"). Omitted fields will not be updated. To
@@ -70,7 +70,7 @@ class UpdateSubpropertySyncConfigRequest extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * Required. The SubpropertySyncConfig to update.
+     * Required. The `SubpropertySyncConfig` to update.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.SubpropertySyncConfig subproperty_sync_config = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Analytics\Admin\V1alpha\SubpropertySyncConfig|null
@@ -91,7 +91,7 @@ class UpdateSubpropertySyncConfigRequest extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * Required. The SubpropertySyncConfig to update.
+     * Required. The `SubpropertySyncConfig` to update.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.SubpropertySyncConfig subproperty_sync_config = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Analytics\Admin\V1alpha\SubpropertySyncConfig $var

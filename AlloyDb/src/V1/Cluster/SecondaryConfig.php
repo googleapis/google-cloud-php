@@ -20,7 +20,7 @@ class SecondaryConfig extends \Google\Protobuf\Internal\Message
      * The name of the primary cluster name with the format:
      * * projects/{project}/locations/{region}/clusters/{cluster_id}
      *
-     * Generated from protobuf field <code>string primary_cluster_name = 1;</code>
+     * Generated from protobuf field <code>string primary_cluster_name = 1 [(.google.api.resource_reference) = {</code>
      */
     protected $primary_cluster_name = '';
 
@@ -44,7 +44,7 @@ class SecondaryConfig extends \Google\Protobuf\Internal\Message
      * The name of the primary cluster name with the format:
      * * projects/{project}/locations/{region}/clusters/{cluster_id}
      *
-     * Generated from protobuf field <code>string primary_cluster_name = 1;</code>
+     * Generated from protobuf field <code>string primary_cluster_name = 1 [(.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getPrimaryClusterName()
@@ -56,7 +56,7 @@ class SecondaryConfig extends \Google\Protobuf\Internal\Message
      * The name of the primary cluster name with the format:
      * * projects/{project}/locations/{region}/clusters/{cluster_id}
      *
-     * Generated from protobuf field <code>string primary_cluster_name = 1;</code>
+     * Generated from protobuf field <code>string primary_cluster_name = 1 [(.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

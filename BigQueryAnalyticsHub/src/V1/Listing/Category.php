@@ -93,6 +93,10 @@ class Category
      * Generated from protobuf enum <code>CATEGORY_TRAVEL_AND_TOURISM = 19;</code>
      */
     const CATEGORY_TRAVEL_AND_TOURISM = 19;
+    /**
+     * Generated from protobuf enum <code>CATEGORY_GOOGLE_EARTH_ENGINE = 20;</code>
+     */
+    const CATEGORY_GOOGLE_EARTH_ENGINE = 20;
 
     private static $valueToName = [
         self::CATEGORY_UNSPECIFIED => 'CATEGORY_UNSPECIFIED',
@@ -115,6 +119,7 @@ class Category
         self::CATEGORY_SCIENCE_AND_RESEARCH => 'CATEGORY_SCIENCE_AND_RESEARCH',
         self::CATEGORY_TRANSPORTATION_AND_LOGISTICS => 'CATEGORY_TRANSPORTATION_AND_LOGISTICS',
         self::CATEGORY_TRAVEL_AND_TOURISM => 'CATEGORY_TRAVEL_AND_TOURISM',
+        self::CATEGORY_GOOGLE_EARTH_ENGINE => 'CATEGORY_GOOGLE_EARTH_ENGINE',
     ];
 
     public static function name($value)

@@ -27,6 +27,7 @@ namespace Google\Cloud\BigQuery\DataTransfer\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -116,7 +117,9 @@ final class DataTransferServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+    ];
 
     private static function getClientDefaults()
     {
@@ -232,11 +235,8 @@ final class DataTransferServiceClient
      *
      * @return string The formatted project_location_transfer_config resource.
      */
-    public static function projectLocationTransferConfigName(
-        string $project,
-        string $location,
-        string $transferConfig
-    ): string {
+    public static function projectLocationTransferConfigName(string $project, string $location, string $transferConfig): string
+    {
         return self::getPathTemplate('projectLocationTransferConfig')->render([
             'project' => $project,
             'location' => $location,
@@ -255,12 +255,8 @@ final class DataTransferServiceClient
      *
      * @return string The formatted project_location_transfer_config_run resource.
      */
-    public static function projectLocationTransferConfigRunName(
-        string $project,
-        string $location,
-        string $transferConfig,
-        string $run
-    ): string {
+    public static function projectLocationTransferConfigRunName(string $project, string $location, string $transferConfig, string $run): string
+    {
         return self::getPathTemplate('projectLocationTransferConfigRun')->render([
             'project' => $project,
             'location' => $location,
@@ -378,25 +374,28 @@ final class DataTransferServiceClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'bigquerydatatransfer.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
-     *           *Important*: If you accept a credential configuration (credential
-     *           JSON/File/Stream) from an external source for authentication to Google Cloud
-     *           Platform, you must validate it before providing it to any Google API or library.
-     *           Providing an unvalidated credential configuration to Google APIs can compromise
-     *           the security of your systems and data. For more information {@see
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\BigQuery\DataTransfer\V1\DataTransferServiceClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new DataTransferServiceClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
      *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
@@ -434,11 +433,13 @@ final class DataTransferServiceClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -805,10 +806,8 @@ final class DataTransferServiceClient
      *
      * @deprecated This method will be removed in the next major version update.
      */
-    public function scheduleTransferRuns(
-        ScheduleTransferRunsRequest $request,
-        array $callOptions = []
-    ): ScheduleTransferRunsResponse {
+    public function scheduleTransferRuns(ScheduleTransferRunsRequest $request, array $callOptions = []): ScheduleTransferRunsResponse
+    {
         return $this->startApiCall('ScheduleTransferRuns', $request, $callOptions)->wait();
     }
 
@@ -837,10 +836,8 @@ final class DataTransferServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function startManualTransferRuns(
-        StartManualTransferRunsRequest $request,
-        array $callOptions = []
-    ): StartManualTransferRunsResponse {
+    public function startManualTransferRuns(StartManualTransferRunsRequest $request, array $callOptions = []): StartManualTransferRunsResponse
+    {
         return $this->startApiCall('StartManualTransferRuns', $request, $callOptions)->wait();
     }
 

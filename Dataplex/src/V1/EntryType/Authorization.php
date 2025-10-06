@@ -17,8 +17,8 @@ class Authorization extends \Google\Protobuf\Internal\Message
 {
     /**
      * Immutable. The IAM permission grantable on the Entry Group to allow
-     * access to instantiate Entries of Dataplex owned Entry Types, only
-     * settable for Dataplex owned Types.
+     * access to instantiate Entries of Dataplex Universal Catalog owned Entry
+     * Types, only settable for Dataplex Universal Catalog owned Types.
      *
      * Generated from protobuf field <code>string alternate_use_permission = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
@@ -32,8 +32,8 @@ class Authorization extends \Google\Protobuf\Internal\Message
      *
      *     @type string $alternate_use_permission
      *           Immutable. The IAM permission grantable on the Entry Group to allow
-     *           access to instantiate Entries of Dataplex owned Entry Types, only
-     *           settable for Dataplex owned Types.
+     *           access to instantiate Entries of Dataplex Universal Catalog owned Entry
+     *           Types, only settable for Dataplex Universal Catalog owned Types.
      * }
      */
     public function __construct($data = NULL) {
@@ -43,8 +43,8 @@ class Authorization extends \Google\Protobuf\Internal\Message
 
     /**
      * Immutable. The IAM permission grantable on the Entry Group to allow
-     * access to instantiate Entries of Dataplex owned Entry Types, only
-     * settable for Dataplex owned Types.
+     * access to instantiate Entries of Dataplex Universal Catalog owned Entry
+     * Types, only settable for Dataplex Universal Catalog owned Types.
      *
      * Generated from protobuf field <code>string alternate_use_permission = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
@@ -56,8 +56,8 @@ class Authorization extends \Google\Protobuf\Internal\Message
 
     /**
      * Immutable. The IAM permission grantable on the Entry Group to allow
-     * access to instantiate Entries of Dataplex owned Entry Types, only
-     * settable for Dataplex owned Types.
+     * access to instantiate Entries of Dataplex Universal Catalog owned Entry
+     * Types, only settable for Dataplex Universal Catalog owned Types.
      *
      * Generated from protobuf field <code>string alternate_use_permission = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var

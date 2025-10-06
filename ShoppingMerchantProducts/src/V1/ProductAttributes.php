@@ -298,6 +298,12 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      */
     private $shipping;
     /**
+     * Rules for carrier-based shipping.
+     *
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.ProductAttributes.CarrierShipping carrier_shipping = 142;</code>
+     */
+    private $carrier_shipping;
+    /**
      * Conditions to be met for a product to have free shipping.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.FreeShippingThreshold free_shipping_threshold = 135;</code>
@@ -806,6 +812,8 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      *           between 0 (exclusive) and 2000 (inclusive).
      *     @type array<\Google\Shopping\Merchant\Products\V1\Shipping>|\Google\Protobuf\Internal\RepeatedField $shipping
      *           Shipping rules.
+     *     @type array<\Google\Shopping\Merchant\Products\V1\ProductAttributes\CarrierShipping>|\Google\Protobuf\Internal\RepeatedField $carrier_shipping
+     *           Rules for carrier-based shipping.
      *     @type array<\Google\Shopping\Merchant\Products\V1\FreeShippingThreshold>|\Google\Protobuf\Internal\RepeatedField $free_shipping_threshold
      *           Conditions to be met for a product to have free shipping.
      *     @type \Google\Shopping\Merchant\Products\V1\ShippingWeight $shipping_weight
@@ -2455,6 +2463,32 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Shopping\Merchant\Products\V1\Shipping::class);
         $this->shipping = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Rules for carrier-based shipping.
+     *
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.ProductAttributes.CarrierShipping carrier_shipping = 142;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getCarrierShipping()
+    {
+        return $this->carrier_shipping;
+    }
+
+    /**
+     * Rules for carrier-based shipping.
+     *
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.ProductAttributes.CarrierShipping carrier_shipping = 142;</code>
+     * @param array<\Google\Shopping\Merchant\Products\V1\ProductAttributes\CarrierShipping>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setCarrierShipping($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Shopping\Merchant\Products\V1\ProductAttributes\CarrierShipping::class);
+        $this->carrier_shipping = $arr;
 
         return $this;
     }

@@ -23,6 +23,42 @@
 return [
     'interfaces' => [
         'google.shopping.merchant.accounts.v1.RegionsService' => [
+            'BatchCreateRegions' => [
+                'method' => 'post',
+                'uriTemplate' => '/accounts/v1/{parent=accounts/*}/regions:batchCreate',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchDeleteRegions' => [
+                'method' => 'post',
+                'uriTemplate' => '/accounts/v1/{parent=accounts/*}/regions:batchDelete',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchUpdateRegions' => [
+                'method' => 'post',
+                'uriTemplate' => '/accounts/v1/{parent=accounts/*}/regions:batchUpdate',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateRegion' => [
                 'method' => 'post',
                 'uriTemplate' => '/accounts/v1/{parent=accounts/*}/regions',

@@ -29,7 +29,7 @@ use Google\Cloud\GeminiDataAnalytics\V1beta\Conversation;
 use Google\Cloud\GeminiDataAnalytics\V1beta\GetConversationRequest;
 
 /**
- * Gets details of a single conversation using conversation id and parent.
+ * Gets details of a single conversation by using conversation id and parent.
  *
  * @param string $formattedName Name of the resource.
  *                              Format:

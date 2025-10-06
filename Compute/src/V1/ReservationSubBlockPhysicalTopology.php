@@ -19,19 +19,19 @@ class ReservationSubBlockPhysicalTopology extends \Google\Protobuf\Internal\Mess
      *
      * Generated from protobuf field <code>optional string block = 93832333;</code>
      */
-    private $block = null;
+    protected $block = null;
     /**
      * The cluster name of the reservation subBlock.
      *
      * Generated from protobuf field <code>optional string cluster = 335221242;</code>
      */
-    private $cluster = null;
+    protected $cluster = null;
     /**
      * The hash of the capacity sub-block within the capacity block.
      *
      * Generated from protobuf field <code>optional string sub_block = 478033358;</code>
      */
-    private $sub_block = null;
+    protected $sub_block = null;
 
     /**
      * Constructor.

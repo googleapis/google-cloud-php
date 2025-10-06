@@ -20,13 +20,13 @@ class GetBackendBucketRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string backend_bucket = 91714037 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $backend_bucket = '';
+    protected $backend_bucket = '';
     /**
      * Project ID for this request.
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project = '';
+    protected $project = '';
 
     /**
      * @param string $project       Project ID for this request.

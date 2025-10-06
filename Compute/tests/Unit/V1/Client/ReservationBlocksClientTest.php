@@ -27,6 +27,7 @@ use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Compute\V1\Client\ReservationBlocksClient;
+use Google\Cloud\Compute\V1\Client\ZoneOperationsClient;
 use Google\Cloud\Compute\V1\GetReservationBlockRequest;
 use Google\Cloud\Compute\V1\GetZoneOperationRequest;
 use Google\Cloud\Compute\V1\ListReservationBlocksRequest;
@@ -37,7 +38,6 @@ use Google\Cloud\Compute\V1\ReservationBlock;
 use Google\Cloud\Compute\V1\ReservationBlocksGetResponse;
 use Google\Cloud\Compute\V1\ReservationBlocksListResponse;
 use Google\Cloud\Compute\V1\ReservationsBlocksPerformMaintenanceRequest;
-use Google\Cloud\Compute\V1\ZoneOperationsClient;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -57,7 +57,9 @@ class ReservationBlocksClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return ReservationBlocksClient */
@@ -119,12 +121,15 @@ class ReservationBlocksClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';
@@ -163,9 +168,7 @@ class ReservationBlocksClientTest extends GeneratedTest
         $nextPageToken = '';
         $selfLink = 'selfLink-1691268851';
         $itemsElement = new ReservationBlock();
-        $items = [
-            $itemsElement,
-        ];
+        $items = [$itemsElement];
         $expectedResponse = new ReservationBlocksListResponse();
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
@@ -211,12 +214,15 @@ class ReservationBlocksClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';
@@ -274,7 +280,9 @@ class ReservationBlocksClientTest extends GeneratedTest
             ->setProject($project)
             ->setReservation($reservation)
             ->setReservationBlock($reservationBlock)
-            ->setReservationsBlocksPerformMaintenanceRequestResource($reservationsBlocksPerformMaintenanceRequestResource)
+            ->setReservationsBlocksPerformMaintenanceRequestResource(
+                $reservationsBlocksPerformMaintenanceRequestResource
+            )
             ->setZone($zone);
         $response = $gapicClient->performMaintenance($request);
         $this->assertFalse($response->isDone());
@@ -339,12 +347,15 @@ class ReservationBlocksClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';
@@ -356,7 +367,9 @@ class ReservationBlocksClientTest extends GeneratedTest
             ->setProject($project)
             ->setReservation($reservation)
             ->setReservationBlock($reservationBlock)
-            ->setReservationsBlocksPerformMaintenanceRequestResource($reservationsBlocksPerformMaintenanceRequestResource)
+            ->setReservationsBlocksPerformMaintenanceRequestResource(
+                $reservationsBlocksPerformMaintenanceRequestResource
+            )
             ->setZone($zone);
         $response = $gapicClient->performMaintenance($request);
         $this->assertFalse($response->isDone());

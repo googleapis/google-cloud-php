@@ -26,9 +26,9 @@ class DatasourceReferences extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\BigQueryTableReferences $bq
      *           References to BigQuery tables.
      *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\StudioDatasourceReferences $studio
-     *           References to LookerStudio datasources.
+     *           References to Looker Studio datasources.
      *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\LookerExploreReferences $looker
-     *           References to Looker explores.
+     *           References to Looker Explores.
      * }
      */
     public function __construct($data = NULL) {
@@ -68,7 +68,7 @@ class DatasourceReferences extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * References to LookerStudio datasources.
+     * References to Looker Studio datasources.
      *
      * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.StudioDatasourceReferences studio = 2;</code>
      * @return \Google\Cloud\GeminiDataAnalytics\V1beta\StudioDatasourceReferences|null
@@ -84,7 +84,7 @@ class DatasourceReferences extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * References to LookerStudio datasources.
+     * References to Looker Studio datasources.
      *
      * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.StudioDatasourceReferences studio = 2;</code>
      * @param \Google\Cloud\GeminiDataAnalytics\V1beta\StudioDatasourceReferences $var
@@ -99,7 +99,7 @@ class DatasourceReferences extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * References to Looker explores.
+     * References to Looker Explores.
      *
      * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.LookerExploreReferences looker = 3;</code>
      * @return \Google\Cloud\GeminiDataAnalytics\V1beta\LookerExploreReferences|null
@@ -115,7 +115,7 @@ class DatasourceReferences extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * References to Looker explores.
+     * References to Looker Explores.
      *
      * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.LookerExploreReferences looker = 3;</code>
      * @param \Google\Cloud\GeminiDataAnalytics\V1beta\LookerExploreReferences $var

@@ -21,25 +21,25 @@ class AWSV4Signature extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string access_key = 468922628;</code>
      */
-    private $access_key = null;
+    protected $access_key = null;
     /**
      * The identifier of an access key used for s3 bucket authentication.
      *
      * Generated from protobuf field <code>optional string access_key_id = 292975158;</code>
      */
-    private $access_key_id = null;
+    protected $access_key_id = null;
     /**
      * The optional version identifier for the access key. You can use this to keep track of different iterations of your access key.
      *
      * Generated from protobuf field <code>optional string access_key_version = 80261277;</code>
      */
-    private $access_key_version = null;
+    protected $access_key_version = null;
     /**
      * The name of the cloud region of your origin. This is a free-form field with the name of the region your cloud uses to host your origin. For example, "us-east-1" for AWS or "us-ashburn-1" for OCI.
      *
      * Generated from protobuf field <code>optional string origin_region = 265305645;</code>
      */
-    private $origin_region = null;
+    protected $origin_region = null;
 
     /**
      * Constructor.

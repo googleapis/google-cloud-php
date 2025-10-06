@@ -20,7 +20,7 @@ class StatefulPolicyPreservedStateNetworkIp extends \Google\Protobuf\Internal\Me
      *
      * Generated from protobuf field <code>optional string auto_delete = 464761403;</code>
      */
-    private $auto_delete = null;
+    protected $auto_delete = null;
 
     /**
      * Constructor.

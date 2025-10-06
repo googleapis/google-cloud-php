@@ -9,8 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A query for retrieving data from a Looker explore. See
- * https://cloud.google.com/looker/docs/reference/looker-api/latest/methods/Query/run_inline_query
+ * A query for retrieving data from a Looker Explore. See
+ * [Run Inline
+ * Query](https://cloud.google.com/looker/docs/reference/looker-api/latest/methods/Query/run_inline_query).
  *
  * Generated from protobuf message <code>google.cloud.geminidataanalytics.v1beta.LookerQuery</code>
  */
@@ -23,25 +24,25 @@ class LookerQuery extends \Google\Protobuf\Internal\Message
      */
     protected $model = '';
     /**
-     * Required. The LookML explore used to generate the query.
+     * Required. The LookML Explore used to generate the query.
      *
      * Generated from protobuf field <code>string explore = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $explore = '';
     /**
-     * Optional. The fields to retrieve from the explore.
+     * Optional. The fields to retrieve from the Explore.
      *
      * Generated from protobuf field <code>repeated string fields = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $fields;
     /**
-     * Optional. The filters to apply to the explore.
+     * Optional. The filters to apply to the Explore.
      *
      * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.LookerQuery.Filter filters = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $filters;
     /**
-     * Optional. The sorts to apply to the explore.
+     * Optional. The sorts to apply to the Explore.
      *
      * Generated from protobuf field <code>repeated string sorts = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -62,13 +63,13 @@ class LookerQuery extends \Google\Protobuf\Internal\Message
      *     @type string $model
      *           Required. The LookML model used to generate the query.
      *     @type string $explore
-     *           Required. The LookML explore used to generate the query.
+     *           Required. The LookML Explore used to generate the query.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $fields
-     *           Optional. The fields to retrieve from the explore.
+     *           Optional. The fields to retrieve from the Explore.
      *     @type array<\Google\Cloud\GeminiDataAnalytics\V1beta\LookerQuery\Filter>|\Google\Protobuf\Internal\RepeatedField $filters
-     *           Optional. The filters to apply to the explore.
+     *           Optional. The filters to apply to the Explore.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $sorts
-     *           Optional. The sorts to apply to the explore.
+     *           Optional. The sorts to apply to the Explore.
      *     @type string $limit
      *           Optional. Limit in the query.
      * }
@@ -105,7 +106,7 @@ class LookerQuery extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The LookML explore used to generate the query.
+     * Required. The LookML Explore used to generate the query.
      *
      * Generated from protobuf field <code>string explore = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -116,7 +117,7 @@ class LookerQuery extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The LookML explore used to generate the query.
+     * Required. The LookML Explore used to generate the query.
      *
      * Generated from protobuf field <code>string explore = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -131,7 +132,7 @@ class LookerQuery extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The fields to retrieve from the explore.
+     * Optional. The fields to retrieve from the Explore.
      *
      * Generated from protobuf field <code>repeated string fields = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -142,7 +143,7 @@ class LookerQuery extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The fields to retrieve from the explore.
+     * Optional. The fields to retrieve from the Explore.
      *
      * Generated from protobuf field <code>repeated string fields = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -157,7 +158,7 @@ class LookerQuery extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The filters to apply to the explore.
+     * Optional. The filters to apply to the Explore.
      *
      * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.LookerQuery.Filter filters = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -168,7 +169,7 @@ class LookerQuery extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The filters to apply to the explore.
+     * Optional. The filters to apply to the Explore.
      *
      * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.LookerQuery.Filter filters = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<\Google\Cloud\GeminiDataAnalytics\V1beta\LookerQuery\Filter>|\Google\Protobuf\Internal\RepeatedField $var
@@ -183,7 +184,7 @@ class LookerQuery extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The sorts to apply to the explore.
+     * Optional. The sorts to apply to the Explore.
      *
      * Generated from protobuf field <code>repeated string sorts = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -194,7 +195,7 @@ class LookerQuery extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The sorts to apply to the explore.
+     * Optional. The sorts to apply to the Explore.
      *
      * Generated from protobuf field <code>repeated string sorts = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

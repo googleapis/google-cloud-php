@@ -33,6 +33,15 @@ class MergeCapacityCommitmentsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string capacity_commitment_ids = 2;</code>
      */
     private $capacity_commitment_ids;
+    /**
+     * Optional. The optional resulting capacity commitment ID. Capacity
+     * commitment name will be generated automatically if this field is empty.
+     * This field must only contain lower case alphanumeric characters or dashes.
+     * The first and last character cannot be a dash. Max length is 64 characters.
+     *
+     * Generated from protobuf field <code>string capacity_commitment_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $capacity_commitment_id = '';
 
     /**
      * @param string   $parent                Parent resource that identifies admin project and location e.g.,
@@ -69,6 +78,11 @@ class MergeCapacityCommitmentsRequest extends \Google\Protobuf\Internal\Message
      *           specified in the parent.
      *           ID is the last portion of capacity commitment name e.g., 'abc' for
      *           projects/myproject/locations/US/capacityCommitments/abc
+     *     @type string $capacity_commitment_id
+     *           Optional. The optional resulting capacity commitment ID. Capacity
+     *           commitment name will be generated automatically if this field is empty.
+     *           This field must only contain lower case alphanumeric characters or dashes.
+     *           The first and last character cannot be a dash. Max length is 64 characters.
      * }
      */
     public function __construct($data = NULL) {
@@ -134,6 +148,38 @@ class MergeCapacityCommitmentsRequest extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->capacity_commitment_ids = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The optional resulting capacity commitment ID. Capacity
+     * commitment name will be generated automatically if this field is empty.
+     * This field must only contain lower case alphanumeric characters or dashes.
+     * The first and last character cannot be a dash. Max length is 64 characters.
+     *
+     * Generated from protobuf field <code>string capacity_commitment_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getCapacityCommitmentId()
+    {
+        return $this->capacity_commitment_id;
+    }
+
+    /**
+     * Optional. The optional resulting capacity commitment ID. Capacity
+     * commitment name will be generated automatically if this field is empty.
+     * This field must only contain lower case alphanumeric characters or dashes.
+     * The first and last character cannot be a dash. Max length is 64 characters.
+     *
+     * Generated from protobuf field <code>string capacity_commitment_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCapacityCommitmentId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->capacity_commitment_id = $var;
 
         return $this;
     }

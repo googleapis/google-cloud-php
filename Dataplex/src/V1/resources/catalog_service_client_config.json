@@ -95,6 +95,11 @@
                     "retry_codes_name": "no_retry_5_codes",
                     "retry_params_name": "no_retry_5_params"
                 },
+                "CreateEntryLink": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
                 "CreateEntryType": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_5_codes",
@@ -120,6 +125,11 @@
                     "retry_codes_name": "no_retry_5_codes",
                     "retry_params_name": "no_retry_5_params"
                 },
+                "DeleteEntryLink": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
                 "DeleteEntryType": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_5_codes",
@@ -139,6 +149,11 @@
                     "timeout_millis": 60000,
                     "retry_codes_name": "retry_policy_9_codes",
                     "retry_params_name": "retry_policy_9_params"
+                },
+                "GetEntryLink": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
                 },
                 "GetEntryType": {
                     "timeout_millis": 60000,

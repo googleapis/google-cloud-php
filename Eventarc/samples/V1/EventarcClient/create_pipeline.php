@@ -36,7 +36,8 @@ use Google\Rpc\Status;
  *
  * @param string $formattedParent The parent collection in which to add this pipeline. Please see
  *                                {@see EventarcClient::locationName()} for help formatting this field.
- * @param string $pipelineId      The user-provided ID to be assigned to the Pipeline.
+ * @param string $pipelineId      The user-provided ID to be assigned to the Pipeline. It should
+ *                                match the format `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`.
  */
 function create_pipeline_sample(string $formattedParent, string $pipelineId): void
 {

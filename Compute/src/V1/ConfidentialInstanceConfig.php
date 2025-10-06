@@ -21,13 +21,13 @@ class ConfidentialInstanceConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string confidential_instance_type = 43484717;</code>
      */
-    private $confidential_instance_type = null;
+    protected $confidential_instance_type = null;
     /**
      * Defines whether the instance should have confidential compute enabled.
      *
      * Generated from protobuf field <code>optional bool enable_confidential_compute = 102135228;</code>
      */
-    private $enable_confidential_compute = null;
+    protected $enable_confidential_compute = null;
 
     /**
      * Constructor.

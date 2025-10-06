@@ -20,6 +20,16 @@
                                 "verifyAttestation"
                             ]
                         },
+                        "VerifyConfidentialGke": {
+                            "methods": [
+                                "verifyConfidentialGke"
+                            ]
+                        },
+                        "VerifyConfidentialSpace": {
+                            "methods": [
+                                "verifyConfidentialSpace"
+                            ]
+                        },
                         "GetLocation": {
                             "methods": [
                                 "getLocation"

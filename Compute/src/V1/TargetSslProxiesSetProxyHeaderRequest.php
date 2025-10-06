@@ -20,7 +20,7 @@ class TargetSslProxiesSetProxyHeaderRequest extends \Google\Protobuf\Internal\Me
      *
      * Generated from protobuf field <code>optional string proxy_header = 160374142;</code>
      */
-    private $proxy_header = null;
+    protected $proxy_header = null;
 
     /**
      * Constructor.

@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class OsImageRuntime extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Dataplex Image version.
+     * Required. Dataplex Universal Catalog Image version.
      *
      * Generated from protobuf field <code>string image_version = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -54,7 +54,7 @@ class OsImageRuntime extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $image_version
-     *           Required. Dataplex Image version.
+     *           Required. Dataplex Universal Catalog Image version.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $java_libraries
      *           Optional. List of Java jars to be included in the runtime environment.
      *           Valid input includes Cloud Storage URIs to Jar binaries.
@@ -76,7 +76,7 @@ class OsImageRuntime extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Dataplex Image version.
+     * Required. Dataplex Universal Catalog Image version.
      *
      * Generated from protobuf field <code>string image_version = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -87,7 +87,7 @@ class OsImageRuntime extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Dataplex Image version.
+     * Required. Dataplex Universal Catalog Image version.
      *
      * Generated from protobuf field <code>string image_version = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

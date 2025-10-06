@@ -31,11 +31,18 @@ class CreatorFilter
      * Generated from protobuf enum <code>CREATOR_ONLY = 2;</code>
      */
     const CREATOR_ONLY = 2;
+    /**
+     * Only agents not created by the user calling the API will be returned.
+     *
+     * Generated from protobuf enum <code>NOT_CREATOR_ONLY = 3;</code>
+     */
+    const NOT_CREATOR_ONLY = 3;
 
     private static $valueToName = [
         self::CREATOR_FILTER_UNSPECIFIED => 'CREATOR_FILTER_UNSPECIFIED',
         self::NONE => 'NONE',
         self::CREATOR_ONLY => 'CREATOR_ONLY',
+        self::NOT_CREATOR_ONLY => 'NOT_CREATOR_ONLY',
     ];
 
     public static function name($value)

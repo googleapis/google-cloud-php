@@ -20,14 +20,14 @@ class FirewallLogConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional bool enable = 311764355;</code>
      */
-    private $enable = null;
+    protected $enable = null;
     /**
      * This field can only be specified for a particular firewall rule if logging is enabled for that rule. This field denotes whether to include or exclude metadata for firewall logs.
      * Check the Metadata enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string metadata = 86866735;</code>
      */
-    private $metadata = null;
+    protected $metadata = null;
 
     /**
      * Constructor.

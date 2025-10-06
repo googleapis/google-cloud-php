@@ -136,6 +136,34 @@
                 }
             }
         },
+        "SearchService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SearchServiceGapicClient",
+                    "rpcs": {
+                        "Search": {
+                            "methods": [
+                                "search"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "ConversationalSearchService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ConversationalSearchServiceGapicClient",
+                    "rpcs": {
+                        "ConversationalSearch": {
+                            "methods": [
+                                "conversationalSearch"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "GenerativeQuestionService": {
             "clients": {
                 "grpc": {
@@ -296,20 +324,6 @@
                         "UpdateProduct": {
                             "methods": [
                                 "updateProduct"
-                            ]
-                        }
-                    }
-                }
-            }
-        },
-        "SearchService": {
-            "clients": {
-                "grpc": {
-                    "libraryClient": "SearchServiceGapicClient",
-                    "rpcs": {
-                        "Search": {
-                            "methods": [
-                                "search"
                             ]
                         }
                     }

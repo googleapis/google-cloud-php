@@ -19,13 +19,13 @@ class ManagedInstanceVersion extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string instance_template = 309248228;</code>
      */
-    private $instance_template = null;
+    protected $instance_template = null;
     /**
      * [Output Only] Name of the version.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
 
     /**
      * Constructor.

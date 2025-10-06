@@ -19,7 +19,7 @@ class InstanceGroupsSetNamedPortsRequest extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>optional string fingerprint = 234678500;</code>
      */
-    private $fingerprint = null;
+    protected $fingerprint = null;
     /**
      * The list of named ports to set for this instance group.
      *

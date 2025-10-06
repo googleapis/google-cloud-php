@@ -20,13 +20,13 @@ class NetworkEndpointGroupCloudFunction extends \Google\Protobuf\Internal\Messag
      *
      * Generated from protobuf field <code>optional string function = 307196888;</code>
      */
-    private $function = null;
+    protected $function = null;
     /**
      * An URL mask is one of the main components of the Cloud Function. A template to parse function field from a request URL. URL mask allows for routing to multiple Cloud Functions without having to create multiple Network Endpoint Groups and backend services. For example, request URLs mydomain.com/function1 and mydomain.com/function2 can be backed by the same Serverless NEG with URL mask /<function>. The URL mask will parse them to { function = "function1" } and { function = "function2" } respectively.
      *
      * Generated from protobuf field <code>optional string url_mask = 103352252;</code>
      */
-    private $url_mask = null;
+    protected $url_mask = null;
 
     /**
      * Constructor.

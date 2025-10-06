@@ -16,17 +16,19 @@ use Google\Protobuf\Internal\GPBUtil;
 class LookerExploreReference extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Looker Model as outlined in
-     * https://cloud.google.com/looker/docs/lookml-terms-and-concepts#major_lookml_structures
-     * Name of LookML model.
+     * Required. Looker model, as outlined in
+     * [Major LookML
+     * structures](https://cloud.google.com/looker/docs/lookml-terms-and-concepts#major_lookml_structures).
+     * Name of the LookML model.
      *
      * Generated from protobuf field <code>string lookml_model = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $lookml_model = '';
     /**
-     * Required. Looker Explore as outlined in
-     * https://cloud.google.com/looker/docs/lookml-terms-and-concepts#major_lookml_structures
-     * Name of LookML explore.
+     * Required. Looker Explore, as outlined in
+     * [Major LookML
+     * structures](https://cloud.google.com/looker/docs/lookml-terms-and-concepts#major_lookml_structures).
+     * Name of the LookML Explore.
      *
      * Generated from protobuf field <code>string explore = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -50,13 +52,15 @@ class LookerExploreReference extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\PrivateLookerInstanceInfo $private_looker_instance_info
      *           Private Looker instance info.
      *     @type string $lookml_model
-     *           Required. Looker Model as outlined in
-     *           https://cloud.google.com/looker/docs/lookml-terms-and-concepts#major_lookml_structures
-     *           Name of LookML model.
+     *           Required. Looker model, as outlined in
+     *           [Major LookML
+     *           structures](https://cloud.google.com/looker/docs/lookml-terms-and-concepts#major_lookml_structures).
+     *           Name of the LookML model.
      *     @type string $explore
-     *           Required. Looker Explore as outlined in
-     *           https://cloud.google.com/looker/docs/lookml-terms-and-concepts#major_lookml_structures
-     *           Name of LookML explore.
+     *           Required. Looker Explore, as outlined in
+     *           [Major LookML
+     *           structures](https://cloud.google.com/looker/docs/lookml-terms-and-concepts#major_lookml_structures).
+     *           Name of the LookML Explore.
      *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\Schema $schema
      *           Optional. The schema of the datasource.
      * }
@@ -69,7 +73,7 @@ class LookerExploreReference extends \Google\Protobuf\Internal\Message
     /**
      * Required. The base url of the Looker instance.
      *
-     * Generated from protobuf field <code>string looker_instance_uri = 9 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string looker_instance_uri = 9;</code>
      * @return string
      */
     public function getLookerInstanceUri()
@@ -85,7 +89,7 @@ class LookerExploreReference extends \Google\Protobuf\Internal\Message
     /**
      * Required. The base url of the Looker instance.
      *
-     * Generated from protobuf field <code>string looker_instance_uri = 9 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string looker_instance_uri = 9;</code>
      * @param string $var
      * @return $this
      */
@@ -129,9 +133,10 @@ class LookerExploreReference extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Looker Model as outlined in
-     * https://cloud.google.com/looker/docs/lookml-terms-and-concepts#major_lookml_structures
-     * Name of LookML model.
+     * Required. Looker model, as outlined in
+     * [Major LookML
+     * structures](https://cloud.google.com/looker/docs/lookml-terms-and-concepts#major_lookml_structures).
+     * Name of the LookML model.
      *
      * Generated from protobuf field <code>string lookml_model = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -142,9 +147,10 @@ class LookerExploreReference extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Looker Model as outlined in
-     * https://cloud.google.com/looker/docs/lookml-terms-and-concepts#major_lookml_structures
-     * Name of LookML model.
+     * Required. Looker model, as outlined in
+     * [Major LookML
+     * structures](https://cloud.google.com/looker/docs/lookml-terms-and-concepts#major_lookml_structures).
+     * Name of the LookML model.
      *
      * Generated from protobuf field <code>string lookml_model = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -159,9 +165,10 @@ class LookerExploreReference extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Looker Explore as outlined in
-     * https://cloud.google.com/looker/docs/lookml-terms-and-concepts#major_lookml_structures
-     * Name of LookML explore.
+     * Required. Looker Explore, as outlined in
+     * [Major LookML
+     * structures](https://cloud.google.com/looker/docs/lookml-terms-and-concepts#major_lookml_structures).
+     * Name of the LookML Explore.
      *
      * Generated from protobuf field <code>string explore = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -172,9 +179,10 @@ class LookerExploreReference extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Looker Explore as outlined in
-     * https://cloud.google.com/looker/docs/lookml-terms-and-concepts#major_lookml_structures
-     * Name of LookML explore.
+     * Required. Looker Explore, as outlined in
+     * [Major LookML
+     * structures](https://cloud.google.com/looker/docs/lookml-terms-and-concepts#major_lookml_structures).
+     * Name of the LookML Explore.
      *
      * Generated from protobuf field <code>string explore = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

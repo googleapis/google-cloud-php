@@ -100,13 +100,11 @@ class NewComponentCommand extends Command
         $new = NewComponent::fromProto($this->loadProtoContent($proto), $protoFile);
         $new->componentPath = $this->rootPath;
 
-        $existingComponent = null;
-        if ($components = Component::getComponents([$new->componentName])) {
+        if (is_dir($this->rootPath . '/' . $new->componentName)) {
             // component already exists
-            $existingComponent = array_pop($components);
             $output->writeln(''); // blank line
             if (!$this->getHelper('question')->ask($input, $output, new ConfirmationQuestion(
-                sprintf('Component %s already exists. Overwrite it? [Y/n]', $existingComponent->getName()),
+                sprintf('Component %s already exists. Overwrite it? [Y/n]', $new->componentName),
                 'Y'
             ))) {
                 return 0;

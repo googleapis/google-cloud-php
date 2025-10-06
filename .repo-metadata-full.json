@@ -416,7 +416,7 @@
         "distribution_name": "google/common-protos",
         "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/common-protos/latest",
-        "library_type": "GAPIC_AUTO",
+        "library_type": "CORE",
         "api_shortname": ""
     },
     "Compute": {
@@ -881,6 +881,14 @@
         "library_type": "GAPIC_AUTO",
         "api_shortname": "lifesciences"
     },
+    "LocationFinder": {
+        "language": "php",
+        "distribution_name": "google/cloud-locationfinder",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-locationfinder/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "cloudlocationfinder"
+    },
     "Logging": {
         "language": "php",
         "distribution_name": "google/cloud-logging",
@@ -1296,6 +1304,14 @@
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-securitycentermanagement/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "securitycentermanagement"
+    },
+    "SecurityCompliance": {
+        "language": "php",
+        "distribution_name": "google/cloud-securitycompliance",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-securitycompliance/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "cloudsecuritycompliance"
     },
     "SecurityPrivateCa": {
         "language": "php",

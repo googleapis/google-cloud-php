@@ -46,6 +46,13 @@ class Source extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string description = 6;</code>
      */
     protected $description = '';
+    /**
+     * Optional. Immutable. The encryption details of the source data stored by
+     * the service.
+     *
+     * Generated from protobuf field <code>.google.cloud.vmmigration.v1.Encryption encryption = 14 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
+     */
+    protected $encryption = null;
     protected $source_details;
 
     /**
@@ -58,6 +65,8 @@ class Source extends \Google\Protobuf\Internal\Message
      *           Vmware type source details.
      *     @type \Google\Cloud\VMMigration\V1\AwsSourceDetails $aws
      *           AWS type source details.
+     *     @type \Google\Cloud\VMMigration\V1\AzureSourceDetails $azure
+     *           Azure type source details.
      *     @type string $name
      *           Output only. The Source name.
      *     @type \Google\Protobuf\Timestamp $create_time
@@ -68,6 +77,9 @@ class Source extends \Google\Protobuf\Internal\Message
      *           The labels of the source.
      *     @type string $description
      *           User-provided description of the source.
+     *     @type \Google\Cloud\VMMigration\V1\Encryption $encryption
+     *           Optional. Immutable. The encryption details of the source data stored by
+     *           the service.
      * }
      */
     public function __construct($data = NULL) {
@@ -133,6 +145,37 @@ class Source extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\VMMigration\V1\AwsSourceDetails::class);
         $this->writeOneof(12, $var);
+
+        return $this;
+    }
+
+    /**
+     * Azure type source details.
+     *
+     * Generated from protobuf field <code>.google.cloud.vmmigration.v1.AzureSourceDetails azure = 13;</code>
+     * @return \Google\Cloud\VMMigration\V1\AzureSourceDetails|null
+     */
+    public function getAzure()
+    {
+        return $this->readOneof(13);
+    }
+
+    public function hasAzure()
+    {
+        return $this->hasOneof(13);
+    }
+
+    /**
+     * Azure type source details.
+     *
+     * Generated from protobuf field <code>.google.cloud.vmmigration.v1.AzureSourceDetails azure = 13;</code>
+     * @param \Google\Cloud\VMMigration\V1\AzureSourceDetails $var
+     * @return $this
+     */
+    public function setAzure($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\VMMigration\V1\AzureSourceDetails::class);
+        $this->writeOneof(13, $var);
 
         return $this;
     }
@@ -283,6 +326,44 @@ class Source extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->description = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Immutable. The encryption details of the source data stored by
+     * the service.
+     *
+     * Generated from protobuf field <code>.google.cloud.vmmigration.v1.Encryption encryption = 14 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return \Google\Cloud\VMMigration\V1\Encryption|null
+     */
+    public function getEncryption()
+    {
+        return $this->encryption;
+    }
+
+    public function hasEncryption()
+    {
+        return isset($this->encryption);
+    }
+
+    public function clearEncryption()
+    {
+        unset($this->encryption);
+    }
+
+    /**
+     * Optional. Immutable. The encryption details of the source data stored by
+     * the service.
+     *
+     * Generated from protobuf field <code>.google.cloud.vmmigration.v1.Encryption encryption = 14 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param \Google\Cloud\VMMigration\V1\Encryption $var
+     * @return $this
+     */
+    public function setEncryption($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\VMMigration\V1\Encryption::class);
+        $this->encryption = $var;
 
         return $this;
     }

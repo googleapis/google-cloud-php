@@ -53,8 +53,16 @@ class SubmitUserDeletionRequest extends \Google\Protobuf\Internal\Message
      *           Firebase [application instance
      *           ID](https://firebase.google.com/docs/reference/android/com/google/firebase/analytics/FirebaseAnalytics.html#getAppInstanceId).
      *     @type string $user_provided_data
-     *           The un-hashed, unencrypted, [user-provided
-     *           data](https://support.google.com/analytics/answer/14077171).
+     *           [User-provided
+     *           data](https://support.google.com/analytics/answer/14077171).  May contain
+     *           either one email address or one phone number.
+     *           Email addresses should be normalized as such:
+     *           * lowercase
+     *           * remove periods before &#64; for gmail.com/googlemail.com addresses
+     *           * remove all spaces
+     *           Phone numbers should be normalized as such:
+     *           * remove all non digit characters
+     *           * add + prefix
      *     @type string $name
      *           Required. The name of the property to submit user deletion for.
      * }
@@ -164,8 +172,16 @@ class SubmitUserDeletionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The un-hashed, unencrypted, [user-provided
-     * data](https://support.google.com/analytics/answer/14077171).
+     * [User-provided
+     * data](https://support.google.com/analytics/answer/14077171).  May contain
+     * either one email address or one phone number.
+     * Email addresses should be normalized as such:
+     * * lowercase
+     * * remove periods before &#64; for gmail.com/googlemail.com addresses
+     * * remove all spaces
+     * Phone numbers should be normalized as such:
+     * * remove all non digit characters
+     * * add + prefix
      *
      * Generated from protobuf field <code>string user_provided_data = 5;</code>
      * @return string
@@ -181,8 +197,16 @@ class SubmitUserDeletionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The un-hashed, unencrypted, [user-provided
-     * data](https://support.google.com/analytics/answer/14077171).
+     * [User-provided
+     * data](https://support.google.com/analytics/answer/14077171).  May contain
+     * either one email address or one phone number.
+     * Email addresses should be normalized as such:
+     * * lowercase
+     * * remove periods before &#64; for gmail.com/googlemail.com addresses
+     * * remove all spaces
+     * Phone numbers should be normalized as such:
+     * * remove all non digit characters
+     * * add + prefix
      *
      * Generated from protobuf field <code>string user_provided_data = 5;</code>
      * @param string $var
