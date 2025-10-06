@@ -35,10 +35,10 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-Google\ApiCore\ApiException;
-Google\Cloud\LocationFinder\V1\Client\CloudLocationFinderClient;
-Google\Cloud\LocationFinder\V1\CloudLocation;
-Google\Cloud\LocationFinder\V1\GetCloudLocationRequest;
+use Google\ApiCore\ApiException;
+use Google\Cloud\LocationFinder\V1\Client\CloudLocationFinderClient;
+use Google\Cloud\LocationFinder\V1\CloudLocation;
+use Google\Cloud\LocationFinder\V1\GetCloudLocationRequest;
 
 // Create a client.
 $cloudLocationFinderClient = new CloudLocationFinderClient();
