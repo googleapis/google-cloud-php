@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/cloud/locationfinder/(v1)/.*-php/(.*)
+      dest: /owl-bot-staging/LocationFinder/$1/$2
+api-name: LocationFinder
