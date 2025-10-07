@@ -40,6 +40,19 @@ class ListOperationsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
     private $page_token = '';
+    /**
+     * When set to `true`, operations that are reachable are returned as normal,
+     * and those that are unreachable are returned in the
+     * [ListOperationsResponse.unreachable] field.
+     * This can only be `true` when reading across collections e.g. when `parent`
+     * is set to `"projects/example/locations/-"`.
+     * This field is not by default supported and will result in an
+     * `UNIMPLEMENTED` error if set unless explicitly documented otherwise in
+     * service or product specific documentation.
+     *
+     * Generated from protobuf field <code>bool return_partial_success = 5;</code>
+     */
+    private $return_partial_success = false;
 
     /**
      * @param string $name   The name of the operation's parent resource.
@@ -70,6 +83,15 @@ class ListOperationsRequest extends \Google\Protobuf\Internal\Message
      *           The standard list page size.
      *     @type string $page_token
      *           The standard list page token.
+     *     @type bool $return_partial_success
+     *           When set to `true`, operations that are reachable are returned as normal,
+     *           and those that are unreachable are returned in the
+     *           [ListOperationsResponse.unreachable] field.
+     *           This can only be `true` when reading across collections e.g. when `parent`
+     *           is set to `"projects/example/locations/-"`.
+     *           This field is not by default supported and will result in an
+     *           `UNIMPLEMENTED` error if set unless explicitly documented otherwise in
+     *           service or product specific documentation.
      * }
      */
     public function __construct($data = NULL) {
@@ -177,6 +199,46 @@ class ListOperationsRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->page_token = $var;
+
+        return $this;
+    }
+
+    /**
+     * When set to `true`, operations that are reachable are returned as normal,
+     * and those that are unreachable are returned in the
+     * [ListOperationsResponse.unreachable] field.
+     * This can only be `true` when reading across collections e.g. when `parent`
+     * is set to `"projects/example/locations/-"`.
+     * This field is not by default supported and will result in an
+     * `UNIMPLEMENTED` error if set unless explicitly documented otherwise in
+     * service or product specific documentation.
+     *
+     * Generated from protobuf field <code>bool return_partial_success = 5;</code>
+     * @return bool
+     */
+    public function getReturnPartialSuccess()
+    {
+        return $this->return_partial_success;
+    }
+
+    /**
+     * When set to `true`, operations that are reachable are returned as normal,
+     * and those that are unreachable are returned in the
+     * [ListOperationsResponse.unreachable] field.
+     * This can only be `true` when reading across collections e.g. when `parent`
+     * is set to `"projects/example/locations/-"`.
+     * This field is not by default supported and will result in an
+     * `UNIMPLEMENTED` error if set unless explicitly documented otherwise in
+     * service or product specific documentation.
+     *
+     * Generated from protobuf field <code>bool return_partial_success = 5;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setReturnPartialSuccess($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->return_partial_success = $var;
 
         return $this;
     }
