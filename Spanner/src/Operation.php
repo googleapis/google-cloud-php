@@ -455,6 +455,7 @@ class Operation
      *           `false`.
      *     @type array $begin The begin transaction options.
      *           [Refer](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#transactionoptions)
+     *     @type int $isolationLevel The level of Isolation for the transactions executed by this Client's instance.
      * }
      * @return Transaction
      */

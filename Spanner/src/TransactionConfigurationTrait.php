@@ -153,6 +153,10 @@ trait TransactionConfigurationTrait
             $transactionOptions['excludeTxnFromChangeStreams'] = $options['excludeTxnFromChangeStreams'];
         }
 
+        if (isset($options['isolationLevel'])) {
+            $transactionOptions['isolationLevel'] = $options['isolationLevel'];
+        }
+
         // Allow for proper configuring of the `readLockMode` if it's set as a base or nested option
         if (isset($options['readLockMode'])) {
             $transactionOptions['readWrite']['readLockMode'] = $options['readLockMode'];

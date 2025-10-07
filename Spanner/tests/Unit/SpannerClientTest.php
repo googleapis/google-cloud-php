@@ -41,10 +41,12 @@ use Google\Cloud\Spanner\PgNumeric;
 use Google\Cloud\Spanner\SpannerClient;
 use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Google\Cloud\Spanner\Timestamp;
+use Google\Cloud\Spanner\V1\TransactionOptions\IsolationLevel;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
+use ReflectionClass;
 
 /**
  * @group spanner
@@ -81,7 +83,7 @@ class SpannerClientTest extends TestCase
         $this->client = TestHelpers::stub(SpannerClient::class, [
             [
                 'projectId' => self::PROJECT,
-                'directedReadOptions' => $this->directedReadOptionsIncludeReplicas
+                'directedReadOptions' => $this->directedReadOptionsIncludeReplicas,
             ]
         ]);
     }
@@ -471,6 +473,78 @@ class SpannerClientTest extends TestCase
         $this->assertEquals(
             $instance->directedReadOptions(),
             $this->directedReadOptionsIncludeReplicas
+        );
+    }
+
+    public function testClientPassesIsolationLevel()
+    {
+        /** @var SpannerClient $client */
+        $client = new SpannerClient([
+            'projectId' => self::PROJECT,
+            'directedReadOptions' => $this->directedReadOptionsIncludeReplicas,
+            'isolationLevel' => IsolationLevel::REPEATABLE_READ
+        ]);
+
+        $reflectedClient = new ReflectionClass($client);
+        $property = $reflectedClient->getProperty('isolationLevel');
+        $property->setAccessible(true);
+        $this->assertEquals(
+            IsolationLevel::REPEATABLE_READ,
+            $property->getValue($client)
+        );
+
+        $instance = $client->instance('test');
+        $reflectedInstance = new ReflectionClass($instance);
+        $property = $reflectedInstance->getProperty('isolationLevel');
+        $property->setAccessible(true);
+        $this->assertEquals(
+            IsolationLevel::REPEATABLE_READ,
+            $property->getValue($instance)
+        );
+
+        $database = $instance->database('test');
+        $reflectedDb = new ReflectionClass($database);
+        $property = $reflectedDb->getProperty('isolationLevel');
+        $property->setAccessible(true);
+        $this->assertEquals(
+            IsolationLevel::REPEATABLE_READ,
+            $property->getValue($database)
+        );
+    }
+
+    public function testTransactionHasCorrectIsolationLevel()
+    {
+        /** @var SpannerClient $client */
+        $client = new SpannerClient([
+            'projectId' => self::PROJECT,
+            'directedReadOptions' => $this->directedReadOptionsIncludeReplicas,
+            'isolationLevel' => IsolationLevel::REPEATABLE_READ
+        ]);
+
+        $reflectedClient = new ReflectionClass($client);
+        $property = $reflectedClient->getProperty('isolationLevel');
+        $property->setAccessible(true);
+        $this->assertEquals(
+            IsolationLevel::REPEATABLE_READ,
+            $property->getValue($client)
+        );
+
+        $instance = $client->instance('test');
+        $reflectedInstance = new ReflectionClass($instance);
+        $property = $reflectedInstance->getProperty('isolationLevel');
+        $property->setAccessible(true);
+        $this->assertEquals(
+            IsolationLevel::REPEATABLE_READ,
+            $property->getValue($instance)
+        );
+
+        $database = $instance->database('test');
+        $reflectedDb = new ReflectionClass($database);
+        $property = $reflectedDb->getProperty('isolationLevel');
+        $property->setAccessible(true);
+        $this->assertEquals(
+            IsolationLevel::REPEATABLE_READ,
+            $property->getValue($database)
         );
     }
 }

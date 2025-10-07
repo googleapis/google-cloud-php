@@ -1117,6 +1117,10 @@ class Grpc implements ConnectionInterface
             $args = $this->addLarHeader($args, $this->larEnabled);
         }
 
+        if (isset($transactionOptions['isolationLevel'])) {
+            $options->setIsolationLevel($transactionOptions['isolationLevel']);
+        }
+
         // NOTE: if set for read-only actions, will throw exception
         if (isset($transactionOptions['excludeTxnFromChangeStreams'])) {
             $options->setExcludeTxnFromChangeStreams(

@@ -98,6 +98,8 @@ class Transaction implements TransactionalReadInterface
      *
      *     @type array $begin The begin Transaction options.
      *           [Refer](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#transactionoptions)
+     *     @type int $isolationLevel level of Isolation for this transaction instance
+     *           **Defaults to** IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED
      * }
      * @param ValueMapper $mapper Consumed internally for properly map mutation data.
      * @throws \InvalidArgumentException if a tag is specified on a single-use transaction.
@@ -229,14 +231,18 @@ class Transaction implements TransactionalReadInterface
      *           parameter types. Likewise, for structs, use
      *           {@see \Google\Cloud\Spanner\StructType}.
      *     @type array $requestOptions Request options.
-     *         For more information on available options, please see
-     *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
-     *         Please note, if using the `priority` setting you may utilize the constants available
-     *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
-     *         Please note, the `transactionTag` setting will be ignored as the transaction tag should have already
-     *         been set when creating the transaction.
+     *           For more information on available options, please see
+     *           [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
+     *           Please note, if using the `priority` setting you may utilize the constants available
+     *           on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *           Please note, the `transactionTag` setting will be ignored as the transaction tag should have already
+     *           been set when creating the transaction.
+     *     @type array $transaction a set of Options for a transaction selector.
+     *           For more details on these options please
+     *           {@see https://cloud.google.com/spanner/docs/reference/rest/v1/TransactionSelector}
      * }
      * @return int The number of rows modified.
+     * @throws ValidationException
      */
     public function executeUpdate($sql, array $options = [])
     {
@@ -246,6 +252,20 @@ class Transaction implements TransactionalReadInterface
                 . ' This option should be set at the transaction level.'
             );
         }
+
+        if (isset($options['transaction']['begin']['isolationLevel']) && empty($this->transactionId)) {
+            if (isset($options['transaction']['begin']['readOnly'])) {
+                // isolationLevel can only be used with read/write transactions
+                throw new ValidationException(
+                    'The isolation level can only be applied to read/write transactions.' .
+                    'Single use transactions are not read/write',
+                );
+            }
+
+            // We are planning to create a new transaction, switch to pre allocated.
+            $this->type = self::TYPE_PRE_ALLOCATED;
+        }
+
         $options = $this->buildUpdateOptions($options);
         return $this->operation
             ->executeUpdate($this->session, $this, $sql, $options);
@@ -516,6 +536,11 @@ class Transaction implements TransactionalReadInterface
     private function buildUpdateOptions(array $options): array
     {
         unset($options['requestOptions']['transactionTag']);
+
+        if (!empty($options['transaction']['begin'])) {
+            $options['begin'] = $this->pluck('transaction', $options)['begin'];
+        }
+
         if (isset($this->tag)) {
             $options['requestOptions']['transactionTag'] = $this->tag;
         }

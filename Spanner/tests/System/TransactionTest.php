@@ -22,6 +22,7 @@ use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type as ReplicaType;
+use Google\Cloud\Spanner\V1\TransactionOptions\IsolationLevel;
 use Google\Cloud\Spanner\V1\ReadRequest\LockHint;
 use Google\Cloud\Spanner\V1\ReadRequest\OrderBy;
 
@@ -411,6 +412,11 @@ class TransactionTest extends SpannerTestCase
                         'id' => $id,
                         'name' => uniqid(self::TESTING_PREFIX),
                         'birthday' => new Date(new \DateTime)
+                    ],
+                    'transaction' => [
+                        'begin' => [
+                            'isolationLevel' => IsolationLevel::REPEATABLE_READ,
+                        ]
                     ]
                 ]
             );
