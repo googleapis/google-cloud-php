@@ -41,6 +41,7 @@ use Google\Cloud\Spanner\V1\SpannerClient;
 use Google\Cloud\Spanner\V1\Transaction as TransactionProto;
 use Google\Cloud\Spanner\V1\TransactionOptions;
 use Google\Cloud\Spanner\V1\TransactionOptions\ReadWrite\ReadLockMode as ReadLockMode;
+use Google\Cloud\Spanner\V1\TransactionOptions\IsolationLevel;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -339,6 +340,27 @@ class OperationTest extends TestCase
         $this->operation->___setProperty('connection', $this->connection->reveal());
 
         $t = $this->operation->transaction($this->session, ['tag' => self::TRANSACTION_TAG]);
+        $this->assertInstanceOf(Transaction::class, $t);
+        $this->assertEquals(self::TRANSACTION, $t->id());
+    }
+
+    public function testTransactioWithIsolationLevel()
+    {
+        $this->connection->beginTransaction(Argument::allOf(
+            Argument::withEntry('database', self::DATABASE),
+            Argument::withEntry('session', $this->session->name()),
+            Argument::withEntry('isolationLevel', IsolationLevel::REPEATABLE_READ)
+        ))
+            ->shouldBeCalled()
+            ->willReturn(['id' => self::TRANSACTION]);
+
+        $this->operation->___setProperty('connection', $this->connection->reveal());
+
+        $options = [
+            'isolationLevel' => IsolationLevel::REPEATABLE_READ
+        ];
+
+        $t = $this->operation->transaction($this->session, $options);
         $this->assertInstanceOf(Transaction::class, $t);
         $this->assertEquals(self::TRANSACTION, $t->id());
     }

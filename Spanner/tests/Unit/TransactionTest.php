@@ -33,6 +33,7 @@ use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
 use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
+use Google\Cloud\Spanner\V1\TransactionOptions\IsolationLevel;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
@@ -641,6 +642,64 @@ class TransactionTest extends TestCase
 
         $this->assertTrue($transaction->isRetry());
     }
+
+    public function testExecuteUpdateWithIsolationLevel()
+    {
+        $sql = 'UPDATE foo SET bar = @bar';
+        $this->connection->executeStreamingSql(Argument::allOf(
+            Argument::withEntry('sql', $sql),
+            Argument::withEntry('transaction', [
+                'begin' => [
+                    'readWrite' => [],
+                    'isolationLevel' => IsolationLevel::REPEATABLE_READ
+                ]
+            ]),
+            Argument::withEntry('headers', ['x-goog-spanner-route-to-leader' => ['true']])
+        ))->shouldBeCalled()->willReturn($this->resultGenerator(true));
+
+        $this->refreshOperation($this->transaction, $this->connection->reveal());
+
+        // Transaction without an ID to be able to use `begin`
+        $transaction = new Transaction(
+            $this->operation,
+            $this->session
+        );
+
+        $options = [
+            'transaction' => [
+                'begin' => [
+                    'isolationLevel' => IsolationLevel::REPEATABLE_READ
+                ]
+            ]
+        ];
+
+        $res = $transaction->executeUpdate($sql, $options);
+
+        $this->assertEquals(1, $res);
+    }
+
+    public function testSingleUseWithIsolationLevelThrowsAnExceptionOnReadOnly()
+    {
+        $this->expectException(ValidationException::class);
+
+        $sql = 'UPDATE foo SET bar = @bar';
+
+        $this->refreshOperation($this->transaction, $this->connection->reveal());
+
+        $options = [
+            'transaction' => [
+                'begin' => [
+                    'isolationLevel' => IsolationLevel::REPEATABLE_READ,
+                    'readOnly' => []
+                ]
+            ]
+        ];
+
+        $res = $this->singleUseTransaction->executeUpdate($sql, $options);
+
+        $this->assertEquals(1, $res);
+    }
+
 
     // *******
     // Helpers
