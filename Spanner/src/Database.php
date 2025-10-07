@@ -940,8 +940,6 @@ class Database
             'isolationLevel' => $options['transactionOptions']['isolationLevel'] ?? $this->isolationLevel
         ] + $transactionOptions);
 
-        $options['transactionOptions'] = $this->configureTransactionOptions($options['transactionOptions'] ?? []);
-
         $session = $this->selectSession(
             SessionPoolInterface::CONTEXT_READWRITE,
             $this->pluck('sessionOptions', $options, false) ?: []
