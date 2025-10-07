@@ -358,11 +358,6 @@ class WriteTest extends SpannerTestCase
         if ($value instanceof Bytes) {
             $this->assertEquals($value->formatAsString(), $row[$field]->formatAsString());
         } else {
-            if ($field === 'arrayProtoField' && $value !== null) {
-                foreach ($row[$field] as $i => $protoItem) {
-                    $row[$field][$i] = $protoItem->get();
-                }
-            }
             $this->assertValues($value, $row[$field]);
         }
     }

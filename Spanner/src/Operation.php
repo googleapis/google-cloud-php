@@ -716,12 +716,12 @@ class Operation
         $options['transaction'] = $this->createTransactionSelector($options, $transactionId);
 
         // Split all the options into their respective categories
-        [$_paramsAndTypes, $partitionOptions, $partitionQuery, $_executeSql, $callOptions] = $this->validateOptions(
+        [$partitionOptions, $partitionQuery, $_executeSql, $_paramsAndTypes, $callOptions] = $this->validateOptions(
             $options,
-            ['parameters', 'types'], // handled above, but define them here as well (so they're validated)
             new PartitionOptions(),
             new PartitionQueryRequest(),
             new ExecuteSqlRequest(), // these options are unused in this method, but are passed to QueryPartition
+            ['parameters', 'types'], // handled above, but define them here as well (so they're validated)
             CallOptions::class
         );
 
