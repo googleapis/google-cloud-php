@@ -21,7 +21,7 @@ use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Timestamp;
-use Google\Cloud\Spanner\TransactionConfigurationTrait;
+use Google\Cloud\Spanner\TransactionOptionsBuilder;
 use Google\Protobuf\Duration;
 use PHPUnit\Framework\TestCase;
 
@@ -29,14 +29,14 @@ use PHPUnit\Framework\TestCase;
  * @group spanner
  * @group spanner-transaction-configuration-trait
  */
-class TransactionConfigurationTraitTest extends TestCase
+class TransactionOptionsBuilderTest extends TestCase
 {
     use GrpcTestTrait;
     use TimeTrait;
 
     const TRANSACTION = 'my-transaction';
 
-    private $impl;
+    private $builder;
     private $ts;
     private $duration;
     private $dur = [];
@@ -46,7 +46,7 @@ class TransactionConfigurationTraitTest extends TestCase
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->impl = new TransactionConfigurationTraitImplementation();
+        $this->builder = new TransactionOptionsBuilder();
         $this->duration = new Duration(['seconds' => 10, 'nanos' => 1]);
         $this->dur = new Duration(['seconds' => 10, 'nanos' => 1]);
         $this->directedReadOptionsIncludeReplicas = [
@@ -61,7 +61,7 @@ class TransactionConfigurationTraitTest extends TestCase
     public function testTransactionSelectorBasicSnapshot()
     {
         $args = [];
-        $res = $this->impl->transactionSelector($args);
+        $res = $this->builder->transactionSelector($args);
         $this->assertEquals(Database::CONTEXT_READ, $res[1]);
         $this->assertEquals($res[0]['singleUse']['readOnly'], ['strong' => true]);
     }
@@ -69,7 +69,7 @@ class TransactionConfigurationTraitTest extends TestCase
     public function testTransactionSelectorExistingId()
     {
         $args = ['transactionId' => self::TRANSACTION];
-        $res = $this->impl->transactionSelector($args);
+        $res = $this->builder->transactionSelector($args);
         $this->assertEquals(Database::CONTEXT_READ, $res[1]);
         $this->assertEquals(self::TRANSACTION, $res[0]['id']);
     }
@@ -77,22 +77,22 @@ class TransactionConfigurationTraitTest extends TestCase
     public function testTransactionSelectorReadWrite()
     {
         $args = ['transactionType' => Database::CONTEXT_READWRITE];
-        $res = $this->impl->transactionSelector($args);
+        $res = $this->builder->transactionSelector($args);
         $this->assertEquals(Database::CONTEXT_READWRITE, $res[1]);
-        $this->assertEquals($this->impl->configureReadWriteTransactionOptions([]), $res[0]['singleUse']);
+        $this->assertEquals($this->builder->configureReadWriteTransactionOptions([]), $res[0]['singleUse']);
     }
 
     public function testTransactionSelectorReadOnly()
     {
         $args = ['transactionType' => Database::CONTEXT_READ];
-        $res = $this->impl->transactionSelector($args);
+        $res = $this->builder->transactionSelector($args);
         $this->assertEquals(Database::CONTEXT_READ, $res[1]);
     }
 
     public function testBegin()
     {
         $args = ['begin' => true];
-        $res = $this->impl->transactionSelector($args);
+        $res = $this->builder->transactionSelector($args);
         $this->assertEquals(Database::CONTEXT_READ, $res[1]);
         $this->assertEquals($res[0]['begin']['readOnly'], ['strong' => true]);
     }
@@ -100,14 +100,14 @@ class TransactionConfigurationTraitTest extends TestCase
     public function testConfigureReadOnlyTransactionOptionsReturnReadTimestamp()
     {
         $args = ['returnReadTimestamp' => true];
-        $res = $this->impl->configureReadOnlyTransactionOptions($args);
+        $res = $this->builder->configureReadOnlyTransactionOptions($args);
         $this->assertTrue($res['readOnly']['returnReadTimestamp']);
     }
 
     public function testConfigureReadOnlyTransactionOptionsStrong()
     {
         $args = ['strong' => true];
-        $res = $this->impl->configureReadOnlyTransactionOptions($args);
+        $res = $this->builder->configureReadOnlyTransactionOptions($args);
         $this->assertTrue($res['readOnly']['strong']);
     }
 
@@ -119,7 +119,7 @@ class TransactionConfigurationTraitTest extends TestCase
         $time = $this->parseTimeString($timestamp);
         $ts = new Timestamp($time[0], $time[1]);
         $args = ['minReadTimestamp' => $ts, 'singleUse' => true];
-        $res = $this->impl->configureReadOnlyTransactionOptions($args);
+        $res = $this->builder->configureReadOnlyTransactionOptions($args);
         $this->assertEquals($expected ?: $timestamp, $res['readOnly']['minReadTimestamp']);
     }
 
@@ -131,21 +131,21 @@ class TransactionConfigurationTraitTest extends TestCase
         $time = $this->parseTimeString($timestamp);
         $ts = new Timestamp($time[0], $time[1]);
         $args = ['readTimestamp' => $ts];
-        $res = $this->impl->configureReadOnlyTransactionOptions($args);
+        $res = $this->builder->configureReadOnlyTransactionOptions($args);
         $this->assertEquals($timestamp, $res['readOnly']['readTimestamp']);
     }
 
     public function testConfigureReadOnlyTransactionOptionsMaxStaleness()
     {
         $args = ['maxStaleness' => $this->duration, 'singleUse' => true];
-        $res = $this->impl->configureReadOnlyTransactionOptions($args);
+        $res = $this->builder->configureReadOnlyTransactionOptions($args);
         $this->assertEquals($this->dur, $res['readOnly']['maxStaleness']);
     }
 
     public function testConfigureReadOnlyTransactionOptionsExactStaleness()
     {
         $args = ['exactStaleness' => $this->duration];
-        $res = $this->impl->configureReadOnlyTransactionOptions($args);
+        $res = $this->builder->configureReadOnlyTransactionOptions($args);
         $this->assertEquals($this->dur, $res['readOnly']['exactStaleness']);
     }
 
@@ -154,7 +154,7 @@ class TransactionConfigurationTraitTest extends TestCase
         $this->expectException(\BadMethodCallException::class);
 
         $args = ['transactionType' => 'foo'];
-        $this->impl->transactionSelector($args);
+        $this->builder->transactionSelector($args);
     }
 
     public function testConfigureReadOnlyTransactionOptionsInvalidExactStaleness()
@@ -162,7 +162,7 @@ class TransactionConfigurationTraitTest extends TestCase
         $this->expectException(\BadMethodCallException::class);
 
         $args = ['exactStaleness' => 'foo'];
-        $this->impl->configureReadOnlyTransactionOptions($args);
+        $this->builder->configureReadOnlyTransactionOptions($args);
     }
 
     public function testConfigureReadOnlyTransactionOptionsInvalidMaxStaleness()
@@ -170,7 +170,7 @@ class TransactionConfigurationTraitTest extends TestCase
         $this->expectException(\BadMethodCallException::class);
 
         $args = ['maxStaleness' => 'foo'];
-        $this->impl->configureReadOnlyTransactionOptions($args);
+        $this->builder->configureReadOnlyTransactionOptions($args);
     }
 
     public function testConfigureReadOnlyTransactionOptionsInvalidMinReadTimestamp()
@@ -178,7 +178,7 @@ class TransactionConfigurationTraitTest extends TestCase
         $this->expectException(\BadMethodCallException::class);
 
         $args = ['minReadTimestamp' => 'foo'];
-        $this->impl->configureReadOnlyTransactionOptions($args);
+        $this->builder->configureReadOnlyTransactionOptions($args);
     }
 
     public function testConfigureReadOnlyTransactionOptionsInvalidReadTimestamp()
@@ -186,7 +186,7 @@ class TransactionConfigurationTraitTest extends TestCase
         $this->expectException(\BadMethodCallException::class);
 
         $args = ['readTimestamp' => 'foo'];
-        $this->impl->configureReadOnlyTransactionOptions($args);
+        $this->builder->configureReadOnlyTransactionOptions($args);
     }
 
     public function testRequestLevelConfigureDirectedReadOptions()
@@ -196,7 +196,7 @@ class TransactionConfigurationTraitTest extends TestCase
             'directedReadOptions' => $this->directedReadOptionsIncludeReplicas
         ];
         $clientOptions = [];
-        $res = $this->impl->configureDirectedReadOptions($requestOptions, $clientOptions);
+        $res = $this->builder->configureDirectedReadOptions($requestOptions, $clientOptions);
         $this->assertEquals($res, $requestOptions['directedReadOptions']);
     }
 
@@ -204,7 +204,7 @@ class TransactionConfigurationTraitTest extends TestCase
     {
         $requestOptions = ['transaction' => ['singleUse' => true]];
         $clientOptions = $this->directedReadOptionsIncludeReplicas;
-        $res = $this->impl->configureDirectedReadOptions($requestOptions, $clientOptions);
+        $res = $this->builder->configureDirectedReadOptions($requestOptions, $clientOptions);
         $this->assertEquals($res, $clientOptions);
     }
 
@@ -221,7 +221,7 @@ class TransactionConfigurationTraitTest extends TestCase
                 ]
             ]
         ];
-        $res = $this->impl->configureDirectedReadOptions($requestOptions, $clientOptions);
+        $res = $this->builder->configureDirectedReadOptions($requestOptions, $clientOptions);
         $this->assertEquals($res, $requestOptions['directedReadOptions']);
     }
 
@@ -233,15 +233,3 @@ class TransactionConfigurationTraitTest extends TestCase
         ];
     }
 }
-
-//@codingStandardsIgnoreStart
-class TransactionConfigurationTraitImplementation
-{
-    use TransactionConfigurationTrait {
-        transactionSelector as public;
-        configureReadWriteTransactionOptions as public;
-        configureReadOnlyTransactionOptions as public;
-        configureDirectedReadOptions as public;
-    }
-}
-//@codingStandardsIgnoreEnd

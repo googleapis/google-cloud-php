@@ -117,12 +117,13 @@ class Transaction implements TransactionalReadInterface
         $this->context = Database::CONTEXT_READWRITE;
         $this->tag = $options['tag'] ?? null;
         $this->isRetry = $options['isRetry'] ?? false;
-        $this->transactionSelector = array_intersect_key(
-            (array) $options,
-            array_flip(['singleUse', 'begin'])
+        $this->transactionSelector = $this->pluckArray(
+            ['singleUse', 'begin'],
+            $options,
         );
         $this->requestOptions = $options['requestOptions'] ?? [];
         $this->transactionOptions = $options['transactionOptions'] ?? new TransactionOptions();
+        $this->transactionOptionsBuilder = new TransactionOptionsBuilder();
 
         if (!is_null($mapper)) {
             $this->mapper = $mapper;
@@ -415,18 +416,7 @@ class Transaction implements TransactionalReadInterface
             throw new \BadMethodCallException('The transaction cannot be committed because it is not active');
         }
 
-        // set mutations, transactionId, and precommit token in the request
-        $options['mutations'] = ($options['mutations'] ?? []) + $this->getMutations();
-
-        // Set the latest received precommit token from the last request from within this transaction.
-        if ($this->precommitToken) {
-            $options['precommitToken'] = $this->precommitToken;
-        }
-        // set the transaction tag if it exists
-        unset($options['requestOptions']['requestTag']);
-        if (isset($this->tag)) {
-            $options['requestOptions']['transactionTag'] = $this->tag;
-        }
+        $mutations = ($options['mutations'] ?? []) + $this->getMutations();
 
         // For commit, A transaction ID is mandatory for non-single-use transactions,
         // and the `begin` option is not supported (because `begin` is only used by ILBs)
@@ -436,9 +426,9 @@ class Transaction implements TransactionalReadInterface
                 'transactionOptions' => $this->transactionOptions,
                 'singleUse' => $this->transactionSelector['singleUse'] ?? null,
             ]);
-            if (!empty($options['mutations'])) {
+            if (!empty($mutations)) {
                 // Set the mutation key if we have mutations but do not have a precommit token
-                $mutationKey = $options['mutations'][array_rand($options['mutations'])];
+                $mutationKey = $mutations[array_rand($mutations)];
                 $operationTransactionOptions['mutationKey'] = $mutationKey;
             }
             // Execute the beginTransaction RPC.
@@ -451,18 +441,30 @@ class Transaction implements TransactionalReadInterface
             $this->state = self::STATE_COMMITTED;
         }
 
-        // set transactionId in the request
-        $options['transactionId'] = $this->transactionId;
+        // Build the commit options
+        $commitOptions = $this->pluckArray(
+            ['returnCommitStats', 'maxCommitDelay'],
+            $options
+        );
+        // Set the latest received precommit token from the last request from within this transaction.
+        if ($this->precommitToken) {
+            $commitOptions['precommitToken'] = $this->precommitToken;
+        }
+        // set the transaction tag if it exists
+        if ($this->tag) {
+            $commitOptions['requestOptions']['transactionTag'] = $this->tag;
+        }
 
-        $t = $this->transactionOptions($options);
+        [$transactionOptions, $transactionType] = $this->transactionOptionsBuilder->transactionOptions(
+            ['transactionId' => $this->transactionId] + $options
+        );
 
-        // @TODO find out what this is and clean it up
-        $options[$t[1]] = $t[0];
+        $commitOptions[$transactionType] = $transactionOptions;
 
         $response = $this->operation->commit(
             $this->session,
-            $this->pluck('mutations', $options, false) ?? [],
-            $options
+            $mutations,
+            $commitOptions
         );
 
         // Update commitStats
@@ -539,26 +541,30 @@ class Transaction implements TransactionalReadInterface
      */
     private function buildUpdateOptions(array $options): array
     {
-        unset($options['requestOptions']['transactionTag']);
-        if (isset($this->tag)) {
-            $options['requestOptions']['transactionTag'] = $this->tag;
-        }
-        $options['seqno'] = $this->seqno;
-        $this->seqno++;
-
         $options['transactionType'] = $this->context;
         if (empty($this->transactionId) && isset($this->transactionSelector['begin'])) {
             $options['begin'] = $this->transactionSelector['begin'];
         } else {
             $options['transactionId'] = $this->transactionId;
         }
+        [$transactionOptions] = $this->transactionOptionsBuilder->transactionSelector($options);
 
-        $selector = $this->transactionSelector($options);
-        $options['transaction'] = $selector[0];
+        $updateOptions = $this->pluckArray(['parameters', 'types'], $options);
+        $updateOptions += [
+            'seqno' => $this->seqno++,
+            'transaction' => $transactionOptions,
+            'headers' => ['spanner-route-to-leader' => ['true']]
+        ];
 
-        $options['headers']['spanner-route-to-leader'] = ['true'];
+        if (isset($options['requestOptions'])) {
+            $updateOptions['requestOptions'] = $options['requestOptions'];
+        }
 
-        return $options;
+        if ($this->tag) {
+            $updateOptions['requestOptions']['transactionTag'] = $this->tag;
+        }
+
+        return $updateOptions;
     }
 
     public function updateFromResult(?Transaction $transaction = null): void

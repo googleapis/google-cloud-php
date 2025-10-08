@@ -18,10 +18,11 @@
 namespace Google\Cloud\Spanner\Batch;
 
 use Google\Cloud\Core\TimeTrait;
+use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Session\SessionCache;
 use Google\Cloud\Spanner\Timestamp;
-use Google\Cloud\Spanner\TransactionConfigurationTrait;
+use Google\Cloud\Spanner\TransactionOptionsBuilder;
 
 /**
  * Provides Batch APIs used to read data from a Cloud Spanner database.
@@ -101,7 +102,7 @@ use Google\Cloud\Spanner\TransactionConfigurationTrait;
 class BatchClient
 {
     use TimeTrait;
-    use TransactionConfigurationTrait;
+    use ArrayTrait;
 
     const PARTITION_TYPE_KEY = '__partitionTypeName';
     private const ALLOWED_PARTITION_TYPES = [
@@ -144,17 +145,12 @@ class BatchClient
      */
     public function snapshot(array $options = [])
     {
-        $options += [
-            'transactionOptions' => [],
-        ];
-
         // Single Use transactions are not supported in batch mode.
         $options['transactionOptions']['singleUse'] = false;
+        $options['transactionOptions']['returnReadTimestamp'] = true;
 
-        $transactionOptions = $this->pluck('transactionOptions', $options);
-        $transactionOptions['returnReadTimestamp'] = true;
-
-        $transactionOptions = $this->configureReadOnlyTransactionOptions($transactionOptions);
+        $transactionOptions = (new TransactionOptionsBuilder)
+            ->configureReadOnlyTransactionOptions($options['transactionOptions']);
 
         /** @var BatchSnapshot */
         return $this->operation->snapshot($this->session, [
