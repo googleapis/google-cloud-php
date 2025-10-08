@@ -258,7 +258,7 @@ class BackupTest extends TestCase
             $this->instance->reveal(),
             self::PROJECT_ID,
             self::BACKUP,
-            ['name' => 'different-name']
+            ['backup' => ['name' => 'different-name']]
         );
 
         $info = $backup->reload();

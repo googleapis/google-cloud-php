@@ -239,6 +239,7 @@ class OperationsTest extends SpannerTestCase
         ]);
         $columns = ['id', 'name', 'birthday'];
 
+        $row = null;
         try {
             $res = $db->read(self::TEST_TABLE_NAME, $keySet, $columns);
             $row = $res->rows()->current();
@@ -247,6 +248,7 @@ class OperationsTest extends SpannerTestCase
         }
 
         if ($expected === null) {
+            $this->assertNotNull($row);
             $this->assertEquals(self::$id1, $row['id']);
         } else {
             $this->assertEquals($error->getServiceException()->getStatus(), $expected);

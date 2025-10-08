@@ -45,8 +45,7 @@ use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Result;
 use Google\Cloud\Spanner\Serializer;
-use Google\Cloud\Spanner\Session\Session;
-use Google\Cloud\Spanner\Session\SessionPoolInterface;
+use Google\Cloud\Spanner\Session\SessionCache;
 use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
 use Google\Cloud\Spanner\Timestamp;
@@ -60,6 +59,7 @@ use Google\Cloud\Spanner\V1\PartialResultSet;
 use Google\Cloud\Spanner\V1\ReadRequest;
 use Google\Cloud\Spanner\V1\ResultSetStats;
 use Google\Cloud\Spanner\V1\RollbackRequest;
+use Google\Cloud\Spanner\V1\Session;
 use Google\Cloud\Spanner\V1\Transaction as TransactionProto;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\ListOperationsResponse;
@@ -83,6 +83,7 @@ class DatabaseTest extends SnippetTestCase
     const INSTANCE = 'my-instance';
     const TRANSACTION = 'my-transaction';
     const BACKUP = 'my-backup';
+    const SESSION = 'projects/my-awesome-project/instances/my-instance/databases/my-database/sessions/session-id';
 
     private $spannerClient;
     private $databaseAdminClient;
@@ -102,21 +103,8 @@ class DatabaseTest extends SnippetTestCase
         $this->operationResponse = $this->prophesize(OperationResponse::class);
         $this->serializer = new Serializer();
 
-        $session = $this->prophesize(Session::class);
-        $session->info()
-            ->willReturn([
-                'databaseName' => 'database'
-            ]);
-        $session->name()
-            ->willReturn('database');
-        $session->setExpiration(Argument::any());
-
-        $sessionPool = $this->prophesize(SessionPoolInterface::class);
-        $sessionPool->acquire(Argument::any())
-            ->willReturn($session->reveal());
-        $sessionPool->setDatabase(Argument::any())
-            ->willReturn(null);
-        $sessionPool->clear()->willReturn(null);
+        $session = $this->prophesize(SessionCache::class);
+        $session->name()->willReturn(self::SESSION);
 
         $this->instance = new Instance(
             $this->spannerClient->reveal(),
@@ -134,7 +122,7 @@ class DatabaseTest extends SnippetTestCase
             $this->instance,
             self::PROJECT,
             self::DATABASE,
-            ['sessionPool' => $sessionPool->reveal()]
+            $session->reveal(),
         );
     }
 
@@ -459,9 +447,7 @@ class DatabaseTest extends SnippetTestCase
         $this->spannerClient->commit(
             Argument::type(CommitRequest::class),
             Argument::type('array')
-        )->willReturn(new CommitResponse([
-            'commit_timestamp' => new TimestampProto(['seconds' => time()])
-        ]));
+        )->willReturn(new CommitResponse());
 
         $this->spannerClient->executeStreamingSql(
             Argument::type(ExecuteSqlRequest::class),
@@ -564,9 +550,7 @@ class DatabaseTest extends SnippetTestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn(new CommitResponse([
-                'commit_timestamp' => new TimestampProto(['seconds' => time()])
-            ]));
+            ->willReturn(new CommitResponse());
 
         $snippet = $this->snippetFromMethod(Database::class, 'insert');
         $snippet->addLocal('database', $this->database);
@@ -584,9 +568,7 @@ class DatabaseTest extends SnippetTestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn(new CommitResponse([
-                'commit_timestamp' => new TimestampProto(['seconds' => time()])
-            ]));
+            ->willReturn(new CommitResponse());
 
         $snippet = $this->snippetFromMethod(Database::class, 'insertBatch');
         $snippet->addLocal('database', $this->database);
@@ -603,9 +585,7 @@ class DatabaseTest extends SnippetTestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn(new CommitResponse([
-                'commit_timestamp' => new TimestampProto(['seconds' => time()])
-            ]));
+            ->willReturn(new CommitResponse());
 
         $snippet = $this->snippetFromMethod(Database::class, 'update');
         $snippet->addLocal('database', $this->database);
@@ -623,9 +603,7 @@ class DatabaseTest extends SnippetTestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn(new CommitResponse([
-                'commit_timestamp' => new TimestampProto(['seconds' => time()])
-            ]));
+            ->willReturn(new CommitResponse());
 
         $snippet = $this->snippetFromMethod(Database::class, 'updateBatch');
         $snippet->addLocal('database', $this->database);
@@ -642,9 +620,7 @@ class DatabaseTest extends SnippetTestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn(new CommitResponse([
-                'commit_timestamp' => new TimestampProto(['seconds' => time()])
-            ]));
+            ->willReturn(new CommitResponse());
 
         $snippet = $this->snippetFromMethod(Database::class, 'insertOrUpdate');
         $snippet->addLocal('database', $this->database);
@@ -662,9 +638,7 @@ class DatabaseTest extends SnippetTestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn(new CommitResponse([
-                'commit_timestamp' => new TimestampProto(['seconds' => time()])
-            ]));
+            ->willReturn(new CommitResponse());
 
         $snippet = $this->snippetFromMethod(Database::class, 'insertOrUpdateBatch');
         $snippet->addLocal('database', $this->database);
@@ -681,9 +655,7 @@ class DatabaseTest extends SnippetTestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn(new CommitResponse([
-                'commit_timestamp' => new TimestampProto(['seconds' => time()])
-            ]));
+            ->willReturn(new CommitResponse());
 
         $snippet = $this->snippetFromMethod(Database::class, 'replace');
         $snippet->addLocal('database', $this->database);
@@ -701,9 +673,7 @@ class DatabaseTest extends SnippetTestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn(new CommitResponse([
-                'commit_timestamp' => new TimestampProto(['seconds' => time()])
-            ]));
+            ->willReturn(new CommitResponse());
 
         $snippet = $this->snippetFromMethod(Database::class, 'replaceBatch');
         $snippet->addLocal('database', $this->database);
@@ -720,9 +690,7 @@ class DatabaseTest extends SnippetTestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn(new CommitResponse([
-                'commit_timestamp' => new TimestampProto(['seconds' => time()])
-            ]));
+            ->willReturn(new CommitResponse());
 
         $snippet = $this->snippetFromMethod(Database::class, 'delete');
         $snippet->addUse(KeySet::class);
@@ -951,24 +919,6 @@ class DatabaseTest extends SnippetTestCase
         $res = $snippet->invoke('result');
         $this->assertInstanceOf(Result::class, $res->returnVal());
         $this->assertInstanceOf(Transaction::class, $res->returnVal()->transaction());
-    }
-
-    public function testSessionPool()
-    {
-        $snippet = $this->snippetFromMethod(Database::class, 'sessionPool');
-        $snippet->addLocal('database', $this->database);
-
-        $res = $snippet->invoke('pool');
-        $this->assertInstanceOf(SessionPoolInterface::class, $res->returnVal());
-    }
-
-    public function testClose()
-    {
-        $snippet = $this->snippetFromMethod(Database::class, 'close');
-        $snippet->addLocal('database', $this->database);
-
-        $res = $snippet->invoke();
-        $this->assertNull($res->returnVal());
     }
 
     public function testIam()
