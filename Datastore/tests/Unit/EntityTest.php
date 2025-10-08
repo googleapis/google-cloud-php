@@ -132,7 +132,7 @@ class EntityTest extends TestCase
     /**
      * @dataProvider options
      */
-    public function testOptionGetters($method, $unsetValue = null, $name = null)
+    public function testOptionGetters($method, $unsetValue = null, $name = null, $value = 'foo')
     {
         $name = $name ?: $method;
 
@@ -140,10 +140,10 @@ class EntityTest extends TestCase
         $this->assertEquals($unsetValue, $entity->$method());
 
         $entity = new Entity($this->key, [], [
-            $name => 'foo'
+            $name => $value
         ]);
 
-        $this->assertEquals('foo', $entity->$method());
+        $this->assertEquals($value, $entity->$method());
     }
 
     public function options()
@@ -152,8 +152,8 @@ class EntityTest extends TestCase
             ['cursor'],
             ['baseVersion'],
             ['populatedByService', false],
-            ['excludedProperties', [], 'excludeFromIndexes'],
-            ['meanings', []]
+            ['excludedProperties', [], 'excludeFromIndexes', ['foo']],
+            ['meanings', [], null, ['foo']]
         ];
     }
 }

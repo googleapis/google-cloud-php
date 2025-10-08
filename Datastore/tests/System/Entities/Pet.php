@@ -24,7 +24,7 @@ class Pet implements EntityInterface
 {
     use EntityTrait;
 
-    public static function mappings()
+    public static function mappings(): array
     {
         return [
             'owner' => Person::class,

@@ -24,7 +24,7 @@ class SampleEntity implements EntityInterface, \arrayaccess
 {
     use EntityTrait;
 
-    public static function mappings()
+    public static function mappings(): array
     {
         return [
             'foo' => SampleEntity::class,

@@ -78,7 +78,7 @@ class TransactionTest extends TestCase
         $this->operation = new Operation(
             $this->gapicClient->reveal(),
             self::PROJECT,
-            null,
+            '',
             new EntityMapper(self::PROJECT, false, false)
         );
 

@@ -946,7 +946,7 @@ class DatastoreClientTest extends TestCase
         return new Operation(
             $this->gapicClient->reveal(),
             self::PROJECT,
-            null, // namespaceId
+            '', // namespaceId
             $entityMapper,
             self::DATABASE
         );

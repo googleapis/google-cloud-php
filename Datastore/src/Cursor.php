@@ -40,23 +40,17 @@ namespace Google\Cloud\Datastore;
 class Cursor
 {
     /**
-     * @var string|int
-     */
-    private $cursor;
-
-    /**
      * @param string|int $cursor The cursor value.
      */
-    public function __construct($cursor)
+    public function __construct(private string|int $cursor)
     {
-        $this->cursor = $cursor;
     }
 
     /**
      * @access private
      * @return string|int
      */
-    public function cursor()
+    public function cursor(): string|int
     {
         return $this->cursor;
     }

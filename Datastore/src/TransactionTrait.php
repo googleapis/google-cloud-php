@@ -18,6 +18,7 @@
 namespace Google\Cloud\Datastore;
 
 use Google\Cloud\Datastore\Query\AggregationQuery;
+use Google\Cloud\Datastore\Query\AggregationQueryResult;
 use Google\Cloud\Datastore\Query\QueryInterface;
 use InvalidArgumentException;
 
@@ -27,21 +28,6 @@ use InvalidArgumentException;
 trait TransactionTrait
 {
     /**
-     * @var Operation
-     */
-    private $operation;
-
-    /**
-     * @var string
-     */
-    private $projectId;
-
-    /**
-     * @var string
-     */
-    private $transactionId;
-
-    /**
      * Create a Transaction
      *
      * @param Operation $operation Class that handles shared API interaction.
@@ -49,13 +35,10 @@ trait TransactionTrait
      * @param string $transactionId The transaction to run mutations in.
      */
     public function __construct(
-        Operation $operation,
-        $projectId,
-        $transactionId
+        private Operation $operation,
+        private string $projectId,
+        private string $transactionId = ''
     ) {
-        $this->operation = $operation;
-        $this->projectId = $projectId;
-        $this->transactionId = $transactionId;
     }
 
     /**
@@ -81,7 +64,7 @@ trait TransactionTrait
      * }
      * @return EntityInterface|null
      */
-    public function lookup(Key $key, array $options = [])
+    public function lookup(Key $key, array $options = []): ?EntityInterface
     {
         $res = $this->lookupBatch([$key], $options);
 
@@ -125,7 +108,7 @@ trait TransactionTrait
      *         {@see \Google\Cloud\Datastore\Entity}. Members of `missing` and
      *         `deferred` will be instance of {@see \Google\Cloud\Datastore\Key}.
      */
-    public function lookupBatch(array $keys, array $options = [])
+    public function lookupBatch(array $keys, array $options = []): array
     {
         if (isset($options['readTime']) || isset($options['readConsistency']) || isset($options['newTransaction'])) {
             throw new InvalidArgumentException(
@@ -161,7 +144,7 @@ trait TransactionTrait
      * }
      * @return EntityIterator<EntityInterface>
      */
-    public function runQuery(QueryInterface $query, array $options = [])
+    public function runQuery(QueryInterface $query, array $options = []): EntityIterator
     {
         return $this->operation->runQuery($query, $options + [
             'transaction' => $this->transactionId
@@ -189,7 +172,7 @@ trait TransactionTrait
      * }
      * @return AggregationQueryResult
      */
-    public function runAggregationQuery(AggregationQuery $query, array $options = [])
+    public function runAggregationQuery(AggregationQuery $query, array $options = []): AggregationQueryResult
     {
         return $this->operation->runAggregationQuery($query, $options + [
             'transaction' => $this->transactionId
@@ -206,7 +189,7 @@ trait TransactionTrait
      *
      * @return void
      */
-    public function rollback()
+    public function rollback(): void
     {
         $this->operation->rollback($this->transactionId);
     }

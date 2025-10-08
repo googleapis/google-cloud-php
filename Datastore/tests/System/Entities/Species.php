@@ -24,7 +24,7 @@ class Species implements EntityInterface
 {
     use EntityTrait;
 
-    public static function mappings()
+    public static function mappings(): array
     {
         return [
             'kingdom' => Kingdom::class

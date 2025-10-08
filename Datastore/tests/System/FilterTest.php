@@ -217,7 +217,7 @@ class FilterTest extends DatastoreMultipleDbTestCase
     {
         $results = iterator_to_array($client->runQuery($query));
         usort($results, function ($a, $b) {
-            return $a['Name'] < $b['Name'];
+            return $b['Name'] <=> $a['Name'];
         });
 
         return $results;

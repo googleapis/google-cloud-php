@@ -76,11 +76,6 @@ class AggregationQueryResult
     private $transaction;
 
     /**
-     * @var EntityMapper
-     */
-    private $mapper;
-
-    /**
      * Create AggregationQueryResult object.
      *
      * @param array $result Response of
@@ -88,11 +83,20 @@ class AggregationQueryResult
      * @param EntityMapper $mapper [Optional] Entity mapper to map datastore values
      *        to their equivalent php values incase of `null`, `NAN`, `INF` and `-INF`
      */
-    public function __construct($result = [], $mapper = null)
-    {
+    public function __construct(
+        array $result,
+        private EntityMapper $mapper
+    ) {
         // When executing an Agggregation query nested with GqlQuery, the server will return
         // the parsed query with the first response batch.
         if (isset($result['query'])) {
+            if (is_array($result['query']['nestedQuery'])) {
+                // Ensure the nestedQuery is of type Query
+                $result['query']['nestedQuery'] = new Query(
+                    $mapper,
+                    $result['query']['nestedQuery']
+                );
+            }
             $this->query = new AggregationQuery(
                 $result['query']['nestedQuery'],
                 $result['query']['aggregations']
@@ -113,14 +117,6 @@ class AggregationQueryResult
             $metrics->mergeFromJsonString($metricsJson);
             $this->explainMetrics = $metrics;
         }
-
-        // Though the client always passes an entity mapper object, we need to
-        // re-instantiate an entity mapper incase a user creates an instance of
-        // AggregationQueryResult manually without supplying the `$entityMapper`.
-        // Here, entity mapper is used to parse response +/- 'Infinity' to +/- `INF`,
-        // 'NaN' to `NAN` and ['nullValue' => 0] to ['nullValue' => null]. Therefore the
-        // usage is independent of `$projectId` or other arguments.
-        $this->mapper = $mapper ?? new EntityMapper('', true, false);
     }
 
     /**
@@ -140,7 +136,7 @@ class AggregationQueryResult
      * @return mixed
      * @throws InvalidArgumentException If provided alias does not exist in result.
      */
-    public function get($alias)
+    public function get(string $alias)
     {
         if (!isset($this->aggregationResults[0]['aggregateProperties'][$alias])) {
             throw new InvalidArgumentException('alias does not exist');
@@ -156,9 +152,9 @@ class AggregationQueryResult
     /**
      * Gets the value of query for example in case of a GqlQuery.
      *
-     * @return AggregationQuery
+     * @return AggregationQuery|null
      */
-    public function getQuery()
+    public function getQuery(): ?AggregationQuery
     {
         return $this->query;
     }
@@ -168,7 +164,7 @@ class AggregationQueryResult
      *
      * @return string|null
      */
-    public function getTransaction()
+    public function getTransaction(): ?string
     {
         return $this->transaction;
     }
@@ -178,7 +174,7 @@ class AggregationQueryResult
      *
      * @return Timestamp
      */
-    public function getReadTime()
+    public function getReadTime(): Timestamp
     {
         return $this->readTime;
     }

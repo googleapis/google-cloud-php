@@ -104,12 +104,12 @@ class DatastoreClient
     /**
      * @var Operation
      */
-    protected $operation;
+    protected Operation $operation;
 
     /**
      * @var EntityMapper
      */
-    private $entityMapper;
+    private EntityMapper $entityMapper;
 
     /**
      * @var GapicDatastoreClient
@@ -200,7 +200,7 @@ class DatastoreClient
         $this->validateConfigurationOptions($config);
 
         $config += [
-            'namespaceId' => null,
+            'namespaceId' => '',
             'databaseId' => '',
             'returnInt64AsObject' => false,
             'scopes' => [self::FULL_CONTROL_SCOPE],
@@ -234,7 +234,7 @@ class DatastoreClient
             );
         }
 
-        $this->projectId = $this->detectProjectId($gapicOptions);
+        $this->projectId = (string) $this->detectProjectId($gapicOptions);
         $this->gapicClient = $this->getGapicClient($gapicOptions);
 
         // The second parameter here should change to a variable
@@ -286,7 +286,7 @@ class DatastoreClient
      * }
      * @return Key
      */
-    public function key($kind, $identifier = null, array $options = [])
+    public function key(string $kind, $identifier = null, array $options = []): Key
     {
         return $this->operation->key($kind, $identifier, $options);
     }
@@ -334,7 +334,7 @@ class DatastoreClient
      * }
      * @return Key[]
      */
-    public function keys($kind, array $options = [])
+    public function keys(string $kind, array $options = []): array
     {
         return $this->operation->keys($kind, $options);
     }
@@ -457,7 +457,7 @@ class DatastoreClient
      * }
      * @return EntityInterface
      */
-    public function entity($key = null, array $entity = [], array $options = [])
+    public function entity(Key|string|null $key = null, array $entity = [], array $options = []): EntityInterface
     {
         return $this->operation->entity($key, $entity, $options);
     }
@@ -478,7 +478,7 @@ class DatastoreClient
      *        **Defaults to** `false`.
      * @return GeoPoint
      */
-    public function geoPoint($latitude, $longitude, $allowNull = false)
+    public function geoPoint(float $latitude, float $longitude, bool $allowNull = false): GeoPoint
     {
         return new GeoPoint($latitude, $longitude, $allowNull);
     }
@@ -499,7 +499,7 @@ class DatastoreClient
      * @param string|resource|StreamInterface $value The value to store in a blob.
      * @return Blob
      */
-    public function blob($value)
+    public function blob(mixed $value): Blob
     {
         return new Blob($value);
     }
@@ -516,7 +516,7 @@ class DatastoreClient
      * @param string $value
      * @return Int64
      */
-    public function int64($value)
+    public function int64(string $value): Int64
     {
         return new Int64($value);
     }
@@ -535,7 +535,7 @@ class DatastoreClient
      * @param string|int $cursorValue
      * @return Cursor
      */
-    public function cursor($cursorValue)
+    public function cursor(string|int $cursorValue): Cursor
     {
         return new Cursor($cursorValue);
     }
@@ -560,7 +560,7 @@ class DatastoreClient
      * @param array $options [optional] Configuration options.
      * @return Key
      */
-    public function allocateId(Key $key, array $options = [])
+    public function allocateId(Key $key, array $options = []): Key
     {
         $res = $this->allocateIds([$key], $options);
         return $res[0];
@@ -594,7 +594,7 @@ class DatastoreClient
      * }.
      * @return Key[]
      */
-    public function allocateIds(array $keys, array $options = [])
+    public function allocateIds(array $keys, array $options = []): array
     {
         return $this->operation->allocateIds($keys, $options);
     }
@@ -620,7 +620,7 @@ class DatastoreClient
      * @return Transaction
      * @codingStandardsIgnoreEnd
      */
-    public function transaction(array $options = [])
+    public function transaction(array $options = []): Transaction
     {
         $transaction = $this->operation->beginTransaction([
             // if empty, force request to encode as {} rather than [].
@@ -659,7 +659,7 @@ class DatastoreClient
      * @return ReadOnlyTransaction
      * @codingStandardsIgnoreEnd
      */
-    public function readOnlyTransaction(array $options = [])
+    public function readOnlyTransaction(array $options = []): ReadOnlyTransaction
     {
         $transaction = $this->operation->beginTransaction([
             // if empty, force request to encode as {} rather than [].
@@ -696,7 +696,7 @@ class DatastoreClient
      * @return string The entity version.
      * @throws DomainException If a conflict occurs, fail.
      */
-    public function insert(EntityInterface $entity, array $options = [])
+    public function insert(EntityInterface $entity, array $options = []): string
     {
         $res = $this->insertBatch([$entity], $options);
         return $this->parseSingleMutationResult($res);
@@ -727,7 +727,7 @@ class DatastoreClient
      * @param array $options [optional] Configuration options.
      * @return array [Response Body](https://cloud.google.com/datastore/reference/rest/v1/projects/commit#response-body)
      */
-    public function insertBatch(array $entities, array $options = [])
+    public function insertBatch(array $entities, array $options = []): array
     {
         $entities = $this->operation->allocateIdsToEntities($entities);
         $mutations = [];
@@ -773,7 +773,7 @@ class DatastoreClient
      * @return string The entity version.
      * @throws DomainException If a conflict occurs, fail.
      */
-    public function update(EntityInterface $entity, array $options = [])
+    public function update(EntityInterface $entity, array $options = []): string
     {
         $res = $this->updateBatch([$entity], $options);
         return $this->parseSingleMutationResult($res);
@@ -814,7 +814,7 @@ class DatastoreClient
      * }
      * @return array [Response Body](https://cloud.google.com/datastore/reference/rest/v1/projects/commit#response-body)
      */
-    public function updateBatch(array $entities, array $options = [])
+    public function updateBatch(array $entities, array $options = []): array
     {
         $options += [
             'allowOverwrite' => false
@@ -860,7 +860,7 @@ class DatastoreClient
      * @return string The entity version.
      * @throws DomainException If a conflict occurs, fail.
      */
-    public function upsert(EntityInterface $entity, array $options = [])
+    public function upsert(EntityInterface $entity, array $options = []): string
     {
         $res = $this->upsertBatch([$entity], $options);
         return $this->parseSingleMutationResult($res);
@@ -903,7 +903,7 @@ class DatastoreClient
      * @param array $options [optional] Configuration Options.
      * @return array [Response Body](https://cloud.google.com/datastore/reference/rest/v1/projects/commit#response-body)
      */
-    public function upsertBatch(array $entities, array $options = [])
+    public function upsertBatch(array $entities, array $options = []): array
     {
         $entities = $this->operation->allocateIdsToEntities($entities);
         $mutations = [];
@@ -941,7 +941,7 @@ class DatastoreClient
      * @return string The updated entity version number.
      * @throws DomainException If a conflict occurs, fail.
      */
-    public function delete(Key $key, array $options = [])
+    public function delete(Key $key, array $options = []): string
     {
         $res = $this->deleteBatch([$key], $options);
         return $this->parseSingleMutationResult($res);
@@ -976,7 +976,7 @@ class DatastoreClient
      * }
      * @return array [Response Body](https://cloud.google.com/datastore/reference/rest/v1/projects/commit#response-body)
      */
-    public function deleteBatch(array $keys, array $options = [])
+    public function deleteBatch(array $keys, array $options = []): array
     {
         $options += [
             'baseVersion' => null
@@ -1033,7 +1033,7 @@ class DatastoreClient
      * }
      * @return EntityInterface|null
      */
-    public function lookup(Key $key, array $options = [])
+    public function lookup(Key $key, array $options = []): ?EntityInterface
     {
         $res = $this->lookupBatch([$key], $options);
 
@@ -1100,7 +1100,7 @@ class DatastoreClient
      *         {@see \Google\Cloud\Datastore\Entity}. Members of `missing` and
      *         `deferred` will be instance of {@see \Google\Cloud\Datastore\Key}.
      */
-    public function lookupBatch(array $keys, array $options = [])
+    public function lookupBatch(array $keys, array $options = []): array
     {
         return $this->operation->lookup($keys, $options);
     }
@@ -1119,7 +1119,7 @@ class DatastoreClient
      * @param array $query [Query](https://cloud.google.com/datastore/reference/rest/v1/projects/runQuery#query)
      * @return Query
      */
-    public function query(array $query = [])
+    public function query(array $query = []): Query
     {
         return new Query($this->entityMapper, [
             'query' => $query
@@ -1139,7 +1139,7 @@ class DatastoreClient
      * @param array $query [Query](https://cloud.google.com/datastore/reference/rest/v1/projects/runQuery#query)
      * @return AggregationQuery
      */
-    public function aggregationQuery(array $query = [])
+    public function aggregationQuery(array $query = []): AggregationQuery
     {
         return new AggregationQuery($this->query($query));
     }
@@ -1212,7 +1212,7 @@ class DatastoreClient
      * }
      * @return GqlQuery
      */
-    public function gqlQuery($query, array $options = [])
+    public function gqlQuery(string $query, array $options = []): GqlQuery
     {
         return new GqlQuery($this->entityMapper, $query, $options);
     }
@@ -1294,7 +1294,7 @@ class DatastoreClient
      * }
      * @return AggregationQueryResult
      */
-    public function runAggregationQuery(AggregationQuery $query, array $options = [])
+    public function runAggregationQuery(AggregationQuery $query, array $options = []): AggregationQueryResult
     {
         return $this->operation->runAggregationQuery($query, $options);
     }
@@ -1308,7 +1308,7 @@ class DatastoreClient
      * @throws DomainException
      * @codingStandardsIgnoreEnd
      */
-    private function parseSingleMutationResult(array $res)
+    private function parseSingleMutationResult(array $res): string
     {
         $mutationResult = $res['mutationResults'][0];
 

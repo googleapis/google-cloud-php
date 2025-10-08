@@ -821,11 +821,11 @@ class EntityMapperTest extends TestCase
     public function testObjectPropertyKey()
     {
         $key = $this->prophesize(Key::class);
-        $key->keyObject()->willReturn('foo');
+        $key->keyObject()->willReturn(['foo']);
 
         $res = $this->mapper->valueObject($key->reveal());
 
-        $this->assertEquals($res['keyValue'], 'foo');
+        $this->assertEquals($res['keyValue'], ['foo']);
     }
 
     public function testObjectPropertyGeoPoint()

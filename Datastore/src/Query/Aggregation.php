@@ -63,7 +63,7 @@ class Aggregation
      *
      * @param string $aggregationType
      */
-    private function __construct($aggregationType)
+    private function __construct(string $aggregationType)
     {
         $this->aggregationType = $aggregationType;
     }
@@ -77,7 +77,7 @@ class Aggregation
      * ```
      * @return Aggregation
      */
-    public static function count()
+    public static function count(): Aggregation
     {
         return self::createAggregation(self::TYPE_COUNT);
     }
@@ -98,7 +98,7 @@ class Aggregation
      * @param string $property The relative path of the field to aggregate upon.
      * @return Aggregation
      */
-    public static function sum($property)
+    public static function sum(string $property): Aggregation
     {
         return self::createAggregation(self::TYPE_SUM, $property);
     }
@@ -119,12 +119,12 @@ class Aggregation
      * @param string $property The relative path of the field to aggregate upon.
      * @return Aggregation
      */
-    public static function avg($property)
+    public static function avg(string $property): Aggregation
     {
         return self::createAggregation(self::TYPE_AVG, $property);
     }
 
-    private static function createAggregation(string $type, $property = null)
+    private static function createAggregation(string $type, ?string $property = null): Aggregation
     {
         $aggregation = new Aggregation($type);
         $aggregation->props[$aggregation->aggregationType] = [];
@@ -152,7 +152,7 @@ class Aggregation
      * @param string $alias The alias for aggregation.
      * @return Aggregation
      */
-    public function alias($alias)
+    public function alias(string $alias): Aggregation
     {
         $this->props['alias'] = $alias;
         return $this;
@@ -163,7 +163,7 @@ class Aggregation
      *
      * @return array
      */
-    public function getProps()
+    public function getProps(): array
     {
         return $this->props;
     }

@@ -6,3 +6,11 @@ echo "<?php require 'vendor/autoload.php';require 'dev/vendor/autoload.php';" > 
 
 # Run phpstan
 dev/vendor/bin/phpstan analyse */src */metadata --autoload-file=$TMPDIR/phpstan-bootstrap.php
+
+# Run phpstan in individual package directories which support them
+find . -name phpstan.neon.dist -depth 2 | while IFS= read -r FILE; do
+  DIR="$(dirname "$FILE")"
+  echo "Running phpstan in $DIR"
+  dev/vendor/bin/phpstan analyze -c $DIR/phpstan.neon.dist $DIR/src/
+done
+
