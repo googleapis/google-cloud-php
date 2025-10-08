@@ -97,6 +97,11 @@ class Operation
     private Serializer $serializer;
 
     /**
+     * @var OptionsValidator
+     */
+    private OptionsValidator $optionsValidator;
+
+    /**
      * Create an operation
      *
      * @param DatastoreClient $gapicClient A Datastore Gapic Client instance.
