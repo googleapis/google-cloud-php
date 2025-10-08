@@ -20,7 +20,6 @@ namespace Google\Cloud\Datastore\Tests\Unit;
 use Google\Cloud\Core\Testing\DatastoreOperationRefreshTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
-use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\Entity;
 use Google\Cloud\Datastore\EntityMapper;
 use Google\Cloud\Datastore\Key;
@@ -40,6 +39,7 @@ use Google\Cloud\Datastore\V1\CommitResponse;
 use Google\Cloud\Datastore\V1\LookupRequest;
 use Google\Cloud\Datastore\V1\LookupResponse;
 use Google\Cloud\Datastore\V1\RollbackRequest;
+use Google\Cloud\Datastore\V1\RollbackResponse;
 use Google\Cloud\Datastore\V1\RunAggregationQueryRequest;
 use Google\Cloud\Datastore\V1\RunAggregationQueryResponse;
 use Google\Cloud\Datastore\V1\RunQueryRequest;
@@ -125,16 +125,16 @@ class TransactionTest extends TestCase
     public function testLookup(string $transactionName)
     {
          $this->gapicClient->lookup(
-            Argument::type(LookupRequest::class),
-            Argument::any()
-        )->shouldBeCalled(1)
+             Argument::type(LookupRequest::class),
+             Argument::any()
+         )->shouldBeCalled(1)
             ->willReturn(self::generateProto(LookupResponse::class, [
             'found' => [
                 [
                     'entity' => $this->entityArray($this->key)
                 ]
             ]
-        ]));
+         ]));
 
         $transaction = $this->$transactionName;
 
@@ -184,7 +184,7 @@ class TransactionTest extends TestCase
         $this->gapicClient->lookup(Argument::that(function (LookupRequest $request) {
                 $this->assertEquals(1, count($request->getKeys()));
                 return true;
-            }), Argument::any())
+        }), Argument::any())
         ->shouldBeCalled(1)->willReturn(self::generateProto(LookupResponse::class, [
             'found' => [
                 [
@@ -259,11 +259,13 @@ class TransactionTest extends TestCase
     {
         $expectedQueryString = 'AGGREGATE (COUNT(*)) over (SELECT 1=1)';
 
-        $this->gapicClient->runAggregationQuery(Argument::that(function (RunAggregationQueryRequest $request) use ($expectedQueryString) {
-            $this->assertEquals(self::PROJECT, $request->getPartitionId()->getProjectId());
-            $this->assertEquals($expectedQueryString, $request->getGqlQuery()->getQueryString());
-            return true;
-        }), Argument::any())->shouldBeCalled(1)
+        $this->gapicClient->runAggregationQuery(Argument::that(
+            function (RunAggregationQueryRequest $request) use ($expectedQueryString) {
+                $this->assertEquals(self::PROJECT, $request->getPartitionId()->getProjectId());
+                $this->assertEquals($expectedQueryString, $request->getGqlQuery()->getQueryString());
+                return true;
+            }
+        ), Argument::any())->shouldBeCalled(1)
             ->willReturn(self::generateProto(RunAggregationQueryResponse::class, [
                 'batch' => [
                         'aggregationResults' => [
@@ -271,10 +273,12 @@ class TransactionTest extends TestCase
                                 'aggregateProperties' => ['property_1' => ['integerValue' => 1]]
                             ]
                         ],
-                        'readTime' => (new \DateTime)->format('Y-m-d\TH:i:s') .'.000001Z'
+                        'readTime' => [
+                            'seconds' => 10,
+                            'nanos' => 10
+                        ]
                     ]
-                ]
-            ));
+                ]));
 
         $transaction = $this->$transaction;
 
@@ -312,7 +316,8 @@ class TransactionTest extends TestCase
         $this->gapicClient->rollback(Argument::that(function (RollbackRequest $request) {
             $this->assertEquals(base64_decode(self::TRANSACTION), $request->getTransaction());
             return true;
-        }))->shouldBeCalled(1);
+        }))->shouldBeCalled(1)
+            ->willReturn(new RollbackResponse());
 
         $transaction = $this->$transaction;
 
@@ -336,11 +341,13 @@ class TransactionTest extends TestCase
         ];
 
         $this->gapicClient->commit(Argument::that(function (CommitRequest $request) {
-            $this->assertEquals(base64_decode(self::TRANSACTION), $request->getTransaction());
-            $this->assertEquals(Mode::TRANSACTIONAL, $request->getMode());
-            $this->assertNotEmpty($request->getMutations());
-            return true;
-        }), Argument::any())->shouldBeCalled(1)->willReturn(self::generateProto(CommitResponse::class, $expectedResult));
+                $this->assertEquals(base64_decode(self::TRANSACTION), $request->getTransaction());
+                $this->assertEquals(Mode::TRANSACTIONAL, $request->getMode());
+                $this->assertNotEmpty($request->getMutations());
+                return true;
+        }), Argument::any())
+            ->shouldBeCalled(1)
+            ->willReturn(self::generateProto(CommitResponse::class, $expectedResult));
 
         $this->transaction->$method($this->entity, ['allowOverwrite' => true]);
         $res = $this->transaction->commit();
@@ -356,11 +363,13 @@ class TransactionTest extends TestCase
         $expectedResult = $this->basicCommitResponse();
 
         $this->gapicClient->commit(Argument::that(function (CommitRequest $request) {
-            $this->assertEquals(base64_decode(self::TRANSACTION), $request->getTransaction());
-            $this->assertEquals(Mode::TRANSACTIONAL, $request->getMode());
-            $this->assertNotEmpty($request->getMutations());
-            return true;
-        }), Argument::any())->shouldBeCalled(1)->willReturn(self::generateProto(CommitResponse::class, $expectedResult));
+                $this->assertEquals(base64_decode(self::TRANSACTION), $request->getTransaction());
+                $this->assertEquals(Mode::TRANSACTIONAL, $request->getMode());
+                $this->assertNotEmpty($request->getMutations());
+                return true;
+        }), Argument::any())
+            ->shouldBeCalled(1)
+            ->willReturn(self::generateProto(CommitResponse::class, $expectedResult));
 
         $method .= 'Batch';
 
@@ -383,11 +392,13 @@ class TransactionTest extends TestCase
         $expectedResponse = $this->basicCommitResponse();
 
         $this->gapicClient->commit(Argument::that(function (CommitRequest $request) {
-            $this->assertEquals(base64_decode(self::TRANSACTION), $request->getTransaction());
-            $this->assertEquals(Mode::TRANSACTIONAL, $request->getMode());
-            $this->assertNotEmpty($request->getMutations());
-            return true;
-        }), Argument::any())->shouldBeCalled(1)->willReturn(self::generateProto(CommitResponse::class, $expectedResponse));
+                $this->assertEquals(base64_decode(self::TRANSACTION), $request->getTransaction());
+                $this->assertEquals(Mode::TRANSACTIONAL, $request->getMode());
+                $this->assertNotEmpty($request->getMutations());
+                return true;
+        }), Argument::any())
+            ->shouldBeCalled(1)
+            ->willReturn(self::generateProto(CommitResponse::class, $expectedResponse));
 
         $keyWithId = clone $key;
         $keyWithId->setLastElementIdentifier($id);
@@ -454,11 +465,13 @@ class TransactionTest extends TestCase
         $expectedResult = $this->basicCommitResponse();
 
         $this->gapicClient->commit(Argument::that(function (CommitRequest $request) {
-            $this->assertEquals(base64_decode(self::TRANSACTION), $request->getTransaction());
-            $this->assertEquals(Mode::TRANSACTIONAL, $request->getMode());
-            $this->assertNotEmpty($request->getMutations());
-            return true;
-        }), Argument::any())->shouldBeCalled(1)->willReturn(self::generateProto(CommitResponse::class, $expectedResult));
+                $this->assertEquals(base64_decode(self::TRANSACTION), $request->getTransaction());
+                $this->assertEquals(Mode::TRANSACTIONAL, $request->getMode());
+                $this->assertNotEmpty($request->getMutations());
+                return true;
+        }), Argument::any())
+            ->shouldBeCalled(1)
+            ->willReturn(self::generateProto(CommitResponse::class, $expectedResult));
 
         $this->transaction->delete($this->key);
         $res = $this->transaction->commit();
@@ -471,11 +484,13 @@ class TransactionTest extends TestCase
         $expectedResult = $this->basicCommitResponse();
 
         $this->gapicClient->commit(Argument::that(function (CommitRequest $request) {
-            $this->assertEquals(base64_decode(self::TRANSACTION), $request->getTransaction());
-            $this->assertEquals(Mode::TRANSACTIONAL, $request->getMode());
-            $this->assertNotEmpty($request->getMutations());
-            return true;
-        }), Argument::any())->shouldBeCalled(1)->willReturn(self::generateProto(CommitResponse::class, $expectedResult));
+                $this->assertEquals(base64_decode(self::TRANSACTION), $request->getTransaction());
+                $this->assertEquals(Mode::TRANSACTIONAL, $request->getMode());
+                $this->assertNotEmpty($request->getMutations());
+                return true;
+        }), Argument::any())
+            ->shouldBeCalled(1)
+            ->willReturn(self::generateProto(CommitResponse::class, $expectedResult));
 
         $this->transaction->deleteBatch([$this->key]);
         $res = $this->transaction->commit();

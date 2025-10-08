@@ -102,6 +102,12 @@ class InterconnectRemoteLocation extends \Google\Protobuf\Internal\Message
      */
     protected $max_lag_size10_gbps = null;
     /**
+     * [Output Only] The maximum number of 400 Gbps ports supported in a link aggregation group (LAG). When linkType is 400 Gbps, requestedLinkCount cannot exceed max_lag_size_400_gbps.
+     *
+     * Generated from protobuf field <code>optional int32 max_lag_size400_gbps = 104941138;</code>
+     */
+    protected $max_lag_size400_gbps = null;
+    /**
      * [Output Only] Name of the resource.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
@@ -175,6 +181,8 @@ class InterconnectRemoteLocation extends \Google\Protobuf\Internal\Message
      *           [Output Only] The maximum number of 100 Gbps ports supported in a link aggregation group (LAG). When linkType is 100 Gbps, requestedLinkCount cannot exceed max_lag_size_100_gbps.
      *     @type int $max_lag_size10_gbps
      *           [Output Only] The maximum number of 10 Gbps ports supported in a link aggregation group (LAG). When linkType is 10 Gbps, requestedLinkCount cannot exceed max_lag_size_10_gbps.
+     *     @type int $max_lag_size400_gbps
+     *           [Output Only] The maximum number of 400 Gbps ports supported in a link aggregation group (LAG). When linkType is 400 Gbps, requestedLinkCount cannot exceed max_lag_size_400_gbps.
      *     @type string $name
      *           [Output Only] Name of the resource.
      *     @type string $peeringdb_facility_id
@@ -699,6 +707,42 @@ class InterconnectRemoteLocation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->max_lag_size10_gbps = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] The maximum number of 400 Gbps ports supported in a link aggregation group (LAG). When linkType is 400 Gbps, requestedLinkCount cannot exceed max_lag_size_400_gbps.
+     *
+     * Generated from protobuf field <code>optional int32 max_lag_size400_gbps = 104941138;</code>
+     * @return int
+     */
+    public function getMaxLagSize400Gbps()
+    {
+        return isset($this->max_lag_size400_gbps) ? $this->max_lag_size400_gbps : 0;
+    }
+
+    public function hasMaxLagSize400Gbps()
+    {
+        return isset($this->max_lag_size400_gbps);
+    }
+
+    public function clearMaxLagSize400Gbps()
+    {
+        unset($this->max_lag_size400_gbps);
+    }
+
+    /**
+     * [Output Only] The maximum number of 400 Gbps ports supported in a link aggregation group (LAG). When linkType is 400 Gbps, requestedLinkCount cannot exceed max_lag_size_400_gbps.
+     *
+     * Generated from protobuf field <code>optional int32 max_lag_size400_gbps = 104941138;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setMaxLagSize400Gbps($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->max_lag_size400_gbps = $var;
 
         return $this;
     }

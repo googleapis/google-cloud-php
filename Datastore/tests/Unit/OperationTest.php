@@ -44,6 +44,7 @@ use Google\Cloud\Datastore\V1\RollbackRequest;
 use Google\Cloud\Datastore\V1\RollbackResponse;
 use Google\Cloud\Datastore\V1\RunQueryRequest;
 use Google\Cloud\Datastore\V1\RunQueryResponse;
+use Google\Protobuf\Timestamp as ProtobufTimestamp;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
@@ -290,7 +291,8 @@ class OperationTest extends TestCase
             'found' => $body,
         ];
 
-        $this->gapicClient->lookup(Argument::any(), Argument::any())->willReturn(self::generateProto(LookupResponse::class, $responseData));
+        $this->gapicClient->lookup(Argument::any(), Argument::any())
+            ->willReturn(self::generateProto(LookupResponse::class, $responseData));
 
         $key = $this->operation->key('Kind', 'ID');
         $res = $this->operation->lookup([$key]);
@@ -326,9 +328,10 @@ class OperationTest extends TestCase
     public function testLookupDeferred()
     {
         $body = json_decode(file_get_contents(Fixtures::ENTITY_BATCH_LOOKUP_FIXTURE()), true);
-        $this->gapicClient->lookup(Argument::any(), Argument::any())->willReturn(self::generateProto(LookupResponse::class, [
-            'deferred' => [$body[0]['entity']['key']],
-        ]));
+        $this->gapicClient->lookup(Argument::any(), Argument::any())
+            ->willReturn(self::generateProto(LookupResponse::class, [
+                'deferred' => [$body[0]['entity']['key']],
+            ]));
 
         $key = $this->operation->key('Kind', 'ID');
 
@@ -799,18 +802,22 @@ class OperationTest extends TestCase
     public function testMutateWithBaseVersion()
     {
         $timestamp = new Timestamp(new \DateTime());
+        $pTimestamp = new ProtobufTimestamp([
+            'seconds' => $timestamp->get()->getTimestamp(),
+            'nanos' => $timestamp->nanoSeconds()
+        ]);
         $commitResponseData = [
             'mutationResults' => [
                 [
                     'version' => 2,
                     'conflictDetected' => false,
-                    'createTime' => $timestamp,
-                    'updateTime' => $timestamp,
+                    'createTime' => $pTimestamp,
+                    'updateTime' => $pTimestamp,
                     'transformResults' => [],
                 ]
             ],
             'indexUpdates' => 1,
-            'commitTime' => $timestamp,
+            'commitTime' => $pTimestamp,
         ];
 
         $this->gapicClient->commit(Argument::that(function (CommitRequest $request) {
@@ -840,6 +847,10 @@ class OperationTest extends TestCase
     public function testMutateWithKey()
     {
         $timestamp = new Timestamp(new \DateTime());
+        $pTimestamp = new ProtobufTimestamp([
+            'seconds' => $timestamp->get()->getTimestamp(),
+            'nanos' => $timestamp->nanoSeconds()
+        ]);
         $commitResponseData = [
             'mutationResults' => [
                 [
@@ -850,7 +861,7 @@ class OperationTest extends TestCase
                 ]
             ],
             'indexUpdates' => 1,
-            'commitTime' => $timestamp,
+            'commitTime' => $pTimestamp,
         ];
 
         $this->gapicClient->commit(Argument::that(function (CommitRequest $request) {
@@ -1074,7 +1085,9 @@ class OperationTest extends TestCase
                 }),
                 Argument::any()
             )
-            ->willReturn(self::generateProto(BeginTransactionResponse::class, ['transaction' => base64_encode($rawTransactionId)]));
+            ->willReturn(self::generateProto(BeginTransactionResponse::class, [
+                'transaction' => base64_encode($rawTransactionId)
+            ]));
 
         $transactionId = $this->operation->beginTransaction(
             [],

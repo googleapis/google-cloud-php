@@ -165,6 +165,13 @@ class DeployedIndex extends \Google\Protobuf\Internal\Message
      */
     protected $deployment_group = '';
     /**
+     * Optional. The deployment tier that the index is deployed to.
+     * DEPLOYMENT_TIER_UNSPECIFIED will use a system-chosen default tier.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.DeployedIndex.DeploymentTier deployment_tier = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $deployment_tier = 0;
+    /**
      * Optional. If set for PSC deployed index, PSC connection will be
      * automatically created after deployment is done and the endpoint information
      * is populated in private_endpoints.psc_automated_endpoints.
@@ -276,6 +283,9 @@ class DeployedIndex extends \Google\Protobuf\Internal\Message
      *           has been used with reserved_ip_ranges: [a, b, c], using it with [a, b] or
      *           [d, e] is disallowed.
      *           Note: we only support up to 5 deployment groups(not including 'default').
+     *     @type int $deployment_tier
+     *           Optional. The deployment tier that the index is deployed to.
+     *           DEPLOYMENT_TIER_UNSPECIFIED will use a system-chosen default tier.
      *     @type array<\Google\Cloud\AIPlatform\V1\PSCAutomationConfig>|\Google\Protobuf\Internal\RepeatedField $psc_automation_configs
      *           Optional. If set for PSC deployed index, PSC connection will be
      *           automatically created after deployment is done and the endpoint information
@@ -823,6 +833,34 @@ class DeployedIndex extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->deployment_group = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The deployment tier that the index is deployed to.
+     * DEPLOYMENT_TIER_UNSPECIFIED will use a system-chosen default tier.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.DeployedIndex.DeploymentTier deployment_tier = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getDeploymentTier()
+    {
+        return $this->deployment_tier;
+    }
+
+    /**
+     * Optional. The deployment tier that the index is deployed to.
+     * DEPLOYMENT_TIER_UNSPECIFIED will use a system-chosen default tier.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.DeployedIndex.DeploymentTier deployment_tier = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setDeploymentTier($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\AIPlatform\V1\DeployedIndex\DeploymentTier::class);
+        $this->deployment_tier = $var;
 
         return $this;
     }

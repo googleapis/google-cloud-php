@@ -110,6 +110,14 @@ class StreamingPullRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int64 max_outstanding_bytes = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $max_outstanding_bytes = 0;
+    /**
+     * Optional. The protocol version used by the client. This property can only
+     * be set on the initial StreamingPullRequest. If it is set on a subsequent
+     * request, the stream will be aborted with status `INVALID_ARGUMENT`.
+     *
+     * Generated from protobuf field <code>int64 protocol_version = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $protocol_version = 0;
 
     /**
      * Constructor.
@@ -178,6 +186,10 @@ class StreamingPullRequest extends \Google\Protobuf\Internal\Message
      *           This property can only be set on the initial StreamingPullRequest. If it is
      *           set on a subsequent request, the stream will be aborted with status
      *           `INVALID_ARGUMENT`.
+     *     @type int|string $protocol_version
+     *           Optional. The protocol version used by the client. This property can only
+     *           be set on the initial StreamingPullRequest. If it is set on a subsequent
+     *           request, the stream will be aborted with status `INVALID_ARGUMENT`.
      * }
      */
     public function __construct($data = NULL) {
@@ -479,6 +491,36 @@ class StreamingPullRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->max_outstanding_bytes = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The protocol version used by the client. This property can only
+     * be set on the initial StreamingPullRequest. If it is set on a subsequent
+     * request, the stream will be aborted with status `INVALID_ARGUMENT`.
+     *
+     * Generated from protobuf field <code>int64 protocol_version = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int|string
+     */
+    public function getProtocolVersion()
+    {
+        return $this->protocol_version;
+    }
+
+    /**
+     * Optional. The protocol version used by the client. This property can only
+     * be set on the initial StreamingPullRequest. If it is set on a subsequent
+     * request, the stream will be aborted with status `INVALID_ARGUMENT`.
+     *
+     * Generated from protobuf field <code>int64 protocol_version = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setProtocolVersion($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->protocol_version = $var;
 
         return $this;
     }

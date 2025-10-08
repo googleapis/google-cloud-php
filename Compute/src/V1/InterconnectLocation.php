@@ -115,6 +115,12 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
      */
     protected $self_link = null;
     /**
+     * [Output Only] URLs of the other locations that can pair up with this location to support Single-Region 99.99% SLA. E.g. iad-zone1-1 and iad-zone2-5467 are Single-Region 99.99% peer locations of each other.
+     *
+     * Generated from protobuf field <code>repeated string single_region_production_critical_peer_locations = 439537103;</code>
+     */
+    private $single_region_production_critical_peer_locations;
+    /**
      * [Output Only] The status of this InterconnectLocation, which can take one of the following values: - CLOSED: The InterconnectLocation is closed and is unavailable for provisioning new Interconnects. - AVAILABLE: The InterconnectLocation is available for provisioning new Interconnects.
      * Check the Status enum for the list of possible values.
      *
@@ -169,6 +175,8 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
      *           [Output Only] A list of InterconnectLocation.RegionInfo objects, that describe parameters pertaining to the relation between this InterconnectLocation and various Google Cloud regions.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $single_region_production_critical_peer_locations
+     *           [Output Only] URLs of the other locations that can pair up with this location to support Single-Region 99.99% SLA. E.g. iad-zone1-1 and iad-zone2-5467 are Single-Region 99.99% peer locations of each other.
      *     @type string $status
      *           [Output Only] The status of this InterconnectLocation, which can take one of the following values: - CLOSED: The InterconnectLocation is closed and is unavailable for provisioning new Interconnects. - AVAILABLE: The InterconnectLocation is available for provisioning new Interconnects.
      *           Check the Status enum for the list of possible values.
@@ -729,6 +737,32 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->self_link = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] URLs of the other locations that can pair up with this location to support Single-Region 99.99% SLA. E.g. iad-zone1-1 and iad-zone2-5467 are Single-Region 99.99% peer locations of each other.
+     *
+     * Generated from protobuf field <code>repeated string single_region_production_critical_peer_locations = 439537103;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getSingleRegionProductionCriticalPeerLocations()
+    {
+        return $this->single_region_production_critical_peer_locations;
+    }
+
+    /**
+     * [Output Only] URLs of the other locations that can pair up with this location to support Single-Region 99.99% SLA. E.g. iad-zone1-1 and iad-zone2-5467 are Single-Region 99.99% peer locations of each other.
+     *
+     * Generated from protobuf field <code>repeated string single_region_production_critical_peer_locations = 439537103;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setSingleRegionProductionCriticalPeerLocations($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->single_region_production_critical_peer_locations = $arr;
 
         return $this;
     }

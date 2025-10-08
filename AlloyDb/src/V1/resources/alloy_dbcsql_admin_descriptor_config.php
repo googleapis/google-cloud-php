@@ -79,6 +79,7 @@ return [
             'templateMap' => [
                 'backup' => 'projects/{project}/locations/{location}/backups/{backup}',
                 'cluster' => 'projects/{project}/locations/{location}/clusters/{cluster}',
+                'cryptoKey' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}',
                 'cryptoKeyVersion' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}',
                 'location' => 'projects/{project}/locations/{location}',
                 'network' => 'projects/{project}/global/networks/{network}',

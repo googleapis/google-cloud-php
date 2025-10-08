@@ -18,7 +18,6 @@
 namespace Google\Cloud\Datastore;
 
 use Google\ApiCore\Options\CallOptions;
-use Google\ApiCore\Serializer;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\TimestampTrait;
@@ -29,22 +28,21 @@ use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Query\QueryInterface;
 use Google\Cloud\Datastore\V1\AllocateIdsRequest;
 use Google\Cloud\Datastore\V1\BeginTransactionRequest;
-use Google\Cloud\Datastore\V1\ExplainOptions;
-use Google\Cloud\Datastore\V1\QueryResultBatch\MoreResultsType;
 use Google\Cloud\Datastore\V1\Client\DatastoreClient;
 use Google\Cloud\Datastore\V1\CommitRequest;
 use Google\Cloud\Datastore\V1\CommitRequest\Mode;
 use Google\Cloud\Datastore\V1\EntityResult;
+use Google\Cloud\Datastore\V1\ExplainOptions;
 use Google\Cloud\Datastore\V1\Key as ProtobufKey;
 use Google\Cloud\Datastore\V1\LookupRequest;
 use Google\Cloud\Datastore\V1\Mutation;
+use Google\Cloud\Datastore\V1\QueryResultBatch\MoreResultsType;
 use Google\Cloud\Datastore\V1\ReadOptions;
-use Google\Cloud\Datastore\V1\ReadOptions_ReadConsistency;
 use Google\Cloud\Datastore\V1\RollbackRequest;
 use Google\Cloud\Datastore\V1\RunAggregationQueryRequest;
 use Google\Cloud\Datastore\V1\RunQueryRequest;
 use Google\Cloud\Datastore\V1\TransactionOptions;
-use Google\Protobuf\RepeatedField;
+use Google\Protobuf\PrintOptions;
 use Google\Protobuf\Timestamp as ProtobufTimestamp;
 use InvalidArgumentException;
 
@@ -118,21 +116,7 @@ class Operation
         $this->namespaceId = $namespaceId;
         $this->databaseId = $databaseId;
         $this->entityMapper = $entityMapper;
-        $this->serializer = new Serializer([
-            'end_cursor' => function ($v) {
-                return base64_encode($v);
-            },
-            'start_cursor' => function ($v) {
-                return base64_encode($v);
-            },
-            'cursor' => function ($v) {
-                return base64_encode($v);
-            }
-        ],[
-            'google.protobuf.Duration' => function ($v) {
-                return $this->formatDurationFromApi($v);
-            }
-        ]);
+        $this->serializer = new Serializer();
     }
 
     /**
@@ -316,9 +300,6 @@ class Operation
      */
     public function beginTransaction($transactionOptions, array $options = [])
     {
-        $protoTransactionOptions = new TransactionOptions();
-        $protoTransactionOptions->mergeFromJsonString(json_encode($transactionOptions));
-
         $requestOptions = [
             'databaseId' => $options['databaseId'] ?? $this->databaseId,
             'projectId' => $this->projectId,
@@ -399,11 +380,10 @@ class Operation
 
         $allocateIdsResponse = $this->gapicClient->allocateIds($allocateIdsRequest, $callOptions);
 
-        /** @var protobufKey $responseKey */
+        /** @var ProtobufKey $responseKey */
         foreach ($allocateIdsResponse->getKeys() as $index => $responseKey) {
             $path = $responseKey->getPath();
 
-            // @phpstan-ignore argument.type
             $lastPathElement = count($path) - 1;
 
             $id = $path[$lastPathElement]->getId();
@@ -498,10 +478,11 @@ class Operation
             'deferred' => [],
         ];
 
-        /** @var protoEntity $found */
+        /** @var EntityResult $found */
         foreach ($lookupResponse->getFound() as $found) {
             $result['found'][] = $this->mapEntityResult(
-                $this->serializer->encodeMessage($found), $className
+                $this->serializer->encodeMessage($found),
+                $className
             );
         }
 
@@ -517,7 +498,7 @@ class Operation
             );
         }
 
-        /** @var protobufKey $deferred */
+        /** @var ProtobufKey $deferred */
         foreach ($lookupResponse->getDeferred() as $deferred) {
             $result['deferred'][] = $this->key(
                 $deferred->getPath(),
@@ -641,31 +622,31 @@ class Operation
 
             $runQueryResponse = $this->gapicClient->runQuery($runQueryRequest, $callOptions);
 
-            $res = $this->serializer->encodeMessage($runQueryResponse);
-
             // When executing a GQL Query, the server will compute a query object
             // and return it with the first response batch.
             // Automatic pagination with GQL is accomplished by requesting
             // subsequent pages with this query object, and discarding the GQL
             // query. This is done by replacing the GQL object with a Query
             // instance prior to the next iteration of the page.
-            if (isset($res['query'])) {
-                $runQueryObj = new Query($this->entityMapper, $res['query']);
-            }
-            if (isset($res['query']['limit'])) {
-                // limit for GqlQuery in REST mode
-                $remainingLimit = $res['query']['limit'];
-            }
-            if (isset($remainingLimit['value'])) {
-                // limit for GqlQuery in GRPC mode
-                $remainingLimit = $remainingLimit['value'];
+            if (!empty($runQueryResponse->getQuery())) {
+                $queryArray = json_decode(
+                    $runQueryResponse->getQuery()->serializeToJsonString(PrintOptions::ALWAYS_PRINT_ENUMS_AS_INTS),
+                    true
+                );
+
+                $runQueryObj = new Query($this->entityMapper, $queryArray);
+
+                if (!empty($runQueryResponse->getQuery()->getLimit())) {
+                    $remainingLimit = [
+                        'value' => $runQueryResponse->getQuery()->getLimit()->getValue()
+                    ];
+                }
             }
             if (!is_null($remainingLimit)) {
-                // entityResults is not present in REST mode for empty query results
-                $remainingLimit -= count($res['batch']['entityResults'] ?? []);
+                $remainingLimit['value'] -= count($runQueryResponse->getBatch()->getEntityResults());
             }
 
-            return $res;
+            return $this->serializer->encodeMessage($runQueryResponse);
         };
 
         return new EntityIterator(
@@ -747,7 +728,8 @@ class Operation
             $runAggregationQueryRequest->setReadOptions($readOptions);
         }
 
-        $runAggregationQueryResponse = $this->gapicClient->runAggregationQuery($runAggregationQueryRequest, $callOptions);
+        $runAggregationQueryResponse = $this->gapicClient
+            ->runAggregationQuery($runAggregationQueryRequest, $callOptions);
 
         $res = $this->serializer->encodeMessage($runAggregationQueryResponse);
 
@@ -1049,23 +1031,11 @@ class Operation
         }
 
         if ($totalSet > 1) {
-            throw new InvalidArgumentException('Only one of `readConsistency`, `transaction` or `readTime` may be set.');
+            throw new InvalidArgumentException(
+                'Only one of `readConsistency`, `transaction` or `readTime` may be set.'
+            );
         }
 
         return $readOptions;
-    }
-
-    /**
-     * Format a duration from the API
-     *
-     * @param array $value
-     * @return string
-     */
-    private function formatDurationFromApi($value): string
-    {
-        $seconds = $value['seconds'];
-        $nanos = str_pad($value['nanos'], 9, 0, STR_PAD_LEFT);
-
-        return "{$seconds}.{$nanos}s";
     }
 }
