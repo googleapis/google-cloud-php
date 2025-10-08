@@ -400,6 +400,7 @@ class TransactionTest extends SpannerTestCase
         } catch (ServiceException $e) {
             $exception = $e;
         }
+        $this->assertNotNull($exception);
         $this->assertEquals($exception->getServiceException()->getBasicMessage(), $expected);
     }
 

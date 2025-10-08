@@ -88,7 +88,6 @@ use Psr\Cache\CacheItemPoolInterface;
 class Database
 {
     use ApiHelperTrait;
-    use TransactionConfigurationTrait;
     use RequestTrait;
 
     public const CONTEXT_READ = 'r';
@@ -128,6 +127,15 @@ class Database
     private CacheItemPoolInterface $cacheItemPool;
     private array $info;
     private int $isolationLevel;
+    private TransactionOptionsBuilder $transactionOptionsBuilder;
+
+    private const MUTATION_SETTERS = [
+        'insert' => 'setInsert',
+        'update' => 'setUpdate',
+        'insertOrUpdate' => 'setInsertOrUpdate',
+        'replace' => 'setReplace',
+        'delete' => 'setDelete'
+    ];
 
     /**
      * Create an object representing a Database.
@@ -185,6 +193,7 @@ class Database
         );
 
         $this->optionsValidator = new OptionsValidator($serializer);
+        $this->transactionOptionsBuilder = new TransactionOptionsBuilder();
         $this->directedReadOptions = $instance->directedReadOptions();
     }
 
@@ -747,25 +756,14 @@ class Database
             throw new BadMethodCallException('Nested transactions are not supported by this client.');
         }
 
-        $options += [
-            'singleUse' => false
+        $snapshotOptions = [
+            'singleUse' => $options['singleUse'] ?? false
         ];
 
-        $options['transactionOptions'] = $this->configureReadOnlyTransactionOptions($options);
+        $snapshotOptions['transactionOptions'] = $this->transactionOptionsBuilder
+            ->configureReadOnlyTransactionOptions($options);
 
-        // For backwards compatibility - remove all PBReadOnly fields
-        // This was previously being done in configureReadOnlyTransactionOptions
-        // @TODO: clean this up
-        unset(
-            $options['returnReadTimestamp'],
-            $options['strong'],
-            $options['readTimestamp'],
-            $options['exactStaleness'],
-            $options['minReadTimestamp'],
-            $options['maxStaleness'],
-        );
-
-        return $this->operation->snapshot($this->session, $options);
+        return $this->operation->snapshot($this->session, $snapshotOptions);
     }
 
     /**
@@ -814,7 +812,7 @@ class Database
         }
 
         // Configure readWrite options here. Any nested options for readWrite should be added to this call
-        $options['transactionOptions'] = $this->configureReadWriteTransactionOptions(
+        $options['transactionOptions'] = $this->transactionOptionsBuilder->configureReadWriteTransactionOptions(
             ($options['transactionOptions'] ?? []) + ['isolationLevel' => $this->isolationLevel]
         );
 
@@ -921,7 +919,7 @@ class Database
 
         // Configure necessary readWrite nested and base options
         $transactionOptions = $options['transactionOptions'] ?? [];
-        $options['transactionOptions'] = $this->configureReadWriteTransactionOptions(
+        $options['transactionOptions'] = $this->transactionOptionsBuilder->configureReadWriteTransactionOptions(
             $transactionOptions + ['isolationLevel' => $this->isolationLevel]
         );
 
@@ -1666,28 +1664,27 @@ class Database
      */
     public function execute($sql, array $options = []): Result
     {
-        unset($options['requestOptions']['transactionTag']);
-        $session = $this->pluck('session', $options, false)
-            ?: $this->session;
-
-        list(
-            $options['transaction'],
-            $options['transactionContext']
-        ) = $this->transactionSelector($options);
+	$executeOptions = $this->pluckArray(
+            ['parameters', 'types'],
+            $options
+        );
 
         if (isset($options['transaction']['readWrite'])) {
             $options['transaction']['begin']['isolationLevel'] ??= $this->isolationLevel;
         }
 
-        $options['directedReadOptions'] = $this->configureDirectedReadOptions(
-            $options,
+        [$transactionOptions, $transactionContext] = $this->transactionOptionsBuilder->transactionSelector($options);
+        $directedReadOptions = $this->transactionOptionsBuilder->configureDirectedReadOptions(
+            ['transaction' => $transactionOptions] + $options,
             $this->directedReadOptions
         );
 
-        // Unset the internal flag.
-        unset($options['singleUse']);
-        return $this->operation->execute($session, $sql, $options + [
-            'route-to-leader' => $options['transactionContext'] === Database::CONTEXT_READWRITE
+        $session = $options['session'] ?? $this->session;
+        return $this->operation->execute($session, $sql, $executeOptions + [
+            'transaction' => $transactionOptions,
+            'transactionContext' => $transactionContext,
+            'directedReadOptions' => $directedReadOptions,
+            'route-to-leader' => $transactionContext === Database::CONTEXT_READWRITE
         ]);
     }
 
@@ -2053,20 +2050,20 @@ class Database
      */
     public function read($table, KeySet $keySet, array $columns, array $options = []): Result
     {
-        unset($options['requestOptions']['transactionTag']);
+        [$transactionOptions, $context] = $this->transactionOptionsBuilder->transactionSelector($options);
 
-        list($transactionOptions, $context) = $this->transactionSelector($options);
-        $options['transaction'] = $transactionOptions;
-        $options['transactionContext'] = $context;
-
-        $options['directedReadOptions'] = $this->configureDirectedReadOptions(
-            $options,
+        $readOptions = $this->pluckArray(
+            ['index', 'limit', 'orderBy', 'lockHint', 'directedReadOptions'],
+            $options
+        );
+        $readOptions['transactionContext'] = $context;
+        $readOptions['directedReadOptions'] = $this->transactionOptionsBuilder->configureDirectedReadOptions(
+            ['transaction' => $transactionOptions] + $readOptions,
             $this->directedReadOptions
         );
+        $readOptions['transaction'] = $transactionOptions;
 
-        // Unset the internal flag.
-        unset($options['singleUse']);
-        return $this->operation->read($this->session, $table, $keySet, $columns, $options + [
+        return $this->operation->read($this->session, $table, $keySet, $columns, $readOptions + [
             'route-to-leader' => $context === Database::CONTEXT_READ
         ]);
     }

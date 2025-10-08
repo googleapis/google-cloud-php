@@ -250,8 +250,8 @@ class BatchSnapshotTest extends TestCase
                 $this->assertEquals($request->getIndex(), $opts['index']);
                 $this->assertEquals(iterator_to_array($request->getColumns()), $columns);
                 $this->assertEquals(
+                    self::TRANSACTION,
                     $request->getTransaction()->getId(),
-                    self::TRANSACTION
                 );
                 $this->assertTrue($this->serializer->encodeMessage($request->getKeySet())['all']);
                 return true;

@@ -135,14 +135,30 @@ class SnapshotTest extends TestCase
 
         $operation = $this->prophesize(Operation::class);
         $result = $this->prophesize(Result::class);
-        $operation->read(Argument::any(), Argument::any(), Argument::any(), Argument::any(), Argument::withEntry(
-            'directedReadOptions',
-            $this->directedReadOptionsIncludeReplicas
-        ))->shouldBeCalled()->willReturn($result);
-        $operation->read(Argument::any(), Argument::any(), Argument::any(), Argument::any(), Argument::withEntry(
-            'headers',
-            ['x-goog-spanner-route-to-leader' => ['true']]
-        ))->shouldNotBeCalled();
+        $operation->read(
+            Argument::any(),
+            Argument::any(),
+            Argument::any(),
+            Argument::any(),
+            Argument::withEntry(
+                'directedReadOptions',
+                $this->directedReadOptionsIncludeReplicas
+            )
+        )
+            ->shouldBeCalled()
+            ->willReturn($result);
+
+        $operation->read(
+            Argument::any(),
+            Argument::any(),
+            Argument::any(),
+            Argument::any(),
+            Argument::withEntry(
+                'headers',
+                ['x-goog-spanner-route-to-leader' => ['true']]
+            )
+        )
+            ->shouldNotBeCalled();
 
         $snapshot = new Snapshot(
             $operation->reveal(),

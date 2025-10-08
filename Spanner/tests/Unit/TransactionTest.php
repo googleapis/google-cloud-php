@@ -409,12 +409,12 @@ class TransactionTest extends TestCase
                 $this->assertTrue($request->getKeySet()->getAll());
                 $this->assertEquals(iterator_to_array($request->getColumns()), ['ID']);
                 $this->assertEquals(
+                    self::TRANSACTION_TAG,
                     $request->getRequestOptions()->getTransactionTag(),
-                    self::TRANSACTION_TAG
                 );
                 $this->assertEquals(
+                    self::REQUEST_TAG,
                     $request->getRequestOptions()->getRequestTag(),
-                    self::REQUEST_TAG
                 );
 
                 return true;
