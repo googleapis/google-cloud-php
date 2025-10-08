@@ -20,7 +20,7 @@ class LookupRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project_id = 8 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
     /**
      * The ID of the database against which to make the request.
      * '(default)' is not allowed; please use empty string '' to refer the default
@@ -28,13 +28,13 @@ class LookupRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string database_id = 9;</code>
      */
-    private $database_id = '';
+    protected $database_id = '';
     /**
      * The options for this lookup request.
      *
      * Generated from protobuf field <code>.google.datastore.v1.ReadOptions read_options = 1;</code>
      */
-    private $read_options = null;
+    protected $read_options = null;
     /**
      * Required. Keys of entities to look up.
      *
@@ -49,7 +49,7 @@ class LookupRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.datastore.v1.PropertyMask property_mask = 5;</code>
      */
-    private $property_mask = null;
+    protected $property_mask = null;
 
     /**
      * @param string                                 $projectId   Required. The ID of the project against which to make the request.

@@ -19,6 +19,7 @@ namespace Google\Cloud\Datastore;
 
 use Google\ApiCore\Options\CallOptions;
 use Google\Cloud\Core\ApiHelperTrait;
+use Google\Cloud\Core\OptionsValidator;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\TimestampTrait;
 use Google\Cloud\Core\ValidateTrait;
@@ -117,6 +118,7 @@ class Operation
         $this->databaseId = $databaseId;
         $this->entityMapper = $entityMapper;
         $this->serializer = new Serializer();
+        $this->optionsValidator = new OptionsValidator($this->serializer);
     }
 
     /**

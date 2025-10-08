@@ -28,13 +28,13 @@ class CommitResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 index_updates = 4;</code>
      */
-    private $index_updates = 0;
+    protected $index_updates = 0;
     /**
      * The transaction commit timestamp. Not set for non-transactional commits.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp commit_time = 8;</code>
      */
-    private $commit_time = null;
+    protected $commit_time = null;
 
     /**
      * Constructor.

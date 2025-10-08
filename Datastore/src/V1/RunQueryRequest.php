@@ -20,7 +20,7 @@ class RunQueryRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project_id = 8 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
     /**
      * The ID of the database against which to make the request.
      * '(default)' is not allowed; please use empty string '' to refer the default
@@ -28,7 +28,7 @@ class RunQueryRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string database_id = 9;</code>
      */
-    private $database_id = '';
+    protected $database_id = '';
     /**
      * Entities are partitioned into subsets, identified by a partition ID.
      * Queries are scoped to a single partition.
@@ -37,13 +37,13 @@ class RunQueryRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.datastore.v1.PartitionId partition_id = 2;</code>
      */
-    private $partition_id = null;
+    protected $partition_id = null;
     /**
      * The options for this query.
      *
      * Generated from protobuf field <code>.google.datastore.v1.ReadOptions read_options = 1;</code>
      */
-    private $read_options = null;
+    protected $read_options = null;
     /**
      * The properties to return.
      * This field must not be set for a projection query.
@@ -52,14 +52,14 @@ class RunQueryRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.datastore.v1.PropertyMask property_mask = 10;</code>
      */
-    private $property_mask = null;
+    protected $property_mask = null;
     /**
      * Optional. Explain options for the query. If set, additional query
      * statistics will be returned. If not, only query results will be returned.
      *
      * Generated from protobuf field <code>.google.datastore.v1.ExplainOptions explain_options = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $explain_options = null;
+    protected $explain_options = null;
     protected $query_type;
 
     /**

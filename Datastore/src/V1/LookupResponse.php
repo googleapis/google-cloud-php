@@ -49,13 +49,13 @@ class LookupResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes transaction = 5;</code>
      */
-    private $transaction = '';
+    protected $transaction = '';
     /**
      * The time at which these entities were read or found missing.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 7;</code>
      */
-    private $read_time = null;
+    protected $read_time = null;
 
     /**
      * Constructor.

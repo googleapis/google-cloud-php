@@ -243,6 +243,9 @@ trait ApiHelperTrait
      */
     private function convertDataToProtos(array $input, array $map): array
     {
+        if (!isset($this->serializer)) {
+            throw new \LogicException('Serializer must be set to use this function');
+        }
         foreach ($map as $key => $className) {
             if (isset($input[$key])) {
                 $input[$key] = $this->serializer->decodeMessage(new $className(), $input[$key]);
