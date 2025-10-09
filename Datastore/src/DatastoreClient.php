@@ -200,7 +200,7 @@ class DatastoreClient
         $this->validateConfigurationOptions($config);
 
         $config += [
-            'namespaceId' => '',
+            'namespaceId' => null,
             'databaseId' => '',
             'returnInt64AsObject' => false,
             'scopes' => [self::FULL_CONTROL_SCOPE],

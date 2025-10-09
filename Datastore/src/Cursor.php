@@ -42,8 +42,9 @@ class Cursor
     /**
      * @param string|int $cursor The cursor value.
      */
-    public function __construct(private string|int $cursor)
-    {
+    public function __construct(
+        private string|int $cursor
+    ) {
     }
 
     /**

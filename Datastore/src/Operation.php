@@ -88,7 +88,7 @@ class Operation
     public function __construct(
         private DatastoreClient $gapicClient,
         private string $projectId,
-        private string $namespaceId,
+        private ?string $namespaceId,
         private EntityMapper $entityMapper,
         private string $databaseId = '',
     ) {
